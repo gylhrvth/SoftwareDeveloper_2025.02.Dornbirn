@@ -1,0 +1,82 @@
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #f8f8f2;
+    color: #44475a;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.fileExample {
+    margin-top: 2em;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.fileExample > pre {
+    margin: 0;
+}
+
+.code-sample > code {
+    font-size: 1.2em;
+    background-color: #2d2d2d;
+    border: none;
+    color: #f8f8f2;
+    overflow-x: auto;
+    white-space: pre;   
+}
+
+.code-sample {
+    font-size: 1.2em;
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-sample .highlight {
+    background-color: #44475a;
+    color: #8be9fd;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.twoColumns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.trainerCard>div>img{
+    float: left;
+    width: 22vw;
+    margin-right: 1em;
+}
+
+.trainerCard>div{
+    min-height: 22vw;
+}
+
+.toTheTop{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 3em;
+}
+
+.menu{
+    padding: 0.2em 1em;
+}
+.menu>*{
+    margin-right: 2em;
+}
+
+.indent-1{
+    margin-left: 2em;
+}
+.indent-2{
+    margin-left: 4em;
+}
+.indent-3{
+    margin-left: 6em;
+}
