@@ -7,6 +7,8 @@
     --tertiary-background-color: hsl(205, 100%, 19%);
     --primary-font: "Roboto", sans-serif;
     --secondary-font: "Courier New", Courier, monospace;
+    --link-color: hsl(205, 100%, 19%);
+    --link-visited-color: hsl(265, 100%, 19%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +19,8 @@
         --primary-background-color: hsl(210, 100%, 14%);
         --secondary-background-color: hsl(171, 64%, 56%);
         --tertiary-background-color:hsl(205, 100%, 19%);
+        --link-color: hsl(205, 100%, 80%);
+        --link-visited-color: hsl(265, 100%, 80%);
     }
 }
 
@@ -34,6 +38,15 @@ code {
     padding: 2px 4px;
     border-radius: 3px;
 }
+
+a {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--link-visited-color);
+}
+
 
 .fileExample {
     margin-top: 2em;
