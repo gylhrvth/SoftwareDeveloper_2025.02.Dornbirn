@@ -9,57 +9,84 @@
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
 </head>
+<style>
+.spaceing {
+    margin-top: 60px;
+    font-size: larger;
+}
+
+#Foto-Git {
+    width: 30%;
+}
+</style>
 <body>
     <h1>Lernerfolgsbuch</h1>
     <h2>Montag, 17. Februar 2025</h2>
-    <h3>Recherche zum Thema "UX/UI"</h3>
+    <h3>Recherche zum Thema "Git"</h3>
     <ul>
-        <li>Was ist UI/UX?</li>
-        <p>User Experience bezeichnet die gesamte Erfahrung, die ein Benutzer mit einem Produkt oder einer Dienstleistung macht. Es geht darum, wie der Nutzer das Produkt wahrnimmt und wie er mit ihm interagiert. UX-Design umfasst die Gestaltung von Prozessen, die dafür sorgen, dass der Benutzer die Interaktion als angenehm, effizient und sinnvoll empfindet. </p>
-        <p>User Interface bezieht sich auf das visuelle Design und die Interaktive Gestaltung eines Produkts, also die Elemente, mit denen der Benutzer direkt interagiert. Dazu gehören beispielsweise Buttons, Menüs, Farben, Schriftarten, Icons und Layouts. UI-Design kümmert sich darum, dass diese Elemente ästhetisch ansprechend und funktional sind. </p>
-        
-        <li>Woher stammt das Wort?</li>
-        <p>1993 prägte Don Norman den Begriff „User Experience“ für seine Gruppe bei Apple Computer</p>
-        
-        <li>Wie kann ich mir UI/UX vorstellen?</li>
-        <p>Das UX-Design konzentriert sich mehr auf die allgemeine Benutzererfahrung. UI-Design konzentriert sich mehr darauf, wie verschiedene Elemente wie Schaltflächen, Text und Grafiken aussehen.</p>
+
+        <img id="Foto-Git" src="img/Screenshot 2025-02-17 143552.png" alt="Screenshot">
+        <li class="spaceing">Was ist Git?</li>
+        <p>Git ist eine Versionsverwaltungsoftware dass das efiziente Arbeiten an einem Softwarecode ermöglicht. Änderungen von Teammitgliedern können nachvollzogen, analysiert und gegebenenfalls rückgängig gemacht werden.</p>
+        <p>Der Quellcode wird in Repositories gespeichert welche lokal (nur auf diesem Computer verfügbar) oder remote (Online-Speicher, Kopie ist lokal) sein kann.</p>
+
+        <li class="spaceing">Was ist eine VCS?</li>
+        <p>Versionsverwaltungsoftwares erlaubt es Änderungen in Dateien zu verfolgen und aufzuzeichnen (Versionskontrolle). Wiederherstellen, vergleichen und Zusammenführen von Projekten ist möglich.</p>
+    
+        <li class="spaceing">Was ist GitHub</li>
+        <p>GitHub ist eine cloudbasierte Plattform, auf welchem der Code gespeichert, geteilt und mit anderen zusammengearbeitet werden kann.</p>
+
+        <img id="Foto-Git" src="img/git_v_github.png" alt="git_v_github">
+
+
+        <li class="spaceing">Wie kann ich Git in VSCode verwenden</li>
+        <p><a href="https://git-scm.com/downloads/win">Git</a> herunterladen und installieren. <a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a> in VSCode herunterladen.
+        <p>Folgende Befehle im Terminal in VSCode ausführen: 1: config --global user.name "" 2: config --global user.email ""</p>
+        <p>Es ist nützlich, da man ganz einfach Änderungen hochladen und für das Team direkt verfügbar machen kann-</p>
+
+            <li class="spaceing">Welche Befehle brauche ich?</li>
+            <p>Mit dem Befehl git commit erfasst du einen Snapshot der aktuell bereitgestellten Änderungen des Projekts.</p>
+            <img id="Foto-Git" src="img/Screenshot 2025-02-17 152941.png" alt="git-befehle">
+
+        <h4 class="spaceing">Quellen:</h4>
+        <li><a href="https://simpleclub.com/lessons/fachinformatikerin-versionsverwaltung-mit-git#:~:text=Git%20ist%20eine%20Versionsverwaltungssoftware%2C%20die,wird%20auch%20als%20Versionskontrolle%20bezeichnet.">Versionsverwaltung mit Git</a></li>
+        <li><a href="https://docs.github.com/de/get-started/start-your-journey/about-github-and-git">GitHub Docs</a></li>
+    </ul>
+
+    <h3 class="spaceing">Recherche zum Thema "UX/UI":</h3>
+    <ul>
+        <li class="spaceing">Was ist UI/UX?</li>
+        <p>User Experience bezeichnet die gesamte Erfahrung, die ein Benutzer mit einem Produkt oder einer Dienstleistung macht. Es geht darum, wie der Nutzer das Produkt wahrnimmt und wie er mit ihm interagiert. UX-Design umfasst die Gestaltung von Prozessen, die dafür sorgen, dass der Benutzer die Interaktion als angenehm, effizient und sinnvoll empfindet. Das UX-Design konzentriert sich mehr auf die allgemeine Benutzererfahrung.</p>
+        <p>User Interface bezieht sich auf das visuelle Design und die Interaktive Gestaltung eines Produkts, also die Elemente, mit denen der Benutzer direkt interagiert. Dazu gehören beispielsweise Buttons, Menüs, Farben, Schriftarten, Icons und Layouts. UI-Design kümmert sich darum, dass diese Elemente ästhetisch ansprechend und funktional sind.</p>
         <p>UX: Nutzerforschung, Benutzerfreundlichkeit, Interaktion und Navigation, Zielerreichung</p>
         <p>UI: Visuelle Gestaltung, Interaktive Elemente, Konsistenz, Zugänglichkeit</p>
+        <p>1993 prägte Don Norman den Begriff „User Experience“ für seine Gruppe bei Apple Computer</p>
         
-        <li>Wie sieht ein UI/UX Design aus?</li>
+        <li class="spaceing">Wie sieht ein UI/UX Design aus?</li>
         <p>UX-Phase (Forschung und Planung), UI-Phase (Visuelle Gestaltung), Testphase</p>
     
-        <li>Warum sollte man sich darum kümmern</li>
-        <p>Ein gutes UX/UI-Design sorgt nicht nur dafür, dass ein Produkt optisch ansprechend ist, sondern optimiert auch die Benutzererfahrung, steigert die Zufriedenheit und sorgt dafür, dass der Nutzer seine Ziele effizient erreichen kann. Unternehmen, die sich intensiv mit UX/UI befassen, bieten nicht nur ein besseres Produkt, sondern schaffen auch eine langfristige, positive Beziehung zu ihren Nutzern.</p>
+        <li class="spaceing">Do‘s and dont‘s in UI/UX Design.</li>
+        <p>Do’s: Halte es simpel, Responsive Webdesign, Konsistenz im Design.</p>
+        <p>Dont’s: Überladenes UI/UX Design, Uneinheitliches UI/UX Design, Ignorieren von Nutzerbedürfnissen, Langes Laden der Website, Fehlendes Responsive Webdesign, Optimierung für Touch-Geräte, nicht auf Trends verlassen, zu viele Fonts und Farben verwenden.</p>
 
-        <li>Do‘s and dont‘s in UI/UX Design.</li>
-        <p>Do’s:  Priorisiere Useranforderungen, halte es simpel, Responsive Webdesign, Konsistenz im Design.</p>
-        <p>Dont’s: Überladen  mit Informationen, nicht auf Trends verlassen, nicht zu viele Fonts und Farben verwenden, User Feedback nicht vergessen.</p>
-
-        <li>Wie betrifft UI/UX Design uns als Entwickler?</li>
-        <p>Benutzerforschung ist sehr wichtig bei der Entwicklung von Produkten, die die Menschen wollen und verwenden. Sie hilft uns, zu vermeiden, dass wir beim Design auf unseren eigenen Vorstellungen basieren, anstatt auf dem, was die Benutzer tatsächlich wollen .</p>
-
-        <li>Welche groben Schritte brauche ich um ein UI/UX Design zu erstellen?</li>
-        <p>Erlerne die Fähigkeiten, Beherrschen der Software, Eigene Projekte bauen.</p>
+        <li class="spaceing">Wie betrifft UI/UX Design uns als Entwickler?</li>
+        <p>Ein Grafik-Designer kreiert die Webseite, z.B. in Figma. Der Softwareentwickler soll es dann sinngemäß umsetzen.</p>
         
-        <li>Welche Aspekte muss ich bei Erstellung einer UI/UX Design betrachten?</li>
+        <li class="spaceing">Welche Aspekte muss ich bei Erstellung einer UI/UX Design betrachten?</li>
         <p>User Experience: Entscheidungen treffen basierend auf datengestützten Erkenntnissen.</p>
         <p>User Research "You are NOT the user": Methoden wie Usability Tests, Tiefeninterviews, User Recordings oder Heatmaps können bewährt sein.</p>
 
-        <li>Wie dokumentiere ich meine UI/UX Design?</li>
+        <li class="spaceing">Wie dokumentiere ich meine UI/UX Design?</li>
         <p>Verwenden eines Designsystems: Ein Designsystem ist eine Sammlung von wiederverwendbaren Komponenten, Richtlinien und Prinzipien, die die visuellen und funktionalen Aspekte Ihres Produkts definieren.</p>
         <p>Schreiben von Designanmerkungen: Designanmerkungen sind Notizen, die Ihre Wireframes, Mockups oder Prototypen begleiten, um die Logik und Argumentation hinter Ihren Designentscheidungen zu erläutern.</p>
         <p>Erstellen einer Entwurfsbegründung: Eine Entwurfsbegründung ist ein Dokument, das die wichtigsten Entwurfsentscheidungen, die Sie in Ihrem Projekt getroffen haben, und die Nachweise, die sie unterstützen, zusammenfasst.</p>
         <p>Aufzeichnen einer exemplarischen Vorgehensweise für den Entwurf: Ein Design-Walkthrough ist eine Video- oder Audioaufzeichnung, die den Betrachter durch den Designprozess und die Ergebnisse führt.</p>
         <p>Aktualisieren eines Entwurfsprotokolls</p>
 
-        <li>Was sind die Merkmale von schlechten UI/UX Design?</li>
-        <p>Überladenes UI/UX Design, Uneinheitliches UI/UX Design, Ignorieren von Nutzerbedürfnissen, Langes Laden der Website, Fehlendes Responsive Webdesign, Optimierung für Touch-Geräte</p>
-
-        <li>Was sind die Merkmale von gute UI/UX Design?</li>
+        <li class="spaceing">Was sind die Merkmale von gute UI/UX Design?</li>
         <p>Ein gutes UX Design ist einfach zu benutzen. Es übersetzt komplexe Inhalte in ein für den Nutzer leicht zu verstehendes Produkt. Bedienungssanleitungen sollten nicht mehr nötig sein. Produkte sollten intuitiv gestaltet sein und selbsterklärend sein. Der Nutzer kann das Produkt aus der Verpackung nehmen und sofort benutzen. Oder eine Webseite besuchen und sofort damit umgehen, ohne es erst erlernen zu müssen.</p>
 
-        <h4>Quellen:</h4>
+        <h4 class="spaceing">Quellen:</h4>
         <li>ChatGPT</li>
         <li><a href="https://www-nngroup-com.translate.goog/articles/100-years-ux/?_x_tr_sl=en&_x_tr_tl=de&_x_tr_hl=de&_x_tr_pto=rq#:~:text=Past%2C%20Strong%20Future-,The%20Dawn%20of%20UX,people%20use%20his%20word%20now.)">https://www-nngroup-com.translate.goog/articles/100-years-ux/?_x_tr_sl=en&_x_tr_tl=de&_x_tr_hl=de&_x_tr_pto=rq#:~:text=Past%2C%20Strong%20Future-,The%20Dawn%20of%20UX,people%20use%20his%20word%20now.)</a></li>
         <li><a href="https://www.format.com/de/online-portfolio-website/ux-ui-design/guide#how-do-you-get-started-as-a-ux-ui-designer">https://www.format.com/de/online-portfolio-website/ux-ui-design/guide#how-do-you-get-started-as-a-ux-ui-designer</a></li>
