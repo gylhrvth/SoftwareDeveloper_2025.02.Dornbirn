@@ -18,9 +18,14 @@
 #Foto-Git {
     width: 30%;
 }
+
+#Foto-Git2 {
+    width: 25%;
+}
 </style>
 <body>
     <h1>Lernerfolgsbuch</h1>
+    <h2>Dienstag, 18. Februar 2025</h2>
     <h2>Montag, 17. Februar 2025</h2>
     <h3>Recherche zum Thema "Git"</h3>
     <ul>
@@ -42,11 +47,29 @@
         <li class="spaceing">Wie kann ich Git in VSCode verwenden</li>
         <p><a href="https://git-scm.com/downloads/win">Git</a> herunterladen und installieren. <a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a> in VSCode herunterladen.
         <p>Folgende Befehle im Terminal in VSCode ausführen: 1: config --global user.name "" 2: config --global user.email ""</p>
-        <p>Es ist nützlich, da man ganz einfach Änderungen hochladen und für das Team direkt verfügbar machen kann-</p>
+        <p>Es ist nützlich, da man ganz einfach Änderungen hochladen und für das Team direkt verfügbar machen kann.</p>
 
             <li class="spaceing">Welche Befehle brauche ich?</li>
-            <p>Mit dem Befehl git commit erfasst du einen Snapshot der aktuell bereitgestellten Änderungen des Projekts.</p>
+            <p>Mit dem Befehl "git pull" werden Änderungen vom remote Repositori heruntergeladen.</p>
+            <p>Mit dem Befehl "git clone" wird ein lokales Repositori erstellt als auch eine Verbindung zwischen dem lokalen und dem remote Repositori hergestellt.</p>
+            <p>Mit dem Befehl "git push" werden Änderungen an das remote Repositori übertragen.</p>
+            <p>Mit dem Befehl "git status" werden alle veränderten Dateien angezeigt.</p>
+            <p>Mit dem Befehl "git add" kann man eine Datei auswählen, deren Änderung in das Repositori überführt werden soll.</p>
+            <p>Mit dem Befehl "git commit" erfasst man einen Snapshot der aktuell bereitgestellten Änderungen des Projekts.</p>
             <img id="Foto-Git" src="img/Screenshot 2025-02-17 152941.png" alt="git-befehle">
+            <img id="Foto-Git2" src="img/Screenshot 2025-02-18 084109.png" alt="git-befehle2">
+
+            <li class="spaceing">Was sind Branches?</li>
+            <p>Es ist üblich, bei der Enwicklung eines neuen Features einen Feature-Branch zu erstellen.</p>
+            <p>Das direkte "Commiten" oder "Pushen" wird nicht verwendet, da 1. immer eine vollständige funktionierende Version im master-Branch liegen soll und 2. man mehrere Branches zu einem Feature erstellen kann um zu testen, was besser umsetzbar ist.</p>
+            <p>Branches können lokal erstellt und daraufhin remote in das Repositori übertragen werden, aber auch direkt remote.</p>
+
+            <li class="spaceing">Was ist der Master?</li>
+            <p>Wenn eine Änderung per Commit in das remote Repositori übertragen wurde, ist sie noch nicht in der Hauptfassung des Codes, also in den master-Branch.</p>
+            <p>Bevor mit dem Merge anfangen kann, muss man einen Merg request erstellen. Damit fragt man an, die eigene Branch in den  Master zu "mergen".</p>
+
+            <li class="spaceing">Was ist ein Mergekonflikt?</li>
+            
 
         <h4 class="spaceing">Quellen:</h4>
         <li><a href="https://simpleclub.com/lessons/fachinformatikerin-versionsverwaltung-mit-git#:~:text=Git%20ist%20eine%20Versionsverwaltungssoftware%2C%20die,wird%20auch%20als%20Versionskontrolle%20bezeichnet.">Versionsverwaltung mit Git</a></li>
