@@ -12,7 +12,8 @@
 </head>
 <body class="bodystyle">
     <h1 class="color01">Lernerfolgsbuch</h1>
-    <h2>Dienstag, 18. Februar 2025</h2><br>
+    <br>
+    <h2>Dienstag, 18. Februar 2025</h2>
 
     <h3 class="color01">Aufgabe 2: Kurzer Ausflug - GIT</h3>
     <h4>Prozess der Erstellung</h4>
@@ -28,11 +29,20 @@
       <p>5. Entweder neues Git-Repository erstellen oder vorhandenes Git-Repository klonen. Das kann in VS Code mit dem Source Control erreicht werden (Initialize Repository / Clone Repository).</p>
 
       <li class="color02"><strong>Welche Befehle muss ich im VS Code Terminal verwenden?</strong></li>
-      <p>1. Existierendes Projekt wählen:<br> cd/pfad/zum/projekt <br>oder neues Projekt erstellen:<br> mkdir mein-projekt -> cd mein-projekt <br> 
+      <p>1. Existierendes Projekt wählen:<br> cd/pfad/zum/projekt </p>
+      <p>oder neues Projekt erstellen:<br> mkdir mein-projekt -> cd mein-projekt</p>
          2. Git initialisieren: git init -> Damit wird ein neues Git-Repository im aktuellen Ordner erstellt.<br>
       </p>
       <li class="color02"><strong>Was ist der Unterschied zwischen Befehle im Terminal oder Schritte in Visual Studio Code?</strong></li>
       <img id=bild01 src="./pictures/Gui_CLI.png">
+      <li class="color02"><strong>Git Dateistatus in Reihenfolge:</strong></li>
+      <p>1. <strong>Untracked</strong> Daten, die Git noch nicht verfolgt. Die Daten sind neu hinzugefügt, aber nicht zum Staging-Bereich hinzugefügt.</p>
+      <p>2. Modified (<strong>Unstaged</strong>): Dateien, die nach dem letzten Commit geändert wurden, aber noch nicht zum Staging-Bereich hinzugefügt wurden.</p>
+      <p>3. <strong>Staged</strong> (Ready for commit): Dateien, die zum Staging-Bereich hinzugefügt wurden und bereit für den Commit sind.</p>
+      <p>4. <strong>Committed</strong>: Dateien, die in einem Commit gespeichert wurden und Teil der Git-Historie sind.</p>
+         Commit ist nur in deinem lokalen Repository vorhanden, nicht auf einem Remote-Repository (wie GitHub oder GitLab).<br>
+         Um Änderungen hochzuladen, muss man den Befehl git push verwenden, um die lokal vorgenommenen Commits auf ein Remote-Repository hochzuladen.
+      </p>
       <li class="color02"><strong>Wann kann ein Merge automatisch stattfinden?</strong></li>
       <p>Wenn keine Konflikte zwischen den Änderungen in den verschiedenen Branches auftreten, die zusammengeführt werden sollen.</p>
       <li class="color02"><strong>Wann gibt es Merge-Konflikte?</strong></li>
@@ -41,11 +51,37 @@
       <p>Änderungen in den Branches so stark widersprüchlich sind, dass Git nicht entscheiden kann, wie sie kombiniert werden sollen.</p>
       <p>In diesem Fall muss man den Merge manuell durchführen und die Konflikte auflösen, bevor der Merge abgeschlossen werden kann.</p>
       <li class="color02"><strong>Wie kann man einen Merge durchführen, wenn Konflikte auftreten?</strong></li>
-      <p>Meine Antwort kommt da.</p>
+      <p>1. Merge ausführen mit Command: git merge &lt;branch&gt;<br>
+         2. Bei Konflikten überprüfen, welche Dateien betroffen sind. Command: git status<br>
+         3. Dateien öffnen und Konflikte beheben.<br>
+         4. Konflikte als gelöst markieren mit Command: git add &lt;dateiname&gt;<br>
+         5. Commit ausführen: git commit. 
+      
+      </ul>
 
-    </ul>
+      <h4>GIT CLI Befehle</h4>
+      <ul>
+         <li class="color02"><strong>git init</strong></li>
+         <p>Initialisiert ein neues Git-Repository im aktuellen Verzeichnis.</p>
+         <li class="color02"><strong>git status</strong></li>
+         <p>Zeigt den aktuellen Status des Arbeitsverzeichnisses.</p>
+         <li class="color02"><strong>git add &lt;dateiname&gt</strong></li>
+         <p>Fügt eine bestimmte Datei zum Staging-Bereich hinzu (vor dem Commit). Beispiel: git add index.html</p>
+         <li class="color02"><strong>git add .</strong></li>
+         <p>Fügt alle geänderten und neuen Dateien zum Staging-Bereich hinzu.</p>
+         <li class="color02"><strong>git commit -m "&lt;nachricht&gt"</strong></li>
+         <p>Macht einen Commit der gestagten Änderungen und fügt eine Nachricht hinzu. Beispiel: git commit -m "Fixed bug in h1"</p>
+         <li class="color02"><strong>git push &lt;remote&gt &lt;branch&gt</strong></li>
+         <p>Überträgt die Commits von deinem lokalen Branch zum Remote-Repository (hochladen). Beispiel: git push origin main</p>
+         <li class="color02"><strong>git pull &lt;remote&gt &lt;branch&gt</strong></li>
+         <p>Holt die neuesten Änderungen aus dem Remote-Repository und führt einen Merge durch. Beispiel: git pull origin main</p>
+         <li class="color02"><strong>git clone &lt;url&gt</strong></li>
+         <p>Klont ein Remote-Repository und erstellt eine lokale Kopie. Beispiel: git clone https://github.com/username/repository.git </p>
 
-    <h2>Montag, 17. Februar 2025</h2><br>
+      </ul>
+      <br>
+
+    <h2>Montag, 17. Februar 2025</h2>
 
     <h3 class="color01">Aufgabe 2: Kurzer Ausflug - GIT</h3>
     <h4>Definition und Begriffe</h4>
@@ -146,5 +182,7 @@
 
 
     </ul>
+    <br>
+    <br>
 </body>
 </html>
