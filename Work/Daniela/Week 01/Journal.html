@@ -13,9 +13,9 @@
     <h1>Lernerfolgsbuch</h1>
     <h2>Montag, 17. Februar 2025</h2>
     <ul>
-        <p style="font-size: 35px; color: chartreuse;">
+        <p style="font-size: 35px; color: rgb(255, 0, 34);">
          Punkt 1: UI/UX</p>
-        <p>Kurze Beschreibung des gelerntes:<br>
+        <p>Kurze Beschreibung des gelernten:<br>
             <p></p>
             <p></p>
             <br>
@@ -111,7 +111,7 @@
             <p></p> <br>
 
         
-<p></p><br>
+        <p></p><br>
 
         </p> <br>
         <p style="font-size: 35px; color: chartreuse;">
@@ -155,8 +155,11 @@
         <p style="font-size: 25px;">
             Nutzen:
         </p>
-        <li> Versioncontroll</li>
-        ist ein Werkzeug es ermöglicht die Verwaltung von Codes und Dateien ebenso ermöglicht es: <br>
+        <p style="text-decoration: underline;">
+            Versioncontrol
+        </p>
+        ist ein Werkzeug, es ermöglicht die Verwaltung von Codes und Dateien. <br>
+        ebenso bietet es folgende Vorteile: <br>
         <p></p>
         <li>Verfolgung von Änderungen und Historie</li><br>
         <li>Zusammenarbeit und Teamarbeit</li><br>
@@ -166,13 +169,143 @@
         <li>Nachvollziehbarkeit und Dokumentation</li><br>
         <li> Arbeiten in mehreren Versionen parallel (Branching)</li><br>
         <p></p>
-        <p>Kurze Beschreibung des gelerntes</p>
+        <p style="text-decoration: underline;">
+            Schwierigkeiten bei erstellung des VCS:
+        </p>
+        Ein Versionskontrollsystem zu entwickeln ist komplex, weil es viele technische <br>
+        und organisatorische Anforderungen erfüllen muss.Schwierigkeiten die sich ergeben sind: <br>
+        <p></p>
+        <li>Datenstruktur & Speicherung</li>
+        <li>Performance & Skalierbarkeit</li>
+        <li>Konfliktmanagement & Zusammenführung (Merging)</li>
+        <li>Netzwerk & verteilte Systeme (bei verteilten VCS wie Git)</li>
+        <li>Benutzerfreundlichkeit & Komplexität</li>
+        <li> Sicherheit & Zugriffskontrolle</li>
+        <li>Backup & Wiederherstellung</li>
+        <p></p>
+        <p style="text-decoration: underline;">
+            Git CLI (Command Line Interfacr) </p> <br>
+            Die Command Line Interface ist die Komandozeilen-Oberfläche von Git,mit der man<br>
+            Git-Befehle direkt in einem Terminal oder einer Eingabeaufforderung ausführen kann.
+            <p></p>
+            <li>alle Git Funktionen von Git Vorhanden</li>
+            <li>Viele Befehle können schneller über die CLI ausgeführt werden</li>
+            <p></p>
+            <p style="text-decoration: underline;">
+                GitHub:
+            </p>
+            GitHub ist eine webbasierte Plattform für Versionskontrolle und kollaborative<br>
+            Softwareentwicklung. Sie basiert auf Git und bietet eine zentrale Umgebung für<br>
+            Entwickler, um gemeinsam an Code zu arbeiten, Änderungen zu verwalten und<br>
+            Projekte zu veröffentlichen.<br>
+            <p></p>
+            <p style="text-decoration: underline;">
+                GitHub Pages:
+            </p><br>
+            GitHub Pages ist ein kostenloser Hosting-Service von GitHub, mit dem du statische<br>
+            Websites direkt aus einem GitHub-Repository veröffentlichen kannst. Damit kannst<br>
+            du z. B. eine persönliche Webseite, eine Projekt-Dokumentation oder einen Blog<br>
+            hosten – ohne einen separaten Webserver einrichten zu müssen.<br>
+            <p></p>
+            <p style="font-size: 25px;">
+                Wie arbeite ich mit Git im Visual-Studio Code:
+            </p>
+            <p style="text-decoration: underline;">
+            notwendigen Programme instalieren:</p> 
+            Diese sind:<br>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>Visual-Studio Code</li>
+            <li>GitHub CLI</li><br>
+            <p></p>
+            <p style="text-decoration: underline;">
+                GitHub Repository erstellen:
+            </p>
+            <li>gehe zu GitHub und klikcke auf "New Repository"</li>
+            <li>gib nun einen Namen an</li>
+            <li>Setze "Public", damit GitHub Pages funktioniert</li>
+            <li>README & .gitignore (optional) hinzufügen</li>
+            <li>Klicke auf Create Repository</li>
+            <p></p>
+            <p style="text-decoration: underline;">
+                Repository mit VS Code verbinden
+            </p>
+            <li>öffnen des Terminal im VS</li>
+            <li>Klonen des GitHub-Repos in VS Code:</li>
+            <li>Folgendes Programieren:</li><br>
+            "git clone https://github.com/<dein-github-name>/meine-website.git <br>
+            cd meine-website"
+            <p></p>
+            <p style="text-decoration: underline;">
+                Website in VS Code erstellen:
+            </p><br>
+            <li> Erstelle eine index.html Datei im Repo</li>
+            <li>Füge einfachen HTML-Code ein</li>
+            <li>Datei speichern</li>
+            <p></p>
+            <p style="text-decoration: underline;">
+                Änderungen mit Git committen & pushen:
+            </p>
+            <li>Öffne das Terminal in VS Code und gib folgende Befehle ein:</li>
+            "git add .<br>
+            git commit -m "Erste Website hinzugefügt"<br>
+            git push origin main"<br>
+            <li>Damit wird die Datei zur GitHub Repository hochgeladen</li>
+            <p></p>
+            <p style="text-decoration: underline;">
+                GitHub Pages aktivieren
+            </p>
+            <li>Gehe auf dein Repository auf GitHub</li>
+            <li>Öffne Settings → Pages</li>
+            <li>Wähle unter "Branch" → main oder gh-pages</li>
+            <li>Klicke auf Save</li>
+            Nach wenigen Minuten ist die Seite unter:<br>
+            <p></p>
+            https://<dein-github-name>.github.io/meine-website/ erreichbar!
+            <p></p>
+            <p style="font-size: 25px;">
+                Was ist der Unterschied zwischen Befehle im Terminal oder Schritte in Visual Studio Code?
+            </p><br>
+            <p style="text-decoration: underline;"> Nutzung von Git im Terminal (CLI)</p> bietet mehr Kontrolle, ist schneller und ideal für<br>
+            erfahrene Nutzer sowie Automatisierungen, erfordert jedoch das Lernen von Befehlen.<br>
+            <p style="text-decoration: underline;"> Studio Code (GUI)</p> ist hingegen einsteigerfreundlicher, visuell intuitiv und ermöglicht<br>
+            die Nutzung von Git per Mausklick, bietet jedoch weniger Funktionen als die CLI.
+            <p style="font-size: 25px;">
+                Wann findet ein automatischer Merge statt?
+            </p>
+            <p style="text-decoration: underline;"></p> Automatischer Merge findet nur statt wenn:<br>
+    
+            <li>kein Merge konflikt vorliegt !</li>
+            <li>und ein Befehl wie: "git merge feature-x" einprogramiert wurde</li>
+            <p></p>
+            <p style="font-size: 25px;">
+                Qalitätsmerkmale:
+            </p>
+            <p style="text-decoration: underline;">
+               Typische Fehler von Junior-Programmiere:</p><br>
+               Typische Probleme von Junior Entwicklern können durch verschiedene Faktoren verursacht werden, wie zum Beispiel fehlende Erfahrung,<br>
+               unzureichendes Verständnis für Best Practices oder das Fehlen einer klaren Arbeitsstruktur. <br>
+               <p></p>
+            Für Junior Entwickler ist es wichtig, Klarheit und Struktur zu entwickeln, Fragen zu stellen, Fehler zu akzeptieren und Lernprozesse<br>
+            aktiv zu gestalten. Mentoring, Code-Reviews und die ständige Verbesserung der eigenen Fähigkeiten helfen dabei, die typischen<br>
+            Herausforderungen erfolgreich zu meistern.<br>
+            <p></p>
+            <p style="font-size:25px;">
+                Git CLI Befehle:
+            </p><br>
+            <p style="text-decoration: underline;">
+                Git add: 
+            </p>
+
+
+
+        
 
 
 
 
 
-
+<p></p>
         <li>Punkt 3</li>
         <p>Kurze Beschreibung des gelerntes</p>
     </ul>
