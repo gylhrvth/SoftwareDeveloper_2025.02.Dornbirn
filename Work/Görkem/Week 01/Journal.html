@@ -9,10 +9,21 @@
     <script src="../../../Kurs/common.js" defer></script>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
+<style>
+    .blinking{
+        animation:blinkingText 1.2s infinite;
+    }
+
+    @keyframes blinkingText {
+        0%{     color: #000;    }
+        49%{    color: #000; }  
+        100%{   color: transparent; }
+    }
+</style>
 </head>
 
 <body>
-    <h1>Lernerfolgsbuch</h1>
+    <h1 class="blinking">Lernerfolgsbuch</h1>
     <h2>Montag, 18. Februar 2025</h2>
     <ul><p style="color: blueviolet;"> Kurzer Ausflug - GIT</p> <br>
         
