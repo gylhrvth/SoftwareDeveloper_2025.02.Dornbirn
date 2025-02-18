@@ -15,6 +15,10 @@
     font-size: larger;
 }
 
+.spaceing-down {
+    margin-bottom: 60px;
+}
+
 #Foto-Git {
     width: 30%;
 }
@@ -26,10 +30,38 @@
 <body>
     <h1>Lernerfolgsbuch</h1>
     <h2>Dienstag, 18. Februar 2025</h2>
+    <h3>Recherche zum Thema "Git"</h3>
+    <ul>
+        <li class="spaceing">Welche Befehle brauche ich?</li>
+        <p>Mit dem Befehl "git pull" werden Änderungen vom remote Repositori heruntergeladen.</p>
+        <p>Mit dem Befehl "git clone" wird ein lokales Repositori erstellt als auch eine Verbindung zwischen dem lokalen und dem remote Repositori hergestellt.</p>
+        <p>Mit dem Befehl "git push" werden Änderungen an das remote Repositori übertragen.</p>
+        <p>Mit dem Befehl "git status" werden alle veränderten Dateien angezeigt.</p>
+        <p>Mit dem Befehl "git add" kann man eine Datei auswählen, deren Änderung in das Repositori überführt werden soll.</p>
+        <p>Mit dem Befehl "git commit" erfasst man einen Snapshot der aktuell bereitgestellten Änderungen des Projekts.</p>
+        <img id="Foto-Git" src="img/Screenshot 2025-02-17 152941.png" alt="git-befehle">
+        <img id="Foto-Git2" src="img/Screenshot 2025-02-18 084109.png" alt="git-befehle2">
+
+        <li class="spaceing">Was sind Branches?</li>
+        <p>Es ist üblich, bei der Enwicklung eines neuen Features einen Feature-Branch zu erstellen.</p>
+        <p>Das direkte "Commiten" oder "Pushen" wird nicht verwendet, da 1. immer eine vollständige funktionierende Version im master-Branch liegen soll und 2. man mehrere Branches zu einem Feature erstellen kann um zu testen, was besser umsetzbar ist.</p>
+        <p>Branches können lokal erstellt und daraufhin remote in das Repositori übertragen werden, aber auch direkt remote.</p>
+
+        <li class="spaceing">Was ist der Master?</li>
+        <p>Wenn eine Änderung per Commit in das remote Repositori übertragen wurde, ist sie noch nicht in der Hauptfassung des Codes, also in den master-Branch.</p>
+        <p>Bevor mit dem Merge anfangen kann, muss man einen Merg request erstellen. Damit fragt man an, die eigene Branch in den  Master zu "mergen".</p>
+
+        <li class="spaceing">Was ist ein Mergekonflikt?</li>
+        <p>Konflikte entstehen in der Regel dann, wenn zwei Personen dieselben Zeilen in einer Datei geändert haben oder ein Entwickler eine Datei löscht, während ein anderer Entwickler diese ändert. In diesen Fällen kann Git nicht automatisch entscheiden, welcher Vorgang richtig ist. Die Konflikte betreffen nur den Entwickler, der den Merge durchführt – der Rest des Teams bemerkt von dem Konflikt nichts. Git kennzeichnet die betreffende Datei als "in Konflikt stehend" und stoppt den Merge-Vorgang. Es ist dann Aufgabe des Entwicklers, den Konflikt zu lösen.</p>
+        <img class="Foto-Git" src="img/Screenshot 2025-02-18 093432.png" alt="mergekonflikt">
+
+        <h4 class="spaceing">Quellen:</h4>
+        <li class="spaceing-down"><a href="https://www.atlassian.com/de/git/tutorials/using-branches/merge-conflicts">Mergekonflikt</a></li>
+    </ul>
+
     <h2>Montag, 17. Februar 2025</h2>
     <h3>Recherche zum Thema "Git"</h3>
     <ul>
-
         <img id="Foto-Git" src="img/Screenshot 2025-02-17 143552.png" alt="Screenshot">
         <li class="spaceing">Was ist Git?</li>
         <p>Git ist eine Versionsverwaltungsoftware dass das efiziente Arbeiten an einem Softwarecode ermöglicht. Änderungen von Teammitgliedern können nachvollzogen, analysiert und gegebenenfalls rückgängig gemacht werden.</p>
@@ -49,34 +81,13 @@
         <p>Folgende Befehle im Terminal in VSCode ausführen: 1: config --global user.name "" 2: config --global user.email ""</p>
         <p>Es ist nützlich, da man ganz einfach Änderungen hochladen und für das Team direkt verfügbar machen kann.</p>
 
-            <li class="spaceing">Welche Befehle brauche ich?</li>
-            <p>Mit dem Befehl "git pull" werden Änderungen vom remote Repositori heruntergeladen.</p>
-            <p>Mit dem Befehl "git clone" wird ein lokales Repositori erstellt als auch eine Verbindung zwischen dem lokalen und dem remote Repositori hergestellt.</p>
-            <p>Mit dem Befehl "git push" werden Änderungen an das remote Repositori übertragen.</p>
-            <p>Mit dem Befehl "git status" werden alle veränderten Dateien angezeigt.</p>
-            <p>Mit dem Befehl "git add" kann man eine Datei auswählen, deren Änderung in das Repositori überführt werden soll.</p>
-            <p>Mit dem Befehl "git commit" erfasst man einen Snapshot der aktuell bereitgestellten Änderungen des Projekts.</p>
-            <img id="Foto-Git" src="img/Screenshot 2025-02-17 152941.png" alt="git-befehle">
-            <img id="Foto-Git2" src="img/Screenshot 2025-02-18 084109.png" alt="git-befehle2">
+        <h4 class="spaceing">Quelle:</h4>
+        <li><a href="https://simpleclub.com/lessons/fachinformatikerin-versionsverwaltung-mit-git#:~:text=Git%20ist%20eine%20Versionsverwaltungssoftware%2C%20die,wird%20auch%20als%20Versionskontrolle%20bezeichnet.">Git</a></li>
+        <li class="spaceing-down"><a href="https://docs.github.com/de/get-started/start-your-journey/about-github-and-git">GitHub Docs</a></li>
 
-            <li class="spaceing">Was sind Branches?</li>
-            <p>Es ist üblich, bei der Enwicklung eines neuen Features einen Feature-Branch zu erstellen.</p>
-            <p>Das direkte "Commiten" oder "Pushen" wird nicht verwendet, da 1. immer eine vollständige funktionierende Version im master-Branch liegen soll und 2. man mehrere Branches zu einem Feature erstellen kann um zu testen, was besser umsetzbar ist.</p>
-            <p>Branches können lokal erstellt und daraufhin remote in das Repositori übertragen werden, aber auch direkt remote.</p>
-
-            <li class="spaceing">Was ist der Master?</li>
-            <p>Wenn eine Änderung per Commit in das remote Repositori übertragen wurde, ist sie noch nicht in der Hauptfassung des Codes, also in den master-Branch.</p>
-            <p>Bevor mit dem Merge anfangen kann, muss man einen Merg request erstellen. Damit fragt man an, die eigene Branch in den  Master zu "mergen".</p>
-
-            <li class="spaceing">Was ist ein Mergekonflikt?</li>
-            
-
-        <h4 class="spaceing">Quellen:</h4>
-        <li><a href="https://simpleclub.com/lessons/fachinformatikerin-versionsverwaltung-mit-git#:~:text=Git%20ist%20eine%20Versionsverwaltungssoftware%2C%20die,wird%20auch%20als%20Versionskontrolle%20bezeichnet.">Versionsverwaltung mit Git</a></li>
-        <li><a href="https://docs.github.com/de/get-started/start-your-journey/about-github-and-git">GitHub Docs</a></li>
     </ul>
 
-    <h3 class="spaceing">Recherche zum Thema "UX/UI":</h3>
+    <h3>Recherche zum Thema "UX/UI":</h3>
     <ul>
         <li class="spaceing">Was ist UI/UX?</li>
         <p>User Experience bezeichnet die gesamte Erfahrung, die ein Benutzer mit einem Produkt oder einer Dienstleistung macht. Es geht darum, wie der Nutzer das Produkt wahrnimmt und wie er mit ihm interagiert. UX-Design umfasst die Gestaltung von Prozessen, die dafür sorgen, dass der Benutzer die Interaktion als angenehm, effizient und sinnvoll empfindet. Das UX-Design konzentriert sich mehr auf die allgemeine Benutzererfahrung.</p>
