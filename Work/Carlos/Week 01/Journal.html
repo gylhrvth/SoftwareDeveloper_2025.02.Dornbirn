@@ -8,13 +8,98 @@
     <script src="../../../Kurs/common.js" defer></script>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
+    <link rel="stylesheet" href="carlos.css">
 </head>
-<body style="background-color: hsl(210, 100%, 95%); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-    <h1>Lernerfolgsbuch</h1>
-    <h2>Montag, 17. Februar 2025</h2>
-    <h3>UX/UI Design</h3>
+<body class="bodystyle">
+    <h1 class="color01">Lernerfolgsbuch</h1>
+    <h2>Dienstag, 18. Februar 2025</h2><br>
+
+    <h3 class="color01">Aufgabe 2: Kurzer Ausflug - GIT</h3>
+    <h4>Prozess der Erstellung</h4>
     <ul>
-        <li><strong>Was ist UI/UX?</strong> </li>
+    <li class="color02"><strong>Welche Schritte muss ich in Visual Studio Code machen, um Git zu erstellen?</strong></li>
+    <p>1. Git herunterladen und installieren.<br>
+       2. In VS Code, überprüfen ob Git korrekt installiert wurde. Im Terminal eingeben: git --version<br>
+       3. Git im VS Code aktivieren. Code -> Settings... -> Settings -> Search bar -> Git: Enable<br>
+       4. Git-Benutzer konfigurieren -> Terminal öffnen und folgendes eingeben:<br>
+          <p>git config --global user.name "Dein Name"</p>
+          <p>git config --global user.email "deine@email.com" </p>
+
+      <p>5. Entweder neues Git-Repository erstellen oder vorhandenes Git-Repository klonen. Das kann in VS Code mit dem Source Control erreicht werden (Initialize Repository / Clone Repository).</p>
+
+      <li class="color02"><strong>Welche Befehle muss ich im VS Code Terminal verwenden?</strong></li>
+      <p>1. Existierendes Projekt wählen:<br> cd/pfad/zum/projekt <br>oder neues Projekt erstellen:<br> mkdir mein-projekt -> cd mein-projekt <br>
+           
+         
+         2. Git initialisieren: git init -> Damit wird ein neues Git-Repository im aktuellen Ordner erstellt.<br>
+      </p>
+      <li class="color02"><strong>Was ist der Unterschied zwischen Befehle im Terminal oder Schritte in Visual Studio Code?</strong></li>
+      <p>Die Terminal bietet</p>
+
+    </ul>
+
+    <h2>Montag, 17. Februar 2025</h2><br>
+
+    <h3 class="color01">Aufgabe 2: Kurzer Ausflug - GIT</h3>
+    <h4>Definition und Begriffe</h4>
+    <ul>
+        <li class="color02"><strong>Was ist eine VCS (Version Control System)</strong></li> 
+        <p> Werkzeug, das ermöglicht, Änderungen am Quellcode eines Projekts zu verwalten. 
+            Es verfolgt jede Änderung am Code, speichert diese und kann ältere Versionen wiederherstellen.<br>
+            Es ist besonders nützlich in Projekten, an denen mehrere Personen mitbeteiligt sind.</p>
+        <p>Vorteile: Vereinfacht Zusammenarbeit. Heutzutage wird es häufigsten Git verwendet.</p>
+        <li class="color02"><strong>Was ist Git?</strong></li>
+        <p>Es ist ein Version Control System, der 2005 von Linus Torvalds entwickelt wurde. Wir zur verwaltung von Quellcode verwendet.</p>
+        <p>Merkmale:
+           Es ist Dezentral, jeder hat eine vollständige Kopie.<br>
+           Es ist schnell und effizient, arbeiten ist auch offline möglich.<br>
+           Git ermöglicht das Erstellen von Branches, um neue Features oder Bugfixes zu entwickeln, ohne den Hauptcode zu beeinflussen.<br>
+           Git gilt als Standard für Versionskontrolle in der Softwareentwicklung und wird von Platformen wie GitHub und GitLab unterstützt.</p>
+        <li class="color02"><strong>Was ist ein Git Commit?</strong></li>
+        <p>Es ist eine Momentaufnahme des aktuellen Stands eines Projekts. Der Zustand der Dateien wird dauerhaft gespeichert in dem Git-Repository.<br>
+         Die Änderungen werden zur Versionsgeschichte hinzugefügt. So können bei Bedarf auch ältere Versionen wiederhergestellt werden. </p>
+        <li class="color02"><strong>Was ist ein Git Repository?</strong></li>
+        <p>Speicherort, in dem der komplette Quellcode eines Projekts mit der gesamten Versionshistorie gespeichert wird.</p>
+        <li class="color02"><strong>Was ist der Unterschied zwischen lokal und remote Repository?</strong></li>
+        <p>Ein lokales Repository befindet sich auf dem Computer eines Entwicklers. Ermöglicht arbeit ohne Internetverbindung.</p>
+        <p>Ein remotes Repository wird auf einem Server oder Plattform wie GitHub gehostet. Erlaubt, Code mit anderen Enwicklern zu teilen.</p>
+        <li class="color02"><strong>Was ist eine Branch in Git?</strong></li>
+        <p>Eine separate Entwicklungsumgebung innerhalb eines Git-Repositoires. Sie ermöglicht es, Änderungen unabhängig vom Haupt-Branch vorzunehmen.<br>
+           So können mehrere Entwickler gleichzeitig an unterschiedlichen Funktionen arbeiten, während der Haupt-Branch stabil bleibt.</p>
+        <li class="color02"><strong>Was ist ein Merge?</strong></li>
+        <p>Der Prozess in Git, bei dem zwei oder mehr Branches zusammengeführt werden.<br>
+           Änderungen aus einem Branch werden in einen anderen integriert. </p>
+        <li class="color02"><strong>Was ist ein Merge Conflict?</strong></li>
+        <p>Ein Merge Conflict tritt auf, wenn zwei Branches Änderungen an derselben Stelle in einer Datei enthalten. <br> 
+           Dann kann es vorkommen, dass Git nicht automatisch entscheiden kann, welche Version übernommen werden soll.</p> 
+    </ul>
+
+    <h4>Nutzen</h4>
+    <ul>
+    <li class="color02"><strong>Wozu brauchen wir Version Control & Vorteile</strong></li>
+    <p>Ein VLC bietet zahlreiche Vorteile für Softwareentwicklung. Die wichtigsten sind: <br> 
+       Vereinfacht Zusammenarbeit in Teams / Erleichtert die Nachverfolgbarkeit von Änderungen / Einfachere Fehlerbehebung / Parallele Entwicklung / Sicherheit & Backup </p>
+    <li class="color02"><strong>Was sind die potenzielle Schwierigkeiten bei der Umsetzung eines VCS?</strong></li>
+    <p>Lernkurve: Das lernen von Befehlen und die Fehlerbehebung bei z.B Merge-Konflikte.<br>
+       Es ist auch eine organisatorische Herausforderung. Es braucht klare Namenskonventionen und gut verwalteten Branches u.a.<br>
+       Auch die Integration mit anderen Tools kann zusätzliche Zeit erfordern.</p>
+    
+    <li class="color02"><strong>Was ist Git CLI?</strong></li>
+    <p>CLI steht für Command Line Interface. In Git, erlaubt direkte Interaktion über das Terminal. Das erreicht man mit der Ausführung von Git-Befehle.<br>
+       Hauptfunktionen: Initialisieren eines Git-Repositoires / Änderung verfolgen, hinzufügen und speichern / Branching & Merging </p>
+    <li class="color02"><strong>Was ist GitHub?</strong></li>
+    <p>Es ist eine Webbasierte Plattform, die Git verwendet, um Code online zu hosten und die Zusammenarbeit von Entwicklern zu erleichtern.<br>
+       GitHub wird oft für Open-Source-Projekte genutzt, ist aber auch in Unternehmen weit verbreitet.</p>
+    <li class="color02"><strong>Was sind GitHub Pages?</strong></li>
+    <p>Kostenloser Hosting-Dienst von GitHub, mit dem man statische Webseiten (kein Server oder Backend benötigt) direkt aus einem GitHub-Repository veröffentlichen kann.</p>
+
+    </ul>   
+
+
+
+    <h3 class="color01">Aufgabe 1: UX/UI Design</h3>
+    <ul>
+        <li class="color02"><strong>Was ist UI/UX?</strong> </li>
         <p>UI steht für User Interface (Benutzeroberfläche). UX steht für User Experience (Benutzererfahrung).<br> 
             Beide sind zentrale Begriffe im Design und Entwicklung digitaler Produkte.<br></p>
 
@@ -25,33 +110,34 @@
            UX-Design konzentriert sich auf das Gesamterlebnis des Nutzers mit einem Produkt.</p>
         <p>Keywords: <em>Benutzerfreundlichkeit, Effizienz, Nutzbarkeit, Zugänglichkeit</em></p>
         
-        <li><strong>Nutzen</strong></li>
+        <li class="color02"><strong>Nutzen</strong></li>
         <p>UI/UX entscheidet darüber, wie Nutzer mit einem digitalen Produkt interagieren, und definiert die gesamte Erfahrung.</p>
         <p>UI/UX hat einen direkten Einfluss auf die Benutzerinteraktion und die technische Umsetzung eines Produkts.</p>
         <p>Das Produkt muss Benutzerfreundlich und gleichzeitig Funktionell sein.</p>
             
-        </p>
-        <li><strong>Erstellung</strong></li>
+        <li class="color02"><strong>Erstellung</strong></li>
         <p>Die Schritte sollen sicherstellen, dass das Produkt sowohl ästhetisch ansprechend als auch benutzerfreundlich ist. Dazu zählen:<br>
         <p>Recherche und Zieldefinition: Wer sind die Nutzer / Wie sieht die Konkurrenz aus / Was sind die Zielen des Produkts.<br>
             Besonders wichtig ist der Begriff "Persona": Eine fiktive, verallgemeinerte Darstellung eines Zielnutzers.
         <p>Andere wichtige Schritten sind: <em>Prototyp Erstellung -> UI-Design -> UX-Design -> Entwicklung und Implementierung -> Testen & Optimieren -> Wartung & Verbesserung.</em></p>
 
-        <li><strong>Qualitätsmerkmale</strong></li>
+        <li class="color02"><strong>Qualitätsmerkmale</strong></li>
         <p>Ein gutes UI/UX Design sorgt dafür, dass die Nutzererfahrung positiv und effizient ist und richtet sich nach den Bedürfnissen der Users.<br>
         <p>Keywords: <em>Klarheit / Responsivität / Performance / Verbesserung</em></p>
         </p>
         <p>Zu vermeiden: Unübersichtiliche Struktur / Inkonsistentes Design / Schlechte Bedienbarkeit / Mangelhafte Performance / Mangelndes Feedback</p>
         <p>UI/UX Design ist ein fortlaufender Prozess, der ständige Anpassung und Verbesserung erfordert.</p>
 
-        <li><strong>Beispiele</strong></li>
-        <p>Spotify:</p>
+        <li class="color02"><strong>Beispiele</strong></li>
+        <p><em>Spotify:</em></p>
         <p>UI: Setzt auf eine moderne, benutzerfreundliche Oberfläche, mit einer klaren Struktur der Navigation.</p>
         <p>UX: Musikwiedergabe und das Entdecken neuer Musik sind sehr benutzerzentriert. Die App bietet eine personalisierte Erfahrung.</p>
 
-        <p>Apple:</p>
+        <p><em>Apple:</em></p>
         <p>UI: Bekannt für seine klare und minimalistische Oberfläche.</p>
         <p>UX: Das Betriebsystem ist Benutzerfreundlich. Konsistenz und Einfachheit der Interaktionen.</p>
+
+
     </ul>
 </body>
 </html>
