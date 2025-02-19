@@ -21,8 +21,24 @@
 
 #persona01 {
     width: 650px;
-    margin-top: 20px;
     margin-bottom: 20px;
     border:black 5px solid;
     border-radius: 5px;
+}
+
+#sheldon {
+    width: 250px;
+    border-radius: 15px;
+
+}
+
+#buttonZ {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#example01 {
+    width: 500px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
