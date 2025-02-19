@@ -17,6 +17,9 @@
     width: 800px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border:black 2px solid;
+    border-radius: 5px;
+
 }
 
 #persona01 {
@@ -30,4 +33,38 @@
     width: 250px;
     border-radius: 15px;
 
+}
+
+#buttonZ {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#example01 {
+    width: 500px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#farbTheorie {
+    width: 650px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border:black 5px solid;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    max-width: 50%;
+}
+th, td {
+    border: 1px solid #c8ad77;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
 }
