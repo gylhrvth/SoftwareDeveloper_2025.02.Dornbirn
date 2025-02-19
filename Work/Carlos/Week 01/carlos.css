@@ -52,5 +52,19 @@
     margin-top: 20px;
     border:black 5px solid;
     border-radius: 5px;
+}
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    max-width: 50%;
+}
+th, td {
+    border: 1px solid #c8ad77;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
 }
