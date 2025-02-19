@@ -73,17 +73,12 @@
         <p>Die Web Content Accessibility Guidelines (WCAG) erklären, wie man Webinhalte zugänglich macht für Menschen mit Behinderung.</p>
         <p>Auswahl geeigneter Farbkontraste: Achte darauf, dass der Kontrast zwischen Text und Hintergrund ausreichend ist. Ein hoher Kontrast verbessert die Lesbarkeit für Benutzer mit Sehbehinderungen. Nutze Tools wie den Contrast Checker, um die Konformität mit den WCAG-Richtlinien sicherzustellen.</p>
         
-        <li class="spaceing"></li>
-        <p></p>
-        <li class="spaceing"></li>
-        <p></p>
-        
         <h4 class="spaceing">Farbqualität:</h4>
         
         <li class="spaceing">Wie beeinflussen die Prinzipien der Farbharmonie (z. B. Komplementär-, Analog-, Triadenfarben) das Webdesign?</li>
         <p>Farbharmonie ist die Kombination von Farben, die ein ästhetisch ansprechendes und ausgewogenes Design schaffen. Sie ermöglicht es, mit Farben ein Gefühl von Ordnung, Einheit und Ausgewogenheit in deinen Designs zu schaffen. Farbharmonien basieren auf den Grundsätzen der Farbtheorie, die besagt, dass bestimmte Farbkombinationen eine angenehme Wirkung erzeugen. So erzeugen beispielsweise Komplementärfarben wie Blau und Orange eine lebendige und auffällige Wirkung.</p>
         <p>Um Farbharmonien zu definieren, braucht es einen Farbkreis als Grundlage. In der Farbtheorie gibt es zahlreiche Ansätze und Definitionen. In der praktischen Gestaltung wird aber meistens/gerne auf den bekannten Farbkreis von Johannes Itten zurückgegriffen, da er das Zusammenwirken der Farben und der daraus entstehenden Farbkontraste beachtet hat.</p>
-        <img src="img/farbkreis-itten.jpg" alt="farbkreis">
+        <img id="Foto-Git2" src="img/farbkreis-itten.jpg" alt="farbkreis">
         <p>Eine analoge Farbharmonie besteht aus Farben, die auf dem Farbkreis nebeneinander stehen. Diese Farben haben ähnliche Tonwerte und sind harmonisch miteinander verbunden. Eine Analog-Farbharmonie kann warm oder kühl sein, abhängig von der Lage der Farben auf dem Farbkreis. Dadurch entsteht eine ausgewogene, aber dennoch visuell anregende Kombination. Analoge Farbschema kommen häufig in der Natur vor, wie z. B. der Farbverlauf eines Sonnenuntergangs, und können verwendet werden, um im Webdesign ein Gefühl von Harmonie und Ausgewogenheit zu schaffen.</p>
         <img src="img/analogfarbe.png" alt="analogfarbkreis">
         <p>Beispiele:</p>
@@ -111,16 +106,39 @@
        
         <li class="spaceing">Welche Vor- und Nachteile haben Google Fonts und selbst gehostete Schriftarten?</li>
         <p>Eine Schriftart (Font) ist eine spezifische Gestaltung von Buchstaben, Zahlen und Symbolen. Eine Schriftfamilie (Typeface) umfasst mehrere Schriftarten, die gemeinsam gestaltet wurden und zusammenpassen. Innerhalb einer Schriftfamilie gibt es verschiedene Stile (Styles), wie Regular, Bold, Italic und Light.</p>
-        <p></p>
-      
+        <p>Über 1.000 Schriftarten bietet der Suchmaschinenriese inzwischen an. Die Schriften kommen von verschiedenen Designern und sind sogenannte Open-Source-Fonts (d.h. mehr oder weniger frei benutzbar).</p>
+        <p>Google hostet die Schriften selber (also sie liegen sozusagen bei Google auf dem Server) und werden von dort geladen.</p>
+        <p>Vorteile:</p>
+        <li>optisch ansprechendere Webseiten & Apps</li>
+        <li>Erscheinungsbild der Webseite ist auf jedem Endgerät gleich</li>
+        <li>Ladezeit wird reduziert</li>
+        <li>Schriften können auch für andere Programme verwendet werden</li>
+        <li>Anzahl & Auswahl wächst stetig</li>
+        <li>Sind frei und kommerziell nutzbar</li>
+        <p>Nachteile:</p>
+        <li>müssen in der Datenschutzerklärung erwähnt werden, wenn sie nicht lokal eingebunden sind</li>
+        <li>müssen upgedatet werden</li>
+        <li>Abrufe der Schrift werden von Google erfasst</li>
+
         <li class="spaceing">Wie beeinflussen verschiedene Display-Technologien (OLED, LCD) und Farbräume (sRGB, AdobeRGB) die Farbdarstellung im Web?</li>
-        <p></p>
-       
+        <p>sRGB ist der am weitesten verbreitete RGB-Farbraum und wird von den meisten Monitoren, Druckern und digitalen Kameras verwendet. Er wurde von HP und Microsoft in den 1990er Jahren entwickelt, um einen Standard für die Farbdarstellung im Internet und auf verschiedenen Geräten zu schaffen.</p>
+        <p>Eigenschaften:</p>
+        <li>Gamut (Farbraumumfang): Relativ klein im Vergleich zu anderen RGB-Farbräumen, deckt aber den Großteil der Farben ab, die auf Standardmonitoren angezeigt werden können.</li>
+        <li>Anwendungsbereich: Ideal für Webgrafiken, allgemeine Fotografie und Druckanwendungen, bei denen eine konsistente Farbdarstellung auf verschiedenen Geräten wichtig ist.</li>
+        <li>Kalibrierung: Einfach zu kalibrieren und weitgehend unterstützt.</li>
+        <li>Schwäche: Insbesondere im Cyan-Bereich ist sRGB deutlich kleiner als der klassische CMYK-Farbraum ISOCoatedV2. Das blaueste Cyan in sRGB liegt bei rund 80% Cyan in ISOCoatedV2.</li>
+        <p>Adobe RGB wurde 1998 von Adobe Systems entwickelt, um einen größeren Farbraum abzudecken, insbesondere im Bereich der Druckvorstufe und professionellen Fotografie. Dieser Farbraum umfasst mehr grüne und blaue Farbtöne als sRGB.</p>
+        <p>Eigenschaften:</p>
+        <li>Gamut: Größer als sRGB, besonders im grünen und cyanfarbenen Bereich.</li>
+        <li>Anwendungsbereich: Wird häufig in der professionellen Fotografie und im Grafikdesign verwendet, wo es auf eine präzise Farbwiedergabe ankommt. Gerade moderne Kameras bieten statt sRGB auch AdobeRGB als alternativen Farbraum an, um Bilder direkt in AdobeRGB auf die SD-Karte zu speichern.</li>
+        <li>Kalibrierung: Erfordert eine sorgfältige Kalibrierung und geeignete Ausgabegeräte, um den erweiterten Farbraum vollständig nutzen zu können.</li>
+
         <li class="spaceing">Wie funktioniert das Farbmanagement in CSS, und was sind die Unterschiede zwischen HEX, RGB, HSL und LAB?</li>
-        <p></p>
-      
-        <li class="spaceing"></li>
-        <p></p>
+        <p>CSS kennt in seinem Standard bestimmte Namen, die dann in Farben umgewandelt werden. Da die Farbnamen nativ von CSS unterstützt werden, konnte es (zumindest früher) sein, dass diese potenziell performanter waren als RGB- oder HSL-Werte. Dabei ging es aber immer nur um einen minimalen Vorteil, also nichts von allzu großer Bedeutung.</p>
+        <p>Bei Hex-Farben bleibt das System ebenfalls Rot, Grün, Blau. Es wird aber umgewandelt. Statt Base16 kommt Base10 zum Einsatz, was bedeutet, dass »250« zu »FA« wird. Das Ganze ist sehr verwirrend, nicht unbedingt logisch für den Betrachter und daher auch nicht einfach so aus dem Kopf zu erstellen. Hexwerte entstehen also nicht in einem kreativen Prozess, sondern weil sie gebraucht werden und möglichst kurz sind.</p>
+        <p>Mit den RGB-Werten steuern wir das rote, grüne und blaue Licht. Mit RGBA fügen wir dem Ganzen zudem einen Alphakanal, also Transparenz hinzu.</p>
+        <p>HSL steht dabei für Hue, Saturation und Lightness. Also Farbton, Sättigung und Helligkeit. Der Farbton (0 bis 360) beschreibt die Farbe. Die Sättigung (0 bis 100) gibt an, wie intensiv diese Farbe dargestellt wird. Und die Helligkeit legt fest, wie dunkel oder hell der Farbton am Ende ausgegeben wird.</p>
+        <p>Lab repräsentiert das gesamte Spektrum der Farben, die Menschen sehen können, indem es die Helligkeit der Farbe, einen Rot/Grün-Achsenwert, einen Blau/Gelb-Achsenwert und einen optionalen Alphatransparenzwert angibt.</p>
 
         <h4 class="spaceing">Quelle:</h4>
         <li><a href="https://www.collaboard.app/de/use-cases/moodboard#moodboard-erstellen">Moodboard</a></li>
@@ -130,12 +148,10 @@
         <li><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjOm5rzvs-LAxX3UMMIHTSzFhEQFnoECAYQAw&url=https%3A%2F%2Fwww.exovia.de%2Fwissen%2Fbarrierefreiheit%2Fbarrierefreies-webdesign%2F%23%3A~%3Atext%3DFarbkontraste%2520und%2520Lesbarkeit%26text%3DAuswahl%2520geeigneter%2520Farbkontraste%253A%2520Achte%2520darauf%2Cmit%2520den%2520WCAG%252DRichtlinien%2520sicherzustellen.&usg=AOvVaw2MhMaYKUGC9HoySbGxVQNG&opi=89978449">WCAG Prinzip</a></li>
         <li><a href="https://www.webdesign-journal.de/farbharmonie-farbschemata/">Farbharmonie</a></li>
         <li><a href="https://www.ionos.at/digitalguide/websites/webdesign/webfonts-die-macht-moderner-schriftarten/">Schriftformate</a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
+        <li><a href="https://klare-linien.de/google-fonts/">google fonts</a></li>
+        <li><a href="https://www.proof.de/rgb-fabraeume-erklaert/">RGB</a></li>
+        <li><a href="https://a-digital.one/magazin/die-verschiedenen-farbformate-im-web-erklaert-hex-hsl-rgba/">CSS Farbe</a></li>
+        <li class="spaceing-down"><a href="https://developer.mozilla.org/de/docs/Web/CSS/color_value/lab">CSS LAB</a></li>
 
 
 
@@ -172,7 +188,7 @@
 
         <h4 class="spaceing">Quellen:</h4>
         <li><a href="https://www.ionos.at/digitalguide/online-marketing/web-analyse/personas/">Geschichte</a></li>
-        <li><a href="https://you-x.eu/de/personas-in-der-softwareentwicklung/">Software Entwickler und Personas</a></li>
+        <li class="spaceing-down"><a href="https://you-x.eu/de/personas-in-der-softwareentwicklung/">Software Entwickler und Personas</a></li>
 
     </ul>
 
