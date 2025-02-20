@@ -117,3 +117,11 @@ th {
     width: 800px;
     border-radius: 5px;
 }
+
+#grid12{
+    width: 600px;
+    border:#b58653 3px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
