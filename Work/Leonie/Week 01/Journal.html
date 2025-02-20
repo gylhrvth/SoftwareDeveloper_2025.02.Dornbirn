@@ -34,7 +34,7 @@
 
         <h3>Recherche zum Thema Layout und Whitespace:</h3>
 
-        <h4>GUI Design:</h4>
+        <h4 class="spaceing">GUI Design:</h4>
         <li class="spaceing">Welche Rolle spielt das Layout für die Benutzerfreundlichkeit einer GUI?</li>
         <p>Sie bestimmen, wie die Inhalte organisiert und den Benutzern präsentiert werden, und lenken deren Blick und Interaktionen innerhalb der Benutzeroberfläche.</p>
         <p>Effektive Layouts legen Wert auf Klarheit und Einfachheit und vermeiden ein visuelles Durcheinander, das den Benutzer überwältigen könnte. Sie schaffen eine klare visuelle Hierarchie und lenken die Aufmerksamkeit des Benutzers durch den strategischen Einsatz von Größe, Farbe und Platzierung auf die wichtigsten Informationen.</p>
@@ -82,7 +82,7 @@
         <p>Bewegung</p>
         <p>Weißraum</p>
 
-        <h4>Grid-System:</h4>
+        <h4 class="spaceing">Grid-System:</h4>
         <li class="spaceing">Warum wird das 12er-Grid-System häufig im UI-Design verwendet?</li>
         <p>Im Responsive Design werden Elemente auf unterschiedlich großen Displays neu positioniert. Das 12er Grid bietet sich an, da es 1, 2, 3, 4, oder 6 Elemente gleicher Größe nebeneinander erlaubt. Nachteilig ist die starke Verbreitung dieses Rasters und der daraus resultierende einheitliche Layoutaufbau im Web.</p>
 
@@ -90,57 +90,118 @@
         <p>CSS Grid ist ein mächtiges 2-dimensionales Layout. Das bedeutet, dass es sowohl mit den Zeilen als auch mit den Spalten des Layouts umgehen kann. CSS Grid arbeitet mit einer 12-Grid-Anordnung, bei der der Bildschirm (unsichtbar) in 12 Teile geteilt ist, und Gegenstände müssen in diese Anordnung passen.</p>
 
         <li class="spaceing">Wie vermeidet man eine ungleichmäßige oder unstrukturierte Anordnung von Elementen im 12er-Grid?</li>
-        <p></p>
+        <li>Verwendung von festen Abständen:</li>
+        <p>Achte darauf, dass die Abstände zwischen den Elementen konsistent sind. Das bedeutet, dass du entweder feste Margen oder Abstände in Pixeln oder als Prozentsatz definierst, die für alle Elemente im Grid gleich sind.</p>
 
-        <h4>Spacing & Whitespace:</h4>
+        <li>Gitterausrichtung:</li>
+        <p>Stelle sicher, dass die Elemente innerhalb der 12-Spalten-Struktur korrekt ausgerichtet sind. Verwende CSS-Grid- oder Flexbox-Eigenschaften wie justify-items, align-items, oder justify-content, um die Anordnung der Elemente zu steuern.</p>
+        
+        <li>Grid-Spalten und -Zeilen optimal nutzen</li>
+        <p>Im 12er-Grid solltest du die Spalten auf intelligente Weise verteilen. Ein häufiges Vorgehen ist, die Spalten in 12er-Einheiten zu unterteilen, sodass z. B. ein Element 4 Spalten und ein anderes 8 Spalten einnimmt. Dies sorgt für eine ausgewogene Anordnung und vermeidet leere Räume oder ungenutzte Spalten.</p>
+
+        <li>Responsive Design:</li>
+        <p>Achte darauf, dass das Layout bei verschiedenen Bildschirmgrößen gut funktioniert. Nutze Media Queries, um die Spaltenanzahl anzupassen und so eine gleichmäßige Verteilung der Elemente zu gewährleisten.</p>
+
+        <li>Vermeidung von Überlappungen:</li>
+        <p>Wenn du komplexe Layouts erstellst, stelle sicher, dass sich die Elemente nicht überlappen. Dies lässt sich durch die ordnungsgemäße Festlegung von grid-column und grid-row (im Falle von CSS Grid) oder durch ein flexibles Layout mit flexbox vermeiden.</p>
+
+        <li>Harmonische Reihenfolge</li>
+        <p>Die Reihenfolge der Elemente im Grid sollte logisch und visuell angenehm sein. Oft hilft es, die Elemente nach ihrer Wichtigkeit zu ordnen, sodass sie in einer klaren, strukturierten Reihenfolge erscheinen, was die Lesbarkeit und Benutzererfahrung verbessert.</p>
+
+        <li>Verwendung von Platzhaltern:</li>
+        <p>Bei der Gestaltung von Inhalten im 12er-Grid kannst du mit Platzhaltern arbeiten, um sicherzustellen, dass du jede Zelle optimal nutzt und leere Bereiche minimierst. Platzhalter können auch dazu beitragen, das Layout auszugleichen, wenn ein Element in einer bestimmten Zelle nicht benötigt wird.</p>
+
+
+        <h4 class="spaceing">Spacing & Whitespace:</h4>
         <li class="spaceing">Warum ist ausreichend Abstand zwischen UI-Elementen wichtig?</li>
-        <p></p>
+        <p>Die Abstände im UI-Design sind entscheidend für visuelle Klarheit und Benutzererfahrung. Sie gruppieren Elemente nach Nähe und schaffen visuelle Hierarchien und Beziehungen, die Benutzer zu wichtigen Inhalten führen . Einheitliche Abstandsmuster verbessern die Lesbarkeit und reduzieren die Augenbelastung, indem sie erholsamen Leerraum bieten.</p>
 
         <li class="spaceing">Wie kann White Space gezielt eingesetzt werden, um Inhalte lesbarer und übersichtlicher zu machen?</li>
-        <p></p>
+        <p>Whitespace, auch als negativer Raum bekannt, ist der Bereich zwischen Designelementen. Er ist der Atem in einem Layout, die Pause in einer visuellen Komposition.</p>
+        <li>Makro- vs. Mikro-Whitespace:</li>
+        <p>Makro-Whitespace bezieht sich auf die großen Leerräume zwischen Hauptelementen, während Mikro-Whitespace die kleinen Abstände zwischen Buchstaben oder Zeilen meint. Beide sind wichtig für ein ausgewogenes Design. Ein gutes Zusammenspiel von Makro- und Mikro-Whitespace kann die Lesbarkeit und das visuelle Erlebnis erheblich verbessern.</p>
+        
+        <li>Goldener Schnitt und andere Proportionsregeln:</li>
+        <p>Diese klassischen Designprinzipien können helfen, Whitespace harmonisch zu verteilen. Der Goldene Schnitt, ein Verhältnis von ungefähr 1:1,618, wird oft als besonders ästhetisch empfunden und kann als Leitlinie für die Verteilung von Whitespace dienen.</p>
+
+        <li>Typografie und Whitespace:</li>
+        <p>Die richtige Zeilenhöhe und Buchstabenabstände können die Lesbarkeit drastisch verbessern. Ein guter Richtwert für die Zeilenhöhe ist 130-150% der Schriftgröße. Bei den Buchstabenabständen gilt: Je größer die Schrift, desto enger sollten die Abstände sein.</p>
+
+        <li>Farbwahl und Whitespace:</li>
+        <p>Auch farbige Flächen können als Whitespace fungieren. Die Wahl der Farben beeinflusst, wie der Leerraum wahrgenommen wird. Helle, neutrale Farben können einen ähnlichen Effekt wie weißer Raum haben, während kräftige Farben als aktive Elemente wahrgenommen werden können.</p>
+
 
         <li class="spaceing">Welche Methoden gibt es, um eine visuelle Trennung von Elementen zu erreichen, ohne das Layout überladen wirken zu lassen?</li>
-        <p></p>
+        <p>Unterschiedliche Hintergrundfarben</p>
+        <p>Feine Linien oder Rahmen</p>
+        <p>Schattierungen und Schatten</p>
+        <p>Unterschiedliche Schriftgrößen oder -stile</p>
+        <p>Abstände (Whitespace)</p>
 
-        <h4>Gruppierung & Näheprinzip:</h4>
-        <li class="spaceing">Wie kann man zusammengehörige Inhalte visuell gruppieren?</li>
-        <p></p>
 
+        <h4 class="spaceing">Gruppierung & Näheprinzip:</h4>
         <li class="spaceing">Welche Rolle spielen Farben, Rahmen und Abstände bei der Gruppierung von UI-Elementen?</li>
-        <p></p>
+        <p>Das Gefühl von Ordnung auszulösen.</p>
+        <p>Barrierefreiheit</p>
 
         <li class="spaceing">Wie kann das Näheprinzip helfen, die Benutzerführung zu verbessern?</li>
-        <p></p>
+        <li>Klarheit durch Gruppierung</li>
+        <p>Elemente, die visuell nahe beieinander platziert werden, werden vom Benutzer als zusammengehörig wahrgenommen. Indem man verwandte Inhalte oder Funktionen nah beieinander anordnet (z.B. Navigationselemente oder Optionen, die zueinander gehören), wird dem Benutzer schnell klar, welche Elemente zusammengehören. Das reduziert die kognitive Belastung, da der Benutzer nicht lange nach Zusammenhängen suchen muss.</p>
 
-        <h4>Visuelle Balance & Gewichtung:</h4>
+        <li>Erhöhte Benutzerfreundlichkeit:</li>
+        <p>Wenn verwandte Aktionen oder Informationen in einer bestimmten Nähe zueinander angeordnet sind, kann der Benutzer schneller und einfacher darauf zugreifen, ohne unnötig weit zu scrollen oder zwischen verschiedenen Bereichen zu wechseln. Zum Beispiel: Alle Optionen zur Kontoverwaltung sollten nah beieinander liegen, um dem Benutzer eine einfache Navigation zu ermöglichen.</p>
+
+        <li>Reduzierung der Verwirrung</li>
+        <p>Wenn Elemente, die nicht miteinander in Verbindung stehen, unnötig nahe beieinander liegen, kann dies zu Verwirrung führen. Das Näheprinzip hilft, diese Probleme zu vermeiden, indem es eine klare Trennung zwischen unterschiedlichen Informationsgruppen und Funktionen schafft.</p>
+
+        <li>Fokus und Priorisierung:</li>
+        <p>Durch die gezielte Anordnung von Elementen nach ihrer Wichtigkeit (z.B. die wichtigsten Funktionen oder Informationen werden visuell zusammengefasst) kann der Benutzer durch die Benutzeroberfläche geleitet werden, ohne dass er sich verloren fühlt. Das hilft auch, den Fokus des Benutzers zu lenken und die Aufmerksamkeit auf die entscheidenden Elemente zu lenken.</p>
+
+        <li>Visuelle Hierarchie:</li>
+        <p>Das Näheprinzip kann eine visuelle Hierarchie erzeugen, indem verwandte Inhalte und Aktionen nebeneinander platziert werden. Dies erleichtert die Orientierung und hilft dem Benutzer, schneller zu verstehen, wie er mit der Benutzeroberfläche interagieren kann.</p>
+
+        <h4 class="spaceing">Visuelle Balance & Gewichtung:</h4>
         <li class="spaceing">Wie kann eine ausgeglichene Verteilung von Elementen in einem UI-Layout erreicht werden?</li>
-        <p></p>
-
-        <li class="spaceing">Welche Techniken gibt es, um ein harmonisches Verhältnis zwischen Text, Bildern und Buttons zu schaffen?</li>
-        <p></p>
+        <p>Verwendung von Rastern und Spalten (Grid-System)</p>
+        <p>Whitespace (Leerraum)</p>
+        <p>Symmetrie und Asymmetrie</p>
+        <p>Visuelle Gewichtung und Hierarchie</p>
+        <p>Flexibles Layout und Proportionale Größen</p>
+        <p>Zentralisierung wichtiger Inhalte</p>
+        <p>Spaced Alignment</p>
+        <p>Farbkontraste und -gewichtung</p>
+        <p>Responsives Design</p>
 
         <li class="spaceing">Wie kann man vermeiden, dass eine Seite zu „schwer“ oder „unausgewogen“ wirkt?</li>
-        <p></p>
+        <p>Abstände zeischen Abschnitte sind wichtig.</p>
+        <p>Hintergrundfarbe des Absxhnitts und Seitenrythmus.</p>
+        <p>Teiler - eine Trennlinie in Form einer Linie oder eines Rahmens</p>
+        <p>Größe und Farbe des Abschnittitels.</p>
+        <p>Kompatiblität der Blöcke</p>
+
+        <img src="img/Screenshot 2025-02-20 143222.png" alt="layout">
 
         <h4>Visuelle Führung & Strukturierung:</h4>
         <li class="spaceing">Welche Faktoren beeinflussen die visuelle Hierarchie in einem UI?</li>
-        <p></p>
+        <p>Je größer, desto wichtiger.</p>
+        <p>Helligkeit = Sichtbarkeit.</p>
+        <p>Engerer Abstand = näher in der Bedeutung</p>
 
-        <li class="spaceing">Wie kann man wichtige Elemente stärker hervorheben, ohne das Layout zu überladen?</li>
-        <p></p>
-
-        <li class="spaceing">Welche Design-Elemente (z. B. Größe, Kontrast, Farbe) sind am effektivsten, um eine klare Hierarchie zu schaffen?</li>
-        <p></p>
-
-        <h4>Scanning & Nutzerführung:</h4>
+        <h4 class="spaceing">Scanning & Nutzerführung:</h4>
         <li class="spaceing">Wie verläuft die natürliche Blickführung der Nutzer auf einer Webseite oder App?</li>
         <p></p>
 
         <li class="spaceing">Welche gängigen Blickmuster (z. B. F-Muster, Z-Muster) gibt es und wann werden sie eingesetzt?</li>
-        <p></p>
+        <img src="img/Screenshot 2025-02-20 150110.png" alt="Pattern">
+
 
         <li class="spaceing">Wie kann die Blickführung gezielt gesteuert werden, um die wichtigsten Inhalte hervorzuheben?</li>
-        <p></p>
+        <p>Verschwende keinen zweiten Blick – oder ersten, oder dritten</p>
+        <p>F-Pattern & Co. – der richtige Blick für jede Website</p>
+        <p>Schau mir in die Augen! Oder nicht?</p>
+        <p>Above the Fold, das heißt der Bereich der Seite, der sichtbar ist, bevor weitergescrollt wird ist von besonderer Bedeutung für Nutzer:innen und wird intensiver als der Rest der Seite „beäugt“.</p>
+        <p>Banner-Blindheit: Spiele  Banner-Werbung an geeigneten Stellen der Customer Journey aus. Gestalte die Banner so, dass sie mit dem Design der restlichen Website verschmelzen.</p>
+        <img src="img/Screenshot 2025-02-20 150315.png" alt="blickführung">
 
         <h4>Quellen:</h4>
         <li><a href="https://www.justinmind.com/de/ui-design#:~:text=Layout%20und%20Struktur%20sind%20die,und%20Interaktionen%20innerhalb%20der%20Benutzeroberfläche.">Layout</a></li>
@@ -148,11 +209,15 @@
         <li><a href="https://www.webdesign-journal.de/lesbarkeit-leseverhalten/">Lesbarkeit</a></li>
         <li><a href="https://99designs.de/blog/design-tipps/design-prinzipien/">Designprinzipien</a></li>
         <li><a href="https://kulturbanause.de/blog/gestaltungsraster-im-responsive-design/#:~:text=Sehr%20verbreitet%20ist%20das%2012,Elemente%20gleicher%20Größe%20nebeneinander%20erlaubt.">12er-Grid</a></li>
+        <li><a href="https://codecoda.com/de/blog/entry/css-layout-grid-vs-flexbox">CSS Grid</a></li>
+        <li>ChatGPT</li>
+        <li><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwig5bjGn9KLAxUTBNsEHfL3KJYQFnoECCsQAw&url=https%3A%2F%2Ftranslate.google.com%2Ftranslate%3Fu%3Dhttps%3A%2F%2Fcieden.com%2Fbook%2Fsub-atomic%2Fspacing%2Fwhy-is-spacing-important%26hl%3Dde%26sl%3Den%26tl%3Dde%26client%3Drq%26prev%3Dsearch%23%3A~%3Atext%3DSpacing%2520in%2520UI%2520design%2520is%2Cby%2520providing%2520restful%2520white%2520space.&usg=AOvVaw0jFMO_rvPMWhza9U3PmP32&opi=89978449">ABstand UI</a></li>
+        <li><a href="https://www.ferras-agency.com/blog/die-kunst-des-whitespace-warum-leerer-raum-so-wichtig-ist/">Whitespace</a></li>
+        <li><a href="https://de.tilda.education/en/courses/landing-page/landing-page-design-principles/">Layout</a></li>
+        <li><a href="https://webwild.de/ratgeber/blickmuster-webseiten/">F/Z-Muster</a></li>
         <li><a href="http://"></a></li>
         <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
-        <li><a href="http://"></a></li>
+
 
 
         <h3>Moodboard in Canvas erstellt.</h3>
