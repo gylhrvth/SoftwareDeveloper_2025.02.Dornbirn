@@ -11,13 +11,14 @@
 .bodystyle {
     font-family:'Courier New', Courier, monospace;
     text-align: justify;
+    margin: 50px 100px 25px 50px;
 }
 
 #bild01 {
     width: 800px;
     margin-top: 20px;
     margin-bottom: 20px;
-    border:black 2px solid;
+    border:#b58653 2px solid;
     border-radius: 5px;
 
 }
@@ -25,7 +26,7 @@
 #persona01 {
     width: 650px;
     margin-bottom: 20px;
-    border:black 5px solid;
+    border:#b58653 5px solid;
     border-radius: 5px;
 }
 
@@ -50,7 +51,21 @@
     width: 650px;
     margin-bottom: 20px;
     margin-top: 20px;
-    border:black 5px solid;
+    border:#b58653 5px solid;
     border-radius: 5px;
+}
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    max-width: 80%;
+}
+th, td {
+    border: 1px solid #c8ad77;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #b58653;
 }
