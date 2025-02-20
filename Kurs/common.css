@@ -13,14 +13,14 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --primary-color: hsl(210, 100%, 100%);
-        --secondary-color: hsl(171, 64%, 100%);
-        --tertiary-color: hsl(205, 100%, 100%);
+        --primary-color: hsl(210, 100%, 80%);
+        --secondary-color: hsl(171, 64%, 80%);
+        --tertiary-color: hsl(205, 100%, 80%);
         --primary-background-color: hsl(210, 100%, 14%);
         --secondary-background-color: hsl(171, 64%, 56%);
         --tertiary-background-color:hsl(205, 100%, 19%);
-        --link-color: hsl(205, 100%, 80%);
-        --link-visited-color: hsl(265, 100%, 80%);
+        --link-color: hsl(205, 100%, 70%);
+        --link-visited-color: hsl(265, 100%, 70%);
     }
 }
 
