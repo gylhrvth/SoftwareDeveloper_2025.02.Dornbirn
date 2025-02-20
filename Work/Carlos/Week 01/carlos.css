@@ -69,3 +69,51 @@ th, td {
 th {
     background-color: #b58653;
 }
+
+.jetBrains {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.square01{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #3e4479;
+    color:bisque;
+    padding: 5px;
+}
+
+.square02{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #c68a72;
+    color:rgb(50, 50, 105);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.square03{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #654f64;
+    color:rgb(226, 226, 229);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.square04{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #c3b8cb;
+    color:rgb(41, 26, 5);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+#moodB{
+    width: 800px;
+    border-radius: 5px;
+}
