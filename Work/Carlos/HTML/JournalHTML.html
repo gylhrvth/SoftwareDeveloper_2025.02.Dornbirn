@@ -14,7 +14,7 @@
 
     <h2>Freitag, 21. Februar 2025</h2>
 
-    <h3 class="color01">HTML</h3>
+    <h3 class="color01">HTML Dokument</h3>
 
     <h4>HTML Basics</h4>
     <ul>
@@ -29,17 +29,68 @@
     
     <li class="color02"><strong>Hauptfunktion:</strong></li>
     <p>Ihre Hauptfunktion besteht darin, die Struktur und den Inhalt einer Webseite zu definieren. Dazu gehören:</p>
-    <p>•	Textelemente (Überschriften -> h1 bis h6, Absätze -> p Listen -> ul, ol, li)</p>
-	<p>•	Multimedia-Inhalte (Bilder, Videos, Audio)</p>
-	<p>•	Links und Navigation (Hyperlinks, Menüs)</p>
-	<p>•	Formulare (Eingabefelder, Buttons)</p>
-	<p>•	Semantische Struktur (z. B. &lt;header&gt;, &lt;article&gt;, &lt;footer&gt; für eine bessere Verständlichkeit)</p>
+    <p>• Textelemente: Überschriften -> &lt;h1&gt; bis &lt;h6&gt; / Absätze -> &lt;p&gt; / Listen -> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</p>
+	<p>• Multimedia-Inhalte (Bilder, Videos, Audio)</p>
+	<p>• Links und Navigation (Hyperlinks, Menüs)</p>
+	<p>• Formulare (Eingabefelder, Buttons)</p>
+	<p>• Semantische Struktur (z. B. &lt;header&gt;, &lt;article&gt;, &lt;footer&gt; für eine bessere Verständlichkeit)</p>
+
+
+    <li class="color02"><strong>Was sind Tags?</strong></li>
+    <p>Tags sind die Bausteine von HTML. Sie werden verwendet, um Elemente in einer Webseite zu definieren und zu strukturieren. Ein Tag besteht aus einem Namen, der in spitzen Klammern (&lt;&gt;) steht.</p>
+
+    <li class="color02"><strong>Arten von Tags</strong></li>
+    <p>• Öffnende und schließende Tags: Die meisten Tags bestehen aus einem öffnenden Tag, einem Inhalt und einem schließenden Tag. Beispiel: &lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</p>
+    <p>• Selbstschließende Tags: Einige Tags benötigen keinen separaten Schlusstag. Sie schließen sich selbst. Beispiel: &lt;img src="bild.jpg" alt="Ein Beispielbild"&gt;
+    <p>• Attribute in Tags: Tags können Attribute enthalten, die zusätzliche Informationen bereitstellen. Beispiel: &lt;a href="https://example.com"&gt;Besuche die Webseite&lt;/a&gt;</p>
+
+    <li class="color02"><strong>Wie erstellt man links in HTML?</strong></li>
+    <p>Mit dem &lt;a&gt; Tag (anchor Tag). Das wichtigste Attribut ist href, das die Ziel-URL angibt. Siehe Beispiel oben (Attribute in Tags).</p>
+
+    <li class="color02"><strong>Wie fügt man Bilder in eine HTML-Seite ein?</strong></li>
+    <p>Bilder werden in HTML mit dem &lt;img&gt; Tag eingefügt. Dieser Tag ist selbstschließend, das heißt, er benötigt kein separates Schlusstag (&lt;/img&gt;).</p>
+    <p>Struktur: Attribute -> src (source) -> Gibt den Pfad zur Bilddatei an (lokal oder URL). / Attribute -> alt (alternative Beschreibung). Beispiel: &lt;img src="https://example.com/bild.jpg" alt="Ein Bild aus dem Internet"&gt;</p>
     
 
-
-
+    <li class="color02"><strong>Wichtigste HTML Bestandteile:</strong></li>
     
+    <p><ol>
+        <li>&lt;!DOCTYPE html&gt;: Definiert das Dokument als HTML5.</li>
+        <li>&lt;html&gt;: Umfasst das gesamte HTML-Dokument.</li>
+        <li>&lt;head&gt;: Enthält Meta-Informationen und Links zu Ressourcen.</li>
+        <li>&lt;body&gt;: Enthält den sichtbaren Inhalt der Seite. Tags wie header, nav, main, section, footer befinden sich innerhalb des body Tags.</li>
+        <li>&lt;header&gt;: Kopfbereich der Seite (z. B. Titel, Navigation).</li>
+        <li>&lt;nav&gt;: Navigationselemente (Links zu Seiten oder Abschnitten).</li>
+        <li>&lt;main&gt;: Der Hauptinhalt der Seite.
+        <li>&lt;section&gt;: Thematisch zusammengehörende Inhaltsabschnitte.</li>
+        <li>&lt;footer&gt;: Fußbereich (z. B. Copyright, Kontaktinformationen).</li>  
+    </ol></p>
+
+    <li class="color02"><strong>Was sind HTML-Attribute und wie werden sie verwendet?</strong></li>
+    <p>HTML-Attribute sind zusätzliche Informationen, die an HTML-Elemente angehängt werden, um deren Verhalten oder Darstellung zu steuern. Sie bestehen aus einem Namen und einem Wert, die im öffnenden Tag des Elements angegeben werden.</p>
+    <p>Beispiele für häufige HTML-Attribute -> VS Code: ../../../Work/Carlos/HTML/Beispiele/attribute.html</p>
+
+    <li class="color02"><strong>Wie kann man CSS in HTML integrieren?</strong></li>
+    <ol>
+    <li><p>Inline-CSS: CSS wird direkt im HTML-Tag über das style-Attribut angewendet. Dies ist die einfachste Methode, eignet sich jedoch nur für sehr kleine Anpassungen.</li></p>
+    <li><p>Internes CSS (im &lt;head&gt;-Bereich): CSS kann innerhalb des &lt;style&gt;-Tags im &lt;head&gt;-Bereich der HTML-Seite eingebunden werden. Dies ermöglicht eine zentralisierte Gestaltung für die gesamte Seite.</p></li>
+    <li><p>Externe CSS-Datei: CSS kann auch in einer separaten Datei gespeichert und über das &lt;link&gt;-Tag in das HTML-Dokument eingebunden werden. Diese Methode ist die beste, wenn man viele Seiten hat, die dasselbe Design verwenden sollen, da sie die Wartung erleichtert.</p></li>
+    <p>Beispiele für CSS-Integration -> VS Code: ../../../Work/Carlos/HTML/Beispiele/anwendungCSS.html</p>
+    </ol>
+    <li class="color02"><strong>Das display-Attribut:</strong></li>
+    <p>In CSS wird das display-Attribut verwendet, um zu bestimmen, wie ein HTML-Element auf der Seite angezeigt wird. Es definiert das Verhalten eines Elements im Layout, insbesondere, ob es als Block-, Inline- oder Flex-Element dargestellt wird und wie es mit anderen Elementen interagiert.</p>
+    <p>Häufige Werte für das display-Attribut:</p>
+    <ul>
+    <li><p>display: block; -> Default-Wert für die meisten Elementen. Elemente mit display: block nehmen die gesamte verfügbare Breite ein und beginnen auf einer neuen Zeile. Sie sind Block-Elemente.Ein Block-Element wird immer unter dem vorherigen Element angezeigt, was dazu führt, dass neue Block-Elemente immer auf der nächsten Zeile erscheinen.</p></li>
+    <li><p>display: inline; -> Elemente mit display: inline nehmen nur so viel Platz ein, wie sie benötigen, und fließen in den Textfluss ein, ohne eine neue Zeile zu beginnen. Inline-Elemente bleiben auf der gleichen Zeile wie benachbarte Inline-Elemente und können nicht in der Breite skaliert werden.</p></li>
+    <li><p>display: inline-block; -> Eine Kombination aus block und inline. Ein Element mit display: inline-block verhält sich wie ein Block-Element (kann Höhe und Breite annehmen), aber es bleibt im gleichen Zeilenfluss wie Inline-Elemente. Wird oft für Layouts verwendet, bei denen Elemente nebeneinander angezeigt werden sollen, aber auch eine bestimmte Größe haben.</p></li>
+    <li><p>Beispiele für Display Values: VS Code: ../../../Work/Carlos/HTML/Beispiele/displayValues.html</p></li>
     </ul>
+
+    </ul>
+
+    <h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./aboutMe.html">About Me</a>"</em></span></h4>
+
 
 </body>
 </html>
