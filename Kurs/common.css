@@ -1,4 +1,4 @@
-:root{
+:root {
     --primary-color: hsl(210, 100%, 14%);
     --secondary-color: hsl(171, 64%, 95%);
     --tertiary-color: hsl(205, 100%, 95%);
@@ -18,7 +18,7 @@
         --tertiary-color: hsl(205, 100%, 80%);
         --primary-background-color: hsl(210, 100%, 14%);
         --secondary-background-color: hsl(171, 64%, 56%);
-        --tertiary-background-color:hsl(205, 100%, 19%);
+        --tertiary-background-color: hsl(205, 100%, 19%);
         --link-color: hsl(205, 100%, 70%);
         --link-visited-color: hsl(265, 100%, 70%);
     }
@@ -53,17 +53,17 @@ a:visited {
     font-family: var(--secondary-font);
 }
 
-.fileExample > pre {
+.fileExample>pre {
     margin: 0;
 }
 
-.code-sample > code {
+.code-sample>code {
     font-size: 1.2em;
     background-color: var(--tertiary-background-color);
     border: none;
     color: var(--tertiary-color);
     overflow-x: auto;
-    white-space: pre;   
+    white-space: pre;
 }
 
 .code-sample {
@@ -82,23 +82,23 @@ a:visited {
     font-weight: bold;
 }
 
-.twoColumns{
+.twoColumns {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
 
-.trainerCard>div>img{
+.trainerCard>div>img {
     float: left;
     width: 22vw;
     margin-right: 1em;
 }
 
-.trainerCard>div{
+.trainerCard>div {
     min-height: 22vw;
 }
 
-.toTheTop{
+.toTheTop {
     background-color: var(--secondary-background-color);
     color: var(--secondary-color);
     position: fixed;
@@ -107,34 +107,37 @@ a:visited {
     font-size: 3em;
 }
 
-.menu{
+.menu {
     padding: 0.2em 1em;
 }
-.menu>*{
+
+.menu>* {
     margin-right: 2em;
 }
 
-.indent-1{
+.indent-1 {
     margin-left: 2em;
 }
-.indent-2{
+
+.indent-2 {
     margin-left: 4em;
 }
-.indent-3{
+
+.indent-3 {
     margin-left: 6em;
 }
 
-.topicCardContainer{
+.topicCardContainer {
     display: flex;
     flex-wrap: wrap;
 }
 
-.topicCardContainer>a{
+.topicCardContainer>a {
     text-decoration: none;
     color: var(--primary-color);
 }
 
-.topicCard{
+.topicCard {
     width: calc(128px + 1em);
     margin: 1em;
     display: grid;
@@ -142,14 +145,22 @@ a:visited {
 }
 
 
-.topicCard::after{
+.topicCard::after {
     content: "";
-    width: 0px;    
+    width: 0px;
     height: 2px;
-    background-color: var(--primary-color); 
+    background-color: var(--primary-color);
     transition: width 0.3s;
 }
 
-.topicCard:hover::after{
-    width: 128px;    
+.topicCard:hover::after {
+    width: 128px;
+}
+
+.documentation {
+    padding: 5px;
+    background-color: var(--secondary-background-color);
+    color: rgb(21, 104, 167);
+    border: 2px solid rgb(131, 224, 255);
+    border-radius: 3px;
 }
