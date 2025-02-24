@@ -59,7 +59,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    max-width: 80%;
+    
 }
 th, td {
     border: 1px solid #c8ad77;
@@ -139,5 +139,34 @@ th {
     margin-top: 10px;
     margin-bottom: 25px;
     
+}
+
+#blau {
+    color:blue;
+}
+
+#aboutMe {
+    width:250px;
+    border-radius: 50px;
+    float: left;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+#infoMe {
+   margin-top: 100px;
+}
+
+#container01 {
+
+    margin: 80px;
+    padding: 40px 80px 40px 80px;
+    border-radius: 20px;
+    border: #654f64 5px solid;
+
+    background-color: #ffffff;
+    width:1000px;
+    height: 800px;
+
 }
 

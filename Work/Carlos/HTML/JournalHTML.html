@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Kurs/common.css">
-    <link rel="stylesheet" href="../Week 01/carlos.css">
+    <link rel="stylesheet" href="../carlos.css">
     <script src="../../../Kurs/common.js" defer></script>
     <title>HTML Journal</title>
 </head>
@@ -17,18 +17,42 @@
     <h3 class="color01">HTML Dokument</h3>
 
     <h4>HTML Basics</h4>
+
     <ul>
 
     <li class="color02"><strong>Was ist HTML?</strong></li>
     <p>HTML (HyperText Markup Language) ist die Standardprogrammiersprache zur Strukturierung von Webseiten und deren Inhalte. </p>
     <p>Sie definiert die grundlegende Struktur einer Webseite durch sogenannte Tags (z. B. &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;), die verschiedene Elemente wie Überschriften, Absätze, Links, Bilder oder Listen darstellen.</p>
     <p>HTML alleine reicht nicht aus, um eine ansprechende Webseite zu gestalten oder interaktive Elemente zu erstellen. Dafür werden CSS (für das Design) und JavaScript (für die Funktionalität) verwendet.</p>
+
     <li class="color02"><strong>Einfache Struktur:</strong></li>
     <p>Ein einfaches HTML-Dokument sieht so aus:</p>
-    <img class="codePic" src="./pictures/html01.png">
+    <pre>
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang=&quot;de&quot;&gt;
+        &lt;head&gt;
+            &lt;meta charset=&quot;UTF-8&quot;&gt;
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+            &lt;title&gt;Einfaches HTML&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;header&gt;
+                &lt;h1&gt;Willkommen auf meiner Webseite&lt;/h1&gt;
+            &lt;/header&gt;
+            &lt;main&gt;
+                &lt;p&gt;Dies ist ein einfaches HTML-Dokument.&lt;/p&gt;
+            &lt;/main&gt;
+            &lt;footer&gt;
+                &lt;p&gt;&amp;copy; 2025 Meine Webseite&lt;/p&gt;
+            &lt;/footer&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+            </pre>
     
-    <li class="color02"><strong>Hauptfunktion:</strong></li>
-    <p>Ihre Hauptfunktion besteht darin, die Struktur und den Inhalt einer Webseite zu definieren. Dazu gehören:</p>
+    
+    
+    <li class="color02"><strong>HTML Hauptfunktion:</strong></li>
+    <p>Struktur und den Inhalt einer Webseite zu definieren. Dazu gehören:</p>
     <p>• Textelemente: Überschriften -> &lt;h1&gt; bis &lt;h6&gt; / Absätze -> &lt;p&gt; / Listen -> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</p>
 	<p>• Multimedia-Inhalte (Bilder, Videos, Audio)</p>
 	<p>• Links und Navigation (Hyperlinks, Menüs)</p>
@@ -68,29 +92,88 @@
 
     <li class="color02"><strong>Was sind HTML-Attribute und wie werden sie verwendet?</strong></li>
     <p>HTML-Attribute sind zusätzliche Informationen, die an HTML-Elemente angehängt werden, um deren Verhalten oder Darstellung zu steuern. Sie bestehen aus einem Namen und einem Wert, die im öffnenden Tag des Elements angegeben werden.</p>
-    <p>Beispiele für häufige HTML-Attribute -> VS Code: ../../../Work/Carlos/HTML/Beispiele/attribute.html</p>
+    <p>-> Häufige HTML <strong>Attribute</strong>:</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">Attribute</td>
+                <th>Anwendung</td>
+                <th>Beispiel</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>Einzigartiger Bezeichner für ein HTML-Element.</td>
+                <td>&lt;div id="header"&gt;...&lt;/div&gt;</td>
+            </tr>
+
+            <tr>
+                <td>class</td>
+                <td>Wird verwendet, um einem oder mehreren Elementen eine oder mehrere Klassen zuzuweisen.</td>
+                <td>&lt;p class="intro"&gt;...&lt;/p&gt;</td>
+            </tr>
+
+            <tr>
+                <td>href</td>
+                <td>Definiert die Ziel-URL für ein &lt;a&gt;-Tag (Link).</td>
+                <td>&lt;a href="https://www.example.com"&gt;Go to Example&lt;/a&gt;</td>
+            </tr>
+
+            <tr>
+                <td>src</td>
+                <td>Bestimmt die Quelle für ein Bild, Video oder Script.</td>
+                <td>&lt;img src="image.jpg" alt="Description"&gt;</td>
+                
+            </tr>
+
+            <tr>
+                <td>alt</td>
+                <td>Beschreibt ein Bild, falls dieses nicht geladen werden kann.</td>
+                <td>&lt;img src="logo.png" alt="Website Logo"&gt;</td>
+            </tr>
+
+            <tr>
+                <td>style</td>
+                <td>Direktes Inline-CSS zur Stilgestaltung eines Elements.</td>
+                <td>&lt;div style="color: red;"&gt;Hello&lt;/div&gt;</td>
+            </tr>
+
+            <tr>
+                <td>type</td>
+                <td>Definiert den Typ eines Eingabefeldes/Formular-Element</td>
+                <td>&lt;input type="text"&gt;</td>
+            </tr>
+
+        </tbody>
+
+
+
+    </table>
 
     <li class="color02"><strong>Wie kann man CSS in HTML integrieren?</strong></li>
     <ol>
-    <li><p>Inline-CSS: CSS wird direkt im HTML-Tag über das style-Attribut angewendet. Dies ist die einfachste Methode, eignet sich jedoch nur für sehr kleine Anpassungen.</li></p>
-    <li><p>Internes CSS (im &lt;head&gt;-Bereich): CSS kann innerhalb des &lt;style&gt;-Tags im &lt;head&gt;-Bereich der HTML-Seite eingebunden werden. Dies ermöglicht eine zentralisierte Gestaltung für die gesamte Seite.</p></li>
-    <li><p>Externe CSS-Datei: CSS kann auch in einer separaten Datei gespeichert und über das &lt;link&gt;-Tag in das HTML-Dokument eingebunden werden. Diese Methode ist die beste, wenn man viele Seiten hat, die dasselbe Design verwenden sollen, da sie die Wartung erleichtert.</p></li>
-    <p>Beispiele für CSS-Integration -> VS Code: ../../../Work/Carlos/HTML/Beispiele/anwendungCSS.html</p>
+    <li><p><strong>Inline</strong>-CSS: CSS wird direkt im HTML-Tag über das style-Attribut angewendet. Dies ist die einfachste Methode, eignet sich jedoch nur für sehr kleine Anpassungen.</li></p>
+    <li><p><strong>Internes</strong> CSS (im &lt;head&gt;-Bereich): CSS kann innerhalb des &lt;style&gt;-Tags im &lt;head&gt;-Bereich der HTML-Seite eingebunden werden. Dies ermöglicht eine zentralisierte Gestaltung für die gesamte Seite.</p></li>
+    <li><p><strong>Externe</strong> CSS-Datei: CSS kann auch in einer separaten Datei gespeichert und über das &lt;link&gt;-Tag in das HTML-Dokument eingebunden werden. Diese Methode ist die beste, wenn man viele Seiten hat, die dasselbe Design verwenden sollen, da sie die Wartung erleichtert.</p></li>
     </ol>
+    <p>👉🏻 <a href="./Beispiele/insertCSS.html">Beispiele für CSS-Integration</a></p>
     <li class="color02"><strong>Das display-Attribut:</strong></li>
     <p>In CSS wird das display-Attribut verwendet, um zu bestimmen, wie ein HTML-Element auf der Seite angezeigt wird. Es definiert das Verhalten eines Elements im Layout, insbesondere, ob es als Block-, Inline- oder Flex-Element dargestellt wird und wie es mit anderen Elementen interagiert.</p>
     <p>Häufige Werte für das display-Attribut:</p>
     <ul>
-    <li><p>display: block; -> Default-Wert für die meisten Elementen. Elemente mit display: block nehmen die gesamte verfügbare Breite ein und beginnen auf einer neuen Zeile. Sie sind Block-Elemente.Ein Block-Element wird immer unter dem vorherigen Element angezeigt, was dazu führt, dass neue Block-Elemente immer auf der nächsten Zeile erscheinen.</p></li>
-    <li><p>display: inline; -> Elemente mit display: inline nehmen nur so viel Platz ein, wie sie benötigen, und fließen in den Textfluss ein, ohne eine neue Zeile zu beginnen. Inline-Elemente bleiben auf der gleichen Zeile wie benachbarte Inline-Elemente und können nicht in der Breite skaliert werden.</p></li>
-    <li><p>display: inline-block; -> Eine Kombination aus block und inline. Ein Element mit display: inline-block verhält sich wie ein Block-Element (kann Höhe und Breite annehmen), aber es bleibt im gleichen Zeilenfluss wie Inline-Elemente. Wird oft für Layouts verwendet, bei denen Elemente nebeneinander angezeigt werden sollen, aber auch eine bestimmte Größe haben.</p></li>
-    <li><p>Beispiele für Display Values: VS Code: ../../../Work/Carlos/HTML/Beispiele/displayValues.html</p></li>
+    <li><p>display: <strong>block;</strong> -> Default-Wert für die meisten Elementen. Elemente mit display: block nehmen die gesamte verfügbare Breite ein und beginnen auf einer neuen Zeile. Sie sind Block-Elemente.Ein Block-Element wird immer unter dem vorherigen Element angezeigt, was dazu führt, dass neue Block-Elemente immer auf der nächsten Zeile erscheinen.</p></li>
+    <li><p>display: <strong>inline;</strong> -> Elemente mit display: inline nehmen nur so viel Platz ein, wie sie benötigen, und fließen in den Textfluss ein, ohne eine neue Zeile zu beginnen. Inline-Elemente bleiben auf der gleichen Zeile wie benachbarte Inline-Elemente und können nicht in der Breite skaliert werden.</p></li>
+    <li><p>display: <strong>inline-block;</strong> -> Eine Kombination aus block und inline. Ein Element mit display: inline-block verhält sich wie ein Block-Element (kann Höhe und Breite annehmen), aber es bleibt im gleichen Zeilenfluss wie Inline-Elemente. Wird oft für Layouts verwendet, bei denen Elemente nebeneinander angezeigt werden sollen, aber auch eine bestimmte Größe haben.</p></li>
     </ul>
+    <p>👉🏻 Beispiele für Display Values: <a href="https://appbrewery.github.io/css-display/">App Brewery</a></p>
+    
+    <br>
 
-    </ul>
+    <hr>
 
     <h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./aboutMe.html">About Me</a>"</em></span></h4>
-
-
+    <hr>
+    <button id=buttonZ onClick="(() => window.location.href = '../../../Kurs/Aufgaben.html')()">Zurück</button>
 </body>
 </html>
