@@ -127,7 +127,7 @@ th {
 }
 
 .form {
-    width: 600px;
+    width: 800px;
 }
 
 .layout {
@@ -169,4 +169,12 @@ th {
     height: 800px;
 
 }
+
+.layoutBeispiele01 {
+    width: 1200px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
 
