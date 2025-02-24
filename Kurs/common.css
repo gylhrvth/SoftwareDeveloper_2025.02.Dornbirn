@@ -5,6 +5,10 @@
     --primary-background-color: hsl(210, 100%, 95%);
     --secondary-background-color: hsl(171, 64%, 56%);
     --tertiary-background-color: hsl(205, 100%, 19%);
+    --code-color: hsl(205, 100%, 15%);
+    --code-background-color: hsl(205, 40%, 90%);
+    --code-highlight-background-color: hsl(205, 100%, 85%);
+    --code-highlight-color: hsl(210, 100%, 14%);
     --primary-font: "Roboto", sans-serif;
     --secondary-font: "Courier New", Courier, monospace;
     --link-color: hsl(205, 100%, 19%);
@@ -19,6 +23,10 @@
         --primary-background-color: hsl(210, 100%, 14%);
         --secondary-background-color: hsl(171, 64%, 56%);
         --tertiary-background-color: hsl(205, 100%, 19%);
+        --code-color: hsl(205, 100%, 95%);
+        --code-background-color: hsl(205, 40%, 20%);
+        --code-highlight-background-color: hsl(205, 100%, 45%);
+        --code-highlight-color: hsl(210, 100%, 14%);
         --link-color: hsl(205, 100%, 70%);
         --link-visited-color: hsl(265, 100%, 70%);
     }
@@ -58,25 +66,25 @@ a:visited {
 }
 
 .code-sample>code {
-    font-size: 1.2em;
-    background-color: var(--tertiary-background-color);
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
     border: none;
-    color: var(--tertiary-color);
+    color: var(--code-color);
     overflow-x: auto;
     white-space: pre;
 }
 
 .code-sample {
-    font-size: 1.2em;
-    background-color: var(--secondary-background-color);
-    color: var(--secondary-color);
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
     overflow-x: auto;
     white-space: pre;
 }
 
 .code-sample .highlight {
-    background-color: var(--primary-background-color);
-    color: var(--primary-color);
+    background-color: var(--code-highlight-background-color);
+    color: var(--code-highlight -color);
     padding: 2px 4px;
     border-radius: 3px;
     font-weight: bold;
