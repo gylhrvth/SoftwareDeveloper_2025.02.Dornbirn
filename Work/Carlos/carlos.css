@@ -150,11 +150,19 @@ th {
     border-radius: 50px;
     float: left;
     margin-right: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 #infoMe {
-   margin-top: 100px;
+   margin-top: 40px;
+}
+
+#einführung {
+    margin-top: 50px;
+}
+
+#hobbys {
+    margin-top: 50px;
 }
 
 #container01 {
