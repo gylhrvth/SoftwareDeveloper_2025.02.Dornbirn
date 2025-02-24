@@ -127,7 +127,7 @@ th {
 }
 
 .form {
-    width: 600px;
+    width: 800px;
 }
 
 .layout {
@@ -150,11 +150,19 @@ th {
     border-radius: 50px;
     float: left;
     margin-right: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 #infoMe {
-   margin-top: 100px;
+   margin-top: 40px;
+}
+
+#einführung {
+    margin-top: 50px;
+}
+
+#hobbys {
+    margin-top: 50px;
 }
 
 #container01 {
@@ -169,4 +177,12 @@ th {
     height: 800px;
 
 }
+
+.layoutBeispiele01 {
+    width: 1200px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
 
