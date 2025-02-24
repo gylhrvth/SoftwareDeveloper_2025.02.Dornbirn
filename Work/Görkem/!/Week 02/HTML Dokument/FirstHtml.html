@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lernerfolgsbuch: HTML Journal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+    
+</head>
+
+<body>
+    <h1 style="color: darkcyan;"> Lernerfolgsbuch: HTML Journal</h1>
+    <h2>Freitag, 21. Februar 2025</h2>
+
+    <h3 style = "color: darkcyan;"> HTML Basics:</h3>
+
+    <ul>
+        <li><b<>Was ist ein HTML, wofür wird es verwendet?</li>
+        <p>HTML (HyperText Markup Language) ist die Sprache, die verwendet wird, um Website zu <b>strukturieren</b>.<br>
+           Sie besteht aus sogennanten Tags, Text, Bilder, Links und andere Inhalte auf einer Seite definiert.<p>
+           HTML alleine reicht nicht aus, um eine ansprechende Webseite zu gestalten oder interaktive Elemente zu erstellen.<br>
+           Dafür werden CSS (für das Design) und JavaScript (für die Funktionalität) verwendet.</p>
+
+        <p>In der HTML werden diese Inhalte mit sogenannten Tags umschlossen. <b>Zum Beispiel</b>: </p>
+        <h3>Einfache Struktur:</h3>
+        <p>Ein einfaches HTML-Dokument sieht so aus:</p>
+        <img src="html01.png" alt="HTML Code">
+
+    </ul>
+</body>
+    <h3 style="color: darkgoldenrod;"> Hauptfunktion:</h3>
+
+    <ul>
+        <p> Ihre Hauptfunktion besteht darin, die Struktur und den Inhalt einer Website zu definieren und zu strukturieren. Dazu gehören:</p>
+        <li>Textelemente: Überschriften -> (h1) bis (h6) / Absätze -> (p) / Listen -> (ul), (ol), (li)</li>
+        <li>Multimedia-Inhalte (Bilder, Videos, Audio)</li>
+        <li>Links und Navigation (Hyperlinks, Menüs)</li>
+        <li>Formulare (Eingabefelder, Buttons)</li>
+        <li>Semantische Struktur (z. B. (header), (article), (footer) für eine bessere Verständlichkeit)</li>
+    </ul>
+
+
+    <h3 style="color: darkgoldenrod;"> Was sind Tags?</h3>
+    <p> Tags sind die Bausteine von HTML. Sie werden verwendet, um Elemente in einer Webseite zu definieren und zu strukturieren. <br>
+        Ein Tag besteht aus einem Namen, der in spitzen Klammern (< >) steht.</p>
+    
+    <h3 style="color: darkgoldenrod;"> Arten von Tags</h3>
+    
+    <ul>
+        <li>Öffnende und schließende Tags: Die meisten Tags bestehen aus einem öffnenden Tag, einem Inhalt und einem schließenden Tag. <br>
+            <b>Beispiel: &lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</b></li> <p>
+        <li> Selbstschließende Tags: Einige Tags benötigen keinen separaten Schlusstag. Sie schließen sich selbst. <br>
+            <b>Beispiel: &lt;img src="bild.jpg" alt="Ein Beispielbild"&gt;</b></li> <p>
+        <li> Attribute in Tags: Tags können Attribute enthalten, die zusätzliche Informationen bereitstellen. <br>
+            <b>Beispiel: &lt;a href="https://example.com"&gt;Besuche die Webseite&lt;/a&gt;</b></li> <p>
+    </ul>
+    
+    <h3 style="color: darkgoldenrod;"> Wie erstellt man links in HTML Tags?</h3>
+    <p> Mit dem <a> Tag (anchor Tag). Das wichtigste Attribut ist href, das die Ziel-URL angibt. <br>
+        Siehe Beispiel oben (Attribute in Tags).</p>
+    </ul>
+
+    <h3 style="color: darkgoldenrod;"> Wie fügt man Bilder in eine HTML-Seite ein?</h3>
+    <p> Bilder werden in HTML mit dem <img> Tag eingefügt. Dieser Tag ist selbstschließend, das heißt, er benötigt kein separates Schlusstag (< /img>).<br>
+        Struktur: Attribute -> src (source) -> Gibt den Pfad zur Bilddatei an (lokal oder URL). / Attribute -> alt (alternative Beschreibung). <br>
+        <b>Beispiel: &lt;img src="https://example.com/bild.jpg" alt="Ein Bild aus dem Internet"&gt;</b></p>
+    
+    <h3 style="color: darkgoldenrod;"> Wichtigste HTML Bestandteile:</h3>
+
+    <ul>
+        <li>&lt;!DOCTYPE html&gt;: Definiert das Dokument als HTML5.</li>
+        <li>&lt;html&gt;: Umfasst das gesamte HTML-Dokument.</li>
+        <li>&lt;head&gt;: Enthält Meta-Informationen und Links zu Ressourcen.</li>
+        <li>&lt;body&gt;: Enthält den sichtbaren Inhalt der Seite. Tags wie header, nav, main, section, footer befinden sich innerhalb des body Tags.</li>
+        <li>&lt;header&gt;: Kopfbereich der Seite (z. B. Titel, Navigation).</li>
+        <li>&lt;nav&gt;: Navigationselemente (Links zu Seiten oder Abschnitten).</li>
+        <li>&lt;main&gt;: Der Hauptinhalt der Seite.</li>
+        <li>&lt;section&gt;: Thematisch zusammengehörende Inhaltsabschnitte.</li>
+        <li>&lt;footer&gt;: Fußbereich (z. B. Copyright, Kontaktinformationen).</li>
+
+    </ul>
+
+    <h3 style="color: darkgoldenrod;"> Was sind HTML-Attribute und wie werden sie verwendet?</h3>
+    <p> HTML-Attribute sind zusätzliche Informationen, die in den Tags enthalten sind. Sie geben zusätzliche Informationen über das Element und seine Funktionalität. <br>
+        Sie werden in Form von Attribut-Wert-Paaren innerhalb des Tags angegeben. <br>
+        <b>Beispiel</b> für häufige HTML-Attribute -> VS Code: ../../../Work/Görkem/HTML/Beispiele/attribute.html </p>
+
+    <h3 style="color: darkgoldenrod;"> Wie kann man CSS in HTML intergrieren?</h3>
+
+    <ul>
+        <li><p>1. Inline-CSS: CSS wird direkt im HTML-Tag über das style-Attribute angewendet. Dies ist einfachste Methode, eignet sich <br>
+            jedoch nur für sehr kleine Anpassungen.<p></li>
+        <li><p>2. Internes-CSS: Internes CSS (im &lt;head&gt;-Bereich): CSS kann innerhalb des &lt;style&gt;-Tags im &lt;head&gt;-Bereich der HTML-Seite eingebunden werden. Dies ermöglicht eine zentralisierte Gestaltung für die gesamte Seite. </p></li>
+        <li><p>3. Externes-CSS: Externes CSS wird in einer separaten Datei gespeichert und über den &lt;link&gt;-Tag in das HTML-Dokument eingebunden. Dies ermöglicht eine zentrale Verwaltung des Stylesheets für mehrere Seiten.</p></li>
+        <p><b>Beispiele</b> für CSS-Integration -> VS Code: ../../../Work/Görkem/HTML/Beispiele/anwendung.CSS.html</p>
+
+    </ul>
+
+    <h3 style="color: darkgoldenrod;"> Das display-Attribut</h3>
+    <p> Das display-Attribut in CSS wird verwendet, um das Verhalten eines Elements auf einer Webseite zu steuern. <br>
+        Es definiert, wie ein Element auf der Seite angezeigt wird und wie es sich zu anderen Elementen verhält. <br>
+        Die häufigsten Werte für das display-Attribut sind: block, inline, inline-block, none, flex, grid.</p>
+
+
+
