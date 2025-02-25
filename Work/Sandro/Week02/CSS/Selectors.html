@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* Element-Selektor: Wendet das Styling auf das body-Element an. */
+  body {
+    font-family: Arial, sans-serif;
+    /* Setzt die Schriftart auf Arial oder eine serifenlose Alternative. */
+  }
+
+  /* Klassen-Selektor: Wendet das Styling auf Elemente mit der Klasse "container" an. */
+  .container {
+    width: 80%;
+    /* Setzt die Breite auf 80% des übergeordneten Elements. */
+    margin: 0 auto;
+    /* Zentriert das Element horizontal. */
+  }
+
+  .main-title {
+    color: blue;
+    /* Setzt die Textfarbe auf Blau. */
+    text-align: center;
+    /* Zentriert den Text. */
+  }
+
+  .intro {
+    font-size: 1.2em;
+    /* Setzt die Schriftgröße auf 1.2em. */
+    color: gray;
+    /* Setzt die Textfarbe auf Grau. */
+  }
+
+  .section-title {
+    color: green;
+    /* Setzt die Textfarbe auf Grün. */
+  }
+
+  .text {
+    font-size: 1em;
+    /* Setzt die Schriftgröße auf 1em. */
+    line-height: 1.5;
+    /* Setzt den Zeilenabstand auf das 1.5-fache der Schriftgröße. */
+  }
+
+  .highlight {
+    background-color: yellow;
+    /* Setzt die Hintergrundfarbe auf Gelb. */
+  }
+
+  .list {
+    list-style-type: none;
+    /* Entfernt die Standard-Aufzählungszeichen. */
+    padding: 0;
+    /* Entfernt den Standard-Abstand. */
+    background-color: antiquewhite;
+    /* Setzt die Hintergrundfarbe auf Antikweiß. */
+  }
+
+  .list-item {
+    padding: 5px 0;
+    /* Setzt den Innenabstand oben und unten auf 5px. */
+    color: green;
+    /* Setzt die Textfarbe auf Grün. */
+  }
+
+  .special {
+    font-weight: bold;
+    /* Setzt die Schrift auf fett. */
+    color: red;
+    /* Setzt die Textfarbe auf Rot. */
+  }
+
+  .footer {
+    background-color: #f1f1f1;
+    /* Setzt die Hintergrundfarbe auf ein helles Grau. */
+    padding: 10px 0;
+    /* Setzt den Innenabstand oben und unten auf 10px. */
+    text-align: center;
+    /* Zentriert den Text. */
+  }
+
+  .footer-text {
+    font-size: 0.9em;
+    /* Setzt die Schriftgröße auf 0.9em. */
+    color: #333;
+    /* Setzt die Textfarbe auf ein dunkles Grau. */
+  }
+
+  /* ID-Selektor: Wendet das Styling auf das Element mit der ID "content" an. */
+  #content {
+    padding: 20px;
+    /* Setzt den Innenabstand auf 20px. */
+    border: 1px solid #ccc;
+    /* Setzt einen 1px breiten, grauen Rahmen. */
+  }
+
+  /* Descendantselektor: Wendet das Styling auf Elemente mit der Klasse "text" an, die Descendant des Elements mit der ID "content" sind. */
+  #content .text {
+    margin-bottom: 10px;
+    /* Setzt den unteren Außenabstand auf 10px. */
+  }
+
+  /* Childselektor: Wendet das Styling auf direkte Kinder des Elements mit der ID "content" an, die die Klasse "section-title" haben. */
+  #content>.section-title {
+    margin-top: 0;
+    /* Setzt den oberen Außenabstand auf 0. */
+  }
+
+  /* Adjacent-Sibling-Selektor: Wendet das Styling auf das Element mit der ID "content" an, das direkt nach einem Element mit der Klasse "intro" folgt. */
+  .intro+#content {
+    margin-top: 20px;
+    /* Setzt den oberen Außenabstand auf 20px. */
+  }
+
+  /* General-Sibling-Selektor: Wendet das Styling auf alle Elemente mit der Klasse "intro" an, die Geschwister des Elements mit der Klasse "main-title" sind. */
+  .main-title~.intro {
+    margin-top: 10px;
+    /* Setzt den oberen Außenabstand auf 10px. */
+  }
+
+  /* Attributselektor: Wendet das Styling auf Elemente an, die die Klasse "highlight" enthalten. */
+  [class~="highlight"] {
+    border: 1px solid orange;
+    /* Setzt einen 1px breiten, orangen Rahmen. */
+  }
+</style>
+
+<body>
+
+  <div class="container"></div>
+
+
+
+  <h1 class="main-title">Main Title</h1>
+  <p class="intro">This is an introductory paragraph.</p>
+  <div id="content">
+    <h2 class="section-title">Section Title</h2>
+    <p class="text">This is a paragraph inside a div with an ID.</p>
+    <p class="text highlight">This is another paragraph with an additional class.</p>
+    <ul class="list">
+      <li class="list-item">List Item 1</li>
+      <li class="list-item">List Item 2</li>
+      <li class="list-item special">List Item 3 with special class</li>
+    </ul>
+  </div>
+  <footer class="footer">
+    <p class="footer-text">This is the footer text.</p>
+  </footer>
+  </div>
+
+</body>
+
+</html>

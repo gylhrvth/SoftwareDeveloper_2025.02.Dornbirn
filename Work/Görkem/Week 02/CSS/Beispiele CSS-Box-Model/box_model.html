@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model Beispiel</title>
+    <style>
+        .box {
+            width: 200px; /* Inhalt (Content) */
+            height: 100px;
+            padding: 20px; /* Innenabstand (Padding) */
+            border: 5px solid black; /* Rahmen (Border) */
+            margin: 30px; /* Außenabstand (Margin) */
+            background-color: lightblue; /* Hintergrundfarbe */
+
+            /* Text in der Mitte ausrichten */
+            display: flex;
+            align-items: center;  /* Vertikal zentrieren */
+            justify-content: center; /* Horizontal zentrieren */
+            text-align: center; /* Falls mehrere Zeilen */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">Hallo Welt!</div>
+
+</body>
+</html>
