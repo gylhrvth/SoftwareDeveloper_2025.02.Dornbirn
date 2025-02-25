@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlos.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>CSS Journal</title>
+</head>
+<body class="bodystyle">
+
+<h1 class="color01">Lernerfolgsbuch: HTML Journal</h1>
+
+<h3 class="color01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+<h3 class="color01">▷ <a href="#day07">DI 25/02/25</a>: CSS (01)</h3>
+
+<br>
+
+<h2 id="day07">Dienstag, 25. Februar 2025</h2>
+
+<h3 class="color01">CSS</h3>
+
+<h4>CSS Basics</h4>
+
+<ul>
+    <li class="color02"><strong>Was ist CSS und wofür wird es verwendet?</strong></li>
+    <p>CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen und die Gestaltung von HTML-Dokumenten zu definieren.</p>
+    <p>CSS bestimmt, wie eine Webseite aussieht – es steuert Farben, Schriftarten, Abstände, Layouts und mehr.</p>
+    <li class="color02"><strong>Was für möglichkeiten gibt es CSS in einem Dokument zu verwenden?</strong></li>
+    <ul>
+        <li><p>Inline-CSS: Nützlich für einzelne, schnelle Änderungen / Unübersichtlich und schwer wartbar</p></li>
+        <li><p>Internes CSS: Nützlich für kleine Webseiten oder einzelne Seiten / Vermischt HTML und CSS → Unübersichtlich bei großen Projekten</p></li>
+        <li><p>Externe CSS-Datei: Trennung von Inhalt (HTML) und Design (CSS) / Mehrere HTML-Seiten können dasselbe CSS verwenden</p></li>
+
+    </ul>
+
+    <p>-> <a href = "../HTML/Beispiele/insertCSS.html">CSS-Use Beispiel</a></p>
+
+    
+    <li class="color02"><strong>Wie bindet man eine CSS-Datei in ein HTML-Dokument ein?</strong></li>
+    <p>Eine CSS-Datei wird mit dem &lt;link&gt;-Tag im &lt;head&gt;-Bereich eines HTML-Dokuments eingebunden.</p>
+    <p>Beispiel: </p>
+
+    <div class="fileExample">
+    <div class="code-sample">  
+    <code>
+        &lt;head&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+        &lt;/head&gt;
+    </code>
+
+    </div>
+    </div>
+
+    <br>
+
+    <li class="color02"><strong>Was sind Selektoren und wie funktionieren sie?</strong></li>
+    <p>Selektoren in CSS bestimmen, welche HTML-Elemente von den definierten Stilregeln betroffen sind. Sie ermöglichen es, gezielt einzelne oder mehrere Elemente zu stylen.</p>
+
+    <ol>
+        <li>Element-Selektor:</li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                p {
+                    color: blue;
+                  }
+            </code>
+            </div>
+            </div>
+        <p>Ergebnis: Alle &lt;p&gt;-Elemente werden blau.</p>
+
+        <br>
+
+        <li>Klassen-Selektor (.)</li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                .special {
+                    color: red;
+                  }
+            </code>
+            </div>
+            </div>
+        <p>Ergebnis: Alle Elemente mit class="special" werden rot.</p>
+
+        <br>
+
+        <li>ID-Selektor (#)</li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                #header {
+                    font-size: 24px;
+                  }
+            </code>
+            </div>
+            </div>
+        <p>Ergebnis: Nur dieses &lt;h1&gt;-Element wird beeinflusst.</p>
+
+    </ol>
+
+
+<br>
+
+<li class="color02"><strong>Was sind Box-Model, Padding und Margin?</strong></li>
+
+<p>Das CSS-Box-Modell beschreibt, wie HTML-Elemente als rechteckige Boxen dargestellt werden. Jede Box besteht aus vier Bereichen:</p>
+<ol>
+    <li><p>Content (Inhalt) → Der eigentliche Inhalt, z. B. Text oder ein Bild</p></li>
+    <li><p>Padding (Innenabstand) → Abstand zwischen Inhalt und Rahmen</p></li>
+    <li><p>Border (Rahmen) → Umrandung des Elements</p></li>
+    <li><p>Margin (Außenabstand) → Abstand zwischen dem Element und anderen Elementen</p></li>
+</ol>
+<p>Jedes HTML-Element wird als Box dargestellt, die sich aus den oben genannten Bereichen zusammensetzt.</p>
+<p>-> Box-Modell Darstellung:</p>
+<img src="./pictures/CSS-Box-Modell.png">
+
+<p>-> Beispiel: <a href="./Beispiele/CSS-Box-Model/CSS-Box-Model-Interaktiv.html">Interaktives CSS-Box-Modell KI Generiert</a></p>
+
+<p>-> Beispiel: <a href="https://codepen.io/aikin/pen/xEpQBB">Interaktives CSS-Box-Modell Externe Seite</a></p></p>
+
+<br> 
+
+<li class="color02"><strong>Was ist Flexbox und wie erstellt man ein Flexbox layout?</strong></li>
+
+</ul>
+    
+</body>
+</html>

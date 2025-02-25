@@ -1,0 +1,105 @@
+#nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #d1bc8a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar {
+    float: left;
+    border-right: 2px solid #0b0909;
+    transition-duration: 0.4s;
+}
+
+.navbar:last-child {
+    border-right: none;
+}
+
+.navbar a {
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbar:hover {
+    background-color: #c6a664;
+}
+
+.active {
+    background-color: #79553d;
+}
+
+.speacingtop {
+    margin-top: 60px;
+}
+#katzebubi {
+    width: 20%;
+    border: solid 5px black;
+
+}
+
+#block1 {
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 22% 22% 35px 35px;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+}
+
+#block2 {
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 35px;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+    font-family: arial, "lucida console", sans-serif;
+
+}
+
+#block3 {
+    margin-left: 20%;
+    margin-right: 20%;
+    /*Oben Links, Oben Recht, Unten Rechts, Unten links*/
+    border-radius:  35px 35px 22% 22%;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+    font-family: arial, "lucida console", sans-serif;
+}
+
+.aufgaben {
+text-align: center;
+    
+}
+
+.button {
+    background-color: white;
+    border: 5px solid #d1bc8a; /* Green */
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #d1bc8a; /* Green */
+    color: white;
+  }
+
+.button a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+
+}

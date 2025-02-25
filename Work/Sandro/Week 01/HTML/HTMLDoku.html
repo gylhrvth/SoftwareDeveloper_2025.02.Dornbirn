@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML Basics</title>
-  <link rel="stylesheet" href="/Kurs/common.css">
-  <script src="/Kurs/common.js" defer></script>
+  <link rel="stylesheet" href="../../../../Kurs/common.css">
+  <script src="../../../../Kurs/common.js" defer></script>
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="nosnippet">
 </head>
@@ -45,15 +45,22 @@
     Zu den grundlegenden HTML-Tags gehören:
 
   <ul>
-    <li><code>&lt;!DOCTYPE&gt;</code> - Deklariert den Dokumenttyp und die verwendete HTML-Version.</li>
-    <li><code>&lt;html&gt;</code> - Das Wurzelelement des HTML-Dokuments.</li>
-    <li><code>&lt;head&gt;</code> - Enthält Metadaten über das Dokument.</li>
-    <li><code>&lt;title&gt;</code> - Definiert den Titel des Dokuments, der in der Titelleiste des Browsers angezeigt
-      wird.</li>
-    <li><code>&lt;meta&gt;</code> - Definiert Metadaten wie Zeichensatz, Autor, Beschreibung usw.</li>
-    <li><code>&lt;link&gt;</code> - Verknüpft externe Ressourcen wie CSS-Dateien.</li>
-    <li><code>&lt;script&gt;</code> - Fügt JavaScript in das Dokument ein.</li>
-    <li><code>&lt;body&gt;</code> - Enthält den sichtbaren Inhalt des Dokuments.</li>
+    <h2>Essentielle Elemente von HTML</h2>
+    <p>Die essentiellen Elemente von HTML sind grundlegende Bausteine, die für die Erstellung eines HTML-Dokuments
+      erforderlich sind. Diese Elemente umfassen:</p>
+    <ul>
+      <li><code>&lt;!DOCTYPE&gt;</code> - Deklariert den Dokumenttyp und die verwendete HTML-Version.</li>
+      <li><code>&lt;html&gt;</code> - Das Wurzelelement des HTML-Dokuments.</li>
+      <li><code>&lt;head&gt;</code> - Enthält Metadaten über das Dokument.</li>
+      <li><code>&lt;title&gt;</code> - Definiert den Titel des Dokuments, der in der Titelleiste des Browsers angezeigt
+        wird.</li>
+      <li><code>&lt;meta&gt;</code> - Definiert Metadaten wie Zeichensatz, Autor, Beschreibung usw.</li>
+      <li><code>&lt;link&gt;</code> - Verknüpft externe Ressourcen wie CSS-Dateien.</li>
+      <li><code>&lt;script&gt;</code> - Fügt JavaScript in das Dokument ein.</li>
+      <li><code>&lt;body&gt;</code> - Enthält den sichtbaren Inhalt des Dokuments.</li>
+    </ul>
+
+    <h2>Weitere wichtige HTML-Tags</h2>
     <li><code>&lt;h1&gt; bis &lt;h6&gt;</code> - Definiert Überschriften, wobei <code>&lt;h1&gt;</code> die wichtigste
       und <code>&lt;h6&gt;</code> die am wenigsten wichtige ist.</li>
     <li><code>&lt;p&gt;</code> - Definiert einen Absatz.</li>
@@ -64,13 +71,62 @@
     <li><code>&lt;li&gt;</code> - Definiert ein Listenelement.</li>
     <li><code>&lt;div&gt;</code> - Definiert einen Abschnitt oder ein Container-Element.</li>
     <li><code>&lt;span&gt;</code> - Definiert einen Inline-Bereich im Text.</li>
-    <li><code>&lt;table&gt;</code> - Definiert eine Tabelle.</li>
-    <li><code>&lt;tr&gt;</code> - Definiert eine Tabellenzeile.</li>
-    <li><code>&lt;td&gt;</code> - Definiert eine Tabellenzelle.</li>
-    <li><code>&lt;form&gt;</code> - Definiert ein Formular zur Benutzereingabe.</li>
-    <li><code>&lt;input&gt;</code> - Definiert ein Eingabefeld.</li>
+    <li><code>&lt;pre&gt;</code> - Definiert einen vorformatierten Textblock.</li>
     <li><code>&lt;button&gt;</code> - Definiert eine Schaltfläche.</li>
+    <li><code>&lt;input&gt;</code> - Definiert ein Eingabefeld, das Benutzereingaben ermöglicht. Es kann verschiedene
+      Typen wie Text, Passwort, E-Mail usw. haben.</li>
   </ul>
+  <h2>Textformatierungselemente</h2>
+  <p>Hier sind einige der am häufigsten verwendeten HTML-Elemente zur Textformatierung:</p>
+  <ul>
+    <li><code>&lt;strong&gt;</code> - Hebt Text hervor, indem er fett dargestellt wird. Es signalisiert auch eine starke
+      Betonung.</li>
+    <li><code>&lt;em&gt;</code> - Hebt Text hervor, indem er kursiv dargestellt wird. Es signalisiert auch eine
+      Betonung.</li>
+    <li><code>&lt;b&gt;</code> - Macht Text fett, ohne zusätzliche Betonung.</li>
+    <li><code>&lt;i&gt;</code> - Macht Text kursiv, ohne zusätzliche Betonung.</li>
+    <li><code>&lt;u&gt;</code> - Unterstreicht Text.</li>
+    <li><code>&lt;mark&gt;</code> - Hebt Text hervor, indem er markiert wird (normalerweise gelb hinterlegt).</li>
+    <li><code>&lt;del&gt;</code> - Stellt durchgestrichenen Text dar, um gelöschten Text anzuzeigen.</li>
+    <li><code>&lt;code&gt;</code> - Stellt Text in einer monospace-Schriftart dar, um Code zu kennzeichnen.</li>
+  </ul>
+
+  <h2>Veraltete HTML-Elemente</h2>
+  <p>Einige HTML-Elemente werden heutzutage nicht mehr empfohlen, da sie veraltet sind und durch modernere, flexiblere
+    Techniken ersetzt wurden. Hier sind einige Beispiele:</p>
+  <ul>
+    <li><code>&lt;table&gt;</code> für Layouts - Tabellen wurden früher häufig für das Seitenlayout verwendet. Dies ist
+      jedoch nicht mehr empfehlenswert, da Tabellen nicht responsiv sind und das Layout bei verschiedenen
+      Bildschirmgrößen nicht gut anpassen. Stattdessen sollten CSS-Layouts wie Flexbox oder Grid verwendet werden.</li>
+    <li><code>&lt;font&gt;</code> - Dieses Tag wurde verwendet, um Textstil und -farbe zu definieren. Es ist veraltet,
+      da CSS eine viel bessere und flexiblere Möglichkeit bietet, das Aussehen von Text zu steuern.</li>
+    <li><code>&lt;center&gt;</code> - Dieses Tag wurde verwendet, um Inhalte zu zentrieren. Es ist veraltet, da
+      CSS-Methoden wie <code>text-align: center;</code> oder Flexbox verwendet werden sollten.</li>
+    <li><code>&lt;marquee&gt;</code> - Dieses Tag wurde verwendet, um Text oder Bilder horizontal oder vertikal scrollen
+      zu lassen. Es ist veraltet und wird von modernen Browsern nicht mehr unterstützt. Stattdessen sollten
+      CSS-Animationen verwendet werden.</li>
+    <li><code>&lt;u&gt;</code> - Dieses Tag wurde verwendet, um Text zu unterstreichen. Es ist veraltet, da CSS eine
+      bessere Kontrolle über Textdekorationen bietet.</li>
+    <li><code>&lt;big&gt;</code> und <code>&lt;small&gt;</code> - Diese Tags wurden verwendet, um die Schriftgröße zu
+      ändern. Sie sind veraltet, da CSS eine präzisere Kontrolle über die Schriftgröße bietet.</li>
+    <li><code>&lt;strike&gt;</code> - Dieses Tag wurde verwendet, um durchgestrichenen Text darzustellen. Es ist
+      veraltet und sollte durch <code>&lt;del&gt;</code> oder CSS ersetzt werden.</li>
+  </ul>
+
+  <h2>HTML-Sektionselemente</h2>
+  <p>Das <code>&lt;section&gt;</code>-Element wird verwendet, um thematisch zusammenhängende Inhalte in einem
+    HTML-Dokument zu gruppieren. Es ist semantisch bedeutungsvoller als ein <code>&lt;div&gt;</code>-Element, da es den
+    Inhalt als eigenständigen Abschnitt kennzeichnet. Hier sind einige Unterschiede zwischen
+    <code>&lt;section&gt;</code> und <code>&lt;div&gt;</code>:
+  </p>
+  <ul>
+    <li><code>&lt;section&gt;</code> - Wird verwendet, um thematisch zusammenhängende Inhalte zu gruppieren. Es sollte
+      mit einer Überschrift beginnen und kann mehrere Unterabschnitte enthalten. Es ist semantisch bedeutungsvoll und
+      hilft Suchmaschinen und Screenreadern, den Inhalt besser zu verstehen.</li>
+    <li><code>&lt;div&gt;</code> - Wird verwendet, um Inhalte zu gruppieren, ohne eine semantische Bedeutung
+      hinzuzufügen. Es dient hauptsächlich zur Strukturierung und Styling von Inhalten mit CSS.</li>
+  </ul>
+
   </p>
 
   <h2 id="Frage3">Frage 3</h2>
