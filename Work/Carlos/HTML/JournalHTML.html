@@ -65,7 +65,7 @@
     
     <li class="color02"><strong>HTML Hauptfunktion:</strong></li>
     <p>Struktur und den Inhalt einer Webseite zu definieren. Dazu gehören:</p>
-    <p>• Textelemente: Überschriften -> &lt;h1&gt; bis &lt;h6&gt; / Absätze -> &lt;p&gt; / Listen -> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</p>
+    <p>• Textelemente: Überschriften -> &lt;h1&gt; bis &lt;h6&gt; / Absätze -> &lt;p&gt; / Listen -> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; (Wichtiger Hinweis: H1 sollte man nur einmal pro Seite verwenden!)</p>
 	<p>• Multimedia-Inhalte (Bilder, Videos, Audio)</p>
 	<p>• Links und Navigation (Hyperlinks, Menüs)</p>
 	<p>• Formulare (Eingabefelder, Buttons)</p>
@@ -76,9 +76,65 @@
     <p>Tags sind die Bausteine von HTML. Sie werden verwendet, um Elemente in einer Webseite zu definieren und zu strukturieren. Ein Tag besteht aus einem Namen, der in spitzen Klammern (&lt;&gt;) steht.</p>
 
     <li class="color02"><strong>Arten von Tags</strong></li>
-    <p>• Öffnende und schließende Tags: Die meisten Tags bestehen aus einem öffnenden Tag, einem Inhalt und einem schließenden Tag. Beispiel: &lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</p>
-    <p>• Selbstschließende Tags: Einige Tags benötigen keinen separaten Schlusstag. Sie schließen sich selbst. Beispiel: &lt;img src="bild.jpg" alt="Ein Beispielbild"&gt;
-    <p>• Attribute in Tags: Tags können Attribute enthalten, die zusätzliche Informationen bereitstellen. Beispiel: &lt;a href="https://example.com"&gt;Besuche die Webseite&lt;/a&gt;</p>
+    <p>• Öffnende und schließende Tags: Die meisten Tags bestehen aus einem öffnenden Tag, einem Inhalt und einem schließenden Tag. <br> Beispiel: &lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</p>
+    <p>• Selbstschließende Tags: Einige Tags benötigen keinen separaten Schlusstag. Sie schließen sich selbst.<br> Beispiel: &lt;img src="bild.jpg" alt="Ein Beispielbild"&gt;
+    <p>• Attribute in Tags: Tags können Attribute enthalten, die zusätzliche Informationen bereitstellen. <br> Beispiel: &lt;a href="https://example.com"&gt;Besuche die Webseite&lt;/a&gt;</p>
+    
+    
+    <li class="color02"><strong>Welche grundlegenden HTML-Tags gibt es und wofür werden sie verwendet?</strong></li>
+    
+    <p><strong>Struktur-Tags:</strong></p>
+    <ul style="list-style: square;">
+
+        <li><p>&lt;html&gt; bis &lt;h6&gt;: Der Wurzel-Tag eines HTML-Dokuments.</p></li>
+        <li><p>&lt;head&gt;: Enthält Metadaten wie title/meta/link/style/script.</p></li>
+        <li><p>&lt;body&gt;: Enthält den sichtbaren Inhalt der Webseite.</p></li>
+    </ul>
+
+    <p><strong>Textformatierung:</strong></p>
+    <ul style="list-style: square;">
+
+        <li><p>&lt;h1&gt; bis &lt;h6&gt;: Überschriften, h1 ist die größte, h6 die kleinste.</p></li>
+        <li><p>&lt;p&gt;: Absatz für Textblöcke.</p></li>
+        <li><p>&lt;br&gt;: Zeilenumbruch.</p></li>
+        <li><p>&lt;hr&gt;: Horizontale Linie als Trennung.</p></li>
+        <li><p>&lt;strong&gt;: Hervorhebung von Text (fett).</p></li>
+        <li><p>&lt;em&gt;: Betonung von Text (kursiv).</p></li>
+        <li><p>&lt;span&gt;: Inline-Element zur Textformatierung.</p></li>
+        <li><p>&lt;pre&gt;:Preformatted Text. Es zeigt den Inhalt genau so an, wie er im Code steht.</p></li>
+        
+
+    </ul>
+
+    <p><strong>Listen:</strong></p>
+    <ul style="list-style: square;">
+
+        <li><p>&lt;ul&gt; bis &lt;h6&gt;: Ungeordnete Liste (Punkte).</p></li>
+        <li><p>&lt;ol&gt;: Geordnete Liste (Nummern).</p></li>
+        <li><p>&lt;li&gt;: Listenelement.</p></li>
+    </ul>
+
+    <p><strong>Links und Medien:</strong></p>
+    <ul style="list-style: square;">
+
+        <li><p>&lt;a href=""&gt; bis &lt;h6&gt;: Hyperlink zu einer anderen Seite.</p></li>
+        <li><p>&lt;img src="" alt=""&gt;: Bild einfügen.</p></li>
+        <li><p>&lt;video&gt;: Video einbinden.</p></li>
+        <li><p>&lt;audio&gt;: Audio einbinden.</p></li>
+    </ul>
+
+    <p><strong>Semantische Elemente</strong> (für moderne Webseiten):</p>
+    <ul style="list-style: square;">
+
+        <li><p>&lt;header&gt;: Kopfbereich der Seite.</p></li>
+        <li><p>&lt;nav&gt;: Navigationselement für Links.</p></li>
+        <li><p>&lt;main&gt;: Hauptinhalt der Seite.</p></li>
+        <li><p>&lt;article&gt;: Eigenständiger Inhalt (z. B. Blog-Post).</p></li>
+        <li><p>&lt;section&gt;: Abschnitt eines Dokuments.</p></li>
+        <li><p>&lt;aside&gt;: Seitenleiste, z. B. für Werbung.</p></li>
+        <li><p>&lt;footer&gt;: Fußbereich der Seite.</p></li>
+    </ul>
+
 
     <li class="color02"><strong>Wie erstellt man links in HTML?</strong></li>
     <p>Mit dem &lt;a&gt; Tag (anchor Tag). Das wichtigste Attribut ist href, das die Ziel-URL angibt. Siehe Beispiel oben (Attribute in Tags).</p>
