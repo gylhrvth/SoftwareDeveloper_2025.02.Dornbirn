@@ -12,6 +12,7 @@
 .navbar {
     float: left;
     border-right: 2px solid #0b0909;
+    transition-duration: 0.4s;
 }
 
 .navbar:last-child {
@@ -78,5 +79,27 @@
 }
 
 .aufgaben {
-    background-color: #d1bc8a;
+text-align: center;
+    
+}
+
+.button {
+    background-color: white;
+    border: 5px solid #d1bc8a; /* Green */
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #d1bc8a; /* Green */
+    color: white;
+  }
+
+.button a {
+    text-decoration: none;
+
 }
