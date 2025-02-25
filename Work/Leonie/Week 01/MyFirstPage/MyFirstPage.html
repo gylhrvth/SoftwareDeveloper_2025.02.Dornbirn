@@ -4,59 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyFirstPage</title>
+    <link rel="stylesheet" href="style.css">
     <script src="../../../Kurs/common.js" defer></script>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
 
 </head>
-<style>
-
-#katzebubi {
-    width: 20%;
-    border: solid 5px black;
-
-}
-
-#block1 {
-    margin-bottom: 20px;
-    margin-left: 20%;
-    margin-right: 20%;
-    border-radius: 22% 22% 35px 35px;
-    background-color: #d1bc8a;
-    text-align: center;
-    align-content: center;
-}
-
-#block2 {
-    margin-bottom: 20px;
-    margin-left: 20%;
-    margin-right: 20%;
-    border-radius: 22% 35px 22% 35px;
-    background-color: #d1bc8a;
-    text-align: center;
-    align-content: center;
-    font-family: arial, "lucida console", sans-serif;
-
-}
-
-#block3 {
-    margin-left: 20%;
-    margin-right: 20%;
-    /*Oben Links, Oben Recht, Unten Rechts, Unten links*/
-    border-radius:  35px 35px 22% 22%;
-    background-color: #d1bc8a;
-    text-align: center;
-    align-content: center;
-    font-family: arial, "lucida console", sans-serif;
-}
-
-</style>
 <body>
-    <div id="block1">
+    <ul id="nav">
+        <li class="navbar"><a class="active" href="MyFirstPage.html">Home</a></li>
+        <li class="navbar"><a href="projekte.html">Projekte</a></li>
+        <li class="navbar"><a href="../Journal-week01.html">Aktuelles Jornal</a></li>
+        <li class="navbar" style="float: right"><a href="aboutme.html">About Me</a></li>
+      </ul>    
+    <div  class="speacingtop" id="block1">
         <h1>Hey!</h1>
         <h2>Mein Name ist Leonie Ertl, bin 20 Jahrealt und komme aus Dornbirn</h2>
     </div>
     <div id="block2">
+        <h3>Meine Reise</h3>
         <p>Meine Reise in der IT fängt 2019-2020 an, als ich die HTL in Dornbirn besucht habe.</p>
         <p>Dort habe ich den Zweick Wirtschaftsingeneur - Betriebsinformatik für 1 Jahr besucht.</p>
         <p>Dabei kam ich das erste mal mit Java in Kontakt, welches mir sehr viel Spaß gemacht hat.</p>
@@ -66,6 +32,7 @@
         <p>Heute nehme ich im Kurs vom Digital Campus teil.</p>
     </div>
     <div id="block3">
+        <h3>Meine Hobbys</h3>
         <p>Zu meinen Hobbys gehört zocken. Verschiedene Spiele wie Rainbow Six Siege, Arma3, GMod oder Stardew Valley gehören zu meiner Bibliothek.</p>
         <p>Meine Katze Bubi ist ein wichtiger Teil meines Alltags und bringt mich immer wieder zum Lachen.</p>
         <img id="katzebubi" src="img/PXL_20250119_212201056.NIGHT.jpg" alt="katzebubi">
