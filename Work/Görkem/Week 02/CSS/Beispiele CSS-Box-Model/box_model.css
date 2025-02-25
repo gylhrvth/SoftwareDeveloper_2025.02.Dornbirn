@@ -19,15 +19,15 @@ body {
     gap: 10px;
     width: 80%;
     max-width: 1200px;
-    background: white;
+    background: rgb(97, 39, 39);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .box {
-    width: 150px;
+    width: 350px;
     height: 150px;
-    background: lightblue;
+    background: rgb(230, 221, 173);
     display: flex;
     align-items: center;
     justify-content: center;
