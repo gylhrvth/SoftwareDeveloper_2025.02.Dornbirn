@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Zain";
+    src: url(Fonts/Zain/Zain-Regular.ttf);}
+
 body {
     background-color: black;
 }
@@ -37,9 +41,10 @@ body {
     background-color: #d1bc8a;
     text-align: center;
     align-content: center;
-    font-family: arial, "lucida console", sans-serif;
-
+    font-family: Zain;
+    font-size: 1.5em;
 }
+
 
 #bottumcontent {
     margin-left: 20%;
