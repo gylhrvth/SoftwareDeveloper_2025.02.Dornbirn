@@ -10,11 +10,11 @@
 </head>
 <body class="bodystyle">
 
-<h1 class="color01">Lernerfolgsbuch: HTML Journal</h1>
+<h1 class="color01">Lernerfolgsbuch: CSS Journal</h1>
 
 <h3 class="color01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-<h3 class="color01">▷ <a href="#day08">MI 25/02/25</a>: CSS (02)</h3>
-<h3 class="color01">▷ <a href="#day07">DI 25/02/25</a>: CSS (01)</h3>
+<h3 class="color01">▷ <a href="#day08">MI 25/02/25</a>: CSS (Layout)</h3>
+<h3 class="color01">▷ <a href="#day07">DI 25/02/25</a>: CSS (Basics)</h3>
 
 <br>
 
@@ -22,16 +22,80 @@
 
 <h3 class="color01">CSS</h3>
 
-<h4>CSS Basics</h4>
+<h4>CSS Layout</h4>
 
 <ul>
 
-    <li class="color02"><strong>Was ist Flexbox und wie erstellt man ein Flexbox layout?</strong></li>
-    <p>-> Flexbox: <a href="./Beispiele/Flexbox/Links.html">Useful Links</a></p>
+    <li class="color02"><strong>Welche CSS-Techniken kann man zur Gestaltung eines Layouts verwenden?</strong></li>
+    <ul>
+    <li><p>CSS Positioning (absolute, relative, fixed, sticky)</p></li>
+    <li><p>CSS Flexbox → Gut für einzeilige oder kleinere Layouts. Flexbox ist eindimensional: Das bedeutet, dass Flexbox entweder in einer Reihe (row) oder in einer Spalte (column) arbeitet – aber nicht gleichzeitig in beiden Richtungen.</p></li> 
+    <li><p>CSS Grid → Perfekt für komplexe, flexible Layouts. Grid ist zweidimensional: Es ermöglicht sowohl die horizontale als auch die vertikale Ausrichtung von Elementen.</p></li> 
+    <li><p>CSS Frameworks (z. B. Bootstrap, Tailwind CSS)</p></li> 
+    <li><p>CSS Float (veraltet, aber noch in manchen Fällen genutzt)</p></li>      
+    </ul>
+
+    <li class="color02"><strong>Wie erstellt man ein Flexbox layout?</strong></li>
+    <p>Ein Flexbox Layout wird mit der CSS-Eigenschaft display: flex erstellt. Flexbox ermöglicht eine einfache und flexible Möglichkeit, Elemente in einer Reihe oder Spalte anzuordnen und auszurichten.</p>
+    <p>-> Grundstruktur:</p>
+    <ol>
+        <li>Container: Div Element (übergeordnetes Element) mit display: flex.</li>
+        <li>Flex-Items: Die direkten Kinder des Containers werden zu Flex-Items und können flexibel im Layout positioniert werden.</li>
+    </ol>
+
+    <br>
+
+    <li class="color02"><strong>Flexbox Eigenschaften:</strong></li>
+    
+    <p>-> Container-Eigenschaften:</p>
+
+    <ul>
+        <li><p>display: flex -> Aktiviert das Flexbox-Modell für den Container und macht alle direkten Kinder zu Flex-Items.</p></li>
+        <li><p>flex-direction: Bestimmt die Ausrichtung der Flex-Items entlang der Hauptachse. <br>
+        Werte: row / column / row-reverse / column-reverse</p></li>
+        <li><p>flex-wrap: Bestimmt, ob Flex-Items in mehreren Zeilen oder Spalten umgebrochen werden können, wenn der Platz nicht ausreicht. <br> 
+        Werte: wrap / wrap-reverse / nowrap</p></li>
+        <li><p>justify-content: Steuert die horizontale Ausrichtung der Flex-Items entlang der Hauptachse.<br>
+        Werte: flex-start / flex-end / center / space-between / space-around / space-evenly</p></li>
+        <li><p>align-items: Steuert die vertikale Ausrichtung der Flex-Items entlang der Querachse.<br>
+        Werte: flex-start / flex-end / center / baseline / stretch</p></li>
+        <li><p>align-content: Steuert den Abstand zwischen mehreren Flexbox-Zeilen (nur bei flex-wrap!!!).<br>
+        Werte: flex-start / flex-end / center / space-between / space-around / stretch</p></li>
+    
+    </ul>
+
+    <p>-> Child Item-Eigenschaften:</p>
+
+    <ul>
+
+    <li><p>order: Bestimmt die Reihenfolge der Flex-Items innerhalb des Containers. Der Standardwert ist 0.</p></li>
+    <li><p>align-self: Erlaubt es einem einzelnen Flex-Item, seine vertikale Ausrichtung zu überschreiben (überschreibt align-items für dieses Element).<br>
+    Werte: flex-start / flex-end / center / baseline / stretch</p></li>
+    <li><p>flex-grow: Bestimmt, wie viel ein Flex-Item wachsen kann, um den verfügbaren Platz zu füllen.<br>
+    Werte: Jede Zahl größer als 0 gibt an, wie viel das Element im Vergleich zu den anderen wächst.<br>
+    Standardwert: 0 (wächst nicht).</p></li>
+    <li><p>flex-shrink: Bestimmt, wie viel ein Flex-Item schrumpfen kann, wenn der Platz im Container begrenzt ist.<br>
+    Werte: Jede Zahl größer als 0 gibt an, wie viel das Element schrumpfen kann.<br>
+    Standardwert: 1 (kann schrumpfen).</p></li>
+    <li><p>flex-basis: Bestimmt die ursprüngliche Größe eines Flex-Items, bevor es wächst oder schrumpft.<br>
+    Werte: Eine feste Größe, z. B. 100px oder 50%.<br>
+    Standardwert: auto (die ursprüngliche Größe des Items basierend auf dessen Inhalt).</p></li>
+    <li><p>flex (Kurzform für flex-grow, flex-shrink und flex-basis): Eine Kombination der oben genannten Werte in einer einzigen Eigenschaft.</p></li>
+
+    </ul>
+
+    <br>
+
+    <h3>-> Flexbox Eingenschaften: Useful Links </h3>
+    <ul>
+    <li><a href="https://appbrewery.github.io/flex-layout/">Flex Eigenschaften: Interaktives Beispiel</a></li><br>
+    <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Flex Cheatsheet</a></li>
+    </ul>
+
 
 </ul>
 
-<h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./Projekte/AboutMeFlex01/aboutMeFlex01.html">About Me (Flexbox)</a>"</em></span></h4>
+<h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="CSS Layout/Projekte/AboutMeFlex01/aboutMeFlex01.html">About Me (Flexbox)</a>"</em></span></h4>
 
 <br>
 
@@ -53,7 +117,7 @@
 
     </ul>
 
-    <p>-> <a href = "../HTML/Beispiele/insertCSS.html">CSS-Use Beispiel</a></p>
+    <h4>-> <a href = "CSS Basics/Beispiele/insertCSS/insertCSS.html">CSS-Use Beispiel</a></h4>
 
     
     <li class="color02"><strong>Wie bindet man eine CSS-Datei in ein HTML-Dokument ein?</strong></li>
@@ -132,7 +196,14 @@
     <li><p>!important überschreibt alle anderen Regeln</p></li>
 </ul>
 
+<br>
+
+<li class="color02"><strong>Selektoren kombinieren:</strong></li>
+<p><img src="CSS Layout/Beispiele/CSS-Selectors/selectorscss.png"></p>
+
 <p>-> CSS Selectors: <a href="https://frontend30.com/css-selectors-cheatsheet/">CSS Selectors Cheatsheet</a></p>
+
+<br>
 
 <li class="color02"><strong>Wie kann man Farben und Hintergründe in CSS definieren?</strong></li>
 <p>-> Farben mit color (Textfarbe):</p>
@@ -169,6 +240,7 @@
 </div>
 
 <br>
+<br>
 
 <li class="color02"><strong>Was sind Box-Model, Padding und Margin?</strong></li>
 
@@ -181,15 +253,19 @@
 </ol>
 <p>Jedes HTML-Element wird als Box dargestellt, die sich aus den oben genannten Bereichen zusammensetzt.</p>
 <p>-> Box-Modell Darstellung:</p>
-<img src="./pictures/CSS-Box-Modell.png">
+<img src="CSS Basics/pictures/CSS-Box-Modell.png">
 
-<p>-> Beispiel: <a href="./Beispiele/CSS-Box-Model/CSS-Box-Model-Interaktiv.html">Interaktives CSS-Box-Modell KI Generiert</a></p>
+<p>-> Beispiel: <a href="CSS Basics/Beispiele/CSS-Box-Model/CSS-Box-Model-Interaktiv.html">Interaktives CSS-Box-Modell KI Generiert</a></p>
 
 <p>-> Beispiel: <a href="https://codepen.io/aikin/pen/xEpQBB">Interaktives CSS-Box-Modell Externe Seite</a></p></p>
 
 <br> 
 
+<h4><span class="color01"><strong>‼️➡️ Aufgabe -> About Me stylen mit CSS:</strong></span><span class="color02"><em>"<a href="CSS Basics/Projekte/AboutMeCSSBasic/aboutMeCSSBasic.html">About Me (CSS Basic)</a>"</em></span></h4>
+
 </ul>
+
+
     
 </body>
 </html>
