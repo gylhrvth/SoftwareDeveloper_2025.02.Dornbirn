@@ -5,35 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mainpage</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
     <script src="../../../Kurs/common.js" defer></script>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
-    <style>
-        .grid-container {
-            display: grid;
-            column-gap: 50px;
-            grid-template-columns: auto auto auto;
-            padding: 10px;
-        }
-        .grid-item {
-            background-color: white;
-            border: 5px solid #d1bc8a;
-            padding: 15px 32px;
-            text-align: center;
-            font-size: 16px;
-            transition-duration: 0.4s;
-            grid-column: auto;
-            grid-row-end: 1;
-        }
-        .grid-item:hover {
-            background-color: #d1bc8a;
-            color: white;
-        }
-        .grid-item a {
-            text-decoration: none;
-            color: black;
-        }
-    </style>
 </head>
 <body>
     <ul id="nav">
@@ -41,16 +16,19 @@
         <li class="navbar"><a href="Labor/">Labor</a></li>
         <li class="navbar"><a href="../../Week 02/Ux-UI-Design.html">Aktuelles Jornal</a></li>
         <li class="navbar" style="float: right"><a href="Aboutme/MyFirstPage.html">About Me</a></li>
-    </ul>    
-    <div class="speacingtop" id="block1">
+      </ul>    
+    <div class="speacingtop" id="topcontent">
         <h1>Willkommen!</h1>
         <h2>Hier geht es zu den Aufaben:</h2>    
     </div>
-    <div class="grid-container">
+    <div class="aufgaben">
         <div class="grid-item"><a href="../Week 01/persona.html">Persona</a></div>
         <div class="grid-item"><a href="../Week 01/Journal-week01.html">Jornal-Week01: Typografie, Personas Theorie, HTML</a></div>
         <div class="grid-item"><a href="../Week 02/Ux-UI-Design.html">UX/UI Whitespace Beispiele</a></div>
         <div class="grid-item"><a href="123">Das ist ein Test</a></div>
+    </div>
+    <div id="animation">
+        
     </div>
 </body>
 </html>
