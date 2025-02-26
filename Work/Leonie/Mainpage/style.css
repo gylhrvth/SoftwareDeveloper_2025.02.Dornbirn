@@ -97,8 +97,8 @@ body {
 .grid-item:hover {
     background-color: #d1bc8a; /* Green */
     color: white;
-    transition: all 0.5s ease;
-    transform: scale(1.1);
+    /*transition: all 0.5s ease;
+    transform: scale(1.1);*/
   }
 
 .grid-item a {
