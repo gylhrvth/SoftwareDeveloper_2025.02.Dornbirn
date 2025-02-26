@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flexbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 300px;
+            margin: 20px auto;
+            background-color: lightblue;
+            transition: flex-direction 0.3s ease;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Flexbox Layout</h1>
+
+    <div class="container" id="flexContainer">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+    </div>
+
+    <button onclick="toggleFlexDirection()">Toggle Flex Direction</button>
+
+    <script>
+        function toggleFlexDirection() {
+            const container = document.getElementById('flexContainer');
+            // Toggle between row and column directions
+            if (container.style.flexDirection === 'column') {
+                container.style.flexDirection = 'row';
+            } else {
+                container.style.flexDirection = 'column';
+            }
+        }
+    </script>
+
+</body>
+</html>
