@@ -1,6 +1,16 @@
 @font-face {
     font-family: "Zain";
-    src: url(Fonts/Zain/Zain-Regular.ttf);}
+    src: url(Fonts/Zain/Zain-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Zain-Title";
+    src: url(Fonts/Zain/Zain-Bold.ttf);
+    font-weight: normal;
+    font-style: normal;
+    }
 
 body {
     background-color: black;
@@ -20,6 +30,7 @@ body {
 #katzebubi {
     width: 20%;
     border: solid 5px black;
+    margin: 10px;
 
 }
 
@@ -27,16 +38,20 @@ body {
     margin-bottom: 20px;
     margin-left: 20%;
     margin-right: 20%;
+    padding: 20px;
     border-radius: 22% 22% 35px 35px;
     background-color: #d1bc8a;
     text-align: center;
     align-content: center;
+    font-family: Zain-Title;
+    font-size: 2em;
 }
 
 #midcontent {
     margin-bottom: 20px;
     margin-left: 20%;
     margin-right: 20%;
+    padding: 20px;
     border-radius: 35px;
     background-color: #d1bc8a;
     text-align: center;
@@ -49,12 +64,15 @@ body {
 #bottumcontent {
     margin-left: 20%;
     margin-right: 20%;
+    padding: 20px;
     /*Oben Links, Oben Recht, Unten Rechts, Unten links*/
     border-radius:  35px 35px 22% 22%;
     background-color: #d1bc8a;
     text-align: center;
     align-content: center;
-    font-family: arial, "lucida console", sans-serif;
+    font-family: Zain;
+    font-size: 1.5em;
+
 }
 
 .aufgaben {
@@ -85,3 +103,4 @@ body {
     color: rgb(0, 0, 0);
 
 }
+
