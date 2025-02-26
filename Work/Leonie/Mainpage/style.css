@@ -1,0 +1,82 @@
+body {
+    background-color: black;
+}
+
+@media screen and (min-width: 480px) {
+    body {
+      background-color: white;
+    }
+  }
+
+
+.speacingtop {
+    margin-top: 60px;
+}
+
+#katzebubi {
+    width: 20%;
+    border: solid 5px black;
+
+}
+
+#topcontent {
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 22% 22% 35px 35px;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+}
+
+#midcontent {
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 35px;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+    font-family: arial, "lucida console", sans-serif;
+
+}
+
+#bottumcontent {
+    margin-left: 20%;
+    margin-right: 20%;
+    /*Oben Links, Oben Recht, Unten Rechts, Unten links*/
+    border-radius:  35px 35px 22% 22%;
+    background-color: #d1bc8a;
+    text-align: center;
+    align-content: center;
+    font-family: arial, "lucida console", sans-serif;
+}
+
+.aufgaben {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.grid-item {
+    background-color: white;
+    border: 5px solid #d1bc8a;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    grid-column: auto;
+    grid-row-end: 1;
+}
+
+.grid-item:hover {
+    background-color: #d1bc8a; /* Green */
+    color: white;
+  }
+
+.grid-item a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+
+}
