@@ -13,7 +13,25 @@
 <h1 class="color01">Lernerfolgsbuch: HTML Journal</h1>
 
 <h3 class="color01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+<h3 class="color01">▷ <a href="#day08">MI 25/02/25</a>: CSS (02)</h3>
 <h3 class="color01">▷ <a href="#day07">DI 25/02/25</a>: CSS (01)</h3>
+
+<br>
+
+<h2 id="day08">Mittwoch, 26. Februar 2025</h2>
+
+<h3 class="color01">CSS</h3>
+
+<h4>CSS Basics</h4>
+
+<ul>
+
+    <li class="color02"><strong>Was ist Flexbox und wie erstellt man ein Flexbox layout?</strong></li>
+    <p>-> Flexbox: <a href="./Beispiele/Flexbox/Links.html">Useful Links</a></p>
+
+</ul>
+
+<h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./Projekte/AboutMeFlex01/aboutMeFlex01.html">About Me (Flexbox)</a>"</em></span></h4>
 
 <br>
 
@@ -55,8 +73,9 @@
 
     <br>
 
-    <li class="color02"><strong>Was sind Selektoren und wie funktionieren sie?</strong></li>
+    <li class="color02"><strong>Was sind Selektoren?</strong></li>
     <p>Selektoren in CSS bestimmen, welche HTML-Elemente von den definierten Stilregeln betroffen sind. Sie ermöglichen es, gezielt einzelne oder mehrere Elemente zu stylen.</p>
+    <p>-> Beispiele:</p>
 
     <ol>
         <li>Element-Selektor:</li>
@@ -68,7 +87,7 @@
                   }
             </code>
             </div>
-            </div>
+        </div>
         <p>Ergebnis: Alle &lt;p&gt;-Elemente werden blau.</p>
 
         <br>
@@ -104,6 +123,53 @@
 
 <br>
 
+<li class="color02"><strong>Selektoren-Hierarchie:</strong></li>
+
+<ul>
+    <li><p>Inline-Stil > Internes CSS > Externes CSS </p></li>
+    <li><p>#ID > .class > Tag</p></li>
+    <li><p>Im Code, wenn zwei CSS-Regeln die gleiche Spezifität haben und auf dasselbe Element zutreffen, dann gewinnt die Regel, die weiter unten in der CSS-Datei steht.</p></li>
+    <li><p>!important überschreibt alle anderen Regeln</p></li>
+</ul>
+
+<p>-> CSS Selectors: <a href="https://frontend30.com/css-selectors-cheatsheet/">CSS Selectors Cheatsheet</a></p>
+
+<li class="color02"><strong>Wie kann man Farben und Hintergründe in CSS definieren?</strong></li>
+<p>-> Farben mit color (Textfarbe):</p>
+<div class="fileExample">
+    <div class="code-sample">  
+    <code>
+        p {
+            color: red;  /* Name */
+          }
+    </code>
+    </div>
+</div>
+<p>-> Hintergrundfarben mit background-color:</p>
+<div class="fileExample">
+    <div class="code-sample">  
+    <code>
+        div {
+            background-color: lightblue;
+          }
+    </code>
+    </div>
+</div>
+
+<p>-> Hintergrundfarben mit background-color:</p>
+
+<div class="fileExample">
+    <div class="code-sample">  
+    <code>
+        div {
+            background-color: rgba(0, 0, 255, 0.3); /* Blau mit 30% Transparenz */
+          }
+    </code>
+    </div>
+</div>
+
+<br>
+
 <li class="color02"><strong>Was sind Box-Model, Padding und Margin?</strong></li>
 
 <p>Das CSS-Box-Modell beschreibt, wie HTML-Elemente als rechteckige Boxen dargestellt werden. Jede Box besteht aus vier Bereichen:</p>
@@ -122,8 +188,6 @@
 <p>-> Beispiel: <a href="https://codepen.io/aikin/pen/xEpQBB">Interaktives CSS-Box-Modell Externe Seite</a></p></p>
 
 <br> 
-
-<li class="color02"><strong>Was ist Flexbox und wie erstellt man ein Flexbox layout?</strong></li>
 
 </ul>
     
