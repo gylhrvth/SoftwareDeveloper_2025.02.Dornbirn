@@ -1,0 +1,47 @@
+.updock-regular {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.mainTitle {
+    font-size: 70px;
+}
+
+body{
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    background-color: #f5f5f5; 
+    color: #333;
+}
+
+.hauptcontainer{
+    max-width: 900px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    background: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.newBockInAboutMe{
+    margin-top: 1.5em;
+}
+.newBockInAboutMe > h2{
+    color: #555;    
+}
+.newBockInAboutMe > h2::first-letter{
+    color: #007BFF;
+    font-size: 1.5em;    
+}
+
+.faehigkeiten{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.faehigkeiten > span {
+    background: #ddd; 
+    padding: 8px 12px; 
+    border-radius: 5px;
+}
