@@ -42,7 +42,22 @@ li a:hover:not(.active) {
   .grid-container > div {
     background-color: #ecc519;
     color: #fcfafa;
-    padding: 10px;
+    padding: 5px;
     font-size: 30px;
     text-align: center;
   }
+
+.grid-container-second{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    background-color: rgb(39, 28, 2);
+    padding: 10px;
+}
+.grid-container-second > div{
+    background-color: #ac5207;
+    color: #fcfafa;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center; 
+}
