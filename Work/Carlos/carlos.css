@@ -190,5 +190,16 @@ th {
     border-radius: 10px;
 }
 
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(246, 246, 246);
+    padding: 50px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border: solid rgb(137, 191, 242) 5px;
+    width: 80%;
+    height: 10%;   
+}
 
 
