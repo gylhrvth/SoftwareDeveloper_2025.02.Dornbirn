@@ -1,0 +1,49 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 100%; /* Falls nötig, erhöhe max-width */
+    gap: 10px;
+}
+
+.grid-container-2 {
+    display: grid;
+    background-color: hsl(300, 80%, 27%);
+    width: 100%;
+    /*justify-content: center; --> /* Zentriert Inhalte horizontal */
+    align-items: center; /* Zentriert Inhalte vertikal */
+    padding: 0px; /* Fügt Innenabstand hinzu */
+    gap: 10px; /* Abstand zwischen Flex-Items */
+    
+}
+
+
+.grid.r-container {
+    display: grid;
+    background-color: darksalmon;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 150px;
+
+
+}
+
+.map-container {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    background-color: lightblue;
+}
+
+.marker {
+    position: absolute;
+    top: 50px; /* Abstand vom oberen Rand */
+    left: 100px; /* Abstand vom linken Rand */
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
