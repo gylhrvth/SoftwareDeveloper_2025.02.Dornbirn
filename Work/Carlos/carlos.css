@@ -184,5 +184,11 @@ th {
     margin-bottom: 20px;
 }
 
+#cheatsheet01 {
+    width: 1000px;
+    border: solid rgb(13, 55, 109) 5px;
+    border-radius: 10px;
+}
+
 
 
