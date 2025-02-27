@@ -1,0 +1,57 @@
+/* Allgemeine Stile */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #72d6ea, #15e5a6);
+  margin: 10;
+  padding: 10;
+}
+
+h1 {}
+
+h2 {}
+
+div {}
+
+p {}
+
+pre {}
+
+
+a {}
+
+
+/* Klassen-Selektoren */
+.container {}
+
+.highlight {}
+
+
+
+/* ID-Selektoren */
+
+#list-item-1 {}
+
+#list-item-2 {}
+
+#list-item-3 {}
+
+
+/* Kombinierte Selektoren */
+
+/* Versuche aus den bestehenden Selektoren neue kombinationen zu bilden. Wenn ein div zum beispeil eine Klasse wie Container hat und in diesem div/Container ein p-Element ist, oder eine h2. Wenn die Highlight-Klasse in einem p oder in einem pre oder in einer H1 ist.
+*/
+
+
+
+/* Pseudoklassen-Selektoren */
+ul li:first-child {}
+
+ul li:last-child {}
+
+ol li:first-child {}
+
+ol li:last-child {}
+
+a:hover {}
+
+a:visited {}

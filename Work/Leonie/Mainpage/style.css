@@ -46,7 +46,7 @@ body {
     font-family: Zain-Title;
     font-size: 2em;
     border: solid 3px black;
-    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 0px black;
 }
 
 #midcontent {
@@ -61,7 +61,7 @@ body {
     font-family: Zain;
     font-size: 1.5em;
     border: solid 3px black;
-    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 0px black;
 }
 
 
@@ -77,7 +77,7 @@ body {
     font-family: Zain;
     font-size: 1.5em;
     border: solid 3px black;
-    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 0px black;
 }
 
 .aufgaben {
@@ -115,4 +115,31 @@ body {
 div h3 {
     font-size: 1.1em;
     font-weight: 600;
+}
+
+.block-design {
+    position: relative;
+    height: 100px;
+}
+
+.blockup {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: #d1bc8a;
+    z-index: 1;
+}
+
+.blockdown {
+    position: absolute;
+    top: 53%;
+    left: 49.7%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: #c6a664;
+    z-index: 0;
 }
