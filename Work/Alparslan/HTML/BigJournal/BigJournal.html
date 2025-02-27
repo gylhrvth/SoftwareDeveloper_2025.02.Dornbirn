@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagebuch - Lernerfolgsbuch</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+</head>
+
+<Style> /* Internes CSS, weil es sich im Code zuoberste befindet, nicht inline und nicht extern */
+    
+    body{ /* Hintergrundfarbe der Website */
+        background-color:darkcyan;
+    }
+
+    h1{ color: hotpink; /* Überschriftenformatierung, gilt für alle h1 in dem Body */
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: large;
+        font-weight: 700;
+    }
+
+
+    h2{ color: greenyellow;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: medium;
+        font-weight: 500;
+    }
+    h3{ color: azure;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: small;
+        font-weight: 400;
+    }
+
+    h4{color: azure;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: smaller;
+        font-weight: 300;
+
+    }
+
+    h5{color: hsla(256, 100%, 97%, 0.935);
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: smaller;
+        font-weight: 200;
+
+    }
+
+
+    #Ausser{ /* Formatierung für h1 Überschriften, welche nicht die h1 Klasse erhalten sollen */ 
+        color: black;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: large;
+        font-weight: 700;
+    }
+
+.Link{  /* Container um das Aussehen der Links zu verschönern, als vergelich habe ich den letzten Link auf der Website blank ohne Containerformatierung gelassen */
+    color: plum; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-size: medium;
+    }
+
+.BoxPaddingMarging{  /* Flexbox erstellt, auf der Website ist es der Rahmen worin sich die LInks für CSS befinden */
+display: flexbox;
+background-color: grey;
+margin: 50px;
+border: 50px;
+padding: 50px;
+}
+
+.AbsatzFett{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+}
+
+.Bilderrahmen{
+    display: flexbox;
+    margin: 10px;
+    border: 10px;
+    padding: 10px;
+}
+</Style>
+
+
+
+<body>
+    <h1 id="Ausser">Lernerfolgsbuch</h1>
+
+    <h1 id="Ausser">Donnerstag, 27. Februar 2025</h1>
+
+    <p><h1>CSS Layout</h1></p>
+    <p><h1>Recherche CSS:</h1></p>
+
+    <p class="AbsatzFett">
+    Was sind die Werkzeuge (float, Flexbox, Grid, z-index), um ein Layout zu gestalten? <br> 
+    Wann verwenden ich was? <br> </p>
+    <div class="Bilderrahmen"><img src="../../Images/1.Werkzeuge.png" alt="Werkzeuge"> </div> <br>
+
+    <p class="AbsatzFett">
+    Wie verwendet man Float für Bilder? <br>
+    Wie erstellt man ein Flexbox? <br></p>
+    <div class="Bilderrahmen"> <img src="../../Images/2.Float&Flexbox.png" alt="Float & Flexbox"></div> <br>
+    
+    <p class="AbsatzFett">
+    Wie ordnen wir Layout in einem Grid? <br>
+    Wie lege ich Elementen übereinander? <br> 
+    Wie funktioniert z-index? <br></p>
+    <div class="Bilderrahmen"> <img src="../../Images/3.Grid&Übereinander.png" alt="Grid & Übereinanderlegen (z-index)"></div>
+    
+    <p class="AbsatzFett">
+    Wie bringe ich "etwas" in der Mitte-Mitte? <br></p>
+    <div class="Bilderrahmen"> <img src="../../Images/4.Flexbox&Grid&manuell.png" alt="Flexbox & Grid & Manuell"></div>
+    
+    <p class="AbsatzFett">
+    🚀 Fazit: <br>
+	• Float → Nur für umfließenden Text/Bilder <br>
+	• Flexbox → Perfekt für einzelne Reihen/Spalten <br>
+	• Grid → Beste Wahl für komplette Layouts <br>
+	• z-index → Zum Überlagern von Elementen <br>
+    Zentrieren → Am einfachsten mit Flexbox oder Grid <br>
+    </p>
+    </p> 
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1 id="Ausser">Donnerstag, 27. Februar 2025</h1>
+    
+    <p><h1>CSS Basics</h1></p>
+        <p><h1>Recherche CSS:</h1></p>
+        <h4>Aufgrund von Zeitmangel werden hier nützliche Links zum Thema CSS angefügt, zur Selbstrecherche:</h4>
+       
+        <div>
+            <div class="BoxPaddingMarging">
+        <a href="https://www.seo-kueche.de/lexikon/css/"> <span class="Link">SEO Küche - Link für CSS Erklärung </span> </a> <br>
+        <a href="https://www.ionos.at/digitalguide/websites/webdesign/was-ist-css/"> <span class="Link">IONOS - Link für CSS Erklärung </span> </a> <br>
+        <a href="https://www.checkdomain.de/hosting/lexikon/css/"> <span class="Link">Checkdomain - Link für CSS Erklärung inkl. Beispiele <span class="Link"></span> </a> <br>
+        <a href="https://lehre.idh.uni-koeln.de/lehrveranstaltungen/sosem19/it-zertifikat-der-phil.fak-advanced-web-basics/einfaches-css-layout/"> <span class="Link">Lehre IDH - Link für CSS Erklärung inkl. Beispiele </span> </a> <br>
+        <a href="https://www.html-seminar.de/css_bilder_und_hintergrundbilder.htm">HTML Seminar - Link für CSS </a>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ul>
+        <h1 id="Ausser">Montag, 24. Februar 2025</h1>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <br>
+        <p><h1 style="color:greenyellow;">HTML Dokument</h1></p>
+        <br>
+        <p><h1>Recherche:</h1></p>
+        <br>
+        <p><h1 style="color:greenyellow;">Implementieren</h1></p>
+        <br>
+        <p><h2 style="color:greenyellow;">Layout verstehen und planen</h2></p>
+        <br>
+        <h5>Positive Beispiele für Call-to-Action sind:</h5>
+        <p> <ol><li><a href="https://www.mercedes-benz.de/">Mercedes</a></li>
+        <li><a href="https://www.apple.com/at/">Apple</a></li>
+        <li><a href="https://www.calvinklein.at/">CalvinKlein</a></li></ol> 
+        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Freitag, 21. Februar 2025</h1>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <br>
+        <p><h1 style="color:greenyellow;">UX/UI Design - User Experience Week01</h1></p>
+        <br>
+        <p><h1>Recherche:</h1></p>
+        <br>
+        <p><h2 style="color:greenyellow;">User Experience</h2></p>
+        <p>
+        <h3>1. Unterschied zwischen UX und UI</h3>
+        <strong>UX (User Experience):</strong> Das gesamte Nutzungserlebnis, inkl. Emotionen, Effizienz & Zufriedenheit. <br>
+        <strong>UI (User Interface):</strong> Das visuelle Design und die Bedienelemente (Buttons, Farben, Layout). <br>
+        <strong>➡️ UI ist ein Teil der UX, aber UX umfasst mehr als nur das Design.</strong> <br>
+        </p>
+        <br>
+        <p>
+        <h3>2. Rolle der Usability in der UX</h3>
+        <h5>Usability = Benutzerfreundlichkeit. Eine gute UX braucht:</h5>
+        <strong>✅ Einfache Bedienung (intuitive Navigation)</strong> <br>
+        <strong>✅ Effizienz (schnelle Erledigung von Aufgaben)</strong><br>
+        <strong>✅ Fehlertoleranz (Vermeidung von Frustration)</strong> <br>
+        </p>
+        <br>
+        <p>
+        <h3>3. Was ist barrierefreies Design (Accessibility)?</h3>
+        Barrierefreiheit bedeutet, dass alle Nutzer, inkl. Menschen mit Einschränkungen, eine Webseite/App problemlos nutzen können. <br>
+        <br>
+        <h5>👀 Beispiele:</h5>
+        <strong>Gute Lesbarkeit</strong> (hoher Kontrast, große Schrift) <br>
+        <strong>Tastatur-Navigation</strong>für Menschen mit motorischen Einschränkungen <br>
+        <strong>Screenreader-Unterstützung</strong> für Blinde <br>
+        <br>
+        <h5>Warum wichtig?</h5>
+        <strong>✅ Mehr Nutzer erreichen.</strong> <br>
+        <strong>✅ Gesetzliche Vorgaben einhalten</strong> <br>
+        <strong>✅ Bessere UX für alle</strong> <br>
+        </p>
+        <br>
+        <p>
+        <h3>4. Prinzipien einer guten UX</h3>
+        <strong>🎯 Klarheit:</strong> Nutzer sofort verstehen lassen, was zu tun ist <br>
+        <strong>💨 Effizienz:</strong> So wenig Klicks/Schritte wie nötig <br>
+        <strong>🧠 Erwartungskonform:</strong> Design ist vertraut & intuitiv <br>
+        <strong>📱 Flexibilität:</strong> Funktioniert auf allen Gerätenb <br>
+        <strong>😊 Freundlichkeit:</strong> UX sollte positive Emotionen auslösen <br>
+        </p>
+        <br>
+        <p>
+        <h3>5. Was ist eine User Journey & wie wird sie erstellt?</h3>
+        Eine <strong>User Journey beschreibt den Weg eines Nutzers bei einer Anwendung</strong> – von erster Interaktion bis zum Ziel. <br>
+        <h5>🚶‍♂️ Schritte zur Erstellung:</h5>
+        
+        <strong>Nutzer & Ziel definieren</strong> (z. B. „Bestellung aufgeben“) <br>
+        <strong>Schritte analysieren</strong> (Wo startet der Nutzer? Was sind Hindernisse?) <br>
+        <strong>Optimieren</strong> (Wo kann man die UX verbessern?) <br>
+        </p>
+        <br>
+        <p>
+        <h3>6. Unterschied: Quantitative vs. Qualitative UX-Tests</h3>
+        <h5>📊 Quantitativ (Datenbasiert, messbar)</h5>
+        <strong>✅ A/B-Tests</strong> (Vergleich von zwei Designs) <br>
+        <strong>✅ Klick-Tracking</strong> (Wo klicken Nutzer am meisten?) <br>
+        <strong>✅ Ladezeiten & Absprungraten</strong> <br>
+        <br>
+        
+        <h5>🗣️ Qualitativ (Nutzerverhalten & Emotionen)</h5>
+        <strong>✅ Interviews</strong> (Fragen: „Wie fühlst du dich dabei?“) <br>
+        <strong>✅ Usability-Tests</strong> (Beobachtung: Wo gibt es Probleme?) <br>
+        <strong>✅ Heatmaps</strong> (Wo bleibt der Blick am längsten?) <br>
+        <br>
+        <h5>➡️ Beide Methoden kombinieren → bessere UX! 😊</h5>
+        </p>
+        <br>
+        <p><h2 style="color:greenyellow;">Interaktion & Benutzerfreundlichkeit</h2></p>
+        <p>
+        <h3>1. Was sind Microinteractions & wie verbessern sie die UX?</h3>
+        <strong>🔹 Microinteractions sind kleine Animationen oder Reaktionen, die dem Nutzer Feedback geben.</strong> <br>
+        <h5>👀 Beispiele:</h5>
+        ✅ Ein Like-Button, der sich animiert, wenn man ihn drückt. <br>
+        ✅ Eine Ladeanzeige, die Fortschritt zeigt. <br>
+        ✅ Ein Passwortfeld, das anzeigt, ob das Passwort sicher ist. <br>
+        🎯 Vorteil: Macht die Bedienung intuitiver, interaktiver & angenehmer. <br>
+        </p>
+        <br>
+        <p>
+        <h3>2. Bedeutung von Call-to-Actions (CTAs) für die Benutzerführung</h3>
+        <strong>🔹 CTA (Call-to-Action) fordert den Nutzer zu einer Aktion auf (z. B. „Jetzt kaufen“, „Mehr erfahren“).</strong> <br>
+        <h5>📌 Warum wichtig?</h5>
+        ✅ Führt Nutzer gezielt zu wichtigen Aktionen. <br>
+        ✅ Erhöht die Conversion-Rate (mehr Anmeldungen, Käufe usw.). <br>
+        ✅ Gute CTAs sind klar, sichtbar & motivierend. <br>
+        </p>
+        <br>
+        <p>
+        <h3>3. Wie gestaltet man eine intuitive Navigation?</h3>
+        <strong>🔹 Eine gute Navigation sorgt dafür, dass Nutzer ohne Nachdenken finden, was sie suchen.</strong> <br>
+        <h5>🎯 Tipps:</h5>
+        ✅ Klar & einfach (wenige, aber sinnvolle Menü-Punkte). <br>
+        ✅ Bekannte Muster nutzen (z. B. Hamburger-Menü auf Mobile). <br>
+        ✅ Suchfunktion für komplexe Seiten anbieten. <br>
+        ✅ Breadcrumbs (Brotkrumen-Navigation) für Orientierung. <br>
+        </p>
+        <br>
+        <p>
+        <h3>4. Warum ist Mobile First Design wichtig?</h3>
+        <strong>🔹 Mobile First bedeutet, dass man eine Webseite zuerst für Smartphones entwirft und dann für größere Bildschirme erweitert.</strong><br>
+        <h5>📌 Warum?</h5>
+        ✅ Mehr Nutzer sind mobil unterwegs (über 50% des Web-Traffics). <br>
+        ✅ Schnellere Ladezeiten & bessere Performance. <br>
+        ✅ Google bevorzugt mobil-optimierte Seiten im Ranking. <br>
+        </p>
+        <br>
+        <p>
+        <h3>5. Was bedeutet kognitive Belastung & wie minimiert man sie?</h3>
+        <strong>🔹 Kognitive Belastung = Wie viel das Gehirn verarbeiten muss, um eine Aufgabe zu lösen. </strong> <br>
+        <h5>🎯 So minimiert man sie:</h5>
+        ✅ Klare, einfache Texte (kein Fachjargon). <br>
+        ✅ Wichtige Inhalte hervorheben (visuelle Hierarchie). <br>
+        ✅ Nicht zu viele Optionen anbieten (keine Überforderung). <br>
+        ✅ Schritt-für-Schritt-Prozesse statt lange Formulare. <br>
+        </p>
+        <br>
+        <p>
+        <h3>6. Wie beeinflussen KI & Chatbots die UX? </h3>
+        <strong>🤖 KI & Chatbots können die UX verbessern, indem sie:</strong> <br>
+        ✅ Sofort Antworten liefern (24/7-Support). <br>
+        ✅ Personalisierte Erlebnisse bieten (z. B. Produktempfehlungen). <br>
+        ✅ Routineaufgaben automatisieren (z. B. Buchungen, FAQs). <br>
+        🚨 Aber: Schlechte Chatbots können frustrierend sein → Menschliche Unterstützung bleibt wichtig! <br>
+        ➡️ Gute UX = Weniger denken, schneller handeln, mehr Freude! 🚀 <br>
+        </p>
+        <br>
+      
+
+
+
+
+
+
+
+
+
+    <h1>Donnerstag, 20. Februar 2025</h1>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <br>
+        <p><h1 style="color:greenyellow;">UX/UI Design - Layout und white Spaces</h1></p>
+        <br>
+        <p><h1>Recherche:</h1></p>
+        <br>
+        <p><h2 style="color:greenyellow;">GUI Design:</h2></p>
+    <p>
+    <h3>1. Rolle des Layouts für die Benutzerfreundlichkeit einer GUI:</h3>
+    Ein gutes Layout ist entscheidend für die Benutzerfreundlichkeit, weil es die Struktur und Anordnung der Inhalte bestimmt.<br>
+	<strong>• Führt den Nutzer intuitiv durch die Anwendung.</strong><br>
+    <strong>• Sorgt dafür, dass wichtige Informationen schnell erfasst werden.</strong><br>
+    <strong>• Verhindert Verwirrung durch klare Gruppierung und Abstände.</strong><br>
+    <strong>• Unterstützt Effizienz (schneller Zugriff auf Funktionen).</strong><br>
+    <strong>• Reduziert Fehler, wenn Eingaben und Buttons logisch angeordnet sind.</strong><br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Tools für GUI Design:</h3>
+    Tools:<br>
+    <strong>Figma</strong> - Web-basiert, Kollaboration, Prototyping<br>
+    <strong>Adobe XD</strong> - Prototyping, Animationen, Integration mit Adobe Suite<br>
+    <strong>Sketch</strong> - Besonders für macOS, intuitive Bedienung<br>
+    <strong>InVision</strong> - Prototyping, Feedback-Tools, Zusammenarbeit<br>
+    <strong>Axure RP</strong> - Komplexe Interaktionen, UX-Fokus<br>
+    <strong>Pen&Paper</strong> - Schnelle Skizzen für erste Layout-Ideen<br>
+    </p>
+	<br>
+    <p>
+    <h3>3. Wie verbessert ein gutes Layout die Lesbarkeit und Verständlichkeit?</h3>
+	<strong>• Hierarchie:</strong> Überschriften, Zwischenräume und Schriftgrößen helfen, die Inhalte nach Wichtigkeit zu ordnen.<br>
+    <strong>• Weißraum:</strong> Genügend Abstände zwischen Elementen sorgen für Ruhe und bessere Erfassung der Inhalte.<br>
+    <strong>• Ausrichtung:</strong> Gleichmäßige Anordnung (z. B. linksbündig) sorgt für leichteres Scannen von Texten.<br>
+    <strong>• Kontraste:</strong> Farben und Schriftarten so wählen, dass Text gut lesbar ist.<br>
+    </p>
+    <br>
+    <p>
+    <h3>4. Gängige Layout-Prinzipien für Konsistenz und Benutzerfreundlichkeit:</h3>
+    Prinzip:<br>
+    <strong>Raster-System (Grid)</strong> - Inhalte mit unsichtbaren Raster ordnen.<br>
+    <strong>Ausrichtung</strong>	- Elemente sollten links-, rechtsbündig oder zentriert sein – nicht wild gemischt.<br>
+    <strong>Visuelle Hierarchie</strong>	- Wichtige Elemente hervorheben.<br>
+    <strong>Konsistenz</strong>	- Gleiche Schriftarten, Abstände, Farben und Buttons überall verwenden.<br>
+    <strong>Nähe (Proximity)</strong> - Zusammengehörige Elemente enger platzieren, Unabhängiges trennen.<br>
+    <strong>Weißraum (Whitespace)</strong> - Zwischenräume für Ruhe und bessere Übersicht nutzen.<br>
+    <strong>Fitts’s Law</strong>	- Wichtige Klickflächen wie Buttons, groß genug und leicht erreichbar machen.<br>
+    <strong>Lesefluss beachten</strong> - Nutzer lesen meist von oben nach unten, links nach rechts (F-Muster).<br>
+    </p>
+    <br>
+    <p>
+    <strong>Fazit:</strong><br>
+    Ein durchdachtes Layout ist die Basis für eine gute GUI. Es führt den Nutzer, verbessert die Lesbarkeit und reduziert Fehler.<br>
+    Die richtigen Tools und Prinzipien helfen, klare und funktionale Designs zu erstellen.<br>
+</p>
+<br>
+    <p><h2 style="color:greenyellow;">Grid-System:</h2></p>
+    <p>
+    <h3>1. Warum wird das 12er-Grid-System häufig im UI-Design verwendet?</h3>
+    Das 12er-Grid-System ist so beliebt, weil es:<br>
+	<strong>• Flexibilität bietet:</strong> 12 ist durch viele Zahlen teilbar (2, 3, 4, 6), was viele Layout-Kombinationen erlaubt.<br>
+	<strong>• Einheitlichkeit schafft:</strong> Elemente lassen sich leicht anpassen und bleiben trotzdem optisch geordnet.<br>
+    <strong>• Responsives Design erleichtert:</strong> Inhalte lassen sich auf verschiedene Bildschirmgrößen anpassen, ohne dass die Struktur verloren geht.<br>
+	<strong>• Design und Entwicklung verbindet:</strong> Designer und Entwickler sprechen die gleiche "Grid-Sprache", was die Zusammenarbeit vereinfacht.<br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Wie kann man das 12er-Grid flexibel für verschiedene Bildschirmgrößen einsetzen?</h3>
+	<strong>• Responsive Breakpoints nutzen:</strong> <br>
+    → Definiere, ab welchen Bildschirmgrößen sich das Layout verändert (z. B. Smartphone, Tablet, Desktop). <br>
+    → Beispiel:<br>
+    <strong>○ Mobil:</strong> 12 Spalten = 1 Spalte (alles untereinander) <br>
+	<strong>○ Tablet:</strong> 12 Spalten = 2 x 6 Spalten <br>
+	<strong>○ Desktop:</strong> 12 Spalten = 3 x 4 Spalten <br>
+	
+    <br>
+    <strong>• Spaltenbreiten flexibel machen:</strong> <br>
+    → Mit Prozentangaben (z. B. 25%) arbeiten, damit sich die Spalten automatisch an die Bildschirmbreite anpassen. <br>
+    <br>
+	<strong>• CSS-Frameworks nutzen:</strong> <br>
+    → Bootstrap, Tailwind CSS oder CSS Grid helfen, das 12er-Grid-System direkt umzusetzen. <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Wie vermeidet man eine ungleichmäßige oder unstrukturierte Anordnung im 12er-Grid?</h3>
+	<strong>• Raster als Leitlinie nutzen: </strong> <br>
+    → Beim Platzieren von Inhalten immer an den Spalten ausrichten, nicht „frei Hand“ positionieren. <br>
+	<strong>• Konsistenz beachten:</strong> <br>
+    → Immer die gleiche Spaltenbreite und Abstände (Gutter) verwenden – kein Durcheinander. <br>
+	<strong>• Whitespace (Abstände) bewusst einplanen:</strong> <br>
+    → Zwischen Gruppen von Inhalten genügend Leerraum lassen, damit das Layout nicht überladen wirkt. <br>
+	<strong>• Elemente gruppieren:</strong> <br>
+    → Verwandte Inhalte zusammenfassen (z. B. Text und Bild nebeneinander), damit der Nutzer die Zusammenhänge erkennt. <br>
+	<strong>• Keine halben Sachen:</strong> <br>
+    → Spalten sinnvoll nutzen (z. B. 6+6 oder 8+4) und nicht ständig „krumme“ Aufteilungen wie 3,5 oder 2,5 Spalten. <br>
+    <br>
+    <strong>Fazit:</strong> <br>
+    Das 12er-Grid ist flexibel, weil es viele Aufteilungen ermöglicht. Mit Breakpoints und CSS-Techniken passt es sich leicht an verschiedene Geräte an. <br>
+    Konsequente Ausrichtung und genug Abstand sorgen für ein sauberes, geordnetes Design. <br>
+    </p>
+    <br>
+    <p><h2 style="color:greenyellow;">CSS Bootstrap & Tailwind:</h2></p>
+    <p>
+	<h3>1. Was sind CSS-Frameworks?</h3>
+    <strong>CSS-Frameworks sind Sammlungen von vorgefertigten
+    CSS-Regeln</strong>, die dir helfen, schnell und einfach eine ansprechende und responsive Website zu bauen – ohne alles von Grund auf selbst zu schreiben. <br>
+    </p>
+    <br>
+    <p>
+	<h3>2. Was ist Bootstrap?</h3>
+	<strong>• Beliebtes CSS-Framework</strong>, das viele fertige Layouts, Buttons, Grids und Komponenten enthält. <br>
+	<strong>• Einfach und schnell für Einsteiger. </strong><br>
+    <strong>• Besonders gut für responsive Designs geeignet</strong> 
+    <br>(passt sich an verschiedene Bildschirmgrößen an). <br>
+    </p>
+    <br>
+    <p>
+	<h3>3. Was ist Tailwind CSS?</h3>
+	<strong>• Utility-First-Framework:</strong> Du baust dein Design direkt im HTML mit kleinen CSS-Klassen (z. B. bg-blue-500, text-center, p-4). <br>
+	<strong>• Sehr flexibel:</strong> Mehr Freiraum für eigenes Design. <br>
+	<strong>• Beliebt bei Entwicklern, die individuelle Designs wollen.</strong> <br>
+
+    <h4>Vergleich:</h4>
+    <Strong>Bootstrap</strong> <br>                                
+    • Fertige Designs und Komponenten <br>
+    • Schneller Start, wenig anpassen <br>
+    • Gut für Prototypen oder einfache Seiten <br>
+    <br>
+    <Strong>Tailwind CSS</strong> 
+    <br>
+    • Flexibel, selbst gestalten <br>
+    • Mehr Kontrolle, eigener Stil <br>
+    • Gut für individuelle, moderne Designs   <br>     
+    </p>
+    <br>
+    <p>
+	<h3>4. Responsive Webdesign</h3>
+    Eine responsive Website passt sich automatisch an verschiedene Bildschirmgrößen an – egal ob auf Smartphone, Tablet oder PC. <br>
+    <br>
+    <h4>Wichtige Merkmale:</h4>
+	<strong>• Flexible Layouts:</strong> Inhalte passen sich der Bildschirmbreite an. <br>
+	<strong>• Anpassbare Bilder:</strong> Bilder skalieren mit, ohne verzerrt zu wirken. <br>
+	<strong>• Lesbarkeit:</strong>Text bleibt auch auf kleinen Geräten gut lesbar. <br>
+	<strong>• Navigation:</strong> Menüs und Buttons funktionieren gut auf Touchscreens. <br>
+	<br>
+    <h4>Ziel:</h4>
+    Optimale Benutzererfahrung (UX) auf allen Geräten – ohne Zoomen oder seitliches Scrollen. <br>
+    <br>
+    <h4>Beispiel:</h4>
+	<strong>• Desktop:</strong> Menü oben, Inhalt nebeneinander. <br>
+	<strong>• Smartphone:</strong> Menü als „Burger-Icon“, Inhalt untereinander. <br>
+    Das erreicht man oft mit CSS-Grid, Flexbox oder Frameworks wie Bootstrap oder Tailwind. <br>
+    Schon mal auf einer Website gewesen, die am Handy „komisch“ aussieht? Genau das verhindert Responsive Design! 😊 <br>
+    </p>
+    <br>    
+    <p><h2 style="color:greenyellow;">Spacing & White Space:</h2></p>
+    <p>
+    <h3>1. Warum ist ausreichend Abstand zwischen UI-Elementen wichtig?</h3>
+	<strong>• Verbessert die Lesbarkeit:</strong> Zu enge Elemente wirken unübersichtlich – Nutzer können Informationen schwerer erfassen. <br>
+	<strong>• Vermeidet Fehlklicks:</strong> Genug Abstand verhindert, dass Nutzer aus Versehen falsche Buttons anklicken. <br>
+	<strong>• Sorgt für Klarheit:</strong> Der Nutzer erkennt schneller, welche Inhalte zusammengehören und welche getrennt sind. <br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Wie kann White Space gezielt eingesetzt werden?</h3>
+    White Space ist freier Raum (Leerraum) um oder zwischen UI-Elementen – nicht zwingend weiß, einfach „leer“. <br>
+    <h4>Gezielt eingesetzt:</h4>
+	<strong>• Gruppierung:</strong> Zusammengehörige Elemente näher zusammenrücken, andere weiter auseinander. <br>
+	<strong>• Ruhe schaffen:</strong> Zwischen Absätzen, Überschriften und Buttons sorgt Leerraum für Struktur und Entspannung. <br>
+	<strong>• Fokus lenken:</strong> Mehr Abstand um ein wichtiges Element zieht die Aufmerksamkeit dorthin. <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Methoden zur visuellen Trennung ohne Überladung:</h3>
+	<strong>• Abstand (Padding/Margin):</strong> Elemente durch ausreichend Leerraum trennen. <br>
+	<strong>• Linien/Trennstriche:</strong> Dezent, z. B. dünne graue Linien oder nur Teilstriche, um nicht zu „schwer“ zu wirken. <br>
+	<strong>• Farbflächen:</strong> Leichte Hintergründe oder Farbblöcke zur Abgrenzung nutzen. <br>
+	<strong>• Schatten:</strong> Sanfte Schatten (Box-Shadow), um Boxen voneinander abzuheben. <br>
+	<strong>• Rahmen:</strong> Sehr dezente Rahmen nutzen (z. B. helle graue Linien). <br>
+    <br>
+    <h4>Fazit:</h4>
+    <strong>Abstand + White Space = Bessere Lesbarkeit & Klarheit.</strong> <br>
+    <strong>Visuelle Trennung = Subtil arbeiten, nicht überladen – lieber Abstand als zu viele Linien.</strong> <br>
+    Schon mal erlebt, dass eine Website „überfüllt“ wirkte? Genau das kann man so verhindern! 😊 <br>
+    </p>
+    <br>
+    <p><h2 style="color:greenyellow;">Gruppierung & Näheprinzip:</h2></p>
+    <p>
+    <h3>1. Wie kann man zusammengehörige Inhalte visuell gruppieren?</h3>
+	<strong>• Nähe:</strong> Elemente, die zusammengehören, nah beieinander platzieren. <br>
+	<strong>• Rahmen oder Boxen:</strong> Inhalte in Kästen einfassen oder mit Hintergrundfarben hinterlegen. <br>
+	<strong>• Abstände nutzen:</strong> Mehr Abstand zwischen Gruppen, weniger Abstand innerhalb einer Gruppe. <br>
+	<strong>• Ausrichtung:</strong> Zusammengehörige Elemente visuell auf einer Linie halten. <br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Rolle von Farben, Rahmen und Abständen bei der Gruppierung:</h3>
+	<strong>• Farben:</strong> Dezente Hintergrundfarben helfen, Bereiche optisch abzuheben (z. B. Formularbereich). <br>
+	<strong>• Rahmen:</strong> Feine Linien oder Boxen fassen Inhalte ein – dezent nutzen, um nicht zu überladen. <br>
+	<strong>• Abstände (Whitespace):</strong> Mehr Abstand zwischen Bereichen macht die Struktur klarer und hilft, Inhalte schnell zu erfassen. <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Wie hilft das Näheprinzip (Gestaltgesetz der Nähe)?</h3>
+    <strong>Das Näheprinzip besagt:</strong> <br>
+    Elemente, die nah beieinander stehen, werden als zusammengehörig wahrgenommen. <br>
+    <br>
+	<strong>• Bessere Benutzerführung:</strong> Der Nutzer erkennt schneller, welche Inhalte zusammengehören (z. B. Textfeld + „Absenden“-Button). <br>
+	<strong>• Weniger Verwirrung:</strong> Vermeidet, dass Nutzer zwei verschiedene Bereiche verwechseln. <br>
+	<strong>• Klarere Struktur:</strong> Gruppierte Inhalte sind auf den ersten Blick verständlicher. <br>
+    <br>
+    <h4>Kurz gesagt:</h4>
+    <Strong>✅ Nähe + Farben + Abstände = Bessere Übersicht & einfachere Bedienung.</strong> <br>
+    Schon mal eine Seite gesehen, auf der du erst überlegen musstest, was zusammengehört? Genau das löst man so! <br>
+    </p>
+    <br>
+    <p><h2 style="color:greenyellow;">Visuelle Balance & Gewichtung:</h2></p>
+    <p>
+    <h3>1. Wie erreicht man eine ausgeglichene Verteilung von Elementen?</h3>
+	<strong>• Grid-System nutzen:</strong> Z. B. 12er-Grid, um Elemente gleichmäßig auszurichten. <br>
+	<strong>• Symmetrie & Ausrichtung:</strong> Elemente links, rechts oder mittig ausrichten. <br>
+	<strong>• Whitespace:</strong> Genügend Abstand um und zwischen den Elementen lassen. <br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Techniken für Harmonie zwischen Text, Bildern und Buttons:</h3>
+	<strong>• Größe abstimmen:</strong> Bilder, Texte und Buttons so skalieren, dass nichts dominiert. <br>
+	<strong>• Hierarchie:</strong> Wichtige Inhalte größer oder auffälliger gestalten (z. B. Überschrift > Text > Button). <br>
+	<strong>• Abstände einheitlich:</strong> Gleiche Margins und Paddings für Ruhe und Ordnung. <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Wie vermeidet man, dass eine Seite „schwer“ oder „unausgewogen“ wirkt?</h3>
+	<strong>• Gewichtung beachten:</strong> Große oder farbige Elemente nicht nur auf eine Seite – gleichmäßig verteilen. <br>
+	<strong>• Keine Überladung:</strong> Nicht zu viele Elemente auf einmal – lieber Platz lassen. <br>
+	<strong>• Farben sparsam einsetzen:</strong> Kräftige Farben gezielt für Akzente (z. B. Buttons). <br>
+    <strong>➡️ Balance durch Raster, Abstände, ruhige Flächen und klare Gewichtung.</strong> <br>
+    Schon mal eine Seite gesehen, die „überladen“ wirkte? Genau das verhindert das! <br>
+    </p>
+    <br>
+    <p><h2 style="color:greenyellow;">Visuelle Führung & Strukturierung:</h2></p>
+    <p>
+    <h3>1. Faktoren, die die visuelle Hierarchie beeinflussen:</h3>
+	<strong>• Größe:</strong> Größere Elemente fallen mehr auf. <br>
+	<strong>• Farbe:</strong> Kräftige, auffällige Farben ziehen Blicke an. <br>
+	<strong>• Kontrast:</strong> Helle Elemente auf dunklem Hintergrund (oder umgekehrt) stechen hervor. <br>
+	<strong>• Position:</strong> Wichtige Inhalte oben oder mittig platzieren. <br>
+	<strong>• Whitespace:</strong> Genug Platz um wichtige Elemente lenkt den Fokus. <br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Wichtige Elemente hervorheben, ohne zu überladen:</h3>
+	<strong>• Wenige Akzente:</strong> Nur die wichtigsten Dinge (z. B. Call-to-Action-Button) betonen. <br>
+	<strong>• Ruhe bewahren:</strong> Genug Weißraum lassen, damit das Layout „atmet“. <br>
+	<strong>• Konsistent bleiben:</strong> Einheitliche Schriftarten und Farben – nur gezielt brechen. <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Effektivste Design-Elemente für klare Hierarchie:</h3>
+    <strong>✅ Größe:</strong> Große Überschriften oder Buttons fallen sofort auf. <br>
+    <strong>✅ Farbe:</strong> Auffällige Farben für Aktionen, dezente für weniger wichtige Bereiche. <br>
+    <strong>✅ Kontrast:</strong> Dunkler Text auf hellem Hintergrund – oder umgekehrt. <br>
+    <strong>✅ Position:</strong> Wichtige Dinge zuerst oder zentral platzieren. <br>
+    <strong>➡️ Größe + Farbe + Kontrast + Position → Klare Führung für die Augen!</strong>
+
+
+
+    <p><h2 style="color:greenyellow;">Scanning & Nutzerführung:</h2></p>
+    <p>
+    <h3>1. Natürliche Blickführung auf einer Webseite/App</h3>
+    <strong>Nutzer scannen Inhalte,</strong> statt alles Wort für Wort zu lesen. <br>
+    <strong>Augen folgen typischen Muster</strong> je nach Layout und Inhalt. <br>
+    <strong>Wichtige Inhalte müssen strategisch platziert werden,</strong> damit sie schnell erfasst werden. <br>
+    </p>
+    <br>
+    <p>
+    <h3>2. Gängige Blickmuster & Einsatzbereiche</h3>
+    <h5>🔹 F-Muster (häufig bei textlastigen Seiten, z. B. Blogs, News) <br>
+    👁️ Augen bewegen sich:</h5>
+    
+    Oben horizontal (Überschrift/erste Zeile) <br>
+    Zweite horizontale Bewegung (Unterüberschrift) <br>
+    Dann vertikal nach unten (scannen der linken Seite) <br>
+    <br>
+    <h5>🔹 Z-Muster (für visuell gestaltete Seiten, z. B. Landingpages) <br>
+    👁️ Augen folgen einer Z-Form:</h5>
+    
+    Oben links starten (Logo/Titel) <br>
+    Oben rechts (Navigation) <br>
+    Diagonale Bewegung zur Mitte (Key Message, Bild) <br>
+    Unten rechts abschließen (Call-to-Action-Button) <br>
+    </p>
+    <br>
+    <p>
+    <h3>3. Blickführung gezielt steuern</h3>
+    <strong>✅ Größe & Kontrast:</strong> Große, kontrastreiche Elemente ziehen den Blick an. <br>
+    <strong>✅ Position:</strong> Wichtige Inhalte am Anfang oder entlang des Blickmusters platzieren. <br>
+    <strong>✅ Whitespace nutzen:</strong> Genügend Abstand lenkt den Fokus auf Schlüsselbereiche. <br>
+    <strong>✅ Visuelle Hinweise:</strong> Pfeile, Bilder oder Buttons lenken den Blick weiter. <br>
+    <br>
+    <strong>➡️ F-Muster für Texte, Z-Muster für visuelle Seiten → gezielt nutzen! 😊</strong>
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Donnerstag, 20. Februar 2025</h1>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <br>
+        <h1><strong>Vom Moodboard bis zu konkreten Schriftarten und Farben</strong></h1>
+        <br>
+        <p><h2 style="color:greenyellow;">Implementieren:</h2></p>
+        <br>
+        <div><img src="images/Moodboard DigiCampusVLBG/Moodboard.png" alt="Portrait von Moodboard" style="width: min(1200px, 90vw);"></div>
+        <br>
+        <p><h2 style="color: fuchsia;">Call-to-Actions</h2></p>
+        <br>
+        <div><img src="images/Moodboard DigiCampusVLBG/mercedes.png" alt="Portrait von mercedes" style="width: min(1200px, 90vw);"></div>
+        <p>
+        Hier ist das <strong>Moodboard</strong> für die Seite „Stammtisch für Software Developer in Vorarlberg“.<br> Es kombiniert eine moderne, Tech-orientierte Optik mit einem freundlichen, gemeinschaftlichen Flair.<br>
+        <br><strong style="color:greenyellow;">Extrahierte Schriftarten:</strong><br>
+        <strong>• Sans-serif Schriftarten:</strong> Klare, moderne Typografie, vermutlich Ähnlichkeiten zu:<br>
+        ○ Brittany<br>
+        ○ Vast Extra Bold<br>   
+        <strong>• Lesbarkeit:</strong> Sehr gut – klare Linien, gut für Web geeignet.<br>
+        <strong>• Hierarchie:</strong> Überschriften fett und größer, Text klar und neutral – Kontrast zwischen Headings und Body-Text gegeben.<br>
+        </p>
+        <br>
+        <p>
+        <strong style="color: greenyellow;">Extrahierte Farben:</strong><br>
+        <strong>Primärfarbe	Beige (#d6b599)</strong> → Harmonie, Neutralität, Entspannung<br>
+        <strong>Sekundärfarbe Kastanienbraun (#6b4b3b)</strong> → Naturverbundenheit, Sicherheit, Erde, Holz<br>
+        <strong>Akzentfarbe	Mahagonibraun (#401c0e)</strong> → Wärme, Geborgenheit, Sanft, behaglich<br>
+        <strong>Schriftfarbe Schwarz (#212121)</strong> → Klarer Kontrast<br>
+        </p>
+        <br>
+        <p>
+        <strong style="color: greenyellow;">Farbprüfung:</strong><br>
+        <strong>• Kontrast:</strong> Primär- und Schriftfarbe bieten hohen Kontrast → gute Lesbarkeit.<br>
+        <strong>• Farbdistanz:</strong> Mahagonibraun und Kastanienbraun harmonieren gut (Wärme), sorgen für Akzent heben Call-to-Actions hervor.<br>
+        <strong>• Barrierefreiheit:</strong> Kontrastwerte mit Tools wie Contrast Checker überprüfen, aber auf den ersten Blick gut lesbar.<br>
+        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Mittwoch, 19. Februar 2025</h1>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <br>
+        <h1>Recherche zum Thema Typografie und Farbtheorie</h1>
+        <br>
+        <p>
+            <h2>Moodboard:</h2></p>
+            <br>
+        <p>
+            <h3>Was ist ein Moodboard?</h3>
+            Ein Moodboard ist eine visuelle Darstellung von Konzepten und Ideen, die mit Bild, Text und anderen Designmaterialien erstellt wird. Die Absicht eines Moodboards ist,<br> einen bestimmten Stil oder eine bestimmte Stimmung eines darzustellen. Manche Menschen betrachten ein Moodboard als eine Sammlung kleinerer Ideen, die zu einem grösseren Konzept beitragen.<br>
+            </p>
+            <br>
+            <p>
+            <h3>Wie erstellt man ein Moodboard?</h3>
+            Kann digital oder auf dem Papier gemacht werden.<br>
+            • Brainstorming & Zielsetzung: Soll es helfen, die Farbpalette für ein neues Büro zu bestimmen oder die Markenidentität eines Unternehmens zu visualisieren?<br>
+            <br>
+            • Recherche und Sammlung von Inspiration: Nach dem Brainstorming beginnt die Recherche und Sammlung von Inspiration aus verschiedenen Quellen wie Online-Galerien,<br> Blogs, Magazinen oder eigenen Fotos. Diese Elemente können Bilder, Farbpaletten, Texturen, Schriftarten und andere visuelle Elemente umfassen, die die gewünschte Stimmung oder Ästhetik des Moodboards widerspiegeln.<br>
+            <br>
+            • Hinzufügen und Anordnen der Elemente: Arbeite daran, die besten Layouts und Kompositionen zu finden, die die gewünschte Atmosphäre,<br> Botschaft oder das Designkonzept am besten vermitteln. Experimentiere mit verschiedenen Anordnungen, bis du mit dem Ergebnis zufrieden bist.<br>
+            <br>
+            • Anpassung von Farben und Stilen: Nachdem die Elemente angeordnet sind, passe bei Bedarf Farben, Schriftarten und Stile an, <br>um das Moodboard konsistent und ansprechend zu gestalten. Dies kann das Hervorheben bestimmter Elemente, das Ändern von Farbpaletten oder das Anpassen von Schriftarten umfassen, um die visuelle Kohärenz zu verbessern.<br>
+            <br>
+            • Feinschliff: Im Feinschliff überprüfst und verfeinerst du die Details, um sicherzustellen, dass das Moodboard vollständig ist und die gewünschte Botschaft klar vermittelt. Achte auf die Anordnung der Elemente,<br> korrigiere eventuelle Fehler und optimiere das Design für eine optimale visuelle Wirkung.<br>
+            </p>
+            <br>
+            <p>
+           <h2> Typografie:</h2></p>
+            <br>
+            <p>
+            <h3>Was sind die wichtigsten Prinzipien der Typografie im Webdesign?</h3>
+            • Schriftart (Font): z. B. Arial, Roboto, Times New Roman.<br>
+            • Schriftgröße: Wie groß der Text ist.<br>
+            • Zeilenabstand (Line Height): Der Abstand zwischen den Textzeilen.<br>
+            • Buchstabenabstand (Letter Spacing): Der Abstand zwischen den Buchstaben.<br>
+            • Schriftgewicht: Fett (Bold), Normal, Leicht (Light) usw.<br>
+            • Ausrichtung: Links, zentriert, rechts oder Blocksatz.<br>
+            </p>
+            <br>
+            <p>
+            <h3>Welche Unterschiede gibt es zwischen Serif- und Sans-Serif-Schriften, und wann sollte man welche verwenden?</h3>
+            Serif ist eine große Kategorie von Schriften, die wiederum in Unterkategorien unterteilt ist. Grundsätzlich gibt es vier Arten von Serifenschriften: <br>
+            • Old-Style<br>
+            • Transitional<br>
+            • New-Style<br>
+            • Slab Serifs<br>
+            
+            Diese unterscheiden sich durch die Form der Serifen, den Kontrast und die Neigung der Ovale.<br>
+            <br>
+            Sans Serif solltest du sowohl die Leserlichkeit als auch die Symbolik und die historischen Hintergründe der gewählten Schriftart berücksichtigen. Serifen und serifenlose Schrift: Wirkung und Ästhetik. Serifenschriften können Autorität, Professionalität und Erfahrung vermitteln.<br>
+            <br>
+            <div><img src="images/Serifen Schriften.png" alt="Portrait von Serifenschriften"></div>
+            <br>
+            
+            </p>
+            <br>
+            <p>
+            <h3>Warum ist eine Hierarchie in der Typografie wichtig, und wie kann sie effektiv umgesetzt werden?</h3>
+            Mit einer Typographischen Hierarchie bestimmst du, wie Nutzer die Informationen auf deiner Website aufnehmen.<br>
+            <br>
+            Du kannst die Typographische Hierarchie als ein Konzept des Graphikdesigns verstehen. Es hilft dir dabei, alle Informationen in deinem Design zu organisieren, sodass es für deine Nutzer leichter wird, die Bestandteile deines Textes nach Wichtigkeit zu identifizieren und zu verstehen.<br> Mit dieser Anordnung hast du einen großen Einfluss auf das, was vom Leser wahrgenommen wird.<br>
+            <br>
+            Folgende Faktoren eines Textes sind dafür ausschlaggebend:<br>
+            • Schriftart<br>
+            • Schriftgröße<br>
+            • Schriftfarbe<br>
+            • Schriftschnitt<br>
+            • Platzierung von Absätzen<br>
+            • Zeilenabstand<br>
+            </p>
+            <br>
+            <p>
+            <h3>Wie können Webdesigner sicherstellen, dass ihre Typografie den WCAG-Richtlinien für Barrierefreiheit entspricht?</h3>
+            Die Web Content Accessibility Guidelines (WCAG) erklären, wie man Webinhalte zugänglich macht für Menschen mit Behinderung.<br>
+            <br>
+            Auswahl geeigneter Farbkontraste: Achte darauf, dass der Kontrast zwischen Text und Hintergrund ausreichend ist. <br>Ein hoher Kontrast verbessert die Lesbarkeit für Benutzer mit Sehbehinderungen. Nutze Tools wie den Contrast Checker, um die Konformität mit den WCAG-Richtlinien sicherzustellen.<br>
+            </p>
+            <br>
+            <p>
+            <h2>Farbqualität:</h2></p>
+            <br>
+            <p>
+            <h3>Wie beeinflussen die Prinzipien der Farbharmonie?</h3>
+            (z. B. Komplementär-, Analog-, Triadenfarben) das Webdesign?<br>
+            • Farbharmonie ist die Kombination von Farben, die ein ästhetisch ansprechendes und ausgewogenes Design schaffen.<br> Sie ermöglicht es, mit Farben ein Gefühl von Ordnung, Einheit und Ausgewogenheit in deinen Designs zu schaffen. Farbharmonien basieren auf den Grundsätzen der Farbtheorie, die besagt, dass bestimmte Farbkombinationen eine angenehme Wirkung erzeugen. <br>
+            So erzeugen beispielsweise Komplementärfarben wie Blau und Orange eine lebendige und auffällige Wirkung.<br>
+            Um Farbharmonien zu definieren, braucht es einen Farbkreis als Grundlage. In der Farbtheorie gibt es zahlreiche Ansätze und Definitionen. <br>In der praktischen Gestaltung wird aber meistens/gerne auf den bekannten Farbkreis von Johannes Itten zurückgegriffen, da er das Zusammenwirken der Farben und der daraus entstehenden Farbkontraste beachtet hat.<br>
+            <br>
+            <div><img src="images/Komplementärfarben.png" alt="Portrait von Komplementärfarben"></div>
+            <br>
+            • Eine analoge Farbharmonie besteht aus Farben, die auf dem Farbkreis nebeneinander stehen.<br> Diese Farben haben ähnliche Tonwerte und sind harmonisch miteinander verbunden. Eine Analog-Farbharmonie kann warm oder kühl sein, abhängig von der Lage der Farben auf dem Farbkreis. <br>Dadurch entsteht eine ausgewogene, aber dennoch visuell anregende Kombination. Analoge Farbschema kommen häufig in der Natur vor, wie z. B. der Farbverlauf eines Sonnenuntergangs, und können verwendet werden, um im Webdesign ein Gefühl von Harmonie und Ausgewogenheit zu schaffen.<br>
+            <br>
+            <div><img src="images/Farbharmonie.png" alt="Portrait von Farbharmonie"></div>
+            <br>
+            Beispiele:<br>
+            • Blau und Grün – Diese Kombination ruft ein Gefühl der Ruhe hervor und wird häufig auf Websites mit Bezug zur Natur verwendet.<br>
+            • Rot und Orange – Diese Kombination kann verwendet werden, um lebendige und energiegeladene Designs zu erstellen, die die Aufmerksamkeit auf sich ziehen.<br>
+            • Gelb und Grün – Diese Kombination wird mit Harmonie und Ausgeglichenheit assoziiert und ist daher eine gute Wahl für Designs, die ein beruhigendes und entspanntes Gefühl vermitteln sollen.<br>
+            </p>
+            <div><img src="images/Farbharmonie2.png" alt="Portrait von Farbharmonie2"></div>
+            <br>
+            <p>
+            Anwendung von Farben:<br>
+            Welche Tools und Ressourcen <br>
+            (z. B. Adobe Color, Colors, Material Design Palette) sind am besten zur Farbauswahl geeignet?<br>
+            Farb-Tools sind digitale Werkzeuge, die dich bei der Auswahl, Gestaltung und Analyse von Farben unterstützen. Sie helfen dir, harmonische Farbpaletten zu erstellen, inspirierende Farbverläufe zu gestalten und Farben auf Barrierefreiheit zu prüfen.<br>
+            <br>
+            Tools:<br>
+            • Farbauswahl: ColorHexa und Colormind bieten umfangreiche Funktionen zur Erstellung von Farbpaletten, von Farbschemata bis zu Farbblindheitssimulationen.<br>
+            • Farbverläufe: CSS Gradient oder GradPad kannst du spielend einfach Farbverläufe gestalten, inklusive direkter CSS-Code-Generierung.<br>
+            • Fertige Paletten: Color Hunt oder Design Seeds bieten eine riesige Auswahl an fertigen Farbpaletten.<br>
+            </p>
+            <br>
+            <p>
+           <h2> Technische Aspekte:</h2></p>
+            <br>
+            <p>
+            <h3>Was sind die Unterschiede zwischen Systemschriften, Web-Safe Fonts und Web Fonts?</h3>
+            Wie funktionieren Schriftformate wie TTF, OTF, WOFF und WOFF2, und welche sind am besten für das Web geeignet?<br>
+            Am besten geeignet für Web sind 1. TTF (TrueType Format) und 2. OTF (OpenType Format).<br>
+            Danach kommen WOFF (Web Open Font Format) und EOT (Embedded OpenType), welche nicht ideal für Web sind.<br>
+            <br>
+            <div><img src="images/Schriftformate.png" alt="Portrait von Schriftformate"></div>
+            <br>
+            </p>
+            <br>
+            <p>
+            <h3>Welche Vor- und Nachteile haben Google Fonts und selbst gehostete Schriftarten?</h3>
+            Eine Schriftart (Font) ist eine spezifische Gestaltung von Buchstaben, Zahlen und Symbolen.<br> Eine Schriftfamilie (Typeface) umfasst mehrere Schriftarten, die gemeinsam gestaltet wurden und zusammenpassen. Innerhalb einer Schriftfamilie gibt es verschiedene Stile (Styles), wie Regular, Bold, Italic und Light.<br>
+            <br>
+            Über 1.000 Schriftarten bietet der Suchmaschinenriese inzwischen an. Die Schriften kommen von verschiedenen Designern und sind sogenannte Open-Source-Fonts (d.h. mehr oder weniger frei benutzbar).<br>
+            <br>
+            Google hostet die Schriften selber (also sie liegen sozusagen bei Google auf dem Server) und werden von dort geladen.<br>
+            <br>
+            Vorteile:<br>
+            • optisch ansprechendere Webseiten & Apps<br>
+            • Erscheinungsbild der Webseite ist auf jedem Endgerät gleich<br>
+            • Ladezeit wird reduziert<br>
+            • Schriften können auch für andere Programme verwendet werden<br>
+            • Anzahl & Auswahl wächst stetig<br>
+            • Sind frei und kommerziell nutzbar<br>
+            <br>
+            Nachteile:<br>
+            • müssen in der Datenschutzerklärung erwähnt werden, wenn sie nicht lokal eingebunden sind<br>
+            • müssen upgedatet werden<br>
+            • Abrufe der Schrift werden von Google erfasst<br>
+            <br>
+            </p>
+            <br>
+            <p>
+            <h3>Wie beeinflussen verschiedene Display-Technologien (OLED, LCD) und Farbräume (sRGB, AdobeRGB) die Farbdarstellung im Web?</h3>
+            sRGB ist der am weitesten verbreitete RGB-Farbraum und wird von den meisten Monitoren, Druckern und digitalen Kameras verwendet. <br>Er wurde von HP und Microsoft in den 1990er Jahren entwickelt, um einen Standard für die Farbdarstellung im Internet und auf verschiedenen Geräten zu schaffen.<br>
+            <br>
+            Eigenschaften:<br>
+            • Gamut (Farbraumumfang): Relativ klein im Vergleich zu anderen RGB-Farbräumen, deckt aber den Großteil der Farben ab, die auf Standardmonitoren angezeigt werden können.<br>
+            • Anwendungsbereich: Ideal für Webgrafiken, allgemeine Fotografie und Druckanwendungen, bei denen eine konsistente Farbdarstellung auf verschiedenen Geräten wichtig ist.<br>
+            • Kalibrierung: Einfach zu kalibrieren und weitgehend unterstützt.<br>
+            • Schwäche: Insbesondere im Cyan-Bereich ist sRGB deutlich kleiner als der klassische CMYK-Farbraum ISOCoatedV2. Das blaueste Cyan in sRGB liegt bei rund 80% Cyan in ISOCoatedV2.<br>
+            <br>
+            <br>	
+            Adobe RGB wurde 1998 von Adobe Systems entwickelt, um einen größeren Farbraum abzudecken, insbesondere im Bereich der Druckvorstufe und professionellen Fotografie.<br> Dieser Farbraum umfasst mehr grüne und blaue Farbtöne als sRGB.<br>
+            <br>
+            Eigenschaften:<br>
+            • Gamut: Größer als sRGB, besonders im grünen und cyanfarbenen Bereich.<br>
+            • Anwendungsbereich: Wird häufig in der professionellen Fotografie und im Grafikdesign verwendet, wo es auf eine präzise Farbwiedergabe ankommt.<br> Gerade moderne Kameras bieten statt sRGB auch AdobeRGB als alternativen Farbraum an, um Bilder direkt in AdobeRGB auf die SD-Karte zu speichern.<br>
+            • Kalibrierung: Erfordert eine sorgfältige Kalibrierung und geeignete Ausgabegeräte, um den erweiterten Farbraum vollständig nutzen zu können.<br>
+            <br>	
+        </p>
+            <br>
+            <p>
+        <h3> Wie funktioniert das Farbmanagement in CSS, und was sind die Unterschiede zwischen HEX, RGB, HSL und LAB?</h3>
+            CSS kennt in seinem Standard bestimmte Namen, die dann in Farben umgewandelt werden. <br>Da die Farbnamen nativ von CSS unterstützt werden, konnte es (zumindest früher) sein, dass diese potenziell performanter waren als RGB- oder HSL-Werte. Dabei ging es aber immer nur um einen minimalen Vorteil, also nichts von allzu großer Bedeutung.<br>
+            
+            Bei Hex-Farben bleibt das System ebenfalls Rot, Grün, Blau. Es wird aber umgewandelt. <br>Statt Base16 kommt Base10 zum Einsatz, was bedeutet, dass »250« zu »FA« wird. Das Ganze ist sehr verwirrend, nicht unbedingt logisch für den Betrachter und daher auch nicht einfach so aus dem Kopf zu erstellen. Hexwerte entstehen also nicht in einem kreativen Prozess, sondern weil sie gebraucht werden und möglichst kurz sind.<br>
+            <br>
+            Mit den RGB-Werten steuern wir das rote, grüne und blaue Licht. Mit RGBA fügen wir dem Ganzen zudem einen Alphakanal, also Transparenz hinzu.<br>
+            <br>
+            HSL steht dabei für Hue, Saturation und Lightness. Also Farbton, Sättigung und Helligkeit. Der Farbton (0 bis 360) beschreibt die Farbe.<br> Die Sättigung (0 bis 100) gibt an, wie intensiv diese Farbe dargestellt wird. Und die Helligkeit legt fest, wie dunkel oder hell der Farbton am Ende ausgegeben wird.<br>
+            <br>
+            Lab repräsentiert das gesamte Spektrum der Farben, die Menschen sehen können, indem es die Helligkeit der Farbe, einen Rot/Grün-Achsenwert, einen Blau/Gelb-Achsenwert und einen optionalen Alphatransparenzwert angibt.<br>
+            </p>
+<br>
+        
+    <h2>Mittwoch, 19. Februar 2025</h2>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br></p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        </ul>
+        <p>
+            Was ist eine Persona?<br>
+Dient eher als Entscheidungsgrundlage, damit man entsprechend entscheiden kann im Produkt,- Projekt,- Entwicklungsmgmt,<br>
+um den potenziellen Kunden anzusprechen. Eine Persona ist eine fiktive, aber realitätsnahe Darstellung eines typischen Nutzers oder einer Nutzerin deiner Zielgruppe.<br>
+Sie basiert auf Forschung und Daten und hilft dabei, die Bedürfnisse, Verhaltensweisen und Ziele der Nutzer besser zu verstehen.<br>
+</p>
+<br>
+<p>
+Woher stammt das Wort?<br>
+Das Wort Persona stammt aus dem Lateinischen und bedeutet Maske oder Rolle, die im Theater getragen wurde. In der Design- und Marketingwelt wurde der Begriff in den 1990er Jahren von Alan Cooper geprägt,<br>
+einem Software-Designer, der Personas zur nutzerzentrierten Produktentwicklung einsetzte.<br>
+</p>
+<br>
+<p>
+Wie kann ich eine Persona vorstellen?<br>
+Eine Persona wird oft wie eine Kurzvorstellung einer echten Person präsentiert:<br>
+	• Name (fiktiv, z. B. "Anna Müller")<br>
+	• Alter<br>
+	• Beruf<br>
+	• Hobbys / Interessen<br>
+	• Technische Kenntnisse<br>
+	• Ziele und Bedürfnisse (z. B. „Schnellen Zugang zu Informationen“)<br>
+	• Frustrationen (z. B. „Komplizierte Bedienung nervt“)<br>
+	• Man erzählt die Persona oft wie eine Geschichte, damit sie greifbar wird:<br>
+    <br>
+"Anna, 35 Jahre, arbeitet als Marketing-Managerin. Sie hat wenig Zeit und möchte einfache digitale Lösungen nutzen. Sie ärgert sich, wenn sie lange nach Funktionen suchen muss."<br>
+        </p>
+        <br>
+        <p>Wozu brauchen wir eine Persona?<br>
+            Eine Persona hilft dabei, die Zielgruppe besser zu verstehen und die Entwicklung auf die Nutzer auszurichten. Sie sorgt dafür, dass wir Produkte nicht für uns selbst, sondern für die Nutzer entwickeln.<br>
+        </p>
+        <br>
+        <p>
+            Wozu brauchen wir als Software-Entwickler eine Persona?<br>
+            Als Software-Entwickler hilft dir eine Persona, klarer zu verstehen:<br>
+                • Wer die Nutzer sind und was sie wirklich brauchen.<br>
+                • Welche Funktionen und Designs sinnvoll sind.<br>
+                • Welche Probleme Nutzer haben könnten (z. B. Bedienung, Geschwindigkeit).<br>
+                • Welche technischen Lösungen bevorzugt werden (z. B. mobilfreundlich, barrierefrei).<br>
+            Ohne Persona riskierst du, am Nutzer vorbei zu entwickeln – also ein Produkt zu bauen, das die Zielgruppe nicht versteht oder nicht braucht.<br>
+        </p>
+        <br>
+        <p>
+            Wie können wir als Software-Entwickler eine Persona nutzen?<br>
+                1. Fokus behalten: Beim Programmieren immer fragen: „Hilft das meiner Persona Lisa oder Max?“<br>
+                2. Entscheidungen leichter treffen: Welches Feature ist wichtiger? → Schau in die Persona.<br>
+                3. Testfälle anpassen: Überlegen, wie die Persona die Software nutzt → Tests auf diese Nutzung ausrichten.<br>
+                4. Besser mit Designern und Produktmanagern kommunizieren: Gleiche Sicht auf den Nutzer durch Persona.<br>
+            Beispiel:<br>
+                Persona „Anna, 45, wenig Technik-Erfahrung“ → Du achtest darauf, dass die Benutzeroberfläche einfach und verständlich ist.<br>
+            </p>
+            <br>
+            <p>
+            Welche Schritte brauche ich, um eine Persona zu erstellen?<br>
+                1. Recherche betreiben:<br>
+                    ○ Nutzerinterviews, Umfragen oder Datenanalyse durchführen.<br>
+                    ○ Nutzerverhalten, Bedürfnisse und Probleme erfassen.<br>
+                2. Daten auswerten:<br>
+                    ○ Gemeinsamkeiten und Muster in den Antworten finden.<br>
+                    ○ Welche typischen Nutzertypen gibt es?<br>
+                3. Persona-Profil erstellen:<br>
+                    ○ Name, Alter, Beruf, Erfahrung, Ziele, Probleme.<br>
+                    ○ Persönlichkeit und Verhalten beschreiben.<br>
+                    ○ Ein Bild hinzufügen (z. B. Stockfoto).<br>
+                4. Persona überprüfen:<br>
+                    ○ Mit Team oder echten Nutzern abgleichen.<br>
+                    ○ Passt die Persona zu unseren Annahmen und Zielen?<br>
+                </p>
+                <br>
+                <p>
+            Welche Aspekte muss ich bei Erstellung einer Persona betrachten?<br>
+                • Zielgruppe: Wer nutzt die Software?<br>
+                • Alter / Beruf / Erfahrung: Wie versiert sind sie mit Technik?<br>
+                • Ziele: Was will die Person mit der Software erreichen?<br>
+                • Probleme / Frustrationen: Was stört die Person bei der Nutzung?<br>
+                • Kontext: In welchem Umfeld nutzt die Person die Software? (z. B. Büro, unterwegs)<br>
+                • Verhalten: Welche Plattformen, Geräte oder Tools bevorzugt die Person?<br>
+            </p>
+            <br>
+            <p>
+            Wie dokumentiere ich meine Persona?<br>
+                • Steckbrief auf einer Seite (One-Pager):<br>
+                    ○ Name, Alter, Beruf, Bild<br>
+                    ○ Zitat der Persona („Ich will schnell meine Aufgaben erledigen.“)<br>
+                    ○ Ziele und Wünsche<br>
+                    ○ Herausforderungen / Frustrationen<br>
+                    ○ Technisches Know-how (z. B. Anfänger oder Profi)<br>
+            Tipp:<br>
+                • Visuell ansprechend gestalten (Icons, Farben, Bild).<br>
+                • Für das ganze Team zugänglich machen (z. B. PDF, Miro, Confluence).<br>
+                <br>
+            Zusammengefasst:<br>
+                1. Recherche → Daten auswerten → Persona-Profil erstellen → Überprüfen.<br>
+                2. Zielgruppe, Ziele, Probleme, Verhalten, Kontext berücksichtigen.<br>
+                3. Steckbrief-Dokument mit Name, Bild, Zielen, Herausforderungen.<br>
+            </p>
+            <br>
+            <p>
+            Merkmale von schwachen/ungeeigneten Personas:<br>
+                • Zu vage oder allgemein: Beschreiben „jeden“ und niemanden genau (z. B. „Nutzer zwischen 18 und 65, die Technik mögen“).<br>
+                • Fantasie-Persona: Basieren nicht auf Daten, sondern nur auf Annahmen.<br>
+                • Zu viele Details ohne Relevanz: Unwichtige Infos wie „Lieblingsfarbe: Blau“, die nichts zur Nutzung beitragen.<br>
+                • Kein Bezug zur Software: Persona hat keine Verbindung zu den Produktzielen oder Nutzungsszenarien.<br>
+                • Keine Probleme und Bedürfnisse: Nur „wer die Person ist“, aber kein Fokus auf ihre Ziele, Frustrationen und Erwartungen.<br>
+            </p>
+            <br>
+            <p>
+            Merkmale von guten Personas:<br>
+                • Datenbasiert: Entstehen aus Recherchen, Nutzerbefragungen und echten Erfahrungen.<br>
+                • Klarer Fokus: Beschreiben eine konkrete Nutzergruppe mit typischem Verhalten.<br>
+                • Relevant für das Projekt: Enthalten Ziele, Bedürfnisse, Probleme und Nutzungskontext, die für die Software wichtig sind.<br>
+                • Einfach und verständlich: Kompakt, auf das Wesentliche reduziert, übersichtlich dargestellt.<br>
+                • Emotional greifbar: Mit Namen, Bild, Zitat → macht Nutzer menschlich und bleibt im Gedächtnis.<br>
+                <br>
+            Beispiel schwache Persona:<br>
+                • „Max, 18-65 Jahre, nutzt gerne das Internet.“ → Zu unspezifisch, nicht hilfreich.<br>
+            Beispiel gute Persona:<br>
+                • „Anna, 42, arbeitet als Buchhalterin, wenig Technik-Erfahrung, nutzt die Software im Büro, braucht schnelle Lösungen und klare Navigation.“<br>
+                <br>
+            Kurz gesagt:<br>
+            ✅ Gute Persona: Realistisch, fokussiert, datenbasiert, problemorientiert.<br>
+            ❌ Schwache Persona: Vage, erfunden, ohne Bezug zu Produkt und Nutzerbedürfnissen.<br>
+            </p>
+            <br>
+                <h3>Persona</h3>
+                <div><img style="border-radius: 999px; border: solid 0.5em hsl(350, 100%, 68%);" src="images/Nyal Säger.png" alt="Portrait von Nyal Säger"></div>
+                <p>
+                Name: Nyal Säger <br>
+                Alter: 31 Jahre <br>
+                Zivilstand: Verheiratet <br>
+                Kinder: 2 Kinder <br>
+                Wohnhaft: Schweiz SG <br>
+                Beruf: Aussendienstmitarbeiter  <br>
+                Technisches Know-how: Lehre als Bürokauffrau absolviert, Kenntnisse in Canva und Adobe Illustrator, Grundkenntnisse in MS Office <br>
+                <br>
+                Ziele: <br>
+                    • Homeoffice, um mehr Zeit für Kinder, Familie und Haushalt zu haben. <br>
+                    • Selbständigkeit, im Idealfall, da der Arbeitsaufwand selbst bestimmt werden kann.<br>
+                    • Arbeiten von Zuhause aus, um Ortsunabhängig zu sein. <br>
+                    <br>
+                Herausforderungen/Beweggründe: <br>
+                    • Erziehung der Kinder, da dies sehr zeit- und nervenintensiv ist. <br>
+                    • Zeitmgmt - Vereinbarung von Beruf, Familie und Alltagsaufgaben. <br>
+                    <br>
+                Wünsche: <br>
+                    • Weiterbildung als Webdesigner und Social Media Marketing Manager  <br>
+                    <br>
+                Zitat: <br>
+                "Familie steht für mich an erster Stelle. Daher brauche ich einen Job, welches ich von Zuhause aus machen kann, am Besten als selbständige"   <br>
+            </p>
+            <br>
+            <h3>Recherche zum Thema Typografie und Farbtheorie</h3>
+<br>
+	<p>
+	Moodboard:</p>
+	<br>
+<p>
+	Was ist ein Moodboard?<br>
+	Ein Moodboard ist eine visuelle Darstellung von Konzepten und Ideen, die mit Bild, Text und anderen Designmaterialien erstellt wird. Die Absicht eines Moodboards ist,<br> einen bestimmten Stil oder eine bestimmte Stimmung eines darzustellen. Manche Menschen betrachten ein Moodboard als eine Sammlung kleinerer Ideen, die zu einem grösseren Konzept beitragen.<br>
+	</p>
+	<br>
+	<p>
+	Wie erstellt man ein Moodboard?<br>
+	Kann digital oder auf dem Papier gemacht werden.<br>
+	• Brainstorming & Zielsetzung: Soll es helfen, die Farbpalette für ein neues Büro zu bestimmen oder die Markenidentität eines Unternehmens zu visualisieren?<br>
+	<br>
+	• Recherche und Sammlung von Inspiration: Nach dem Brainstorming beginnt die Recherche und Sammlung von Inspiration aus verschiedenen Quellen wie Online-Galerien,<br> Blogs, Magazinen oder eigenen Fotos. Diese Elemente können Bilder, Farbpaletten, Texturen, Schriftarten und andere visuelle Elemente umfassen, die die gewünschte Stimmung oder Ästhetik des Moodboards widerspiegeln.<br>
+	<br>
+	• Hinzufügen und Anordnen der Elemente: Arbeite daran, die besten Layouts und Kompositionen zu finden, die die gewünschte Atmosphäre,<br> Botschaft oder das Designkonzept am besten vermitteln. Experimentiere mit verschiedenen Anordnungen, bis du mit dem Ergebnis zufrieden bist.<br>
+	<br>
+	• Anpassung von Farben und Stilen: Nachdem die Elemente angeordnet sind, passe bei Bedarf Farben, Schriftarten und Stile an, <br>um das Moodboard konsistent und ansprechend zu gestalten. Dies kann das Hervorheben bestimmter Elemente, das Ändern von Farbpaletten oder das Anpassen von Schriftarten umfassen, um die visuelle Kohärenz zu verbessern.<br>
+	<br>
+	• Feinschliff: Im Feinschliff überprüfst und verfeinerst du die Details, um sicherzustellen, dass das Moodboard vollständig ist und die gewünschte Botschaft klar vermittelt. Achte auf die Anordnung der Elemente,<br> korrigiere eventuelle Fehler und optimiere das Design für eine optimale visuelle Wirkung.<br>
+	</p>
+	<br>
+	<p>
+	Typografie:</p>
+	<br>
+	<p>
+	Was sind die wichtigsten Prinzipien der Typografie im Webdesign?<br>
+	• Schriftart (Font): z. B. Arial, Roboto, Times New Roman.<br>
+	• Schriftgröße: Wie groß der Text ist.<br>
+	• Zeilenabstand (Line Height): Der Abstand zwischen den Textzeilen.<br>
+	• Buchstabenabstand (Letter Spacing): Der Abstand zwischen den Buchstaben.<br>
+	• Schriftgewicht: Fett (Bold), Normal, Leicht (Light) usw.<br>
+	• Ausrichtung: Links, zentriert, rechts oder Blocksatz.<br>
+	</p>
+	<br>
+    <p>
+	Welche Unterschiede gibt es zwischen Serif- und Sans-Serif-Schriften, und wann sollte man welche verwenden?<br>
+	Serif ist eine große Kategorie von Schriften, die wiederum in Unterkategorien unterteilt ist. Grundsätzlich gibt es vier Arten von Serifenschriften: <br>
+	• Old-Style<br>
+	• Transitional<br>
+	• New-Style<br>
+	• Slab Serifs<br>
+	
+	Diese unterscheiden sich durch die Form der Serifen, den Kontrast und die Neigung der Ovale.<br>
+	<br>
+	Sans Serif solltest du sowohl die Leserlichkeit als auch die Symbolik und die historischen Hintergründe der gewählten Schriftart berücksichtigen. Serifen und serifenlose Schrift: Wirkung und Ästhetik. Serifenschriften können Autorität, Professionalität und Erfahrung vermitteln.<br>
+	<br>
+	---------
+	<br>
+	
+	</p>
+	<br>
+	<p>
+	Warum ist eine Hierarchie in der Typografie wichtig, und wie kann sie effektiv umgesetzt werden?<br>
+	Mit einer Typographischen Hierarchie bestimmst du, wie Nutzer die Informationen auf deiner Website aufnehmen.<br>
+	<br>
+	Du kannst die Typographische Hierarchie als ein Konzept des Graphikdesigns verstehen. Es hilft dir dabei, alle Informationen in deinem Design zu organisieren, sodass es für deine Nutzer leichter wird, die Bestandteile deines Textes nach Wichtigkeit zu identifizieren und zu verstehen.<br> Mit dieser Anordnung hast du einen großen Einfluss auf das, was vom Leser wahrgenommen wird.<br>
+	<br>
+	Folgende Faktoren eines Textes sind dafür ausschlaggebend:<br>
+	• Schriftart<br>
+	• Schriftgröße<br>
+	• Schriftfarbe<br>
+	• Schriftschnitt<br>
+	• Platzierung von Absätzen<br>
+	• Zeilenabstand<br>
+	</p>
+	<br>
+	<p>
+	Wie können Webdesigner sicherstellen, dass ihre Typografie den WCAG-Richtlinien für Barrierefreiheit entspricht?<br>
+	Die Web Content Accessibility Guidelines (WCAG) erklären, wie man Webinhalte zugänglich macht für Menschen mit Behinderung.<br>
+	<br>
+	Auswahl geeigneter Farbkontraste: Achte darauf, dass der Kontrast zwischen Text und Hintergrund ausreichend ist. <br>Ein hoher Kontrast verbessert die Lesbarkeit für Benutzer mit Sehbehinderungen. Nutze Tools wie den Contrast Checker, um die Konformität mit den WCAG-Richtlinien sicherzustellen.<br>
+	</p>
+	<br>
+	<p>
+	Farbqualität:</p>
+	<br>
+	<p>
+	Wie beeinflussen die Prinzipien der Farbharmonie <br>
+	(z. B. Komplementär-, Analog-, Triadenfarben) das Webdesign?<br>
+	• Farbharmonie ist die Kombination von Farben, die ein ästhetisch ansprechendes und ausgewogenes Design schaffen.<br> Sie ermöglicht es, mit Farben ein Gefühl von Ordnung, Einheit und Ausgewogenheit in deinen Designs zu schaffen. Farbharmonien basieren auf den Grundsätzen der Farbtheorie, die besagt, dass bestimmte Farbkombinationen eine angenehme Wirkung erzeugen. <br>
+    So erzeugen beispielsweise Komplementärfarben wie Blau und Orange eine lebendige und auffällige Wirkung.<br>
+	Um Farbharmonien zu definieren, braucht es einen Farbkreis als Grundlage. In der Farbtheorie gibt es zahlreiche Ansätze und Definitionen. <br>In der praktischen Gestaltung wird aber meistens/gerne auf den bekannten Farbkreis von Johannes Itten zurückgegriffen, da er das Zusammenwirken der Farben und der daraus entstehenden Farbkontraste beachtet hat.<br>
+	<br>
+	---------
+    <br>
+	• Eine analoge Farbharmonie besteht aus Farben, die auf dem Farbkreis nebeneinander stehen.<br> Diese Farben haben ähnliche Tonwerte und sind harmonisch miteinander verbunden. Eine Analog-Farbharmonie kann warm oder kühl sein, abhängig von der Lage der Farben auf dem Farbkreis. <br>Dadurch entsteht eine ausgewogene, aber dennoch visuell anregende Kombination. Analoge Farbschema kommen häufig in der Natur vor, wie z. B. der Farbverlauf eines Sonnenuntergangs, und können verwendet werden, um im Webdesign ein Gefühl von Harmonie und Ausgewogenheit zu schaffen.<br>
+	<br>
+    -------------
+    <br>
+    -------------
+    <br>
+	Beispiele:<br>
+	• Blau und Grün – Diese Kombination ruft ein Gefühl der Ruhe hervor und wird häufig auf Websites mit Bezug zur Natur verwendet.<br>
+	• Rot und Orange – Diese Kombination kann verwendet werden, um lebendige und energiegeladene Designs zu erstellen, die die Aufmerksamkeit auf sich ziehen.<br>
+	• Gelb und Grün – Diese Kombination wird mit Harmonie und Ausgeglichenheit assoziiert und ist daher eine gute Wahl für Designs, die ein beruhigendes und entspanntes Gefühl vermitteln sollen.<br>
+	</p>
+	<br>
+    <p>
+	Anwendung von Farben:<br>
+	Welche Tools und Ressourcen <br>
+	(z. B. Adobe Color, Colors, Material Design Palette) sind am besten zur Farbauswahl geeignet?<br>
+	Farb-Tools sind digitale Werkzeuge, die dich bei der Auswahl, Gestaltung und Analyse von Farben unterstützen. Sie helfen dir, harmonische Farbpaletten zu erstellen, inspirierende Farbverläufe zu gestalten und Farben auf Barrierefreiheit zu prüfen.<br>
+	<br>
+	Tools:<br>
+	• Farbauswahl: ColorHexa und Colormind bieten umfangreiche Funktionen zur Erstellung von Farbpaletten, von Farbschemata bis zu Farbblindheitssimulationen.<br>
+	• Farbverläufe: CSS Gradient oder GradPad kannst du spielend einfach Farbverläufe gestalten, inklusive direkter CSS-Code-Generierung.<br>
+	• Fertige Paletten: Color Hunt oder Design Seeds bieten eine riesige Auswahl an fertigen Farbpaletten.<br>
+	</p>
+	<br>
+    <p>
+	Technische Aspekte:</p>
+	<br>
+	<p>
+	Was sind die Unterschiede zwischen Systemschriften, Web-Safe Fonts und Web Fonts?<br>
+	Wie funktionieren Schriftformate wie TTF, OTF, WOFF und WOFF2, und welche sind am besten für das Web geeignet?<br>
+	Am besten geeignet für Web sind 1. TTF (TrueType Format) und 2. OTF (OpenType Format).<br>
+	Danach kommen WOFF (Web Open Font Format) und EOT (Embedded OpenType), welche nicht ideal für Web sind.<br>
+	<br>
+    -------------
+    <br>
+	</p>
+	<br>
+	<p>
+	Welche Vor- und Nachteile haben Google Fonts und selbst gehostete Schriftarten?<br>
+	Eine Schriftart (Font) ist eine spezifische Gestaltung von Buchstaben, Zahlen und Symbolen.<br> Eine Schriftfamilie (Typeface) umfasst mehrere Schriftarten, die gemeinsam gestaltet wurden und zusammenpassen. Innerhalb einer Schriftfamilie gibt es verschiedene Stile (Styles), wie Regular, Bold, Italic und Light.<br>
+	<br>
+	Über 1.000 Schriftarten bietet der Suchmaschinenriese inzwischen an. Die Schriften kommen von verschiedenen Designern und sind sogenannte Open-Source-Fonts (d.h. mehr oder weniger frei benutzbar).<br>
+	<br>
+	Google hostet die Schriften selber (also sie liegen sozusagen bei Google auf dem Server) und werden von dort geladen.<br>
+	<br>
+	Vorteile:<br>
+	• optisch ansprechendere Webseiten & Apps<br>
+	• Erscheinungsbild der Webseite ist auf jedem Endgerät gleich<br>
+	• Ladezeit wird reduziert<br>
+	• Schriften können auch für andere Programme verwendet werden<br>
+	• Anzahl & Auswahl wächst stetig<br>
+	• Sind frei und kommerziell nutzbar<br>
+	<br>
+	Nachteile:<br>
+	• müssen in der Datenschutzerklärung erwähnt werden, wenn sie nicht lokal eingebunden sind<br>
+	• müssen upgedatet werden<br>
+	• Abrufe der Schrift werden von Google erfasst<br>
+    <br>
+	</p>
+	<br>
+	<p>
+	Wie beeinflussen verschiedene Display-Technologien (OLED, LCD) und Farbräume (sRGB, AdobeRGB) die Farbdarstellung im Web?<br>
+	sRGB ist der am weitesten verbreitete RGB-Farbraum und wird von den meisten Monitoren, Druckern und digitalen Kameras verwendet. <br>Er wurde von HP und Microsoft in den 1990er Jahren entwickelt, um einen Standard für die Farbdarstellung im Internet und auf verschiedenen Geräten zu schaffen.<br>
+	<br>
+	Eigenschaften:<br>
+	• Gamut (Farbraumumfang): Relativ klein im Vergleich zu anderen RGB-Farbräumen, deckt aber den Großteil der Farben ab, die auf Standardmonitoren angezeigt werden können.<br>
+	• Anwendungsbereich: Ideal für Webgrafiken, allgemeine Fotografie und Druckanwendungen, bei denen eine konsistente Farbdarstellung auf verschiedenen Geräten wichtig ist.<br>
+	• Kalibrierung: Einfach zu kalibrieren und weitgehend unterstützt.<br>
+	• Schwäche: Insbesondere im Cyan-Bereich ist sRGB deutlich kleiner als der klassische CMYK-Farbraum ISOCoatedV2. Das blaueste Cyan in sRGB liegt bei rund 80% Cyan in ISOCoatedV2.<br>
+	<br>
+    <br>	
+	Adobe RGB wurde 1998 von Adobe Systems entwickelt, um einen größeren Farbraum abzudecken, insbesondere im Bereich der Druckvorstufe und professionellen Fotografie.<br> Dieser Farbraum umfasst mehr grüne und blaue Farbtöne als sRGB.<br>
+	<br>
+	Eigenschaften:<br>
+	• Gamut: Größer als sRGB, besonders im grünen und cyanfarbenen Bereich.<br>
+	• Anwendungsbereich: Wird häufig in der professionellen Fotografie und im Grafikdesign verwendet, wo es auf eine präzise Farbwiedergabe ankommt.<br> Gerade moderne Kameras bieten statt sRGB auch AdobeRGB als alternativen Farbraum an, um Bilder direkt in AdobeRGB auf die SD-Karte zu speichern.<br>
+	• Kalibrierung: Erfordert eine sorgfältige Kalibrierung und geeignete Ausgabegeräte, um den erweiterten Farbraum vollständig nutzen zu können.<br>
+    <br>	
+</p>
+	<br>
+	<p>
+	Wie funktioniert das Farbmanagement in CSS, und was sind die Unterschiede zwischen HEX, RGB, HSL und LAB?<br>
+	CSS kennt in seinem Standard bestimmte Namen, die dann in Farben umgewandelt werden. <br>Da die Farbnamen nativ von CSS unterstützt werden, konnte es (zumindest früher) sein, dass diese potenziell performanter waren als RGB- oder HSL-Werte. Dabei ging es aber immer nur um einen minimalen Vorteil, also nichts von allzu großer Bedeutung.<br>
+	
+	Bei Hex-Farben bleibt das System ebenfalls Rot, Grün, Blau. Es wird aber umgewandelt. <br>Statt Base16 kommt Base10 zum Einsatz, was bedeutet, dass »250« zu »FA« wird. Das Ganze ist sehr verwirrend, nicht unbedingt logisch für den Betrachter und daher auch nicht einfach so aus dem Kopf zu erstellen. Hexwerte entstehen also nicht in einem kreativen Prozess, sondern weil sie gebraucht werden und möglichst kurz sind.<br>
+	<br>
+	Mit den RGB-Werten steuern wir das rote, grüne und blaue Licht. Mit RGBA fügen wir dem Ganzen zudem einen Alphakanal, also Transparenz hinzu.<br>
+	<br>
+	HSL steht dabei für Hue, Saturation und Lightness. Also Farbton, Sättigung und Helligkeit. Der Farbton (0 bis 360) beschreibt die Farbe.<br> Die Sättigung (0 bis 100) gibt an, wie intensiv diese Farbe dargestellt wird. Und die Helligkeit legt fest, wie dunkel oder hell der Farbton am Ende ausgegeben wird.<br>
+	<br>
+    Lab repräsentiert das gesamte Spektrum der Farben, die Menschen sehen können, indem es die Helligkeit der Farbe, einen Rot/Grün-Achsenwert, einen Blau/Gelb-Achsenwert und einen optionalen Alphatransparenzwert angibt.<br>
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <h2>Dienstag, 18. Februar 2025</h2>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung<br>des gelerntes</p>
+        <p>Aufgabe 1 Recherche:</p>
+            Definition und Begriffe!<br>
+            <br>
+            <p>Was ist ein VCS (Versions Control System)?<br>
+                Ein VCS ist wie ein Logserver, welcher jeden Schritt und jede Änderung an einem Projekt speichert.<br>
+                Diese Schritte oder Änderungen können dann zu jederzeit nachverfolgt werden, wer wann welche Änderung warum vorgenommen hat.<br>
+                Zudem kann man auch jederzeit eine frühere Version des Projektes wiederherstellen.<br>
+                <br>
+                Ein VCS ist in Entwicklerumgebungen unverzichtbar, weil mehrere Entwickler zeitgleich am selben Projekt arbeiten und sich nicht überschreiben wollen.<br>
+            </p>
+            Nutzen!<br>
+            <p>
+                Was ist Git?<br>
+                Logspeicher<br>
+                GIT ist auch ein VCS (Versions Control System) allerdings verteilt, d.h. Es hilft Entwicklern Änderungen am Code, Projekten zu verfolgen, verwalten und zu koordinieren.<br>
+                
+                Was ist ein Git Commit?<br>
+                Speicherung, Teilung auf Visual Studio Code<br>
+                Ein Commit ist ein Snapshot oder Speicherung von Änderungen an Dateien oder Projekten.<br>
+                Es speichert den aktuellen Stand der Änderungen und ermöglicht es, diese später nachzuvollziehen oder zu einem früheren Zustand zurückzukehren.<br>
+                <br>   
+                Was ist ein Git Repository?<br>
+                Respositories sind (Projekt-Daten)<br>
+                Ein Git Repository speichert alle Dateien und die Versionshistorie eines Projekts. Es ermöglicht das Verfolgen von Änderungen und die Zusammenarbeit, sowohl lokal auf deinem Computer als auch remote auf einem Server (z. B. GitHub).<br>
+                <br>
+                Was ist der Unterschied zwischen ein lokal und ein remote Repository?
+                Ein lokales Repository befindet sich auf deinem Computer und speichert alle Änderungen an deinem Projekt lokal auf dem Rechner, während ein remote Repository auf einem externen Server (z. B. GitHub) liegt und dazu dient, den Code zu teilen und mit anderen Entwicklern zusammenzuarbeiten. Änderungen können lokal vorgenommen und dann mit "git push" ins remote Repository hochgeladen oder mit "git pull" heruntergeladen werden.<br>
+                <br>
+                Was ist ein Merge?<br>
+                Merge = Zusammenführung<br>
+                Ein Merge in Git ist der Prozess, bei dem Änderungen aus zwei verschiedenen Branches zusammengeführt werden. Wenn du an einem Feature-Branch arbeitest und deine Änderungen in den Haupt-Branch (z. B. main oder master) einfügen möchtest, führst du einen Merge durch.<br>
+                <br>
+                Was ist ein Merge Conflict?<br>
+                Merge Conflict = Konflikt von Codezeilen<br>
+                Ein Merge Conflict tritt auf, wenn Git zwei Änderungen an denselben Zeilen einer Datei nicht automatisch zusammenführen kann. Dies passiert, wenn verschiedene Branches dieselbe Stelle im Code unterschiedlich geändert haben..<br>
+                <br>
+                Was sind Branches?<br>
+                Branches = Bereiche<br>
+                Branches in Git sind separate Entwicklungszweige innerhalb eines Repositories, die es ermöglichen, an verschiedenen Features, Bugfixes oder Experimenten parallel zu arbeiten, ohne den Hauptcode zu beeinträchtigen.<br>
+                <br>
+                Was ist GIT CLI?<br>
+                Git CLI (Command Line Interface) ist das Kommandozeilenwerkzeug von Git. Es ermöglicht dir, Git-Befehle direkt über die Eingabeaufforderung (Terminal) auszuführen, z. B.:
+                    • "git init" – Repository erstellen<br>
+                    • "git add" – Änderungen hinzufügen<br>
+                    • "git commit" – Änderungen speichern<br>
+                    • "git push" – Änderungen hochladen<br>
+                    <br>
+                Was ist GitHub?<br>
+                GitHub ist eine Online-Plattform zum Hosten von Git-Repositories. Entwickler nutzen GitHub, um ihre Projekte online zu speichern, mit anderen zu teilen und gemeinsam an Software zu arbeiten.<br>
+                Zusammengefasst: GitHub ist eine Cloud-Plattform für Git-Repositories zur Zusammenarbeit und Versionskontrolle.<br>
+                <br>
+                Was sind GitHub Pages?<br>
+                GitHub Pages ist eine Funktion von GitHub, mit der du Websites direkt aus einem GitHub-Repository veröffentlichen kannst. Besonders für einfache Projekte, Portfolios oder Dokumentationen geeignet..<br>
+                Zusammengefasst: GitHub Pages ermöglicht dir, statische Websites direkt von GitHub aus online zu stellen.<br>
+                
+                
+                
+
+            </p>
+
+
+
+        </p>
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+    </ul>
+    <h2>Montag, 17. Februar 2025</h2>
+    <ul>
+        <li>Punkt 1</li>
+        <p>Kurze Beschreibung des gelerntes:<br> Aufgabe 1: Recherche</p>
+          
+        <p>Definition und Begriffe!</p>
+            
+            <p>Was ist UX / UI ?<br>
+            1. UI ist das User Interface (Benutzeroberfläche)<br>
+                - UI ist optisches Design, wie sieht die APP oder Website aus<br>
+                - UI ist z.B. auch ob die Farbpalette, Buttons, Schriftart und das Layout in einer Website gross genug sind<br>
+            Also UI ist das was der User sieht.<br>
+            <br>
+            2. UX – User Experience (Benutzererfahrung)<br>
+                - UX ist die Benutzererfahrung, wie sich die Website anfühlt<br>
+                - UX ist die usability, Logik und Nutzbarkeit einer Website<br>
+            Also UX ist das was der User fühlt, beim Verwenden der App/Website.<br>
+            </p>
+            
+            <p>
+            Woher Stammt die Begriffe?<br>
+            1970 - CLI Textbasierte Benutzeroberfläche<br>
+            1980 - GUI Grafische Oberfläche (Macintosh, Windows)<br>
+            1990 - UX Begriff entsteht (Donald Norman, Apple)<br>
+            2000 - UX und UI werden immer wichtiger mit Smartphones, Apps, Webdesign<br>
+            Heute - UX/UI Design ist ein eingenständiger Berufszweig
+            </p>
+        <p>
+            Also:<br>
+            UI entstand aus der Computernutzung (wie wir mit der Maschine interagieren).<br>
+            UX entstand aus der Design- und Nutzerpsychologie (wie fühlt sich die gesamte Erfahrung für den Menschen an).<br>
+        </p>   
+            <br>
+            <br>
+            <br>
+            Wie sieht ein UX/UI Design aus?<br>
+            Es ist ein Plan welches anhand einer Anfroderung z.B. vom Kunden erstellt wurde.<br>
+            Also eigentlich ein Design(APP oder Website) mit vielen Grafiken, Buttons und Texten, das wichtigste Merkmal ist jedoch, <br>dass man immer auf eine weitere Site geleitet wird sobald man etwas anklickt.<br>
+            z.B. man klickt auf einem Stellenportal auf "Jetzt Bewerben" und wird dann auf die Firmenwebsite weitergeleitet.<br>
+            <br>
+            <br>
+            <br>
+            Nutzen!<br>
+            <br>
+            Warum ist UX / UI wichitg für die heutige Zeit?<br>
+            UI ist für die heutige Zeit sehr wichtig, weil wir fast alles digital machen,<br> vom Einkaufen bis Banking.<br>
+            Gutes UI sorgt für schöne und übersichtliche Oberflächen, auf Smartphones und PCs,<br> womit wir heutzutage alles Mögliche erledigen.<br> 
+            Gutes UX hingegen stellt sicher, dass Bedienung einfach, schnell und angenehm sind.<br>
+            Wenn eine APP oder Website kompliziert wäre, würden die User abspringen und zur Konkurrenz gehen.<br>
+            <br>
+            Gutes UX/UI spart Zeit, macht Spass und entscheidet oft, ob ein Produkt erfolgreich ist oder nicht,<br> bestes Beispiel hierfür sind Apple oder Netflix, beide sehen gut aus (UI) und sind einfach zu bedienen (UX).<br>
+            <br>
+            <br>
+            <br>
+            Do’s and dont’s in UX und UI?<br>
+            Dos (Mach das):<br>
+	        • Einfach & intuitiv: Nutzer sollen sich schnell zurechtfinden.<br>
+	        • Klare Struktur: Wichtige Infos hervorheben, logische Navigation.<br>
+	        • Lesbarkeit: Große Schrift, guter Kontrast, genug Abstand.<br>
+	        • Einheitliches Design: Farben, Buttons und Schriftarten durchgehend gleich.<br>
+	        • Mobilfreundlich: Optimierung für Smartphones.<br>
+            <br>
+            Don’ts (Vermeide das):<br>
+	        • Überladenes Design: Zu viele Farben, Texte oder Animationen.<br>
+	        • Komplizierte Abläufe: Zu viele Klicks oder unnötige Formulare.<br>
+	        • Schlechte Lesbarkeit: Kleine Schrift, schwacher Kontrast.<br>
+	        • Verwirrende Navigation: Wichtige Funktionen schwer auffindbar.<br>
+            • Inkonsistenz: Unterschiedliche Stile und Buttonformen mischen.<br>
+            <br>
+            <br>
+            <br>
+            Wie betrifft UX/UI uns als Entwickler?<br>
+            Für uns Entwickler ist UX/UI-Design ausschlaggebend, weil es beeinflusst, ob unsere Software erfolgreich ist.<br> Gutes UX/UI spart Zeit bei der Entwicklung, verbessert die Zusammenarbeit mit Designern und sorgt für zufriedene Kunden sowie Nutzer. Es hilft uns, klare Vorgaben zu haben und Fehler oder Nachbesserungen zu vermeiden.<br>
+            <br>
+            <br>
+            <br>
+            Prozesse der Erstellung!<br>
+            <br>
+            Welche groben Schritte brauche ich um ein UI/UX Design zu erstellen?<br>
+            1. Forschung & Analyse<br>
+	            • Zielgruppenanalyse: Wer wird die App/Website nutzen? Welche Bedürfnisse haben sie?<br>
+	            • Wettbewerbsanalyse: Schau dir ähnliche Produkte an, um zu sehen, was funktioniert.<br>
+                <br>
+                2. User Cases & Anforderungsanalyse<br>
+	            • User Cases erstellen: Beschreibe, was Nutzer tun möchten (z. B. "Der Nutzer will einen Artikel kaufen").<br>
+	            • Features und Funktionen festlegen: Was muss die App/Website können? Muss/Kann Ziele festlegen.<br>
+                <br>
+                3. Wireframes erstellen (UX)<br>
+	            • Skizziere grobe Layouts und Strukturen der App/Website (z. B. mit Papier oder digitalen Tools wie Figma).<br>
+                <br>
+                4. Prototyping<br>
+	            • Erstelle interaktive Prototypen, um den Ablauf und die Funktionalität zu testen (Tools wie Figma, Adobe XD).<br>
+                <br>
+                5. Visuelles Design (UI)<br>
+	            • Farben, Typografie und Icons: Wähle Design-Elemente aus, die zur Marke und Zielgruppe passen.<br>
+	            • Design verfeinern: Mach das Design hübsch, konsistent und benutzerfreundlich.<br>
+                <br>
+                6. Testing & Go-Live (Implementierung)<br>
+	            • Teste das Design mit echten Nutzern (Usability-Tests).<br>
+	            • Setze das Vorhaben um und gehe Online mit deinem Produkt.<br>
+                <br>
+                7. Finalisierung & Übergabe<br>
+	            • Erstelle die finalen Design-Dateien und Übergabe an Entwickler, um die App/Website zu bauen.<br>
+                <br>
+                8. Feedback & Nacharbeiten<br>
+	            • Feedback einholen und Nacharbeiten durchführen.<br>
+	            • Optimiere das Design basierend auf den Ergebnissen.<br>
+            <br>
+            <br>
+            <br>
+            Welche Aspekte sind bei der Erstellung von UX / UI Designs zu beachten?<br>
+            1. Benutzerzentrierung<br>
+	        • Verstehe die Zielgruppe: Wer wird die App/Website nutzen? Welche Bedürfnisse, Wünsche und Probleme haben sie?<br>
+	        • User Journeys: Plane, wie Nutzer durch die App oder Website navigieren und welche Ziele sie erreichen möchten.<br>
+            <br>
+            2. Benutzerfreundlichkeit (Usability)<br>
+	        • Intuitive Navigation: Stelle sicher, dass Nutzer schnell und einfach finden, was sie suchen.<br> Navigations-Elemente sollten logisch und leicht verständlich sein.<br>
+	        • Einfachheit: Vermeide unnötige Komplexität. Je weniger der Nutzer tun muss, desto besser.<br>
+	        • Fehlervermeidung: Biete klare Hinweise und Rückmeldungen, wenn Fehler auftreten (z. B. bei falschen Eingaben).<br>
+            <br>
+            3. Visuelles Design (UI)<br>
+	        • Konsistenz: Verwende einheitliche Farben, Schriftarten und Layouts auf allen Seiten, um eine klare Markenidentität zu schaffen.<br>
+	        • Lesbarkeit: Wähle gut lesbare Schriftarten und sorge für ausreichenden Kontrast zwischen Text und Hintergrund.<br>
+	        • Hierarchie: Wichtige Elemente wie Call-to-Action-Buttons sollten auffallen, während weniger wichtige Informationen zurücktreten.<br>
+	        • Responsivität: Das Design muss auf verschiedenen Geräten (Smartphones, Tablets, Desktops) gut aussehen und funktionieren.<br>
+            <br>
+            4. Interaktivität und Feedback<br>
+	        • Visuelle Rückmeldungen: Gib Nutzern klare Rückmeldungen (z. B. durch Animationen oder Farbänderungen), <br>wenn sie mit der App interagieren (z. B. Button-Klicks).<br>
+	        • Interaktive Elemente: Achte darauf, dass Buttons und Links klar erkennbar sind und sich beim Anklicken oder Überfahren optisch verändern.<br>
+            <br>
+            5. Zugänglichkeit (Accessibility)<br>
+	        • Barrierefreiheit: Stelle sicher, dass deine App auch für Menschen mit Einschränkungen zugänglich ist (z. B. Bildschirmleser-Unterstützung, Farbkontraste).<br>
+	        • Touchfreundlichkeit: Achte darauf, dass Buttons und Links groß genug sind, um sie bequem auf mobilen Geräten zu bedienen.<br>
+            <br>
+            6. Ladezeiten & Performance<br>
+	        • Schnelligkeit: Das Design sollte die Ladezeit minimieren,<br>indem unnötige Elemente vermieden werden und optimierte Bilder verwendet werden.<br>
+            <br>
+            7. Testing & Iteration<br>
+	        • Usability-Tests: Teste dein Design mit echten Nutzern und sammle Feedback. <br>Achte darauf, wie sie die Navigation, das Design und die Funktionen erleben.<br>
+	        • Kontinuierliche Verbesserung: Iteriere das Design basierend auf den Testergebnissen und optimiere es, <br>um eine bessere Nutzererfahrung zu bieten.<br>
+            <br>
+            <br>
+            <br>
+            Wie Dokumentiere ich meine UX/UI Desings?<br>
+            Ich dokumentiere meine Designs mit Grafischen Darstellungen (Bildern) und Textbeschreibungen.<br>
+            Z.B. als Word-Dokument oder wie meine OneNote Dokumentationen.<br>
+            <br>
+            <br>
+            <br>
+            Qualitätsmerkmale!<br>
+            <br>
+            Was sind Merkmale für schlechte UX/UI Designs?<br>
+            Schlechtes UI/UX-Design führt zu Frustration und einer schlechten Nutzererfahrung.<br>
+	        • Unklare Navigation: Nutzer finden nicht, was sie suchen.<br>
+	        • Überladene Oberflächen: Zu viele Elemente, die ablenken.<br>
+	        • Inkonsequente Gestaltung: Unterschiedliche Designelemente ohne klare Struktur.<br>
+	        • Schlechte Lesbarkeit: Schlechter Kontrast und kleine Schriftgrößen.<br>
+	        • Lange Ladezeiten: Verzögerungen, die frustrieren.<br>
+	        • Fehlendes Feedback: Nutzer wissen nicht, ob ihre Aktionen erfolgreich waren.<br>
+	        • Nicht mobilfreundlich: Kein gutes Design für mobile Geräte.<br>
+            <br>
+            <br>
+            <br>
+            Was sind die Merkmale von gute UI/UX Design?<br>
+	        • Intuitive Navigation: Nutzer finden schnell, was sie suchen.<br>
+	        • Klarheit und Einfachheit: Weniger Ablenkung, klare Struktur.<br>
+	        • Konsistenz: Einheitliches Design und wiederkehrende Elemente.<br>
+	        • Gute Lesbarkeit: Passender Kontrast, klare Schriftarten.<br>
+	        • Schnelle Ladezeiten: Optimierte Performance.<br>
+	        • Visuelles Feedback: Klare Rückmeldungen bei Interaktionen.<br>
+	        • Mobile Optimierung: Funktioniert auf allen Geräten.<br>
+	        • Zugänglichkeit: Für alle Nutzer, auch mit Einschränkungen.<br>
+            Gutes Design sorgt für eine angenehme, effiziente und benutzerfreundliche Erfahrung.<br>
+            <br>
+            <br>
+            <br>
+        
+        <li>Punkt 2</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <li>Punkt 3</li>
+        <p>Kurze Beschreibung des gelerntes</p>
+        <p style="margin-top: 15em;">Nach lange Zeit....</p>
+    </ul>
+</body>
+</html>
