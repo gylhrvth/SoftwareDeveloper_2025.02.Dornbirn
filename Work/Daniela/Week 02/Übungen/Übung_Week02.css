@@ -93,7 +93,8 @@
 
 }
 /* Styling für Checkbox */
-    input[type="checkbox"] {
+    input[type="checkbox"] 
+    {
     transform: scale(1.5); /* Größere Checkbox */
     margin-right: 10px;
     cursor: pointer;
