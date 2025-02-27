@@ -6,16 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Container</title>
   <style>
- 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: linear-gradient(120deg, #00d4ff, #092ae6, #060225);
-    }
-    
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(120deg, #ff7e5f, #feb47b, #ffcc00);
+}
 
-    </style>
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: #ffae42;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  max-height: 300px;
+  border: 2px solid white;
+  overflow: hidden;
+  text-align: center;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-rows: auto 1fr;;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+	max-height: calc(300px - 40px);
+}
+
+.grid-item {
+  background-color: #ff6f3c;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid white;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+}
+
+.content {
+  background-color: #ffd700;
+  grid-column: span 2;
+  overflow-y: auto;
+  max-height: calc(300px - 40px - 50px);
+  border: 2px solid white;
+  padding: 15px;
+  direction: rtl;
+  text-align: left;
+
+}
+
+.content > * {
+  direction: ltr;
+}
+
+
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 35px;
+  max-height: 35px;
+}
+
+.row .fragment, .row .main {
+  flex: 1;
+  background-color: #e0e0e0;
+  padding: 5px;
+  border: 2px dashed #bbb;
+  height: 35px;
+  max-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row .main {
+  flex: 2;
+  background-color: #c0c0c0;
+  border: 2px solid #999;
+}
+
+.row img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.row input[type="checkbox"] {
+  height: 35px;
+  width: 35px;
+}
+
+.trash-icon::before {
+    content: "🗑️";
+}
+    
+</style>
+</head>
+</body>
+
+<div class="container">
+  <div class="grid-container">
+    <div class="grid-item">Element 01</div>
+    <div class="grid-item">Element 02</div>
+    <div class="grid-item content">
+      <div class="row">
+        <div class="fragment"><input type="checkbox"> to do list</div>
+        <div class="main">main content</div>
+        <div class="fragment trash-icon"></div>
+      </div>
+        <div class="row">
+            <div class="fragment"><input type="checkbox"> to do list</div>
+            <div class="main">main content</div>
+            <div class="fragment trash-icon"></div>
+        </div>
+        <div class="row">
+            <div class="fragment"><input type="checkbox"> to do list</div>
+            <div class="main">main contect</div>
+            <div class="fragment trash-icon"></div>
+         </div>
+         <div class="row">
+            <div class="fragment"><input type="checkbox"> to do list</div>
+            <div class="main">main contect</div>
+            <div class="fragment trash-icon"></div>
+        </div>
+        <div class="row">
+            <div class="fragment"><input type="checkbox"> to do list</div>
+            <div class="main">main contect</div>
+            <div class="fragment trash-icon"></div>
+        </div>
+    </div>
+</div>
+</html>
+</body>
+
+    
+
+
+                        

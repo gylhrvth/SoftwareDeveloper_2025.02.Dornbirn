@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Container</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(120deg, #00d4ff, #092ae6, #060225);
+    }
+
+    .container {
+      background-color: #0de29f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      max-height: 300px;
+      text-align: center;
+      border: 2px solid white;
+    }
+
+    /*Grid addet*/
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 10px;
+      max-height: 260px;
+    }
+
+    .grid-item {
+      background-color: #e51919;
+      padding: 20px;
+      border-radius: 4px;
+      border: 2px solid rgb(255, 255, 255);
+    }
+
+    .content {
+      background-color: #dee820;
+      grid-column: span 2;
+      max-height: 200px;
+      border: 2px solid white;
+
+    }
+
+    /*Dummy Section*/
+    .box {
+      background-color: #fff;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      height: 50px;
+    }
+
+    .gridDummy {
+      background-color: #fff;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="grid-container">
+      <div class="grid-item">Element 1</div>
+      <div class="grid-item">Element 2</div>
+      <div class="grid-item content"> Element 3
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
