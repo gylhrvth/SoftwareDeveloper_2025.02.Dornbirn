@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Container</title>
+  <style>
+    * {
+      margin: 5px;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(135, 221, 221, 0.877);
+      text-align: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+      margin: 0;
+    }
+
+    header {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+    }
+
+    .left {
+      background-color: #bba1a1;
+      flex: 1;
+      padding: 3em 0 3em 0;
+      flex: auto;
+    }
+
+    main {
+      background-color: #a1bba1;
+      flex: 3;
+      padding: 3em 0 3em 0;
+    }
+
+    .right {
+      background-color: #a1a1bb;
+      flex: 1;
+      padding: 3em 0 3em 0;
+      flex: auto;
+    }
+
+    footer {
+      background-color: #333;
+      padding: 1em 0em 1em 0em;
+    }
+    
+  </style>
+</head>
+</body>
+    <header>To do list</header>
+    <div class="main">
+      <aside class="left">
+        Left
+      </aside>
+      <main>main content</main>
+      <aside class="right">
+        Right
+      </aside>
+    </div>
+    <footer>Footer</footer>
+</html>
+</body>
+    
