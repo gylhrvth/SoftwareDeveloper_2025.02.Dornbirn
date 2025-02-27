@@ -29,8 +29,8 @@ body {
 
 #katzebubi {
     width: 20%;
-    border: solid 5px black;
-    box-shadow: 0px 0px 15px black, 0px 0px 15px black inset;
+    border: solid 5px white;
+    box-shadow: 0px 0px 15px white, 0px 0px 15px white inset;
     margin: 10px;
 }
 
@@ -45,6 +45,8 @@ body {
     align-content: center;
     font-family: Zain-Title;
     font-size: 2em;
+    border: solid 3px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
 }
 
 #midcontent {
@@ -58,6 +60,8 @@ body {
     align-content: center;
     font-family: Zain;
     font-size: 1.5em;
+    border: solid 3px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
 }
 
 
@@ -72,7 +76,8 @@ body {
     align-content: center;
     font-family: Zain;
     font-size: 1.5em;
-
+    border: solid 3px black;
+    box-shadow: 7px 7px 15px black, 2px 2px 10px black;
 }
 
 .aufgaben {
