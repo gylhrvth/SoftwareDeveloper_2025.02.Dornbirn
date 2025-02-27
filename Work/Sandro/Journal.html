@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagebuch - Lernerfolgsbuch</title>
+    <link rel="stylesheet" href="../../Kurs/common.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+</head>
+
+<body>
+    <h1>Layout Übung</h1>
+
+    <img src="/Work/Sandro/Week02/CSS/CSS_Übungen/BoxLayout/LayoutBeispiel.png" alt=""
+        style="max-width: 100%; height: auto;">
+
+    <h2>Aufgaben</h2>
+    <ol>
+        <li>Erstelle ein div / container</li>
+        <p>Der Containter sollte in der Mitte vom Bildschirm sein und sich responsive verhalten.</p>
+        <pre>Werte:
+max-width: 600px;
+max-height: 300px;
+        </pre>
+        <li>Dieser Container beinhaltet ein Grid</li>
+        <p>Dieses Grid besteht aus zwei Reihen, erste Reihe hat zwei Elemente, die zweite Reihe hat nur ein großes
+            Element, welches wir als Content Feld betrachten. Dieses Element wird mit Content befüllt und kann sich
+            darum auch nach unten bzw. in der Größe erweitern. Tritt der Fall ein, dass wir über die Maximale Höhe von
+            dem Container kommen, soll dieses Content Feld scollable werden um den Inhalt zu verabeiten.</p>
+        <pre>Werte:
+max-height: 300px;  // Hierbei sollte noch beachtet werden, dass von den 300px auch noch das Padding abgezogen werden muss.
+max-height: calc(300px - 40px); // Versuche zum Beispiel so einen Dynamischen Wert zu erreichen.
+
+Beachte, dass du für jedes Element ein Layout hast um diese zu unterscheiden.
+
+        </pre>
+        <li>Das Content feld vom Grid, beinhaltet mehrere Flex-Rows.</li>
+        <p>Eine Flex Row, setzt sich aus 3 Elementen zusammen. Das erste und letzte Element, beansprucht jeweils
+            einen(1) Teil vom platz und was als rest übrig ist, bekommt der mittlere Part. Im ersten Element wollen wir
+            eine Checkbox, im mittleren Element einene Text und im letzten ein Bild von einem Mülleimer Icon.
+        </p>
+        <pre>Werte: 
+height: 35px;
+max-height: 35px;
+        </pre>
+    </ol>
+
+</body>
+
+</html>
