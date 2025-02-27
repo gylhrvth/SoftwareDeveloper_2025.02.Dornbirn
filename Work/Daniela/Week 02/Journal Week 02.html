@@ -3,24 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Journal Week 02</title>
 
 <link rel="stylesheet" href="style.css" >
 <style>
     body{background-color: rgb(3, 66, 96)}
-    p{color: white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 20%;}
-    h1{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding: 20%;}
-    h2{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 20%;}
+    p{font-size:20px; color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 15%;}
+    h1{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding: 15%;}
+    h2{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 15%;}
+    ul{font-size:20px; color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 20%;}
+   
 </style>
 
 </head>
 <body>
-    <p style="font-size: 25px;">Lernerfolgsbuch</p>
-    <p style="font-size: 25px;">Montag 24.02.25 - 29.02.25</p>
+    <p >Lernerfolgsbuch</p>
+    <p >Montag 24.02.25 - 29.02.25</p>
     <h1>UX/UI Design-User Experience </h1>
 
-    <h2></h2>
-    <p></p>
+    <h2>CSS</h2>
+
+        <p>CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die verwendet wird, um das Erscheinungsbild
+            und Layout von HTML-Dokumenten zu gestalten. Sie ermöglicht es, Design-Elemente wie Farben, Schriftarten,
+            Abstände und Positionierungen von HTML-Elementen festzulegen.</p>
+
+        <p>Eine CSS-Datei wird mit dem <link>-Tag im <head>-Bereich einer HTML-Datei eingebunden.
+            Dies ermöglicht eine Trennung von Struktur (HTML) und Design (CSS).</p>
+            <p>
+                <ul>
+                    <li>Universeller Selektor (*)
+                        Wendet das Styling auf alle Elemente an.</li>
+                    <li> Element-Selektoren (Tag-Name)
+                        Wendet das Styling auf ein bestimmtes HTML-Tag an.</li>
+                    <li> Klassen-Selektoren (.klassenname)
+                        Wendet das Styling auf Elemente mit einer bestimmten Klasse (class) an.</li>
+                    <li> ID-Selektoren (#idname)
+                        Wendet das Styling auf ein Element mit einer bestimmten ID (id) an.</li>
+                </ul>
+            </p>
+            <h2>Selectors</h2>
+            <p>Selektoren in CSS werden verwendet, um bestimmte HTML-Elemente auszuwählen und zu gestalten.
+                Sie definieren, welche Elemente ein bestimmtes Styling erhalten.</p>
+                <p>
+                    <ul>
+                        <li>Element-Selektor: Stilt alle Elemente eines bestimmten Typs.</li>
+                        <li>Klassen-Selektor (.klassenname):Stilt alle Elemente mit der angegebenen Klasse.</li>
+                        <li>ID-Selektor (#idname):Stilt ein einzelnes Element mit der angegebenen ID.</li>
+                        <li>ttribut-Selektor ([attribut]):Wählt Elemente mit einem bestimmten Attribut aus.</li>
+                        <li>Pseudo-Klassen (:hover, :nth-child(), etc.):Verändern das Styling basierend auf einem Zustand.</li>
+                        <li>Pseudo-Elemente (::before, ::after):Erstellen virtuelle Elemente vor oder nach dem Inhalt.</li>
+                      
+                    </ul>
+                </p>
+                <p>Das Box-Modell ist ein grundlegendes Konzept in CSS, das beschreibt, wie Elemente auf einer Webseite dargestellt werden. 
+                    Jedes HTML-Element wird als eine rechteckige Box betrachtet, die aus vier Bereichen besteht:</p>
+                    <p>
+                        <ul>
+                            <li>Content - The content of the box, where text and images appear</li>
+                            <li>Padding - Clears an area around the content. The padding is transparent</li>
+                            <li>Border - A border that goes around the padding and contentMargin - Clears an area outside the border. The margin is transparent</li>
+                            <li>Margin - Clears an area outside the border. The margin is transparent</li>
+                        
+                        </ul>
+                    </p>
+    
+                <img src="img-1/CSS Box Model.html" style="height: 900px;">
+                <h2>Flex-Container</h2>
+                <p>Ein Flex-Container ist ein Element in CSS, das mit display: flex; definiert wird. Er dient dazu, seine direkten Kindelemente (Flex-Items) flexibel anzuordnen.</p>
+
+                   <p>Wann verwendet man einen Flex-Container?<br>
+                    Du nutzt ihn, wenn du:</p>
+                    <p>
+                        <ul>
+                            <li>Elemente nebeneinander oder untereinander flexibel anordnen willst.</li>
+                            <li>Gleichmäßige Abstände zwischen Elementen brauchst.</li>
+                            <li>Inhalte zentrieren möchtest.</li>
+                            <li>Eine responsive Oberfläche ohne komplizierte Media Queries erstellen willst.</li>
+                        </ul>
+                
+                </p>
+                <h2>Z-index</h2>
+                <p>Die z-index-Eigenschaft legt die Stapelreihenfolge eines Elements fest.
+
+                    Ein Element mit einer höheren Stapelreihenfolge steht immer vor einem Element mit einer niedrigeren Stapelreihenfolge.<br>
+                    
+                    Hinweis: z-index funktioniert nur bei positionierten Elementen (position: absolute;, position: relative;, position: fixed; oder position: sticky;) sowie bei Flex-Items (Elemente, die direkte Kinder eines display: flex; Containers sind).<br>
+                    
+                    Hinweis: Wenn zwei positionierte Elemente sich überlappen und kein z-index angegeben ist, wird das Element, das später im HTML-Code steht, oben angezeigt.</p>
+                
+                <h2>Was ist der z-index?</h2>
+                   <p> Der z-index in CSS bestimmt die Stapelreihenfolge von Elementen auf einer Webseite.
+                    Er legt fest, welches Element weiter vorne oder weiter hinten angezeigt wird, wenn sie sich überlappen.
+                    
+                    Wie funktioniert der z-index?
+                    Ein höherer z-index-Wert bedeutet, dass das Element weiter vorne liegt.
+                    Ein niedrigerer z-index-Wert bedeutet, dass das Element weiter hinten liegt.
+                    Standardmäßig haben alle Elemente den z-index: auto; und folgen der Reihenfolge im HTML.<br>
+                    Wichtig: z-index funktioniert nur, wenn das Element eine positionierte Eigenschaft hat:</p>
+                    <p>
+                        <ul>
+                            <li>position: relative;</li>
+                            <li> position: absolute;</li>
+                            <li>position: fixed;</li>
+                            <li>position: sticky;</li>
+                        </ul>
+                    </p>
+                </p>
 
 
     
