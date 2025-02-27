@@ -37,16 +37,68 @@
     background-color: #f608ba;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
    
   }
 
   .item-container2{
     display: flex;
-    height:200px;
+    height:400px;
     width: auto;
     grid-column: span 2;
     background-color: blueviolet;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
   }
+  .scroll-container {display: flex;
+  flex-direction: column; /* Untereinander anordnen */
+  overflow-y: auto; /* Scrollbar */
+  height: 350px; /* Höhe festlegen */
+  width: 95%; /* Anpassbare Breite */
+  border: 2px solid black;
+  padding: 10px;
+  background-color: white;
+}
+
+
+  .scroll-itemr{
+    display: flex;
+    height: 350px;
+    width: 95%;
+    flex-direction:row;            /*3 spalten nebeneinander*/
+    justify-content:space-between;
+    gap: 10px;
+    padding: 10px;
+    background-color: #ddd;
+    margin-bottom: 10px; /* Abstand zwischen Reihen */
+    border-radius: 5px;
+    
+  }
+  /* Jede Box in einer Zeile */
+.box {
+    flex: 1; /* Alle Boxen gleich groß */
+    height: 100px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.box > div {
+    display: flex;
+    flex-direction:row;
+
+}
+/* Styling für Checkbox */
+    input[type="checkbox"] {
+    transform: scale(1.5); /* Größere Checkbox */
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 
  /* 
     .grid-item1 > div {
