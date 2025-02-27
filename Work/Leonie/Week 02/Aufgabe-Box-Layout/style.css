@@ -1,0 +1,34 @@
+.maincontainer {
+    background-color: aqua;
+    max-width: 900px;
+    max-height: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+#grid-item {
+    background-color: darkgreen;
+    padding: 20px;
+}
+
+#grid-item-flex {
+    background-color: darkred;
+    padding: 20px;
+    grid-column: span 2;
+    max-height: 100px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: gray;
+}
