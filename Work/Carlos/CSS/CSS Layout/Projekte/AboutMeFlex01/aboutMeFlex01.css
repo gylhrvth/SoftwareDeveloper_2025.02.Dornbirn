@@ -82,9 +82,10 @@ span {
 }
 
 #buttonZurück {
+
     margin-top: 15px;
     padding: 10px;
-    border-radius: 20%;
+    border-radius: 5px;
     font-size: 1em;
     text-decoration: none;
     border: none;
@@ -94,5 +95,25 @@ span {
     margin-inline-start: 95%;
 }
 
+
+#buttonZurück:hover {
+    color: orangered;
+    text-decoration: underline;
+    font-size:larger;
+}
+
+#projekte.button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: rgb(255, 120, 71);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  #projekte.button:hover {
+    background-color: rgb(34, 61, 123);
+  }
 
 
