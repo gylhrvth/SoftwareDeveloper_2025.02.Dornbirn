@@ -1,0 +1,68 @@
+/* Allgemeine Stile */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #72d6ea, #15e5a6);
+  margin: 10;
+  padding: 10;
+}
+
+h1 {}
+
+h2 {}
+
+div {}
+
+p {}
+
+pre {}
+
+ol {
+  color: red;
+}
+
+a {}
+
+
+/* Klassen-Selektoren */
+.container {
+background-color: cornsilk;
+}
+
+.highlight {}
+
+
+
+/* ID-Selektoren */
+
+#list-item-1 { font-family: monospace;
+  color: blue;
+font-weight: 600;
+font-size: larger;}
+
+#list-item-2 { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color: darkcyan;
+font-size: small;
+font-style: italic;}
+
+#list-item-3 {}
+
+
+/* Kombinierte Selektoren */
+
+/* Versuche aus den bestehenden Selektoren neue kombinationen zu bilden. Wenn ein div zum beispeil eine Klasse wie Container hat und in diesem div/Container ein p-Element ist, oder eine h2. Wenn die Highlight-Klasse in einem p oder in einem pre oder in einer H1 ist.
+*/
+
+
+
+/* Pseudoklassen-Selektoren */
+ul li:first-child {color: brown;}
+
+ul li:last-child { color: chartreuse;}
+
+ol li:first-child {}
+
+ol li:last-child {}
+
+a:hover {}
+
+a:visited {}
