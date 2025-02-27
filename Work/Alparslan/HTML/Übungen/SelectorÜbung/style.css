@@ -16,11 +16,17 @@ p {}
 
 pre {}
 
+ol {
+  color: red;
+}
+
 a {}
 
 
 /* Klassen-Selektoren */
-.container {}
+.container {
+background-color: cornsilk;
+}
 
 .highlight {}
 
@@ -28,9 +34,15 @@ a {}
 
 /* ID-Selektoren */
 
-#list-item-1 {}
+#list-item-1 { font-family: monospace;
+  color: blue;
+font-weight: 600;
+font-size: larger;}
 
-#list-item-2 {}
+#list-item-2 { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color: darkcyan;
+font-size: small;
+font-style: italic;}
 
 #list-item-3 {}
 
@@ -43,9 +55,9 @@ a {}
 
 
 /* Pseudoklassen-Selektoren */
-ul li:first-child {}
+ul li:first-child {color: brown;}
 
-ul li:last-child {}
+ul li:last-child { color: chartreuse;}
 
 ol li:first-child {}
 

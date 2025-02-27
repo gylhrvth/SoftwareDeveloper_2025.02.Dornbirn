@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Container</title>
+  <style>
+    body {
+      display: flex;
+      /* flexbox wird verwendet um das layout zu gestalten und alles in die Mitte zu stellen */
+      justify-content: center;
+      /* justify-content wird verwendet um die elemente horizontal zu zentrieren */
+      align-items: center;
+      /* align-items wird verwendet um die elemente vertikal zu zentrieren */
+      height: 100vh;
+      /* vh = view height, wird darum verwendet dass das layout flexible und anspechend bleibt */
+      margin: 0;
+      background: linear-gradient(120deg, #00d4ff, #092ae6, #060225);
+    }
+
+    .container {
+      background-color: #0de29f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      /* 80% der breite des parent elements */
+      max-width: 600px;
+      /* maximale breite des elements */
+      max-height: 300px;
+      /* maximale höhe des elements */
+      text-align: center;
+      /* text wird zentriert */
+      border: 2px solid white;
+    }
+
+    /*Dummy section*/
+    .box {
+      background-color: #fff;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      height: 100px;
+    }
+
+    .gridDummy {
+      background-color: #fff;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Content hier einfügen
+    liegt dem grundsätzlichen design kein inhalt vor ist es schwer zu prüfen ob max height und width funktionieren überhaupt ansprechen. Es empfiehlt sich daher immer ein paar dummy elemente einzufügen. -->
+
+    <div class=""></div>
+
+
+  </div>
+
+
+</body>
+
+</html>

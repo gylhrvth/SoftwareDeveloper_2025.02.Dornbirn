@@ -1,0 +1,89 @@
+body {
+    display: flex;
+    justify-content: center; /* Horizontale Zentrierung */
+    align-items: center; /* Vertikale Zentrierung */
+    height: 100vh; /* Höhe des Viewports */
+    margin: 0; /* Entfernt Standard-Margin des Body */
+}
+
+.maincontainer {
+    flex: 1;
+
+    background-color: #d1bc8a;
+    max-width: 900px;
+    max-height: 600px;
+    padding: 20px;
+    align-content: center;
+}
+
+
+.maincontainer {
+    background-color: #d1bc8a;
+    max-width: 900px;
+    max-height: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    align-content: center;
+}
+
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+#grid-item {
+    background-color: #79553d;
+    padding: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+#grid-item-flex {
+    background-color: #c6a664;
+    padding: 20px;
+    grid-column: span 2;
+    grid-row: span 3;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: gray;
+
+}
+
+.checkbox {
+    background-color: rgb(233, 233, 233);
+    flex: calc(1/3);
+    text-align: center;
+    align-content: center;
+    
+}
+
+.content {
+    background-color: rgb(173, 173, 173);
+    flex: calc(1/3);
+    text-align: center;
+    font-size: larger;
+
+}
+
+.imagecontainer {
+    background-color: rgb(233, 233, 233);
+    flex: calc(1/3);
+    text-align: center;
+
+}
+
+#image {
+    text-align: center;
+    align-content: center;
+    width: 40px;
+    height: 40px;
+}
