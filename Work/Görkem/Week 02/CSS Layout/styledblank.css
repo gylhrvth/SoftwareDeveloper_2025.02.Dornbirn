@@ -7,7 +7,18 @@ body {
     padding: 20px;
 }
 
-/* Stil für Teilüberschriften */
-h3, h4, h5, h6 {
+/* Stil für Überschriften */
+h1 {
+    color: darkcyan;
+    text-align: left;
+}
+
+h2 {
+    font-family: 'Courier New', monospace;
+    text-align: left;
+}
+
+h3 {
     color: darkgoldenrod;
+    text-align: left;
 }

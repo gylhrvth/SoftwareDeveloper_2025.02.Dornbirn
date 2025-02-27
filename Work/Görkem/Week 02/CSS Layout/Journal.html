@@ -11,15 +11,132 @@
 </head>
 <body>
 <ul>
-    <h1 style="color: darkcyan;"> Lernerfolgsbuch: CSS Layout</h1>
+    <h1>Lernerfolgsbuch: CSS Layout</h1>
     <h2>Mittwoch, 26. Februar 2025</h2>
+    
     <h1>CSS Layout:</h1>
 
+    <li><h3>Welche CSS-Techniken kann man zur Gestaltung eines Layouts verwenden?</h3></li>
+    <p>CSS Positioning (absolute, relative, fixed, sticky).</p>
+    <p>CSS Frameworks (z. B. Bootstrap, Tailwind CSS).</p>
+    <p>CSS Grid - Rasterbasiertes Layout (display: grid) → Perfekt für komplexe, flexible Layouts.</p>
+    <p>CSS Flexbox → Gut für einzeilige oder kleinere Layouts. Flexbox ist eindimensional: entweder in einer Reihe oder in einer Spalte.</p>
+    <p>CSS Floats → Veraltet, aber immer noch in einigen Projekten verwendet.CSS Float (veraltet, aber noch in manchen Fällen genutzt): <br>
+        Wenn man Text um ein Bild oder ein anderes Element fließen lassen möchte, kann man float verwenden. Das Bild wird “links” oder “rechts” positioniert.</p>
 
 
+    <li><h3>Wie erstellt man ein Flexbox layout?</h3></li>
+    <p>Ein Flexbox Layout wird mit der CSS-Eigenschaft display: flex erstellt. Flexbox ermöglicht eine einfache und flexible Möglichkeit, Elemente in einer Reihe oder Spalte anzuordnen und auszurichten.</p>
+    <p>&#128640;<b>Grundstruktur</b></p>
+    <ol>
+        <li>Container: Das Elternelement, das die Flexbox enthält. Mit display: flex; wird die Flexbox erstellt.</li>
+        <li>Flex-Items: Die Elemente innerhalb des Containers, die in einer Reihe oder Spalte angeordnet werden.</li>
+    </ol><br>
+
+    <li><h3>Flexbox Eigenschaften</h3></li>
+
+    <p>&#128640;<b>Container Eigenschaften:</b></p>
+    <ol>
+        <p>display: flex -> Aktiviert das Flexbox-Modell für den Container und macht alle direkten Kinder zu Flex-Items.</p>
+        <p>flex-direction: Bestimmt die Ausrichtung der Flex-Items entlang der Hauptachse. <br>
+        Werte: row / column / row-reverse / column-reverse</p>
+        <p>flex-wrap: Bestimmt, ob Flex-Items in mehreren Zeilen oder Spalten umgebrochen werden können, wenn der Platz nicht ausreicht. <br> 
+        Werte: wrap / wrap-reverse / nowrap</p>
+        <p>justify-content: Steuert die horizontale Ausrichtung der Flex-Items entlang der Hauptachse.<br>
+        Werte: flex-start / flex-end / center / space-between / space-around / space-evenly</p>
+        <p>align-items: Steuert die vertikale Ausrichtung der Flex-Items entlang der Querachse.<br>
+        Werte: flex-start / flex-end / center / baseline / stretch</p>
+        <p>align-content: Steuert den Abstand zwischen mehreren Flexbox-Zeilen (nur bei flex-wrap!!!).<br>
+        Werte: flex-start / flex-end / center / space-between / space-around / stretch</p>
+    </ol><br>
+
+    <p>&#128640;<b>Child-Item Eigenschaften:</b></p>
+    <ol>
+        <p>order: Bestimmt die Reihenfolge der Flex-Items.</p>
+        <p>flex-grow: Bestimmt, wie viel Platz ein Flex-Item in der Flexbox einnehmen kann.</p>
+        <p>flex-shrink: Bestimmt, wie viel Platz ein Flex-Item in der Flexbox abgeben kann.</p>
+        <p>flex-basis: Bestimmt die Größe eines Flex-Items, bevor der freie Platz aufgeteilt wird.</p>
+        <p>flex: Kurzschreibweise für flex-grow, flex-shrink und flex-basis.</p>
+        <p>align-self: Überschreibt die align-items-Eigenschaft des Containers für ein einzelnes Flex-Item.</p>
+    </ol><br>
+
+    <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Flex Cheatsheet</a></li><br>
+    <li><a href="https://flexboxfroggy.com/">Flexbox üben: Flexbox Froggy</a></li><br>
+    <li><a href="/Work/Görkem/Week 02/CSS Layout/Beispiele/Flexbox/flexInteraktiv.html">Interaktives Beispiel</a></li><br>
+
+    <h3><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="/Work/Görkem/Week 02/CSS Basics/Aboutme_CSS2.html">About Me</a>"</em> mit Flexbox umsetzen.</span></h3><br>
+
+    <li><h3>Wie erstellt man ein Grid layout?</h3></li>
+    <ol>
+        <li><p>Spalten und Zeilen definieren: Festlegen, wie viele Spalten und Zeilen man im Grid haben möchte, Eigenschaften grid-template-columns und grid-template-rows.</p></li>
+        <li><p>Grid-Elemente platzieren: Grid-Items anordnen: Die direkten Kinder des Containers (die Grid-Items) werden automatisch in den Grid-Zellen platziert.</p></li>
+        <li><p>Container definieren: Der Container, der das Grid enthält, wird mit display: grid aktiviert.</p></li>
+    </ol><br>
+
+    <p>&#128640;<b>Grid-Code Beispiel</b></p>
+    <p>html:</p>
+    <div class="fileExample">
+        <div class="code-sample">  
+        <code>
+            &lt;div class="container"&gt;
+                &lt;div class="item"&gt;Item 1&lt;/div&gt;
+                &lt;div class="item"&gt;Item 2&lt;/div&gt;
+                &lt;div class="item"&gt;Item 3&lt;/div&gt;
+                &lt;div class="item"&gt;Item 4&lt;/div&gt;
+                &lt;div class="item"&gt;Item 5&lt;/div&gt;
+                &lt;div class="item"&gt;Item 6&lt;/div&gt;
+            &lt;/div&gt;
+        </code>
+        </div>
+    </div>
+
+    <br>
 
 
+    <p>CSS:</p>
+    <div class="fileExample">
+        <div class="code-sample">  
+        <code>
+            .container {
+                display: grid;
+                grid-template-columns: 2fr 1fr 2fr; 
+                grid-template-rows: 120px auto 120px; 
+                grid-gap: 10px;
+              }
 
+              .item {
+                background-color: blue;
+                padding: 10px;
+                text-align: center;
+              }
+        </code>
+        </div>
+    </div>
+    
+    <br>
+    <p>&#128640;<b>Erklärung</b></p>
+    <p>Die erste und dritte Spalte sind gleich breit (2fr), und die mittlere Spalte ist doppelt so breit (1fr).</p>
+    <p>Es ist so definiert, dass die erste Die Zeilen sind so definiert, dass die erste und letzte Zeile jeweils 120px hoch sind, und die mittlere Zeile nimmt den verbleibenden Platz (auto: nimmt nur so viel Platz wie der Inhalt braucht).</p>
+    <a href="/Work/Görkem/Week 02/CSS Layout/Beispiele/Grid/beispiel01.html"><b>-> ein Beispiel</b></a><br>
 
+    <li><h3>Grid Eigenschaften</h3></li>
 
+    <p>&#128640;passende Links:</p>
+    <li><a href="https://cssgridgarden.com/">Grid üben: Grid Garden</a></li><br>
+    <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/">Grid Cheatsheet</a></li>
+    <br>
+    
+    <button onclick="(() => window.location.href = '../../Mainpage/mymainpage.html')()">Zurück</button>
 </ul>
+</body>
+</html>
+
+   
+
+
+
+
+
+
+
+
