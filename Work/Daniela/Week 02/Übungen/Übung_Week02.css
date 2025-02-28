@@ -5,7 +5,7 @@
     height: 600px;
     width: 900px;
     /*padding: 10px;*/
-    background-color: chartreuse;
+    background-color: rgb(102, 191, 247);
     border-radius: 3%;
 
     justify-content: center;
@@ -34,7 +34,7 @@
     display: flex;
     height: 100px;
     width: auto;
-    background-color: #f608ba;
+    background-color: #0952a6;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
@@ -46,7 +46,7 @@
     height:400px;
     width: auto;
     grid-column: span 2;
-    background-color: blueviolet;
+    background-color: rgb(42, 3, 132);
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -90,14 +90,23 @@
 .box > div {
     display: flex;
     flex-direction:row;
+    justify-content: center;
+    align-items: center;
 
 }
 /* Styling für Checkbox */
-    input[type="checkbox"] 
-    {
+    input[type="checkbox"] {
     transform: scale(1.5); /* Größere Checkbox */
     margin-right: 10px;
     cursor: pointer;
+}
+
+input{
+    transform: scale(1.45);
+    margin-right: auto;
+    cursor: pointer;
+    background-color: lightblue;
+    text-align: center;
 }
 
 
