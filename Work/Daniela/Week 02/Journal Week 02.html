@@ -8,11 +8,13 @@
 <link rel="stylesheet" href="style.css" >
 <style>
     body{background-color: rgb(3, 66, 96)}
-    p{font-size:20px; color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 15%;}
+    p{font-size:20px; color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 15%; }
     h1{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding: 15%;}
     h2{color: white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 15%;}
     ul{font-size:20px; color:white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-left: 20%;}
-   
+    .smallColumn{
+        max-width: clamp(300px, 40vw, 600px);
+    }
 </style>
 
 </head>
@@ -67,7 +69,7 @@
                         </ul>
                     </p>
     
-                <img src="img-1/CSS Box Model.html" style="height: 900px;">
+                <img src="../Week 02/About Me/img/Inline-Blockelemente_Tabelle.png" style="height: 600px;">
                 <h2>Flex-Container</h2>
                 <p>Ein Flex-Container ist ein Element in CSS, das mit display: flex; definiert wird. Er dient dazu, seine direkten Kindelemente (Flex-Items) flexibel anzuordnen.</p>
 
@@ -81,7 +83,69 @@
                             <li>Eine responsive Oberfläche ohne komplizierte Media Queries erstellen willst.</li>
                         </ul>
                 
+                        <p>Flexbox ist die Abkürzung für das Flexible Box Layout-Modul.<br>
+
+                            Flexbox ist eine Layout-Methode zur Anordnung von Elementen in Reihen oder Spalten.<br>
+                            
+                            Flexbox erleichtert das Entwerfen einer flexiblen, responsiven Layout-Struktur, ohne float oder positioning zu verwenden.
+                        </p>
+                        <p>Ein Flexbox-Layout besteht immer aus:</p>
+                        <p>
+                            <ul>
+                                <li>Einem Flex-Container – das übergeordnete (parent) < div >-Element </li>
+                                <li>Flex-Items – die Elemente innerhalb des Containers (< div >)</li>
+                            </ul>
+                        </p>
+                
                 </p>
+
+                <p style="font-size: 40px;">Layout</p>
+                <h2>float</h2>
+                <p> Die float-Eigenschaft wird verwendet, um Inhalte zu positionieren und zu formatieren, z. B. um ein
+                     Bild links neben dem Text in einem Container schweben zu lassen.<br>
+
+                    Die float-Eigenschaft kann folgende Werte haben:</p>
+                    <p>
+                        <ul>
+                            <li>left – Das Element schwebt links innerhalb seines Containers.</li>
+                            <li>right – Das Element schwebt rechts innerhalb seines Containers.</li>
+                            <li>none – Das Element schwebt nicht (es wird genau an der Stelle im Text angezeigt, an der esvorkommt). Dies ist der Standardwert.</li>
+                            <li>inherit – Das Element übernimmt den float-Wert seines Elternelements.</li>
+                        </ul>
+                        <p>In seiner einfachsten Anwendung kann die float-Eigenschaft verwendet werden, um Text um Bilder herum fließen zu lassen.</p>
+                    </p>
+
+                    <h2>Grid</h2>
+                    <p>CSS Grid Layout</p>
+                    <p>Das Grid Layout-Modul bietet ein rasterbasiertes Layout-System mit Zeilen und Spalten.<br>
+
+                        Das Grid Layout-Modul ermöglicht es Entwicklern, komplexe Weblayouts einfach zu erstellen.<br>
+                        
+                        Das Grid Layout-Modul erleichtert das Entwerfen einer responsiven Layout-Struktur, ohne float oder positioning zu verwenden.<br>
+                        
+                        Die CSS-Grid-Eigenschaften werden von allen modernen Browsern unterstützt.
+
+                    </p>
+                    
+                    <h2>CSS Grid-Komponenten</h2>
+
+                    <p>Ein Grid-Layout besteht immer aus:</p>
+                    <p>
+                        <ul>
+                            <li>Einem Grid-Container – das übergeordnete (parent) < div >-Element</li>
+                            <li>Grid-Items – die Elemente innerhalb des Containers (< div >)</li>
+                        </ul>
+                    </p>
+                    <h2>Grid Container und Grid Items</h2>
+                    <p>
+                        <ul>
+                            <li>Ein Grid-Layout besteht aus einem übergeordneten Element (Grid-Container) mit einem oder mehreren Grid-Items.</li>
+                            <li>Alle direkten Kindelemente des Grid-Containers werden automatisch Grid-Items.</li>
+                        </ul>
+                    </p>
+
+
+
                 <h2>Z-index</h2>
                 <p>Die z-index-Eigenschaft legt die Stapelreihenfolge eines Elements fest.
 

@@ -254,7 +254,7 @@ li a:hover:not(.active) {
   background-color: white;
   position: absolute;
   top: 1620px;
-  left: 90px;
+  left: 150px;
   border-radius: 50%;
   z-index: 12;
 
@@ -287,7 +287,7 @@ li a:hover:not(.active) {
   background-color:black;
   position: absolute;
   top: 1620px;
-  left: 120px;
+  left: 150px;
   border-radius: 50%;
   z-index: 13;
 }
