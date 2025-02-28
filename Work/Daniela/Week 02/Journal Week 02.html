@@ -15,6 +15,7 @@
     .smallColumn{
         max-width: clamp(300px, 40vw, 600px);
     }
+    img{padding-left: 15%;}
 </style>
 
 </head>
@@ -69,7 +70,7 @@
                         </ul>
                     </p>
     
-                <img src="../Week 02/About Me/img/Inline-Blockelemente_Tabelle.png" style="height: 600px;">
+                <img src="../Week 02/About Me/img/Inline-Blockelemente_Tabelle.png" >
                 <h2>Flex-Container</h2>
                 <p>Ein Flex-Container ist ein Element in CSS, das mit display: flex; definiert wird. Er dient dazu, seine direkten Kindelemente (Flex-Items) flexibel anzuordnen.</p>
 
@@ -98,6 +99,28 @@
                         </p>
                 
                 </p>
+                <p>
+                    <h2>Grundaufbau einer Flexbox</h2>
+                    <p>Eine Flexbox besteht aus:</p>
+
+                    <p>
+                        <ul>
+                            <li>Einem Flex-Container (display: flex; auf das Elternelement)</li>
+                            <li>Flex-Items (die direkten Kindelemente im Container)</li>
+                            
+                    </ul>
+                </p>
+                <h2>Erklärung:</h2>
+                <p> 
+                    <ul>
+                    <li>display: flex; → Der Container wird zur Flexbox.</li>
+                    <li>flex: 1; → Die Items teilen sich gleichmäßig den verfügbaren Platz.</li>
+                    <li>margin: 5px; → Abstand zwischen den Elementen.</li>
+                </ul>
+            </p>
+            <img src="../Week 02/Übungen/img/flex-Container_img.png">
+            <img src="../Week 02/Übungen/img/flex_2.png">
+                </p>
 
                 <p style="font-size: 40px;">Layout</p>
                 <h2>float</h2>
@@ -115,17 +138,25 @@
                         <p>In seiner einfachsten Anwendung kann die float-Eigenschaft verwendet werden, um Text um Bilder herum fließen zu lassen.</p>
                     </p>
 
-                    <h2>Grid</h2>
-                    <p>CSS Grid Layout</p>
-                    <p>Das Grid Layout-Modul bietet ein rasterbasiertes Layout-System mit Zeilen und Spalten.<br>
-
-                        Das Grid Layout-Modul ermöglicht es Entwicklern, komplexe Weblayouts einfach zu erstellen.<br>
-                        
-                        Das Grid Layout-Modul erleichtert das Entwerfen einer responsiven Layout-Struktur, ohne float oder positioning zu verwenden.<br>
-                        
-                        Die CSS-Grid-Eigenschaften werden von allen modernen Browsern unterstützt.
 
                     </p>
+                    <h2>float für Bilder</h2>
+                    <h2>Definition und Verwendung</h2>
+
+                    <p>
+                        Die float-Eigenschaft legt fest, ob ein Element links, rechts oder gar nicht schweben soll.
+                        <p>
+                            <ul>
+                                <li>  ⚠ Hinweis: Absolut positionierte Elemente ignorieren die float-Eigenschaft!</li>
+                                <li>⚠ Hinweis: Elemente neben einem gefloateten Element fließen um es herum. Um dies zu verhindern, kann die clear-Eigenschaft oder der clearfix-Hack verwendet werden.</li>
+                            </ul>
+                        </p>
+                        <h2>Werte und Beschreibung</h2>
+                        <img src="../Week 02/Übungen/img/float-screenshot.png">
+                        
+                      
+                        
+                        </p>
                     
                     <h2>CSS Grid-Komponenten</h2>
 
@@ -144,7 +175,21 @@
                         </ul>
                     </p>
 
+                    <h2>Grid</h2>
+                    <p>CSS Grid Layout</p>
+                    <p>Das Grid Layout-Modul bietet ein rasterbasiertes Layout-System mit Zeilen und Spalten.<br>
 
+                        Das Grid Layout-Modul ermöglicht es Entwicklern, komplexe Weblayouts einfach zu erstellen.<br>
+                        
+                        Das Grid Layout-Modul erleichtert das Entwerfen einer responsiven Layout-Struktur, ohne float oder positioning zu verwenden.<br>
+                        
+                        Die CSS-Grid-Eigenschaften werden von allen modernen Browsern unterstützt.
+                    </p>
+
+                    <img src="../Week 02/Übungen/img/Grid_screenshot.png">
+                    <img src="../Week 02/Übungen/img/grid erklärung.png">
+                    <p></p>
+                    <img src="../Week 02/Übungen/img/unterschied_grid_flex.png">
 
                 <h2>Z-index</h2>
                 <p>Die z-index-Eigenschaft legt die Stapelreihenfolge eines Elements fest.
