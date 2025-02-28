@@ -31,11 +31,13 @@
 #box02 {
     background-color: lightcoral;
     grid-area: sidebar;
+    
 }
 
 #box03 {
     background-color: lightsalmon;
     grid-area: main;
+    
 }
 
 #box04 {
