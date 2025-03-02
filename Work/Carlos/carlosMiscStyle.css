@@ -1,0 +1,186 @@
+
+
+
+/* Allgemein */
+
+#buttonZ {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Übung: Persona erstellen */
+
+#sheldon {
+    width: 250px;
+    border-radius: 15px;
+}
+
+/* Übung: Moodboard */
+
+.jetBrains {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.square01{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #3e4479;
+    color:bisque;
+    padding: 5px;
+}
+
+.square02{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #c68a72;
+    color:rgb(50, 50, 105);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.square03{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #654f64;
+    color:rgb(226, 226, 229);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.square04{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #c3b8cb;
+    color:rgb(41, 26, 5);
+    margin-left: 5px;
+    padding: 5px;
+}
+
+#moodB{
+    width: 800px;
+    border-radius: 5px;
+}
+
+/* Übung: Layout - GUI */
+
+.form {
+    width: 800px;
+}
+
+.layout {
+    width: 1000px;
+}
+
+/* Übung: Layout - Beispiele */
+
+.layoutBeispiele01 {
+    width: 1200px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Übung: About Me (HTML) */
+
+#container01 {
+
+    margin: 80px;
+    padding: 40px 80px 40px 80px;
+    border-radius: 20px;
+    border: #654f64 5px solid;
+
+    background-color: #ffffff;
+    width:1000px;
+    height: 800px;
+}
+
+#aboutMe {
+    width:250px;
+    border-radius: 50px;
+    float: left;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+#infoMe {
+   margin-top: 40px;
+}
+
+#einführung {
+    margin-top: 50px;
+}
+
+#hobbys {
+    margin-top: 50px;
+}
+
+/* Übung: About Me (CSS) */
+
+.press-start-2p-regular {
+    font-family: "Press Start 2P", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+/* UX/UI Journal Assets */
+
+#bild01 {
+    width: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border:#b58653 2px solid;
+    border-radius: 5px;
+}
+
+#persona01 {
+    width: 650px;
+    margin-bottom: 20px;
+    border:#b58653 5px solid;
+    border-radius: 5px;
+}
+
+#example01 {
+    width: 500px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#farbTheorie {
+    width: 650px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border:#b58653 5px solid;
+    border-radius: 5px;
+}
+
+#grid12{
+    width: 600px;
+    border:#b58653 3px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+/* CSS Journal Assets */
+
+#cheatsheet01 {
+    width: 1000px;
+    border: solid rgb(13, 55, 109) 5px;
+    border-radius: 10px;
+}
+
+/* Unlocated
+
+.codePic {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+#blau {
+    color:blue;
+}
+
+*/

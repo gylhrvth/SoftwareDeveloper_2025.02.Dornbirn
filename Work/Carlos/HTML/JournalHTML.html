@@ -1,38 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Kurs/common.css">
-    <link rel="stylesheet" href="../carlos.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
     <script src="../../../Kurs/common.js" defer></script>
     <title>HTML Journal</title>
     
 </head>
-<body class="bodystyle">
+<body id="bodyStyle">
     <div id="mainContainer">
-    <h1 class="color01">Lernerfolgsbuch: HTML Journal</h1>
+    <h1 class="textColor01">Lernerfolgsbuch: HTML Journal</h1>
 
-    <h3 class="color01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-    <h3 class="color01">▷ <a href="#day05">FR 21/02/25</a>: HTML Dokument (01)</h3>
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day05">FR 21/02/25</a>: HTML Dokument (01)</h3>
     </div>
     <br>
     
     <h2 id="day05">Freitag, 21. Februar 2025</h2>
 
-    <h3 class="color01">HTML Dokument</h3>
+    <h3 class="textColor01">HTML Dokument</h3>
 
     <h4>HTML Basics</h4>
 
     <ul>
 
-    <li class="color02"><strong>Was ist HTML?</strong></li>
+    <li class="textColor02"><strong>Was ist HTML?</strong></li>
     <p>HTML (HyperText Markup Language) ist die Standardprogrammiersprache zur Strukturierung von Webseiten und deren Inhalte. </p>
     <p>Sie definiert die grundlegende Struktur einer Webseite durch sogenannte Tags (z. B. &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;), die verschiedene Elemente wie Überschriften, Absätze, Links, Bilder oder Listen darstellen.</p>
     <p>HTML alleine reicht nicht aus, um eine ansprechende Webseite zu gestalten oder interaktive Elemente zu erstellen. Dafür werden CSS (für das Design) und JavaScript (für die Funktionalität) verwendet.</p>
 
-    <li class="color02"><strong>Einfache Struktur:</strong></li>
+    <li class="textColor02"><strong>Einfache Struktur:</strong></li>
 
     <p>->(Example by Gyula):</p>
 
@@ -61,7 +61,7 @@
     
     
     
-    <li class="color02"><strong>HTML Hauptfunktion:</strong></li>
+    <li class="textColor02"><strong>HTML Hauptfunktion:</strong></li>
     <p>Struktur und den Inhalt einer Webseite zu definieren. Dazu gehören:</p>
     <p>• Textelemente: Überschriften -> &lt;h1&gt; bis &lt;h6&gt; / Absätze -> &lt;p&gt; / Listen -> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; (Wichtiger Hinweis: H1 sollte man nur einmal pro Seite verwenden!)</p>
 	<p>• Multimedia-Inhalte (Bilder, Videos, Audio)</p>
@@ -70,16 +70,16 @@
 	<p>• Semantische Struktur (z. B. &lt;header&gt;, &lt;article&gt;, &lt;footer&gt; für eine bessere Verständlichkeit)</p>
 
 
-    <li class="color02"><strong>Was sind Tags?</strong></li>
+    <li class="textColor02"><strong>Was sind Tags?</strong></li>
     <p>Tags sind die Bausteine von HTML. Sie werden verwendet, um Elemente in einer Webseite zu definieren und zu strukturieren. Ein Tag besteht aus einem Namen, der in spitzen Klammern (&lt;&gt;) steht.</p>
 
-    <li class="color02"><strong>Arten von Tags</strong></li>
+    <li class="textColor02"><strong>Arten von Tags</strong></li>
     <p>• Öffnende und schließende Tags: Die meisten Tags bestehen aus einem öffnenden Tag, einem Inhalt und einem schließenden Tag. <br> Beispiel: &lt;p&gt;Das ist ein Absatz.&lt;/p&gt;</p>
     <p>• Selbstschließende Tags: Einige Tags benötigen keinen separaten Schlusstag. Sie schließen sich selbst.<br> Beispiel: &lt;img src="bild.jpg" alt="Ein Beispielbild"&gt;
     <p>• Attribute in Tags: Tags können Attribute enthalten, die zusätzliche Informationen bereitstellen. <br> Beispiel: &lt;a href="https://example.com"&gt;Besuche die Webseite&lt;/a&gt;</p>
     
     
-    <li class="color02"><strong>Welche grundlegenden HTML-Tags gibt es und wofür werden sie verwendet?</strong></li>
+    <li class="textColor02"><strong>Welche grundlegenden HTML-Tags gibt es und wofür werden sie verwendet?</strong></li>
     
     <p><strong>Struktur-Tags:</strong></p>
     <ul style="list-style: square;">
@@ -134,15 +134,15 @@
     </ul>
 
 
-    <li class="color02"><strong>Wie erstellt man links in HTML?</strong></li>
+    <li class="textColor02"><strong>Wie erstellt man links in HTML?</strong></li>
     <p>Mit dem &lt;a&gt; Tag (anchor Tag). Das wichtigste Attribut ist href, das die Ziel-URL angibt. Siehe Beispiel oben (Attribute in Tags).</p>
 
-    <li class="color02"><strong>Wie fügt man Bilder in eine HTML-Seite ein?</strong></li>
+    <li class="textColor02"><strong>Wie fügt man Bilder in eine HTML-Seite ein?</strong></li>
     <p>Bilder werden in HTML mit dem &lt;img&gt; Tag eingefügt. Dieser Tag ist selbstschließend, das heißt, er benötigt kein separates Schlusstag (&lt;/img&gt;).</p>
     <p>Struktur: Attribute -> src (source) -> Gibt den Pfad zur Bilddatei an (lokal oder URL). / Attribute -> alt (alternative Beschreibung). Beispiel: &lt;img src="https://example.com/bild.jpg" alt="Ein Bild aus dem Internet"&gt;</p>
     
 
-    <li class="color02"><strong>Wichtigste HTML Bestandteile:</strong></li>
+    <li class="textColor02"><strong>Wichtigste HTML Bestandteile:</strong></li>
     
     <p><ol>
         <li>&lt;!DOCTYPE html&gt;: Definiert das Dokument als HTML5.</li>
@@ -156,7 +156,7 @@
         <li>&lt;footer&gt;: Fußbereich (z. B. Copyright, Kontaktinformationen).</li>  
     </ol></p>
 
-    <li class="color02"><strong>Was sind HTML-Attribute und wie werden sie verwendet?</strong></li>
+    <li class="textColor02"><strong>Was sind HTML-Attribute und wie werden sie verwendet?</strong></li>
     <p>HTML-Attribute sind zusätzliche Informationen, die an HTML-Elemente angehängt werden, um deren Verhalten oder Darstellung zu steuern. Sie bestehen aus einem Namen und einem Wert, die im öffnenden Tag des Elements angegeben werden.</p>
     <p>-> Häufige HTML <strong>Attribute</strong>:</p>
     <table>
@@ -217,14 +217,14 @@
 
     </table>
 
-    <li class="color02"><strong>Wie kann man CSS in HTML integrieren?</strong></li>
+    <li class="textColor02"><strong>Wie kann man CSS in HTML integrieren?</strong></li>
     <ol>
     <li><p><strong>Inline</strong>-CSS: CSS wird direkt im HTML-Tag über das style-Attribut angewendet. Dies ist die einfachste Methode, eignet sich jedoch nur für sehr kleine Anpassungen.</li></p>
     <li><p><strong>Internes</strong> CSS (im &lt;head&gt;-Bereich): CSS kann innerhalb des &lt;style&gt;-Tags im &lt;head&gt;-Bereich der HTML-Seite eingebunden werden. Dies ermöglicht eine zentralisierte Gestaltung für die gesamte Seite.</p></li>
     <li><p><strong>Externe</strong> CSS-Datei: CSS kann auch in einer separaten Datei gespeichert und über das &lt;link&gt;-Tag in das HTML-Dokument eingebunden werden. Diese Methode ist die beste, wenn man viele Seiten hat, die dasselbe Design verwenden sollen, da sie die Wartung erleichtert.</p></li>
     </ol>
-    <p>👉🏻 <a href="./Beispiele/insertCSS.html">Beispiele für CSS-Integration</a></p>
-    <li class="color02"><strong>Das display-Attribut:</strong></li>
+    <p>👉🏻 <a href="../CSS/CSS Basics/Beispiele/insertCSS/insertCSS.html">Beispiele für CSS-Integration</a></p>
+    <li class="textColor02"><strong>Das display-Attribut:</strong></li>
     <p>In CSS wird das display-Attribut verwendet, um zu bestimmen, wie ein HTML-Element auf der Seite angezeigt wird. Es definiert das Verhalten eines Elements im Layout, insbesondere, ob es als Block-, Inline- oder Flex-Element dargestellt wird und wie es mit anderen Elementen interagiert.</p>
     <p>Häufige Werte für das display-Attribut:</p>
     <ul>
@@ -238,7 +238,7 @@
 
     <hr>
 
-    <h4><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./aboutMe.html">About Me (v01)</a>"</em></span></h4>
+    <h4><span class="textColor01"><strong>‼️➡️ Aufgabe: </strong></span><span class="textColor02"><em>"<a href="./aboutMe.html">About Me (v01)</a>"</em></span></h4>
     <hr>
     <button id=buttonZ onClick="(() => window.location.href = '../../../Kurs/Aufgaben.html')()">Zurück</button>
 </body>
