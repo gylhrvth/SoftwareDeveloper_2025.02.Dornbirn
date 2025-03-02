@@ -1,0 +1,15 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    max-height: 50px;
+    background-color: aqua;
+}
+
+.menuLeft > img{
+    /*border: solid 10px red;*/
+    max-height:80px;
+}
+
+.menuRight > img{
+    max-height: auto;
+}
