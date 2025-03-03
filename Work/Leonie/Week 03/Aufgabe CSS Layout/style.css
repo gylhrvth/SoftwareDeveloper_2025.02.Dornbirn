@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: aqua;
+}
+
+.blueline {
+    background-color: blue;
+    height: 4px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-item > img {
+    height: 45px;
+    margin-right: 80px;
+}
+
+.header-item {
+    padding: 10px;
+    padding-left: 20px;}
+.header-item > p {
+    margin: 0;
+}
+
+.borderleft-header {
+    border-left: solid 1px black;
+}
+
+.borderright-header {
+    border-right: solid 1px black;
+}
+
+#header-content {
+    font-size: 25px;
+
+}
+
+.notfall-container {
+    display: flex;
+    gap: 1px;
+    justify-content: right;
+}
+
+.notfall-item {
+    padding: 0 20px;
+    background-color: blue;
+}
+
+.notfall-container > .notfall-item:first-child {
+    background-color: red;
+}
+
+.notfall-item > img {
+    height: 30px;
+}
+
+.inTheMiddle{
+    width: 46%
+}
+
+.flex-container > .right{
+    display: flex;
+    gap: 1px;
+}
+
+.photo-top {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+    width: 100%;
+}
+
+#pfeil {
+    height: 9px;
+}
+.pfad > a {
+    text-decoration: none;
+}
+
+.line {
+    margin-top: 50px;
+    border: solid 1px black;
+}
