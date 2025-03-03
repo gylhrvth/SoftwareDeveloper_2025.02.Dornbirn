@@ -84,7 +84,7 @@ body {
     display: grid;
     column-gap: 50px;
     row-gap: 50px;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     padding: 10px;
 }
 
