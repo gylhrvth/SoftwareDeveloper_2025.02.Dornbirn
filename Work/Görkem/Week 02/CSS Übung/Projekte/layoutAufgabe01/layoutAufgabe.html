@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Layout Übung</title>
     <link rel="stylesheet" href="../../../../Kurs/common.css">
     <script src="./common.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
@@ -18,17 +18,17 @@ header {
 .menuLeft {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 .menuLeft > img{
-    width: 100px;
+    width: 120px;
 }
 
 .menuLeft > a{
     font-size: 2vw;
     text-decoration: none;
-    background-color: #D6DDE1;
+    color: #D6DDE1;
 
 }
 
@@ -37,10 +37,78 @@ header {
 
 }
 
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #647E8D;
+    padding: 10px 0;
+
+}
 
 
+footer > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+
+}
 
 
+.footerleft { 
+    justify-self: start;
+    align-self: center;
+}
+
+.footerLeft > a { 
+    margin-left: 20px;
+}
+
+
+.footerCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+
+.footerRight {
+    justify-self: end; 
+    align-self: center;
+    margin-right: 20px;
+    color: #D6DDE1;
+}
+
+
+.footerCenter>img {
+    width: 30px;
+    padding: 5px;
+}
+
+
+main {
+    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 60%;
+    justify-self: center;
+    overflow-y: auto;
+    
+}
+
+
+main > div> img {
+    float: right;
+    width: 420px;
+}
+
+
+main > div {
+    grid-area: 1 / 2 / 2 / 3;
+}
 
 
 
@@ -83,7 +151,7 @@ header {
         <div class="footerRight">
             <h4>Kontakt</h4>
             <p>+43 123 456 789</p>
-            <p>Färbergasse 15, Dornbrin</p>
+            <p>Färbergasse 15, Dornbirn</p>
         </div>
     </div>
 </footer>
