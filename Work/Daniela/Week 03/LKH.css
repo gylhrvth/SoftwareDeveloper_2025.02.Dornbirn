@@ -1,16 +1,28 @@
-
-
-navbar{
-    display: flex;
-    background-color: blue;
-    justify-content: space-between;
-
+header{
+    background-color: rgb(193, 193, 255);
 }
 
-.navbarLeft >img{
+/*Obere Teil des Header*/
+
+.headerUpperr{
+    display: flex;
     
 }
 
-.navbarRight{
+
+
+/* Unterer Teil des Header*/
+.headerBottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerLeft > img{
+    width: 360px;
+}
+
+.headerRight{
 
 }
+
