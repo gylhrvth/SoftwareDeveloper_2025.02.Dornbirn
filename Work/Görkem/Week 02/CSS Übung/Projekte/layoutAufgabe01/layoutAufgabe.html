@@ -8,7 +8,7 @@
     <script src="./common.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
     <style>
-    
+
 header {
     display: flex;
     background-color: #647E8D;
@@ -38,12 +38,12 @@ header {
 }
 
 footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
-    left: 0;
-    z-index: 1000;
+    width: 100%;
     background-color: #647E8D;
     padding: 10px 0;
+    margin-top: 20px;
 
 }
 
@@ -52,6 +52,9 @@ footer > div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+    place-items: center;
+    justify-items: stretch;
+   
 
 }
 
@@ -60,6 +63,7 @@ footer > div {
     justify-self: start;
     align-self: center;
 }
+
 
 .footerLeft > a { 
     margin-left: 20px;
@@ -95,22 +99,19 @@ main {
     grid-template-rows: 1fr;
     width: 60%;
     justify-self: center;
-    overflow-y: auto;
-    
-}
+   
 
+}
 
 main > div> img {
-    float: right;
+    float: right; 
     width: 420px;
+    margin-left: 20px;
 }
-
 
 main > div {
     grid-area: 1 / 2 / 2 / 3;
 }
-
-
 
 </style>
 </head>
