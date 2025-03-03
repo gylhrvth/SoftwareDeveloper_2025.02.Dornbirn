@@ -1,88 +1,82 @@
 body {
-    display: grid;
-    grid-template-rows: auto 1fr auto; /* Ändere die Zeilenhöhen */
-    grid-row-gap: 50px;
-
+    margin: 0;
 }
 
 header {
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    top: 0;
-    max-height: 200px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(100,123,139);
 }
 .menuLeft {
-    grid-column: span 9;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: blue;
-    top: 0;
-    width: 100%;
-    justify-content: left;
-    text-align: left;
-    padding: 20px;
+    display: flex;
+    gap: clamp(20px, 4vw, 200px);
+    align-items: center;
 }
 
 div.menuLeft > img {
-    width: 100px;
+    width: 150px;
 }
 
 div.menuLeft > a {
-    background-color: gold;
-    text-align: center;
-    padding: 40px;
     text-decoration: none;
+    font-size: 40px;
+    color: #D9DFE3;
 }
 
 .menuRight {
-    grid-column: span 1;
-    background-color: blueviolet;
-    top: 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.menuRight > div > img {
+    filter: invert(1);  
 }
 
 main {
-    grid-row: 2;
-    text-align: center;
-    justify-content: center;
-    
+    margin-left: 20%;
+    margin-right: 20%;    
 }
 
 main > div > img {
     float: right;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 40px;
+    filter: hue-rotate(60deg) invert(1);
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer > div {
-    background-color: darkslategrey;
-    grid-row: 3;
+    background-color: rgb(100,123,139);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: center;
+}
+
+footer > div > div > img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
 }
 
 .footerLeft {
-    background-color: chartreuse;
-    margin-top: 20%;
-    margin-left: 20%;
+    padding: 20px;
     justify-self: left;
-    grid-column: span 3;
+    color: #0402EE;
+
 }
 
 .footerCenter {
-    background-color: crimson;
     width: 100px;
-    text-align: center;
-    grid-column: span 4;
     justify-self: center;
-
 }
 
 .footerRight {
-    background-color: darkcyan;
-    justify-self: center;
-    grid-column: span 3;
+    padding: 20px;
+    justify-self: right;
+    color: #D9DFE3;
 }
