@@ -1,7 +1,7 @@
 body {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 10px;
+    grid-template-rows: auto 1fr auto; /* Ändere die Zeilenhöhen */
+    grid-row-gap: 50px;
 
 }
 
@@ -11,7 +11,7 @@ header {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
     top: 0;
-    max-height: 100px;
+    max-height: 200px;
 }
 .menuLeft {
     grid-column: span 9;
@@ -43,16 +43,46 @@ div.menuLeft > a {
     text-align: center;
 }
 
+main {
+    grid-row: 2;
+    text-align: center;
+    justify-content: center;
+    
+}
+
+main > div > img {
+    float: right;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+footer > div {
+    background-color: darkslategrey;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
 .footerLeft {
     background-color: chartreuse;
+    margin-top: 20%;
+    margin-left: 20%;
+    justify-self: left;
+    grid-column: span 3;
 }
 
 .footerCenter {
     background-color: crimson;
     width: 100px;
+    text-align: center;
+    grid-column: span 4;
+    justify-self: center;
 
 }
 
 .footerRight {
     background-color: darkcyan;
+    justify-self: center;
+    grid-column: span 3;
 }
