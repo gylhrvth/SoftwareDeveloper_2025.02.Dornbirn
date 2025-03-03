@@ -1,2 +1,101 @@
 
+body {
+    margin: 0;
+    overflow-y: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #647E8D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
+.menuLeft {
+    
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.menuLeft > img{
+    width: 130px;
+    display: block;
+}
+
+.menuLeft > a {
+    display: block;
+    text-decoration: none;
+    font-size: 2vw;
+    color: rgb(222, 222, 222);
+    
+
+}
+
+.menuRight > div > img {
+    
+    filter: invert(1);
+    margin-right: 30px;
+    width: 100px;
+}
+
+main {
+    flex: 1;
+    
+    overflow-y: auto;
+}
+
+main>div {
+    
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+main>div>img {
+    float: right;
+    width: 350px;
+}
+
+footer {
+    display: flex;
+    background-color: #647E8D;
+    color: rgb(222, 222, 222);
+    
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer>div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+}
+
+.footerCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;  
+}
+
+.footerCenter>img {
+    width: 12%;
+} 
+
+.footerRight>p {
+    line-height: 0.5;
+}
+
+
+
+
+
+/* color.adobe.com */
 
