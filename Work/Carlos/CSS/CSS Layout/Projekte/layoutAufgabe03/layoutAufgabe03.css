@@ -1,4 +1,8 @@
 
+body {
+    overflow-y: hidden;
+}
+
 
 header {
     position: sticky;
@@ -36,10 +40,15 @@ header {
     align-self: center;
 }
 
+.menuRight>div>img {
+    filter: invert(1);
+}
+
 footer {
     position: sticky;
-    bottom: 0;
     z-index: 1000;
+    bottom: 0;
+    width: 100%;
     background-color: rgb(117, 138, 158);
 }
 
