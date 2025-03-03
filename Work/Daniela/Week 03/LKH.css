@@ -1,0 +1,16 @@
+
+
+navbar{
+    display: flex;
+    background-color: blue;
+    justify-content: space-between;
+
+}
+
+.navbarLeft >img{
+    
+}
+
+.navbarRight{
+
+}
