@@ -3,192 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./layoutStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <title>Wilkommen im Bundesgymnasium</title>
-    <link rel="stylesheet" href="../../../../Kurs/common.css">
-    <script src="./common.js" defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
-    <style>
-body {
-    display: flex;
-    flex-direction: column;
-    font-family: "Open Sans", sans-serif;
-    margin: 0;
-    height: 100%;
-
-}
-
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 40px;
-    height: 60px;
-}
-
-.header1 {
-    display: flex;
-    align-items: center;
-
-}
-
-.header1 > div {
-    align-items: center;
-    display: flex;
-
-}
-
-.header1 > div > a {
-    font-size: 0.9vw;
-    padding-left: 20px;
-    padding-right: 20px;
-
-}
-
-.header1 > div > img {
-    width:25px;
-    height: 25px;
-
-}
-
-.header2 {
-    background-color: #006462;
-    position: sticky;
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    height: 75px;
-    top: 0;
-    z-index: 1000;
-
-}
-
-.header1Right {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.header2Right > p {
-    display: block;
-    font-size: 0.9vw;
-    padding-right: 20px;
-    padding-left: 10px;
-    text-decoration: none;
-    color: white;
-
-}
-
-.header2 > div> img {
-    width: 80px;
-}
-
-.header2Left {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-}
-
-.header2Left > img {
-    max-width: 92px;
-    z-index: 1000;
-    margin-top: -62%;
-    height: 132px;
-    margin-left: 20px;
-}
-
-.sideMenu {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-
-}
-
-.sideMenu > p {
-    background-color: #006462;
-    width: 450px;
-    margin-left: 0px;
-    padding: 20px;
-    color: white;
-}
-
-.sideMenu > p> a {
-    text-decoration: none;
-    color: white;
-}
-
-.mainContent {
-    flex:1;
-   
-}
-
-.main1 {
-    position: relative;
-    width: 100%;
-}
-
-.main1 > img {
-    width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</style>
 </head>
 <body>
 
-    <div id="header1">
-        <div class="#"><img src="/Work/Görkem/Week 03/CSS/CSS Layout/Projekte/icons/phone.png"><p>05572 22364</p></div>
-        <div class="#"><img src="/Work/Görkem/Week 03/CSS/CSS Layout/Projekte/icons/email.png"><p>sekretariat@bgdornbirn.at</p></div>
-        <div class="#"><img src="/Work/Görkem/Week 03/CSS/CSS Layout/Projekte/icons/placeholder.png"><p>Realschulstraße 3, 6850 Dornbirn</p></div>
-    </div>
+    <div id="header01">
+        <div class="header01"><img src="./icons/phone.png"><p>05572 22364</p></div>
+        <div class="header01"><img src="./icons/email.png"><p>sekretariat@bgdornbirn.at</p></div>
+        <div class="header01"><img src="./icons/placeholder.png"><p>Realschulstraße 3, 6850 Dornbirn</p></div>
     
-    <div id="header2">
-        <div id="header2Left">
-            <img src="/Work/Görkem/Week 03/CSS/CSS Layout/Projekte/img/bgDornbirn.jpg">
+    </div>
+
+    <div id="header02">
+        <div id="header02Left">
+            <img src="./img/bgDornbirn.jpg">
         </div>
 
-        <div id="header2Right">
+        <div id="header02Right">
+            <a href="https://bgdornbirn.at/">STARTSEITE</a>
             <a>SCHULE</a>
             <a>MENSCHEN</a>
             <a>SCHULLEBEN</a>
             <a>TERMINE</a>
-            <a>WEBUNTIS</a>
+            <a>WEBUNITS</a>
             <a>SERVICE</a>
-            <a id="kontakt">Kontakt & Öffnungszeiten & FAQ</a>
+            <a id="kontaktBox">Kontakt & Öffnungszeiten & FAQ</a>
             <a>Suche</a>
         </div>
     </div>
 
     <div id="mainContent">
 
+        <div class="slideshow" id="main01">
+      
 
 
-        
+ 
