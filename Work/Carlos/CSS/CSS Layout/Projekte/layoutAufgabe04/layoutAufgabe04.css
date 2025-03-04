@@ -6,6 +6,7 @@ body {
     font-family: "Open Sans", sans-serif;
     margin: 0;
     height: 100%;
+    background-color: white;
 }
 
 #header01 {
@@ -131,7 +132,7 @@ body {
 
 h1 {
     font-family: "GlacialIndifference";
-    font-weight: 600;
+    font-weight: bold;
     line-height: 1.2em;
     font-size: 36px;
     color: #006462;
@@ -147,6 +148,12 @@ p {
     font-family: 'GlacialIndifference';
     src: url("./assets/fonts/glacial-indifference/GlacialIndifference-Regular.otf") format('opentype');
     font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url("./assets/fonts/glacial-indifference/GlacialIndifference-Bold.otf") format('opentype');
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -185,6 +192,7 @@ p {
 
 #main02Inner {
     
+
     width: 80%;
 }
 
@@ -244,21 +252,17 @@ a#kontaktBox {
 }
 
 #main04 {
-
+display: block;
 background-color: #006462;
 width: 100%;
 margin-bottom: 100px;
-
 }
 
 #marginMain04 {
-    
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 5%;
     margin-bottom: 5%;
-    
-
 }
 
 #headerMain04 {
@@ -320,10 +324,17 @@ margin-bottom: 100px;
 }
 
 #main05 {
+    
+    background-color: white;
+    width: 100%;
+}
+
+#main05Margin {
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 5%;
     margin-bottom: 5%;
+    
 }
 
 #headerMain05>h2 {
@@ -364,4 +375,14 @@ margin-bottom: 100px;
     margin-right: 20%;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+.gridContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    height: auto;
+    
 }
