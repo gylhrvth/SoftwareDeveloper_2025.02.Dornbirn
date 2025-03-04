@@ -7,8 +7,7 @@ body {
     height: 100%;
 }
 
-.header1 {
-    
+#header01 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -16,12 +15,12 @@ body {
     height: 62px;
 }
 
-.header1 > div {
+#header01>div {
     display: flex;
     align-items: center;
 }
 
-.header1 > div > p {
+#header01>div>p {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 0.9vw;   
@@ -75,7 +74,6 @@ body {
 }
 
 
-
 #header02>div>img {
     width: 80px;
 }
@@ -84,3 +82,17 @@ body {
     flex:1;
    
 }
+
+
+#main01 {
+    position: relative;
+    width: 100%;
+}
+
+#main01 > img {
+    width: 100%;
+
+}
+
+
+
