@@ -99,7 +99,7 @@ header {
 .line {
     position: absolute;
     margin-top: 50px;
-    border: solid 1px black;
+    border: solid 1px hsl(0, 0%, 90%);
     width: 1040.98px;
     z-index: 1;
 }
@@ -134,12 +134,43 @@ header {
     margin-top: 20px;
 }
 
-.grid-item {
+.gridcontent-item {
     background-color: lightgray;
     padding: 10px;
     max-height: 563px;
 }
 
-.grid-item > img {
+.gridcontent-item > img {
+    max-width: 100%;
+}
+
+.lineb-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 6em;
+}
+
+.lineb {
+    position: absolute;
+    margin-top: 50px;
+    border: solid 1px hsl(0, 0%, 90%);
+    width: 1040.98px;
+    z-index: 1;
+}
+
+.gridzertifikate {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gridzertifikate-item {
+    border: solid 1px hsl(0, 0%, 90%);
+    padding: 10px;
+}
+
+.gridzertifikate-item > img {
     max-width: 100%;
 }
