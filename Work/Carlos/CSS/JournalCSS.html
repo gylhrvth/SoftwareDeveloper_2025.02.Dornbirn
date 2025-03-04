@@ -15,6 +15,7 @@
 <h1 class="textColor01">Lernerfolgsbuch: CSS Journal</h1>
 
 <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+<h3 class="textColor01">▷ <a href="#day13">MI 05/03/25</a>: CSS (Transitions & Animations)</h3>
 <h3 class="textColor01">▷ <a href="#day12">DI 04/03/25</a>: CSS (Layout)</h3>
 <h3 class="textColor01">▷ <a href="#day11">MO 03/03/25</a>: CSS (Layout)</h3>
 <h3 class="textColor01">▷ <a href="#day10">FR 28/02/25</a>: CSS (Layout)</h3>
@@ -22,6 +23,163 @@
 <h3 class="textColor01">▷ <a href="#day08">MI 26/02/25</a>: CSS (Layout)</h3>
 <h3 class="textColor01">▷ <a href="#day07">DI 25/02/25</a>: CSS (Basics)</h3>
 </div>
+
+<br>
+
+<h2 id="day13">Mittwoch, 05. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Transitions & Animations</h4>
+<ul>
+    <h4 class="textColor01">CSS Transform</h4>
+
+    <li class="textColor02"><strong>Was ist CSS Transform?</strong></li>
+    <p>Es ist eine CSS-Eigenschaft, die es ermöglicht, HTML-Elemente visuell zu verändern, ohne ihre tatsächliche Position im Dokumentenfluss zu ändern. Sie wird verwendet, um Elemente zu drehen, skalieren, verschieben oder kippen.</p>
+    <li class="textColor02"><strong>Welche Transform Eigenschaften sind üblich und wie verwendet man sie?</strong></li>
+    <ul>
+        <li><p>scale (x,y): Vergrößert oder verkleinert das Element.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: scale(1.5, 2);
+                  }
+            </code>
+            </div>
+        </div>
+
+        <li><p>translate (x,y): Verschiebt ein Element entlang der X- und Y-Achse.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: translate(50px, 100px);
+                  }
+            </code>
+            </div>
+        </div>
+        <li><p>rotate(angle): Dreht das Element im Uhrzeigersinn um den angegebenen Winkel.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: rotate(45deg);
+                  }
+            </code>
+            </div>
+        </div>
+        
+        <li><p>skew(x-angle, y-angle): Kippt das Element entlang der X- oder Y-Achse.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: skew(20deg, 10deg);
+                  }
+            </code>
+            </div>
+        </div>
+    </ul>
+
+    <br>
+    <br>
+
+    <li class="textColor02"><strong>Transform-Beispiele:</strong></li>
+    <p>-> <a href="./CSS Transitions & Animations/Beispiele/Transform/transformKI01.html">Interaktives Beispiel mit Rotation / Scaling / Translation / Skew</a></p>
+    
+    <br>
+
+    <h4 class="textColor01">CSS Transitions</h4>
+
+    
+        <li class="textColor02"><strong>Was sind CSS Transitions?</strong></li>
+        <p>CSS Transitions sind eine Möglichkeit, Änderungen von CSS-Eigenschaften sanft und animiert ablaufen zu lassen, anstatt dass sie sofort und abrupt passieren. Damit kann man z. B. eine Farbänderung, Größenveränderung oder Positionierung flüssig gestalten.</p>
+
+        <li class="textColor02"><strong>Wie kann man CSS Transitions verwenden?</strong></li>
+        <p>Syntax in CSS:</p>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                transition: property duration timing-function delay;
+            </code>
+            </div>
+        </div>
+        <br>
+        <ul>
+            <li><p>property → Die zu animierende Eigenschaft (z. B. background-color, opacity, transform).</p></li>
+            <li><p>duration → Wie lange die Animation dauert (z. B. 0.5s, 1s).</p></li>
+            <li><p>timing-function (optional) → Der Animationsverlauf (ease, linear, ease-in-out, etc.).</p></li>
+            <li><p>delay (optional) → Verzögerung vor Start der Animation.</p></li>
+        </ul>
+        <br>
+        <li class="textColor02"><strong>Transition-Beispiele:</strong></li>
+        <br>
+        <ul>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition01.html">Farbänderung mit Hover</a></li><br>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition02.html">Größe & Drehung ändern</a></li><br>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition03.html">Position & Größe & Form ändern</a></li>
+        </ul>
+
+        <br>
+        <br>
+
+        <li class="textColor02"><strong>Was ist die timing-function?</strong></li>
+        <p>Die timing-function in CSS bestimmt, wie eine Transition oder Animation im Laufe der Zeit abläuft. Sie steuert die Geschwindigkeit der Änderung, indem sie festlegt, ob sie gleichmäßig, langsam oder in einem bestimmten Muster erfolgt.</p>
+        <p>-> Die wichtigsten timing-function-Werte:</p>
+        <ul>
+            <li><p>linear: Die Animation verläuft gleichmäßig, ohne Beschleunigung oder Verzögerung.</p></li>
+            <li><p>ease (Standard): Die Animation startet langsam, wird schneller und endet langsam.</p></li>
+            <li><p>ease-in: Langsamer Start, dann schneller.</p></li>
+            <li><p>ease-out: Schneller Start, dann langsamer.</p></li>
+            <li><p>ease-in-out: Langsamer Start und langsames Ende.</p></li>
+                
+            
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Timing-function -> <a href="./CSS Transitions & Animations/Beispiele/Transitions/timingFunction01.html"></strong>Interaktives Beispiel</a>
+        </li>
+        <br>
+        
+        <h4 class="textColor01">CSS Animations</h4>
+        <li class="textColor02"><strong>Was sind CSS animations?</strong></li>
+        <p>Mit CSS-Animationen kann man Elemente ohne JavaScript beweglich und dynamisch machen. Im Gegensatz zu Transitions sind Animationen komplexer und können mehrere Schritte enthalten.</p>
+        <li class="textColor02"><strong>Was sind @keyframes?</strong></li>
+        
+        <p>@keyframes ist die zentrale Technik für CSS-Animationen.
+        <p>Damit kann man festlegen, wie sich ein Element über die Zeit verändert – zum Beispiel Farbe, Position, Größe oder Drehung.</p>
+        <p>Syntax on CSS:</p>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                @keyframes animationName {
+                    0% { /* Starting state */ }
+                    50% { /* Midway state */ }
+                    100% { /* Final state */ }
+                }
+            </code>
+            </div>
+        </div>
+
+        <ul>
+            <li><p>0% represents the starting point of the animation.</p></li>
+            <li><p>100% represents the end point.</p></li>
+            <li><p>You can also define multiple percentage points (e.g., 25%, 75%) for more detailed control over the animation’s progression.</p></li>
+        </ul>
+
+        <br>
+
+        <li class="textColor02"><strong>Animation-Beispiel:</strong></li><br>
+        <p>-> <a href="./CSS Transitions & Animations/Beispiele/Animations/animations01.html">Multiple Keyframes</a></p>
+
+
+
+        
+    
+
+
+</ul>
 
 <br>
 
