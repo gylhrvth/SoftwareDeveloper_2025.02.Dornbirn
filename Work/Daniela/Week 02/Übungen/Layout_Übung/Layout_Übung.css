@@ -1,15 +1,112 @@
+body{
+    margin: 0;
+}
+
 header{
+    display: flex;                          /*Hier wird der Header definier*/
+    justify-content:space-between;
+    background-color: rgb(90, 120, 142);
+    
+}
+
+.menuLeft{                  /**/
+    display: flex;
+    align-items: center;
+    gap: 40px;              /*abstand zwischen Links*/
+    
+    
+}
+.menuLeft > a {                 /*hier werden die Links im Header definiert*/
+    color: white;
+    font-size: clamp(12px, 3.5vw, 48px);
+    text-decoration: none;      /*unterstrichen weg*/
+
+    
+}
+
+
+.menuLeft > img{ 
+    max-height:130px;           /*grösse des img*/
+
+    
+}
+
+/*.menuRight > img{
+    height: auto;
+}
+*/
+.menuRight>div>img{
+    width: 90px;
+    filter: grayscale(100%) brightness(1000%);              /*Hier wird die Farbe des img gändert*/
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+
+main{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12em;
+}
+
+main > div {
+    width: clamp(200px, 80vw, 1200px);      /*max:200px breite/höchstens:1200px breite/ optimal 80% breite - für Text*/  
+}
+
+main > div > img{
+    
+    float: right;
+    max-height: 350px;
+    margin-left: 20px;
+   
+}
+
+
+
+
+
+footer{
+    background-color: rgb(90, 120, 142);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer > div{                           /* Hier wird der inhalt des Fooder definiert*/
     display: flex;
     justify-content: space-between;
-    max-height: 50px;
-    background-color: aqua;
+    padding: 0 25px;
 }
 
-.menuLeft > img{
-    /*border: solid 10px red;*/
-    max-height:80px;
+
+.footerLeft > a{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+    
+
+.footerCenter > img{
+    display: block;
+    width: 30px;
+    height: auto;
+    visibility: visible;
+    margin: 10px;
 }
 
-.menuRight > img{
-    max-height: auto;
+.footerRight{
+    color: white;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+.footerRight > h4{
+margin-bottom: 20px;
+}
+
+.footerRight > p{
+    margin: 0;
+    
 }

@@ -1,0 +1,28 @@
+header{
+    background-color: rgb(193, 193, 255);
+}
+
+/*Obere Teil des Header*/
+
+.headerUpperr{
+    display: flex;
+    
+}
+
+
+
+/* Unterer Teil des Header*/
+.headerBottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerLeft > img{
+    width: 360px;
+}
+
+.headerRight{
+
+}
+
