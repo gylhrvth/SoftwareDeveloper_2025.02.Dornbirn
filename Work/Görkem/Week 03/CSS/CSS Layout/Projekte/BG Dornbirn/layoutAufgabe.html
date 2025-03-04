@@ -37,7 +37,7 @@ body {
 
 }
 
-.header1 > div > p {
+.header1 > div > a {
     font-size: 0.9vw;
     padding-left: 20px;
     padding-right: 20px;
@@ -88,8 +88,51 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    
+
 }
+
+.header2Left > img {
+    max-width: 92px;
+    z-index: 1000;
+    margin-top: -62%;
+    height: 132px;
+    margin-left: 20px;
+}
+
+.sideMenu {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+
+}
+
+.sideMenu > p {
+    background-color: #006462;
+    width: 450px;
+    margin-left: 0px;
+    padding: 20px;
+    color: white;
+}
+
+.sideMenu > p> a {
+    text-decoration: none;
+    color: white;
+}
+
+.mainContent {
+    flex:1;
+   
+}
+
+.main1 {
+    position: relative;
+    width: 100%;
+}
+
+.main1 > img {
+    width: 100%;
+}
+
 
 
 
@@ -143,6 +186,8 @@ body {
             <a>Suche</a>
         </div>
     </div>
+
+    <div id="mainContent">
 
 
 
