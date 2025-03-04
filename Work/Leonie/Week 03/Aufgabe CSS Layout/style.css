@@ -61,11 +61,11 @@ header {
 }
 
 .notfall-item > img {
-    height: 30px;
+    height: 20px;
 }
 
 .inTheMiddle{
-    width: 46%
+    max-width: 1040.98px;
 }
 
 .flex-container > .right{
@@ -80,6 +80,10 @@ header {
     width: 100%;
 }
 
+.photo-top > img {
+    max-width: 1040.98px;
+}
+
 #pfeil {
     height: 9px;
 }
@@ -87,7 +91,55 @@ header {
     text-decoration: none;
 }
 
+.line-container {
+    display: flex;
+    justify-content: center;
+}
+
 .line {
+    position: absolute;
     margin-top: 50px;
     border: solid 1px black;
+    width: 1040.98px;
+    z-index: 1;
+}
+
+.schwerpunkt {
+    position: absolute;
+    margin-top: 20px;
+    z-index: 2;
+    background-color: white;
+    padding: 5px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    width: 1040.98px;
+}
+
+.text-container > h3 {
+    margin: 4px;
+}
+
+.text-container > p {
+    margin: 4px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.grid-item {
+    background-color: lightgray;
+    padding: 10px;
+    max-height: 563px;
+}
+
+.grid-item > img {
+    max-width: 100%;
 }
