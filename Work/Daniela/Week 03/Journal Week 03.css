@@ -1,0 +1,137 @@
+body{margin:150px}
+
+:root{
+    --color: 330;
+}
+h3,h2{color: rgb(75, 11, 107);
+font-size: 25px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+h1, h2{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+/*
+body{
+    background-color: hsl(330, 80%, 70%);
+    color: white;
+    
+}
+*/
+p{  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+body > div > p{font-size: 20px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+
+
+
+
+.pinkypanky{
+    width: 35%;
+    background-color: hsl(var(--color), 80%, 70%);
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+    border: solid hsl(var(--color), 80%, 30%) 2px;
+    box-shadow: 5px 5px 10px hsla(var(--color), 80%, 30%, 0.5);
+}
+
+ body > h3{
+    outline: solid, lightseagreen;
+}
+
+
+.boxA{
+    width: 100px;
+    height: 100px;
+    background: blue;
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 1100px;
+    z-index: 2;
+    transform:rotate(25deg)
+}
+.boxB{
+    width: 100px;
+    height: 100px;
+    background: rgb(6, 104, 86);
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 1300px;
+    z-index: 2;
+transform: scale(2, 3);}  
+
+.boxC{
+    width: 100px;
+    height: 100px;
+    background: rgb(255, 0, 13);
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 1500px;
+    z-index: 2;
+    transform: skewY(50deg);}  
+
+.boxD{
+    width: 100px;
+    height: 100px;
+    background: rgb(11, 11, 12);
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 1700px;
+    z-index: 2;
+    transform: skewX(50deg)} 
+
+.boxE{
+    width: 100px;
+    height: 100px;
+    background: rgb(247, 179, 43);
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 1900px;
+    z-index: 2;
+    transform: matrix(0.9,0.8,-0.8,2,40,30);}  
+
+.boxF{
+    width: 100px;
+    height: 100px;
+    background: rgb(134, 3, 106);
+    color: white;
+    position: absolute;
+    top: 400px;
+    left: 2200px;
+    z-index: 2;
+    transform: rotate3d(1,2,2,70deg) scale(1.5, 2);
+}  
+
+.button {
+    background: blue;
+    height: 100px;
+    width: 100px;
+    color: white;
+    padding: 10px 20px;
+    transition: background 0.5s ease-in-out;
+    position: absolute;
+    top: 1300px;
+    left:1600px
+}
+
+.button:hover {
+    background: red;
+}
+
+.box2 {
+    background-color: brown;
+    color: white;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top:2700px;
+    left:1400px;
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.box2:hover {
+    transform: translateX(100px);
+}
