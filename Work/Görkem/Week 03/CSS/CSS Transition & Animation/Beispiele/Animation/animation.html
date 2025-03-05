@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    @keyframes changeColor {
+        0% {
+            background-color: lightskyblue;
+            transform: rotateY(0deg);
+        }
+        50% {
+            background-color: hsl(203, 92%, 45%);
+            font-size: 1em;
+        }
+        75% {
+            font-size: 2em;
+        }
+        100% {
+            transform: rotateY(360deg);
+            background-color: lightskyblue;
+            font-size: 1em;
+        }
+    }
+
+    div{
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        text-align: center;
+        background-color: lightskyblue;
+        animation: changeColor 2s infinite
+    }
+
+
+</style>
+</head>
+<body>
+    <h1>Animation</h1>
+    <div>
+        Hello World!
+    </div>
+</body>
+</html>

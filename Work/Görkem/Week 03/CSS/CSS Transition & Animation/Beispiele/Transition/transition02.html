@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <title>Transition</title>
+    <style>
+.button {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7 2em;
+    border: 3px solid #FF0072;
+    border-radius: 2px;
+    position: relative;
+    color: #FF0072;
+    text-decoration: none;
+    transition: 0.3 ease all;
+    z-index: 1;
+}
+
+.button:hover, button:focus:before {
+    color: white;
+}
+
+.butto:active {
+    transform: scale(0.9);
+}
+
+.button:before {
+    transition: 0.5 ease all;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    background-color: #FF0072;
+    z-index: 1;
+}
+
+.button:hover:before, button:focus:before {
+    transition: 0.5 ease all;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+</style>
+</head>
+<body>
+    <button>
+        Button
+    </button>
+</body>
+</html>
