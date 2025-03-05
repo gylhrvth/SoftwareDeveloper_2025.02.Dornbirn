@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+         @keyframes gyulawasthere {
+        0% {
+            background-color: #f1c40f;
+            color: black;
+            font-size:1em;
+            rotate: 0deg;
+        }
+        25% {
+            background-color: #e74c3c;
+            color: white;
+            font-size:1.5em;
+        }
+        50% {
+            background-color: #3498db;
+            color: black
+        }
+        75% {
+            background-color: #2ecc71;
+            font-size:2em;
+        }
+        100% {
+            background-color: #9b59b6;
+            font-size: 0.8em;
+            rotate: 360deg;
+        }
+        
+    }
+
+    body > div:nth-child(1) {
+        animation: gyulawasthere 500ms linear infinite;
+    }
+</style>
 <body>
+    <div>
+        <h1>gyula was there</h1>
+    </div>
     
 </body>
 </html>
