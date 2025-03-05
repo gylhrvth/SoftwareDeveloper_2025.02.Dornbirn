@@ -8,9 +8,9 @@
     <title>Transformation</title>
 <style>
 .box {
-    width: 150px;
+    width: 200px;
     height: 150px;
-    background-color: #e04242;
+    background-color: #FF6F3C;
     color: white;
     font-size: 20px;
     display: flex;
@@ -20,55 +20,55 @@
  }
 
 
-.square {
-    transform: scale(0,75);
+.square:hover {
+    transform: scale(0.75);
     width: 200px;
 }
 
-.square2 {
+.square2:hover {
     transform: scaleX(0.5);
     width: 200px;
 }
 
-.square3 {
+.square3:hover {
     transform: rotate(45deg);
     width: 200px;
 }
 
-.square4 {
+.square4:hover {
     transform: skewX(-25deg);
     width: 200px;
 }
 
-.square5 {
+.square5:hover {
     transform: translate(5px, 12px);
     width: 200px;
 }
 
-.square6 {
-    transform: matrix(0.7, -0.5, 0.5, 0.5, 0.7);
+.square6:hover {
+    transform: matrix(0.7, -0.5, 0.5, 0.5, 20, 10);
     width: 200px;
 }
 
-.body {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f2f2f2;
+    background-color: white;
     gap: 20px;
 }
 </style>
 </head>
 <body>
-    <p>Hello World!</p>
-    <p class="square">Hello World!</p>
-    <p class="square2">Hello World!</p>
-    <p class="square3">Hello World!</p>
-    <p class="square4">Hello World!</p>
-    <p class="square5">Hello World!</p>
-    <p class="square6">Hello World!</p>
+    <p class="box">Normal</p>
+    <p class="box square">Scale</p>
+    <p class="box square2">ScaleX</p>
+    <p class="box square3">Rotate</p>
+    <p class="box square4">SkewX</p>
+    <p class="box square5">Translate</p>
+    <p class="box square6">Matrix</p>
 
 </body>
 </html>
