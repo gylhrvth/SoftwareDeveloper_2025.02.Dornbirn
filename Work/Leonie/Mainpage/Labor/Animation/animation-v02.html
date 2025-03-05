@@ -139,6 +139,28 @@ body > div:nth-child(5) {
     animation: five 4s linear infinite;
 }
 
+body > div:nth-child(6) {
+    width: 100px;
+    height: 100px;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: cat linear 1s infinite;
+}
+
+body > div > img {
+    width: 200px;
+}
+
+@keyframes cat {
+    0%{
+        transform: translateX(-10vw) rotate(0deg);
+    }
+    100%{
+        transform: translateX(100vw) rotate(360deg);
+    }
+}
+
 </style>
 <body>
     <div>
@@ -162,7 +184,7 @@ body > div:nth-child(5) {
     </div>
 
     <div>
-        <h1>6</h1>
+        <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20231028_132627428.RAW-01.COVER.jpg" alt="">
     </div>
 
     <div>
