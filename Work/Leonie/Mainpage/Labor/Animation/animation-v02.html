@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation V02</title>
+</head>
+<style>
+    @keyframes first {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(100px, 0);
+        }
+        50% {
+            transform: translate(100px, 100px);
+        }
+        75% {
+            transform: translate(0, 100px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes second {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(-100px, 0);
+        }
+        50% {
+            transform: translate(-100px, -100px);
+        }
+        75% {
+            transform: translate(0, -100px);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes third {
+        0% {
+            transform: translate(0, 0);
+            rotate: 0;
+        }
+        25% {
+            transform: translate(-100px, 0);
+            rotate: 90deg;
+        }
+        50% {
+            transform: translate(-100px, 100px);
+            rotate: 180deg;
+        }
+        75% {
+            transform: translate(0, 100px);
+            rotate: 270deg;
+        }
+        100% {
+            transform: translate(0, 0);
+            rotate: 360deg;
+        }
+    }
+
+    @keyframes fourth {
+        to { transform: translateX(500%) rotate(359deg)}
+        
+    }
+
+    @keyframes five {
+        0% {
+            rotate: 0;
+        }
+        25% {
+            transform-origin: bottom right;
+            rotate: 90deg;
+        }
+    }
+
+
+body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+body > div:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    background-color: #f1c40f;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: first 2s infinite;
+}
+
+body > div:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: second 2s infinite;
+}
+
+body > div:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: third 5s infinite;
+}
+
+body > div:nth-child(4) {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: fourth linear 5s infinite;
+}
+
+body > div:nth-child(5) {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: black;
+    text-align: center;
+    font-size: 1em;
+    animation: five 4s linear infinite;
+}
+
+</style>
+<body>
+    <div>
+        <h1>1</h1>
+    </div>
+
+    <div>
+        <h1>2</h1>
+    </div>
+
+    <div>
+        <h1>3</h1>
+    </div>
+
+    <div>
+        <h1>4</h1>
+    </div>
+
+    <div>
+        <h1>5</h1>
+    </div>
+
+    <div>
+        <h1>6</h1>
+    </div>
+
+    <div>
+        <h1>7</h1>
+    </div>
+
+    <div>
+        <h1>8</h1>
+    </div>
+</body>
+</html>
