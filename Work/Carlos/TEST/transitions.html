@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .doMagic {
+            transform: rotate(45deg);
+            width: 200px;
+        }
+
+        .doMagic02 {
+            transform: scale(1.5);
+            width: 200px;
+        }
+
+        .doMagic03 {
+            transform: skew(20deg, 10deg);
+            width: 200px;
+        }
+
+        .doMagic04 {
+            transform: translate(100px, 50px);
+            width: 200px;
+        }
+
+        .doMagic05 {
+            transform: translate(100px, 0px) rotateZ(90deg) scale(1.5) skew(20deg, 10deg);
+            width: 200px;
+        }
+
+        div{
+            height:200px;
+            width:200px;
+            line-height:200px;
+            text-align: center;
+            background-color: blueviolet;
+            transition: font-size 400ms;
+        }
+
+        div:hover{
+            font-size: 2em;
+        }
+
+        div:nth-child(1) {
+        background-color: blueviolet;
+        transition: font-size 400ms;
+        }
+
+        div:nth-child(1):hover{
+            font-size:2em;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    
+</body>
+</html>

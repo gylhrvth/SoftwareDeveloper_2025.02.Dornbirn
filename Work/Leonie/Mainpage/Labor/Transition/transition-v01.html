@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition V01</title>
+</head>
+<style>
+    body {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+
+    body > div:nth-child(1) {
+        background-color: #f1c40f;
+    }
+
+    body > div:nth-child(1):hover {
+        transition: background-color 1s;
+        background-color: hsl(37, 90%, 31%);
+    }
+
+    body > div:nth-child(2) {
+        background-color: #e74c3c;
+    }
+
+    body > div:nth-child(2):hover {
+        transition: width 1s, height 1s;
+        width: 100px;
+        height: 100px;
+    }
+
+    body > div:nth-child(3) {
+        background-color: #3498db;
+    }
+
+    body > div:nth-child(3):hover {
+        transition: all 1s;
+        transform: rotate(360deg);
+    }
+
+    body > div:nth-child(4) {
+        background-color: #2ecc71;
+    }
+
+    body > div:nth-child(4):hover {
+        transition: all 1s;
+        transform: scale(1.5);
+    }
+
+    body > div:nth-child(5) {
+        background-color: #9b59b6;
+    }
+
+    body > div:nth-child(5):hover {
+        transition: all 3s;
+        transform: scale(1.5);
+        transition-timing-function: ease-out;
+    }
+
+    body > div:nth-child(6) {
+        background-color: #34495e;
+    }
+
+    body > div:nth-child(6):hover {
+        transition: all 3s;
+        transform: scale(1.5);
+        transition-timing-function: ease-in;
+    }
+
+    body > div:nth-child(7) {
+        background-color: #f39c12;
+    }
+
+    body > div:nth-child(7):hover {
+        transition: all 3s;
+        transform: scale(1.5);
+        transition-delay: 1s;
+    }
+
+
+</style>
+<body>
+    <div>
+        <h1>Transition Background-Color</h1>
+    </div>
+
+    <div>
+        <h1>Transition Width und Height</h1>
+    </div>
+
+    <div>
+        <h1>Transition Rotate</h1>
+    </div>
+
+    <div>
+        <h1>Transition Scale</h1>
+    </div>
+
+    <div>
+        <h1>Transition Timing Function</h1>
+    </div>
+
+    <div>
+        <h1>Transition Timing Function2</h1>
+    </div>
+
+    <div>
+        <h1>Transition Delay</h1>
+    </div>
+
+</body>
+</html>

@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down, night_stay">
     <link rel="stylesheet" href="wolframalpha.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=brightness_empty,function,keyboard_arrow_down,nights_stay" />
+    
 </head>
 <body>
     <header>
@@ -28,22 +31,69 @@
                     <span>Tour</span>
                 </div>
             </a>
+            <a class="topMenuA" href="#">
+                <div class="signIn">
+                    <span>Sign in</span>
+                </div>
+            </a>
 
-
-
+        </div>
+        <div>
+            <a class="topMenuA" href="#">
+                <div>
+                    <span class="material-symbols-outlined">nights_stay</span>
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+            </a>
+        </div>
     </header>
     <main>
-        <div>From the Makers of <span class="boldText">wolfraum alpha</span> and <span class="boldText">Mathematica</span>
-        <div><img src="img/Wolfram_Alpha_2022.svg">
+        <div>From the makers of <span class="boldText">wolfram alpha</span> and <span class="boldText">mathematica</span></div>
+        <div><img src="img/Wolfram_Alpha_2022.svg" alt="Wolfram Alpha logo in red and yellow" srcset=""></div>
         <div>
-            <input type="text" placeholder="Enter what you want to calculate or know about">
-            <span class="buttonEquals">=</span>
+            <div class="inputFieldWithOrangeBorder">
+                <input type="text" placeholder="Enter what you want to calculate or know about">
+                <span class="buttonEquals">=</span>    
+            </div>
         </div>
         <div>
             <div>
-                <a class="topMenuA" href="#">
+                <a class="mainMenu mainMenuA" href="#">
+                    <div>
+                        <span class="material-symbols-outlined">brightness_empty</span>
+                        <span>Neutral Language</span>
+                    </div>
+                </a>
+                <a class="mainMenu mainMenuB" href="#">
+                    <div>
+                        <span class="material-symbols-outlined">function</span>
+                        <span>Match Input</span>
+                    </div>
+                </a>  
             </div>
-
-    
+            <div>
+                <a class="mainMenu mainMenuC" href="#">
+                    <div>
+                        <span>extended keyboard</span>
+                    </div>
+                </a>  
+                <a class="mainMenu mainMenuC" href="#">
+                    <div>
+                        <span>Examples</span>
+                    </div>
+                </a>
+                <a class="mainMenu mainMenuC" href="#">
+                    <div>
+                        <span>upload</span>
+                    </div>
+                </a>
+                <a class="mainMenu mainMenuC" href="#">
+                    <div>
+                        <span>random</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

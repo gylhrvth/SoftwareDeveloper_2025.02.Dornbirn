@@ -118,6 +118,14 @@ body {
 }
 
 #main02 {
+ display: flex;
+ justify-content:flex-start;
+ align-items: center;
+}
+
+#main02Inner {
+    
+
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 5%;
@@ -125,9 +133,15 @@ body {
 }
 
 #main03 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#main03Margin {
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 5%;
 }
 
 h1 {
@@ -190,11 +204,7 @@ p {
     100% { opacity: 0; }
 }
 
-#main02Inner {
-    
 
-    width: 80%;
-}
 
 .gridInsta {
     display: grid;
@@ -255,7 +265,8 @@ a#kontaktBox {
 display: block;
 background-color: #006462;
 width: 100%;
-margin-bottom: 100px;
+padding-bottom: 100px;
+
 }
 
 #marginMain04 {
@@ -268,60 +279,52 @@ margin-bottom: 100px;
 #headerMain04 {
     display: block;
     width: 100%;
+    margin-bottom: 60px;
 }
 
 #headerMain04>h2 {
     color: white;
-    padding-top: 140px;
+    padding-top: 10%;
  
 }
 
-#flexContainerMain04 {
+.gridContainer {
     position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 25px;
-    height: 1000px;
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    height: auto;
+    place-items: center;
+    align-items: stretch;
 }
 
-.flexItem {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-
-
-    padding: 40px 20px;
+.gridItem {
+    
     background-color: white;
+    width: 80%;
+    padding: 30px;
+    border-radius: 10px;  
 
-    max-width: 450px;
-    min-height: 300px;
-    border: solid black 1px;
-
-    border-radius: 5px;
 }
 
-#flexItem01 {
-
-    right: 52%;
-    bottom: 60%;
+.gridItem>img {
+    margin-top: 35px;
+    width: 100%;
 }
 
-#flexItem02 {
-    left: 50%;
-    bottom:60%;
+
+.tag {
+    border: 1px solid #006462;
+    border-radius: 20px;
+    padding: 10px;
+    color:#006462;
 }
 
-#flexItem03 {
-    right: 52%;
-    bottom: 20%;
+.weiterlesen {
+    text-decoration: underline;
 }
 
-#flexItem04 {
-    left: 50%;
-    bottom: 20%;
-    
-}
 
 #main05 {
     
@@ -332,7 +335,6 @@ margin-bottom: 100px;
 #main05Margin {
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 5%;
     margin-bottom: 5%;
     
 }
@@ -340,6 +342,7 @@ margin-bottom: 100px;
 #headerMain05>h2 {
     color:#006462;
     margin-bottom: 100px;
+    margin-top: 100px;
 
 }
 
@@ -377,12 +380,3 @@ margin-bottom: 100px;
     margin-bottom: 5%;
 }
 
-.gridContainer {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
-    height: auto;
-    
-}

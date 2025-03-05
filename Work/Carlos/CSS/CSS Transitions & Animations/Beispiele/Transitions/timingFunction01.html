@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Function Beispiel</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            transition: transform 2s;
+        }
+
+        .linear:hover { transition-timing-function: linear; }
+        .ease:hover { transition-timing-function: ease; }
+        .ease-in:hover { transition-timing-function: ease-in; }
+        .ease-out:hover { transition-timing-function: ease-out; }
+        .ease-in-out:hover { transition-timing-function: ease-in-out; }
+
+        .box:hover {
+            transform: translateX(200px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box linear">Linear</div>
+    <div class="box ease">Ease</div>
+    <div class="box ease-in">Ease-in</div>
+    <div class="box ease-out">Ease-out</div>
+    <div class="box ease-in-out">Ease-in-out</div>
+
+</body>
+</html>
