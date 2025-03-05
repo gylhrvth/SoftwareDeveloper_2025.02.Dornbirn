@@ -58,8 +58,39 @@
       background-color: #333;
       padding: 1em 0em 1em 0em;
     }
-    
-  </style>
+    .back-button {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    padding: 15px 25px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+        
+.back-button:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1); 
+}
+
+        
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+}
+
+.back-button {
+    animation: glowing 1.5s infinite alternate;
+        
+ }
+ </style>
 </head>
 </body>
     <header>To do list</header>
@@ -73,6 +104,8 @@
       </aside>
     </div>
     <footer>Footer</footer>
+
+    <a href="/Work/Görkem/Mainpage/mymainpage01.html" class="back-button">Zurück</button>
 </html>
 </body>
     

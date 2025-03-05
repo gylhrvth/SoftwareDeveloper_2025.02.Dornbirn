@@ -21,41 +21,41 @@
     <ul>
         <p>scale (x,y): Vergrößert oder verkleinert das Element.</p>
         <div class="flex-container">
-            <code>
+            <pre><code>
                 div {
                     transform: scale(1.5, 2);
                   }
-            </code>
+            </code></pre>
             </div>
         </div>
 
         <p>rotate(angle): Dreht das Element im Uhrzeigersinn um den angegebenen Winkel.</p>
         <div class="flex-container">
-            <code>
+            <pre><code>
                 div {
                     transform: rotate(45deg);
                   }
-            </code>
+            </code></pre>
             </div>
         </div>
 
         <p>translate (x,y): Verschiebt ein Element entlang der X- und Y-Achse.</p>
         <div class="flex-container"> 
-            <code>
-                div {
+            <pre><code>
+                div { 
                     transform: translate(50px, 100px);
                   }
-            </code>
+            </code></pre>
             </div>
         </div>
 
         <p>skew(x-angle, y-angle): Kippt das Element entlang der X- oder Y-Achse.</p>
         <div class="flex-container">
-            <code>
+            <pre><code>
                 div {
                     transform: skew(20deg, 10deg);
                   }
-            </code>
+            </code></pre>
             </div>
         </div>
     </ul>
@@ -87,7 +87,7 @@
             <li><p>property → Die zu animierende Eigenschaft (z. B. background-color, opacity, transform).</p></li>
         </ul>
         <br>
-        <p><strong>➡️ Transform-Beispiel</strong></p>
+        <p><strong>➡️ Transition-Beispiel</strong></p>
         <ul>
             <p><a href="./CSS Transition_Animation/Beispiele/Transform/transformation02.html">Größe & Drehung ändern</a></p>
             <p><a href="./CSS Transition_Animation/Beispiele/Transition/transition02.html">Farbänderung mit Hover</a></p>
@@ -108,8 +108,36 @@
         </ul>
         <br>
 
+        <p><strong>➡️ Timing-function</strong></p>
+        <ul>
+            <p><a href="./CSS Transition_Animation/Beispiele/Animation/timingfunction.html">Interaktives Beispiel</a></p>
+        <br>
 
-        
+        <h3 class="underline-full">CSS Animation</h3>
+
+        <li><strong>Was ist eine CSS Animation?</strong></li>
+        <p>CSS-Animationen ermöglichen es, Elemente dynamisch zu bewegen und zu verändern, ohne JavaScript. Im Gegensatz zu Transitions, die nur eine einfache Zustandsänderung ermöglichen, <br> 
+            sind Animationen komplexer und können mehrere Schritte umfassen. </p>
+        <li><strong>Was ist ein @keyframes, wozu braucht man Sie?</strong></li>
+
+        <p>Mit @keyframes kannst du z.B. definieren, wie sich ein Element von links nach rechts bewegt, oder seine Farbe über die Zeit ändert.</p>
+        <div class="flex-container">
+            <pre><code>
+                @keyframes move Right { 
+                    from { left: 0px;  } 
+                    to { left: 100px; } 
+                }   
+            </code></pre>
+        </div>
+
+        <ul>
+            <li><p>Du kannst auch mehrere Prozentpunkte definieren, um eine detailliertere Kontrolle über den Verlauf der Animation zu erhalten.</p></li>
+            <li><p>&#128175;% stellt den Endpunkt der Animationen dar</p></li>
+            <li><p>0️⃣% stellt den Startpunkt der Animationen dar</p></li>
+        </ul>
+        <br>
+
+        <p><strong>➡️ Animation-Beispiel</strong></p>
        
 
 
