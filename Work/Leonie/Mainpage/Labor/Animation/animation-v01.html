@@ -6,28 +6,52 @@
     <title>Document</title>
 </head>
 <style>
+    @keyframes gyulawasinbg {
+        0% {
+            background-color: #111;
+        }
+        25% {
+            background-color: green;
+        }
+        50% {
+            background-color: yellow;
+        }
+        75% {
+            background-color: blue;
+        }
+        100% {
+            background-color: red;
+        }       
+    }
+
     body {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-content: center;
         align-items: center;
         height: 50vh;
+        animation: gyulawasinbg 777ms linear infinite;
     }
+
+
+
+
          @keyframes gyulawasthere {
         0% {
             background-color: #f1c40f;
             color: black;
             font-size:1em;
-            rotate: 0deg;
+            transform: translateX(0) rotate(0deg); 
         }
         25% {
             background-color: #e74c3c;
             color: white;
             font-size:1.5em;
+            transform: translateX(900px) rotate(90deg);
         }
         50% {
             background-color: #3498db;
-            color: black
+            transform: translateX(0)  rotate(180deg);
         }
         75% {
             background-color: #2ecc71;
@@ -36,7 +60,7 @@
         100% {
             background-color: #9b59b6;
             font-size: 0.8em;
-            rotate: 360deg;
+            transform: translateX(0)  rotate(360deg);
         }
         
     }
