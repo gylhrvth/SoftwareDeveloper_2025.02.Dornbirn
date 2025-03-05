@@ -10,108 +10,126 @@
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
 
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #333;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            margin-left: 20px;
-        }
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin-left: 20px;
+}
 
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+    cursor: pointer;
+}
 
-        .nav a:hover {
-            color: #00bfff;
-        }
+.nav a:hover {
+    color: #00bfff;
+}
 
-        .click-here {
-            background: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-            margin-right: 20px;
-        }
+.click-here {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-right: 20px;
+}
 
-        .click-here:hover {
-            background: #0056b3;
-        }
+.click-here:hover {
+    background: #0056b3;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 80px auto;
-            padding: 20px;
-        }
+.container {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 20px;
+}
 
-        h1 {
-            color: #222;
-        }
+h1 {
+    color: #222;
+}
 
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
-        .project {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            min-width: 200px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.project {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .project:hover {
+.project:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        }
+}
 
-        .page {
-            display: none;
-        }
+.page {
+    display: none;
+}
 
-        .active {
-            display: block;
-        }
+.active {
+    display: block;
+ }
+
+.nav a:hover {
+    color: #00bfff;
+    animation: blink 1s infinite; /* Blinken-Effekt */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
     </style>
 </head>
 <body>
     <div class="nav">
         <div class="nav-links">
             <a href="#" onclick="showPage('home')">Home</a>
-            <a href="#" onclick="showPage('labor')">Labor</a>
+            <a href="#" onclick="showPage('labor')">labor</a>
+            <a href="#" onclick="showPage('beispielprojekt')">projects</a>
         </div>
         <button class="click-here" onclick="openExternalPage()">Click Here</button>
     </div>
@@ -120,26 +138,36 @@
         <div class="container">
             <h1>Welcome to my site</h1>
             <div class="projects">
-                <div class="project"><a href="../Week 01/Journal Week 01.html">📄✏️ Work 1 - GTI Personas</a></div>
-                <div class="project"><a href="../Week 02/UX-UI Design/Journal Week 02.html">📄✏️ Work 2 - UX/UI Design</a></div>
-                <div class="project"><a href="../Week 02/HTML/FirstHtml.html">📄✏️ Work 3 - HTML</a></div>
-                <div class="project"><a href="../Week 02/CSS Basics/Journal CSS.html">📄✏️ Work 4 - CSS Basics</a></div>
-                <div class="project"><a href="../Week 02/CSS Layout/Journal.html">📄✏️ Work 5 - CSS Layout</a></div>
+                <div class="project"><a href="../Week 01/Journal Week 01.html">📄 GTI Personas</a></div>
+                <div class="project"><a href="../Week 02/UX-UI Design/Journal Week 02.html">📄 UX/UI Design</a></div>
+                <div class="project"><a href="../Week 02/HTML/FirstHtml.html">📄 HTML</a></div>
+                <div class="project"><a href="../Week 02/CSS Basics/Journal CSS.html">📄 CSS Basics</a></div>
+                <div class="project"><a href="../Week 02/CSS Layout/Journal.html">📄 CSS Layout</a></div>
+                <div class="project"><a href="../Week 03/CSS/Journal.html">📄 CSS Transitions & Animations</a></div>
             </div>
         </div>
     </div>
 
     <div id="labor" class="page">
         <div class="container">
-            <h1>Project Examples</h1>
+            <h1>simple examples</h1>
             <div class="projects">
                 <div class="project"><a href="../Week 02/CSS Layout/Beispiele/Flexbox/flexInteraktiv.html">Flexbox</a></div>
                 <div class="project"><a href="../Week 02/CSS Layout/Beispiele/Grid/beispiel01.html">Grid</a></div>
                 <div class="project"><a href="../Week 02/CSS Übung/Box Layout/Container.html">Box Layout</a></div>
                 <div class="project"><a href="../Week 02/CSS Übung/Box Layout/Container01.html">Box Layout 02</a></div>
+                <div class="project"><a href="../Week 03/CSS/CSS Transition_Animation/Beispiele/Transform/transformation02.html">Transformation</a></div>
+                <div class="project"><a href="../Week 03/CSS/CSS Transition_Animation/Beispiele/Animation/timingfunction.html">Timing-Function</a></div>
             </div>
         </div>
     </div>
+
+    <div id="beispielprojekt" class="page">
+        <div class="container">
+            <h1>project examples</h1>
+            <div class="project"><a href="../Week 02/CSS Übung/Projekte/layoutAufgabe01/layoutAufgabe.html">Gyulas Web</a></div>
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

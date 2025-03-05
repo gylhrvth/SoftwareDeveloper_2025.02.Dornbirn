@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="styleMisc.css">
+    <link rel="stylesheet" href="styledblank.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>CSS Journal</title>
+
+    <h1>CSS Transition/Animation/Transform</h1>
+    <h2 class="no-style">Mittwoch, 04. März 2025</h2>
+
+    <h3 class="underline-full">CSS Transform</h3>
+
+    <li><strong>Was ist CSS Transform?</strong></li>
+    <p>Es ist eine CSS-Eigenschaft, die es ermöglicht, HTML-Elemente visuell zu verändern, ohne ihre tatsächliche Position im Dokumentenfluss zu ändern. Sie wird verwendet, um Elemente zu drehen, <br>
+        skalieren, verschieben oder kippen.</p>
+    <li><strong>Wie verwendet man sie, welche Eigenschaften sind üblich?</strong></li>
+    <ul>
+        <p>scale (x,y): Vergrößert oder verkleinert das Element.</p>
+        <div class="flex-container">
+            <pre><code>
+                div {
+                    transform: scale(1.5, 2);
+                  }
+            </code></pre>
+            </div>
+        </div>
+
+        <p>rotate(angle): Dreht das Element im Uhrzeigersinn um den angegebenen Winkel.</p>
+        <div class="flex-container">
+            <pre><code>
+                div {
+                    transform: rotate(45deg);
+                  }
+            </code></pre>
+            </div>
+        </div>
+
+        <p>translate (x,y): Verschiebt ein Element entlang der X- und Y-Achse.</p>
+        <div class="flex-container"> 
+            <pre><code>
+                div { 
+                    transform: translate(50px, 100px);
+                  }
+            </code></pre>
+            </div>
+        </div>
+
+        <p>skew(x-angle, y-angle): Kippt das Element entlang der X- oder Y-Achse.</p>
+        <div class="flex-container">
+            <pre><code>
+                div {
+                    transform: skew(20deg, 10deg);
+                  }
+            </code></pre>
+            </div>
+        </div>
+    </ul>
+    <br>
+
+    <p><strong>➡️ Transform-Beispiel</strong></p>
+    <p><a href="./CSS Transition_Animation/Beispiele/Transform/transformation02.html"> Interaktives Beispiel mit Skew / Rotation / ScaleX / Translate</a></p>
+
+    <br>
+
+    <h3 class="underline-full">CSS Transition</h3>
+
+         <li><strong>Was ist eine CSS Transition?</strong></li>
+         <p><b>CSS Transitions</b> ermöglichen eine sanfte, animierte Änderung von CSS-Eigenschaften. Sie verhindern abrupte Änderungen und lassen z. B. Farb-, Größen- oder Positionsänderungen fließend ablaufen.</p><br>
+        
+         <li><strong>Wie kann man CSS Transitions verwenden?</strong></li>
+         <p>Syntax in CSS:</p>
+         <div class="flex-container">
+            <code>
+                transition: property duration timing-function delay;
+            </code>
+            </div>
+        </div>
+        <br>
+        <ul>
+            <li><p>duration → Wie lange die Animation dauert (z. B. 0.5s, 1s).</p></li>
+            <li><p>timing-function (optional) → Der Animationsverlauf (ease, linear, ease-in-out, etc.).</p></li>
+            <li><p>delay (optional) → Verzögerung vor Start der Animation.</p></li>
+            <li><p>property → Die zu animierende Eigenschaft (z. B. background-color, opacity, transform).</p></li>
+        </ul>
+        <br>
+        <p><strong>➡️ Transition-Beispiel</strong></p>
+        <ul>
+            <p><a href="./CSS Transition_Animation/Beispiele/Transform/transformation02.html">Größe & Drehung ändern</a></p>
+            <p><a href="./CSS Transition_Animation/Beispiele/Transition/transition02.html">Farbänderung mit Hover</a></p>
+        </ul>
+        <br>
+        <br>
+
+        <li><strong>Was sind die Timing Funktionen, welche kennst du?</strong></li>
+        <p>Die timing-function in CSS bestimmt, wie die Geschwindigkeit einer Transition oder Animation über die Zeit verläuft, z.B. gleichmäßig oder mit bestimmten Mustern.</p>
+        <p>Hier sind einige wichtige <b>Timing-Function-Werte</b> in CSS:</p>
+        <ul>
+            <p>&#x2705; ease: Beginnt langsam, wird dann schneller und endet langsam<p>
+            <p>&#x2705; ease-in: Beginnt langsam und beschleunigt sich</p>
+            <p>&#x2705; ease-out: Beginnt schnell und verlangsamt sich am Ende</p>
+            <p>&#x2705; ease-in-out: Beginnt und endet langsam, wird in der Mitte schneller</p>
+            <p>&#x2705; linear: Die Änderung erfolgt gleichmäßig über die gesamte Zeit</p>
+            
+        </ul>
+        <br>
+
+        <p><strong>➡️ Timing-function</strong></p>
+        <ul>
+            <p><a href="./CSS Transition_Animation/Beispiele/Animation/timingfunction.html">Interaktives Beispiel</a></p>
+        <br>
+
+        <h3 class="underline-full">CSS Animation</h3>
+
+        <li><strong>Was ist eine CSS Animation?</strong></li>
+        <p>CSS-Animationen ermöglichen es, Elemente dynamisch zu bewegen und zu verändern, ohne JavaScript. Im Gegensatz zu Transitions, die nur eine einfache Zustandsänderung ermöglichen, <br> 
+            sind Animationen komplexer und können mehrere Schritte umfassen. </p>
+        <li><strong>Was ist ein @keyframes, wozu braucht man Sie?</strong></li>
+
+        <p>Mit @keyframes kannst du z.B. definieren, wie sich ein Element von links nach rechts bewegt, oder seine Farbe über die Zeit ändert.</p>
+        <div class="flex-container">
+            <pre><code>
+                @keyframes move Right { 
+                    from { left: 0px;  } 
+                    to { left: 100px; } 
+                }   
+            </code></pre>
+        </div>
+
+        <ul>
+            <li><p>Du kannst auch mehrere Prozentpunkte definieren, um eine detailliertere Kontrolle über den Verlauf der Animation zu erhalten.</p></li>
+            <li><p>&#128175;% stellt den Endpunkt der Animationen dar</p></li>
+            <li><p>0️⃣% stellt den Startpunkt der Animationen dar</p></li>
+        </ul>
+        <br>
+
+        <p><strong>➡️ Animation-Beispiel</strong></p>
+       
+
+
+
+
