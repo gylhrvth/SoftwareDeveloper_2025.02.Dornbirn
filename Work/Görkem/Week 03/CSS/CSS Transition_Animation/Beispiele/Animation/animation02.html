@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+<style>
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 43%;
+}  
+
+.spiner {
+    background-color: orangered;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 25px solid white;
+    border-top: 20px solid;
+    animation: ani 2.5s linear infinite;
+}
+
+
+
+.spiner1 {
+            background-color: lightcoral;
+            border-top-color: indigo; 
+        }
+
+        .spiner2 {
+            background-color: lightgreen; 
+            border-top-color: crimson; 
+        }
+
+        .spiner3 {
+            background-color: lightblue;
+            border-top-color: limegreen;
+        }
+
+        .spiner4 {
+            background-color: rgb(253, 253, 142);
+            border-top-color: deepskyblue; 
+        }
+
+@keyframes ani {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.back-button {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    padding: 15px 25px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+        
+.back-button:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1); 
+}
+
+        
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+}
+
+.back-button {
+    animation: glowing 1.5s infinite alternate;
+        
+ }
+</style>
+</head>
+<body>
+    <div class="spiner spiner1"></div>
+    <div class="spiner spiner2"></div>
+    <div class="spiner spiner3"></div>
+    <div class="spiner spiner4"></div>
+    </div>
+    <a href="../../Mainpage/mymainpage01.html" class="back-button">Zurück</button>
+
+
+
+
+
+</body>
+</html>
+
