@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Example - Absolute vs Relative Sizes</title>
+    <style>
+        .container {
+            width: 80%; /* Container width (relative to viewport) */
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: lightgray;
+            padding: 20px; /* Padding of container */
+            text-align: center;
+            position: relative;
+            box-sizing: border-box; /* Ensures padding doesn't affect width calculation */
+        }
+
+        .absolute-box {
+            height: 100px;
+            background-color: lightblue;
+            margin: 20px 0;
+            transition: width 0.3s ease;
+            box-sizing: border-box; /* Prevents box from exceeding its width */
+        }
+
+        .relative-box {
+            height: 100px;
+            background-color: lightcoral;
+            margin: 20px 0;
+            transition: width 0.3s ease;
+        }
+
+        .slider {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .pixel-value {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Slider for Absolute and Relative Box Widths</h2>
+        <div class="absolute-box" id="absoluteBox">Absolute Width (px)</div>
+        
+        <!-- Adjusted pixel value position -->
+        <label for="pxSlider">Adjust Absolute Box (px): </label>
+        <input type="range" id="pxSlider" class="slider" min="50" value="200">
+        <div id="pxValue" class="pixel-value">433px</div>
+        
+        <!-- Add the relative box element back -->
+        <div class="relative-box" id="relativeBox">Relative Width (%)</div>
+
+        <label for="percentSlider">Adjust Relative Box (%): </label>
+        <input type="range" id="percentSlider" class="slider" min="10" max="100" value="50">
+        <span id="percentValue">50%</span>
+    </div>
+
+    <script>
+        // Get the elements
+        const pxSlider = document.getElementById("pxSlider");
+        const percentSlider = document.getElementById("percentSlider");
+        const absoluteBox = document.getElementById("absoluteBox");
+        const relativeBox = document.getElementById("relativeBox");
+        const pxValue = document.getElementById("pxValue");
+        const percentValue = document.getElementById("percentValue");
+        const container = document.querySelector(".container");
+
+        // Set the slider value for absolute box to the container's max width
+        const containerWidth = container.offsetWidth - 40; // Subtract container padding (20px left and right)
+        pxSlider.max = containerWidth; // Set max slider value to container width minus padding
+        pxSlider.value = containerWidth; // Set default slider value to max container width
+        absoluteBox.style.width = containerWidth + "px"; // Set initial width to container's max width
+        pxValue.textContent = containerWidth + "px"; // Show the default value
+
+        // Update the width of the absolute box based on px slider
+        pxSlider.addEventListener("input", function() {
+            const pxWidth = pxSlider.value;
+            absoluteBox.style.width = pxWidth + "px";
+            pxValue.textContent = pxWidth + "px";
+        });
+
+        // Update the width of the relative box based on percent slider
+        percentSlider.addEventListener("input", function() {
+            const percentWidth = percentSlider.value;
+            relativeBox.style.width = percentWidth + "%";
+            percentValue.textContent = percentWidth + "%";
+        });
+    </script>
+
+</body>
+</html>
