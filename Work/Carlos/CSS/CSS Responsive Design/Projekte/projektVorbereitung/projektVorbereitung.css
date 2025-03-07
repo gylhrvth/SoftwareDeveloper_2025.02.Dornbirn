@@ -1,0 +1,183 @@
+
+
+* {
+
+    padding: 0.05em;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    /*height: 100vh;*/
+    background: rgb(255, 255, 252);
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+
+}
+
+li>a:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+header {
+    position: relative;
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: gray 1px solid;
+    border-top: gray 1px solid;
+}
+
+.navbar .logo {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2em;
+    margin-right: 5%;
+}
+
+.button {
+    padding: 0.6em;
+    background-color: black;
+    color: white;
+    border-radius: 0.5em;
+    margin-right: 1em;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.button:active {
+    transform: scale(0.92);
+    transition: transform 0.3s ease;
+    background-color: rgb(255, 185, 105);
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+
+.navbarB {
+    display: none;
+}
+
+.logoB {
+    font-weight: bold;
+}
+
+.menu-img {
+    position: relative;
+    display: flex;
+    width: 2em;
+    cursor: pointer;
+    
+}
+
+.menu-img:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 100px;
+}
+
+
+
+.buttonB {
+    padding: 0.3em;
+    background-color: black;
+    color: white;
+    border-radius: 0.5em;
+    margin-right: 1em;
+    font-size: 0.8em;
+}
+
+.buttonB:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.buttonB:active {
+    transform: scale(0.92);
+    transition: transform 0.3s ease;
+    background-color: rgb(255, 185, 105);
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+
+
+@media (max-width: 1400px) {
+    body {
+        font-size: 0.9rem; /* Adjust base font size */
+    }
+}
+
+@media (max-width: 1000px) {
+    body {
+        font-size: 0.8rem; /* Adjust base font size */
+    }
+}
+
+
+@media (max-width: 690px) {
+    .navbar {
+        display: none;
+    }
+
+    .navbarB {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: gray 1px solid;
+        border-top: gray 1px solid;
+
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .menu a:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .menu-container:hover .menu {
+        display: block;
+    }
+}
+
