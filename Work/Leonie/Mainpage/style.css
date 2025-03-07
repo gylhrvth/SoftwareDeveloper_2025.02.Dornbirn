@@ -13,14 +13,10 @@
     }
 
 body {
-    background-color: black;
+    background-color: white;
 }
 
-@media screen and (min-width: 480px) {
-    body {
-      background-color: white;
-    }
-  }
+
 
 
 .speacingtop {
@@ -142,4 +138,24 @@ div h3 {
     height: 100px;
     background-color: #c6a664;
     z-index: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    body {
+        background-color: black;
+      }
+
+    .aufgaben {
+        display: grid;
+        column-gap: 50px;
+        row-gap: 50px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px;
+    }
+    
+    #katzebubi {
+        width: 50%;
+    }
+
 }
