@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, hsl(42, 48%, 65%), hsl(43, 89%, 38%));
+    background: linear-gradient(90deg, hsl(43, 89%, 38%),hsl(42, 48%, 65%));
     padding: 20px;
 }
 .navbar .logo img {
@@ -50,12 +50,12 @@ header {
 .button:hover {
     background-color: hsl(24, 93%, 36%);
     color: rgb(255, 255, 255);
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: scale 0.3s;
 }
 .button:active {
     background-color: hsl(24, 100%, 43%);
     color: white;
-    transform: scale(0.9);
+    transform: scale(0.95);
     transition: scale 0.3s;
 }
