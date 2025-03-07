@@ -12,15 +12,85 @@
 </head>
 
 <body>
-  <h1>Wichtige ShortCuts und Hilfestellungen</h1>
+  <h1>Projekt vorbereitung</h1>
 
-  <h2>ShortCuts</h2>
-  <ol>
-    <li>Für das aufrufen von IntelliSense -- Strg + Leer</li>
-    <li>Formatieren von Code -- Shift + Alt + F</li>
-    <li>Speichern des Dokuments -- Strg + S</li>
+  <h2>Struktur Selectors Übung</h2>
+  <p>Erstelle eine Navigation Bar mit den folgenden Elementen:</p>
+  <ul>
+    <li>Logo</li>
+    <li>Home</li>
+    <li>About</li>
+    <li>Service</li>
+    <li>Contact</li>
+    <li>Buy Now</li>
+  </ul>
 
-  </ol>
+  <h3>HTML</h3>
+  <p>Erstelle eine Header Section</p>
+  <p>Der Hauptcontainer ist ein div (class navbar) welche diese Elemente als Child beinhaltet.</p>
+  <p>Logo ist ein div (class logo) und wird je nach bedarf entwender ein schriftzug oder ein image</p>
+  <p>Home, About, Service, Contact sind links, welche zusammengefasst in einer UL-Liste (class links) erstellt werden
+  </p>
+  <p>Buy Now ist ein Button (class button) und funktioniert als Link</p>
+  <br>
+  <p>Somit haben wir in der Navbar, 3 verschieden Elemente. Ein Logo, eine Liste, ein Button</p>
+
+  <h3>CSS</h3>
+  <p>Erstlle ein css File und verlinke es zum projekt</p>
+  <p>erstlle selctoren für folgende bereiche</p>
+  <ul>
+    <li>*</li>
+    <li>body</li>
+    <li>li</li>
+    <li>a</li>
+    <li>a:hoover</li>
+    <li>header</li>
+    <li>.navbar</li>
+    <li>.navbar .logo</li>
+    <li>.navbar .links</li>
+    <li>.button</li>
+    <li>.button:hoover</li>
+    <li>.button:active</li>
+  </ul>
+
+  <p>* selector, kümmert sich um alle. margin, padding, box-sizing (border-box) und font-family definiert!
+  </p>
+  <p>Warum hilft es beim erstellen von einem Layout das box-sizing umzustellen?</p>
+  <br>
+  <p>body selector, kümmert sich um den body. height 100vh, background</p>
+  <p>Warum den Body auf 100vh einstellen?</p>
+  <br>
+  <p>li selector, kümmert sich um die Listen Items. list-style none</p>
+  <p>Warum list-style none in unserem Beispiel?</p>
+  <br>
+  <p>a selector, kümmert sich um die Links. text-decoration none, color</p>
+  <p>Warum text-decoration none in unserem Beispiel?</p>
+  <br>
+  <p>a:hoover selector, kümmert sich um Links wenn darüber gehoovert wird. color</p>
+  <br>
+  <p>header selector, kümmert sich und die section header. position relativ, padding</p>
+  <p>Warum macht es Sinn, position relativ bei einer Headersection?</p>
+  <br>
+  <p>.navbar selector, kümmert sich um die Navbar. display flex, justify-content space-between, align-items center,
+    height</p>
+  <br>
+  <p>.navbar .logo selector, kümmert sich um das Logo. font-size, font-weight</p>
+  <br>
+  <p>.navbar .links selector, kümmert sich um die Links. display flex, gap,</p>
+  <br>
+  <p>.button selector, kümmert sich um den Button. padding, background, color, border, border-radius, etc</p>
+  <br>
+  <p>.button:hoover selector, kümmert sich um den Button wenn darüber gehoovert wird. background, color</p>
+  <br>
+  <p>.button:active selector, kümmert sich um den Button wenn er aktiviert wird. background, color</p>
+
+  <h3>Bonus</h3>
+  <p>Erweitere die Button Selectoren damit, dass es eine Transition gibt wenn man über den Button hoovert und wenn man
+    diesen drückt. </p>
+  <p>Verwende dafür das scaling und füge eine transition mit ease dem button selector hinzu.</p>
+
+
+
 
 </body>
 
