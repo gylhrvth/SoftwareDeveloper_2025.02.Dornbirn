@@ -1,0 +1,44 @@
+
+
+
+
+.header {
+    display: flex;
+    background-color: rgb(229, 197, 197);
+    height: 10vh;
+}
+
+h1 {
+    font:10px;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    grid-template-rows: 80vh;
+    background-color: rgb(187, 228, 209);
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.miniBox {
+    background-color: rgb(194, 173, 214);
+}
+
+.center {
+    border: 1px solid black;
+}
+
+.right {
+    border: 1px solid black;
+}
+
+.footer {
+    display: flex;
+    background-color: rgb(246, 241, 222);
+    height: 10vh;
+}

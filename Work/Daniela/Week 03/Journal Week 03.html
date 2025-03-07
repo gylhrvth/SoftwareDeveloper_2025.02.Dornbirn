@@ -133,5 +133,113 @@ animation-play-state: Spielstatus der Animation (laufend oder pausiert)<br>
 Durch das Verständnis und die Anwendung dieser Eigenschaften können Entwickler komplexe und ansprechende Animationen erstellen, die das <br>
 Benutzererlebnis auf Webseiten verbessern.
 </p>
+
+<h2>CSS Grössenangaben</h2>
+<p> Größenangaben in CSS können entweder absolut oder relativ sein. Die Wahl der richtigen Einheit hängt davon ab, ob das Element eine<br>
+    feste oder flexible Größe haben soll.
+    <h3>Absolute Größenangaben</h3>
+    <p>
+        <ul>
+            <li>Diese Größen sind fest definiert und ändern sich nicht in Abhängigkeit von anderen Elementen oder der Bildschirmgröße.</li>
+            <li>Sie sind unabhängig von der Schriftgröße des Benutzers oder anderen äußeren Einflüssen.</li>
+            <li>Geeignet für Drucklayouts oder feste Designvorgaben.</li>
+        </ul>
+    </p>
+    <img src="Img/Img_Journal/Screenshot 2025-03-05 151838.png">
+
+    <h2>relative Grössen</h2>
+    <p>
+        <ul>
+            <li>Diese Größen passen sich dynamisch an andere Faktoren an, z. B. die Schriftgröße des Eltern-Elements oder die Bildschirmgröße.</li>
+            <li>Sie ermöglichen ein flexibles und responsives Design.</li>
+            <li>Besonders wichtig für moderne, anpassungsfähige Webseiten.</li>
+        </ul>
+    </p>
+    <img src="Img/Img_Journal/Screenshot 2025-03-05 152313.png">
+
+    <h2>Unterschied zwischen Pixel (px) und Pixel (Bildschirm-Pixel)</h2>
+    <h3>CSS-Pixel (px in CSS)</h3>
+    <p>
+        <ul>
+       <li> Wird in CSS als Maßeinheit verwendet.</li>
+        <li>Unabhängig von der tatsächlichen Anzahl der physischen Pixel auf dem Bildschirm.</li>
+    
+        </ul>
+    </p>
+
+        <h3>Physischer Bildschirm-Pixel</h3>
+        <p>
+            <ul>
+                <li>Ein einzelner Punkt auf einem Bildschirm.</li>
+                <li>Unterschiedlich groß, je nach Display-Auflösung (z. B. Retina-Displays haben mehr Pixel pro Fläche).</li><br>
+               <li> Moderne Displays haben eine höhere Pixeldichte (DPI), wodurch ein CSS-Pixel oft aus mehreren physischen Pixeln bestehen kann.</li>
+            </ul>
+        </p>
+
+        <h3>Unterschied zusammengefasst:</h3>
+        <p>
+            <ul>
+            <li>CSS-Pixel (px) bleibt gleich, unabhängig vom Bildschirm.</li>
+           <li> Physischer Pixel hängt von der Bildschirmauflösung ab.</li>
+            <li>Auf hochauflösenden Displays (z. B. Retina) kann ein CSS-Pixel mehrere physische Pixel umfassen, um eine schärfere Darstellung zu ermöglichen.</li>
+        </ul>
+        </p>
+        <h3>CSS Variablen und Funktionen</h3>
+        <p>CSS-Variablen (auch als Custom Properties bezeichnet) sind benutzerdefinierte Werte, die in CSS definiert und wiederverwendet werden können.<br>
+            Sie beginnen mit zwei Bindestrichen (--) und werden mit var() aufgerufen.</p>
+
+        <p>Eine CSS-Variable wird innerhalb eines Selektors (oft :root für globale Variablen) deklariert</p>
+        <p>
+            <ul>
+                <li>Wiederverwendbarkeit: Verhindert das wiederholte Definieren gleicher Farbwerte, Schriftgrößen oder Abstände.</li>
+                <li>Einfache Wartung: Änderungen an einer Variable wirken sich auf alle Verwendungen aus.</li>
+                <li>Dark/Light Mode: Wechsel der Farben durch Umschalten der CSS-Variablen.</li>
+                <li>Theming: Anpassung des Designs für verschiedene Benutzer oder Layouts.</li>
+            </ul>
+        </p>
+        <img src="Img/Img_Journal/Screenshot 2025-03-06 092643.png"><br>
+        <img src="Img/Img_Journal/Verwendung von CSS-Variablen.png">
+
+        <p style="color: crimson;">Ein großer Vorteil von CSS-Variablen ist, dass sie zur Laufzeit geändert werden können</p>
+        <img src="Img/Img_Journal/Liste_Variablen.png">
+
+        <h3>Responsive Design</h3>
+        <p>Responsive Design bedeutet, dass eine Website oder Anwendung so gestaltet ist, dass sie sich automatisch an verschiedene Bildschirmgrößen und Gerätetypen<br>
+            (Smartphones, Tablets, Laptops, Desktops) anpasst. Das Ziel ist eine optimale Benutzererfahrung auf allen Geräten, ohne dass der Benutzer zoomen oder<br>
+            horizontal scrollen muss.</p>
+
+        <h3>Die drei Hauptechniken des Responsive Design:</h3>
+        <img src="Img/Img_Journal/Haupttechniken RD.png">
+
+        <p>Der "Mobile-First Approach" bedeutet, dass eine Website oder Webanwendung zuerst für mobile Geräte (kleine Bildschirme) entworfen und entwickelt wird, bevor sie<br>
+            für größere Bildschirme wie Tablets und Desktops optimiert wird.</p>
+
+        <img src="Img/Img_Journal/Mobile_First.png">
+          <p>Der Viewport ist der sichtbare Bereich einer Webseite auf einem Gerät (z. B. Smartphone, Tablet, Laptop oder Desktop).<br>
+
+
+            Auf mobilen Geräten ist der Viewport oft kleiner als auf einem Desktop.<br>
+            Ohne Anpassung würde eine Webseite auf einem Smartphone zu groß dargestellt werden, sodass Nutzer zoomen oder horizontal scrollen müssten.</p> 
+
+            <h3>Media Query</h3>
+            <p>Ein Media Query ist eine CSS-Technik, die es ermöglicht, unterschiedliche Styles für verschiedene Bildschirmgrößen, Gerätetypen oder Auflösungen zu definieren.<br>
+
+                Media Queries helfen dabei, responsive Webseiten zu erstellen, die sich automatisch an Smartphones, Tablets, Laptops oder große Bildschirme anpassen.</p>
+
+              <img src="Img/Img_Journal/Media_Query.png">  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

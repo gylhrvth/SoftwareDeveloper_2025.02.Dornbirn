@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  h1 {
+    /*font-size: 10vw;*/
+    /*
+      1. Minimum (1.9rem)
+      2. Wenn möglich, bevorzugt (10vw)
+      3. Maximum (5rem)
+    */
+    font-size: clamp(2rem, calc(7vw + 1rem), 5rem);
+    /*mit der calc funktion lässt sich mathematisch das problem beheben, dass die Überschrift sonst nicht mitscalliert wenn man in das Document rein zoomen würde.*/
+  }
+
+  .container {
+
+    background-color: lightblue;
+    width: 80%;
+    height: auto;
+    border: solid 1px black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+
+    padding: min(5em, 12%);
+
+  }
+</style>
+
+
+<body>
+
+  <div class="container">
+    <h1>Ich bin eine Überschrift</h1>
+    <p>Für Schriftgrößen, gibt es viele Möglichkeiten die größe zu definiern.
+    </p>
+    <ul>
+      <li>px - Pixel</li>
+      <li>em - Elternelements basiert.</li>
+      <li>rem - Root Em: Wurzelelements (html) basiert.</li>
+      <li>pt - Punkt (1 Punkt = 1/72 Zoll).</li>
+      <li>pc - Pica (1 Pica = 12 Punkte).</li>
+      <li>vw - Viewport Width 1% der Breite des Ansichtsfensters entspricht.</li>
+    </ul>
+    <p></p>
+  </div>
+
+</body>
+
+</html>

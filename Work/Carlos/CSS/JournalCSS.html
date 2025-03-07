@@ -15,7 +15,8 @@
 <h1 class="textColor01">Lernerfolgsbuch: CSS Journal</h1>
 
 <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-<h3 class="textColor01">▷ <a href="#day13">DO 06/03/25</a>: CSS (Responsive Design)</h3>
+<h3 class="textColor01">▷ <a href="#day15">DO 06/03/25</a>: CSS (Responsive Design)</h3>
+<h3 class="textColor01">▷ <a href="#day14">DO 06/03/25</a>: CSS (Responsive Design)</h3>
 <h3 class="textColor01">▷ <a href="#day13">MI 05/03/25</a>: CSS (Transitions & Animations)</h3>
 <h3 class="textColor01">▷ <a href="#day12">DI 04/03/25</a>: CSS (Layout)</h3>
 <h3 class="textColor01">▷ <a href="#day11">MO 03/03/25</a>: CSS (Layout)</h3>
@@ -26,6 +27,8 @@
 </div>
 
 <br>
+
+<h2 id="day15">Freitag, 07. März 2025</h2>
 
 <h2 id="day14">Donnerstag, 06. März 2025</h2>
 
@@ -74,12 +77,257 @@
 
         <br>
 
-    <li class="textColor02"><strong>Beispiele:</strong><a href="./CSS Responsive Design/Beispiele/absoluteVSrelative01.html">Interaktives Beispiel (Absolute vs Relative widths)</a></li>
+    <li class="textColor02"><strong>Beispiel:</strong><a href="./CSS Responsive Design/Beispiele/absoluteVSrelative01.html">Interaktives Beispiel (Absolute vs Relative widths)</a></li>
     <br>
     <li class="textColor02"><strong>Was gibt es für absoluten Großenangaben?</strong></li>
+    <ul>
+        <p><li>Typografische Maßeinheiten:</li></p>
+        <ul>
+            <li>Pixel (px) → Ein einzelner Punkt auf einem Bildschirm</li>
+            <li>Punkt (pt) → 1 pt = 1/72 Zoll (wird oft für Schriftgrößen genutzt)</li>
+            <li>Pica (pc) → 1 pc = 12 pt</li>
+            <li>Ex (ex) → Basierend auf der x-Höhe einer Schriftart</li>
+        </ul>
+        <p><li>Physische Maßeinheiten</li></p>
+        <ul>
+            <li>Millimeter (mm)</li>
+            <li>Zentimeter (cm)</li>
+            <li>Zoll (in oder “) → 1 Zoll = 2,54 cm</li>
+            <li>Meter (m)</li>
+        </ul>
+        <p>In der Webentwicklung werden meist px, pt, cm und mm für absolute Größenangaben verwendet.</p>
+    </ul>
 
+    <li class="textColor02"><strong>Was gibt es für relative Großenangaben?</strong></li>
+    <ul>
+        <p><li>Schriftbezogene Einheiten:</li></p>
+        <ul>
+           <li>
+            em → Basierend auf der Schriftgröße des Elements (z. B. 2em ist das Doppelte der aktuellen Schriftgröße).</li>
+           <li>rem (Root em) → Basierend auf der Schriftgröße des html-Elements (z. B. 1rem entspricht der font-size von html).</li>
+           <li>ex → Basierend auf der Höhe des Buchstabens “x” in der aktuellen Schriftart.</li>
+           
+           <li>ch → Basierend auf der Breite der Ziffer “0” in der aktuellen Schriftart.</li>
+        </ul>
 
+        <p><li>Schriftbezogene Einheiten:</li></p>
+        <ul>
+            <li>% → Bezieht sich auf die Größe des Elternelements (z. B. width: 50% bedeutet die Hälfte der Breite des übergeordneten Containers).</li>
+        </ul>
 
+        <p><li>Viewport-basierte Einheiten (für responsive Designs)</li></p>
+        <ul>
+            <li>vw (Viewport Width) → 1vw = 1% der Breite des Viewports (z. B. 50vw ist die Hälfte der Bildschirmbreite).</li>
+            <li>vh (Viewport Height) → 1vh = 1% der Höhe des Viewports.</li>
+            <li>vmin → 1% der kleineren Dimension des Viewports (Breite oder Höhe).</li>
+            <li>vmax → 1% der größeren Dimension des Viewports.</li>
+        </ul>
+        <br>
+
+    </ul>
+    <li class="textColor02"><strong>Was gibt es für flexiblen Großenangaben?</strong></li>
+    <ul>
+        <li><p>Flexbox- und Grid-Einheiten:</p></li>
+        <ul>
+            <li>fr (Fractional Unit) → Wird im CSS Grid verwendet (1fr bedeutet “ein flexibler Anteil” des verfügbaren Platzes).</li>
+            <li>auto → Passt sich automatisch an den Inhalt an.</li>
+        </ul>
+        <li><p>Skalierbare Maße mit CSS-Funktionen:</p></li>
+        <ul>
+            <li>calc() → Ermöglicht Berechnungen mit verschiedenen Einheiten (width: calc(100% - 50px)).</li>
+            <li>min() / max() → Setzt minimale oder maximale Werte (width: min(50vw, 600px)).</li>
+            <li>clamp() → Kombiniert min/max (font-size: clamp(1rem, 2vw, 2rem)).</li>
+        </ul>
+    </ul>
+    <br>
+    <li class="textColor02"><strong>Was ist der Unterschied zwischen Physikalischer Pixel und CSS-Pixel?</strong></li>
+    <p>Der Begriff Pixel kann in zwei unterschiedlichen Kontexten verwendet werden:</p>
+    <ul>
+        <li><p>CSS-Pixel (logischer Pixel):</p></li>
+        <ul>
+            <li>Definiert eine einheitliche Maßeinheit, die unabhängig von der Bildschirmauflösung ist.</li>
+            <li>Wird in Webdesign und Programmierung verwendet.</li>
+            <li>Beispiel: width: 100px; bedeutet, dass ein Element genau 100 CSS-Pixel breit ist, unabhängig von der tatsächlichen Pixeldichte des Geräts.</li>
+        </ul>
+        <p>-> CSS-Pixel ist eine abstrakte Einheit für Layouts, die auf verschiedenen Displays gleich groß erscheint.</p>
+        <li><p>Physikalischer Pixel (Hardware-Pixel):</p></li>
+        <ul>
+            <li>Bezieht sich auf die kleinste darstellbare Einheit eines Bildschirms.</li>
+            <li>Moderne hochauflösende Displays (z. B. Retina-Displays) haben oft mehrere physische Pixel pro CSS-Pixel.</li>
+            <li>Beispiel: Ein Retina-Display kann 2× oder 3× so viele physikalische Pixel pro CSS-Pixel haben, um schärfere Darstellungen zu ermöglichen.</li>
+        </ul>
+        <p>-> Physikalischer Pixel ist die kleinste Leuchteinheit auf einem Bildschirm, deren Anzahl je nach Gerät variieren kann.</p>
+    </ul>
+    <p>Beispiel: Ein 100px breites Element bleibt auf jedem Gerät 100 CSS-Pixel breit, aber auf einem Retina-Display mit 2-facher Pixeldichte wird es mit 200 physikalischen Pixeln dargestellt.</p>
+
+    <h4 class="textColor01">CSS Variablen / Funktionen</h4>
+
+    <li class="textColor02"><strong>Was sind CSS Variablen?</strong></li>
+    <p>CSS-Variablen, auch Custom Properties genannt, sind wiederverwendbare Werte in CSS. Sie ermöglichen eine dynamische Gestaltung und erleichtern das Ändern von Stilen an mehreren Stellen gleichzeitig.</p>
+    <li class="textColor02"><strong>CSS Variablen: Syntax und Verwendung</strong></li>
+    <ol>
+        <li><p>Deklaration einer Variable: CSS-Variablen werden mit -- vor dem Namen definiert und meistens im :root-Selektor gespeichert.</p></li>
+            <div class="code-sample">  
+            <code>
+                :root {
+                    --primary-color: #3498db;
+                    --font-size: 16px;
+                  }
+            </code>
+            </div>
+            <br>
+        <li><p>Nutzung einer Variable: Variablen werden mit der Funktion var() aufgerufen.</p></li> 
+        <div class="code-sample">  
+            <code>
+                body {
+                    background-color: var(--primary-color);
+                    font-size: var(--font-size);
+                  }
+            </code>
+        </div>
+    </ol>
+        <br>
+
+        <li class="textColor02"><strong>Was sind CSS Funktionen?</strong></li>
+        <p>CSS-Funktionen sind spezielle Befehle, die innerhalb von CSS-Eigenschaften verwendet werden, um dynamische Werte zu generieren. Sie ermöglichen Berechnungen, Farbmanipulationen, Transformationen und vieles mehr.</p>
+        
+        <li class="textColor02"><strong>Typische CSS Funktionen</strong></li>
+        <ul>
+            <li><p>Mathematische Funktionen:</p></li>
+            <ul>
+                <li>calc() – Ermöglicht Berechnungen mit verschiedenen Einheiten.</li>
+                <li>min() und max() – Legt den kleineren oder größeren Wert aus mehreren Optionen fest.</li>
+                <li>clamp() – Kombiniert min, max und einen bevorzugten Wert.<br> Struktur: clamp(MIN, IDEAL, MAX);</li>
+                
+            </ul>
+            <li><p>Farbmanipulation:</p></li>
+            <ul>
+                <li>rgb() und rgba() – Definiert Farben mit Rot, Grün, Blau (+ Alpha für Transparenz)</li>
+                <li>hsl() und hsla() – Farben mit Farbton, Sättigung und Helligkeit</li>
+                <li>var() – Verwendet CSS-Variablen</li>
+            </ul>
+            <li><p>Text- und Anzeige-Funktionen:</p></li>
+            <ul>
+                <li>attr() – Holt den Wert eines HTML-Attributs</li>
+                <li>url() – Fügt eine Bild- oder Datei-URL ein</li>
+                <li>local() – Definiert eine Schriftart lokal oder aus dem Web</li>
+            </ul>
+            <li><p>Transformationen & Effekte:</p></li>
+            <ul>
+                <li>translate() – Verschiebt ein Element</li>
+                <li>rotate() – Dreht ein Element</li>
+                <li>scale() – Skaliert ein Element</li>
+                <li>skew() – verzerrt (schrägt) ein Element entlang der X- und/oder Y-Achse</li>
+            </ul>
+        </ul>
+        <br>
+        <li class="textColor02"><strong>Wie ruft man CSS Funktionen?</strong></li>
+        <p>CSS-Funktionen werden direkt innerhalb von CSS-Eigenschaften aufgerufen, um dynamische Werte zu erzeugen. Der Aufruf erfolgt in der Regel durch die Angabe des Funktionsnamens gefolgt von runden Klammern, in denen die entsprechenden Parameter übergeben werden.</p>
+        <div class="code-sample">  
+            <code>
+                property: function(parameter);
+            </code>
+        </div>
+        <p>Beispiele:</p>
+        
+        <p>-> calc() – Mathematische Berechnungen:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    width: calc(100% - 20px); /* Berechnet die Breite als 100% minus 20px */
+                    }
+            </code>
+        </div>
+        <p>-> rgb() / rgba() – Farbdefinition:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    background-color: rgb(255, 0, 0); /* Rote Farbe */
+                    color: rgba(0, 0, 255, 0.5); /* Halbtransparentes Blau */
+                  }
+            </code>
+        </div>
+        <p>-> clamp() – Werte mit Mindest- und Höchstgrenzen:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    font-size: clamp(16px, 4vw, 24px); /* Schriftgröße wächst mit dem Viewport, bleibt aber zwischen 16px und 24px */
+                  }
+            </code>
+        </div>
+        <p>-> translate() – Verschiebung eines Elements:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    transform: translate(50px, 100px); /* Verschiebt das Element um 50px nach rechts und 100px nach unten */
+                  }
+            </code>
+        </div>
+
+    <h4 class="textColor01">CSS Responsiveness</h4>
+
+    <li class="textColor02"><strong>Was bedeutet Responsive Design?</strong></li>
+    <p>Responsive Design bezeichnet eine Designtechnik, bei der Webseiten so gestaltet werden, dass sie sich automatisch an die Bildschirmgröße und -auflösung des Geräts anpassen, auf dem sie angezeigt werden. Ziel ist es, eine benutzerfreundliche, ansprechende und gut lesbare Oberfläche auf allen Geräten zu bieten, sei es auf Desktops, Tablets oder Smartphones.</p>
+    
+    <li class="textColor02"><strong>Warum verwendet man "Mobile First Approach"?</strong></li>
+    <p>Der Mobile-First-Ansatz sorgt dafür, dass Websites optimal auf mobilen Geräten funktionieren, indem sie zuerst für die kleineren Bildschirme entwickelt und dann für größere Geräte erweitert werden. Dies verbessert nicht nur die Benutzererfahrung, sondern auch die Leistung und die Suchmaschinenoptimierung (SEO). In einer Welt, in der der mobile Zugriff auf das Internet dominiert, ist dieser Ansatz heute eine bewährte Praxis in der Webentwicklung.</p>
+    <p>Google berücksichtigt Mobile-First-Indexierung, was bedeutet, dass die mobile Version einer Webseite bei der Suche höher bewertet wird.</p>
+    <li class="textColor02"><strong>Was ist ein Viewport? Warum ist Viewport wichtig?</strong></li>
+        <ul>
+            <li><p>Viewport ist der sichtbare Bereich im Browser oder auf einem Gerät, in dem Inhalte angezeigt werden.</p></li>
+            <li><p>Der Viewport ist entscheidend für die Gestaltung von Webseiten, insbesondere in einem Responsive Design.</p></li>
+            <li><p>Mit dem richtigen Umgang mit dem Viewport können Entwickler sicherstellen, dass ihre Webseite auf allen Geräten (von Smartphones bis Desktops) benutzerfreundlich und funktional bleibt.</p></li>
+            <li><p>Ein richtig definierter Viewport stellt sicher, dass eine mobile Webseite korrekt angezeigt wird und daher besser für Suchmaschinen optimiert ist.</p></li>
+        </ul>
+    
+    <li class="textColor02"><strong>Was ist eine Media Query?</strong></li>
+    <p>Eine Media Query (Medienabfrage) ist eine CSS-Technik, mit der man das Design einer Webseite an verschiedene Bildschirmgrößen, Geräteauflösungen und andere Eigenschaften des Ausgabegeräts anpassen kann. Sie ermöglicht es, unterschiedliche CSS-Regeln basierend auf bestimmten Bedingungen anzuwenden, sodass eine Webseite auf verschiedenen Geräten wie Desktops, Tablets und Smartphones gut aussieht und funktioniert.</p>
+    
+    <li class="textColor02"><strong>Aufbau einer Media Query:</strong></li> <br>
+    <div class="code-sample">  
+        <code>
+            @media (Bedingung) {
+                /* CSS-Regeln */
+              }
+        </code>
+    </div>
+    <ul>
+        <li><p>@media: Der Befehl, um eine Medienabfrage zu starten.</p></li>
+        <li><p>Bedingung: Bestimmt unter welchen Umständen die CSS-Regeln angewendet werden sollen (z. B. Bildschirmbreite, Orientierung, Auflösung).</p></li>
+        <li><p>CSS-Regeln: Die Stilregeln, die angewendet werden, wenn die Bedingung erfüllt ist.</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Media Query Beispiel:</strong></li><br>
+    <div class="code-sample">  
+        <code>
+            /* Standard-Design für Desktops */
+            body {
+              font-size: 16px;
+            }
+            
+            /* Design für Bildschirme mit einer maximalen Breite von 768px (z. B. Tablets und Smartphones) */
+            @media (max-width: 768px) {
+              body {
+                font-size: 14px;
+              }
+            }
+        </code>
+    </div>
+    <br>
+
+    <li class="textColor02"><strong>Typische Anwendungsfälle von Media Queries:</strong></li><br>
+    <ul>
+        <li><p>Bildschirmgrößen: Passen die Darstellung der Webseite an unterschiedliche Geräte an (Smartphones, Tablets, Desktops). ->	Beispiel: @media (max-width: 768px)</p></li>
+        <li><p>Ausrichtung: Reagieren auf Hoch- oder Querformat. -> Beispiel: @media (orientation: landscape)</p></li>
+        <li><p>Auflösung: Für hochauflösende Displays wie Retina-Displays. -> Beispiel: @media (min-resolution: 2dppx)</p></li>
+        <li><p>Farben und Kontraste: Für barrierefreie Gestaltung oder Geräte mit besonderen Anzeigeanforderungen. -> Beispiel: @media (prefers-color-scheme: dark)</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Kann man mehr als eine Media Query schreiben?</strong></li>
+    <p>Ja, das ist sogar eine sehr gängige Praxis, um sicherzustellen, dass deine Webseite auf verschiedenen Geräten optimal aussieht und funktioniert.</p>
+    <li class="textColor02"><strong>Wie sieht eine minimale aber komplette Beispiel auf Responsive Design aus?</strong></li>
+    <p>-> <a href="./CSS Responsive Design/Beispiele/responsive01/responsiveKI01.html">KI generiertes Beispiel</a></p>
+    
 </ul>
 
 <h2 id="day13">Mittwoch, 05. März 2025</h2>
