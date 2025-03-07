@@ -1,0 +1,116 @@
+/*Mobile*/
+/*body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(90, 88, 88);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+main{
+    background-color: rgb(126, 91, 91);
+    width: 100%;
+    
+    
+        
+}*/
+
+header{
+    background-color: rgb(17, 17, 17);
+    color:white;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items:center;
+    margin:0;
+    padding: 0;
+}
+
+header div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 100%;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    outline: solid 1px rgb(251, 251, 251);
+    
+    
+
+} 
+
+content{
+    width: 100%;
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap: 0.5em;
+}
+
+section{
+    /*width: 100%;*/
+    background-color: rgb(125, 123, 123);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*padding: 2rem;*/
+    margin: 0.2rem;
+}
+article{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /*padding: 2rem;*/
+    margin: 0.1rem;
+}
+
+article img{
+    max-height: 6em;
+    
+}
+
+article p{ 
+    width: 85%;;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+footer{
+    width: 100%;
+    min-height: 10rem;
+    background-color: rgb(157, 154, 154);
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items:top;
+    flex-direction: row;
+    /*position: fixed;*/
+    bottom: 0;
+    left: 0;
+    
+}
+
+button{
+    background-color: rgb(71, 61, 61);
+    color: white;
+    border: none;
+    padding: 1em;
+    margin: 1em;
+    cursor: pointer;
+}

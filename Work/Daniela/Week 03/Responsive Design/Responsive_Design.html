@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design</title>
+    <link rel="stylesheet" href="Responsive_Design_Mobile.css">
+    <link rel="stylesheet" href="Responsive_Design_Desktop.css">
+</head>
+
+<style>
+   
+@media (prefers-color-scheme: dark) {
+        body {
+            background-color: rgb(62, 61, 61);
+            color: white;
+        }
+    } 
+    
+    @media (max-width: 767px) {
+    body {
+        background-color: rgb(248, 190, 209);
+        color: black;
+    }   
+}
+   /* Mobile Navigation ausblenden, wenn Bildschirmgröße >= 768px */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+    }
+} 
+/* Basis-Style für DESKTOP */
+@media (min-width: 768px) {
+    body {
+        background-color: rgb(193, 233, 244);
+        color: black;
+    }
+}
+@media (min-width: 768px) {
+        .nav-mobile {
+            display: none;
+        }
+}
+
+
+
+</style>
+
+
+
+<body>
+
+<header>
+    <!-- Mobile Navigation -->
+     <div class="container">
+        <nav class="nav-mobile">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Service</a>
+            <a href="">Contact</a>
+       
+        </nav>
+    </div> 
+    <!-- Desktop Navigation -->
+    <div class="container">
+        <nav class="nav-desktop">
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Service</a>
+            <a href="">Contact</a>
+        </nav>
+    </div>    
+</header>   
+
+
+<main>
+    <div class="main_mobile">
+        
+        
+       <img src="img/Apfelsaft.webp" alt="Apfelsaft">
+        <h1>Apfelsaft</h1>
+        <p>Apfelsaft ist ein Fruchtsaft, der durch Pressen von Äpfeln gewonnen wird.</p>-->
+
+    </div>
+    <!--Mobile-->
+    
+
+
+
+
+
+
+
+    <!--Desktop-->
+</main>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+    /* Desktop Navigation (Flex Layout) */
+    .nav-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        width: 80%;
+        
+    }
+
+    .nav-desktop a {
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+    }
+
+  

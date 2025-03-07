@@ -1,5 +1,6 @@
 body{margin:150px}
-
+li{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: 20px;}
 :root{
     --color: 330;
 }
