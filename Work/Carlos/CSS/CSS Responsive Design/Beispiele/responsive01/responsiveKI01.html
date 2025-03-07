@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Design Example</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      margin: 10px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .card h2 {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .card p {
+      font-size: 1em;
+    }
+
+    /* For medium-sized screens (Tablets and smaller desktops) */
+    @media (max-width: 1024px) {
+      .card {
+        width: 45%;
+      }
+
+      .container {
+        justify-content: center;
+      }
+    }
+
+    /* For small screens (Mobile devices) */
+    @media (max-width: 768px) {
+      header {
+        font-size: 1.2em;
+        padding: 15px;
+      }
+
+      .card {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .card h2 {
+        font-size: 1.2em;
+      }
+
+      .card p {
+        font-size: 0.9em;
+      }
+    }
+
+    /* For very small screens (like mobile phones in portrait mode) */
+    @media (max-width: 480px) {
+      header {
+        font-size: 1em;
+        padding: 10px;
+      }
+
+      .card h2 {
+        font-size: 1em;
+      }
+
+      .card p {
+        font-size: 0.85em;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Responsive Design Example</h1>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <img src="./pictures/placeholder300x200.webp" alt="Sample Image 1">
+      <h2>Card 1</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna nec arcu cursus.</p>
+    </div>
+    <div class="card">
+      <img src="./pictures/placeholder300x200.webp" alt="Sample Image 2">
+      <h2>Card 2</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna nec arcu cursus.</p>
+    </div>
+    <div class="card">
+      <img src="./pictures/placeholder300x200.webp" alt="Sample Image 3">
+      <h2>Card 3</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna nec arcu cursus.</p>
+    </div>
+  </div>
+
+</body>
+</html>

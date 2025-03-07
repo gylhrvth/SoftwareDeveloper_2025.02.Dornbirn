@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design</title>
+</head>
+<style>
+    * {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(120deg, #00d4ff, #092ae6, #060225);
+
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main main right'
+    'footer footer footer footer footer footer';
+  gap: 10px;
+  padding: 10px;
+}
+
+.item1 {
+  grid-area: header;
+  background-color: #d1bc8a;
+  text-align: center;
+  color: black;
+}
+
+.item2 {
+  grid-area: menu;
+  background-color: #c6a664;
+  }
+
+  .item2 ul {
+    list-style-type: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+.item2 ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+  .item3 {
+  grid-area: main;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.item4 {
+  grid-area: right;
+  background-color: #f1f1f1;
+}
+
+.item4 img {
+    max-width: 100%; /* Bild passt sich der Breite des Containers an */
+    height: auto; /* Höhe wird proportional zur Breite angepasst */
+    display: block; /* Entfernt den zusätzlichen Platz unter dem Bild */
+  
+}
+
+.item5 {
+  grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+  background-color: #d1bc8a;
+  color: black;
+}
+
+.item5 div {
+  flex: 1;
+  padding: 10px;
+}
+
+.item5 div:nth-child(1) {
+  text-align: left;
+}
+
+.item5 div:nth-child(2) {
+  text-align: center;
+}
+
+.item5 div:nth-child(3) {
+  text-align: right;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  justify-content: space-around;
+}
+
+.content-item img {
+    padding: 10px;
+    max-width: 100%; /* Bild passt sich der Breite des Containers an */
+    height: auto; /* Höhe wird proportional zur Breite angepasst */
+    display: block; /* Entfernt den zusätzlichen Platz unter dem Bild */
+}
+
+@media screen and (max-width: 600px) {
+    body {
+      background: linear-gradient(120deg, #db1212, #701414, #250202);
+    }
+  .grid-container {
+    grid-template-areas:
+      'menu menu menu menu menu menu'
+      'header header header header header header'
+      'main main main main right right'
+      'footer footer footer footer footer footer';
+  }
+
+
+  .item2 {
+    background-color: white;
+    position: relative;
+    display: inline-block;
+    width: 2.5em;
+  }
+
+  .item2 ul {
+    display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  }
+
+  .item2:hover ul {
+    display: block;
+  }
+
+  /*.item2 ul {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .item2 ul li {
+    padding: 0px;
+    text-align: center;
+}*/
+
+  .content {
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-around;
+}
+
+.content-item:nth-child(8) {
+    display: none;
+}
+}
+</style>
+<body>
+    
+    <div class="grid-container">
+        <div class="item1">
+            <h1>Bubi</h1>
+        </div>
+        <div class="item2">
+          <p>Menu</p>
+            <ul>
+                <li>Menu 1</li>
+                <li>Menu 2</li>
+                <li>Menu 3</li>
+                <li>Menu 4</li>
+            </ul>
+        </div>
+        <div class="item3">
+            <div class="content">
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20231028_132627428.RAW-01.COVER.jpg" alt="">                
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250202_201523068.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250205_150226193.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250206_124125882.PORTRAIT.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250206_131640830.jpg" alt="">                
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250209_221140273.NIGHT.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250302_150132421.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img src="../../../Week 03/Aufgabe CSS Layout/img/PXL_20250202_201523068.jpg" alt="">
+                </div>
+                
+
+
+            </div>
+        </div>
+        <div class="item4">
+            <p>Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. 
+                Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi. Katze Bubi.
+            </p>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sit accusamus soluta perspiciatis officiis dolorum natus, illo amet voluptates iusto. Natus quasi laudantium sed iure quibusdam tempore debitis necessitatibus dolore.
+            </p>
+        </div>
+        <div class="item5">
+            <div>
+                <p>Impressum</p>
+            </div>
+            <div>
+                <p>miau</p>
+            </div>
+            <div>
+                Digital Campus
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

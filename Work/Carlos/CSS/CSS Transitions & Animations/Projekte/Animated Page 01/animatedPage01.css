@@ -36,6 +36,8 @@ body {
     background-color: white;
 
     position: fixed;
+
+    z-index: 10;
   }
 
   li {
@@ -74,9 +76,10 @@ main p {
     line-height: 0.9rem;
   }
 
-  main button {
+  main a {
+    text-decoration: none;
     background-color: hsl(0, 0%, 8%);
-    color: #fff;
+    color: #fff !important;
     border: none;
     font-size: 0.9rem;
     padding: 0.6rem 1rem;

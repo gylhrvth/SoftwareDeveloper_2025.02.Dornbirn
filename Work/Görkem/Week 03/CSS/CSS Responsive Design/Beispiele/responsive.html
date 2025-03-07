@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design & Dark Mode</title>
+    <style>
+        /* 🌟 Allgemeines Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            transition: all 0.3s ease-in-out;
+            margin-top: 50px;
+            font-size: 1rem;
+        }
+
+        h1 {
+            font-size: 5vw; /* Dynamische Schriftgröße, basierend auf der Breite des Viewports */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* 🌟 Container-Styling */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .box {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease-in-out;
+            margin-top: 20px;
+            filter: brightness(1);
+            background-color: white;
+        }
+
+        /* 📱 Responsive Design: Anpassung für kleine Bildschirme */
+        @media (max-width: 600px) {
+            body {
+                background-color: #e0f7fa;
+            }
+
+            .box {
+                background-color: #b3e5fc;
+                filter: brightness(1.2);
+            }
+
+            h1 {
+                font-size: 6vw; /* Größere Schriftgröße auf kleinen Bildschirmen */
+            }
+
+            p {
+                font-size: 1rem; /* Kleinere Schriftgröße auf kleinen Bildschirmen */
+            }
+
+            /* Button Styling */
+            .toggle-label {
+                position: fixed;
+                bottom: 20px; /* Button immer am unteren Rand */
+                right: 20px; /* Button immer rechts */
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                border-radius: 25px;
+                transition: background-color 0.3s ease;
+                z-index: 10;
+            }
+        }
+
+        /* 🖥️ Tablet - Bildschirmgröße zwischen 601px und 1024px */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            body {
+                background-color: #fff3e0;
+            }
+
+            .box {
+                background-color: #ffcc80;
+                filter: brightness(1.1);
+            }
+
+            h1 {
+                font-size: 4.5vw; /* Etwas kleinere Schriftgröße auf Tablets */
+            }
+
+            p {
+                font-size: 1.1rem; /* Etwas größere Schriftgröße für bessere Lesbarkeit */
+            }
+
+            .toggle-label {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* 🖥️ Desktop - Bildschirm größer als 1024px */
+        @media (min-width: 1025px) {
+            body {
+                background-color: #e8f5e9;
+            }
+
+            .box {
+                background-color: #81c784;
+                filter: brightness(1);
+            }
+
+            h1 {
+                font-size: 3rem; /* Festgelegte Schriftgröße für große Bildschirme */
+            }
+
+            p {
+                font-size: 1.2rem; /* Größere Schriftgröße auf großen Bildschirmen */
+            }
+
+            .toggle-label {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* 🌙 Dark Mode Styling */
+        body.dark-mode {
+            background-color: #121212; /* Dunkler Hintergrund */
+            color: white; /* Weißer Text */
+        }
+
+        /* Dark Mode für alle Boxen */
+        body.dark-mode .box {
+            background-color: #1e1e1e; /* Dunkler Hintergrund für die Boxen */
+            color: white; /* Weißer Text in den Boxen */
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Hellerer Schatten */
+            filter: brightness(0.7); /* Etwas dunklerer Filter */
+        }
+
+        /* Dark Mode für den Button */
+        body.dark-mode .toggle-label {
+            background-color: #333; /* Dunkler Button */
+            color: white;
+        }
+
+        body.dark-mode .toggle-label:hover {
+            background-color: #555; /* Etwas helleren Hover-Effekt */
+        }
+
+        /* 🌙 Button Styling */
+        .toggle-label {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-label:hover {
+            background-color: #0056b3;
+        }
+
+        .dark-mode-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Responsive Design & Dark Mode</h1>
+    <div class="container">
+        <div class="box">
+            <h2>Box 1</h2>
+            <p>Diese Box passt sich dynamisch an die Bildschirmgröße an.</p>
+        </div>
+        <div class="box">
+            <h2>Box 2</h2>
+            <p>Je nach Bildschirmgröße oder Dark Mode ändert sich das Design.</p>
+        </div>
+        <div class="box">
+            <h2>Box 3</h2>
+            <p>Media Queries sorgen für ein optimales Layout auf allen Geräten.</p>
+        </div>
+    </div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, illum deleniti vel ut expedita dolores placeat velit tenetur suscipit sapiente minima neque?</p>
+
+    
+    <input type="checkbox" id="darkModeToggle" class="dark-mode-toggle">
+    <label for="darkModeToggle" class="toggle-label">Dark Mode Aktivieren</label>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        
+        darkModeToggle.addEventListener('change', function () {
+            if (darkModeToggle.checked) {
+                body.classList.add('dark-mode'); 
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

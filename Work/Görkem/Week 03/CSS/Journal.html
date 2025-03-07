@@ -9,7 +9,7 @@
     <script src="../../../Kurs/common.js" defer></script>
     <title>CSS Journal</title>
 
-    <h1>CSS Transition/Animation/Transform</h1>
+    <h1>CSS Transition/Animation/Transform/Responsive Design</h1>
     <h2 class="no-style">Mittwoch, 04. März 2025</h2>
 
     <h3 class="underline-full">CSS Transform</h3>
@@ -138,6 +138,102 @@
         <br>
 
         <p><strong>➡️ Animation-Beispiel</strong></p>
+        <ul>
+            <p><a href="/Work/Görkem/Week 03/CSS/CSS Transition_Animation/Beispiele/Animation/animation02.html"> Interaktives Beispiel</a></p>
+        </ul>
+        <br>
+
+        <h3 class="underline-full">CSS Responsive Design</h3>
+
+        <li><strong>Was bedeutet das Wort responsive Design?</strong></li>
+        <p><b>Responsive Design</b> bedeutet, dass eine Website oder Anwendung so gestaltet ist, dass sie sich automatisch an verschiedene Bildschirmgröße und Geräte angepasst.</p>
+        <p>Das Ziel ist, eine optimale Benutzererfahrung zu gewährleisten - egal, ob die Seite auf einem Smartphone, Tablet oder Desktop Computer aufgerufen wird.</p>
+        <p><b>Wichtige Merkmale von Responsive Design:</b></p>
+        <ol>
+            <p>1.<b>Flexible Layouts</b>: Die Elemente passen sich dynamisch an die Bildschirmgrößen.</p>
+            <p>2.<b>Fließende Bilder</b>: Bilder werden skaliert, um sich an verschiedeneBildschirmgrößen anzupassen.</p>
+            <p>3.<b>Media Queries</b>: CSS-Technik, mit der bestimmte Styles je nach Gerätetyp und -größe angewendet werden</p>
+        </ol>
+        <br>
+
+        <li><strong>Was ist ein Media Query, wofür wird es verwendet?</strong></li>
+        <p>Ein <b>Media Query</b> ist eine CSS-Technik, mit der sich das Design einer Website an verschiedene Bildschirmgrößen, Gerätetypen oder andere Eigenschaften anpassen lässt.</p>
+        <p>Media Queries helfen dabei, <b>Responsive Design</b> umzusetzen, in dem sie bestimmte CSS-Regeln nur dann anwenden, wenn bestimmte Bedingungen erfüllt sind.</p>
+        <ul>
+            <li><p>Bildschirmbreite (z.B. Mobil, Tablet, Desktop)</p></li>
+            <li><p>Bildschirmhöhe</p></li>
+            <li><p>Geräteaussrichtung (Hoch-oder Querformat)</p></li>
+            <li><p>Auflösung (z.B. Retina- Displays)</p></li>
+        </ul>
+        <p>Syntax in CSS:</p>
+        <div class="flex-container">
+            <pre><code>
+                    @media (max-width: 768px) { 
+                        body { 
+                            background-color: red;
+                        } 
+                    } 
+            </code></pre>
+        </div>
+        <br>
+        <b>💡 Erklärung:</b>
+        <ul>
+            <li><p>Wenn die Breite des Bildschirms maximal 768px beträgt (also z. B. auf Smartphones), wird der Hintergrund rot.</p></li>
+            <li><p>Größere Bildschirme behalten ihr ursprüngliches Styling.</p></li>
+        </ul>
+        <br>
+
+        <li><strong>Wie kann ich ein eine Media Query für erkennung Dark/Light Mode verwenden?</strong></li>
+        <p>Du kannst die <b>CSS Media Query</b> @media (prefers-color-scheme) verwenden, um den Dark-oder-Light Mode des Betriebssystems zu erkennen und das Design entsprechend anzupassen.</p>
+        <br>
+        <p><strong>➡️ Responsive Design mit Darkmode</strong></p>
+        <ul>
+            <p><a href="../CSS/CSS Responsive Design/Beispiele/responsive.html">Interaktives Beispiel</a></p>
+        </ul>
+        <br>
+
+        <h3 class="underline-full">CSS Größenangabe </h3>
+
+        <li><strong>Was ist der Unterschied zwischen absoluten und relativen Größenangaben?</strong></li>
+        <p>Der Unterschied zwischen absoluten und relativen Größenangaben liegt in der Art und Weise, wie sie gemessen und verglichen werden:</p>
+        <ul>
+            <li><p>1. Absolute Größenangaben</p>
+                <ul>
+                    <li>
+                        <p>Beschrieben eine Größe unabhängig von anderen Größen, festen Wert.</p>
+                    </li>
+                    <li>
+                        <p>Beispiele: px (Pixel), cm (Zentimeter), mm (Millimeter), in (Inch).</p>
+                    </li>
+                    <li>
+                        <p>Beispiel: width: 200px; bedeutet immer genau 200 Pixel, egal in welchem Kontext.</p>
+                    </li>
+                </ul>
+            </li>
+            <li><p>2. Relative Größenangaben</p>
+                <ul>
+                <li>
+                    <p>Sie beschreiben eine Größe im Verhältnis zu einer anderen Größe und sind daher vergleichend.</p>
+                </li>
+                <li>
+                    <p>Werte: % (Prozent, relativ zum Elternelement), em (relativ zur Schriftgröße des Elternelements), rem (relativ zur Schriftgröße des Wurzelelements), vw (relativ zur Breite des Viewports), vh (relativ zur Höhe des Viewports).</p>
+                </li>
+                <li>
+                    <p>Beispiele: "doppelt so hoch wie", "20% mehr als", "im Vergleich zu</p>
+                </li>
+                </ul>
+            </li>
+            
+        <ul>
+            <p><b>Absolute Werte</b> sind nützlich, wenn man eine genaue und feste Position oder Größe in einem Layout benötigt, wie Drucklayouts, wird Größe exakt bestimmt.</p>
+            <p><b>Relative Werte</b> sind perfekt für responsive Designs, weil sie sich dynamisch an die Größe des Anzeigegeräts anpassen.</p>
+        </ul>
+        <br>
+
+
+
+
+
        
 
 
