@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Dropdown Menu</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding-top: 60px; /* Prevent content from hiding under navbar */
+        }
+
+        /* Navbar Container */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Menu Container */
+        .menu-container {
+            position: relative;
+        }
+
+        /* Using <details> for touch-friendly dropdown */
+        details {
+            display: inline-block;
+            position: relative;
+        }
+
+        summary {
+            list-style: none;
+            font-size: 18px;
+            cursor: pointer;
+            background: none;
+            color: white;
+            padding: 10px;
+            border: none;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        summary:hover {
+            text-decoration: underline;
+        }
+
+        /* Hide default dropdown arrow */
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Dropdown Menu */
+        .menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            width: 180px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+
+        /* Show menu when details is open */
+        details[open] .menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Menu items */
+        .menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        /* Hover effect */
+        .menu a:hover {
+            background: #ddd;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MyWebsite</div>
+
+        <div class="menu-container">
+            <details>
+                <summary>☰ Menu</summary>
+                <div class="menu">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Contact</a>
+                </div>
+            </details>
+        </div>
+    </nav>
+
+</body>
+</html>
