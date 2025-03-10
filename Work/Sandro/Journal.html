@@ -2,97 +2,95 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tagebuch - Lernerfolgsbuch</title>
-    <link rel="stylesheet" href="../../Kurs/common.css">
-    <script src="../../../Kurs/common.js" defer></script>
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="nosnippet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tagebuch - Lernerfolgsbuch</title>
+  <link rel="stylesheet" href="../../Kurs/common.css">
+  <script src="../../../Kurs/common.js" defer></script>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="nosnippet">
 </head>
 
 <body>
+  <h1>Projekt vorbereitung</h1>
 
-  
-  
-    <h1>Layout Übung</h1>
+  <h2>Struktur Selectors Übung</h2>
+  <p>Erstelle eine Navigation Bar mit den folgenden Elementen:</p>
+  <ul>
+    <li>Logo</li>
+    <li>Home</li>
+    <li>About</li>
+    <li>Service</li>
+    <li>Contact</li>
+    <li>Buy Now</li>
+  </ul>
 
-    <img src="/Work/Sandro/Week02/CSS/CSS_Übungen/BoxLayout/LayoutBeispiel.png" alt="Link"
-        style="max-width: 100%; height: auto;">
+  <h3>HTML</h3>
+  <p>Erstelle eine Header Section</p>
+  <p>Der Hauptcontainer ist ein div (class navbar) welche diese Elemente als Child beinhaltet.</p>
+  <p>Logo ist ein div (class logo) und wird je nach bedarf entwender ein schriftzug oder ein image</p>
+  <p>Home, About, Service, Contact sind links, welche zusammengefasst in einer UL-Liste (class links) erstellt werden
+  </p>
+  <p>Buy Now ist ein Button (class button) und funktioniert als Link</p>
+  <br>
+  <p>Somit haben wir in der Navbar, 3 verschieden Elemente. Ein Logo, eine Liste, ein Button</p>
 
-    <h2>Aufgaben</h2>
-    <ol>
-        <li>Erstelle ein div / container</li>
-        <p>Der Containter sollte in der Mitte vom Bildschirm sein und sich responsive verhalten.</p>
-        <pre>Werte:
-max-width: 600px;
-max-height: 300px;
-        </pre>
-        <li>Dieser Container beinhaltet ein Grid</li>
-        <p>Dieses Grid besteht aus zwei Reihen, erste Reihe hat zwei Elemente, die zweite Reihe hat nur ein großes
-            Element, welches wir als Content Feld betrachten. Dieses Element wird mit Content befüllt und kann sich
-            darum auch nach unten bzw. in der Größe erweitern. Tritt der Fall ein, dass wir über die Maximale Höhe von
-            dem Container kommen, soll dieses Content Feld scollable werden um den Inhalt zu verabeiten.</p>
-        <pre>Werte:
-max-height: 300px;  // Hierbei sollte noch beachtet werden, dass von den 300px auch noch das Padding abgezogen werden muss.
-max-height: calc(300px - 40px); // Versuche zum Beispiel so einen Dynamischen Wert zu erreichen.
+  <h3>CSS</h3>
+  <p>Erstlle ein css File und verlinke es zum projekt</p>
+  <p>erstlle selctoren für folgende bereiche</p>
+  <ul>
+    <li>*</li>
+    <li>body</li>
+    <li>li</li>
+    <li>a</li>
+    <li>a:hoover</li>
+    <li>header</li>
+    <li>.navbar</li>
+    <li>.navbar .logo</li>
+    <li>.navbar .links</li>
+    <li>.button</li>
+    <li>.button:hoover</li>
+    <li>.button:active</li>
+  </ul>
 
-Beachte, dass du für jedes Element ein Layout hast um diese zu unterscheiden.
+  <p>* selector, kümmert sich um alle. margin, padding, box-sizing (border-box) und font-family definiert!
+  </p>
+  <p>Warum hilft es beim erstellen von einem Layout das box-sizing umzustellen?</p>
+  <br>
+  <p>body selector, kümmert sich um den body. height 100vh, background</p>
+  <p>Warum den Body auf 100vh einstellen?</p>
+  <br>
+  <p>li selector, kümmert sich um die Listen Items. list-style none</p>
+  <p>Warum list-style none in unserem Beispiel?</p>
+  <br>
+  <p>a selector, kümmert sich um die Links. text-decoration none, color</p>
+  <p>Warum text-decoration none in unserem Beispiel?</p>
+  <br>
+  <p>a:hoover selector, kümmert sich um Links wenn darüber gehoovert wird. color</p>
+  <br>
+  <p>header selector, kümmert sich und die section header. position relativ, padding</p>
+  <p>Warum macht es Sinn, position relativ bei einer Headersection?</p>
+  <br>
+  <p>.navbar selector, kümmert sich um die Navbar. display flex, justify-content space-between, align-items center,
+    height</p>
+  <br>
+  <p>.navbar .logo selector, kümmert sich um das Logo. font-size, font-weight</p>
+  <br>
+  <p>.navbar .links selector, kümmert sich um die Links. display flex, gap,</p>
+  <br>
+  <p>.button selector, kümmert sich um den Button. padding, background, color, border, border-radius, etc</p>
+  <br>
+  <p>.button:hoover selector, kümmert sich um den Button wenn darüber gehoovert wird. background, color</p>
+  <br>
+  <p>.button:active selector, kümmert sich um den Button wenn er aktiviert wird. background, color</p>
 
-        </pre>
-        <li>Das Content feld vom Grid, beinhaltet mehrere Flex-Rows.</li>
-        <p>Eine Flex Row, setzt sich aus 3 Elementen zusammen. Das erste und letzte Element, beansprucht jeweils
-            einen(1) Teil vom platz und was als rest übrig ist, bekommt der mittlere Part. Im ersten Element wollen wir
-            eine Checkbox, im mittleren Element einene Text und im letzten ein Bild von einem Mülleimer Icon.
-        </p>
-        <pre>Werte: 
-height: 35px;
-max-height: 35px;
-        </pre>
-    </ol>
+  <h3>Bonus</h3>
+  <p>Erweitere die Button Selectoren damit, dass es eine Transition gibt wenn man über den Button hoovert und wenn man
+    diesen drückt. </p>
+  <p>Verwende dafür das scaling und füge eine transition mit ease dem button selector hinzu.</p>
 
-    <h2>Alle Element aus dem Style</h2>
-    <code>
-    body {
 
-  }
-<br>
-  .container {
 
-  }
-<br>
-  .grid-container {
-
-  }
-<br>
-  .grid-item {
-
-  }
-<br>
-  .content {
- 
-  }
-<br>
-  .row {
-
-  }
-<br>
-  .row .fragment {
-
-  }
-<br>
-  .row .main {
-    
-  }
-<br>
-  .row img {
-  
-  }
-<br>
-  .row input[type="checkbox"] {
- 
-  }
-</code>
 
 </body>
 

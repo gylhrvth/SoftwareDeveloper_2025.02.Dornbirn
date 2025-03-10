@@ -1,0 +1,140 @@
+
+
+header{
+    background-color: rgb(193, 193, 255);
+    margin-left: 20%;
+    margin-right: 20%;
+    /*justify-items: center;*/
+}
+
+
+
+
+/*Obere Teil des Header*/
+.headerUpper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    
+    
+    
+}
+/*Button-Container*/
+.headerUpperContainer{
+
+    display: flex;
+    align-items: center; /* Vertikal ausrichten */
+    gap: 0px; /* Abstand zwischen Container */
+    
+    
+    
+}
+
+
+/*Button*/
+.headerUpperButtonRED, .headerUpperButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.headerUpperButtonRED{
+    background-color: red;
+}
+
+.headerUpperButton{
+    background-color: #280ae6;
+}
+
+.headerUpperButtonRED > a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.headerUpperButtonRED > img{
+    width: 24px;
+    height: 24px;
+    filter: invert(1) brightness(100%);
+    
+    
+}
+
+
+
+
+/*Button Blue*/
+
+.headerUpperButton > a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+.headerUpperButton > img{
+    width: 24px;
+    height: 24px;
+    filter: invert(1) brightness(100%);
+    
+    
+}
+
+
+
+
+/* Unterer Teil des Header*/
+.headerBottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
+.headerLeft > img{
+    width: 360px;
+}
+
+.headerLeft > a{
+    text-decoration: none;
+    
+}
+
+.headerRight{
+    display: flex;
+    font-size: 25px;
+    margin-right: 20px;
+    
+    gap: 40px
+}
+
+.headerRight > a{
+    text-decoration: none;
+}
+
+.firstRow{
+    font-size: 20px;
+    color: gray;
+}
+
+.secondRow{
+    font-size: 30px;
+    color: gray
+}
+
+.headerRight a:hover{
+    color: blue;
+}
+
+
+/* First-Block*/
+

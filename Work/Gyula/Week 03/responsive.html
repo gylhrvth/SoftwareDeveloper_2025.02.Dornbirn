@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+:root{
+    --color-1: beige;
+    --color-2: lightcoral;
+    --color-3: lightgreen;
+    --color-text: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --color-1: hsl(60, 56%, 41%);
+        --color-2: hsl(0, 79%, 22%);
+        --color-3: hsl(120, 73%, 25%);
+        --color-text: hsl(0, 0%, 90%);
+    }  
+}
+
+    body{
+        font-size: 3vw;
+        background-color: var(--color-1);
+        color: var(--color-text)
+    }
+
+    div.twoThird{
+        width: 66%;
+    }
+
+    body > p{
+        width: 50%;
+    }
+
+    img{
+        width: 100%;
+        display: none;
+    }
+
+    .twoColumn{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    @media screen and (min-width: 768px){
+        body{
+            background-color: var(--color-2);
+        }
+        img{
+            display: inline;
+        }
+    }
+
+    @media screen and (min-width: 1024px){
+        body{
+            background-color: var(--color-3);
+        }
+
+        .twoColumn{
+            grid-template-columns: 1fr 1fr;
+         }
+    }
+
+
+</style>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt odit eos sequi eveniet alias possimus reiciendis laborum est totam modi ipsa repellat quas aperiam maxime, numquam nesciunt doloribus. Porro accusantium rerum itaque, amet ea eos est mollitia, dolor harum quasi eveniet! Reiciendis dolor perspiciatis sapiente optio illum quibusdam cupiditate autem eos vitae enim officia mollitia ea, provident quis quo, soluta rerum, ad fugit nulla totam cum dolorum tempore. Inventore ipsum omnis reprehenderit, beatae, aliquid eveniet sunt mollitia cumque ratione libero aut nemo molestiae dolore odio explicabo? Nobis perspiciatis explicabo nemo modi incidunt repellat nostrum, culpa adipisci placeat nam inventore mollitia.</p>
+    <div class="twoThird">
+        <img src="../Week 03/LayoutÜbung/Screenshot 2025-02-28 at 11.01.07.png" alt="">
+        <p>Aliquam autem excepturi iste rerum at qui eius a ipsam. Modi illo velit at aliquid quaerat placeat blanditiis quas accusantium inventore necessitatibus pariatur vero tenetur error repellat deserunt a perferendis voluptatem tempora quam, amet dolor, iste quisquam id aut. At vel suscipit veritatis fugiat deserunt, necessitatibus illo odit maiores reiciendis ea. Optio dignissimos accusantium vitae quisquam quibusdam officiis earum iure. Commodi laborum mollitia nisi sequi dignissimos accusamus magnam aut laboriosam expedita, perferendis reprehenderit voluptates dolore cum explicabo voluptas eaque vitae, vero, atque consectetur. Repellat quas dolorem tenetur iste dolore autem ad fuga! Ratione ducimus adipisci voluptatibus necessitatibus quos perferendis esse.</p>
+    </div>
+
+    <div class="twoColumn">
+        <div>
+            <h1>Hello 1</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui id recusandae porro repellendus, nostrum dignissimos assumenda at quam aliquid, ipsam laboriosam voluptate eveniet esse ea. Repellendus et nam commodi alias.</p>
+        </div>
+        <div>
+            <h1>Hello 2</h1>
+            <p>Suscipit fugiat expedita quos vel sapiente at tempore sed et, architecto perferendis enim veritatis. Repellat veritatis quasi reprehenderit hic rem, facilis reiciendis soluta eos aut aliquam omnis eligendi, veniam laudantium?</p>
+        </div>
+    </div>
+</body>
+</html>

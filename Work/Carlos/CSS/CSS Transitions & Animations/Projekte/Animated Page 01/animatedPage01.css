@@ -1,0 +1,143 @@
+
+
+
+/* Google Font */
+* {
+    font-family: "Epilogue", sans-serif;
+    font-size: 0.85rem;
+  }
+/* Google Font end */
+
+body {
+    margin: 0px;
+}
+
+/* Navigation */
+  
+  .logo {
+    font-size: 1.3rem;
+    margin-left: 2rem;
+  }
+
+  nav,
+  .cta-btns,
+  .menu-items {
+    display: flex;
+    align-items: center;
+  }
+
+  nav {
+    margin: 0 1rem 0.2rem 0.2rem;
+    justify-content: space-between;
+    border-bottom: hsl(0, 0%, 41%) solid 0.5px;
+
+    width: 100%;
+
+    background-color: white;
+
+    position: fixed;
+
+    z-index: 10;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .menu-items li,
+  .cta-btns li {
+    font-size: 0.9rem;
+    margin-right: 3.2rem;
+    color: hsl(0, 0%, 41%);
+}
+
+/* Main */
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    gap: 10px;
+
+    /* border: blue solid 4px; */
+  }
+
+main h1 {
+    font-size: 5rem;
+  }
+
+main p {
+    font-size: 0.9rem;
+    width: 18rem;
+    color: hsl(0, 0%, 41%);
+    line-height: 0.9rem;
+  }
+
+  main a {
+    text-decoration: none;
+    background-color: hsl(0, 0%, 8%);
+    color: #fff !important;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  /*Left Side */
+
+  #gallerySide {
+    margin-top: 3rem;
+  }
+
+  .textContent {
+
+    padding: 40px;
+    border-right: hsl(0, 0%, 41%) solid 0.5px;;
+   
+  }
+
+
+
+  .gridContainerPictures {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    /* border: red 4px solid; */
+    align-items: center;
+    justify-items: center;
+
+    border-right: hsl(0, 0%, 41%) solid 0.5px;
+ 
+    
+  }
+
+  .landscapePicture {
+
+    max-width: 50%;
+    border: white solid 15px;
+    /* border: solid yellow 4px; */
+   
+  }
+
+
+ /*Right Side */
+
+  #oneBigPicSide {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+  }
+
+  #oneBigPicSide img {
+    width: 80%;
+    /* border: green solid 3px; */
+  }
+
+
+
+
+  

@@ -1,0 +1,141 @@
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.topMenuA {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: -1px;
+
+}
+
+a>div  {
+    line-height: 24px;
+    height: 24px;
+    display: flex;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+header {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px black;
+}
+
+header>div:first-child {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+header > div:last-child {
+    border-left: solid 1px black;
+    padding-left: 5px;
+}
+
+.signIn {
+        border: solid 1px orange;
+        color: orange;
+        padding: 0 5px;
+}
+
+main {
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5em;     
+}
+
+main > * {
+        width: clamp(400px 60% 1200px);
+}
+
+main > div:nth-child(1){
+        text-align:center;
+        font-style: italic;
+        text-transform: uppercase;
+}
+
+
+main > div:nth-child(2){
+   text-align: center;
+}
+
+main > div:nth-child(3)>div {
+    width: 100%;
+    border: solid orange 3 px;
+ }
+
+ main > div:nth-child(4) {
+    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2px;
+ }
+
+ main > div:nth-child(4)>div {
+    
+    display: flex;
+    
+ }
+
+ .inputFieldWithOrangeBorder{
+    width: calc(100%-6px);
+    border: solid orange 3px;
+    display: flex;
+    gap: 5px;
+ }
+
+ .inputFieldWithOrangeBorder>input {
+    flex:1;
+
+    
+ }
+
+ .inputFieldWithOrangeBorder > span{
+    background-color: orange;
+    margin:5px;
+
+ }
+
+
+
+.boldText {
+        font-weight: bold;
+}
+.mainMenu {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    padding: 3px;
+
+}
+
+.mainMenuA {
+    color: orange;
+    border: solid orange 1px;
+    border-radius: 5px;
+}
+
+
+
+

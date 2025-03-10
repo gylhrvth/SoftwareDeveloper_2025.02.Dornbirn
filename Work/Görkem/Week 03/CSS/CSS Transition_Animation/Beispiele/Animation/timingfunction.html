@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Funktion</title>
+<style>
+body {
+    background-color: #e5ddee;
+    margin-left: 42%;
+    margin-top: 100px;
+
+}
+
+div {
+    width: 100px;
+    height: 50px;
+    color: white;
+    text-align: center;
+    margin: 5px;
+    font-size: 1rem;
+    border-radius: 40px;
+    background-color: blueviolet;
+    font-weight: bold;
+    position: relative;
+    animation: mymove 5s infinite;
+}
+
+#div1{animation-timing-function: linear;}
+#div2{animation-timing-function: ease;}
+#div3{animation-timing-function: ease-in;}
+#div4{animation-timing-function: ease-out;}
+#div5{animation-timing-function: ease-in-out;}
+
+#div1 {
+    animation-timing-function: linear;
+}
+
+#div2 {
+    animation-timing-function: ease;
+}
+
+#div3 {
+    animation-timing-function: ease-in;
+}
+
+#div4 {
+    animation-timing-function: ease-out;
+}
+
+#div5 {
+    animation-timing-function: ease-in-out;
+}
+@keyframes mymove {
+    from {
+        left: 0px
+    }
+    to {
+        left: 200px;
+    }
+
+}
+
+.back-button {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    padding: 15px 25px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+        
+.back-button:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1); 
+}
+
+        
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+}
+
+.back-button {
+    animation: glowing 1.5s infinite alternate;
+        
+ }
+</style>
+<body>
+     <h1>Timing Function</h1>
+     <div id="div1">linear</div>
+     <div id="div2">ease</div>
+     <div id="div3">ease-in</div>
+     <div id="div4">ease-out</div>
+     <div id="div5">ease-in-out</div>
+    </div>
+    <a href="../../Mainpage/mymainpage01.html" class="back-button">Zurück</button>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+body {
+    background-color: rgb(221, 210, 210);
+}
+
+
+/* Navigation Items */
+
+.logo {
+   
+    transition: transform 0.5s ease, width 0.5s ease;
+}
+
+.logo:hover {
+    transform: rotate(5deg) scale(1.2);
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:visited {
+    color: black; /* Same color as unvisited links */
+  }
+
+.menuItem>a {
+    
+    transition: transform 0.5s ease-in-out, color 0.5s ease, font-weight 0.5s ease;
+}
+
+.menuItem:hover a {
+    transform: scale(1.6) rotate(-5deg);
+    color: rgb(16, 12, 97);
+    font-weight: bold;
+
+}
+
+
+/* Main Items */
+
+h1 {
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+
+h1:hover {
+    animation: colorChange 2s infinite; /* Apply the color change animation */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes colorChange {
+    0% { color: red; }
+    25% { color: blue; }
+    50% { color: green; }
+    75% { color: rgb(255, 200, 0); }
+    100% { color: red; }
+}
+
+#learnButton {
+    animation: rotateAnimation 500ms infinite;
+}
+
+@keyframes rotateAnimation {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+p:hover {
+    transform: scaleX(-1) scale(1.5); /* Flip the text horizontally */
+}
+
+p {
+     /* Ensure the element can be transformed */
+    transition: transform 0.5s ease; /* Smooth transition for transform */
+    margin-bottom: 5%;
+}
+
+.landscapePicture {
+    animation: scaleAnimation 5s infinite; /* Apply the scaling animation */
+    
+    transition: filter 1s ease;
+}
+
+.landscapePicture:hover {
+    filter: grayscale(100%);
+}
+
+@keyframes scaleAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.5); }
+    100% { transform: scale(1); }
+}
+
+
+#oneBigPicSide img:hover {
+    filter: invert(100%);
+   
+}
+
+#oneBigPicSide img {
+     transition: filter 1s ease; /* Smooth transition for filter */
+}
+
+
+
+
+

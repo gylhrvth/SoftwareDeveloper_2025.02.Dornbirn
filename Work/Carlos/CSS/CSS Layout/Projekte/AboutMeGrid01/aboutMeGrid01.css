@@ -1,68 +1,189 @@
 
 
 body {
-    display: flex;
     height: 100vh;
-
+    display: flex;
     justify-content: center;
     align-items: center;
 
     overflow-y: hidden;
+    margin: 0px;
+    font-family:"Work Sans";
+    
+    
 }
 
 .gridContainer {
 
     display: grid;
-    grid-template-rows: repeat(12, 1fr);
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(17, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    gap: 10px;
 
-    max-width: 1200px;
-    max-height: 600px;
-
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
 
     background-color: aliceblue;
     border: black solid 2px;
+    background-color: #ADC2A9;
 }
 
 #header {
-    grid-area: 1 / 1 / 2 / 13;
-    background-color: lightgreen;
+    grid-area: 1 / 1 / 3 / 11;
+    background-color: #99A799;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-/* 
+
 
 #intro {
-    grid-area:
+    grid-area: 3 / 2 / 5 / 9;
+    background-color: #D3E4CD;
 }
 
 #imageMe {
-    grid-area:
+    
+    display: grid;
+    place-items: center;
+    grid-area: 5 / 2 / 10 / 5;
+    background-color: #d0d5b9;
+    overflow-y: auto;
+    
+}
+
+#carles {
+    width: 60%;
+    
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+
+    border: rgb(81, 84, 69) solid 2px;
+
 }
 
 #bio {
-    grid-area:
+    display: grid;
+    place-items: center;
+    
+    grid-area: 5 / 5 / 9 / 10;
+    background-color: #FEF5ED;
 }
 
 #hobbys {
-    grid-area:
+    grid-area: 9 / 7 / 12 / 9;
+    background-color:  #d0d5b9;
+    
 }
 
 #skills {
-    grid-area:
+    grid-area: 10 / 2 / 14 / 5;
+    background-color: #FEF5ED;
 }
 
 #bildung {
-    grid-area:
+    grid-area: 9 / 5 / 12 / 7;
+    background-color: #D3E4CD;
+}
+
+#ehrenamt {
+    grid-area: 12 / 5 / 14 / 7;
+    background-color: #d0d5b9;
+}
+
+#favourite {
+    grid-area: 12 / 7 / 14 / 9;
+    background-color: #D3E4CD;
+
 }
 
 #projects {
-    grid-area: ;
+    grid-area: 14 / 3 / 16 / 9;
+    background-color: #D3E4CD;
 }
 
 #contact {
-    grid-area: ;
+    grid-area: 16 / 1 / 18 / 11;
+    background-color: #99A799;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
-*/
+#nav {
+    grid-area: 3 / 1 / 16 / 2;
+    background-color: #99A799;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: grid;
+    
+}
+
+#nav>div {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    
+}
+
+.content {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.8vw;
+    overflow-y: auto;
+    height: 100%;
+    line-height: 1.4;
+    
+}
+
+h1, h3, li, p {
+    padding: 0 20px 0 20px;
+}
+
+h1 {
+    color: rgb(248, 246, 171);
+}
+
+h3 {
+    margin-bottom: 0px;
+    color: rgb(81, 84, 69);
+}
+
+li, p {
+    margin-top: 0px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#nav a {
+    font-size: 1vw;
+    line-height: 2;
+    color: rgb(248, 246, 171);
+
+}
+
+#contact>div {
+    align-items: center;
+}
+
+#contact h3 {
+    color:rgb(248, 246, 171);
+}
+
+#projects p {
+    margin-left: 5%;
+} 
+
+#bio, #intro, #hobbys, #skills, #bildung, #ehrenamt, #favourite, #projects, #imageMe {
+    border-radius: 10px;
+}
+

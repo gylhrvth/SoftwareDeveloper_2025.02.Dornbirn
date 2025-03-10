@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar .menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar .menu li {
+    margin-left: 1rem;
+  }
+  
+  .navbar .menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  /* Search Container */
+  .navbar .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .search-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .navbar .search-btn {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .navbar .search-btn:hover {
+    background-color: #777;
+  }
+  
+  /* Mobile-first: Flexbox column layout */
+  .container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically for mobile */
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  /* Tablet & Desktop: Flexbox row layout */
+  @media (min-width: 768px) {
+    .navbar .menu {
+      display: flex;
+    }
+  
+    .navbar {
+      justify-content: space-between;
+    }
+  
+    .navbar .search-container {
+      display: flex;
+    }
+  
+    .navbar .search-input {
+      margin-right: 1rem; /* Space between input and button */
+    }
+  
+    .container {
+      flex-direction: row; /* Adjust layout on larger screens */
+      justify-content: space-between;
+    }
+  }

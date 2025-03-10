@@ -1,0 +1,135 @@
+.box {
+    width: 200px;
+    height: 200px;
+    /*background: red;*/
+    position: absolute;
+    top: 10px;
+    left:10px;
+    animation: moveAround 5s linear infinite;
+}
+:root{
+    --color-box: hsl(312, 91%, 26%);  /* Rot für Box1 */
+    --color-box2: hsl(309, 100%, 50%); /* Grün für Box2 */
+    --color-box3: hsl(240, 100%, 50%); /* Blau für Box3 */
+    --color-box4: hsl(197, 89%, 25%);  /* Gelb für Box4 */}
+
+@keyframes moveAround {
+    0% { top: 0; left: 0; }
+    25% { top: 0; left:1000px; }
+    50% { top: 900px; left: 1000px }
+    75% { top: 900px; left: 0px; }
+    100% { top: 0px; left: 0px; }
+}
+@keyframes moveAround {
+    0% { 
+        top: 0; 
+        left: 0; 
+        background-color: var(--color-box); /* Startfarbe */
+    }
+    25% { 
+        top: 0; 
+        left: 1000px; 
+        background-color: var(--color-box2); /* Farbe nach 25% */
+    }
+    50% { 
+        top: 900px; 
+        left: 1000px; 
+        background-color: var(--color-box3); /* Farbe nach 50% */
+    }
+    75% { 
+        top: 900px; 
+        left: 0; 
+        background-color: var(--color-box4); /* Farbe nach 75% */
+    }
+    100% { 
+        top: 0; 
+        left: 0; 
+        background-color: var(--color-box); /* Zurück zur Startfarbe */
+    }
+}
+.box2 {
+    width: 150px;
+    height: 150px;
+    background: rgb(184, 21, 3);
+    position: absolute;
+    top: 10px;
+    left:10px;
+    animation: moveAround2 5s linear infinite;
+    animation-direction: alternate-reverse;  
+}
+
+@keyframes moveAround2 {
+    0% { top: 200px; left: 200px; }
+    25% { top: 200px; left:calc(1000px - 150px); }
+    50% { top: calc(900px - 150px); left: calc(1000px - 150px) }
+    75% { top: calc(900px - 150px); left: 200px; }
+    100% { top: 200px; left: 200px; }
+}
+
+.box3 {
+    width: 100px;
+    height: 100px;
+    background: rgb(252, 154, 6);
+    position: absolute;
+    top: 10px;
+    left:10px;
+    animation: moveAround3 5s linear infinite;
+    
+}
+
+/*@keyframes moveAround3 {
+    0% { top: 350px; left: 350px; }
+    25% { top: 350px; left:calc(1000px - 250px); }
+    50% { top: calc(900px - 250px); left: calc(1000px - 250px) }
+    75% { top: calc(900px - 250px); left: 350px; }
+    100% { top: 350px; left: 350px; }
+}
+*/
+
+
+@keyframes moveAround3 {
+    0% { 
+        top: 350px; 
+        left: 350px; 
+        background-color: var(--color-box4); 
+    }
+    25% { 
+        top: 350px; 
+        left: calc((1000px - 250px)); 
+        background-color: var(--color-box3); 
+    }
+    50% { 
+        top: calc((900px - 250px)); 
+        left: calc((1000px - 250px)); 
+        background-color: var(--color-box2); 
+    }
+    75% { 
+        top: calc((900px - 250px)); 
+        left: 350px; 
+        background-color: var(--color-box); 
+    }
+    100% { 
+        top: 350px; 
+        left: 350px; 
+        background-color: var(--color-box4) ; 
+    }
+}
+
+.box4 {
+    width: 50px;
+    height: 50px;
+    background: rgb(211, 252, 6);
+    position: absolute;
+    top: 10px;
+    left:10px;
+    animation: moveAround4 5s linear infinite;
+    animation-direction: alternate-reverse;  
+}
+
+@keyframes moveAround4 {
+    0% { top: 450px; left: 450px; }
+    25% { top: 450px; left:calc(1000px - 300px); }
+    50% { top: calc(900px - 300px); left: calc(1000px - 300px) }
+    75% { top: calc(900px - 300px); left: 450px; }
+    100% { top: 450px; left: 450px; }
+}

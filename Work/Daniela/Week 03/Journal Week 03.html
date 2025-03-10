@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 03</title>
+    <link rel="stylesheet" href="Journal Week 03.css">
+
+</head>
+<body>
+    <p >Lernerfolgsbuch</p>
+    <p >Montag 03.03.25 - 08.03.25</p>
+    <h1>CSS Transition and Animations </h1>
+
+    <div class="pinkypanky">
+        <h2>Transform Attribut</h2>
+        <p>In CSS ist ein Transform-Attribut eine Eigenschaft, die verwendet wird, um Elemente im 2D- oder 3D-Raum zu verändern. Das geschieht mit der transform-Eigenschaft, die verschiedene Funktionen zur Manipulation von Elementen unterstützt.</p>    
+    </div>
+    <div>
+        <h2>Grundlegende Transform Funktionen </h2>
+        <h3>translate (x,y)/translate3d(x,y,z)</h3>
+        <p>
+            Mit der translate Funktion werden Elemente um eine bestimmte Distanz verschoben.
+        </p>
+        <h3>rotate(angle)/rotate3d(x,y,z,angle)/rotateX/Y/Z(angle)</h3>
+        <p>Dreht ein Element um einen bestimmten Wert.</p>
+        <h3>scale</h3>
+        <p>scaliert die grösse eines Elements horizontal und Vertikal</p>
+        <h3>skew(x-angle, y-angle)</h3>
+        <p>Verzert ein Element entlang der Achsen</p>
+        <h3>matrix(a,b,c,d,e,f)</h3>
+        <p>Kombiniert mehrere Transformaationen in einer einzigen Matrix</p>
+        <h3>initial</h3>
+        <p>Setzt diese Eigenschft auf ihren Srandardwert</p>
+        <h3>inherit</h3>
+        <p>Erbt die Eigenschaft vom Elternelement</p>
+
+    </div>
+
+    <div class="boxA">rotate</div>
+    <div class="boxB"> scale</div> 
+    <div class="boxC">skewY</div> 
+    <div class="boxD">skewX</div> 
+    <div class="boxE">matrix</div> 
+    <div class="boxF">rotate3D, scale</div>  
+
+    <h2>transition</h2>
+    <p>Die CSS-transition-Eigenschaft ermöglicht sanfte Animationen zwischen zwei Zuständen eines Elements, z. B. beim Hover, Klick oder durch andere Änderungen.</p>
+     <p>property → Welche Eigenschaft soll animiert werden? (z. B. background-color, width, transform usw.)<br>
+        duration → Wie lange soll die Animation dauern? (z. B. 0.5s, 1s, 200ms)<br>
+        timing-function → Geschwindigkeit der Animation (ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier())<br>
+        delay → Wartezeit, bevor die Animation startet (0s, 1s)</p> 
+    
+        
+    <div class="button"> hover</div>
+
+   <h3> Eigenschaften, die mit transition animiert werden können</h3>
+      <p>  Die transition-Eigenschaft in CSS kann auf viele, aber nicht alle CSS-Eigenschaften<br>
+        angewendet werden. Im Allgemeinen funktioniert sie nur für numerische oder farbbezogene Werte<br> 
+        (z. B. width, opacity, background-color).</p>
+        <h3>Größe & Layout-Eigenschaften</h3>
+    <img src="Img/Screenshot 2025-03-05 104326.png">
+    <h3>Farben & Sichtbarkeit</h3>
+    <img src="Img/Screenshot 2025-03-05 104335.png">
+    <h3>Farben & Sichtbarkeit</h3>
+    <img src="Img/Screenshot 2025-03-05 104344.png">
+
+    <h3>Timing-Funktionen</h3>
+    <p>Die Timing-Funktion (transition-timing-function) in CSS bestimmt, wie die Animation über die Zeit abläuft.<br> Sie beeinflusst die Geschwindigkeit der Animation und gibt an, ob sie gleichmäßig, verzögert oder beschleunigt starten oder enden soll.
+
+    </p>
+    <img src="Img/Screenshot 2025-03-05 105230.png">
+    <div class="box2"> cubic-bezier</div>
+
+    <!--<p> In dieser Datei befinden sich die Übungen zu Transition und Animation:</p> -->
+   <div>
+        <a href="../Week 03/Übungen_Transition und Animation.html"></a>
+        <a href="../Week 03/Übungen_Transition and Animation.css"></a>
+    </div>
+
+    <p>CSS-Animationen ermöglichen es, Elemente schrittweise von einem Stil in einen anderen zu überführen.<br>
+        Um eine CSS-Animation zu erstellen, definiert man zunächst Keyframes, die die verschiedenen Zustände<br>
+         des Elements zu bestimmten Zeitpunkten festlegen. Anschließend wird die Animation mit Hilfe der<br>
+         animation-Eigenschaft an das gewünschte Element gebunden.</p>
+         <h3>key-frame</h3>
+         <p>Innerhalb der @keyframes-Regel werden die unterschiedlichen Stilzustände eines Elements zu definierten <br>
+            Zeitpunkten festgelegt. Zum Beispiel kann eine Animation erstellt werden, die die Hintergrundfarbe eines<br>
+            < div >-Elements über 4 Sekunden von "red" zu "yellow" verändert:</p>
+            <img src="../Week 03/Img/Screenshot 2025-03-05 135243.png">
+
+        <h3>Die animation-Eigenschaft</h3>
+
+<p>Die animation-Eigenschaft ist eine Kurzform, die mehrere Animations-Eigenschaften zusammenfasst:
+</p>
+<p>animation-name: Name der @keyframes-Animation<br>
+animation-duration: Dauer eines Animationszyklus<br>
+animation-timing-function: Geschwindigkeitskurve der Animation<br>
+animation-delay: Verzögerung vor dem Start der Animation<br>
+animation-iteration-count: Anzahl der Wiederholungen der Animation<br>
+animation-direction: Richtung, in der die Animation abgespielt wird<br>
+animation-fill-mode: Stil des Elements vor Beginn und nach Ende der Animation<br>
+animation-play-state: Spielstatus der Animation (laufend oder pausiert)<br>
+</p>
+
+<h3>Die animation-timing-function-Eigenschaft</h3>
+
+<p>Diese Eigenschaft definiert die Geschwindigkeitskurve der Animation, also wie die Geschwindigkeit während der Dauer der <br>
+    Animation variiert. Es gibt vordefinierte Werte wie ease, linear, ease-in, ease-out und ease-in-out. Alternativ kann<br>
+    eine benutzerdefinierte Geschwindigkeitskurve mit der cubic-bezier(n,n,n,n)-Funktion erstellt werden.
+</p>
+<h3>Die animation-play-state-Eigenschaft</h3>
+
+<p>Mit dieser Eigenschaft wird festgelegt, ob eine Animation läuft oder pausiert ist. Dies ist besonders nützlich, um Animationen<br>
+     mittels JavaScript zu steuern, beispielsweise um sie in der Mitte eines Zyklus zu pausieren.
+</p>
+<h3>Die animation-iteration-count-Eigenschaft</h3>
+
+<p>Diese Eigenschaft bestimmt, wie oft eine Animation abgespielt wird. Der Standardwert ist 1, aber durch Setzen auf infinite wird die<br>
+ Animation unendlich oft wiederholt.</p>
+
+<h3>Die animation-fill-mode-Eigenschaft</h3>
+
+<p>Diese Eigenschaft legt fest, welche Stile ein Element vor Beginn und nach Ende der Animation annimmt. Standardmäßig beeinflussen <br>
+    CSS-Animationen ein Element nur während ihrer Laufzeit. Mit animation-fill-mode kann dieses Verhalten überschrieben werden, sodass <br>
+    das Element die definierten Stile auch davor oder danach beibehält.
+</p>
+<h3>Die animation-direction-Eigenschaft</h3>
+
+<p>Mit dieser Eigenschaft wird definiert, ob eine Animation vorwärts, rückwärts oder in alternierenden Zyklen abgespielt wird.<br>
+    Der Standardwert ist normal (vorwärts), aber durch Setzen auf alternate wechselt die Animation nach jeder Iteration die Richtung.
+</p>
+<p>
+Durch das Verständnis und die Anwendung dieser Eigenschaften können Entwickler komplexe und ansprechende Animationen erstellen, die das <br>
+Benutzererlebnis auf Webseiten verbessern.
+</p>
+
+<h2>CSS Grössenangaben</h2>
+<p> Größenangaben in CSS können entweder absolut oder relativ sein. Die Wahl der richtigen Einheit hängt davon ab, ob das Element eine<br>
+    feste oder flexible Größe haben soll.
+    <h3>Absolute Größenangaben</h3>
+    <p>
+        <ul>
+            <li>Diese Größen sind fest definiert und ändern sich nicht in Abhängigkeit von anderen Elementen oder der Bildschirmgröße.</li>
+            <li>Sie sind unabhängig von der Schriftgröße des Benutzers oder anderen äußeren Einflüssen.</li>
+            <li>Geeignet für Drucklayouts oder feste Designvorgaben.</li>
+        </ul>
+    </p>
+    <img src="Img/Img_Journal/Screenshot 2025-03-05 151838.png">
+
+    <h2>relative Grössen</h2>
+    <p>
+        <ul>
+            <li>Diese Größen passen sich dynamisch an andere Faktoren an, z. B. die Schriftgröße des Eltern-Elements oder die Bildschirmgröße.</li>
+            <li>Sie ermöglichen ein flexibles und responsives Design.</li>
+            <li>Besonders wichtig für moderne, anpassungsfähige Webseiten.</li>
+        </ul>
+    </p>
+    <img src="Img/Img_Journal/Screenshot 2025-03-05 152313.png">
+
+    <h2>Unterschied zwischen Pixel (px) und Pixel (Bildschirm-Pixel)</h2>
+    <h3>CSS-Pixel (px in CSS)</h3>
+    <p>
+        <ul>
+       <li> Wird in CSS als Maßeinheit verwendet.</li>
+        <li>Unabhängig von der tatsächlichen Anzahl der physischen Pixel auf dem Bildschirm.</li>
+    
+        </ul>
+    </p>
+
+        <h3>Physischer Bildschirm-Pixel</h3>
+        <p>
+            <ul>
+                <li>Ein einzelner Punkt auf einem Bildschirm.</li>
+                <li>Unterschiedlich groß, je nach Display-Auflösung (z. B. Retina-Displays haben mehr Pixel pro Fläche).</li><br>
+               <li> Moderne Displays haben eine höhere Pixeldichte (DPI), wodurch ein CSS-Pixel oft aus mehreren physischen Pixeln bestehen kann.</li>
+            </ul>
+        </p>
+
+        <h3>Unterschied zusammengefasst:</h3>
+        <p>
+            <ul>
+            <li>CSS-Pixel (px) bleibt gleich, unabhängig vom Bildschirm.</li>
+           <li> Physischer Pixel hängt von der Bildschirmauflösung ab.</li>
+            <li>Auf hochauflösenden Displays (z. B. Retina) kann ein CSS-Pixel mehrere physische Pixel umfassen, um eine schärfere Darstellung zu ermöglichen.</li>
+        </ul>
+        </p>
+        <h3>CSS Variablen und Funktionen</h3>
+        <p>CSS-Variablen (auch als Custom Properties bezeichnet) sind benutzerdefinierte Werte, die in CSS definiert und wiederverwendet werden können.<br>
+            Sie beginnen mit zwei Bindestrichen (--) und werden mit var() aufgerufen.</p>
+
+        <p>Eine CSS-Variable wird innerhalb eines Selektors (oft :root für globale Variablen) deklariert</p>
+        <p>
+            <ul>
+                <li>Wiederverwendbarkeit: Verhindert das wiederholte Definieren gleicher Farbwerte, Schriftgrößen oder Abstände.</li>
+                <li>Einfache Wartung: Änderungen an einer Variable wirken sich auf alle Verwendungen aus.</li>
+                <li>Dark/Light Mode: Wechsel der Farben durch Umschalten der CSS-Variablen.</li>
+                <li>Theming: Anpassung des Designs für verschiedene Benutzer oder Layouts.</li>
+            </ul>
+        </p>
+        <img src="Img/Img_Journal/Screenshot 2025-03-06 092643.png"><br>
+        <img src="Img/Img_Journal/Verwendung von CSS-Variablen.png">
+
+        <p style="color: crimson;">Ein großer Vorteil von CSS-Variablen ist, dass sie zur Laufzeit geändert werden können</p>
+        <img src="Img/Img_Journal/Liste_Variablen.png">
+
+        <h3>Responsive Design</h3>
+        <p>Responsive Design bedeutet, dass eine Website oder Anwendung so gestaltet ist, dass sie sich automatisch an verschiedene Bildschirmgrößen und Gerätetypen<br>
+            (Smartphones, Tablets, Laptops, Desktops) anpasst. Das Ziel ist eine optimale Benutzererfahrung auf allen Geräten, ohne dass der Benutzer zoomen oder<br>
+            horizontal scrollen muss.</p>
+
+        <h3>Die drei Hauptechniken des Responsive Design:</h3>
+        <img src="Img/Img_Journal/Haupttechniken RD.png">
+
+        <p>Der "Mobile-First Approach" bedeutet, dass eine Website oder Webanwendung zuerst für mobile Geräte (kleine Bildschirme) entworfen und entwickelt wird, bevor sie<br>
+            für größere Bildschirme wie Tablets und Desktops optimiert wird.</p>
+
+        <img src="Img/Img_Journal/Mobile_First.png">
+          <p>Der Viewport ist der sichtbare Bereich einer Webseite auf einem Gerät (z. B. Smartphone, Tablet, Laptop oder Desktop).<br>
+
+
+            Auf mobilen Geräten ist der Viewport oft kleiner als auf einem Desktop.<br>
+            Ohne Anpassung würde eine Webseite auf einem Smartphone zu groß dargestellt werden, sodass Nutzer zoomen oder horizontal scrollen müssten.</p> 
+
+            <h3>Media Query</h3>
+            <p>Ein Media Query ist eine CSS-Technik, die es ermöglicht, unterschiedliche Styles für verschiedene Bildschirmgrößen, Gerätetypen oder Auflösungen zu definieren.<br>
+
+                Media Queries helfen dabei, responsive Webseiten zu erstellen, die sich automatisch an Smartphones, Tablets, Laptops oder große Bildschirme anpassen.</p>
+
+              <img src="Img/Img_Journal/Media_Query.png">  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

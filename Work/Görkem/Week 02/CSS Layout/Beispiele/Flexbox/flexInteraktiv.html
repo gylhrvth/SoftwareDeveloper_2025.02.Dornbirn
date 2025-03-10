@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../../Kurs/common.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
-    <title>Boxen bewegen sich</title>
+    <title>Fexbox</title>
     <style>
         body {
             display: flex;
@@ -82,7 +82,49 @@
             filter: brightness(var(--brightness));
         }
 
-    </style>
+        @keyframes mymove {
+    from {
+        left: 0px
+    }
+    to {
+        left: 200px;
+    }
+
+}
+
+.back-button {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    padding: 15px 25px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+        
+.back-button:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1); 
+}
+
+        
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+}
+
+.back-button {
+    animation: glowing 1.5s infinite alternate;
+        
+ }
+</style>
 </head>
 <body>
 
@@ -106,6 +148,8 @@
         <div class="item">5</div>
         <label for="slide-up" class="item">6</label>
     </div>
+
+    <a href="../../Mainpage/mymainpage01.html" class="back-button">Zurück</button>
 </body>
 </html>
 

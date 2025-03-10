@@ -4,32 +4,560 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Kurs/common.css">
-    <link rel="stylesheet" href="../carlos.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
     <script src="../../../Kurs/common.js" defer></script>
     <title>CSS Journal</title>
 
 </head>
-<body class="bodystyle">
-<div id="mainContainer">
-<h1 class="color01">Lernerfolgsbuch: CSS Journal</h1>
+<body id="bodyStyle">
+<div id="mainSectionStyle">
+<h1 class="textColor01">Lernerfolgsbuch: CSS Journal</h1>
 
-<h3 class="color01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-<h3 class="color01">▷ <a href="#day10">FR 28/02/25</a>: CSS (Layout)</h3>
-<h3 class="color01">▷ <a href="#day09">DO 27/02/25</a>: CSS (Layout)</h3>
-<h3 class="color01">▷ <a href="#day08">MI 26/02/25</a>: CSS (Layout)</h3>
-<h3 class="color01">▷ <a href="#day07">DI 25/02/25</a>: CSS (Basics)</h3>
+<h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+<h3 class="textColor01">▷ <a href="#day16">MO 10/03/25</a>: UX/UI Design, HTML, CSS - Prüfung</h3>
+<h3 class="textColor01">▷ <a href="#day15">FR 07/03/25</a>: CSS (Responsive Design)</h3>
+<h3 class="textColor01">▷ <a href="#day14">DO 06/03/25</a>: CSS (Responsive Design)</h3>
+<h3 class="textColor01">▷ <a href="#day13">MI 05/03/25</a>: CSS (Transitions & Animations)</h3>
+<h3 class="textColor01">▷ <a href="#day12">DI 04/03/25</a>: CSS (Layout)</h3>
+<h3 class="textColor01">▷ <a href="#day11">MO 03/03/25</a>: CSS (Layout)</h3>
+<h3 class="textColor01">▷ <a href="#day10">FR 28/02/25</a>: CSS (Layout)</h3>
+<h3 class="textColor01">▷ <a href="#day09">DO 27/02/25</a>: CSS (Layout)</h3>
+<h3 class="textColor01">▷ <a href="#day08">MI 26/02/25</a>: CSS (Layout)</h3>
+<h3 class="textColor01">▷ <a href="#day07">DI 25/02/25</a>: CSS (Basics)</h3>
 </div>
+
+<br>
+
+<h2 id="day16">Montag, 10. März 2025</h2>
+
+<h3 class="textColor01">UX/UI Design, HTML, CSS - Prüfung</h3>
+
+
+
+<br>
+
+<h2 id="day15">Freitag, 07. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Responsive Design</h4>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em>"<a href="./CSS Responsive Design/Projekte/projektVorbereitung/projektVorbereitung.html">CSS Projekt: Vorbereitungs-Übung</a>”</em></span></h3>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em>"<a href="./CSS Responsive Design/Projekte/responsiveWeb03/responsiveWeb03.html">Die Pinguine - Responsives Web Layout</a>”</em></span></h3>
+
+<br>
+
+<h2 id="day14">Donnerstag, 06. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Responsive Design</h4>
+
+<ul>
+    <h4 class="textColor01">CSS Größenangabe</h4>
+
+    <li class="textColor02"><strong>Was ist der Unterschied zwischen absoluten und relativen Größenangaben?</strong></li>
+    <p>Der Unterschied zwischen absoluten und relativen Größenangaben liegt in ihrer Abhängigkeit vom Kontext:</p>
+    <ul>
+        <li><p>Absolute Größenangaben</p>
+            <ul>
+                <li>
+                    <p>Sind fest und unabhängig von anderen Elementen.</p>
+                </li>
+                <li>
+                    <p>Beispiele: px (Pixel), cm (Zentimeter), mm (Millimeter), in (Inch).</p>
+                </li>
+                <li>
+                    <p>Beispiel: width: 200px; bedeutet immer genau 200 Pixel, egal in welchem Kontext.</p>
+                </li>
+            </ul>
+        </li>
+        <li><p>Relative Größenangaben</p>
+            <ul>
+            <li>
+                <p>Passen sich an andere Werte oder die Umgebung an.</p>
+            </li>
+            <li>
+                <p>Werte: % (Prozent, relativ zum Elternelement), em (relativ zur Schriftgröße des Elternelements), rem (relativ zur Schriftgröße des Wurzelelements), vw (relativ zur Breite des Viewports), vh (relativ zur Höhe des Viewports).</p>
+            </li>
+            <li>
+                <p>Beispiel: width: 50%; bedeutet, dass die Breite die Hälfte des übergeordneten Elements beträgt.
+                </p>
+            </li>
+            </ul>
+        </li>  
+
+
+    </ul>
+        <p>Absolute Werte sind nützlich für feste Layouts, wie Drucklayouts oder wenn präzise Größen wichtig sind.</p>
+        <p>Relative Werte sind ideal für responsive Designs, da sie sich an unterschiedliche Bildschirmgrößen anpassen können.</p>
+
+        <br>
+
+    <li class="textColor02"><strong>Beispiel:</strong><a href="./CSS Responsive Design/Beispiele/absoluteVSrelative01.html">Interaktives Beispiel (Absolute vs Relative widths)</a></li>
+    <br>
+    <li class="textColor02"><strong>Was gibt es für absoluten Großenangaben?</strong></li>
+    <ul>
+        <p><li>Typografische Maßeinheiten:</li></p>
+        <ul>
+            <li>Pixel (px) → Ein einzelner Punkt auf einem Bildschirm</li>
+            <li>Punkt (pt) → 1 pt = 1/72 Zoll (wird oft für Schriftgrößen genutzt)</li>
+            <li>Pica (pc) → 1 pc = 12 pt</li>
+            <li>Ex (ex) → Basierend auf der x-Höhe einer Schriftart</li>
+        </ul>
+        <p><li>Physische Maßeinheiten</li></p>
+        <ul>
+            <li>Millimeter (mm)</li>
+            <li>Zentimeter (cm)</li>
+            <li>Zoll (in oder “) → 1 Zoll = 2,54 cm</li>
+            <li>Meter (m)</li>
+        </ul>
+        <p>In der Webentwicklung werden meist px, pt, cm und mm für absolute Größenangaben verwendet.</p>
+    </ul>
+
+    <li class="textColor02"><strong>Was gibt es für relative Großenangaben?</strong></li>
+    <ul>
+        <p><li>Schriftbezogene Einheiten:</li></p>
+        <ul>
+           <li>
+            em → Basierend auf der Schriftgröße des Elements (z. B. 2em ist das Doppelte der aktuellen Schriftgröße).</li>
+           <li>rem (Root em) → Basierend auf der Schriftgröße des html-Elements (z. B. 1rem entspricht der font-size von html).</li>
+           <li>ex → Basierend auf der Höhe des Buchstabens “x” in der aktuellen Schriftart.</li>
+           
+           <li>ch → Basierend auf der Breite der Ziffer “0” in der aktuellen Schriftart.</li>
+        </ul>
+
+        <p><li>Schriftbezogene Einheiten:</li></p>
+        <ul>
+            <li>% → Bezieht sich auf die Größe des Elternelements (z. B. width: 50% bedeutet die Hälfte der Breite des übergeordneten Containers).</li>
+        </ul>
+
+        <p><li>Viewport-basierte Einheiten (für responsive Designs)</li></p>
+        <ul>
+            <li>vw (Viewport Width) → 1vw = 1% der Breite des Viewports (z. B. 50vw ist die Hälfte der Bildschirmbreite).</li>
+            <li>vh (Viewport Height) → 1vh = 1% der Höhe des Viewports.</li>
+            <li>vmin → 1% der kleineren Dimension des Viewports (Breite oder Höhe).</li>
+            <li>vmax → 1% der größeren Dimension des Viewports.</li>
+        </ul>
+        <br>
+
+    </ul>
+    <li class="textColor02"><strong>Was gibt es für flexiblen Großenangaben?</strong></li>
+    <ul>
+        <li><p>Flexbox- und Grid-Einheiten:</p></li>
+        <ul>
+            <li>fr (Fractional Unit) → Wird im CSS Grid verwendet (1fr bedeutet “ein flexibler Anteil” des verfügbaren Platzes).</li>
+            <li>auto → Passt sich automatisch an den Inhalt an.</li>
+        </ul>
+        <li><p>Skalierbare Maße mit CSS-Funktionen:</p></li>
+        <ul>
+            <li>calc() → Ermöglicht Berechnungen mit verschiedenen Einheiten (width: calc(100% - 50px)).</li>
+            <li>min() / max() → Setzt minimale oder maximale Werte (width: min(50vw, 600px)).</li>
+            <li>clamp() → Kombiniert min/max (font-size: clamp(1rem, 2vw, 2rem)).</li>
+        </ul>
+    </ul>
+    <br>
+    <li class="textColor02"><strong>Was ist der Unterschied zwischen Physikalischer Pixel und CSS-Pixel?</strong></li>
+    <p>Der Begriff Pixel kann in zwei unterschiedlichen Kontexten verwendet werden:</p>
+    <ul>
+        <li><p>CSS-Pixel (logischer Pixel):</p></li>
+        <ul>
+            <li>Definiert eine einheitliche Maßeinheit, die unabhängig von der Bildschirmauflösung ist.</li>
+            <li>Wird in Webdesign und Programmierung verwendet.</li>
+            <li>Beispiel: width: 100px; bedeutet, dass ein Element genau 100 CSS-Pixel breit ist, unabhängig von der tatsächlichen Pixeldichte des Geräts.</li>
+        </ul>
+        <p>-> CSS-Pixel ist eine abstrakte Einheit für Layouts, die auf verschiedenen Displays gleich groß erscheint.</p>
+        <li><p>Physikalischer Pixel (Hardware-Pixel):</p></li>
+        <ul>
+            <li>Bezieht sich auf die kleinste darstellbare Einheit eines Bildschirms.</li>
+            <li>Moderne hochauflösende Displays (z. B. Retina-Displays) haben oft mehrere physische Pixel pro CSS-Pixel.</li>
+            <li>Beispiel: Ein Retina-Display kann 2× oder 3× so viele physikalische Pixel pro CSS-Pixel haben, um schärfere Darstellungen zu ermöglichen.</li>
+        </ul>
+        <p>-> Physikalischer Pixel ist die kleinste Leuchteinheit auf einem Bildschirm, deren Anzahl je nach Gerät variieren kann.</p>
+    </ul>
+    <p>Beispiel: Ein 100px breites Element bleibt auf jedem Gerät 100 CSS-Pixel breit, aber auf einem Retina-Display mit 2-facher Pixeldichte wird es mit 200 physikalischen Pixeln dargestellt.</p>
+
+    <h4 class="textColor01">CSS Variablen / Funktionen</h4>
+
+    <li class="textColor02"><strong>Was sind CSS Variablen?</strong></li>
+    <p>CSS-Variablen, auch Custom Properties genannt, sind wiederverwendbare Werte in CSS. Sie ermöglichen eine dynamische Gestaltung und erleichtern das Ändern von Stilen an mehreren Stellen gleichzeitig.</p>
+    <li class="textColor02"><strong>CSS Variablen: Syntax und Verwendung</strong></li>
+    <ol>
+        <li><p>Deklaration einer Variable: CSS-Variablen werden mit -- vor dem Namen definiert und meistens im :root-Selektor gespeichert.</p></li>
+            <div class="code-sample">  
+            <code>
+                :root {
+                    --primary-color: #3498db;
+                    --font-size: 16px;
+                  }
+            </code>
+            </div>
+            <br>
+        <li><p>Nutzung einer Variable: Variablen werden mit der Funktion var() aufgerufen.</p></li> 
+        <div class="code-sample">  
+            <code>
+                body {
+                    background-color: var(--primary-color);
+                    font-size: var(--font-size);
+                  }
+            </code>
+        </div>
+    </ol>
+        <br>
+
+        <li class="textColor02"><strong>Was sind CSS Funktionen?</strong></li>
+        <p>CSS-Funktionen sind spezielle Befehle, die innerhalb von CSS-Eigenschaften verwendet werden, um dynamische Werte zu generieren. Sie ermöglichen Berechnungen, Farbmanipulationen, Transformationen und vieles mehr.</p>
+        
+        <li class="textColor02"><strong>Typische CSS Funktionen</strong></li>
+        <ul>
+            <li><p>Mathematische Funktionen:</p></li>
+            <ul>
+                <li>calc() – Ermöglicht Berechnungen mit verschiedenen Einheiten.</li>
+                <li>min() und max() – Legt den kleineren oder größeren Wert aus mehreren Optionen fest.</li>
+                <li>clamp() – Kombiniert min, max und einen bevorzugten Wert.<br> Struktur: clamp(MIN, IDEAL, MAX);</li>
+                
+            </ul>
+            <li><p>Farbmanipulation:</p></li>
+            <ul>
+                <li>rgb() und rgba() – Definiert Farben mit Rot, Grün, Blau (+ Alpha für Transparenz)</li>
+                <li>hsl() und hsla() – Farben mit Farbton, Sättigung und Helligkeit</li>
+                <li>var() – Verwendet CSS-Variablen</li>
+            </ul>
+            <li><p>Text- und Anzeige-Funktionen:</p></li>
+            <ul>
+                <li>attr() – Holt den Wert eines HTML-Attributs</li>
+                <li>url() – Fügt eine Bild- oder Datei-URL ein</li>
+                <li>local() – Definiert eine Schriftart lokal oder aus dem Web</li>
+            </ul>
+            <li><p>Transformationen & Effekte:</p></li>
+            <ul>
+                <li>translate() – Verschiebt ein Element</li>
+                <li>rotate() – Dreht ein Element</li>
+                <li>scale() – Skaliert ein Element</li>
+                <li>skew() – verzerrt (schrägt) ein Element entlang der X- und/oder Y-Achse</li>
+            </ul>
+        </ul>
+        <br>
+        <li class="textColor02"><strong>Wie ruft man CSS Funktionen?</strong></li>
+        <p>CSS-Funktionen werden direkt innerhalb von CSS-Eigenschaften aufgerufen, um dynamische Werte zu erzeugen. Der Aufruf erfolgt in der Regel durch die Angabe des Funktionsnamens gefolgt von runden Klammern, in denen die entsprechenden Parameter übergeben werden.</p>
+        <div class="code-sample">  
+            <code>
+                property: function(parameter);
+            </code>
+        </div>
+        <p>Beispiele:</p>
+        
+        <p>-> calc() – Mathematische Berechnungen:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    width: calc(100% - 20px); /* Berechnet die Breite als 100% minus 20px */
+                    }
+            </code>
+        </div>
+        <p>-> rgb() / rgba() – Farbdefinition:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    background-color: rgb(255, 0, 0); /* Rote Farbe */
+                    color: rgba(0, 0, 255, 0.5); /* Halbtransparentes Blau */
+                  }
+            </code>
+        </div>
+        <p>-> clamp() – Werte mit Mindest- und Höchstgrenzen:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    font-size: clamp(16px, 4vw, 24px); /* Schriftgröße wächst mit dem Viewport, bleibt aber zwischen 16px und 24px */
+                  }
+            </code>
+        </div>
+        <p>-> translate() – Verschiebung eines Elements:</p>
+        <div class="code-sample">  
+            <code>
+                div {
+                    transform: translate(50px, 100px); /* Verschiebt das Element um 50px nach rechts und 100px nach unten */
+                  }
+            </code>
+        </div>
+
+    <h4 class="textColor01">CSS Responsiveness</h4>
+
+    <li class="textColor02"><strong>Was bedeutet Responsive Design?</strong></li>
+    <p>Responsive Design bezeichnet eine Designtechnik, bei der Webseiten so gestaltet werden, dass sie sich automatisch an die Bildschirmgröße und -auflösung des Geräts anpassen, auf dem sie angezeigt werden. Ziel ist es, eine benutzerfreundliche, ansprechende und gut lesbare Oberfläche auf allen Geräten zu bieten, sei es auf Desktops, Tablets oder Smartphones.</p>
+    
+    <li class="textColor02"><strong>Warum verwendet man "Mobile First Approach"?</strong></li>
+    <p>Der Mobile-First-Ansatz sorgt dafür, dass Websites optimal auf mobilen Geräten funktionieren, indem sie zuerst für die kleineren Bildschirme entwickelt und dann für größere Geräte erweitert werden. Dies verbessert nicht nur die Benutzererfahrung, sondern auch die Leistung und die Suchmaschinenoptimierung (SEO). In einer Welt, in der der mobile Zugriff auf das Internet dominiert, ist dieser Ansatz heute eine bewährte Praxis in der Webentwicklung.</p>
+    <p>Google berücksichtigt Mobile-First-Indexierung, was bedeutet, dass die mobile Version einer Webseite bei der Suche höher bewertet wird.</p>
+    <li class="textColor02"><strong>Was ist ein Viewport? Warum ist Viewport wichtig?</strong></li>
+        <ul>
+            <li><p>Viewport ist der sichtbare Bereich im Browser oder auf einem Gerät, in dem Inhalte angezeigt werden.</p></li>
+            <li><p>Der Viewport ist entscheidend für die Gestaltung von Webseiten, insbesondere in einem Responsive Design.</p></li>
+            <li><p>Mit dem richtigen Umgang mit dem Viewport können Entwickler sicherstellen, dass ihre Webseite auf allen Geräten (von Smartphones bis Desktops) benutzerfreundlich und funktional bleibt.</p></li>
+            <li><p>Ein richtig definierter Viewport stellt sicher, dass eine mobile Webseite korrekt angezeigt wird und daher besser für Suchmaschinen optimiert ist.</p></li>
+        </ul>
+    
+    <li class="textColor02"><strong>Was ist eine Media Query?</strong></li>
+    <p>Eine Media Query (Medienabfrage) ist eine CSS-Technik, mit der man das Design einer Webseite an verschiedene Bildschirmgrößen, Geräteauflösungen und andere Eigenschaften des Ausgabegeräts anpassen kann. Sie ermöglicht es, unterschiedliche CSS-Regeln basierend auf bestimmten Bedingungen anzuwenden, sodass eine Webseite auf verschiedenen Geräten wie Desktops, Tablets und Smartphones gut aussieht und funktioniert.</p>
+    
+    <li class="textColor02"><strong>Aufbau einer Media Query:</strong></li> <br>
+    <div class="code-sample">  
+        <code>
+            @media (Bedingung) {
+                /* CSS-Regeln */
+              }
+        </code>
+    </div>
+    <ul>
+        <li><p>@media: Der Befehl, um eine Medienabfrage zu starten.</p></li>
+        <li><p>Bedingung: Bestimmt unter welchen Umständen die CSS-Regeln angewendet werden sollen (z. B. Bildschirmbreite, Orientierung, Auflösung).</p></li>
+        <li><p>CSS-Regeln: Die Stilregeln, die angewendet werden, wenn die Bedingung erfüllt ist.</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Media Query Beispiel:</strong></li><br>
+    <div class="code-sample">  
+        <code>
+            /* Standard-Design für Desktops */
+            body {
+              font-size: 16px;
+            }
+            
+            /* Design für Bildschirme mit einer maximalen Breite von 768px (z. B. Tablets und Smartphones) */
+            @media (max-width: 768px) {
+              body {
+                font-size: 14px;
+              }
+            }
+        </code>
+    </div>
+    <br>
+
+    <li class="textColor02"><strong>Typische Anwendungsfälle von Media Queries:</strong></li><br>
+    <ul>
+        <li><p>Bildschirmgrößen: Passen die Darstellung der Webseite an unterschiedliche Geräte an (Smartphones, Tablets, Desktops). ->	Beispiel: @media (max-width: 768px)</p></li>
+        <li><p>Ausrichtung: Reagieren auf Hoch- oder Querformat. -> Beispiel: @media (orientation: landscape)</p></li>
+        <li><p>Auflösung: Für hochauflösende Displays wie Retina-Displays. -> Beispiel: @media (min-resolution: 2dppx)</p></li>
+        <li><p>Farben und Kontraste: Für barrierefreie Gestaltung oder Geräte mit besonderen Anzeigeanforderungen. -> Beispiel: @media (prefers-color-scheme: dark)</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Kann man mehr als eine Media Query schreiben?</strong></li>
+    <p>Ja, das ist sogar eine sehr gängige Praxis, um sicherzustellen, dass deine Webseite auf verschiedenen Geräten optimal aussieht und funktioniert.</p>
+    <li class="textColor02"><strong>Wie sieht eine minimale aber komplette Beispiel auf Responsive Design aus?</strong></li>
+    <p>-> <a href="./CSS Responsive Design/Beispiele/responsive01/responsiveKI01.html">KI generiertes Beispiel</a></p>
+    
+</ul>
+
+<h2 id="day13">Mittwoch, 05. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Transitions & Animations</h4>
+<ul>
+    <h4 class="textColor01">CSS Transform</h4>
+
+    <li class="textColor02"><strong>Was ist CSS Transform?</strong></li>
+    <p>Es ist eine CSS-Eigenschaft, die es ermöglicht, HTML-Elemente visuell zu verändern, ohne ihre tatsächliche Position im Dokumentenfluss zu ändern. Sie wird verwendet, um Elemente zu drehen, skalieren, verschieben oder kippen.</p>
+    <li class="textColor02"><strong>Welche Transform Eigenschaften sind üblich und wie verwendet man sie?</strong></li>
+    <ul>
+        <li><p>scale (x,y): Vergrößert oder verkleinert das Element.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: scale(1.5, 2);
+                  }
+            </code>
+            </div>
+        </div>
+
+        <li><p>translate (x,y): Verschiebt ein Element entlang der X- und Y-Achse.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: translate(50px, 100px);
+                  }
+            </code>
+            </div>
+        </div>
+        <li><p>rotate(angle): Dreht das Element im Uhrzeigersinn um den angegebenen Winkel.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: rotate(45deg);
+                  }
+            </code>
+            </div>
+        </div>
+        
+        <li><p>skew(x-angle, y-angle): Kippt das Element entlang der X- oder Y-Achse.</p></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                div {
+                    transform: skew(20deg, 10deg);
+                  }
+            </code>
+            </div>
+        </div>
+    </ul>
+
+    <br>
+    <br>
+
+    <li class="textColor02"><strong>Transform-Beispiele:</strong></li>
+    <p>-> <a href="./CSS Transitions & Animations/Beispiele/Transform/transformKI01.html">Interaktives Beispiel mit Rotation / Scaling / Translation / Skew</a></p>
+    
+    <br>
+
+    <h4 class="textColor01">CSS Transitions</h4>
+
+    
+        <li class="textColor02"><strong>Was sind CSS Transitions?</strong></li>
+        <p>CSS Transitions sind eine Möglichkeit, Änderungen von CSS-Eigenschaften sanft und animiert ablaufen zu lassen, anstatt dass sie sofort und abrupt passieren. Damit kann man z. B. eine Farbänderung, Größenveränderung oder Positionierung flüssig gestalten.</p>
+
+        <li class="textColor02"><strong>Wie kann man CSS Transitions verwenden?</strong></li>
+        <p>Syntax in CSS:</p>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                transition: property duration timing-function delay;
+            </code>
+            </div>
+        </div>
+        <br>
+        <ul>
+            <li><p>property → Die zu animierende Eigenschaft (z. B. background-color, opacity, transform).</p></li>
+            <li><p>duration → Wie lange die Animation dauert (z. B. 0.5s, 1s).</p></li>
+            <li><p>timing-function (optional) → Der Animationsverlauf (ease, linear, ease-in-out, etc.).</p></li>
+            <li><p>delay (optional) → Verzögerung vor Start der Animation.</p></li>
+        </ul>
+        <br>
+        <li class="textColor02"><strong>Transition-Beispiele:</strong></li>
+        <br>
+        <ul>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition01.html">Farbänderung mit Hover</a></li><br>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition02.html">Größe & Drehung ändern</a></li><br>
+            <li><a href="./CSS Transitions & Animations/Beispiele/Transitions/transition03.html">Position & Größe & Form ändern</a></li>
+        </ul>
+
+        <br>
+        <br>
+
+        <li class="textColor02"><strong>Was ist die timing-function?</strong></li>
+        <p>Die timing-function in CSS bestimmt, wie eine Transition oder Animation im Laufe der Zeit abläuft. Sie steuert die Geschwindigkeit der Änderung, indem sie festlegt, ob sie gleichmäßig, langsam oder in einem bestimmten Muster erfolgt.</p>
+        <p>-> Die wichtigsten timing-function-Werte:</p>
+        <ul>
+            <li><p>linear: Die Animation verläuft gleichmäßig, ohne Beschleunigung oder Verzögerung.</p></li>
+            <li><p>ease (Standard): Die Animation startet langsam, wird schneller und endet langsam.</p></li>
+            <li><p>ease-in: Langsamer Start, dann schneller.</p></li>
+            <li><p>ease-out: Schneller Start, dann langsamer.</p></li>
+            <li><p>ease-in-out: Langsamer Start und langsames Ende.</p></li>
+                
+            
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Timing-function -> <a href="./CSS Transitions & Animations/Beispiele/Transitions/timingFunction01.html"></strong>Interaktives Beispiel</a>
+        </li>
+        <br>
+        
+        <h4 class="textColor01">CSS Animations</h4>
+        <li class="textColor02"><strong>Was sind CSS animations?</strong></li>
+        <p>Mit CSS-Animationen kann man Elemente ohne JavaScript beweglich und dynamisch machen. Im Gegensatz zu Transitions sind Animationen komplexer und können mehrere Schritte enthalten.</p>
+        <li class="textColor02"><strong>Grundlegende Syntax</strong></li>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                selector {
+                    animation: name duration timing-function delay iteration-count direction fill-mode;
+                  }
+            </code>
+            </div>
+        </div>
+        <br>
+        <li class="textColor02"><strong>Erklärung der Syntax</strong></li>
+        <ul>
+            <li><p>name: Name der Animation. Beispiel: move</p></li>
+            <li><p>duration: Dauer der Animation. Beispiel: 2s</p></li>
+            <li><p>timing-function: Geschwindigkeitseffekt. Beispiel: ease-in-out</p></li>
+            <li><p>delay: Wartezeit vor Start. Beispiel: 1s</p></li>
+            <li><p>iteration-count: Anzahl der Wiederholungen. Beispiel: infinite, 3, 1</p></li>
+            <li><p>direction: Richtung der Animation. Beispiel: alternate, reverse</p></li>
+            <li><p>fill-mode: Verhalten nach Animation. Beispiel: forwards, backwards</p></li>
+        </ul>
+        <br>
+        <li class="textColor02"><strong>Was sind @keyframes?</strong></li>
+        
+        <p>@keyframes ist die zentrale Technik für CSS-Animationen.
+        <p>Damit kann man festlegen, wie sich ein Element über die Zeit verändert – zum Beispiel Farbe, Position, Größe oder Drehung.</p>
+        <p>Syntax on CSS:</p>
+        <div class="fileExample">
+            <div class="code-sample">  
+            <code>
+                @keyframes animationName {
+                    0% { /* Starting state */ }
+                    50% { /* Midway state */ }
+                    100% { /* Final state */ }
+                }
+            </code>
+            </div>
+        </div>
+
+        <ul>
+            <li><p>0% represents the starting point of the animation.</p></li>
+            <li><p>100% represents the end point.</p></li>
+            <li><p>You can also define multiple percentage points (e.g., 25%, 75%) for more detailed control over the animation’s progression.</p></li>
+        </ul>
+
+        <br>
+
+        <li class="textColor02"><strong>Animation-Beispiele:</strong></li><br>
+        <p>-> <a href="./CSS Transitions & Animations/Beispiele/Animations/animations01.html">Multiple Keyframes</a></p>
+        <p>-> <a href="./CSS Transitions & Animations/Beispiele/Animations/Pacman/pacman.html">Pac-man!!!</a></p>
+
+</ul>
+
+<br>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em>"<a href="./CSS Transitions & Animations/Projekte/Animated Page 01/animatedPage01.html">Transitions & Animations Übung</a>”</em></span></h3>
+
+<br>
+
+<h2 id="day12">Dienstag, 04. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Layout</h4>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em> “Baue eine Website, die so ähnlich ist wie die vom <a href="https://bgdornbirn.at/">Bundesgymnasium Dornbirn</a>.”</em></span> ➡ <a href="./CSS Layout/Projekte/layoutAufgabe04/layoutAufgabe04.html">Zur BG Dornbirn Übung</a></h3>
+
+<br>
+
+<h2 id="day11">Montag, 03. März 2025</h2>
+
+<h3 class="textColor01">CSS</h3>
+
+<h4>CSS Layout</h4>
+
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em> “Baue eine Website, die so ähnlich ist wie die vom <a href="https://bgdornbirn.at/">Bundesgymnasium Dornbirn</a>.”</em></span> ➡ (Aufgabe in Bearbeitung)</h3>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em> Erstelle das passende CSS für ein vorgegebenes HTML-Dokument anhand eines Screenshots. -> </em></span><a href="./CSS Layout/Projekte/layoutAufgabe03B/layoutAufgabe03B.html">Layout Übung: Gyulas Web (Version 02)</a></h3>
 <br>
 
 <h2 id="day10">Freitag, 28. Februar 2025</h2>
 
-<h3 class="color01">CSS</h3>
+<h3 class="textColor01">CSS</h3>
 
 <h4>CSS Layout</h4>
 
 <ul>
 
-<li class="color02"><strong>Grid Eigenschaften:</strong></li>
+<li class="textColor02"><strong>Grid Eigenschaften:</strong></li>
 <p>Grid ist ein Zweidimensionales Layout – Es erlaubt sowohl die Steuerung von Zeilen (rows) als auch Spalten (columns), im Gegensatz zu Flexbox, das nur in eine Richtung arbeitet.</p>
 <p>Die wichtigsten Eigenschaften von CSS Grid sind:</p>
 <ul>
@@ -77,7 +605,7 @@
 </ul>
 <br>
 
-<li class="color02"><strong>Grid erstellen: Beispiel</strong></li>
+<li class="textColor02"><strong>Grid erstellen: Beispiel</strong></li>
 <ol>
     <li><p>HTML-Struktur erstellen:</p></li>
     <div class="fileExample">
@@ -163,19 +691,27 @@
 </ul>
 
 </ul>
+<br>
+
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe:</strong></span><span class="textColor02"><em> Erstelle das passende CSS für ein vorgegebenes HTML-Dokument anhand eines Screenshots.</em></span></h3>
+
+<ul>
+    <li><h3><a href="CSS Layout/Projekte/layoutAufgabe03/preset/Screenshot 2025-02-28 at 11.01.07.png">Screenshot - Ziel</a></li></h3>
+    <li><h3><a href="./CSS Layout/Projekte/layoutAufgabe03/layoutAufgabe03.html">"Layout Übung: Gyulas Web (Version 01)</a>"</li></h3></ul>
+
 
 <br>
 
 <h2 id="day09">Donnerstag, 27. Februar 2025</h2>
 
-<h3 class="color01">CSS</h3>
+<h3 class="textColor01">CSS</h3>
 
 <h4>CSS Layout</h4>
 
 <ul>
 
 
-<li class="color02"><strong>Was ist der z-index?</strong></li>
+<li class="textColor02"><strong>Was ist der z-index?</strong></li>
 <p>Der z-index ist eine CSS-Eigenschaft, die bestimmt, in welcher Reihenfolge sich überlappende Elemente auf einer Webseite gestapelt werden.</p>
 <p>Grundprinzipien des z-index:</p>
 <ul>
@@ -191,19 +727,19 @@
 <br>
 </ul>
 
-<h3><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="./CSS Layout/Projekte/layoutAufgabe02/responsiveLayout02.html">Responsives Layout</a>"</em></span></h3>
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe: </strong></span><span class="textColor02"><em>"<a href="./CSS Layout/Projekte/layoutAufgabe02/responsiveLayout02.html">Responsives Layout</a>"</em></span></h3>
 
 <br>
 
 <h2 id="day08">Mittwoch, 26. Februar 2025</h2>
 
-<h3 class="color01">CSS</h3>
+<h3 class="textColor01">CSS</h3>
 
 <h4>CSS Layout</h4>
 
 <ul>
 
-    <li class="color02"><strong>Welche CSS-Techniken kann man zur Gestaltung eines Layouts verwenden?</strong></li>
+    <li class="textColor02"><strong>Welche CSS-Techniken kann man zur Gestaltung eines Layouts verwenden?</strong></li>
     <ul>
     <li><p>CSS Positioning (absolute, relative, fixed, sticky)</p></li>
     <li><p>CSS Flexbox → Gut für einzeilige oder kleinere Layouts. Flexbox ist eindimensional: Das bedeutet, dass Flexbox entweder in einer Reihe (row) oder in einer Spalte (column) arbeitet – aber nicht gleichzeitig in beiden Richtungen.</p></li> 
@@ -212,7 +748,7 @@
     <li><p>CSS Float (veraltet, aber noch in manchen Fällen genutzt): Wenn man Text um ein Bild oder ein anderes Element fließen lassen möchte, kann man float verwenden. Das Bild wird “links” oder “rechts” positioniert und der Text fließt darum herum.</p></li>      
     </ul>
 
-    <li class="color02"><strong>Wie erstellt man ein Flexbox layout?</strong></li>
+    <li class="textColor02"><strong>Wie erstellt man ein Flexbox layout?</strong></li>
     <p>Ein Flexbox Layout wird mit der CSS-Eigenschaft display: flex erstellt. Flexbox ermöglicht eine einfache und flexible Möglichkeit, Elemente in einer Reihe oder Spalte anzuordnen und auszurichten.</p>
     <p>-> Grundstruktur:</p>
     <ol>
@@ -222,7 +758,7 @@
 
     <br>
 
-    <li class="color02"><strong>Flexbox Eigenschaften:</strong></li>
+    <li class="textColor02"><strong>Flexbox Eigenschaften:</strong></li>
     
     <p>-> Container-Eigenschaften:</p>
 
@@ -272,12 +808,12 @@
 
 <br>
 
-<h3><span class="color01"><strong>‼️➡️ Aufgabe: </strong></span><span class="color02"><em>"<a href="CSS Layout/Projekte/AboutMeFlex01/aboutMeFlex01.html">About Me (Flexbox)</a>"</em></span></h3>
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe: </strong></span><span class="textColor02"><em>"<a href="CSS Layout/Projekte/AboutMeFlex01/aboutMeFlex01.html">About Me (Flexbox)</a>"</em></span></h3>
 
 <br>
 
 
-    <li class="color02"><strong>Wie erstellt man ein Grid layout?</strong></li>
+    <li class="textColor02"><strong>Wie erstellt man ein Grid layout?</strong></li>
     <p>-> Step by step:</p>
     <ol>
         <li><p>Container definieren: Der Container, der das Grid enthält, wird mit display: grid aktiviert.</p></li>
@@ -339,15 +875,15 @@
 
 <h2 id="day07">Dienstag, 25. Februar 2025</h2>
 
-<h3 class="color01">CSS</h3>
+<h3 class="textColor01">CSS</h3>
 
 <h4>CSS Basics</h4>
 
 <ul>
-    <li class="color02"><strong>Was ist CSS und wofür wird es verwendet?</strong></li>
+    <li class="textColor02"><strong>Was ist CSS und wofür wird es verwendet?</strong></li>
     <p>CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen und die Gestaltung von HTML-Dokumenten zu definieren.</p>
     <p>CSS bestimmt, wie eine Webseite aussieht – es steuert Farben, Schriftarten, Abstände, Layouts und mehr.</p>
-    <li class="color02"><strong>Was für möglichkeiten gibt es CSS in einem Dokument zu verwenden?</strong></li>
+    <li class="textColor02"><strong>Was für möglichkeiten gibt es CSS in einem Dokument zu verwenden?</strong></li>
     <ul>
         <li><p>Inline-CSS: Nützlich für einzelne, schnelle Änderungen / Unübersichtlich und schwer wartbar</p></li>
         <li><p>Internes CSS: Nützlich für kleine Webseiten oder einzelne Seiten / Vermischt HTML und CSS → Unübersichtlich bei großen Projekten</p></li>
@@ -358,7 +894,7 @@
     <h4>-> <a href = "CSS Basics/Beispiele/insertCSS/insertCSS.html">CSS-Use Beispiel</a></h4>
 
     
-    <li class="color02"><strong>Wie bindet man eine CSS-Datei in ein HTML-Dokument ein?</strong></li>
+    <li class="textColor02"><strong>Wie bindet man eine CSS-Datei in ein HTML-Dokument ein?</strong></li>
     <p>Eine CSS-Datei wird mit dem &lt;link&gt;-Tag im &lt;head&gt;-Bereich eines HTML-Dokuments eingebunden.</p>
     <p>Beispiel: </p>
 
@@ -375,7 +911,7 @@
 
     <br>
 
-    <li class="color02"><strong>Was sind Selektoren?</strong></li>
+    <li class="textColor02"><strong>Was sind Selektoren?</strong></li>
     <p>Selektoren in CSS bestimmen, welche HTML-Elemente von den definierten Stilregeln betroffen sind. Sie ermöglichen es, gezielt einzelne oder mehrere Elemente zu stylen.</p>
     <p>-> Beispiele:</p>
 
@@ -425,7 +961,7 @@
 
 <br>
 
-<li class="color02"><strong>Selektoren-Hierarchie:</strong></li>
+<li class="textColor02"><strong>Selektoren-Hierarchie:</strong></li>
 
 <ul>
     <li><p>Inline-Stil > Internes CSS > Externes CSS </p></li>
@@ -436,14 +972,14 @@
 
 <br>
 
-<li class="color02"><strong>Selektoren kombinieren:</strong></li>
+<li class="textColor02"><strong>Selektoren kombinieren:</strong></li>
 <p><img id="cheatsheet01" src="CSS Layout/Beispiele/CSS-Selectors/selectorscss.png"></p>
 
 <p>-> CSS Selectors: <a href="https://frontend30.com/css-selectors-cheatsheet/">CSS Selectors Cheatsheet (Interaktiv)</a></p>
 
 <br>
 
-<li class="color02"><strong>Wie kann man Farben und Hintergründe in CSS definieren?</strong></li>
+<li class="textColor02"><strong>Wie kann man Farben und Hintergründe in CSS definieren?</strong></li>
 <p>-> Farben mit color (Textfarbe):</p>
 <div class="fileExample">
     <div class="code-sample">  
@@ -480,7 +1016,7 @@
 <br>
 <br>
 
-<li class="color02"><strong>Was sind Box-Model, Padding und Margin?</strong></li>
+<li class="textColor02"><strong>Was sind Box-Model, Padding und Margin?</strong></li>
 
 <p>Das CSS-Box-Modell beschreibt, wie HTML-Elemente als rechteckige Boxen dargestellt werden. Jede Box besteht aus vier Bereichen:</p>
 <ol>
@@ -502,7 +1038,7 @@
 
 <br> 
 
-<h3><span class="color01"><strong>‼️➡️ Aufgabe -> About Me stylen mit CSS:</strong></span><span class="color02"><em>"<a href="CSS Basics/Projekte/AboutMeCSSBasic/aboutMeCSSBasic.html">About Me (CSS Basic)</a>"</em></span></h3>
+<h3><span class="textColor01"><strong>‼️➡️ Aufgabe -> About Me stylen mit CSS:</strong></span><span class="textColor02"><em>"<a href="CSS Basics/Projekte/AboutMeCSSBasic/aboutMeCSSBasic.html">About Me (CSS Basic)</a>"</em></span></h3>
 
 </ul>
 

@@ -8,6 +8,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Aboutme.css">
+<style>
+.back-button {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px; 
+    padding: 15px 25px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+        
+.back-button:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1); 
+}
+
+        
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); }
+}
+
+.back-button {
+    animation: glowing 1.5s infinite alternate;
+        
+ }
+
+</style>
 </head>
 <body>
     <!-- Hauptcontainer -->
@@ -15,7 +50,7 @@
 
         <!-- Header mit Bild & Name -->
         <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #ddd;">
-            <img src="/Work/Görkem/Week 02/CSS Basics/Pics/MeinBild.jpg" alt="Görkem Cinar"
+            <img src="../Pics/MeinBild.jpg" alt="Görkem Cinar"
             style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid #333;">
             <h1 class="updock-regular mainTitle">Görkem Cinar</h1>
             <p style="font-size: 16px; color: #666;">Quereinsteiger als Software Developer</p>
@@ -108,7 +143,7 @@
 
     </div>
 
-    <button onclick="(() => window.location.href = '../../Mainpage/mymainpage01.html')()">Zurück</button>
+    <a href="../../Mainpage/mymainpage01.html" class="back-button">Zurück</button>
 
 </body>
 </html>

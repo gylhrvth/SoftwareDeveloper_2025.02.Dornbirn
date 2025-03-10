@@ -3,197 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <title>Layout Übung</title>
+    <link rel="stylesheet" href="./Kurs/common.css">
     <script src="./common.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 
 header {
     display: flex;
+    background-color: #647E8D;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #222;
 }
-
 
 .menuLeft {
     display: flex;
     align-items: center;
-    gap: 30px;
-}
-
-.menuLeft img {
-    width: 60px;
-    height: auto;
-}
-
-.menuLeft a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-    padding: 8px 12px;
-}
-
-.menuLeft a:hover {
-    background-color: #444;
-    border-radius: 5px;
-}
-
-
-.menuRight img {
-    width: 32px;
-    height: 32px;
-}
-
-
-main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
-
-.main-container {
-    display: flex;
-    max-width: 800px;
     gap: 40px;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
 }
 
-.text-container {
-    flex: 1;
-    max-width: 50%;
+.menuLeft > img{
+    width: 120px;
 }
 
+.menuLeft > a{
+    font-size: 2vw;
+    text-decoration: none;
+    color: #D6DDE1;
 
-.image-container img {
-    width: 120px; 
-    height: auto;
-    height: auto;
-    border-radius: 10px;
-    max-width: 100%;
 }
 
+.menuRight > div > img{
+    filter: invert(1)
+
+}
 
 footer {
-    background-color: #222;
-    color: white;
-    padding: 50px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    position: relative;
-    flex-wrap: wrap;
+    background-color: #647E8D;
+    padding: 10px 0;
+    margin-top: 20px;
+
 }
 
 
-.footerLeft, .footerCenter, .footerRight {
-    flex: 1;
-    min-width: 200px;
+footer > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    justify-items: stretch;
+   
+
 }
 
 
-.footerLeft {
-    position: absolute;
-    right: 20px; 
-    bottom: 37px;
-    text-align: right;
+.footerleft { 
+    justify-self: start;
+    align-self: center;
 }
 
-.footerLeft a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
 
-.footerLeft a:hover {
-    text-decoration: underline;
+.footerLeft > a { 
+    margin-left: 20px;
 }
 
 
 .footerCenter {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 30px;
     display: flex;
-    gap: 20px;
-}
-
-.footerCenter img {
-    width: 40px;
-    height: auto;
-    transition: 0.3s;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
 }
 
 
 .footerRight {
-    position: absolute;
-    left: 20px; 
-    bottom: 10px;
+    justify-self: end; 
+    align-self: center;
+    margin-right: 20px;
+    color: #D6DDE1;
 }
 
-.footerRight h4 {
-    font-size: 20px;
-    margin-bottom: 10px;
+
+.footerCenter>img {
+    width: 30px;
+    padding: 5px;
 }
 
-.footerRight p {
-    font-size: 16px;
-    margin: 5px 0;
+
+main {
+    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 60%;
+    justify-self: center;
+   
+
 }
 
-main > div > img {
-    width: 20%;
-    display: flex;
-    justify-content: flex-end;
+main > div> img {
+    float: right; 
+    width: 420px;
+    margin-left: 20px;
+}
 
+main > div {
+    grid-area: 1 / 2 / 2 / 3;
 }
 
 </style>
 </head>
-</body>
+<body>
 <header>
     <div class="menuLeft">
-        <img src="/Work/Görkem/Week 02/CSS Übung/Projekte/img/Logo.webp" alt="Logo">
+        <img src="../img/Logo.webp" alt="Logo">
         <a href="#HomeID">Home</a>
         <a href="#TrainerID">Trainer</a>
         <a href="#KursregelnID">Kursregeln</a>
-        <a href="/Kurs/Aufgaben.html">Aufgaben</a>
+        <a href="Kurs/Aufgaben.html">Aufgaben</a>
     </div>
     <div class="menuRight">
-        <div><img src="/Work/Görkem/Week 02/CSS Übung/Projekte/img/account_circle_32dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" alt="User Settings"></div>
+        <div><img src="../img/account_circle_32dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.png" alt="User Settings"></div>
     </div>
     </header>
     <main>
-        <div class="main-container, text-container">
+        <div>
             <h1>Main</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam laboriosam neque ullam odit, eum quam eligendi at accusantium itaque sapiente quod possimus similique odio porro quas totam magni sint dolor?</p>
             <h2>About me</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At accusantium sequi quod iusto necessitatibus labore exercitationem commodi aliquam ut dignissimos, maiores perferendis iure dolor aliquid veritatis vel voluptatibus? Molestias, maiores.</p>
-            <img src="/Work/Görkem/Week 02/CSS Basics/Pics/MeinBild.jpg" alt="me">
+            <img src="../img/Gyula Horvath.jpeg" alt="me">
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At molestiae voluptates nostrum eius fugiat, quod exercitationem laborum ea odit delectus porro dolores quisquam? Ea quidem ipsum dolorem similique repudiandae a, id expedita quia architecto, tempore asperiores quo hic ab in! Maxime aperiam impedit nisi dignissimos obcaecati ea eveniet tempore velit totam vero voluptates dolorem quis ratione, in omnis doloribus et suscipit ullam rerum quia alias incidunt repudiandae temporibus odit. Ipsam autem nostrum corrupti omnis nemo suscipit modi dolore perspiciatis optio? Deserunt numquam minima vero, asperiores earum consequatur natus cum ut, totam placeat dolore qui quis voluptas odit voluptates harum doloribus accusamus similique perferendis rerum. Aliquam sapiente beatae eveniet. Porro iure quaerat hic cumque, pariatur dicta excepturi molestiae alias, placeat sed nobis, magni nostrum id? Earum quo incidunt corrupti veniam suscipit animi ut recusandae reiciendis cupiditate quam, quae saepe rerum obcaecati soluta unde consequuntur voluptates atque beatae quasi commodi deserunt iure inventore quod blanditiis? At dicta cumque velit illo recusandae tempora omnis ipsam totam, ipsa facere dolor ab quo, distinctio quidem hic corrupti neque. Maiores sequi ab illum mollitia provident ex veniam sit, omnis asperiores quae voluptatum perferendis, cum architecto quam autem aut? Consequatur atque, deleniti sint obcaecati numquam molestiae temporibus.</p>
         </div>
         
@@ -204,16 +145,36 @@ main > div > img {
             <a href="#">Impressum</a>
         </div>
         <div class="footerCenter">
-            <img src="/Work/Görkem/Week 02/CSS Übung/Projekte/img/facebook logo_icon.svg" alt="Facebook">
-            <img src="/Work/Görkem/Week 02/CSS Übung/Projekte/img/instagram logo_icon.svg" alt="Instagram">
-            <img src="/Work/Görkem/Week 02/CSS Übung/Projekte/img/linkedin logo_icon copy.svg" alt="Linkedin">
+            <img src="../img/facebook logo_icon.svg" alt="Facebook">
+            <img src="../img/instagram logo_icon.svg" alt="Instagram">
+            <img src="../img/linkedin logo_icon.svg" alt="Linkedin">
         </div>
         <div class="footerRight">
             <h4>Kontakt</h4>
             <p>+43 123 456 789</p>
-            <p>Färbergasse 15, Dornbrin</p>
+            <p>Färbergasse 15, Dornbirn</p>
         </div>
     </div>
 </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

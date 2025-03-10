@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../../../../Kurs/common.css">
-    <link rel="stylesheet" href="../../../../carlos.css">
-    <link rel="stylesheet" href="./aboutMeCSSBasic.css">
+    <link rel="stylesheet" href="../../../../carlosMainStyle.css">
+    <link rel="stylesheet" href="../../../../carlosMiscStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <title>About Me</title>
+    <title>About Me (CSS)</title>
     <style>
         #aboutMe {
             border: outset rgb(69, 76, 100) 10px;
@@ -24,13 +24,17 @@
             font-family: "Press Start 2P", serif;
             text-align: center;
         }
+
+        #container01 {
+            background-color: rgb(130, 95, 164);
+        }
     </style>
 </head>
-<body class="bodystyle">
+<body id="bodyStyle">
 
     <h1 style="font-family: 'Courier New', Courier, monospace;">-> About Me mit CSS Basic Style</h1>
 
-    <div id="container01">
+    <div id="mainSectionStyle">
 
     <h1> About Me:</h1>
 
@@ -77,6 +81,7 @@
     <li><p>Email Adresse: Schriftfarbe und Text-Decoration geändert (underscore / rot-braun). Span Tag mit Inline-CSS.</li></p>
     <li><p>H1 Tag und ID Kontakt mit Google Font "Press Start 2P" geändert. Internes CSS verwendet.</li></p>
     <li><p>Portrait-Bild Border mit CSS bearbeitet. Internes CSS.</li></p>
+    <li><p>Background-Farbe geändert. Internes CSS.</p></li>
     <li><p>Main Container Farbe auf beige geändert. Externes CSS.</li></p>
     <li><p>Google Fonts Font "Press Start 2P" hinzugefügt. Externes CSS.</li></p>
     
@@ -84,7 +89,7 @@
 
 <br>
 
-    <h4><span class="color01"><strong>-> Hier ein link zur originellen  </strong></span><span class="color02"><em>"<a href="../../../../HTML/aboutMe.html">About Me Seite</a>"</em></span></h4>
+    <h4><span class="textColor01"><strong>-> Hier ein link zur originellen  </strong></span><span class="color02"><em>"<a href="../../../../HTML/aboutMe.html">About Me Seite</a>"</em></span></h4>
 
     <button id="buttonZ"><a href="../../../JournalCSS.html">Zurück</a></button>
 

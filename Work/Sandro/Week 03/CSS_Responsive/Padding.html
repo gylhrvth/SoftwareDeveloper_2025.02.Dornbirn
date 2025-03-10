@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    background-color: lightblue;
+    width: 50%;
+    border: solid 1px black;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+    padding: min(4em, 22%);
+  }
+
+  /* Die Media Query wird überflüssig, wenn man padding mit min() Funktion benutzt.
+  @media (max-width: 600px) {
+    .container {
+      padding: 2em;
+    }
+  }
+  */
+</style>
+
+
+<body>
+
+  <div class="container">
+    <h1>Ich bin eine Überschrift</h1>
+    <p>Mit der @Media Funktion, kann man schnell und einfach sein Layout ändern, dass es auf bestimmten Bildschirmgrößen
+      gut aussieht. Jedoch ist es nicht immer die beste Wahl. </p>
+    <p>Die <a href="https://www.w3schools.com/cssref/css_functions.php">Min() Funktion</a> von CSS hilft dabei, für
+      bestimmte Situationen das passende Value zu wählen.</p>
+  </div>
+
+</body>
+
+</html>
