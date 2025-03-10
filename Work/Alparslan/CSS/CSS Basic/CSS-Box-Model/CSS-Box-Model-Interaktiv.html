@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktives CSS Box-Modell</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background-color: lightblue;
+            text-align: center;
+            font-weight: bold;
+            display: inline-block;  /* Wichtig für sichtbares Padding */
+            position: relative;  /* Sicherstellen, dass alles sichtbar bleibt */
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.6); /* Macht das Padding sichtbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .slider-container {
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🎛 Interaktives CSS Box-Modell</h2>
+
+    <div class="controls">
+        <div class="slider-container">
+            <label>📦 Breite: <span id="widthValue">200</span>px</label><br>
+            <input type="range" id="width" min="50" max="500" value="200">
+        </div>
+
+        <div class="slider-container">
+            <label>📦 Höhe: <span id="heightValue">150</span>px</label><br>
+            <input type="range" id="height" min="50" max="300" value="150">
+        </div>
+
+        <div class="slider-container">
+            <label>📏 Margin: <span id="marginValue">20</span>px</label><br>
+            <input type="range" id="margin" min="0" max="100" value="20">
+        </div>
+
+        <div class="slider-container">
+            <label>🔲 Border: <span id="borderValue">5</span>px</label><br>
+            <input type="range" id="border" min="0" max="20" value="5">
+        </div>
+
+        <div class="slider-container">
+            <label>🔳 Padding: <span id="paddingValue">10</span>px</label><br>
+            <input type="range" id="padding" min="0" max="50" value="10">
+        </div>
+    </div>
+
+    <div class="box" id="box">
+        <div class="content">CSS Box</div>
+    </div>
+
+    <script>
+        const box = document.getElementById('box');
+        const content = document.querySelector('.content');
+
+        function updateBox() {
+            const width = document.getElementById('width').value;
+            const height = document.getElementById('height').value;
+            const margin = document.getElementById('margin').value;
+            const border = document.getElementById('border').value;
+            const padding = document.getElementById('padding').value;
+
+            box.style.width = width + 'px';
+            box.style.height = height + 'px';
+            box.style.margin = margin + 'px';
+            box.style.border = border + 'px solid black';
+            box.style.padding = padding + 'px';
+
+            content.style.width = `calc(100% - ${padding * 2}px)`;
+            content.style.height = `calc(100% - ${padding * 2}px)`;
+
+            document.getElementById('widthValue').textContent = width;
+            document.getElementById('heightValue').textContent = height;
+            document.getElementById('marginValue').textContent = margin;
+            document.getElementById('borderValue').textContent = border;
+            document.getElementById('paddingValue').textContent = padding;
+        }
+
+        document.querySelectorAll('input[type="range"]').forEach(input => {
+            input.addEventListener('input', updateBox);
+        });
+
+        updateBox(); // Initiales Update der Werte
+    </script>
+
+</body>
+</html>
