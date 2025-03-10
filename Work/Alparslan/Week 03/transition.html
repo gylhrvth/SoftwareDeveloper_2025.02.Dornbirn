@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition</title>
+<style>
+    div{
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        text-align: center;
+    }
+    body > div:nth-child(2){
+        background-color: lightcoral;
+        transition: font-size 400ms;
+    }
+
+    body > div:nth-child(2):hover{
+        font-size: 2em;
+    }
+    body > div:nth-child(3){
+        background-color: lightcoral;
+        transition: background-color 1400ms;
+    }
+
+    body > div:nth-child(3):hover{
+        background-color: lightskyblue;
+    }
+    body > div:nth-child(4){
+        background-color: lightcoral;
+        transition: background-color 1400ms ease-out;
+    }
+
+    body > div:nth-child(4):hover{
+        background-color: lightskyblue;
+    }
+    body > div:nth-child(5){
+        background-color: lightcoral;
+        color: black;
+        transition: all 400ms ease-out;
+    }
+
+    body > div:nth-child(5):hover{
+        background-color: hsl(0, 79%, 32%);
+        color:  hsl(0, 79%, 82%);
+        font-size: 2em;
+    }
+</style>
+</head>
+<body>
+    <h1>Transition</h1>
+    <div>
+        Hello World!
+    </div>
+    <div>
+        Hello World!
+    </div>
+    <div>
+        Hello World!
+    </div>
+    <div>
+        Hello World!
+    </div>
+</body>
+</html>

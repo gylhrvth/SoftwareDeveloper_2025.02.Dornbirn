@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #647E8D;
+}
+
+.menuLeft{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menuLeft > img{
+    width: 100px;
+}
+
+.menuLeft > a{
+    font-size: 2vw;
+    text-decoration: none;
+    color: #D6DDE1;
+}
+
+.menuRight > div > img {
+    filter: invert(1);
+}
