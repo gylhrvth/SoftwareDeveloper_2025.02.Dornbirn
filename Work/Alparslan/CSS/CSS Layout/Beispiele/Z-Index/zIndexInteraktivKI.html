@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Z-Index Example</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            gap: 20px;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: z-index 0.2s, transform 0.2s;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .box1 { background-color: red; top: 30px; left: 40px; z-index: 1; }
+        .box2 { background-color: green; top: 50px; left: 80px; z-index: 2; }
+        .box3 { background-color: blue; top: 70px; left: 120px; z-index: 3; }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="range"] {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box box1" id="box1">Box 1</div>
+        <div class="box box2" id="box2">Box 2</div>
+        <div class="box box3" id="box3">Box 3</div>
+    </div>
+
+    <div class="controls">
+        <label>Box 1 Z-Index: <span id="zIndex1">1</span></label>
+        <input type="range" id="slider1" min="1" max="10" value="1" oninput="updateZIndex('box1', 'zIndex1', this.value)">
+
+        <label>Box 2 Z-Index: <span id="zIndex2">2</span></label>
+        <input type="range" id="slider2" min="1" max="10" value="2" oninput="updateZIndex('box2', 'zIndex2', this.value)">
+
+        <label>Box 3 Z-Index: <span id="zIndex3">3</span></label>
+        <input type="range" id="slider3" min="1" max="10" value="3" oninput="updateZIndex('box3', 'zIndex3', this.value)">
+    </div>
+
+    <script>
+        function updateZIndex(boxId, labelId, value) {
+            document.getElementById(boxId).style.zIndex = value;
+            document.getElementById(labelId).textContent = value;
+        }
+    </script>
+
+</body>
+</html>

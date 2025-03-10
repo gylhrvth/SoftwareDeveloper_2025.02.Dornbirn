@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    .container {
+      margin: 20px;
+      padding: 20px;
+      position: relative;
+      width: 60vw;
+      height: 300px;
+    }
+
+    .text {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+    }
+
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+
+  <div class="container">
+    <img src="/Work/Sandro/Week02/CSS/CSS_Übungen/BoxLayout/LayoutBeispiel.png" alt="Placeholder Image" class="image"
+      style="width: 100%; height: auto;">
+    <div class="text">Ein absolut positioniertes Element wird aus dem normalen Dokumentenfluss entfernt, was bedeutet,
+      dass es keinen Platz im Layout beansprucht und andere Elemente nicht beeinflusst.</div>
+  </div>
+
+
+
+</body>
+
+</html>

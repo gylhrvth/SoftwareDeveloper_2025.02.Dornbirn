@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    h1.transform1{
+        transform: scaleX(2.5) translateX(8rem);
+    }
+    h1.transform2{
+        transform: rotate(15deg);
+    }
+    h1.transform3{
+        transform: rotateY(180deg);
+    }
+    h1.transform4{
+        transform: skew(20deg, 10deg);
+    }
+
+    @keyframes bounce {
+        0% {
+            transform: translateY(0);
+            color: black;
+        }
+        50% {
+            transform: translateY(-20px) translateX(200px);
+            color: blueviolet;
+        }
+        100%{
+            transform: translateY(0);
+            color: black;
+        }
+    }
+    h1.transform5{
+        animation: bounce 16s ease-in-out infinite;
+    }
+
+
+    h1.transform6{
+        transition: transform 0.3s;
+    }
+    h1.transform6:hover, h1.transform6b:hover{
+        transform: scale(1.1) translateX(20px);
+    }
+</style>
+</head>
+<body>
+    <h1 class="transform1">Hello World!</h1>
+    <h1 class="transform2">Hello World!</h1>
+    <h1 class="transform3">Hello World!</h1>
+    <h1 class="transform4">Hello World!</h1>
+    <h1 class="transform5">Hello World!</h1>
+    <h1 class="transform6b">Hello World!</h1>
+    <h1 class="transform6">Hello World!</h1>
+</body>
+</html>

@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box; /* Sorgt dafür, dass Padding und Border in der Breite enthalten sind */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.box {
+    width: 300px;
+    height: 150px;
+    background-color: lightblue;
+    
+    padding: 20px; /* Innenabstand */
+    border: 5px solid darkblue; /* Rahmen */
+    margin: 30px; /* Außenabstand */
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
