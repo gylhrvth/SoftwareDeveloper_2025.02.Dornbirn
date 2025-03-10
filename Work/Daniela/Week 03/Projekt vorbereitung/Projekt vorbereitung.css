@@ -1,0 +1,103 @@
+header{
+    background:linear-gradient(to right, #e405bf , #ff105f, #ffad06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    margin: 0;
+    color: white;
+
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3em;
+   
+}
+
+.logo{
+    
+    width: 7em;
+    height: 7em;
+}
+.logo > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 45%;
+    box-shadow: 0 0 15px 5px hsla(204, 70%, 100%, 0.8); /* Glow effect */
+}
+
+.links {
+    
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+
+.navbar > ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.links > li{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    
+    
+
+}
+
+ a{
+    text-decoration: none;
+    color: white;
+
+    margin:1em;
+}
+
+.button{
+    
+    background-color: rgb(71, 61, 61);
+    color: white;
+    border: none;
+    padding: 0.5em;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2em;
+    margin-bottom: 2em; 
+}
+
+
+footer{
+    width: 100%;
+    min-height: 10rem;
+    background:linear-gradient(to right, #e405bf , #ff105f, #ffad06);
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: top;
+    flex-direction: row;
+    /*position: fixed;*/
+    bottom: 0;
+    left: 0;
+}
