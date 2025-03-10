@@ -1,4 +1,9 @@
 
+body {
+background-color: #3F5D6B;
+
+}    
+
 * {
     padding: 0;
     margin: 0;
@@ -6,14 +11,42 @@
     box-sizing: border-box
 }
 
-.header{
-    background-color: yellowgreen;
+.headline {
+    color: #F0F0F0;
+    font-size: 28px;  
+    font-weight: 600; 
+    letter-spacing: 2px; 
+    text-align: center;
+    flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+    .headline {
+        font-size: 24px;  
+    }
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 20px;  
+    }
+}
+
+@media (max-width: 480px) {
+    .headline {
+        font-size: 18px;  
+    }
+}
+
+.header {
+    background-color: transparent;
     position: fixed;
     display: flex;
+    flex-wrap: wrap;
     left: 0;
     top: 0;
     width: 100%;
-    padding: 25px 12.5%;
+    padding: 15px 5%;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
@@ -38,9 +71,177 @@
     height: 2px;
     border-radius: 5px;
     transform: translateY(10px);
+    transition: .4s;
+    opacity: 0;
+}
+
+.navbar a:hover::after {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.search-bar {
+    width: 250px;
+    height: 45px;
+    background: transparent;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.search-bar input {
+    color: white;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.search-bar input::placeholder {
+    color: white;
+}
+
+.search-bar button i {
+    color: white;
+    font-size: 22px;
+}
+
+.search-bar button  {
+    width: 40px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    padding: 20px;
+}
 
 
+.box {
+    width: 100%;
+    height: 300px;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: 0.3s;
+    margin-bottom: 30px; 
+}
+
+.box:hover {
+    background: rgba(255, 255, 255, 0.2); 
+    transform: translateY(-5px);
+}
+
+.box h2 {
+    font-size: 22px; 
+    margin-bottom: 10px;
+}
+
+.box p {
+    font-size: 16px; 
+    line-height: 1.5;
+}
+
+.box:nth-child(1) {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.box:nth-child(1) h2 {
+    font-family: "Oswald", sans-serif;
+    color: #00BFFF;
+}
 
 
+.box:nth-child(2) {
+    background: rgba(50, 50, 50, 0.7); 
+}
+
+.box:nth-child(2) p {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.box:nth-child(2) h2 {
+    font-family: "Vollkorn", serif;
+    color: #00FF7F;
+}
+
+.box:nth-child(3) {
+    background: rgba(100, 100, 100, 0.3); 
+}
+
+.box:nth-child(3) p {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+
+}
+
+.box:nth-child(3) h2 {
+    color: #D500F9;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+        gap: 20px; 
+    }
+
+    .box {
+        width: 90%; 
+        height: auto; 
+    }
+
+    .box h2 {
+        font-size: 20px; 
+    }
+
+    .box p {
+        font-size: 14px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .headline {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar {
+        width: 80%;
+        max-width: 300px;
+    }
 }
 
