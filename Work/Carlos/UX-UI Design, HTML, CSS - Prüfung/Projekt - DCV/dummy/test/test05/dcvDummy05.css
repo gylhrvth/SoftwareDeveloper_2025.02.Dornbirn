@@ -219,12 +219,13 @@ header {
   position: absolute;
   right: 0;
   top: 100%;
-  width: 300px; /* Increase width */
-  padding: 1em; /* Increase padding */
+  width: 300px;
+  padding: 0.5em;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 1em; /* Increase font size */
+  font-size: 1em;
+  z-index: 10;
 }
 
 .search-container:hover .search-bar {
