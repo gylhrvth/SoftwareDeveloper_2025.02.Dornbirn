@@ -236,6 +236,7 @@ main {
         padding: 10px;
         width: 80vw;
         font-size: small;
+        gap: 20px;
     }
 
     .content div:first-child {
