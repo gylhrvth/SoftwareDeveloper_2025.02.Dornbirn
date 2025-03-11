@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Slabo';
+    src: url(Font/text/Slabo_13px/Slabo13px-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Asap';
+    src: url(Font/header/Asap_Condensed/AsapCondensed-LightItalic.ttf);
+}
+
+@font-face {
+    font-family: 'QuickSand';
+    src: url(Font/text/Quicksand/Quicksand-Regular.ttf);
+}
+
+.test1 {
+    background-color: rgb(235, 235, 235);
+
+}
+
+.flex p {
+    background-color: #A5F5AF;
+    padding: 20px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'QuickSand';
+
+}
+
+.test3 {
+    font-family: 'Slabo';
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    border: solid 3px #a0eeee;
+}
+
+
+.test3 div > p {
+    font-family: 'Slabo';
+}
+
+.test3 h2 {
+    font-family: 'Asap';
+}

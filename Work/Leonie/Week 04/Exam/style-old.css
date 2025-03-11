@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Slabo';
+}
+
+*header {
+    background-color: #c5c5c5;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Zentriert die Elemente vertikal */
+}
+
+.left img {
+    width: clamp(80px, 20%, 200px);
+    height: auto;
+}
+
+.left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%; /* Reduziert die Breite der linken Spalte */
+}
+
+.middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2; /* Gibt der mittleren Spalte mehr Raum */
+}
+
+.middle ul {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 2;
+    list-style-type: none;
+    padding: 10px;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.middle ul li a {
+    text-decoration: none;
+    color: black;
+    font-family: 'QuickSand';
+}
+
+.middle ul li:first-child {
+    border-right: #a0eeee 3px solid;
+    padding-right: 15px;
+}
+
+.middle ul li:last-child {
+    border-left: #a0eeee 3px solid;
+    padding-left: 15px;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 22%; /* Reduziert die Breite der rechten Spalte */
+}
+
+.right button {
+    background-color: #a0eeee;
+    color: black;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
