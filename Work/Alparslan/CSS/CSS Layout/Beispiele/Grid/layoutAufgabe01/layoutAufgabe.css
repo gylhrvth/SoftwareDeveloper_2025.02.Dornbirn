@@ -1,0 +1,128 @@
+
+
+
+body {
+
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+.mainContainer {
+
+    display: flex;
+    position: relative;
+    max-width: calc(2*600px);
+    max-height: calc(2*300px);
+    width: 80%;
+    height: 80%;
+
+    border: black solid 2px;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #6A80B9;
+
+    border-radius: 5px;
+
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+
+}
+
+.gridContainer {
+
+    display: grid;
+    position: absolute;
+    max-width: calc(2*560)px;
+    max-height: calc(2*260)px;
+    width: 90%;
+    height: 80%;
+    
+    background-color: #F6C794;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    border: #155E95 solid 3px;
+    gap: 10px;
+    text-align: center;
+
+    border-radius: 5px;
+    
+    
+}
+
+#element01 {
+    border: #155E95 solid 3px;
+    background-color: #6A80B9;
+    color: white;
+    grid-area: 1 / 1 / 4 / 2;
+    margin: 10px;
+    padding-top: 50px;
+  
+}
+
+#element02 {
+    border: #155E95 solid 3px;
+    background-color: #6A80B9;
+    color: white;
+    grid-area: 1 / 2 / 4 / 3;
+    margin: 10px;
+    padding-top: 50px;
+ 
+}
+
+#element03 {
+    
+    grid-area: 4/1/9/3;
+    border: #6A80B9 solid 5px;
+    
+    color: white;
+    margin: 10px;
+    position: relative;  
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+.flexRow {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30%;
+    border: orange solid 1px;
+    
+    
+}
+
+
+.scrollContainer {
+    max-height: calc(2*800)px; 
+    overflow-y: auto;
+    background-color: #236ca3;
+    height: 100%;
+
+}
+    
+
+
+
+.flexRow>div {
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.mainContent {
+
+   background-color: #155E95;
+    border: orange solid 1px;
+
+}
