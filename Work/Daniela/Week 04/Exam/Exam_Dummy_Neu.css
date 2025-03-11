@@ -1,0 +1,50 @@
+body {
+    font-family: "Montserrat Alternates", sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 20rem;
+    background-color: rgb(7, 148, 141);
+    color: white;
+}
+
+.container p {
+    font-family: "Montserrat Alternates", sans-serif; /* Korrigiert */
+    font-size: 2em;
+}
+
+
+.container2 {
+    width: 100%;
+    height: 20rem;
+    outline: solid rgb(3, 208, 170);
+    color: rgb(50, 17, 141);
+    
+
+}
+
+.container2 p {
+    font-family: "Montserrat Alternates", sans-serif; /* Korrigiert */
+    font-size: 2em;
+}
+
+
+button{
+    
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.class1{
+    background-color: rgb(249, 246, 246);
+    color: rgb(2, 2, 2);
+}
+
+.class2{
+    background: linear-gradient(to right, #fd4604 , #e16303, #fba403);
+    color: white;
+}
