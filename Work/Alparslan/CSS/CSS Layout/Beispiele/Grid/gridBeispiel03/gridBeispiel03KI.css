@@ -1,0 +1,29 @@
+/* Basis-Styles für das Grid */
+.grid-container {
+    display: grid; /* Aktiviert Grid */
+    grid-template-columns: 1fr 1fr; /* Zwei gleich große Spalten */
+    grid-template-rows: 100px 100px; /* Zwei Zeilen mit fester Höhe */
+    gap: 10px; /* Abstand zwischen den Grid-Elementen */
+    width: 220px; /* Gesamtbreite des Grids */
+    background-color: #ddd;
+    padding: 10px;
+}
+
+/* Styling der Grid-Elemente */
+.item {
+    background-color: steelblue;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+/* Optionale Anpassung: Elemente gezielt positionieren */
+.item1 {
+    grid-column: 1 / 3; /* Item 1 über zwei Spalten strecken */
+}
+.item3 {
+    grid-row: 2 / 3; /* Item 3 in die zweite Zeile verschieben */
+}

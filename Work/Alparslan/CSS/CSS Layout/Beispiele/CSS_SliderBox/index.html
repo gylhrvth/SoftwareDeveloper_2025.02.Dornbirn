@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .outer-container {
+      background-color: rgba(0, 255, 0, 0.2);
+      border: solid 5px black;
+      /* Margin color */
+      display: inline-block;
+    }
+
+    .container {
+      display: inline-block;
+      padding: 10px;
+      background-clip: content-box;
+      border: 10px solid rgba(255, 0, 0, 0.5);
+      /* Padding color */
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="margin">Margin:</label>
+    <input type="range" id="margin" name="margin" min="0" max="100" value="20" oninput="updateStyles()">
+    <span id="marginValue">20px</span>
+  </div>
+  <div>
+    <label for="padding">Padding:</label>
+    <input type="range" id="padding" name="padding" min="0" max="100" value="10" oninput="updateStyles()">
+    <span id="paddingValue">10px</span>
+  </div>
+  <div>
+    <label for="width">Width:</label>
+    <input type="range" id="width" name="width" min="50" max="500" value="200" oninput="updateStyles()">
+    <span id="widthValue">200px</span>
+  </div>
+  <div>
+    <label for="height">Height:</label>
+    <input type="range" id="height" name="height" min="50" max="500" value="200" oninput="updateStyles()">
+    <span id="heightValue">200px</span>
+  </div>
+
+  <div class="outer-container" style="margin: 20px;">
+    <div class="container" style="width: 200px; height: 200px;">content</div>
+  </div>
+
+  <script>
+    function updateStyles() {
+      const margin = document.getElementById('margin').value;
+      const padding = document.getElementById('padding').value;
+      const width = document.getElementById('width').value;
+      const height = document.getElementById('height').value;
+
+      document.getElementById('marginValue').textContent = margin + 'px';
+      document.getElementById('paddingValue').textContent = padding + 'px';
+      document.getElementById('widthValue').textContent = width + 'px';
+      document.getElementById('heightValue').textContent = height + 'px';
+
+      const outerContainer = document.querySelector('.outer-container');
+      outerContainer.style.margin = margin + 'px';
+
+      const container = document.querySelector('.container');
+      container.style.padding = padding + 'px';
+      container.style.width = width + 'px';
+      container.style.height = height + 'px';
+    }
+  </script>
+</body>
+
+</html>
