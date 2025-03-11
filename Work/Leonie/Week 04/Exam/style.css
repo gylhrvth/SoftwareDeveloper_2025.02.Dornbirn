@@ -134,7 +134,7 @@ main {
 .content {
     border: #a0eeee 2px solid;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 400px));
+    grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
     align-items: center;
     gap: 40px;
@@ -198,7 +198,7 @@ main {
 .erfahrung {
     border: #a0eeee 2px solid;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 40vw));
+    grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
     align-items: center;
     gap: 40px;
