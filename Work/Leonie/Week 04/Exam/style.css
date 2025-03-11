@@ -43,6 +43,8 @@ main {
 
 .intro p {
     font-family: 'Slabo';
+    margin-left: 15vw;
+    margin-right: 15vw;
 }
 
 .searchbar {
@@ -110,7 +112,7 @@ main {
 }
 
 .kurs img {
-    width: clamp(100px, 20%, 200px);
+    width: clamp(150px, 10vw, 250px);
     height: auto;
 }
 
@@ -123,7 +125,7 @@ main {
 }
 
 #software-intro {
-    width: clamp(300px, 50%, 50%);
+    width: clamp(270px, 50%, 50%);
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -140,7 +142,6 @@ main {
     gap: 40px;
     padding: 30px;
     margin-bottom: 3vh;
-
 }
 
 .content p {
@@ -161,13 +162,13 @@ main {
     font-family: 'Asap';
 }
 
-.details:last-child {
+.detailsbutton {
     grid-column: span 2;
     background-color: white;
     box-shadow: none;
 }
 
-.details:last-child button {
+#cta {
     background-color: #a0eeee;
     padding: 20px;
     font-size: 1.1em;
@@ -177,7 +178,7 @@ main {
     cursor: pointer;
 }
 
-.details button a {
+.detailsbutton button a {
     text-decoration: none;
     color: black;
 }
@@ -232,8 +233,9 @@ main {
 @media screen and (max-width: 768px) {
     .content {
         grid-template-columns: repeat(1, 1fr);
-        padding: 30px;
+        padding: 10px;
         width: 80vw;
+        font-size: small;
     }
 
     .content div:first-child {
@@ -243,11 +245,16 @@ main {
     .content div:last-child {
         grid-column: span 1;
     }
+
+    .details {
+        padding: 5px;
+    }
     
     .erfahrung {
         grid-template-columns: repeat(1, 1fr);
         padding: 30px;
         width: 80vw;
+        font-size: small;
     }
 
     .erfahrung div:first-child {
