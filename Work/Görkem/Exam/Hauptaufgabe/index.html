@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>Software Developer</title>
+</head>
+<body>
+    <header>
+        <div class="logo">Digital Campus Vorarlberg</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#">Bildungsangebot</a></li>
+                <li><a href="#">Standort</a></li>
+                <li><a href="#">Über uns</a></li>
+                <li><a href="#" class="active">Infos & Beratung</a></li>
+            </ul>
+        </nav>
+        <div class="box">
+            <input type="text" class="input" placeholder="Suche...">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="content">
+            <h1>HTML & CSS DEVELOPER ZERTIFIKATSKURS</h1>
+            <p>Lerne, deine eigene Website zu erstellen!</p>
+            <p>Start: 17.04.2025</p>
+            <a href="#" class="signup-btn">Melde dich jetzt an!</a>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h1>ALLES AUF EINEN BLICK</h1>
+        <div class="image-container">
+            <img src="../img/april.jpg" alt="April Kurs">
+            <img src="../img/hardware.jpg" alt="Hardware">
+            <img src="../img/team.jpg" alt="Team">
+        </div>
+        <div class="button-container">
+            <a href="#" class="signup-btn">Jetzt gratis Infobroschüre downloaden!</a>
+        </div>
+        <div class="text-section">
+            <h2 class="sub-title">DEIN WEG ZUM WEBDESIGN-PROFI</h2>
+            <p class="additional-text">
+                Im HTML & CSS Developer Zertifikatskurs erfährst du Schritt für Schritt alles,<br> 
+                was du brauchst, um deine kreativen Ideen in beeindruckende Webprojekte zu verwandeln.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-bar").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
