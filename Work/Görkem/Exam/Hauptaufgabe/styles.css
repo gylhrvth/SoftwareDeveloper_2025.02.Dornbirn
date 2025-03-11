@@ -22,6 +22,9 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 0 100px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .logo{
@@ -37,7 +40,7 @@ header{
 .nav-bar{
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 5;
     background: #11101b;
 }
 
@@ -409,7 +412,7 @@ header{
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .sub-title {
@@ -424,13 +427,13 @@ header{
 .additional-text {
     text-align: center;
     color: #fff;
-    font-size: 28px; 
+    font-size: 24px; 
     line-height: 1.5; 
     margin-top: 80px; 
 }
 
 .text-section {
-    margin-top: 40px; 
+    margin-top: 30px; 
 }
 
 
