@@ -1,0 +1,286 @@
+@font-face {
+    font-family: 'Slabo';
+    src: url(Font/text/Slabo_13px/Slabo13px-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Asap';
+    src: url(Font/header/Asap_Condensed/AsapCondensed-LightItalic.ttf);
+}
+
+@font-face {
+    font-family: 'QuickSand';
+    src: url(Font/header/Quicksand/Quicksand-VariableFont_wght.ttf);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.logo img {
+    width: clamp(200px, 50%, 400px);
+    height: auto;
+}
+
+.intro {
+    background-color: #f0f0f0;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+    font-family: 'Asap';
+}
+
+.intro p {
+    font-family: 'Slabo';
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+
+.searchbar {
+    background-color: #a0eeee;
+    padding: 10px;
+    width: 100%;
+}
+
+.searchbar input[type="text"] {
+    width: 65%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+}
+
+.searchbar button {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
+
+.kurse {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 400px));
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 30px;
+}
+
+.kurse div:first-child {
+    grid-column: span 3;
+    font-family: 'Asap';
+    font-size: 1.5em;
+}
+
+.kurs {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: 'Asap';
+}
+
+.kurs p {
+    font-family: 'Slabo';
+}
+
+.kurs button {
+    background-color: #a0eeee;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
+
+.kurs button a {
+    text-decoration: none;
+    color: black;
+}
+
+.kurs img {
+    width: clamp(150px, 10vw, 250px);
+    height: auto;
+}
+
+
+
+.intro img {
+    width: clamp(200px, 50%, 400px);
+    height: auto;
+    
+}
+
+#software-intro {
+    width: clamp(270px, 50%, 50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+.content {
+    border: #a0eeee 2px solid;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 30vw));
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 30px;
+    margin-bottom: 3vh;
+}
+
+.content p {
+    font-family: 'Slabo';
+}
+
+.content div:first-child {
+    grid-column: span 2;
+    font-family: 'Asap';
+    font-size: 1.5em;
+}
+
+.details {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: 'Asap';
+}
+
+.detailsbutton {
+    grid-column: span 2;
+    background-color: white;
+    box-shadow: none;
+}
+
+#cta {
+    background-color: #a0eeee;
+    padding: 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
+
+.detailsbutton button a {
+    text-decoration: none;
+    color: black;
+}
+
+.image {
+    grid-column: span 2;
+}
+
+.image img {
+    width: clamp(200px, 100%, 500px);
+    height: auto;
+}
+
+#content-middle{
+    grid-column: span 2;
+}
+
+.erfahrung {
+    border: #a0eeee 2px solid;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 30vw));
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 30px;
+    margin-bottom: 3vh;
+}
+
+.erfahrung div:first-child {
+    grid-column: span 2;
+    font-family: 'Asap';
+    font-size: 1.5em;
+}
+
+.erfahrung:last-child {
+    grid-column: span 2;
+    background-color: white;
+    box-shadow: none;
+}
+
+.erfahrung div:nth-child(4) {
+    grid-column: span 2;
+}
+
+.erfahrung div:last-child button {
+    grid-column: span 2;
+    background-color: #a0eeee;
+    box-shadow: none;
+}   
+
+
+@media screen and (max-width: 768px) {
+    .content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px;
+        width: 80vw;
+        font-size: small;
+    }
+
+    .content div:first-child {
+        grid-column: span 1;
+    }
+
+    .content div:last-child {
+        grid-column: span 1;
+    }
+
+    .details {
+        padding: 5px;
+    }
+    
+    .erfahrung {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 30px;
+        width: 80vw;
+        font-size: small;
+    }
+
+    .erfahrung div:first-child {
+        grid-column: span 1;
+    }
+
+    .erfahrung div:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    .erfahrung div:last-child {
+        grid-column: span 1;
+    }
+
+    .intro {
+        padding: 10px;
+    }
+
+    .kurse {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 20px;
+    }
+
+    .kurse div:first-child {
+        grid-column: span 1;
+    }
+
+    
+}
