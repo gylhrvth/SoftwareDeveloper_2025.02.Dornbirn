@@ -579,6 +579,107 @@ header{
     color: #007bff; 
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #fefefe;
+    }
+
+    header {
+        background: #1a1a1a;
+    }
+
+    .logo {
+        color: #fefefe;
+    }
+
+    .nav-bar {
+        background: #1a1a1a;
+    }
+
+    .nav-bar ul li a {
+        color: #fefefe;
+    }
+
+    .nav-bar ul li a:hover {
+        background: #333;
+        color: #ff6900;
+    }
+
+    .nav-bar ul li a.active {
+        background: #ff6900;
+        color: #fff;
+    }
+
+    .box {
+        background: #2c2c2c;
+    }
+
+    .input {
+        background: #333;
+        border-color: #ff6900;
+        color: #fefefe;
+    }
+
+    .input:focus {
+        background: #444;
+    }
+
+    .signup-btn {
+        background-color: #ff6900;
+        color: #fff;
+    }
+
+    .signup-btn:hover {
+        background-color: #e55a00;
+    }
+
+    .course-box {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .course-box:hover {
+        transform: scale(1.05);
+        background-color: #444;
+    }
+
+    .course-box h2 {
+        color: #ff6900;
+    }
+
+    .course-box p {
+        color: #ddd;
+    }
+
+    .course-price {
+        color: #ff6900;
+    }
+
+    .course-location {
+        color: #8e8e8e;
+    }
+
+    .simple-footer {
+        background-color: #222;
+    }
+
+    .simple-footer .btn-cta {
+        background-color: #659bd4;
+    }
+
+    .simple-footer .btn-cta:hover {
+        background-color: #0056b3;
+    }
+
+    .social-icons a {
+        color: #fff;
+    }
+
+    .social-icons a:hover {
+        color: #007bff;
+    }
+}
 
 
 
