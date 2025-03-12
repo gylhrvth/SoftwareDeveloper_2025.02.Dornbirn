@@ -13,6 +13,15 @@
     src: url(Font/header/Quicksand/Quicksand-VariableFont_wght.ttf);
 }
 
+:root {
+    color-scheme: light dark;
+    --cyan: #a0eeee;
+    --dcyan: hsl(180, 70%, 38%);
+    --grau: #f0f0f0;
+    --dbackground: rgb(31, 31, 31);
+
+  }
+
 main {
     display: flex;
     flex-direction: column;
@@ -34,22 +43,29 @@ main {
 }
 
 .intro {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 30px;
     margin: 20px;
     border-radius: 10px;
     font-family: 'Asap';
 }
 
+.intro h1 {
+    font-size: 2.2em;
+}
+
 .intro p {
     font-family: 'QiuckSand';
-    font-size: 1.1em;
+    font-size: 1.2em;
     margin-left: 20vw;
     margin-right: 20vw;
 }
 
 .searchbar {
-    background-color: #a0eeee;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    background-color: var(--cyan);
     padding: 10px;
     width: 100%;
 }
@@ -63,12 +79,56 @@ main {
 }
 
 .searchbar button {
-    background-color: #f0f0f0;
-    padding: 10px;
+    background-color: var(--grau);
+    padding: 5px;
     border: none;
     border-radius: 5px;
     font-family: 'QuickSand';
     cursor: pointer;
+}
+
+.searchbar button img {
+    width: 25px;
+}
+
+.menu div {
+    background-color: var(--grau);
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
+
+.menu img {
+    width: 25px;
+}
+
+nav ul {
+    margin-top: 0;
+    text-align: left;
+    display: none;
+    position: absolute;
+    background-color: var(--grau);
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav:hover ul{
+    display: block;
+    padding: 10px 0;
+}
+
+.menu li {
+    list-style-type: none;
+    padding: 10px 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
 }
 
 .kurse {
@@ -86,7 +146,7 @@ main {
 }
 
 .kurs {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -98,7 +158,7 @@ main {
 }
 
 .kurs button {
-    background-color: #a0eeee;
+    background-color: var(--cyan);
     border: none;
     padding: 9px 12px;
     border-radius: 5px;
@@ -196,7 +256,7 @@ main {
 }
 
 .erfahrung {
-    border: #a0eeee 2px solid;
+    border: var(--cyan) 2px solid;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
@@ -214,7 +274,6 @@ main {
 
 .erfahrung:last-child {
     grid-column: span 2;
-    background-color: white;
     box-shadow: none;
 }
 
@@ -224,12 +283,110 @@ main {
 
 .erfahrung div:last-child button {
     grid-column: span 2;
-    background-color: #a0eeee;
+    background-color: var(--cyan);
     box-shadow: none;
-}   
+}
 
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: var(--dbackground);
+        color: black;
+	}
+
+    h2 {
+        color: #ffffff;
+    }
+
+    .logo {
+        background-color: gray;
+        border-radius: 10px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .intro {
+        background-color: gray;
+        color: #ffffff;
+    }
+
+    .searchbar {
+        background-color: var(--dcyan);
+    }
+
+    .searchbar input{
+        background-color: gray;
+    }
+
+    .searchbar input::placeholder {
+        color: white;
+    }
+
+    .searchbar button {
+        background-color: gray;
+    }
+
+    .searchbar button img {
+        filter: invert(1);
+    }
+
+    .menu div {
+        background-color: gray;
+    }
+
+    .menu img {
+        filter: invert(1);
+    }
+
+    .kurs {
+        background-color: gray;
+        color: white;
+    }
+
+    .kurs button {
+        background-color: var(--dcyan);
+    }
+
+    .kurs button a {
+        color: white;
+    }
+
+    .content {
+        border: var(--dcyan) 2px solid;
+    }
+
+    .details {
+        background-color: gray;
+        color: white;
+    }
+
+    .detailsbutton {
+        background-color: rgb(31, 31, 31);
+    }
+
+    #cta {
+        background-color: var(--dcyan);
+    }
+
+    .detailsbutton button a {
+        color: white;
+    }
+
+    .erfahrung {
+        border: var(--dcyan) 2px solid;
+    }
+}
 
 @media screen and (max-width: 768px) {
+    nav ul {
+        right: -0px;
+        text-align: right;
+    }
+
+    .intro p {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+
     .content {
         grid-template-columns: repeat(1, 1fr);
         padding: 10px;
@@ -268,7 +425,7 @@ main {
     .erfahrung div:last-child {
         grid-column: span 1;
     }
-
+    
     .intro {
         padding: 10px;
     }
