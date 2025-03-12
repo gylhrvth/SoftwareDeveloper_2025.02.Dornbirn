@@ -1,0 +1,48 @@
+/* Dark mode styles */
+
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: white;
+    }
+
+
+main {
+    padding-top: 30px;
+    background-color: rgb(0, 61, 111);
+  }
+
+  .kursContainer {
+    background-color: rgba(0, 25, 66);
+    color: white;
+  }
+
+  .kursContainer>h3 {
+    color: white;
+  }
+
+  .kursContainer>p {
+    color: rgb(255, 207, 207);
+  }
+
+  .kursContainer>img {
+    border: none;
+  }
+
+  .kursContainer>a {
+    background-color: rgb(6, 0, 88);
+  }
+
+  .headOpeningContainer>h1 {
+    color: rgb(255, 207, 207);
+  }
+
+  
+
+  .ctaContainer>h2 {
+    color: rgb(255, 207, 207);
+}
+  
+}
