@@ -15,6 +15,11 @@
 
 :root {
     color-scheme: light dark;
+    --cyan: #a0eeee;
+    --dcyan: hsl(180, 70%, 38%);
+    --grau: #f0f0f0;
+    --dbackground: rgb(31, 31, 31);
+
   }
 
 main {
@@ -38,7 +43,7 @@ main {
 }
 
 .intro {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 30px;
     margin: 20px;
     border-radius: 10px;
@@ -60,7 +65,7 @@ main {
     display: flex;
     justify-content: center;
     gap: 5px;
-    background-color: #a0eeee;
+    background-color: var(--cyan);
     padding: 10px;
     width: 100%;
 }
@@ -74,7 +79,7 @@ main {
 }
 
 .searchbar button {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 5px;
     border: none;
     border-radius: 5px;
@@ -87,7 +92,7 @@ main {
 }
 
 .menu div {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 5px;
     border: none;
     border-radius: 5px;
@@ -104,7 +109,7 @@ nav ul {
     text-align: left;
     display: none;
     position: absolute;
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     min-width: 140px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -141,7 +146,7 @@ nav:hover ul{
 }
 
 .kurs {
-    background-color: #f0f0f0;
+    background-color: var(--grau);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -153,7 +158,7 @@ nav:hover ul{
 }
 
 .kurs button {
-    background-color: #a0eeee;
+    background-color: var(--cyan);
     border: none;
     padding: 9px 12px;
     border-radius: 5px;
@@ -251,7 +256,7 @@ nav:hover ul{
 }
 
 .erfahrung {
-    border: #a0eeee 2px solid;
+    border: var(--cyan) 2px solid;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
@@ -278,13 +283,13 @@ nav:hover ul{
 
 .erfahrung div:last-child button {
     grid-column: span 2;
-    background-color: #a0eeee;
+    background-color: var(--cyan);
     box-shadow: none;
 }
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: rgb(31, 31, 31);
+		background-color: var(--dbackground);
         color: black;
 	}
 
@@ -294,6 +299,7 @@ nav:hover ul{
 
     .logo {
         background-color: gray;
+        border-radius: 10px;
         padding: 0;
         margin: 0;
     }
@@ -304,11 +310,31 @@ nav:hover ul{
     }
 
     .searchbar {
-        background-color: hsl(180, 70%, 38%);
+        background-color: var(--dcyan);
     }
 
-    .searchbar input {
-        background-color: #dadada;
+    .searchbar input{
+        background-color: gray;
+    }
+
+    .searchbar input::placeholder {
+        color: white;
+    }
+
+    .searchbar button {
+        background-color: gray;
+    }
+
+    .searchbar button img {
+        filter: invert(1);
+    }
+
+    .menu div {
+        background-color: gray;
+    }
+
+    .menu img {
+        filter: invert(1);
     }
 
     .kurs {
@@ -317,7 +343,7 @@ nav:hover ul{
     }
 
     .kurs button {
-        background-color: hsl(180, 70%, 38%);
+        background-color: var(--dcyan);
     }
 
     .kurs button a {
@@ -325,7 +351,7 @@ nav:hover ul{
     }
 
     .content {
-        border: hsl(180, 70%, 38%) 2px solid;
+        border: var(--dcyan) 2px solid;
     }
 
     .details {
@@ -338,7 +364,7 @@ nav:hover ul{
     }
 
     #cta {
-        background-color: hsl(180, 70%, 38%);
+        background-color: var(--dcyan);
     }
 
     .detailsbutton button a {
@@ -346,7 +372,7 @@ nav:hover ul{
     }
 
     .erfahrung {
-        border: hsl(180, 70%, 38%) 2px solid;
+        border: var(--dcyan) 2px solid;
     }
 }
 
@@ -399,7 +425,7 @@ nav:hover ul{
     .erfahrung div:last-child {
         grid-column: span 1;
     }
-
+    
     .intro {
         padding: 10px;
     }
