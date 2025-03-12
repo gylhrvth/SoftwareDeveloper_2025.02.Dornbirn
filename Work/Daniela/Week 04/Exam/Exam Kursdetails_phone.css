@@ -34,12 +34,12 @@
     }
     
     /*Überschriften bei Kursen*/
-   /* .span_style1 {
+    .span_style1 {
         font-size: 2em;
         margin-bottom: 1em;
         margin-top: 1em;
     }
-    .style1{
+   /* .style1{
         font-size: 1.5em;;
         background-color: #800404;
         color: white;
@@ -57,7 +57,7 @@
         height: 10rem;
         background:linear-gradient(to right, #2673ef , #4faaef, #1af2ce);
     
-        position: fixed;        /*Header immer present*/
+        /*position: fixed;        /*Header immer present*/
         top: 0;
         left: 0;
         right: 0;
@@ -68,50 +68,15 @@
         align-items: center;
         flex-direction: column;         /*anordnung : Reihe*/
     }
-    
-    /*.logo{
-        background:linear-gradient(to right, #02317c , #001424);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: white;
-        display: flex;
-        font-size: 100%;
-        width: 20%;
-        height: 50%;
-        margin-left: 0;
-        border-radius: 40%;
-        align-items: center;
-        justify-content: center;
-    
-    }*/
-    .logo {
-        background: linear-gradient(to right, #02317c, #001424);
-        font-family: "Jura", sans-serif;
-        color: white;
-        display: flex;
-        font-size: 1.5em;  
-        width: 4em;  
-        height: 3em; 
-        padding: 1em 1em;  /* Innenabstand für bessere lesbarkeit */
-        border-radius: 0.5em;  
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase; /* Großbuchstaben weil Logo */
-        letter-spacing: 0.1em; /* Leichter Buchstabenabstand */
-        font-weight: bold;      /*fett*/
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Leichter Schatten */
-        text-shadow: 2px 2px 4px rgb(255, 255, 255); /* 3D-Effekt für Text */
-        transition: transform 0.2s, box-shadow 0.2s; /* Weiche Animation */
+
+    header img{
+        width: 8em;
+       position: absolute;
+       left:0;
     }
     
-    /* Kleiner Hover-Effekt */
-    .logo:hover {
-        transform: scale(1.05); /* Leichte Vergrößerung */
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
-    }
-    
-    
-    
-    
+   
+ 
     main{
         width: 100%;
         background-color: rgb(254, 254, 254);
@@ -119,14 +84,14 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
+        /*align-items: center;*/
     
     }
     
     /*Sactions and their classes*/
     
     section{
-        width: 97%;
+        /*width: 97%;*/
         outline: solid  var(--color_section_block);
         display: flex;
         flex-direction: column;
@@ -136,16 +101,16 @@
         margin-top: 1rem;
     }
     
-    section img{
+    /*section img{
         max-width: 60%;
         max-height: 7em;
         margin: 1em;
-    }
+    }*/
     
     
     
     article{
-        width: 80%;
+        /*width: 80%;*/
         background-color: rgb(255, 255, 255);
         font-size: 0.5em;
         display: flex;
@@ -210,7 +175,8 @@
     
     .search-input {
       
-        width: 50%;
+        width: 100%;
+        height: 0.5em;
         max-width: 300px;
         padding: 1em 1em;
         margin: 1em 0;
@@ -220,7 +186,7 @@
         outline: none;
     
         position: absolute;
-        top: 5em; /* Abstand nach oben */
+        top: 6em; /* Abstand nach oben */
         right: 1em; /* Am rechten Rand */
        
     }
@@ -237,7 +203,47 @@
         border-bottom: 0.1em solid #ff8827;
         
     }
-    
-    .details_container p{
+     .details_container p{
         font-size: 1em;
     }
+
+    .details_container h2{
+        font-size: 1em;
+    }
+
+    .details_container2{
+        width: 100%;
+        min-height: 20em;
+        display: flex;
+        flex-direction: column;
+        
+        
+    }
+    
+    .details_container2 > img{
+        min-height: 10em;
+}
+.details_container2 p{
+    font-size: 1em;
+}
+
+
+   
+.Berichte_style{
+    width: 100%;
+    background-color: rgb(215, 252, 240);
+    margin-bottom: 0.5em;
+}
+
+.Berichte_style  p{
+    font-size: 1em;
+}   
+
+.Berichte_style2{
+    width: 100%;
+    background-color: rgb(204, 243, 249);
+    margin-bottom: 0.5em;
+}
+.Berichte_style2 p{
+    font-size: 1em;
+}
