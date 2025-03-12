@@ -1,0 +1,177 @@
+/* Reset und Grundlayout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Orbitron", sans-serif;
+    background: url(../../Images/HintergrundBerg.jpg);
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+/* Header Styling */
+header {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+header .course-summary {
+    font-size: 1.2em;
+    color: #ecf0f1;
+}
+
+/* Kurs-Info Styling */
+.course-info {
+    background-color: none;
+    border: 2px solid coral;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-info:hover {
+    transform: translateY(-5px);
+}
+
+.course-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.course-info strong {
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* Kursplan Styling */
+.course-schedule {
+    margin-bottom: 40px;
+}
+
+.course-schedule h2 {
+    font-size: 2.2em;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.course-schedule .week {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-schedule .week:hover {
+    transform: translateY(-5px);
+}
+
+.course-schedule h3 {
+    font-size: 1.6em;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.course-schedule ul {
+    font-size: 1.1em;
+    list-style: none;
+}
+
+.course-schedule ul li {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* Anmeldebereich */
+.enrollment {
+    background-color: #3498db;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.enrollment h2 {
+    color: #fff;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.enrollment p {
+    color: #ecf0f1;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.enroll-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.enroll-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Footer Styling */
+footer::before {
+    content: "";
+    display: block;
+    width: 70%;
+    border-top: 1px solid white;
+    margin: 0 auto;
+}
+
+
+.footer {
+    font-family: "Orbitron", sans-serif;
+    font-size: small;
+    padding: 15px;
+    height: 20px;
+    background: none;
+    color: black;
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+  /*  border-top: 1px white solid ; */
+
+}
+
+
+
+.footer>a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.footer>a:hover{
+    transition: 1s ease;
+    text-decoration: underline;
+    text-transform:uppercase;
+}
