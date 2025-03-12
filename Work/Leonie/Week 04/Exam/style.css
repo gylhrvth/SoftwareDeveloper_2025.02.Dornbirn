@@ -41,13 +41,21 @@ main {
     font-family: 'Asap';
 }
 
+.intro h1 {
+    font-size: 2.2em;
+}
+
 .intro p {
-    font-family: 'Slabo';
-    margin-left: 15vw;
-    margin-right: 15vw;
+    font-family: 'QiuckSand';
+    font-size: 1.2em;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .searchbar {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
     background-color: #a0eeee;
     padding: 10px;
     width: 100%;
@@ -63,25 +71,68 @@ main {
 
 .searchbar button {
     background-color: #f0f0f0;
-    padding: 10px;
+    padding: 5px;
     border: none;
     border-radius: 5px;
     font-family: 'QuickSand';
     cursor: pointer;
 }
 
+.searchbar button img {
+    width: 25px;
+}
+
+.menu div {
+    background-color: #f0f0f0;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'QuickSand';
+    cursor: pointer;
+}
+
+.menu img {
+    width: 25px;
+}
+
+nav ul {
+    margin-top: 0;
+    text-align: left;
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav:hover ul{
+    display: block;
+    padding: 10px 0;
+}
+
+.menu li {
+    list-style-type: none;
+    padding: 10px 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
 .kurse {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 400px));
+    grid-template-columns: repeat(3, minmax(100px, 400px));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
 }
 
 .kurse div:first-child {
-    grid-column: span 3;
-    font-family: 'Asap';
+    grid-column: 1 / -1;
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -90,11 +141,11 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-family: 'Asap';
+    font-family: 'slabo';
 }
 
 .kurs p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .kurs button {
@@ -112,7 +163,7 @@ main {
 }
 
 .kurs img {
-    width: clamp(150px, 10vw, 250px);
+    width: clamp(250px, 20vw, 350px);
     height: auto;
 }
 
@@ -138,19 +189,18 @@ main {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
     margin-bottom: 3vh;
 }
 
 .content p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .content div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -209,7 +259,7 @@ main {
 
 .erfahrung div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -231,6 +281,11 @@ main {
 
 
 @media screen and (max-width: 768px) {
+    nav ul {
+        right: -0px;
+        text-align: right;
+    }
+
     .content {
         grid-template-columns: repeat(1, 1fr);
         padding: 10px;

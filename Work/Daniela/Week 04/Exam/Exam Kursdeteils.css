@@ -68,6 +68,11 @@
         align-items: center;
         flex-direction: column;         /*anordnung : Reihe*/
     }
+
+    header img{
+        width: 11em;
+       
+    }
     
     /*.logo{
         background:linear-gradient(to right, #02317c , #001424);
