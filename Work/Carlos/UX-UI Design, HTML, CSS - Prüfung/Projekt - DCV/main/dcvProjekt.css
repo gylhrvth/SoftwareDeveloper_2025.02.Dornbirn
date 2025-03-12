@@ -651,13 +651,13 @@ footer {
 
   .pictureOpeningContainer>img {
     
-    min-height: 1400px;
+    min-height: 1250px;
     object-fit: cover;
     border-radius: 0;
   }
 
   .ctaContainer {
-    bottom: 90px;
+    bottom: 0;
   }
 
   .ctaContainer>h2 {
