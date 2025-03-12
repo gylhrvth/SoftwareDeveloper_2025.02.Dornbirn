@@ -42,7 +42,10 @@ main {
 }
 
 .intro p {
-    font-family: 'Slabo';
+    font-family: 'QiuckSand';
+    font-size: 1.1em;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .searchbar {
@@ -70,16 +73,15 @@ main {
 
 .kurse {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 400px));
+    grid-template-columns: repeat(3, minmax(100px, 400px));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
 }
 
 .kurse div:first-child {
-    grid-column: span 3;
-    font-family: 'Asap';
+    grid-column: 1 / -1;
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -88,11 +90,11 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-family: 'Asap';
+    font-family: 'slabo';
 }
 
 .kurs p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .kurs button {
@@ -110,7 +112,7 @@ main {
 }
 
 .kurs img {
-    width: clamp(100px, 20%, 200px);
+    width: clamp(250px, 20vw, 350px);
     height: auto;
 }
 
@@ -123,7 +125,7 @@ main {
 }
 
 #software-intro {
-    width: clamp(300px, 50%, 50%);
+    width: clamp(270px, 50%, 50%);
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -136,20 +138,18 @@ main {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
     margin-bottom: 3vh;
-
 }
 
 .content p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .content div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -161,13 +161,13 @@ main {
     font-family: 'Asap';
 }
 
-.details:last-child {
+.detailsbutton {
     grid-column: span 2;
     background-color: white;
     box-shadow: none;
 }
 
-.details:last-child button {
+#cta {
     background-color: #a0eeee;
     padding: 20px;
     font-size: 1.1em;
@@ -177,7 +177,7 @@ main {
     cursor: pointer;
 }
 
-.details button a {
+.detailsbutton button a {
     text-decoration: none;
     color: black;
 }
@@ -208,7 +208,7 @@ main {
 
 .erfahrung div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -232,8 +232,10 @@ main {
 @media screen and (max-width: 768px) {
     .content {
         grid-template-columns: repeat(1, 1fr);
-        padding: 30px;
+        padding: 10px;
         width: 80vw;
+        font-size: small;
+        gap: 20px;
     }
 
     .content div:first-child {
@@ -243,11 +245,16 @@ main {
     .content div:last-child {
         grid-column: span 1;
     }
+
+    .details {
+        padding: 5px;
+    }
     
     .erfahrung {
         grid-template-columns: repeat(1, 1fr);
         padding: 30px;
         width: 80vw;
+        font-size: small;
     }
 
     .erfahrung div:first-child {

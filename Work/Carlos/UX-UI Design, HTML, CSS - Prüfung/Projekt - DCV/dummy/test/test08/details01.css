@@ -1,0 +1,134 @@
+/* General body and page styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container styling */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Course title styling */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2d3d56;
+    margin-bottom: 20px;
+}
+
+/* Kurs details container */
+.kursDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Subheading styling */
+h3 {
+    font-size: 1.4rem;
+    color: #4f7d97;
+    margin-bottom: 10px;
+}
+
+/* Paragraph styling */
+p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+strong {
+    font-weight: bold;
+    color: #2d3d56;
+}
+
+/* Image container styling */
+.imageContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.imageContainer img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+.ctaButton {
+    padding: 15px 30px;
+    background-color: #4f7d97;
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+    background-color: #37637b;
+}
+
+/* Optional experiences section */
+.erfahrungen {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    /* Adjust heading sizes */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust paragraph font size */
+    p {
+        font-size: 0.9rem;
+    }
+
+    /* Image adjustments for mobile */
+    .imageContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imageContainer img {
+        max-width: 90%;
+        margin-bottom: 15px;
+    }
+
+    /* Button adjustments for mobile */
+    .ctaButton {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Extra small screen adjustments (e.g., mobile phones in portrait) */
+@media (max-width: 480px) {
+    .ctaButton {
+        padding: 10px 20px;
+    }
+}
