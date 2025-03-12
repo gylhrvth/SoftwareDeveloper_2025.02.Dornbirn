@@ -42,9 +42,10 @@ main {
 }
 
 .intro p {
-    font-family: 'Slabo';
-    margin-left: 15vw;
-    margin-right: 15vw;
+    font-family: 'QiuckSand';
+    font-size: 1.1em;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .searchbar {
@@ -72,16 +73,15 @@ main {
 
 .kurse {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 400px));
+    grid-template-columns: repeat(3, minmax(100px, 400px));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
 }
 
 .kurse div:first-child {
-    grid-column: span 3;
-    font-family: 'Asap';
+    grid-column: 1 / -1;
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -90,11 +90,11 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    font-family: 'Asap';
+    font-family: 'slabo';
 }
 
 .kurs p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .kurs button {
@@ -112,7 +112,7 @@ main {
 }
 
 .kurs img {
-    width: clamp(150px, 10vw, 250px);
+    width: clamp(250px, 20vw, 350px);
     height: auto;
 }
 
@@ -138,19 +138,18 @@ main {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 30vw));
     justify-content: space-between;
-    align-items: center;
     gap: 40px;
     padding: 30px;
     margin-bottom: 3vh;
 }
 
 .content p {
-    font-family: 'Slabo';
+    font-family: 'QuickSand';
 }
 
 .content div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
@@ -209,7 +208,7 @@ main {
 
 .erfahrung div:first-child {
     grid-column: span 2;
-    font-family: 'Asap';
+    font-family: 'slabo';
     font-size: 1.5em;
 }
 
