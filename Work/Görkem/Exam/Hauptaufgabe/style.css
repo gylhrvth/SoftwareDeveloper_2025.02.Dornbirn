@@ -266,6 +266,11 @@ header {
         font-size: 14px;
         padding: 10px 20px;
     }
+
+    .course-image .stipend-info {
+        padding: 10px 20px; 
+        font-size: 14px;
+    }
 }
 @media only screen and (max-width: 480px) {
     .main-container {
@@ -296,5 +301,9 @@ header {
     .course-image .btn-register {
         font-size: 12px;
         padding: 8px 15px;
+    }
+
+    .course-image .stipend-info {
+        font-size: 12px;
     }
 }
