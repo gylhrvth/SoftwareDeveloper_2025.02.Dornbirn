@@ -128,7 +128,7 @@ header {
 .menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -160,7 +160,7 @@ header {
 .menuFilter {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -324,7 +324,7 @@ header {
 
 .ctaContainer>h2>a {
   color:rgb(41, 4, 135);
-  background-color: rgb(255, 215, 107);
+  background-color: rgb(255, 157, 157);
   padding: 5px;
   margin: 10px;
   font-family: "JetBrains Mono";
@@ -340,8 +340,6 @@ header {
 .buttonCTA:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
-  
- 
   cursor: pointer;
 }
 
@@ -394,6 +392,7 @@ header {
   border-radius: 10px;
   padding: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  letter-spacing: 0.1em;
 }
 
 .kursContainer > img {
@@ -471,6 +470,8 @@ footer {
 .footer-content > p {
   font-size: clamp(0.8em, 2vw, 1.5em);
 }
+
+
 
 
 /* -------------------- Media Queries --------------------- */
@@ -643,6 +644,10 @@ footer {
 
 .kursContainer > img {
   height: 350px;
+}
+
+.kursÜberblickContainer {
+  margin-inline: 100px;
 }
 
 }
