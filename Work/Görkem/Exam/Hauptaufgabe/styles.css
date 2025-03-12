@@ -547,10 +547,10 @@ header{
 }
 
 .simple-footer .btn-cta {
-    background-color: #007bff; 
+    background-color: #659bd4; 
     color: white; 
     padding: 10px 20px; 
-    border-radius: 5px; 
+    border-radius: 50px; 
     text-decoration: none; 
     margin-top: 10px; 
     display: inline-block; 
