@@ -13,6 +13,10 @@
     src: url(Font/header/Quicksand/Quicksand-VariableFont_wght.ttf);
 }
 
+:root {
+    color-scheme: light dark;
+  }
+
 main {
     display: flex;
     flex-direction: column;
@@ -265,7 +269,6 @@ nav:hover ul{
 
 .erfahrung:last-child {
     grid-column: span 2;
-    background-color: white;
     box-shadow: none;
 }
 
@@ -277,13 +280,85 @@ nav:hover ul{
     grid-column: span 2;
     background-color: #a0eeee;
     box-shadow: none;
-}   
+}
 
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: rgb(31, 31, 31);
+        color: black;
+	}
+
+    h2 {
+        color: #ffffff;
+    }
+
+    .logo {
+        background-color: gray;
+        padding: 0;
+        margin: 0;
+    }
+
+    .intro {
+        background-color: gray;
+        color: #ffffff;
+    }
+
+    .searchbar {
+        background-color: hsl(180, 70%, 38%);
+    }
+
+    .searchbar input {
+        background-color: #dadada;
+    }
+
+    .kurs {
+        background-color: gray;
+        color: white;
+    }
+
+    .kurs button {
+        background-color: hsl(180, 70%, 38%);
+    }
+
+    .kurs button a {
+        color: white;
+    }
+
+    .content {
+        border: hsl(180, 70%, 38%) 2px solid;
+    }
+
+    .details {
+        background-color: gray;
+        color: white;
+    }
+
+    .detailsbutton {
+        background-color: rgb(31, 31, 31);
+    }
+
+    #cta {
+        background-color: hsl(180, 70%, 38%);
+    }
+
+    .detailsbutton button a {
+        color: white;
+    }
+
+    .erfahrung {
+        border: hsl(180, 70%, 38%) 2px solid;
+    }
+}
 
 @media screen and (max-width: 768px) {
     nav ul {
         right: -0px;
         text-align: right;
+    }
+
+    .intro p {
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
 
     .content {
