@@ -1,0 +1,210 @@
+body{
+    font-family:'Abel', sans-serif;
+    min-height: 100vh;
+    background: url(../../Images/HintergrundBerg.jpg);
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+
+header{
+    font-family: "Orbitron", sans-serif;
+    position:fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: darkcyan;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+svg.logo{
+    height: 1.6rem;
+}
+
+
+nav a{
+    font-size: 18px;
+    text-transform: capitalize;
+    margin: clamp(3px, 2vw, 15px);
+    padding: 8px;
+    color: coral;
+    font-weight: 600;
+    border-bottom: solid transparent 3px;
+    transition: .1s ease;
+    text-decoration: none;
+}
+
+
+nav a:hover{
+    border-bottom-color: white;
+    color: white;
+}
+
+
+.btn{
+    padding: 10px 30px;
+    background-color: coral;
+    color: white;
+    border-radius: 10px;
+    transition: 1s ease;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+.btn:hover{
+    border-bottom: white solid 3px;
+    color: white;
+    transition: 1s ease;
+    
+}
+
+
+label{
+    font-size: 35px;
+    cursor: pointer;
+    color: white;
+    display: none;
+}
+
+
+
+
+
+
+@media (max-width: 898px){
+    header{
+        padding:4%;
+        transition: .1s ease;
+    }
+    nav a{
+        margin: 10px;
+        transition: .1s ease;
+    }
+    header nav{
+        position:absolute;
+        left: -100%;
+        top: 100%;
+        right: 0;
+        background-color: darkcyan;
+        padding: 20px;
+        border-radius: 10px;
+        transition: .1s ease;
+        opacity: 0;
+
+    }
+    header nav a{
+        display: block;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 0 10px blueviolet;
+        border-radius: 10px;
+        margin-top: 30px;
+        font-size: 22px;    
+    }
+
+    label{
+        display: block;
+    }
+
+}
+
+
+section{
+    padding-top: 8em;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.main{
+    font-family: "Orbitron", sans-serif;
+    font-size: large;
+}
+
+
+.main>p{
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+footer::before {
+    content: "";
+    display: block;
+    width: 70%;
+    border-top: 1px solid white;
+    margin: 0 auto;
+}
+
+
+.footer {
+    font-family: "Orbitron", sans-serif;
+    font-size: small;
+    padding: 15px;
+    height: 20px;
+    background: none;
+    color: black;
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+  /*  border-top: 1px white solid ; */
+
+}
+
+
+
+.footer>a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.footer>a:hover{
+    transition: 1s ease;
+    text-decoration: underline;
+    text-transform:uppercase;
+}
+
+
+/* Flexboxen ab hier */
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 80vh;
+    padding-bottom: 10em;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    flex: 1; /* Jede Box nimmt gleich viel Platz ein */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid white;
+}
+
+/* Unterschiedliche Farben für die Boxen */
+.box:nth-child(1) { background: #ff5733; }
+.box:nth-child(2) { background: #33b5e5; }
+.box:nth-child(3) { background: #ffbb33; }
+.box:nth-child(4) { background: #66bb6a; }
+.box:nth-child(5) { background: #9c27b0; }
+.box:nth-child(6) { background: #607d8b; }
