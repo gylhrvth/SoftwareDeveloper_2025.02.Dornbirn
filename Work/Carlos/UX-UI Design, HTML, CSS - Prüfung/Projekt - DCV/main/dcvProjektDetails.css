@@ -468,6 +468,32 @@ body {
 
 }
 
-    
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(0, 61, 111);
+      color: white;
+  }
+
+
+main {
+  padding-top: 30px;
+  background-color: rgb(0, 61, 111);
+}
+
+.kursDetailsInhalt {
+  background-color: rgba(0, 25, 66);
+  color: rgb(255, 207, 207);
+}
+
+.kursDetailsInhalt>h3 {
+  background-color: rgba(0, 25, 66);
+  color: white;
+}
+
+.kursDetailsInhalt .white {
+  color: white;
+
+}
 
 
