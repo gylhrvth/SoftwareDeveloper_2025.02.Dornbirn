@@ -1,6 +1,8 @@
 :root{
     --color_section_block: rgb(3, 208, 170);
-    --color1:linear-gradient(to right, #2673ef , #4faaef, #1af2ce)
+    --color1:linear-gradient(to right, #2673ef , #4faaef, #1af2ce);
+    --color_red: rgb(119, 4, 4);
+    --color_orange: #f6b30a;
     }
     
     
@@ -40,16 +42,14 @@
         margin-top: 1em;
     }
     .style1{
-        font-size: 1.5em;;
-        background-color: #800404;
-        color: white;
+        font-size: 2em;;
+        
+        color: rgb(230, 10, 40);
     }
     
     .style2{
-        font-size: 1.5em;
-        background-color: #f96b06;
-        color: white;  
-    }
+        font-size: 2em;
+        color: #f6b30a;}
     
     
     header{
@@ -69,51 +69,14 @@
         flex-direction: column;         /*anordnung : Reihe*/
     }
     
-    /*.logo{
-        background:linear-gradient(to right, #02317c , #001424);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: white;
-        display: flex;
-        font-size: 100%;
-        width: 20%;
-        height: 50%;
-        margin-left: 0;
-        border-radius: 40%;
-        align-items: center;
-        justify-content: center;
-    
-    }*/
+   
 
     header img{
         width: 11em;
        
     }
     
-    .logo {
-        background: linear-gradient(to right, #02317c, #001424);
-        font-family: "Jura", sans-serif;
-        color: white;
-        display: flex;
-        font-size: 1.5em;  
-        width: 180px;  
-        height: 60px;  
-        padding: 1em 1em;  /* Innenabstand für bessere lesbarkeit */
-        border-radius: 0.5em;  
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase; /* Großbuchstaben weil Logo */
-        letter-spacing: 0.1em; /* Leichter Buchstabenabstand */
-        font-weight: bold;      /*fett*/
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Leichter Schatten */
-        text-shadow: 2px 2px 4px rgb(255, 255, 255); /* 3D-Effekt für Text */
-        transition: transform 0.2s, box-shadow 0.2s; /* Weiche Animation */
-    }
     
-    /* Kleiner Hover-Effekt */
-    .logo:hover {
-        transform: scale(1.05); /* Leichte Vergrößerung */
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
-    }
     
     
     main{
@@ -150,10 +113,10 @@
     }
 
     .section_style{
-        width: 90%;
+        /*width: 90%;*/
         outline: solid  var(--color_section_block);
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:repeat(4, 1fr);
         justify-content: center;
         align-items: center;
         margin-top: 1rem;
@@ -162,15 +125,15 @@
     
     
     section img{
-        max-width: 60%;
-        max-height: 7em;
-        margin: 1em;
+    max-width: 90%;
+    max-height: 12em;
+    margin: 1em;
     }
     
     
     
     article{
-        width: 80%;
+        /*width: 80%;*/
         background-color: rgb(255, 255, 255);
         font-size: 0.5em;
         display: flex;
@@ -201,7 +164,8 @@
         border-right: 0.1em solid #ff8827;
         border-left: 0.1em solid#ff8827;
         border-bottom:0.2em solid #ff8827;
-        min-height: 25em;
+        /*max-width: 50%;*/
+        min-height: 30em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -216,8 +180,10 @@
     
     
     .container_kurse p{
+        /*width: 30%;*/
         font-size: small;
         margin: 0.5em;
+        
     }
     
     
@@ -266,7 +232,17 @@
         right: 2em;
         margin-top: 30em;
     }
+
+    .Kurszeiten_style{
+        border-top: solid 0.1em var(--color_red);
+        border-bottom:solid 0.1em var(--color_red);
+        color: var(--color_red);
+       
+    }
     
+    .style_zusatz{
+        font-size: 1em;
+    }
     /*.filter-select {
         padding: 2em;
         font-size: 1rem;
