@@ -128,7 +128,7 @@ header {
 .menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -160,7 +160,7 @@ header {
 .menuFilter {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 80%;
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
