@@ -265,6 +265,7 @@ body {
     justify-content: center;
     align-items: center;
     letter-spacing: 0.1em;
+    
   }
 
   .kursDetailsInhalt {
@@ -293,7 +294,7 @@ body {
     
   }
 
-  h3 {
+  h2 {
 
     
     background-color: white;
@@ -445,7 +446,7 @@ body {
 
     .kursDetailsInhalt {
       padding: 2%;
-      max-width: 50%;
+      max-width: 80%;
       margin-bottom: 50px;
       
     }
