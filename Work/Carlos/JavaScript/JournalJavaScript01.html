@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>JavaScript Basics Journal</title>
+
+</head>
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Lernerfolgsbuch: JavaScript Basics Journal</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day19">DO 13/03/25</a>: JavaScript (Basics)</h3>
+        
+    </body>
+    </html>
+
+    </div>
+
+    <br>
+
+    <h2 id="day19">Donnerstag, 13. März 2025</h2>
+
+    <h3 class="textColor01">JavaScript (Basics)</h3>
+
+    <h4>JS Grundlagen</h4>
+
+    <ul>
+
+        <li class="textColor02"><strong>Was ist JavaScript?</strong></li>
+        <p>JavaScript ist eine Programmiersprache, die hauptsächlich für interaktive Webseiten genutzt wird. Sie läuft im Browser und ermöglicht dynamische Inhalte wie Animationen, Formulare oder interaktive Elemente.</p>
+
+        <li class="textColor02"><strong>Was kann man mit Java Script in verbindung mit Web-Development machen?</strong></li>
+        <ul>
+            <li><p>Interaktive Elemente erstellen (Buttons, Menüs, Formulare).</p></li>
+            <li><p>Animationen & Effekte umsetzen (z. B. mit CSS oder Canvas).</p></li>
+            <li><p>DOM-Manipulation durchführen (Ändern von HTML und CSS über JS).</p></li>
+            <li><p>Benutzereingaben validieren (z. B. Formulareingaben prüfen).</p></li>
+            <li><p>Dynamische Inhalte laden und aktualisieren (z. B. ohne die Seite neu zu laden – AJAX, Fetch API).</p></li>
+            <li><p>Daten speichern & verwalten (z. B. mit Local Storage oder APIs).</p></li>
+            <li><p>Frameworks & Bibliotheken nutzen (z. B. React, Vue, jQuery).</p></li>
+        </ul>
+
+        <li class="textColor02"><strong>Welche Möglichkeiten gibt es Java Script Code zu schreiben und in ein Projekt einzufügen?</strong></li>
+        <p>Es gibt mehrere Möglichkeiten, JavaScript-Code zu schreiben und in ein Webprojekt einzufügen:</p>
+        <ul>
+            <li><p>Direkt im HTML-Dokument (Inline-Skript)</p></li>
+            <div class="code-sample">  
+            <code>
+                &lt;button onclick="alert('Hallo!')"&gt;Klick mich&lt;/button&gt;
+            </code>
+            </div>
+            <li><p>Im &lt;script&gt;-Tag innerhalb von HTML</p></li>
+            <div class="code-sample">  
+                <code>
+                &lt;script&gt;
+                console.log("Hallo, Welt!");
+                &lt;/script&gt;
+                </code>
+            </div>
+            <li><p>Externe JavaScript-Datei (.js-Datei)</p></li>
+            <div class="code-sample">  
+                <code>
+                &lt;script src="script.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+            
+            <li><p>Modul-System (type="module")</p></li>
+            <div class="code-sample">  
+                <code>
+                &lt;script type="module" src="script.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+            <li><p>JavaScript über Node.js (Serverseitig)</p></li>
+        </ul>
+
+        <p>Für größere Projekte ist eine externe .js-Datei mit Modul-System am besten, um den Code übersichtlich und wartbar zu halten.</p>
+
+        <li class="textColor02"><strong>Wie schreibt man in Java Script Kommentare?</strong></li>
+        <p>In JavaScript gibt es zwei Arten von Kommentaren:</p>
+        <ul>
+            <li><p>Einzeiliger Kommentar (//)</p></li>
+            <div class="code-sample">  
+                <code>
+            // Das ist ein einzeiliger Kommentar
+
+            console.log("Hallo, Welt!"); // Kommentar nach einer Codezeile
+                </code>
+            </div>
+
+            <li><p>Mehrzeiliger Kommentar (/* ... */)</p></li>
+            <div class="code-sample">  
+                <code>
+            /*
+            Das ist ein mehrzeiliger Kommentar.
+            Er kann über mehrere Zeilen gehen.
+            */
+            console.log("Hallo, Welt!");
+                </code>
+            </div>
+            
+        </ul>
+
+        <br>
+
+        <li class="textColor02"><strong>Wenn man Namen definiert für Variablen oder Funktionen, welche Regeln muss man beachten?</strong></li>
+        
+        <ul>
+            <li><p>✅ Erlaubt:</p></li>
+
+            <ul>
+                <li><p>Buchstaben (a-z, A-Z)</p></li>
+                <li><p>Ziffern (0-9), aber nicht am Anfang</p></li>
+                <li><p>_ (Unterstrich) und $ (Dollarzeichen)</p></li>
+                <li><p>Groß- und Kleinschreibung wird unterschieden (name ≠ Name)</p></li>
+            </ul>
+
+            <li><p>❌ Nicht erlaubt:</p></li>
+
+            <ul>
+                <li><p>Namen dürfen nicht mit einer Zahl beginnen (1variable ❌)</p></li>
+                <li><p>Keine Leerzeichen oder Sonderzeichen außer _ und $</p></li>
+                <li><p>Reservierte Wörter (z. B. let, function, return) dürfen nicht als Namen verwendet werden</p></li>
+            </ul>
+
+        </ul>
+
+        <br>
+
+        <h4>JS Programming Basics</h4>
+
+        <ul>
+
+            <li class="textColor02"><strong>Was sind sogenannte Statements?</strong></li>
+            <p>Ein Statement (Anweisung) in JavaScript ist eine einzelne ausführbare Codezeile, die eine bestimmte Aktion ausführt.
+                (z. B. eine Variable setzen, eine Bedingung prüfen oder eine Schleife ausführen).
+            </p>
+            <div class="code-sample">  
+                <code>
+                let name = "Carlos";   // Variablenzuweisung
+                console.log(name);     // Funktionsaufruf
+                if (name === "Carlos") {  // Bedingung
+                    console.log("Hallo, Carlos!");
+                }
+                </code>
+            </div>
+
+            <br>
+
+            <li class="textColor02"><strong>Was bedeutet Syntax?</strong></li>
+            <p>Syntax bezeichnet die Regeln und Struktur einer Programmiersprache, die festlegen, wie Code korrekt geschrieben werden muss, damit der Computer ihn versteht und ausführt.</p>
+
+            <li class="textColor02"><strong>Was sind Variablen?</strong></li>
+            <p>Variablen sind Platzhalter für Daten in einem Programm. Sie ermöglichen es, Werte zu speichern und später im Code zu verwenden. In JavaScript sind Variablen flexible Behälter, die unterschiedliche Datentypen aufnehmen können (z. B. Zahlen, Texte, Wahrheitswerte).</p>
+            <p>Werte können unterschiedlich sein, z. B. Zahlen (30), Strings ("Hallo"), Booleans (true/false), Arrays oder Objekte.</p>
+
+            <div class="code-sample">  
+                <code>
+        let name = "Carlos";  // Variablenname: name, Wert: "Carlos"
+        let age = 30;         // Variablenname: age, Wert: 30
+                </code>
+            </div>
+
+            <br>
+
+            <li class="textColor02"><strong>Was sind Booleans?</strong></li>
+            <p>Booleans sind ein Datentyp in JavaScript, der nur zwei mögliche Werte haben kann: true (wahr) oder false (falsch). Sie werden häufig in Bedingungen, Vergleichen und logischen Operationen verwendet.</p>
+
+            <li class="textColor02"><strong>Was sind Operatoren?</strong></li>
+            <p>Operatoren sind spezielle Zeichen, die bestimmte Aktionen wie Berechnungen, Vergleiche oder logische Operationen auf Variablen oder Werten ausführen.</p>
+
+            <li class="textColor02"><strong>Was ist eine Funktion?</strong></li>
+            <p>Eine Funktion in JavaScript ist ein wiederverwendbarer Codeblock, der eine bestimmte Aufgabe oder Berechnung ausführt. Funktionen ermöglichen es, komplexe Aufgaben in kleinere, handhabbare Teile zu unterteilen und den Code effizienter und übersichtlicher zu gestalten.</p>
+
+            <div class="code-sample">  
+                <code>
+        function greet() {
+            console.log("Hallo, Welt!");
+            }
+            
+        greet();  // Ruft die Funktion auf und gibt "Hallo, Welt!" aus
+                </code>
+            </div>
+
+            <br>
+
+            <li class="textColor02"><strong>Was ist eine Schleife (Loop)?</strong></li>
+            <p>Eine Schleife in JavaScript ist eine Kontrollstruktur, die es ermöglicht, einen bestimmten Codeblock wiederholt auszuführen, solange eine Bedingung erfüllt ist. Schleifen sind nützlich, wenn man eine Aktion mehrmals durchführen möchte, ohne den gleichen Code mehrfach zu schreiben.</p>
+            <p>Es gibt verschiedene Arten von Schleifen (z. B. for, while, do...while), die sich durch ihre Struktur und die Art der Bedingungsprüfung unterscheiden.</p>
+        
+            <li class="textColor02"><strong>Was ist das If-Else Statement?</strong></li>
+            <p>Das if-else-Statement in JavaScript ist eine Bedingungsanweisung, die es ermöglicht, unterschiedliche Codeblöcke auszuführen, je nachdem, ob eine bestimmte Bedingung wahr (true) oder falsch (false) ist.</p>
+    
+        </ul>
+        
+        
+
+
+
+
+
+
+    </ul>
