@@ -2,7 +2,6 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /*Standart ist content-box, Höhe und breite beinhaltet kein padding und border. Box-sizing: border-box; auf alle Elemente (*). Das bedeutet, dass die Breite und Höhe aller Elemente den Inhalt, das Padding und die Border umfassen. Dies erleichtert das Layout-Management, da die Gesamtgröße eines Elements konstant bleibt, unabhängig von Padding und Border.*/
   font-family: sans-serif;
 }
 
@@ -39,13 +38,35 @@ header {
 }
 
 .navbar .logo {
-  font-size: 1.5rem;
+  padding: 0 2rem;
+  font-size: 2rem;
   font-weight: bold;
+  font-family: fantasy;
 }
 
 .navbar .links {
   display: flex;
   gap: 1rem;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.button {
+  background: linear-gradient(45deg, white, aqua, blue, purple);
+  background-size: 400% 400%;
+  animation: gradientAnimation 5s ease infinite;
 }
 
 .button {
@@ -63,10 +84,10 @@ header {
 
 .button:hover {
   background-color: aqua;
-  scale: 1.1;
+  scale: 1.05;
 }
 
 .button:active {
   background-color: aqua;
-  scale: 0.9;
+  scale: 0.95;
 }

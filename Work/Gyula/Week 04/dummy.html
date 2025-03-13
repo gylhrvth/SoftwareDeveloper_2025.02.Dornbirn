@@ -6,8 +6,7 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -19,25 +18,37 @@
         margin: 0rem;
     }
     .bg-1 {
-        background-color: hsl(312, 100%, 90%);
+        background-color: hsl(200, 90%, 88%);
     }
     .bg-2 {
-        background-color: hsl(312, 100%, 85%);
+        background-color: hsl(200, 90%, 78%);
     }
     .bg-3 {
-        background-color: hsl(312, 100%, 35%);
+        background-color: hsl(200, 90%, 58%);
     }
 
     .text-1 {
         color: #222;
     }    
     .text-2 {
-        color: hsl(0, 0%, 83%);
+        color: hsl(200, 90%, 18%);
     }
     .font-1 {
-        font-family: "Fontdiner Swanky", serif;
+        font-family: "Montserrat Alternates", sans-serif;
         font-weight: 400;
         font-style: normal;
+    }
+    h1.font-1{
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .cta{
+        background-color: hsl(350, 90%, 58%);
+        color: #EEE;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
     }
 
 </style>
@@ -48,11 +59,12 @@
             <h1>Headline 1</h1>
             <h2>Headline 2</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>
+            <div class="cta">Click hier!</div>
         </article>
-        <article class="bg-1 text-1">
+        <article class="bg-1 text-2">
             <h1 class="font-1">Headline 1 with Fontdiner Swanky</h1>
             <h2>Headline 2</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>
+            <p class="font-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>
         </article>
         <article class="bg-2 text-1">
             <h1>Headline 1</h1>
@@ -64,12 +76,12 @@
             <h2>Headline 2</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>
         </article>
-        <article class="bg-3 text-2">
+        <article class="bg-3 text-1">
             <h1>Headline 1</h1>
             <h2>Headline 2</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>
         </article>
-        <article class="bg-3 text-2">
+        <article class="bg-3 text-1">
             <h1 class="font-1">Headline 1 with Fontdiner Swanky</h1>
             <h2>Headline 2</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, illo.</p>

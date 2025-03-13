@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Web Entwickler Kurs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Anmelden.css">
+</head>
+<body>
+    <div class="login-container">
+        <form action="submit_login.php" method="POST" class="login-form">
+            <h2>Login</h2>
+            
+            <div class="input-group">
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Angemeldet bleiben</label>
+            </div>
+            
+            <button type="submit" class="btn">Anmelden</button>
+            
+            <div class="links">
+                <a href="#">Passwort vergessen?</a>
+                <a href="#">Neues Konto erstellen</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
