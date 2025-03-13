@@ -1,0 +1,721 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JS Basics</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1b5857bd-249d-805e-b55a-e774bdb6fde5" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">JS Basics</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@13. März 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="../../Student%20Planner%20%E2%9C%A8%2017a857bd249d80d5adf7fd37c63f633f/Kurse%2017a857bd249d81f4a1e6c1955653e393/Student%20Planner%20Classes%2017a857bd249d81bf9337debb620e51b1/Javascript%20199857bd249d80ac92bdf1234964c007.html"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="Syntax%20Operatoren%20Variablen%20Schleifen%201b5857bd249d800ca318c0d319c728d3.html"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Syntax/Operatoren/Variablen/Schleifen</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1b5857bd-249d-80d8-b8b8-eaab9ed9a870" class="column-list"><div id="1b5857bd-249d-809e-8ccc-ec4f0fb980fd" style="width:50%" class="column"><p id="1b5857bd-249d-80ad-a97d-ffb242b17fbd" class="">JavaScript ist eine der zentralen Programmiersprachen für Webentwicklung und spielt eine entscheidende Rolle bei der Erstellung interaktiver und dynamischer Websites. Hier sind einige grundlegende und wichtige Aspekte, die du beachten solltest:</p><h3 id="1b5857bd-249d-801f-a3c2-faa258b50781" class=""><strong>Grundlegende Aspekte von JavaScript</strong></h3><ol type="1" id="1b5857bd-249d-8020-b8f8-d5bcc2f6714b" class="numbered-list" start="1"><li><strong>Client-seitige Sprache</strong>: JavaScript wird hauptsächlich im Browser ausgeführt, sodass es keine zusätzlichen Serveranfragen benötigt, um Benutzeraktionen zu verarbeiten.</li></ol><ol type="1" id="1b5857bd-249d-80c5-91f4-e504ece98216" class="numbered-list" start="2"><li><strong>Event-gesteuert</strong>: JavaScript arbeitet mit Events, wie dem Klicken auf Buttons oder dem Bewegen der Maus, um Funktionen auszulösen.</li></ol><ol type="1" id="1b5857bd-249d-804d-9fad-dd3458679342" class="numbered-list" start="3"><li><strong>Objektorientiert</strong>: Mit Funktionen wie Objekten und Prototypen kannst du komplexe Anwendungen erstellen.</li></ol><ol type="1" id="1b5857bd-249d-80d2-9576-c779d48b96f1" class="numbered-list" start="4"><li><strong>Dynamisch typisiert</strong>: Variablen müssen nicht explizit typisiert werden, was Flexibilität bietet, aber auch Fehleranfälligkeit erhöhen kann.</li></ol><ol type="1" id="1b5857bd-249d-80a4-a62d-f16986544f54" class="numbered-list" start="5"><li><strong>Browserkompatibilität</strong>: JavaScript funktioniert nicht immer gleich in allen Browsern. Tools wie Babel helfen, dies zu umgehen.</li></ol><h3 id="1b5857bd-249d-800f-a805-ff31156ba749" class=""><strong>Was man mit JavaScript im Webdesign machen kann</strong></h3><ol type="1" id="1b5857bd-249d-80b7-8e89-efa94347a9a1" class="numbered-list" start="1"><li><strong>Dynamische Inhalte</strong>: Inhalte können ohne Seiten-Reload aktualisiert werden, z. B. bei der Verwendung von APIs mit <code>fetch</code>.</li></ol><ol type="1" id="1b5857bd-249d-80bf-bdee-feaaa1458940" class="numbered-list" start="2"><li><strong>Animationen</strong>: Mit JavaScript und Bibliotheken wie GSAP können komplexe Animationen für Websites erstellt werden.</li></ol><ol type="1" id="1b5857bd-249d-80ea-ba10-d62c4337f5f3" class="numbered-list" start="3"><li><strong>Formularvalidierung</strong>: Prüfen und validieren von Nutzereingaben direkt im Browser.</li></ol><ol type="1" id="1b5857bd-249d-80af-a39d-eae17685cc41" class="numbered-list" start="4"><li><strong>Interaktive Features</strong>: Erstellen von Dropdown-Menüs, Bildergalerien, Modalen und vielem mehr.</li></ol><ol type="1" id="1b5857bd-249d-804d-b102-dffde75890a6" class="numbered-list" start="5"><li><strong>Single Page Applications (SPAs)</strong>: Mithilfe von Frameworks wie React, Angular oder Vue.js  können Apps erstellt werden, die ohne Seitenwechsel auskommen.</li></ol><h3 id="1b5857bd-249d-8023-b5ac-ded5a08c4c73" class=""><strong>Wichtige Aspekte, die du beachten solltest</strong></h3><ol type="1" id="1b5857bd-249d-80d4-b6e2-f91d52ad1e83" class="numbered-list" start="1"><li><strong>Modularisierung</strong>: Es ist wichtig, den Code sauber und modular zu halten, z. B. mit ES6-Modulen.</li></ol><ol type="1" id="1b5857bd-249d-80b2-b507-e34ba9adfea1" class="numbered-list" start="2"><li><strong>Performance-Optimierung</strong>: Zu viele DOM-Manipulationen oder unperformante Algorithmen können die Ladezeit negativ beeinflussen.</li></ol><ol type="1" id="1b5857bd-249d-8081-93ea-facc7329a0e3" class="numbered-list" start="3"><li><strong>Sicherheit</strong>: Cross-Site Scripting (XSS) und andere Sicherheitsrisiken müssen beachtet werden.</li></ol><ol type="1" id="1b5857bd-249d-804f-a005-f58e0f8f3324" class="numbered-list" start="4"><li><strong>Bibliotheken und Frameworks</strong>: Nutze bekannte Bibliotheken wie jQuery, wenn nötig, und Frameworks wie React oder Vue.js, um die Entwicklung zu vereinfachen.</li></ol><ol type="1" id="1b5857bd-249d-809d-9310-ccef69e39ae4" class="numbered-list" start="5"><li><strong>Debugging</strong>: Lerne Debugging-Tools wie die Developer Tools im Browser kennen, um Fehler effizient zu finden.</li></ol><ol type="1" id="1b5857bd-249d-801f-b947-c628cdad9437" class="numbered-list" start="6"><li><strong>Barrierefreiheit</strong>: Stelle sicher, dass JavaScript-Inhalte auch für Screenreader und andere unterstützende Technologien zugänglich sind.</li></ol><h3 id="1b5857bd-249d-80c1-b462-c9d5171c0dda" class=""><strong>Welche Möglichkeiten gibt es, JavaScript-Code zu schreiben und in ein Projekt einzufügen?</strong></h3><p id="1b5857bd-249d-80e9-b182-ee791422f3c0" class="">Es gibt drei Hauptmethoden, um JavaScript in ein Projekt einzufügen:</p><ol type="1" id="1b5857bd-249d-8018-b63a-d9f1c61a18a2" class="numbered-list" start="1"><li><strong>Inline-JavaScript</strong>:<br/>JavaScript wird direkt im HTML-Element geschrieben, z. B. innerhalb eines HTML-Tags wie <br/><code>onclick</code>:<p id="1b5857bd-249d-8069-9d5d-e085e82af482" class="">html</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8006-9e50-ff483b1979f4" class="code"><code class="language-HTML">&lt;button onclick=&quot;alert(&#x27;Hallo!&#x27;)&quot;&gt;Klicke mich&lt;/button&gt;</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80a2-b95f-d9d18b52b3ec" class="numbered-list" start="2"><li><strong>Internes JavaScript</strong>:<br/>JavaScript wird innerhalb eines <br/><code>&lt;script&gt;</code>Tags im selben HTML-Dokument geschrieben:<p id="1b5857bd-249d-80f5-bce7-c2292a917ff8" class="">html</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8011-961b-fe377505f803" class="code"><code class="language-HTML">&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Beispiel&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    alert(&#x27;Hallo aus internem JavaScript!&#x27;);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80e5-83f9-c030f275a4b4" class="numbered-list" start="3"><li><strong>Externes JavaScript</strong>:<br/>JavaScript wird in einer separaten <br/><code>.js</code>Datei geschrieben, die dann in das HTML-Dokument eingebunden wird:<p id="1b5857bd-249d-8074-a38d-da36d35951ad" class="">html</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-803b-8f93-eea50632b1d8" class="code"><code class="language-HTML">&lt;html&gt;
+&lt;head&gt;
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Externer JavaScript-Code&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="1b5857bd-249d-80ab-802d-fd48faef6373" class=""><strong>script.js</strong> könnte so aussehen:</p><p id="1b5857bd-249d-80f0-9463-da7596efa4a4" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8062-99e0-c5975fd92496" class="code"><code class="language-JavaScript">console.log(&#x27;Hallo aus externer Datei!&#x27;);</code></pre></li></ol><p id="1b5857bd-249d-80ed-9748-f28a17f41097" class=""><strong>Hinweis</strong>: Das Trennen von JavaScript in externe Dateien ist eine bewährte Praxis, da es den Code übersichtlicher und wiederverwendbarer macht.</p><h3 id="1b5857bd-249d-80df-b351-dba6bc3a0744" class=""><strong>Wie schreibt man in JavaScript Kommentare?</strong></h3><p id="1b5857bd-249d-80bd-9e5b-ff4b9e818581" class="">Kommentare helfen, den Code zu dokumentieren oder temporär Code zu deaktivieren. Es gibt zwei Arten von Kommentaren:</p><ol type="1" id="1b5857bd-249d-8053-a037-fc3b8b0eca5c" class="numbered-list" start="1"><li><strong>Einzeilige Kommentare</strong>:<br/>Werden mit <br/><code>//</code> geschrieben:<p id="1b5857bd-249d-806e-a9db-fb637195902e" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8069-9abe-e6c4ebf73bed" class="code"><code class="language-JavaScript">// Dies ist ein Kommentar
+let name = &quot;Leonie&quot;; // Variable speichert den Namen</code></pre></li></ol><ol type="1" id="1b5857bd-249d-8091-97d6-ea1ad474253f" class="numbered-list" start="2"><li><strong>Mehrzeilige Kommentare</strong>:<br/>Werden mit <br/><code>/* */</code> eingeschlossen:<p id="1b5857bd-249d-80eb-9e71-de1c562fd60c" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-80e2-addf-f2c1f30eaec5" class="code"><code class="language-JavaScript">/*
+  Dies ist ein Kommentar
+  über mehrere Zeilen hinweg.
+*/
+console.log(&quot;Das ist kein Kommentar.&quot;);</code></pre></li></ol><h3 id="1b5857bd-249d-808e-8767-eda941008e12" class=""><strong>Wenn man Namen für Variablen oder Funktionen definiert, welche Regeln muss man beachten?</strong></h3><p id="1b5857bd-249d-806c-9ece-c9cde35e9b69" class="">Hier sind wichtige Regeln und Best Practices:</p><h3 id="1b5857bd-249d-8021-8464-e33894e4547a" class=""><strong>Regeln</strong> (die strikt eingehalten werden müssen):</h3><ol type="1" id="1b5857bd-249d-80cf-a3d5-d7eb1da4dbea" class="numbered-list" start="1"><li><strong>Nur gültige Zeichen</strong>: Namen dürfen Buchstaben, Zahlen, <code>$</code> und <code>_</code> enthalten, aber <strong>dürfen nicht mit einer Zahl beginnen</strong>:<p id="1b5857bd-249d-80de-9e10-ef75a683b758" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-80b1-90d9-c0f643c8bda7" class="code"><code class="language-JavaScript">let _myVariable = 10; // erlaubt
+let $price = 5; // erlaubt
+let 2ndValue = 20; // nicht erlaubt</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80b6-ba2b-f298e2d8b19c" class="numbered-list" start="2"><li><strong>Keine reservierten Schlüsselwörter</strong>: Du darfst keine Schlüsselwörter wie <code>let</code>, <code>if</code>, <code>for</code>, etc., als Namen verwenden:<p id="1b5857bd-249d-8058-89e6-e6c054df5e42" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8007-a801-cf90e985e7d4" class="code"><code class="language-JavaScript">let let = 5; // nicht erlaubt</code></pre></li></ol><ol type="1" id="1b5857bd-249d-805d-b3f2-ed9405947876" class="numbered-list" start="3"><li><strong>Fallunterscheidung</strong>: JavaScript unterscheidet zwischen Groß- und Kleinschreibung:<p id="1b5857bd-249d-80c8-9c93-c74875147ac5" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8077-9915-dd9937ced70d" class="code"><code class="language-JavaScript">let wert = 10;
+let Wert = 20; // das sind zwei verschiedene Variablen</code></pre></li></ol><h3 id="1b5857bd-249d-807b-84a6-e3877bd8c451" class=""><strong>Best Practices</strong> (für lesbaren und gut strukturierten Code):</h3><ol type="1" id="1b5857bd-249d-8071-aaa9-ee15a12f6cbc" class="numbered-list" start="1"><li><strong>Beschreibende Namen</strong>: Variablen- und Funktionsnamen sollten den Zweck klar machen:<p id="1b5857bd-249d-8080-b0c4-d28899135c9f" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-80c5-a252-ea23fcda9e45" class="code"><code class="language-JavaScript">let userName = &quot;Leonie&quot;; // besser als nur &quot;x&quot;</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80ec-a0ac-f7c9ccb21c63" class="numbered-list" start="2"><li><strong>CamelCase für Variablen und Funktionen</strong>:<p id="1b5857bd-249d-805f-a1da-df2738bcf40c" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-809f-b1e8-cd9b5e1d1c5a" class="code"><code class="language-JavaScript">let myVariable = 10;
+function calculateSum() {}</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80c9-906d-ce0fecdb6191" class="numbered-list" start="3"><li><strong>Konstante Namen in Großbuchstaben mit Unterstrichen (Snake Case)</strong>:<p id="1b5857bd-249d-808a-b0a9-ee2b6e2bf5ae" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8011-8af2-e3808f63183c" class="code"><code class="language-JavaScript">const MAX_VALUE = 100;</code></pre></li></ol><ol type="1" id="1b5857bd-249d-80a0-aaea-cea5bc87ef45" class="numbered-list" start="4"><li><strong>Keine übermäßig langen Namen</strong>: Halte Namen kurz, aber verständlich:<p id="1b5857bd-249d-8031-a8f0-ed36b5844ea8" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8013-bc47-ee2303dc77ec" class="code"><code class="language-JavaScript">let aVeryLongVariableName = 10; // vermeiden</code></pre></li></ol></div><div id="1b5857bd-249d-806e-a33a-e0de912fba27" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1b5857bd-249d-803d-8d3e-d34b188c2602"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1b5857bd-249d-8042-b666-e4448020bbdc"/><p id="1b5857bd-249d-8091-a6ef-d089df7a4e0c" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1b5857bd-249d-80a1-8f00-fed0033e4007"/><ul id="1b5857bd-249d-8014-a74e-edbb28478168" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1b5857bd-249d-807b-9e7d-f19f51848c23" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1b5857bd-249d-80fd-b14f-e4a9baa5eca9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1b5857bd-249d-80e1-b92f-e91bb235f8b7" class="image"><a href="UX%20UI%2019d857bd249d8096a59ed175e875cf50/33.png"><img style="width:425px" src="UX%20UI%2019d857bd249d8096a59ed175e875cf50/33.png"/></a></figure><h3 id="1b5857bd-249d-8088-a736-c26e09ff1125" class=""><strong>Frameworks und Ökosysteme</strong></h3><p id="1b5857bd-249d-8033-83d4-fac7d6dc9065" class="">JavaScript hat ein reichhaltiges Ökosystem mit einer Vielzahl von Frameworks und Bibliotheken wie React, Angular und Vue.js, die speziell für die Webentwicklung optimiert sind. Technologien wie Python oder PHP bieten ebenfalls Frameworks, diese sind jedoch nicht immer so stark auf die Frontend-Webentwicklung fokussiert.</p><h3 id="1b5857bd-249d-80b0-b63e-d3ade7e929f0" class=""><strong>Stärken von JavaScript</strong></h3><ul id="1b5857bd-249d-8056-859d-dc075b46b96a" class="bulleted-list"><li style="list-style-type:disc"><strong>Echtzeitinteraktivität</strong>: Keine andere Technologie ist so nahtlos im Browser integriert wie JavaScript.</li></ul><ul id="1b5857bd-249d-8052-8c46-e29f9d87e96d" class="bulleted-list"><li style="list-style-type:disc"><strong>Plattformübergreifend</strong>: Dank Tools wie Electron oder React Native kannst du mit JavaScript auch Desktop- oder Mobilanwendungen erstellen.</li></ul><ul id="1b5857bd-249d-80fe-9c7b-c3d6d484b294" class="bulleted-list"><li style="list-style-type:disc"><strong>Große Community</strong>: Es gibt eine riesige Entwicklergemeinschaft, zahlreiche Tutorials, Tools und eine kontinuierliche Weiterentwicklung der Sprache.</li></ul><h3 id="1b5857bd-249d-803e-a397-d1b8844ef903" class=""><strong>Schwächen im Vergleich</strong></h3><ul id="1b5857bd-249d-80b8-b7b8-c45d94477cf8" class="bulleted-list"><li style="list-style-type:disc"><strong>Asynchronität und Komplexität</strong>: Das Event-Loop-Modell und Promises können für Einsteiger schwierig sein.</li></ul><ul id="1b5857bd-249d-80ae-8597-ec99e049556d" class="bulleted-list"><li style="list-style-type:disc"><strong>Performance</strong>: Für rechenintensive Aufgaben sind Sprachen wie C++ oder Rust oft schneller und effizienter.</li></ul><ul id="1b5857bd-249d-8001-b4a5-e5e4f9423305" class="bulleted-list"><li style="list-style-type:disc"><strong>Browserabhängigkeiten</strong>: Obwohl moderne Browser weitgehend kompatibel sind, gab es früher viele Probleme mit inkonsistenten Implementierungen.</li></ul><h3 id="1b5857bd-249d-804c-a9dd-db85a2906fae" class=""><strong>Was sind sogenannte Statements?</strong></h3><p id="1b5857bd-249d-8097-a299-cfcd8e74f1b6" class="">Statements sind Anweisungen, die in JavaScript ausgeführt werden. Jedes Statement führt eine spezifische Aktion aus, z. B. das Deklarieren einer Variable oder das Ausführen einer Funktion. Statements enden in der Regel mit einem Semikolon (<code>;</code>).</p><h3 id="1b5857bd-249d-80a9-b40d-c97e77b45022" class=""><strong>Was bedeutet Syntax?</strong></h3><p id="1b5857bd-249d-80d3-af05-e51248228d1f" class="">Die Syntax ist die Grammatik und Struktur einer Programmiersprache. Sie definiert, wie Code geschrieben und formatiert sein muss, damit die JavaScript-Engine ihn verstehen und ausführen kann. Beispielsweise ist <code>let x = 5;</code> korrekte Syntax, während <code>let x 5</code> Fehler verursacht.</p><h3 id="1b5857bd-249d-8067-9c9b-f0e032d8e888" class=""><strong>Was sind Variablen?</strong></h3><p id="1b5857bd-249d-80b6-92b9-d1bb55203288" class="">Variablen sind Container, in denen Daten gespeichert werden können. Sie werden mit Schlüsselwörtern wie <code>var</code>, <code>let</code> oder <code>const</code> deklariert:</p><ul id="1b5857bd-249d-8038-8e8c-c2d32377356d" class="bulleted-list"><li style="list-style-type:disc"><code>let name = &quot;Leonie&quot;;</code> (eine Variable, die geändert werden kann)</li></ul><ul id="1b5857bd-249d-80d8-a8b4-da8eb6f1238b" class="bulleted-list"><li style="list-style-type:disc"><code>const pi = 3.14;</code> (eine Konstante, die nicht geändert werden kann)</li></ul><h3 id="1b5857bd-249d-8069-be47-dd7509cac058" class=""><strong>Was sind Operatoren?</strong></h3><p id="1b5857bd-249d-8054-84ac-d7a00e14d0a3" class="">Operatoren sind Symbole oder Schlüsselwörter, die eine Operation ausführen. Beispiele:</p><ul id="1b5857bd-249d-8053-9383-ffa00049d927" class="bulleted-list"><li style="list-style-type:disc"><strong>Arithmetisch</strong>: <code>+</code>, , , <code>/</code></li></ul><ul id="1b5857bd-249d-808c-92ba-e14bcb9c95aa" class="bulleted-list"><li style="list-style-type:disc"><strong>Vergleichend</strong>: <code>==</code>, <code>===</code>, <code>!=</code>, <code>&gt;</code></li></ul><ul id="1b5857bd-249d-8094-a44a-e1461ea1b70e" class="bulleted-list"><li style="list-style-type:disc"><strong>Logisch</strong>: <code>&amp;&amp;</code> (Und), <code>||</code> (Oder), <code>!</code> (Nicht)</li></ul><h3 id="1b5857bd-249d-8027-9a5a-da3eb4756833" class=""><strong>Was ist eine Schleife?</strong></h3><p id="1b5857bd-249d-80d3-971f-c4c79b8425e6" class="">Eine Schleife (Loop) wird verwendet, um wiederholt einen Codeblock auszuführen, solange eine Bedingung erfüllt ist. Beispiele sind:</p><ul id="1b5857bd-249d-80c1-869b-f139dd694dad" class="bulleted-list"><li style="list-style-type:disc"><strong>For-Schleife</strong>: <code>for (let i = 0; i &lt; 10; i++) { console.log(i); }</code></li></ul><ul id="1b5857bd-249d-8048-a2bc-c1cb146193a2" class="bulleted-list"><li style="list-style-type:disc"><strong>While-Schleife</strong>: <code>while (condition) { // Code }</code></li></ul><h3 id="1b5857bd-249d-80ce-80a0-db197b7c08e8" class=""><strong>Was ist das If-Else Statement?</strong></h3><p id="1b5857bd-249d-807c-a1a2-e64f6dbb21f0" class="">Das <code>if-else</code> Statement ist eine Kontrollstruktur, die basierend auf einer Bedingung Code ausführt:</p><p id="1b5857bd-249d-80cc-b0d4-cfdffc47402c" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-80c4-a463-d1fdfc2ddf39" class="code"><code class="language-JavaScript">if (age &gt;= 18) {
+  console.log(&quot;Erwachsen&quot;);
+} else {
+  console.log(&quot;Minderjährig&quot;);
+}</code></pre><h3 id="1b5857bd-249d-80d6-ad30-eb10e2bdc1cd" class=""><strong>Was bedeutet True / False?</strong></h3><p id="1b5857bd-249d-8008-89dc-eb44d4eca74c" class=""><code>true</code> und <code>false</code> sind boolesche Werte, die für Bedingungen verwendet werden. Sie repräsentieren &quot;wahr&quot; und &quot;falsch&quot;. Zum Beispiel:</p><p id="1b5857bd-249d-80de-ae39-fb45146176a9" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-80ff-a99f-eb38f7fbf838" class="code"><code class="language-JavaScript">let isLoggedIn = true; 
+if (isLoggedIn) {
+  console.log(&quot;Willkommen zurück!&quot;);
+}</code></pre><h3 id="1b5857bd-249d-80c7-8ff0-e501158fff5d" class=""><strong>Was ist eine Funktion?</strong></h3><p id="1b5857bd-249d-8061-b5a5-f489cc1e9492" class="">Funktionen sind Codeblöcke, die mehrfach aufgerufen werden können. Sie ermöglichen das Wiederverwenden von Code und verbessern die Modularität:</p><p id="1b5857bd-249d-8040-9c68-d9380874b7bb" class="">javascript</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b5857bd-249d-8064-8de6-c7b1224a4762" class="code"><code class="language-JavaScript">function greet(name) {
+  return `Hallo, ${name}!`;
+}
+console.log(greet(&quot;Leonie&quot;)); // Ausgabe: Hallo, Leonie!</code></pre><p id="1b5857bd-249d-809b-94d7-e5bda9169b44" class="">
+</p></div></div><p id="1b5857bd-249d-8043-be4c-cd92137d0f16" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
