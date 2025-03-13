@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/Kurs/common.js"></script>
+  <link rel="stylesheet" href="/Kurs/common.css">
+</head>
+
+<body>
+
+</body>
+
+
+<script>
+  const symbol = "X";
+  const size = 5;
+
+  printTriangelBotLeft(symbol, size);
+  printHr();
+  printTriangelBotLeft2(symbol, size);
+  printHr();
+  printHelp(symbol, size);
+
+
+  function printTriangelBotLeft(symbol, size) {
+    //Beide Schleifen zählen bis zur Zahl von size durch und mit der If-Abfrage wird entschieden, ob ein Symbol oder ein Leerzeichen ausgegeben wird.
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        //If j ist kleiner oder gleich i, dann wird ein Symbol ausgegeben, ansonsten ein Leerzeichen.
+        //Starten wird das ganze bei i = 0 und j = 0, dann wird j um 1 erhöht und es wird wieder geprüft, ob j kleiner oder gleich i ist.
+        if (j <= i) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriangelBotLeft2(symbol, size) {
+    //Nur die erste Schleife zählt bis size komplett durch, die zweite Schleife zählt bis i.
+    //Was beim oberen Beispiel mit der If-Abfrage gemacht wurde, wird hier mit der zweiten Schleife gemacht, indem sie bis i zählt und i sich bei jedem durchlauf um 1 erhöht.
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j <= i; j++) {
+        print(symbol);
+      }
+      printLn("");
+    }
+  }
+
+  function printHelp(symbol, size) {
+    //Schleifen Beispiel das zeigt, wie die Schleifen arbeiten. Wo sind welche koordinaten. Damit man besser versteht, wie die Schleifen arbeiten und wo i und j stehen bei jedem durchlauf.
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j <= i) {
+          print("(" + i + ")(" + j + ")" + "   |   ");
+        } else {
+          print("(" + i + ")(" + j + ")" + "   |   ");
+        }
+      }
+      printLn("");
+      printLn("");
+    }
+  }
+
+
+
+</script>
+
+</html>
