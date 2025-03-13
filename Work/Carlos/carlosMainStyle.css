@@ -29,7 +29,8 @@ body {
     width: 80%;
     height: 80%;
     overflow-y: auto;
-    height: 400px;
+    height: auto;
+    text-align: left;
      
 }
 
@@ -42,7 +43,9 @@ body {
     border-top-left-radius: 20px;
     border: solid rgb(137, 191, 242) 5px;
     width: 80%;
-    height: 10%;   
+    overflow-y: auto;
+    height: 400px;
+    text-align: left;
 }
 
 table {

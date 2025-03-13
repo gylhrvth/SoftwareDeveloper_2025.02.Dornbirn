@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test V01</title>
+</head>
+<body>
+    <h2>My First JavaScript</h2>
+    
+    <p id="demo"></p>
+    
+    <script>
+        function updateTime() {
+            document.getElementById('demo').innerHTML = new Date().toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to display time immediately
+    </script>
+</body>
+</html>
