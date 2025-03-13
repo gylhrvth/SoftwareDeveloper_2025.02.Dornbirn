@@ -73,10 +73,3 @@ function printHr() {
     // Append the horizontal rule to the body of the document
     document.body.appendChild(hr);
 }
-
-document.querySelector('button.toTheTop')?.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
