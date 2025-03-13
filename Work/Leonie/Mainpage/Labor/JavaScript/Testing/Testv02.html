@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schleifen</title>
+</head>
+<body>
+    
+</body>
+<script>
+        // for-Schleife
+        for (let i = 0; i < 10; i++) {
+        console.log(i);
+    }
+
+    // while-Schleife
+    let i = 0;
+    while (i < 10) {
+        console.log(i);
+        i++;
+    }
+
+    // do-while-Schleife
+    i = 0;
+    do {
+        console.log(i);
+        i++;
+    } while (i < 10);
+
+    // for-in-Schleife
+    let person = {fname: "John", lname: "Doe", age: 25};
+    let text = "";
+    for (let x in person) {
+        text += person[x] + " ";
+    }
+    console.log(text);
+
+    // for-of-Schleife
+    let cars = ["BMW", "Volvo", "Mini"];
+    text = "";
+    for (let x of cars) {
+        text += x + " ";
+    }
+    console.log(text);
+</script>
+</html>

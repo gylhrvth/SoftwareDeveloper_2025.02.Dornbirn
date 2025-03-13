@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schleifen</title>
+    <script src="/Kurs/common.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    for (let i = 0; i <= 10; i++) {
+        if (i % 2 == 0) {
+            printLn(i);
+        } else {
+            printLn("Ungerade: " + i);
+        }
+    }
+
+    printHr();
+
+    for (let i = 0; i <= 10; i++) {
+        if (i % 2 != 0) {
+            printLn(i);
+        } else {
+            printLn("Gerade: " + i);
+        }
+    }
+
+    printHr();
+
+    for (let a = 0; a <= 10; a++) {
+        for (let b = 0; b <= 10; b++) {
+            printLn(a + " * " + b + " = " + a * b);
+        }
+    }
+
+    printHr();
+
+</script>
+
+</html>
