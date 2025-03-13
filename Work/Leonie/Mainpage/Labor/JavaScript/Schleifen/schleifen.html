@@ -10,6 +10,10 @@
     
 </body>
 <script>
+    printH(1, "For-Schleifen");
+
+    printH(2, " for if else")
+
     for (let i = 0; i <= 10; i++) {
         if (i % 2 == 0) {
             printLn(i);
@@ -30,6 +34,9 @@
 
     printHr();
 
+    printH(2, "for")
+
+
     for ( let i = 10; i >= 0; i--) {
         printLn(i);
     }
@@ -42,6 +49,8 @@
 
     printHr();
 
+    printH(2, "for in for")
+
     for (let a = 0; a <= 10; a++) {
         for (let b = 0; b <= 10; b++) {
             printLn(a + " * " + b + " = " + a * b);
@@ -50,7 +59,27 @@
 
     printHr();
 
-    
+    printH(2, "for und if mit Modulo")
+
+    for (let i = 0; i <= 30; i++) {
+        if (i % 5 == 0) {
+            continue;
+        }
+        if (i % 3 == 0) {
+            printLn(i); 
+        }
+    }
+
+    printHr();
+
+    for (let b = 0; b <= 50; b++) {
+        if (b & 4 == 0) {
+            continue;
+        }
+        if (b % 5 == 0) {
+            printLn(b);
+        }
+    }
 
 </script>
 
