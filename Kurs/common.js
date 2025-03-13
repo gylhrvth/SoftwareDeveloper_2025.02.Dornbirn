@@ -9,8 +9,13 @@ function printTest(conntent) {
 }
 
 function print(content, color, background,) {
+    if (content === undefined) {
+        content = '';
+    }
     // Create a new span element
     const span = document.createElement('span');
+    // Ensure content is a string
+    content = String(content);
     // Set the text content of the span to the content
     if (content.includes(' ')) {
         content = content.replaceAll(/ /g, '\u00A0');
@@ -38,8 +43,13 @@ function printH(level, content) {
 }
 
 function printLn(content, color, background) {
+    if (content === undefined) {
+        content = '';
+    }
     // Create a new span element
     const span = document.createElement('span');
+    // Ensure content is a string
+    content = String(content);
     // Set the text content of the span to the content
     if (content.includes(' ')) {
         content = content.replaceAll(/ /g, '\u00A0');
