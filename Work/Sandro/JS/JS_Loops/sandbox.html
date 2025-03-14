@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="/Kurs/common.js"></script>
-  <link rel="stylesheet" href="/Kurs/common.css">
+  <link rel="stylesheet" href="/Work/Sandro/style.css">
+  </link>
 
 </head>
 
@@ -17,15 +18,21 @@
 
 <script>
 
-  let text = "Hallo Welt";
-  let zahl = 10;
+  printMyLoop("X", 5);
 
+  function printMyLoop(symbol, count) {
+    for (let i = 0; i < count; i++) {
+      for (let j = 0; j < count; j++) {
+        if (i > j) {
+          print(" ");
+        } else {
+          print(symbol);
+        }
+      }
+      printLn("");
 
-
-
-
-
-
+    }
+  }
 </script>
 
 </html>
