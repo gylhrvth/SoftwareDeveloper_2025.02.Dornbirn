@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="/Kurs/common.js"></script>
-  <link rel="stylesheet" href="/Kurs/common.css">
+  <link rel="stylesheet" href="/Work/Sandro/style.css">
+  </link>
 
 </head>
 
@@ -21,17 +22,17 @@
 
   function printMyLoop(symbol, count) {
     for (let i = 0; i < count; i++) {
-      printLn("Schleife J Start");
       for (let j = 0; j < count; j++) {
-        print(symbol);
+        if (i > j) {
+          print(" ");
+        } else {
+          print(symbol);
+        }
       }
       printLn("");
-      printLn("Schleife J Ende");
+
     }
   }
-
-
-
 </script>
 
 </html>
