@@ -9,7 +9,7 @@
     --code-background-color: hsl(205, 40%, 90%);
     --code-highlight-background-color: hsl(205, 100%, 85%);
     --code-highlight-color: hsl(210, 100%, 14%);
-    --primary-font: "Roboto", sans-serif;
+    --primary-font: "monospace";
     --secondary-font: "Courier New", Courier, monospace;
     --link-color: hsl(205, 100%, 19%);
     --link-visited-color: hsl(265, 100%, 19%);

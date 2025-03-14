@@ -15,10 +15,44 @@
 </body>
 <script>
   //variable erstellen
+  let firstName = "Sandro";
+  let surName = "Spahni";
+  let fullName = firstName + " " + surName;
+
+  print(fullName);
+
+  let a = 5;
+  let b = 10 + "text";
+  printLn("");
+
+
+  print(a + b);
+  printHr();
+
 
   //console.log und print funktionen
+  console.log("Hello World");
+  printLn("Hello World");
+
 
   //For-Schleife und Doppelte For-Schleife
+
+  let size = 9;
+  printHr();
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (i == size - 1) {
+        print("[" + i + "][" + j + "]" + " ", "red");
+      } else {
+        print("[" + i + "][" + j + "]" + " ");
+
+      }
+    }
+    printLn("");
+
+  }
+
+
 
   //Funktionen
 

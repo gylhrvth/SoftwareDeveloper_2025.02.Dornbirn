@@ -17,15 +17,18 @@
 
 <script>
 
-  for (let i = 0; i < 10; i++) {
-    printLn("Schleife J Start");
-    for (let j = 0; j < 10; j++) {
-      print("x");
-    }
-    printLn("");
-    printLn("Schleife J Ende");
-  }
+  printMyLoop("X", 5);
 
+  function printMyLoop(symbol, count) {
+    for (let i = 0; i < count; i++) {
+      printLn("Schleife J Start");
+      for (let j = 0; j < count; j++) {
+        print(symbol);
+      }
+      printLn("");
+      printLn("Schleife J Ende");
+    }
+  }
 
 
 
