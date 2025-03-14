@@ -9,8 +9,8 @@
     --code-background-color: hsl(205, 40%, 90%);
     --code-highlight-background-color: hsl(205, 100%, 85%);
     --code-highlight-color: hsl(210, 100%, 14%);
-    --primary-font: "monospace";
-    --secondary-font: "Courier New", Courier, monospace;
+    --primary-font: monospace;
+    --secondary-font: monospace;
     --link-color: hsl(205, 100%, 19%);
     --link-visited-color: hsl(265, 100%, 19%);
 }
@@ -36,8 +36,8 @@ body {
     font-family: var(--primary-font);
     background-color: var(--primary-background-color);
     color: var(--primary-color);
-    margin: 2rem 2em;
-    font-size: 2rem;
+    margin: 2rem 2rem 0rem 2rem;
+    font-size: 2em;
 }
 
 code {
@@ -99,21 +99,8 @@ a:visited {
     font-weight: bold;
 }
 
-.twoColumns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-}
 
-.trainerCard>div>img {
-    float: left;
-    width: 22vw;
-    margin-right: 1em;
-}
 
-.trainerCard>div {
-    min-height: 22vw;
-}
 
 .toTheTop {
     background-color: var(--secondary-background-color);
@@ -122,56 +109,6 @@ a:visited {
     bottom: 20px;
     right: 20px;
     font-size: 3em;
-}
-
-.menu {
-    padding: 0.2em 1em;
-}
-
-.menu>* {
-    margin-right: 2em;
-}
-
-.indent-1 {
-    margin-left: 2em;
-}
-
-.indent-2 {
-    margin-left: 4em;
-}
-
-.indent-3 {
-    margin-left: 6em;
-}
-
-.topicCardContainer {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.topicCardContainer>a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
-
-.topicCard {
-    width: calc(128px + 1em);
-    margin: 1em;
-    display: grid;
-    justify-content: center;
-}
-
-
-.topicCard::after {
-    content: "";
-    width: 0px;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s;
-}
-
-.topicCard:hover::after {
-    width: 128px;
 }
 
 .documentation {
