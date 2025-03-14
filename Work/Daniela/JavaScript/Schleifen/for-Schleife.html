@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for-Schleife</title>
+    <link rel="stylesheet" href="/Kurs/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+<body>
+<script>
+
+
+
+for (let i = 0; i <= 10; i += 2) {
+    document.write(i + "<br>");             //Schreibt output in html
+}
+
+printHr();
+
+for (let i = 1; i <= 20; i++) {
+    if (i % 2 === 0) {                         // Prüft, ob die Zahl gerade ist
+        document.write(i + "<br>")
+    }
+}
+
+printHr();
+
+
+let U= r*Math.PI
+
+
+
+
+
+function Umfang_berechnen() {
+    for (let r = 1; r <= 10; r++) {                                      // Schleife von r = 1 bis r = 10
+        let U = r * Math.PI;                                             // Umfang berechnen (r * π)
+        console.log("Radius:", r, "-> Umfang:", U.toFixed(2));           // Ausgabe mit 2 Dezimalstellen
+    }
+}
+
+// Funktion aufrufen
+Umfang_berechnen(1);
+
+
+
+
+</script>
+    
+</body>
+</html>
