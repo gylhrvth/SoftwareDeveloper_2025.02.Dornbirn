@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>print - function</title>
     <link rel="stylesheet" href="/Kurs/common.css">
+    <link rel="stylesheet" href="/Work/Görkem/style.css"
     <script src="/Kurs/common.js"></script>
 </head>
 
@@ -15,7 +16,7 @@
 
 printH(1, "Aufgabe 1, printChar function");
 
-let text = "A";
+let text = "X";
 let number = 20;
 
 printChar(text, number);
@@ -43,6 +44,24 @@ function printSquare(size, symbol) {
         printLn("");
     }
 }
+
+printHr("");
+
+printH(1, "Aufgabe 3, printRectangle function");
+
+
+
+printRectangle("X", 10, 3);
+
+function printRectangle(letter, width, length) { // Schleife für die Länge (Zeilen)
+    for(let i = 0; i < length; i++) {
+        for(let j = 0; j < width; j++) {   // Schleife für die Breite (Spalten)
+            print(letter); // Buchstabe ausgeben
+        }
+        printLn("");  // Neue Zeile nach einer Reihe
+    }
+}
+
 
 
 

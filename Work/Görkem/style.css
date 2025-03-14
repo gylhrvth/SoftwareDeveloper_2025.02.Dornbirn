@@ -1,0 +1,120 @@
+:root {
+    --primary-color: hsl(210, 100%, 14%);
+    --secondary-color: hsl(171, 64%, 95%);
+    --tertiary-color: hsl(205, 100%, 95%);
+    --primary-background-color: hsl(210, 100%, 95%);
+    --secondary-background-color: hsl(171, 64%, 56%);
+    --tertiary-background-color: hsl(205, 100%, 19%);
+    --code-color: hsl(205, 100%, 15%);
+    --code-background-color: hsl(205, 40%, 90%);
+    --code-highlight-background-color: hsl(205, 100%, 85%);
+    --code-highlight-color: hsl(210, 100%, 14%);
+    --primary-font: monospace;
+    --secondary-font: monospace;
+    --link-color: hsl(205, 100%, 19%);
+    --link-visited-color: hsl(265, 100%, 19%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: hsl(210, 100%, 80%);
+        --secondary-color: hsl(171, 64%, 80%);
+        --tertiary-color: hsl(205, 100%, 80%);
+        --primary-background-color: hsl(210, 100%, 14%);
+        --secondary-background-color: hsl(171, 64%, 56%);
+        --tertiary-background-color: hsl(205, 100%, 19%);
+        --code-color: hsl(205, 100%, 95%);
+        --code-background-color: hsl(205, 40%, 20%);
+        --code-highlight-background-color: hsl(205, 100%, 45%);
+        --code-highlight-color: hsl(210, 100%, 14%);
+        --link-color: hsl(205, 100%, 70%);
+        --link-visited-color: hsl(265, 100%, 70%);
+    }
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--primary-background-color);
+    color: var(--primary-color);
+    margin: 2rem 2rem 0rem 2rem;
+    font-size: 2em;
+}
+
+code {
+    font-family: var(--secondary-font);
+    background-color: var(--secondary-color);
+    color: var(--secondary-background-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--link-visited-color);
+}
+
+.highlight {
+    background-color: var(--tertiary-background-color);
+    color: var(--tertiary-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+.fileExample {
+    margin-top: 2em;
+    font-family: var(--secondary-font);
+}
+
+.fileExample>pre {
+    margin: 0;
+}
+
+.code-sample>code {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    border: none;
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-sample {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-sample .highlight {
+    background-color: var(--code-highlight-background-color);
+    color: var(--code-highlight -color);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+
+
+.toTheTop {
+    background-color: var(--secondary-background-color);
+    color: var(--secondary-color);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 3em;
+}
+
+.documentation {
+    padding: 5px;
+    background-color: var(--secondary-background-color);
+    color: rgb(21, 104, 167);
+    border: 2px solid rgb(131, 224, 255);
+    border-radius: 3px;
+}
