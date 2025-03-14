@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/Kurs/common.js"></script>
+</head>
+<style>
+    body {
+        font-family: monospace;
+    }
+</style>
+<body>
+    
+</body>
+<script>
+
+
+printTriagle("X", 6);
+
+function printTriagle(letter, count) {
+    for (let i = 0; i < count; i++) {
+        for (let j = 0; j < count; j++) {
+            if (i == j || i == count || j >= i) {
+                print(letter);
+            } else {
+                print(" ");
+            }
+        }
+        printLn("");
+    }
+}
+
+</script>
+</html>
