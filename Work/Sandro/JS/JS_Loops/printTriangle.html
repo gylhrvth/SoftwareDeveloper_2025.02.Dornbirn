@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="/Kurs/common.js"></script>
-  <link rel="stylesheet" href="/Kurs/common.css">
+  <link rel="stylesheet" href="/Work/Sandro/style.css">
 </head>
 
 <body>
@@ -17,20 +17,27 @@
 <script>
   const symbol = "X";
   const size = 5;
-
-  printTriangelBotLeft(symbol, size);
+  printH(1, "Aufgabe 4: printTriagles 1-4");
+  printH(2, "Triangle 1");
+  printTriangel1(symbol, size);
   printHr();
-  printTriangelBotLeft2(symbol, size);
+  printH(2, "Triangle 2");
+  printTriangel2(symbol, size);
   printHr();
+  printH(2, "Triangle 3");
+  printTriangle3(symbol, size);
+  printHr();
+  printH(2, "Triangle 4");
+  printTriagle4(symbol, size);
+  printHr();
+  printH(2, "Help");
   printHelp(symbol, size);
 
 
-  function printTriangelBotLeft(symbol, size) {
-    //Beide Schleifen zählen bis zur Zahl von size durch und mit der If-Abfrage wird entschieden, ob ein Symbol oder ein Leerzeichen ausgegeben wird.
+
+  function printTriangel1(symbol, size) {
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
-        //If j ist kleiner oder gleich i, dann wird ein Symbol ausgegeben, ansonsten ein Leerzeichen.
-        //Starten wird das ganze bei i = 0 und j = 0, dann wird j um 1 erhöht und es wird wieder geprüft, ob j kleiner oder gleich i ist.
         if (j <= i) {
           print(symbol);
         } else {
@@ -41,28 +48,57 @@
     }
   }
 
-  function printTriangelBotLeft2(symbol, size) {
-    //Nur die erste Schleife zählt bis size komplett durch, die zweite Schleife zählt bis i.
-    //Was beim oberen Beispiel mit der If-Abfrage gemacht wurde, wird hier mit der zweiten Schleife gemacht, indem sie bis i zählt und i sich bei jedem durchlauf um 1 erhöht.
+  function printTriangel2(symbol, size) {
     for (let i = 0; i < size; i++) {
-      for (let j = 0; j <= i; j++) {
-        print(symbol);
+      for (let j = 0; j < size; j++) {
+        if (j >= size - i) {
+          print(" ");
+        } else {
+          print(symbol);
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriangle3(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j >= i) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriagle4(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (i + j >= size - 1) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
       }
       printLn("");
     }
   }
 
   function printHelp(symbol, size) {
-    //Schleifen Beispiel das zeigt, wie die Schleifen arbeiten. Wo sind welche koordinaten. Damit man besser versteht, wie die Schleifen arbeiten und wo i und j stehen bei jedem durchlauf.
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
-        if (j <= i) {
-          print("(" + i + ")(" + j + ")" + "   |   ");
-        } else {
-          print("(" + i + ")(" + j + ")" + "   |   ");
+        if (j == i) {
+          print("(" + i + ")(" + j + ")" + " | ", "red");
+        } else if (j == size - i - 1) {
+          print("(" + i + ")(" + j + ")" + " | ", "green");
+        }
+        else {
+          print("(" + i + ")(" + j + ")" + " | ");
         }
       }
-      printLn("");
       printLn("");
     }
   }
