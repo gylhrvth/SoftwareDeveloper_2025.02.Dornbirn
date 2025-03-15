@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <title>Nested Loops 01</title>
+</head>
+
+<body>
+
+    <a href="http://127.0.0.1:5500/Kurs/02_JavaScript/Aufgaben/schleifen.html">Link</a>
+    <br>
+    <br>
+    
+</body>
+
+<script>
+    
+    printHr();
+
+
+    let letter = "A";
+    let num = 4;
+
+    printSquare(letter, num);
+
+    function printSquare(text, size){
+        
+        for(let i = 0; i < size; i++){
+            print("i"+i+"_", "blue");
+            for(let j = 0; j < size; j++){
+                print("j" + j + "_", "red");
+            }
+            //print("i"+i+"_", "blue");
+         
+            printLn("");
+           
+        }
+    }
+
+    printHr();
+
+    let wort = "Hola";
+    let länge = 3;
+    let breite = 10;
+
+    printRectangle(wort,länge,breite);
+
+    function printRectangle(word, heigth, width){
+        for(let i = 0; i < heigth; i++){
+            print("i" + i + "_ ", "blue");
+            
+            for( j = 0; j < width; j++){
+                print("j" + j + "_" + word + " ", "red");
+            }
+            printLn("");
+        }
+
+    }
+
+    printHr();
+
+    printRectangle("patata", 6, 10);
+
+    printHr();
+
+
+    printSquareDiagonal("A", 4);
+
+    function printSquareDiagonal(letter, size){
+        
+        for(let i = 0; i < size; i++){
+
+            print("i"+i+"_ ", "blue");
+            
+            for(let j = 0; j < size; j++){
+
+                if(j==i){
+                    print("j" + j + "_", "green")
+                } else {
+                print("j" + j + "_", "red");}
+            }
+            //print("i"+i+"_", "blue");
+        
+            printLn("");
+        
+        }
+    }
+
+    printHr();
+
+
+    printTriangle01("X", 4);
+
+    function printTriangle01(letter, size){
+
+        for(let i = 0; i < size; i++) {
+            //print("i" + i + "_", "blue")
+             for (let j = 0; j < size; j++) {
+                if(j<=i){
+                    print("i" + i + "j" + j + "_ ", "green");
+                    //print(letter + "  ", "green");
+                } else{
+                   print("i" + i + "j" + j + "_ ", "blue");
+                   //print("");
+
+                    }
+                }
+                printLn();
+        }
+    }
+
+    printHr();
+
+    printTriangle02 ("X", 4);
+
+    function printTriangle02(letter, size){
+    
+        for(let i = 0; i < size; i++) {
+            //print("i" + i + "_", "blue")
+             for (let j = 0; j < size; j++) {
+                if(j>=i){
+                    print("i" + i + "j" + j + "_ ", "green");
+                    //print(letter + "  ", "green");
+                } else{
+                   print("i" + i + "j" + j + "_ ", "blue");
+                   //print("");
+
+                    }
+                }
+                printLn();
+        }
+    }
+
+
+    printHr();
+
+    printTriangle03 ("X", 4);
+
+    function printTriangle03(letter, size){
+
+        for(let i = 0; i < size; i++) {
+            //print("i" + i + "_", "blue")
+            for (let j = size; j > 0; j--) {
+                if(j>i){
+                    print("i" + i + "j" + j + "_ ", "green");
+                    //print("");
+                } else{
+                print("i" + i + "j" + j + "_ ", "blue");
+                
+                    }
+                }
+                printLn();
+        }
+    }
+
+        printHr();
+
+    printTriangle04 ("X", 4);
+
+    function printTriangle04(letter, size){
+
+        for(let i = 0; i < size; i++) {
+            //print("i" + i + "_", "blue")
+            for (let j = size; j > 0; j--) {
+                if(j<=i){
+                    print("i" + i + "j" + j + "_ ", "green");
+                    //print("");
+                } else{
+                print("i" + i + "j" + j + "_ ", "blue");
+                
+                    }
+                }
+                printLn();
+        }
+    }
+
+
+
+
+</script>
+
+</html>

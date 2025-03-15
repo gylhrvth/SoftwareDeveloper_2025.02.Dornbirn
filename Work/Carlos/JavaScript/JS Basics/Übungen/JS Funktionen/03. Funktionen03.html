@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../../../../../Kurs/common.js"></script>
-    <title>Funktionen 02</title>
+    <title>Funktionen 03</title>
 </head>
 
 <body>
@@ -16,20 +16,6 @@
 </body>
 
 <script>
-
-    printHr();
-
-    let text = "baum";
-    let number = 8;
-
-    printChar(text,number);
-
-        function printChar(word, count) {
-            for(let i = 1; i <=count; i++) {
-                printLn(i+". "+word);
-                console.log(i+". "+word);
-            }
-        }
     
     printHr();
 
@@ -41,8 +27,9 @@
 
     function printSquare(text, size){
         for(let i = 0; i < size; i++){
+            print("i"+i+"_");
             for(let j = 0; j < size; j++){
-                print(text);
+                print("j"+j+"_");
             }
             printLn("");
            
