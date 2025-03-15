@@ -21,8 +21,22 @@
   //Steps (varibale erweitern)
   //  i++;
 
+  printH(1, "Schleifen");
+
+  printH(2, "For-Schleife 0 - 10");
+
   for (let i = 0; i <= 10; i++) {
     printLn(i);
+  }
+
+  printHr();
+
+  printH(2, "For-Schleife mit Modulo");
+
+  for (let i = 0; i <= 30; i++) {
+    if (i % 3 == 0 && i % 5 !== 0) {
+      printLn(i);
+    }
   }
 
   printHr();

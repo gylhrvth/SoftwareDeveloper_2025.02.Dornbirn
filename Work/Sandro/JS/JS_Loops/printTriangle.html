@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/Kurs/common.js"></script>
+  <link rel="stylesheet" href="/Work/Sandro/style.css">
+</head>
+
+<body>
+
+</body>
+
+
+<script>
+  const symbol = "X";
+  const size = 5;
+  printH(1, "Aufgabe 4: printTriagles 1-4");
+  printH(2, "Triangle 1");
+  printTriangel1(symbol, size);
+  printHr();
+  printH(2, "Triangle 2");
+  printTriangel2(symbol, size);
+  printHr();
+  printH(2, "Triangle 3");
+  printTriangle3(symbol, size);
+  printHr();
+  printH(2, "Triangle 4");
+  printTriagle4(symbol, size);
+  printHr();
+  printH(2, "Help");
+  printHelp(symbol, size);
+
+
+
+  function printTriangel1(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j <= i) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriangel2(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j >= size - i) {
+          print(" ");
+        } else {
+          print(symbol);
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriangle3(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j >= i) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printTriagle4(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (i + j >= size - 1) {
+          print(symbol);
+        } else {
+          print(" ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+  function printHelp(symbol, size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (j == i) {
+          print("(" + i + ")(" + j + ")" + " | ", "red");
+        } else if (j == size - i - 1) {
+          print("(" + i + ")(" + j + ")" + " | ", "green");
+        }
+        else {
+          print("(" + i + ")(" + j + ")" + " | ");
+        }
+      }
+      printLn("");
+    }
+  }
+
+
+
+</script>
+
+</html>

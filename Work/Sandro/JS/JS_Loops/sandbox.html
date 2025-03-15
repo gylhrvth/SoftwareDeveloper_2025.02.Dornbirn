@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="/Kurs/common.js"></script>
+  <link rel="stylesheet" href="/Work/Sandro/style.css">
+  </link>
+
+</head>
+
+<body>
+
+</body>
+
+
+<script>
+
+  printMyLoop("X", 5);
+
+  function printMyLoop(symbol, count) {
+    for (let i = 0; i < count; i++) {
+      for (let j = 0; j < count; j++) {
+        if (i > j) {
+          print(" ");
+        } else {
+          print(symbol);
+        }
+      }
+      printLn("");
+
+    }
+  }
+</script>
+
+</html>
