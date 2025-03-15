@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
     <title>Zählen</title>
 </head>
 <body>
@@ -14,11 +15,15 @@
 
     //Zählen
 
+    printH(3, "Count from 0 to 9");
+
     for (let i=0; i<10; i++) {
         printLn(i);
     }
 
     printHr();
+
+    printH(3, "Count from 0 to 9 + Text");
 
     for (let i=0; i<=9; i++) {
         printLn(i + " Hello World");
@@ -26,23 +31,25 @@
 
     printHr();
 
+    printH(3, "Count from 1 to 10");
+
     for (let i=1; i<=10; i++) {
         printLn(i);
     }
 
     printHr();
 
+    printH(3, "Count from 0 to 10");
+
     for (let i=0; i<=10; i++) {
         printLn(i);
     }
 
-    printLn("");
-
     printHr();
 
-    printLn("");
-
     //Rückwärts zählen
+
+    printH(3, "Count from 10 to 0");
 
     for (let i=10; i>=0; i--) {
         printLn(i);
@@ -50,52 +57,27 @@
 
     printHr();
 
+    printH(3, "Countdown from 20 to 10");
+
     for (let i=20; i>=10; i--) {
         printLn(i);
     }
 
     printHr();
 
+    printH(3, "Countdown from 10 to -10");
+
     for (let i=10; i>=-10; i--) {
         printLn(i);
     }
 
     printHr();
 
-    for (let i=10; i>=-10; i--) {
-        print(i + " Ciao");
+    printH(3, "Countdown (Horizontal) from 10 to 0 + Text");
+
+    for (let i=10; i>=0; i--) {
+        print(i+"." +  "Ciao ");
     }
-
-    printLn("");
-
-    printHr();
-
-    printLn("");
-
-    // Modulo
-
-    for (let i=0; i<=30; i++) {
-        if(i % 2 == 0) {
-            printLn(i);
-        }
-    }
-
-    printHr();
-
-    for (let i=0; i<=30; i++) {
-        if(i % 2 != 0) {
-            printLn(i);
-        }
-    } 
-
-    printHr();
-
-    for (let i=0; i<=30; i++) {
-        if(i % 3 == 0) {
-            printLn(i);
-        }
-    } 
-
 
 
 </script>

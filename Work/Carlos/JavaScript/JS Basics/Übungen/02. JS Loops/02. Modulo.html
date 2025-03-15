@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Modulo</title>
+</head>
+
+<body>
+    
+</body>
+
+<script>
+
+    printH(1, "Modulo");
+
+  // Modulo
+
+  printH(3, "Count to 30, gerade Zahlen");
+
+  for (let i=0; i<=30; i++) {
+        if(i % 2 == 0) {
+            printLn(i);
+        }
+    }
+
+    printHr();
+
+    printH(3, "Count to 30, ungerade Zahlen");
+
+    for (let i=0; i<=30; i++) {
+        if(i % 2 != 0) {
+            printLn(i);
+        }
+    } 
+
+    printH(3, "Count to 30, teilbar durch 3");
+
+    printHr();
+
+    for (let i=0; i<=30; i++) {
+        if(i % 3 == 0) {
+            printLn(i);
+        }
+    } 
+
+    printHr();
+
+    printH(3, "Count to 30, teilbar durch 3 aber nicht durch 5");
+
+    //Number divisible by 3 but not by 5//
+
+       for (let i=0; i<=30; i++) {
+        if(i % 3 == 0 && i % 5 != 0) {
+            printLn(i);
+        }
+    } 
+
+    printHr();
+
+    printH(3, "FizzBuzz Game");
+
+    //FizzBuzz: If divisible by 3, print fizz. If divisible by 5, print buzz. If divisible by 3 && 5, print Fizzbuzz.
+
+    for (let i=0; i<=30; i++) {
+        if(i % 3 == 0 && i % 5 == 0) {
+            printLn("FizzBuzz");
+
+        }
+        else if(i % 3 == 0) {
+            printLn("Fizz");
+        }
+
+        else if(i % 5 == 0) {
+            printLn("Buzz");
+        }
+        else {
+            printLn(i);
+        }
+    } 
+
+
+</script>
+</html>
