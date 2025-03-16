@@ -21,11 +21,11 @@
             <a href="#">Team</a>
             <a href="#">Über Uns</a>
             <a href="#">Kontakt</a>
-            <!-- Hier die Suchbox anstelle der Login-Schaltfläche -->
-            <form action="/search" method="GET" class="search-form">
-                <input type="text" name="query" id="search" class="search-input" placeholder="Nach etwas suchen..." required>
-                <button type="submit" class="search-button">Suchen</button>
-            </form>
+              <!-- Moderne Suchbox -->
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Was suchst du?" id="search-input">
+        <button type="submit" class="search-btn" onclick="searchFunction()">🔍</button>
+    </div>
         </nav>
     </header>
 
@@ -40,10 +40,16 @@
         </div>
     </section>
 
+
+    <section class="kursangebote">
+        <h2>⬇️ User Kursangebot ⬇️</h2>
+        </section>
+
+    
     <div class="container">
         <div class="box">
         <img src="../../Images/Coding.jpg" alt="Coding" class="img">
-            <div><h2>Software developerin</h2>
+            <div><h2>Softwareentwicklerin</h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis veniam inventore ea! Veritatis molestiae, magnam, qui maiores sunt architecto nam eum deserunt fugit hic odio minus dolorem voluptatibus. Accusamus, voluptate!</p>
                 <a href="Kursdetails.html", class="btn">Kursdetails</a> 
             </div>
