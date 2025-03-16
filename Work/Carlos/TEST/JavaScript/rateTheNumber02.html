@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate The Number v02</title>
+</head>
+<body>
+
+    <h2>Can you rate the magic number?</h2>
+
+        <p class="range-container">
+        The range is from 
+        <input id="minInputNumber" type="number" placeholder="min-number"> 
+        to 
+        <input id="maxInputNumber" type="number" placeholder="max-number">
+        <button class="confirm-button" onclick="getValues()">Confirm Range</button>
+    </p> 
+
+    <p>Enter your guess here:</p>
+
+    <input id="guessInput" type="number" placeholder="your guess...">
+
+    <button onclick="checkGuess()">Check it out!</button>
+
+    <button onclick="resetMagicNumber()">New magic number!</button>
+
+    <p id="returnResult"></p>
+
+    <script>
+
+        let minNumber;
+        let maxNumber;
+        let magicNumber;
+        let range;
+        let guess;
+        
+
+        function getValues(){
+            minNumber = Number(document.getElementById("minInputNumber").value);
+            maxNumber = Number(document.getElementById("maxInputNumber").value);
+            range = maxNumber-minNumber;
+            magicNumber = Math.floor((Math.random()*(range+1))+minNumber);
+        }
+
+       function resetMagicNumber(){
+            getValues();
+            document.getElementById("guessInput").value = ""; 
+        } 
+        
+       function checkGuess() {
+
+           /* minNumber = document.getElementById("minInputNumber").value;
+            maxNumber = document.getElementById("maxInputNumber").value;
+            range = maxNumber-minNumber; */
+            
+            guess = Number(document.getElementById("guessInput").value);
+            let result = document.getElementById("returnResult");
+
+            if(guess == magicNumber) {
+                result.innerHTML = "Hell yes, you found le magic Number!!!";
+            }
+            else if (guess < minNumber || guess > maxNumber) {
+            result.innerHTML = "That's not a valid number, are you Loco???"
+           
+            } else if (guess < magicNumber) {
+                result.innerHTML = "Le Magic Number c'est bigger than yours!"
+            
+            } else if (guess > magicNumber) {
+                result.innerHTML = "Le Número Mágico is smaller than yours!"
+            }
+
+        }  
+    
+
+    </script>
+</body>
+</html>

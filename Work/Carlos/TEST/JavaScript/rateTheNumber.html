@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate The Number</title>
+</head>
+<body>
+
+    <h2>Can you rate the magic number?</h2>
+
+    <p>The range is from 0 to 1000.</p>
+
+    <p>Enter your guess here:</p>
+    <input id="guessInput" type="text" placeholder="your guess...">
+
+    <button onclick="checkGuess()">Check it out!</button>
+    <button onclick="resetMagicNumber()">New magic number!</button>
+    <p id="returnResult"></p>
+
+    <script>
+
+
+        let magicNumber = Math.floor((Math.random()*1000)+1);
+
+        function resetMagicNumber(){
+            magicNumber = Math.floor((Math.random()*1000)+1);
+            document.getElementById("guessInput").value = "";
+        }
+        
+    
+
+        function checkGuess() {
+            
+            let guess = document.getElementById("guessInput").value;
+            let result = document.getElementById("returnResult");
+
+            if(guess == magicNumber) {
+                result.innerHTML = "Yes, you found le magic Number!!!";
+            }
+            else if (guess < 0 || guess > 1000) {
+            result.innerHTML = "That's not a valid number, are you Loco???"
+           
+            } else if (guess < magicNumber) {
+                result.innerHTML = "Le Magic Number c'est bigger than yours!"
+            
+            } else if (guess > magicNumber) {
+                result.innerHTML = "Le Número Mágico is smaller than yours!"
+            }
+
+        }
+
+    </script>
+</body>
+</html>
