@@ -6,12 +6,43 @@
     <title>Function</title>
     <link rel="stylesheet" href="/Kurs/common.css">
     <script src="/Kurs/common.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+<style>
+    body > span{
+        font-family: "Red Hat Mono", monospace;
+    }
+</style>
 </head>
 
 <body>
 
 </body>
 <script>
+
+    let wort = "Selam";
+    let länge = 3;
+    let breite = 10;
+
+    printRectangle(wort,länge,breite);
+
+    function printRectangle(wort, width, heigth){
+        for(let i = 0; i < width; i++){
+            
+            for( j = 0; j< heigth; j++){
+                print(wort);
+            }
+            printLn("");
+        }
+
+    }
+
+
+
+
+
 
 
 
