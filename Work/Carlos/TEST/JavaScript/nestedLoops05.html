@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Nested Loops 05</title>
+</head>
+
+<body>
+
+    <a href="http://127.0.0.1:5500/Kurs/02_JavaScript/Aufgaben/schleifen.html">Link</a>
+    <br>
+    <br>
+    
+</body>
+
+<script>
+
+printH(3, "printSlash (boolean)");
+
+printH(4, "true");
+
+    printSlash("X", 10, true);
+
+    printHr();
+
+printH(4, "false");
+
+    printSlash("X", 10, false);
+
+
+    function printSlash(letter, number, boolean){
+        if (boolean == true){
+        for (let i = 0; i < number; i++){
+            for(let j = 0; j <number; j++){
+                if(i==j){
+                    //print("i"+ i + "j" + j + " ", "red");
+                    print(letter);
+                } else {
+                    //print("i"+ i + "j" + j + " ");
+                    print(" ");
+                }
+            }
+            printLn();
+            }
+        } else if (boolean == false){
+            for (let i = 0; i < number; i++){
+            for(let j = number-1; j >= 0; j--){
+                if(i==j){
+                    //print("i"+ i + "j" + j + " ", "red");
+                    print(letter);
+                } else {
+                    //print("i"+ i + "j" + j + " ");
+                    print(" ");
+                }
+            }
+            printLn();
+            }
+
+        }
+    
+    
+    
+    }
+
+
+</script>
+
+</html>

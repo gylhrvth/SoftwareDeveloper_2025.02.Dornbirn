@@ -1,222 +1,203 @@
-body{
-    font-family:'Abel', sans-serif;
-    min-height: 100vh;
-    background: url(../../Images/HintergrundBerg.jpg);
-    background-position: center;
-    background-repeat:no-repeat;
-    background-size: cover;
+/* Body: Allgemeine Styles für die Seite */
+body{ 
+    font-family:'Abel', sans-serif; /* Setzt die Schriftart für den gesamten Text */
+    min-height: 100vh; /* Stellt sicher, dass der Body mindestens die Höhe des Viewports hat */
+    background: url(../../Images/HintergrundBerg.jpg); /* Hintergrundbild der Seite */
+    background-position: center; /* Das Bild wird zentriert */
+    background-repeat:no-repeat; /* Das Bild wird nicht wiederholt */
+    background-size: cover; /* Das Bild wird skaliert, um den gesamten Bildschirm zu decken */
 }
 
-
+/* Header: Navigation und Logo */
 header{
-    font-family: "Orbitron", sans-serif;
-    position:fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    background-color: darkcyan;
-    padding: 20px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-family: "Orbitron", sans-serif; /* Setzt die Schriftart für den Header */
+    position:fixed; /* Der Header bleibt immer oben auf der Seite */
+    left: 0; /* Header beginnt am linken Rand */
+    top: 0; /* Header bleibt oben */
+    right: 0; /* Header geht bis zum rechten Rand */
+    background-color: #2c3e50; /* Hintergrundfarbe des Headers */
+    padding: 20px 6%; /* Innenabstand oben/unten und links/rechts */
+    display: flex; /* Flexbox für das Layout */
+    justify-content: space-between; /* Verteilt die Elemente im Header gleichmäßig */
+    align-items: center; /* Zentriert die Elemente vertikal */
 }
 
-
+/* Logo: SVG-Logo im Header */
 svg.logo{
-    height: 1.6rem;
+    height: 1.6rem; /* Setzt die Höhe des Logos */
 }
 
-
+/* Hauptüberschrift im Abschnitt */
 .main.h1{
-    font-family: "Orbitron", sans-serif;
-    font-size:larger;
-    font-weight:bolder;
-
+    font-family: "Orbitron", sans-serif; /* Setzt die Schriftart für die Hauptüberschrift */
+    font-size:larger; /* Setzt die Schriftgröße größer */
+    font-weight:bolder; /* Setzt das Schriftgewicht auf fett */
 }
 
-
+/* Navigation: Links im Header */
 nav a{
-    font-size: 18px;
-    text-transform: capitalize;
-    margin: clamp(3px, 2vw, 15px);
-    padding: 8px;
-    color: coral;
-    font-weight: 600;
-    border-bottom: solid transparent 3px;
-    transition: .1s ease;
-    text-decoration: none;
+    font-size: 18px; /* Schriftgröße der Navigationslinks */
+    text-transform: capitalize; /* Erstellt Großbuchstaben für jedes Wort */
+    margin: clamp(3px, 2vw, 15px); /* Setzt den Abstand zwischen den Links */
+    padding: 8px; /* Innenabstand der Links */
+    color:lightpink; /* Textfarbe der Links */
+    font-weight: 600; /* Setzt das Schriftgewicht */
+    border-bottom: solid transparent 3px; /* Fügt einen transparenten unteren Rand hinzu */
+    transition: .1s ease; /* Sanfter Übergangseffekt */
+    text-decoration: none; /* Entfernt die Unterstreichung */
 }
 
-
+/* Navigation: Hover-Effekt für Links */
 nav a:hover{
-    border-bottom-color: white;
-    color: white;
+    border-bottom-color: white; /* Verändert die Farbe des unteren Randes beim Hover */
+    color: white; /* Textfarbe beim Hover */
 }
 
-
+/* Button-Styling */
 .btn{
-    padding: 10px 30px;
-    background-color: coral;
-    color: white;
-    border-radius: 10px;
-    transition: 1s ease;
-    font-size: 20px;
-    text-transform: capitalize;
-    font-weight: 600;
-    text-decoration: none;
+    padding: 10px 30px; /* Innenabstand des Buttons */
+    background-color:#2c3e50; /* Hintergrundfarbe des Buttons */
+    color: white; /* Textfarbe des Buttons */
+    border-radius: 10px; /* Abgerundete Ecken */
+    transition: 1s ease; /* Sanfter Übergangseffekt */
+    font-size: 20px; /* Schriftgröße */
+    text-transform: capitalize; /* Erstellt Großbuchstaben für den Buttontext */
+    font-weight: 600; /* Setzt das Schriftgewicht */
+    text-decoration: none; /* Entfernt die Unterstreichung */
 }
 
-
+/* Button: Hover-Effekt */
 .btn:hover{
-    border-bottom: white solid 3px;
-    color: white;
-    transition: 1s ease;
-    
+    border-bottom: white solid 3px; /* Fügt beim Hover einen weißen Rand hinzu */
+    color: white; /* Textfarbe beim Hover */
+    transition: 1s ease; /* Sanfter Übergangseffekt */
 }
 
-
+/* Label: Für das mobile Menü */
 label{
-    font-size: 35px;
-    cursor: pointer;
-    color: white;
-    display: none;
+    font-size: 35px; /* Setzt die Schriftgröße des Labels */
+    cursor: pointer; /* Zeigt den Mauszeiger als Zeiger (Hand) */
+    color: white; /* Textfarbe des Labels */
+    display: none; /* Versteckt das Label standardmäßig */
 }
 
-
-
-
-
-
+/* Medienabfragen */
 @media (max-width: 898px){
     header{
-        padding:4%;
-        transition: .1s ease;
+        padding:4%; /* Anpassung der Header-Padding bei kleinen Bildschirmen */
+        transition: .1s ease; /* Sanfter Übergangseffekt */
     }
     nav a{
-        margin: 10px;
-        transition: .1s ease;
+        margin: 10px; /* Anpassung des Abstands zwischen den Links */
+        transition: .1s ease; /* Sanfter Übergangseffekt */
     }
     header nav{
-        position:absolute;
-        left: -100%;
-        top: 100%;
-        right: 0;
-        background-color: darkcyan;
-        padding: 20px;
-        border-radius: 10px;
-        transition: .1s ease;
-        opacity: 0;
-
+        position:absolute; /* Positioniert das Navigationsmenü absolut */
+        left: -100%; /* Versteckt das Menü außerhalb des Bildschirms */
+        top: 100%; /* Platziert das Menü direkt unterhalb des Headers */
+        right: 0; /* Verhindert, dass es über den rechten Rand hinausgeht */
+        padding: 20px; /* Innenabstand */
+        border-radius: 10px; /* Abgerundete Ecken */
+        transition: .1s ease; /* Sanfter Übergangseffekt */
+        opacity: 0; /* Versteckt das Menü */
     }
     header nav a{
-        display: block;
-        text-align: center;
-        padding: 10px;
-        box-shadow: 0 0 10px blueviolet;
-        border-radius: 10px;
-        margin-top: 30px;
-        font-size: 22px;    
+        display: block; /* Links im Navigationsmenü werden blockweise angezeigt */
+        text-align: center; /* Zentriert den Text */
+        padding: 10px; /* Innenabstand */
+        box-shadow: 0 0 10px blueviolet; /* Fügt einen Schatten hinzu */
+        border-radius: 10px; /* Abgerundete Ecken */
+        margin-top: 30px; /* Abstand nach oben */
+        font-size: 22px; /* Schriftgröße */
     }
-
     label{
-        display: block;
+        display: block; /* Zeigt das Label im mobilen Modus an */
     }
-
 }
 
-
+/* Sektionen */
 section{
-    padding-top: 8em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 8em; /* Abstand nach oben */
+    display: flex; /* Flexbox für horizontale Anordnung */
+    justify-content: start; /* Ausrichtung nach links */
+    align-items: center; /* Zentriert vertikal */
 }
-
 
 .main{
-    font-family: "Orbitron", sans-serif;
-    font-size: large;
+    font-family: "Orbitron", sans-serif; /* Schriftart für den Haupttext */
+    font-size: large; /* Schriftgröße */
 }
-
 
 .main>p{
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 500; /* Setzt das Schriftgewicht */
+    font-style: italic; /* Kursivschrift */
 }
 
-
+/* Footer: Trennlinie */
 footer::before {
-    content: "";
-    display: block;
-    width: 70%;
-    border-top: 1px solid white;
-    margin: 0 auto;
+    content: ""; /* Erzeugt ein leeres Pseudoelement */
+    display: block; /* Blockdarstellung */
+    width: 70%; /* Breite der Linie */
+    border-top: 1px solid white; /* Obere Linie */
+    margin: 0 auto; /* Zentriert die Linie */
 }
 
-
+/* Footer allgemein */
 .footer {
-    font-family: "Orbitron", sans-serif;
-    font-size: small;
-    padding: 15px;
-    height: 20px;
-    background: none;
-    color: black;
-    display: flex;
-    justify-content:space-evenly;
-    align-items:center;
-  /*  border-top: 1px white solid ; */
-
+    font-family: "Orbitron", sans-serif; /* Schriftart im Footer */
+    font-size: small; /* Schriftgröße im Footer */
+    padding: 15px; /* Innenabstand */
+    height: 20px; /* Höhe des Footers */
+    background: none; /* Kein Hintergrund */
+    color: black; /* Textfarbe */
+    display: flex; /* Flexbox für Layout */
+    justify-content:space-evenly; /* Gleiche Abstände zwischen den Elementen */
+    align-items:center; /* Zentriert die Elemente vertikal */
 }
-
-
 
 .footer>a{
-    color: white;
-    text-decoration: none;
+    color: white; /* Textfarbe der Links im Footer */
+    text-decoration: none; /* Entfernt die Unterstreichung */
 }
-
 
 .footer>a:hover{
-    transition: 1s ease;
-    text-decoration: underline;
-    text-transform:uppercase;
+    transition: 1s ease; /* Sanfter Übergangseffekt */
+    text-decoration: underline; /* Unterstreichung beim Hover */
+    text-transform:uppercase; /* Alle Buchstaben werden groß */
 }
 
-
-/* Flexboxen ab hier */
-
-
+/* Flexbox für Container */
 .container {
-        background: none;
-        padding-top: 2em;
-        margin: auto;
-        border-radius: 10px;
-        align-items:flex-start;
+        background: none; /* Kein Hintergrund */
+        padding-top: 2em; /* Abstand nach oben */
+        margin: auto; /* Zentriert den Container */
+        border-radius: 10px; /* Abgerundete Ecken */
+        align-items:flex-start; /* Ausrichtung der Inhalte am Anfang */
 }
 
 .container>div{
-    width: 100%;
-    flex: 1; /* Jede Box nimmt gleich viel Platz ein */
-    display: flex;
-    justify-content:left;
-    align-items:flex-start;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;   
-    gap: 20px;
-    margin-bottom: 150px;
+    width: 50%; /* Volle Breite für jedes Element */
+    flex: 1; /* Flexbox: Jedes Element nimmt gleich viel Platz ein */
+    display: flex; /* Flexbox für Layout */
+    justify-content:left; /* Ausrichtung der Inhalte nach links */
+    align-items:flex-start; /* Ausrichtung nach oben */
+    font-size: 20px; /* Schriftgröße */
+    font-weight: bold; /* Fettgedruckter Text */
+    color: white; /* Textfarbe */
+    gap: 20px; /* Abstand zwischen den Elementen */
+    margin-bottom: 150px; /* Abstand nach unten */
 }
 
-
-.container>div::after {
-    content: "";
-    display:block;
-    border-bottom: 1px solid white;
-    width: 100%;
+.container>div h2 {
+    position: sticky; /* Hält den Titel oben beim Scrollen */
+    top: 80px; /* Abstand vom oberen Rand */
+    background-color: none; /* Hintergrundfarbe für bessere Sichtbarkeit */
+    padding: 10px; /* Innenabstand */
+    z-index: 1000; /* Stellt sicher, dass der Titel immer oben bleibt */
+    margin: 0; /* Entfernt den Abstand */
 }
-    
 
-/* Boxen */
+/* Boxen-Styling */
 .box:nth-child(1) { background: none; }
 .box:nth-child(2) { background: none; }
 .box:nth-child(3) { background: none; }
@@ -225,22 +206,94 @@ footer::before {
 .box:nth-child(6) { background: none; }
 
 .img {
-    width: 180px;
-    height: 180px;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    object-fit: cover;
-    border: 4px solid coral;
+    width: 180px; /* Breite des Bildes */
+    height: 180px; /* Höhe des Bildes */
+    border-radius: 20px; /* Abgerundete Ecken */
+    justify-content: center; /* Zentriert das Bild */
+    align-items: center; /* Zentriert das Bild vertikal */
+    object-fit: cover; /* Stellt sicher, dass das Bild den Container füllt */
+    border: 4px solid #2c3e50; /* Rahmen um das Bild */
 }
 
 .container .box p{
-    font-family: "Orbitron", sans-serif;
-    font-size: small;
-    color: black;
+    font-family: "Orbitron", sans-serif; /* Schriftart für den Text in den Boxen */
+    font-size: small; /* Schriftgröße */
+    color: black; /* Textfarbe */
 }
 
 .container h2{
-    font-family: "Orbitron", sans-serif;
-    color: white;
+    font-family: "Orbitron", sans-serif; /* Schriftart */
+    color: white; /* Textfarbe */
+}
+
+/* Kursangebote */
+.kursangebote {
+    margin-bottom: 40px; /* Abstand nach unten */
+    margin-top: -80px; /* Negativer Abstand nach oben */
+}
+
+.kursangebote h2 {
+    font-size: 2.2em; /* Große Schriftgröße */
+    color: black; /* Textfarbe */
+    margin-bottom: 30px; /* Abstand nach unten */
+    text-align:left; /* Linksbündiger Text */
+    font-family: "Orbitron", sans-serif; /* Schriftart */
+}
+
+/* Container für die Suchbox */
+.search-container {
+    margin-top: 15px;
+    display: flex; /* Flexbox für horizontale Ausrichtung */
+    align-items: center; /* Zentriert die Elemente vertikal */
+    justify-content: center; /* Zentriert die Suchbox im Header */
+    position: relative; /* Ermöglicht das Positionieren des Buttons innerhalb des Containers */
+}
+
+/* Suchbox Eingabefeld */
+.search-box {
+    width: 220px; /* Kleinere Breite der Suchbox */
+    padding: 10px 15px; /* Reduzierter Innenabstand */
+    font-size: 14px; /* Kleinere Schriftgröße */
+    border: 2px solid #ccc; /* Rahmen */
+    border-radius: 50px; /* Abgerundete Ecken */
+    outline: none; /* Kein Fokusrahmen */
+    background-color: #f5f5f5; /* Heller Hintergrund */
+    color: #333; /* Textfarbe */
+    transition: 0.3s; /* Sanfter Übergang */
+}
+
+.search-box:focus {
+    border-color: #3498db; /* Blaue Farbe beim Fokussieren */
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Leichter Schatteneffekt */
+}
+
+/* Suchbutton */
+.search-btn {
+    position: absolute; /* Positioniert den Button im Container */
+    right: 10px; /* Abstand zum rechten Rand */
+    background-color: #3498db; /* Blau für den Button */
+    color: white; /* Weiße Farbe für das Symbol */
+    font-size: 16px; /* Schriftgröße des Symbols */
+    border: none; /* Kein Rahmen */
+    padding: 8px 12px; /* Reduzierter Innenabstand */
+    border-radius: 50%; /* Rund um den Button */
+    cursor: pointer; /* Zeigt den Mauszeiger als Hand */
+    transition: background-color 0.3s; /* Sanfter Übergang für den Hover-Effekt */
+}
+
+/* Hover-Effekt für den Button */
+.search-btn:hover {
+    background-color: #2980b9; /* Dunkleres Blau beim Hover */
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .search-container {
+        justify-content: flex-start; /* Links ausrichten bei kleineren Bildschirmen */
+        width: 100%; /* Die Suchbox nimmt den verfügbaren Platz ein */
+    }
+
+    .search-box {
+        width: 200px; /* Noch kleinere Breite auf mobilen Geräten */
+    }
 }
