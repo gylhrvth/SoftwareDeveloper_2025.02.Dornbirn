@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgaben</title>
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../css datei/common.css">
+</head>
+<style>
+    body {
+        font-family: monospace;
+    }
+</style>
+
+<body>
+
+</body>
+<script>
+    printH(1, "Aufgaben");
+    printLn("Vorlage:");
+    printLn(" ");
+
+    let a = 5;
+    let b = 5;
+
+    printVorlage(a, b);
+
+    function printVorlage(a, b) {
+        for (let i = 0; i < a; i++) {
+            for (let j = 0; j < b; j++) {
+                print("[i" + i + "][j" + j + "]");
+            }
+            printLn("");
+        }
+    }
+
+
+    printH(2, "Aufgabe 1");
+    printLn("Erzeuge eine Sanduhr");
+    printHr();
+
+
+    let n = 8;
+    let m = 8;
+    let letter = "X";
+
+    printSanduhr(letter, n, m);
+
+    function printSanduhr(letter, n, m) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (i <= n / 2) {
+                    if (j >= i && j < m - i) {
+                        print(letter);
+                    } else if (i == j || i + j == m - 1) {
+                        print(letter);
+                    } else {
+                        print(" ")
+                    }
+                } else {
+                    if (j >= m - i - 1 && j <= i) {
+                        print(letter);
+                    } else {
+                        print(" ");
+                    }
+                }
+            }
+            printLn(" ");
+        }
+    }
+
+    printHr()
+    printH(2, "Aufgabe 2");
+    printLn("Erzeuge eine Rhombus");
+
+    printRhombus("X", 5, 5)
+
+    function printRhombus(letter, n, m) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (i <= n / 2){
+                    if (j >= i && j < m - i) {
+                        print(letter)
+                    }
+                    
+                }else {
+                    print("-")
+                }
+            }
+            printLn(" ")
+        }
+    }
+
+    printHr()
+
+
+
+
+</script>
+
+</html>
