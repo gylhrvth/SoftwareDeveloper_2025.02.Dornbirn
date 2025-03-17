@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Nested Loops 07</title>
+</head>
+<body>
+    
+<script>
+
+    printH(1, "Pyramid");
+
+    printTriangle(8, "*");
+
+
+    function printTriangle(rows, symbol){
+
+        for(let i = 1; i <= rows; i++) {
+            
+                let spaces = " ".repeat(rows - i);
+                let character = symbol.repeat(2 * i - 1);
+                print(spaces + character);
+                printLn(" ");
+        }
+
+    } 
+    
+</script>
+    
+</body>
+
+</html>
