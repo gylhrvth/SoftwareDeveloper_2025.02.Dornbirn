@@ -6,6 +6,13 @@
     <title>print - function</title>
     <link rel="stylesheet" href="/Kurs/common.css">
     <script src="/Kurs/common.js"></script>
+
+<style>
+    body > span{
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+
 </head>
 
 <body>
@@ -26,6 +33,7 @@ function printChar(text, number) {
       console.log(text, number);
     }
 }
+
 printHr("");
 
 
@@ -111,18 +119,36 @@ printHr("");
 printH(1, "Aufgabe 4, printTriangle 1-4 function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
 printH(3, "3)");
 
-printTriangle3(4, "B");
+printTriangle3(4, "D", ".");
 
-function printTriangle3(sayi, harf) {
-    for ( let row = 0; row < sayi; row++){
-        for ( let column = 0; column < sayi - row; column++){
-            print(harf);
-       }
-       printLn("");
-    }
+function printTriangle3(sayi, harf, space){
+        for (let i=0; i<sayi; i++){
+            for (let j=0; j<sayi; j++){
+                if(i>j){
+                    print(space)
+                } else{
+                    print(harf);
+                }
+            }
+            printLn("");
+        }
 }
 printHr("");
 
+
+
+
+
+printH(1, "Aufgabe 4, printTriangle 1-4 function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
+printH(3, "4)");
+
+printTriangle04("Y", 25, ".");
+
+function printTriangle04(harf, sayi, space){
+    printLn("Hello World!")
+}
+
+printHr();
 
 
 
