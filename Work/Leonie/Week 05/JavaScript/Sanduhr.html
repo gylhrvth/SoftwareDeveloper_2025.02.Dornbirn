@@ -81,8 +81,10 @@
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < m; j++) {
                 if (i <= n / 2){
-                    if (j >= i && j < m - i) {
-                        print(letter)
+                    if (j >= (m / 2) - i && j <= (m / 2) + i) {
+                        print(letter);
+                    } else {
+                        print(" ")
                     }
                     
                 }else {
@@ -95,6 +97,28 @@
 
     printHr()
 
+    printTriangle(letter, n, m);
+
+    function printTriangle(letter, n, m) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if (i <= n / 2) {
+                    if (j >= (m / 2) - i && j <= (m / 2) + i) {
+                        print(letter);
+                    } else {
+                        print(" ");
+                    }
+                } else {
+                    if (j >= i - (n / 2) && j < m - (i - (n / 2))) {
+                        print(letter);
+                    } else {
+                        print(" ");
+                    }
+                }
+            }
+            printLn(" ");
+        }
+    }
 
 
 
