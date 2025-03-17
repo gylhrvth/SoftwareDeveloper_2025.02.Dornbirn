@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aufgaben</title>
     <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../css datei/common.css">
 </head>
 <style>
     body {
@@ -36,38 +37,11 @@
     }
 
 
-    printH(2, "Aufgabe 1");
+    printH(2, "Aufgabe 2");
     printLn("Erzeuge ein Quadrat mit print() und printLn()");
     printLn("Erstelle zuerste 2 Variablen. Einen Text und eine Number. Erstelle als nächstes eine Funktion/Methode die diese zwei Varibalen übergeben bekommt. Gib der Funktion mit dem Namen printSquare nun eine Logik.");
     printLn("Diese Funktion soll eine doppel Schleife beinhalten. Eine Schleife gibt den Buchstaben für die Zeilen und die andere die Reihen aus.")
     printHr();
-    printH(3, "Zu Hart")
-    let x = 5;
-    let y = 5;
-
-    printEmptySquare(x, y);
-
-    function printEmptySquare(x, y) {
-        for (let i = 0; i < x; i++) {
-            for (let j = 0; j < y; j++) {
-                if (i >= 0 && j == 0) {
-                    print("X", "red");
-                } else if (i == 0 && j <= x) {
-                    print("X", "blue");
-                } else if (i <= y && j == y - 1) {
-                    print("X", "green");
-                } else if (i == x - 1 && j >= 1) {
-                    print("X", "yellow");
-                } else {
-                    //print("[a" + i + "][b" + j + "]");
-                    print(" ");
-                }
-            }
-            printLn("");
-        }
-    }
-
-    printH(3, "So soll es aussehen");
 
     let letter = "X";
     let number = 5;
@@ -83,7 +57,7 @@
         }
     }
 
-    printH(2, "Aufgabe 2");
+    printH(2, "Aufgabe 3");
     printLn("Erzeuge ein Rechteck mit print() und printLn()");
     printLn("Erstelle zuerste 3 Variablen. Einen Text und zwei Number Variablen(Länge und Breite). Erstelle als nächstes eine Funktion/Methode die diese drei Varibalen übergeben bekommt. Gib der Funktion mit dem Namen printRectangle nun eine Logik.");
     printLn("Diese Funktion soll eine doppel Schleife beinhalten. Eine Schleife gibt den Buchstaben für die Zeilen und die andere die Reihen aus.");
@@ -104,14 +78,14 @@
         }
     }
 
-    printH(2, "Aufgabe 3");
+    printH(2, "Aufgabe 4");
     printLn("Erzeuge 4 verschiedene Dreiecke mit print() und printLn()");
     printLn("Erstelle zuerste 2 Variablen. Einen Text und eine Number. Erstelle als nächstes eine Funktion/Methode die diese zwei Varibalen übergeben bekommt. Gib der Funktion mit dem Namen printTriagle1 nun eine Logik.");
     printLn("Diese Funktion soll eine doppel Schleife beinhalten. Eine Schleife gibt den Buchstaben für die Zeilen und die andere die Reihen aus.");
     printHr();
 
     let l = "X";
-    let n = 3;
+    let n = 5;
 
     printTriagle(l, n);
 
@@ -149,19 +123,103 @@
 
     printTriagle3("X", 6);
 
-function printTriagle3(buchstabe, count) {
-    for (let i = 0; i < count; i++) {
-        for (let j = 0; j < count; j++) {
-            if (i+j >= count-1) {
-                print(letter);
-                //print(letter +i + j); Lösung
-            } else {
-                print(" ");
+    function printTriagle3(buchstabe, count) {
+        for (let i = 0; i < count; i++) {
+            for (let j = 0; j < count; j++) {
+                if (i + j >= count - 1) {
+                    print(letter);
+                    //print(letter +i + j); Lösung
+                } else {
+                    print(" ");
+                }
             }
+            printLn("");
         }
-        printLn("");
     }
-}
+
+
+    printHr();
+
+    printTriagle4("X", 6);
+
+    function printTriagle4(buchstabe, count) {
+        for (let i = 0; i < count; i++) {
+            for (let j = 0; j < count; j++) {
+                if (i + j <= count - 1) {
+                    print(letter);
+                    //print(letter +i + j); Lösung
+                } else {
+                    print(" ");
+                }
+            }
+            printLn("");
+        }
+    }
+
+    printH(2, "Aufgabe 5");
+    printLn("Erzeuge ein Quadrat das in der Mitte leer ist, also die Buchstaben nur am Rand ganz außen sichtbar sind mit print() und printLn()");
+    printLn("Erstelle eine Funktion/Methode die drei Varibalen übergeben bekommt, ein Buchstabe, eine Zahl für Länge und eine Zahl für Breite. Gib der Funktion mit dem Namen printEmptySquare nun eine Logik.");
+    printLn("Diese Funktion soll eine doppel Schleife beinhalten. Eine Schleife gibt den Buchstaben für die Zeilen und die andere die Reihen aus.");
+    printHr();
+
+
+    let x = 7;
+    let y = 11;
+
+    printEmptySquare("X", x, y);
+
+    function printEmptySquare(letter, x, y) {
+        for (let i = 0; i < x; i++) {
+            for (let j = 0; j < y; j++) {
+                if (i >= 0 && j == 0) {
+                    print(letter, "red");
+                } else if (i == 0 && j <= y - 1) {
+                    print(letter, "blue");
+                } else if (i <= x - 1 && j == y - 1) {
+                    print(letter, "green");
+                } else if (i == x - 1 && j >= 1) {
+                    print(letter, "yellow");
+                } else {
+                    //print("[a" + i + "][b" + j + "]");
+                    print(" ");
+                }
+            }
+            printLn("");
+        }
+    }
+
+    printH(2, "Aufgabe 6");
+    printLn("Erzeuge ein Slash mit print() und printLn() für beide Richtungen. Ermögliche mit einem If-Statment dass wenn die Variable True ist, der eine Slash geprintet wird und bei False der andere Slash.");
+    printLn("Erstelle eine Funktion/Methode die drei Varibalen übergeben bekommt, ein Buchstabe, eine Zahl und ein True/False (boolean). Gib der Funktion mit dem Namen printSlash nun eine Logik.");
+    printLn("Diese Funktion soll mit der True/False variable gesteuert werden und je nach input, den Slash in die eine oder in die andere Richtung machen.");
+    printHr();
+
+    let Letter = "X";
+    let Number = 5;
+    let bool = true;
+
+    printSlash(Letter, Number, bool);
+
+    function printSlash(letter, number, bool) {
+        for (let i = 0; i < number; i++) {
+            for (let j = 0; j < number; j++) {
+                if (bool == true) {
+                    if (i == j) {
+                        print(letter)
+                    } else {
+                        print(" ")
+                    }
+                } else if (bool == false) {
+                    if (i + j == number - 1) {
+                        print(letter)
+                    } else {
+                        print(" ")
+                    }
+                }
+            }
+            printLn("");
+        }
+    }
 
 
 </script>
