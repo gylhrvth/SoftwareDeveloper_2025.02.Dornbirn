@@ -6,6 +6,15 @@
     <title>print - function</title>
     <link rel="stylesheet" href="/Kurs/common.css">
     <script src="/Kurs/common.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    
+<style>
+    body > span{
+        font-family: "Red Hat Mono", monospace;
+    }
+</style>
 </head>
 
 <body>
@@ -58,6 +67,70 @@ function printTriangleTopLeft(range, alpha) {
 }
 
 
+function printEmptySquare(letter, heigth, width){
+        for (let i = 0; i < heigth; i++) {
+            for (let j = 0; j < width; j++){
+                if(i > 0 && i < heigth-1 && j > 0 && j < width-1){
+                    print("  ");
+                } else {
+                    
+                    print(letter + " ");
+                }
+            }
+
+            printLn('');
+        }
+
+    }
+
+    function printSlash(letter, number, alpha){
+        if (alpha == true){
+        for (let i = 0; i < number; i++){
+            for(let j = 0; j <number; j++){
+                if(i==j){
+                    //print("i"+ i + "j" + j + " ", "red");
+                    print(letter);
+                } else {
+                    //print("i"+ i + "j" + j + " ");
+                    print(" ");
+                }
+            }
+            printLn();
+            }
+        } else if (alpha == false){
+            for (let i = 0; i < number; i++){
+            for(let j = number-1; j >= 0; j--){
+                if(i==j){
+                    //print("i"+ i + "j" + j + " ", "red");
+                    print(letter);
+                } else {
+                    //print("i"+ i + "j" + j + " ");
+                    print(" ");
+                }
+            }
+            printLn();
+            }
+
+        }
+    }
+
+   
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,18 +154,30 @@ printH(1, "Aufgabe 3, printRectangle function");
 printRectangle("X", 10, 3);
 printHr("");
 
-printH(1, "Aufgabe 4, 1-4 printTriagle function");
+printH(1, "Aufgabe 4, printTriagle function");
 printH(2, "1;");
 
 
 printTriangleBottomLeft(6, "A");
-printHr("");
+
 
 printH(2, "2;");
 printTriangleTopLeft(5, "B")
+printHr("");
 
-printH(2, "3;");
-printTriangleTopRight(5, "X");
+printH(1, "Aufgabe 5, printEmpty function");
+printEmptySquare("X", 6, 6);
+printHr("");
+
+printH(1, "Aufgabe 6, print Slash function mit True/False");
+printH(3, "True");
+printSlash("X", 10, true);
+
+printH(3, "False");
+printSlash("X", 10, false);
+
+
+
 
 
 
