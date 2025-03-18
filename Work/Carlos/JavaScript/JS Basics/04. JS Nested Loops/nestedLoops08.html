@@ -3,9 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
     <title>Nested Loops 08</title>
 </head>
 <body>
+
+    <script>
+
+        printH(3, "printPyramid & invertedPyramid");
+
+        printPyramid(10, "*");
+
+        printInvertedPyramid(10, "*");
+
+        function printPyramid(size, char){
+
+            for(i = 1; i <= size; i++){
+
+                let space = "";
+                let symbol = "";
+
+                for(j = 1; j <= size - i; j++){
+
+                    space += " ";
+
+                }
+
+                for(k = 1; k <= 2*i - 1; k++){
+
+                    symbol += char;
+                }
+
+                let row = space + symbol;
+                printLn(row);
+
+            }
+
+        }
+
+        function printInvertedPyramid(size, char){
+
+            for(i = size; i>=1; i--){
+
+                let space = "";
+                let symbol = "";
+
+                for(j = 1; j <= size-i; j++){
+
+                    space += " ";
+
+                }
+
+                for(k = 1; k <= 2*i-1; k++) {
+
+                    symbol += char;
+                }
+
+                let row = space + char;
+
+                printLn(space + symbol);
+
+            }
+
+
+
+        }
+
+
+    </script>
     
 </body>
 </html>

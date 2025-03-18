@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+let size = 100
+let name = 'Gyula'
+
+function triangleBottomLeft(size, letter){
+    printLn('Size inside: ' + size)
+    size = 50
+    name = 'Daniela'
+    let temperature = 30
+    printLn('Temperature: ' + temperature)
+}
+
+function triangleBottomLeftWrong(size, letter){
+    printH(2, 'Oh noooo!');
+}
+
+function printCount(num){
+    for (let i = 0; i < num; ++i){
+        printLn('Heloooooo ' + i)
+    }
+}
+
+function printCountWithWhile(num){
+    let i = 0
+    while (i < num){
+        printLn('Heloooooo ' + i)
+
+        ++i
+    }
+}
+
+
+printH(1, 'Functions');
+printLn('Size outside: ' + size)
+printLn('Name: ' + name)
+triangleBottomLeft(5, '*');
+printLn('Size outside (nachher): ' + size)
+printLn('Name: ' + name)
+//printLn('Temperature: ' + temperature)
+printCount(5)
+printCountWithWhile(2)
+
+printHr()
+
+
+    </script>
+</body>
+</html>
