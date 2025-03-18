@@ -151,8 +151,10 @@
                     }
                     </code>
                 </div>
-    
+                
                 <br>
+    
+               
 
                 <li class="textColor02">
                     <span class="underline">Was ist Syntax?</span></li>
@@ -322,6 +324,82 @@
                 </code>
             </div>
         </li>
+
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was macht die toString() Funktion?</span>
+            <p>Die <b>toString()</b> Funktion wird verwendet, um Werte in eine String-Darstellung umzuwandeln. Sie ist besonders geeignet, wenn du mit primitiven Datentypen wie Zahlen oder Booleans als Strings arbeiten möchtest, sie ist auch nützlich, um Daten wie Datum und Uhrzeit als String darzustellen.</p>
+            <div class="code-box">
+                <code>
+                    let number = 123;
+                    console.log(number.toString());  // Ausgabe: "123"
+                    
+                    let booleanValue = true;
+                    console.log(booleanValue.toString());  // Ausgabe: "true"
+                    
+                    let arr = [1, 2, 3];
+                    console.log(arr.toString());  // Ausgabe: "1,2,3"
+                </code>
+            </div>
+        </li>
+
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was macht die valueOf() Funktion? Wofür ist die geeignet?</span>
+            <p>Die valueOf()-Methode in JavaScript gibt den primitiven Wert eines Objekts zurück. Sie wird in der Regel intern verwendet, um den Wert eines Objekts in Berechnungen oder Vergleichen zu nutzen, wenn der Operator wie +, -, * oder == aufgerufen wird.</p>
+            <div class="code-box">
+                <code>
+                    let numObj = new Number(10);
+                    console.log(numObj.valueOf());  // Ausgabe: 10
+                </code>
+            </div>
+        </li>
+
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was ist der typeof Operator? Wofür ist der nützlich?</span>
+            <p>Der typeof-Operator in JavaScript gibt den Datentyp eines Wertes oder Ausdrucks zurück. Es handelt sich um einen Unary-Operator, der den Typ eines Operanden als String zurückgibt. Ist nützlich für die <b>Fehlervermeidung</b> durch Überprüfung des Datentyps vor der Weiterverarbeitung von Werten.</p>
+            <div class="code-box">
+                <code>
+                    let num = 42;
+                    console.log(typeof num);  // Ausgabe: "number"
+                </code>
+            </div>
+        </li>
+
+        <button id="scrollTopBtn" class="scroll-btn">↑</button>
+
+        <button id="scrollBottomBtn" class="scroll-btn">↓</button>
+        
+        
+<script>
+
+let scrollTopBtn = document.getElementById("scrollTopBtn");
+let scrollBottomBtn = document.getElementById("scrollBottomBtn");
+
+scrollTopBtn.onclick = function() {
+    scrollByAmount(-500); // Scrollt bei jedem Klick 200px nach oben
+};
+
+scrollBottomBtn.onclick = function() {
+    scrollByAmount(500); // Scrollt bei jedem Klick 200px nach unten
+};
+
+function scrollByAmount(amount) {
+    window.scrollBy({
+        top: amount, // Wie viele Pixel in vertikaler Richtung gescrollt wird
+        behavior: "smooth" // Dies sorgt für ein sanftes Scrollen
+    });
+}
+
+</script>
+
+</head>
+</html>
+
         
             
         

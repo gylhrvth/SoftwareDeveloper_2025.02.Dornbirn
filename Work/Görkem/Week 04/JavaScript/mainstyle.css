@@ -4,7 +4,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #fefefe; 
     color: #333;
-    padding: 60px;
+    padding: 50px;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -81,8 +82,9 @@ p {
     background-color: #f9f9f9; 
     margin-top: 10px;
     max-width: 100vw;
-    align-items: flex-start;
+    align-items: center;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 code {
@@ -113,3 +115,32 @@ code {
 .datatype-cell {
     width: 30%;
 }
+
+.scroll-btn {
+    position: fixed;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: #1a82e48f; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; 
+    transition: background-color 0.3s ease; 
+  }
+  
+
+  #scrollTopBtn {
+    bottom: 80px; 
+  }
+  
+
+  #scrollBottomBtn {
+    bottom: 20px;
+  }
+  
+
+  .scroll-btn:hover {
+    background-color: #0056b3; 
+  }
