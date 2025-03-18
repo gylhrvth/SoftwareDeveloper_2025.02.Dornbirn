@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="styledblank.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>JavaScript</title>
+
+    <h1>Java Script</h1>
+    <h2>Donnerstag, 13. März 2025</h2>
+
+    <h3 class="textColor01">JavaScript Basics</h3>
+    
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was ist ein Java Script?</span>
+        <p>JavaScript ist eine dynamische Programmiersprache, die hauptsächlich in der Webentwicklung verwendet wird.</p>
+        <p><b>Beispiel:</b></p>
+        <div class="code-box">
+        <code>
+            alert("Hallo,Welt");
+        </code>
+        </div>
+    </li>
+</ul>
+
+    <li class="textColor02">
+        <span class="underline">Was kann man mit Java Script in verbindung mit Web-Development machen?</span>
+        <p>JavaScript wird häufig in der Webentwicklung verwendet, um interaktive und dynamische Websites zu erstellen. Hier sind einige Anwendungsfälle:</p>
+        <ul>
+            <li>Erstellen von interaktiven Benutzeroberflächen (UI)</li>
+            <li>Formularvalidierung auf der Client-Seite</li>
+            <li>Dynamisches Nachladen von Inhalten ohne die Seite neu zu laden (AJAX)</li>
+            <li>Erstellen von Animationen und Übergängen</li>
+            <li>Erstellen von Webanwendungen mit Frameworks wie React, Angular, oder Vue.js</li>
+            <li>Arbeiten mit APIs (Geolocation, Web Storage, etc.)</li>
+        </ul>
+    </li>
+</ul>
+
+    <li class="textColor02">
+        <span class="underline">Welche Möglichkeiten gibt es, JavaScript-Code zu schreiben und in ein Projekt einzufügen?</span>
+        <p>Es gibt verschiedene Möglichkeiten, JavaScript in ein Projekt zu integrieren:</p>
+
+        <ul>
+            <li><b>Inline Script:</b> Direkt im HTML-Tag einfügen.</li>
+            <div class="code-box">
+            <code>
+                 &lt;button onclick="alert('Hallo, Welt!')"&gt;Klicke mich&lt;/button&gt;
+            </code>
+            </div>
+            <li><p>Im &lt;script&gt;-Tag innerhalb von HTML</p></li>
+            <div class="code-box">  
+                <code>
+                &lt;script&gt;
+                console.log("Hallo, Welt!");
+                &lt;/script&gt;
+                </code>
+            </div>
+            <li><p><b>Externe JavaScript-Datei: </b>Externe JavaScript-Datei (.js-Datei)</p></li>
+            <div class="code-box">  
+                <code>
+                &lt;script src="script.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+
+            <li><p>Modulbasiertes System mit type="module"</p></li>
+            <div class="code-box">  
+                <code>
+                &lt;script type="module" src="script.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+            <p>JavaScript im Server-Umfeld mit Node.js</p>
+            </ul>
+            
+            <li class="textColor02"> 
+                <span class="underline">Wie setzt man Kommentare in JavaScript?</span>
+            </li>
+            <p>In JavaScript gibt es zwei Kommentararten:</p>
+            <ul>
+                <li>
+                    <p>Einzeiliger Kommentar (//)</p>
+                    <div class="code-box">  
+                        <pre><code>
+            // Das ist ein einzeiliger Kommentar
+            console.log("Hallo, Welt!"); // Kommentar nach einer Codezeile
+                        </code></pre>
+                    </div>
+                </li>
+            
+                <li>
+                    <p>Mehrzeiliger Kommentar (/* ... */)</p>
+                    <div class="code-box">  
+                        <pre><code>
+            /*
+            Das ist ein mehrzeiliger Kommentar.
+            Er kann über mehrere Zeilen gehen.
+            *\
+            console.log("Hallo, Welt!");
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+
+            <br>
+
+            <li class="textColor02">
+                <span class="underline"> Wenn man Namen definiert für Variablen oder Funktionen, welche Regeln muss man beachten?</span></li>
+            
+            <ul>
+                <li><p>✅ Erlaubt:</p></li>
+    
+                <ul>
+                    <li><p>Buchstaben (a-z, A-Z)</p></li>
+                    <li><p>Ziffern (0-9), aber nicht am Anfang</p></li>
+                    <li><p>_ (Unterstrich) und $ (Dollarzeichen)</p></li>
+                    <li><p>Groß- und Kleinschreibung wird unterschieden (name ≠ Name)</p></li>
+                </ul>
+    
+                <li><p>❌ Nicht erlaubt:</p></li>
+    
+                <ul>
+                    <li><p>Namen dürfen nicht mit einer Zahl beginnen (1variable ❌)</p></li>
+                    <li><p>Keine Leerzeichen oder Sonderzeichen außer _ und $</p></li>
+                    <li><p>Reservierte Wörter (z. B. let, function, return) dürfen nicht als Namen verwendet werden</p></li>
+                </ul>
+    
+            </ul>
+    
+            <br>
+    
+           
+            <h3 class="textColor01">JS Programming Basics</h3>   
+    
+            <ul>
+    
+                <li class="textColor02">
+                    <span class="underline">Was sind sogenannte Statements?</span></li>
+                <p>Ein Statement (Anweisung) in JavaScript ist eine einzelne ausführbare Codezeile, die eine bestimmte Aktion ausführt.
+                    (z. B. eine Variable setzen, eine Bedingung prüfen oder eine Schleife ausführen).
+                </p>
+                <div class="code-box">  
+                    <code>
+                    let name = "Welt";   // Variablenzuweisung
+                    console.log(name);     // Funktionsaufruf
+                    if (name === "Welt") {  // Bedingung
+                        console.log("Hallo, Welt!");
+                    }
+                    </code>
+                </div>
+    
+                <br>
+
+                <li class="textColor02">
+                    <span class="underline">Was ist Syntax?</span></li>
+                <p>Syntax bezeichnet die Regeln und Struktur einer Programmiersprache, die festlegen, wie Code korrekt geschrieben werden muss, damit der Computer ihn versteht und ausführt.</p>
+    
+                <li class="textColor02">
+                    <span class="underline">Was sind Variablen und wie werden sie in JavaScript definiert?</span></li>
+                <p>Variablen sind Platzhalter für Daten in einem Programm. Sie ermöglichen es, Werte zu speichern und später im Code zu verwenden. In JavaScript sind Variablen flexible Behälter, die unterschiedliche Datentypen aufnehmen können (z. B. Zahlen, Texte, Wahrheitswerte).</p>
+                <p>Werte können unterschiedlich sein, z. B. Zahlen (30), Strings ("Hallo"), Booleans (true/false), Arrays oder Objekte.</p>
+    
+                <div class="code-box">  
+                    <code>
+                    let name = "Ahmet";  // Variablenname: name, Wert: "Ahmet"
+                    let age = 35;         // Variablenname: age, Wert: 35
+                    </code>
+                </div>
+    
+                <br>
+
+
+                <li class="textColor02">
+                    <span class="underline">Was sind Booleans?</span></li>
+                <p>Booleans sind ein Datentyp in JavaScript, der nur zwei mögliche Werte haben kann: true (wahr) oder false (falsch). Sie werden häufig in Bedingungen, Vergleichen und logischen Operationen verwendet.</p>
+
+                <li class="textColor02">
+                    <span class="underline">Was sind Operatoren in JavaScript?</span></li>
+                <p>Operatoren sind spezielle Zeichen, die bestimmte Aktionen wie Berechnungen, Vergleiche oder logische Operationen auf Variablen oder Werten ausführen.</p>
+
+                <li class="textColor02">
+                    <span class="underline">Was ist eine Funktion in JavaScript?</span></li>
+                <p>Eine Funktion in JavaScript ist ein wiederverwendbarer Codeblock, der eine bestimmte Aufgabe oder Berechnung ausführt. Funktionen ermöglichen es, komplexe Aufgaben in kleinere, handhabbare Teile zu unterteilen und den Code effizienter und übersichtlicher zu gestalten.</p>
+
+            <div class="code-box">  
+                <code>
+            function greet() {
+                console.log("Hallo, Ahmet!");
+            }
+            
+            greet();  // Ruft die Funktion auf und gibt "Hallo, Ahmet!" aus
+                </code>
+            </div>
+
+            <br>
+
+            <li class="textColor02">
+                <span class="underline">Was ist eine Schleife (Loop)?</span></li>
+            <p>Eine Schleife in JavaScript ist eine Kontrollstruktur, die es ermöglicht, einen bestimmten Codeblock wiederholt auszuführen, solange eine Bedingung erfüllt ist. Schleifen sind nützlich, wenn man eine Aktion mehrmals durchführen möchte, ohne den gleichen Code mehrfach zu schreiben.</p>
+            <p>Es gibt verschiedene Arten von Schleifen (z. B. for, while, do...while), die sich durch ihre Struktur und die Art der Bedingungsprüfung unterscheiden.</p>
+        
+            <li class="textColor02">
+                <span class="underline">Was  ist das If-Else Statement?</span></li>
+            <p>Das if-else-Statement in JavaScript ist eine Bedingungsanweisung, die es ermöglicht, unterschiedliche Codeblöcke auszuführen, je nachdem, ob eine bestimmte Bedingung wahr (true) oder falsch (false) ist.</p>
+    
+        </ul>
+
+        <br>
+         
+        <h4>‼️➡️ Aufgaben</h4>
+
+        <ul>
+            <li><h4><a href="/Work/Görkem/Week 04/JavaScript/JS Basics/JS Grundlagen/schleifen02.html">Loops -> Aufgabe01: Zählen/Modulo</a></h4></li>
+            <li><h4><a href="/Work/Görkem/Week 04/JavaScript/JS Basics/JS Loops/printFunctions.html">Loops -> Aufgabe02: Funktionen</a></h4></li>
+        </ul>
+
+        <br>
+
+        <h2>Dienstag, 18. März 2025</h2>
+
+        <h3 class="textColor01">JavaScript Datatypes</h3>
+
+        <li class="textColor02">
+            <span class="underline">Was sind die 7 + 1 standard JS Types?</span></li>
+            <p>In JavaScript gibt es insgesamt 8 grundlegende Datentypen. Sie werden oft als "7 + 1" bezeichnet, weil es 7 traditionelle Datentypen gibt und der 8. Datentyp als neuer hinzukam.</p>
+            <p><strong>Die 7 traditionellen Datentypen:</strong></p>
+            <ol>
+                <li><strong>Number:</strong>  Repräsentiert Zahlen, sowohl Ganzzahlen als auch Dezimalzahlen.</li>
+                <li><strong>String:</strong>  Repräsentiert Text.</li>
+                <li><strong>Boolean:</strong>  Repräsentiert Wahrheitswerte (true oder false).</li>
+                <li><strong>Object:</strong>  Repräsentiert Sammlungen von Daten oder komplexe Entitäten.</li>
+                <li><strong>Undefined:</strong>  Ein Wert, der einer Variablen zugewiesen wird, die nicht initialisiert wurde.</li>
+                <li><strong>Null:</strong>  Ein spezieller Wert, der "leer" oder "nicht vorhanden" bedeutet.</li>
+                <li><strong>Symbol:</strong>  Ein neuer Datentyp für einzigartige, unveränderliche Identifikatoren.</li>
+            </ol>
+            <p><strong>Der zusätzliche 8. Datentyp:</strong></p>
+            <ul>
+                <li><strong>BigInt:</strong> Ein Datentyp für sehr große Ganzzahlen, die über den Bereich des Number-Typs hinausgehen.</li>
+            </ul>
+            <p>Jeder dieser Datentypen erfüllt eine spezielle Aufgabe und wird in unterschiedlichen Szenarien verwendet. Besonders BigInt wurde hinzugefügt, um die Bedürfnisse für große Zahlen zu decken, die in der Vergangenheit zu Fehlern oder Ungenauigkeiten führten.</p>
+        </div>
+        
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was kann ich in je diese Datatypes speichern?</span></li>
+
+            <div class="container">
+                <div class="datatype-row">
+                    <div class="datatype-cell"><strong>Datentyp</strong></div>
+                    <div class="datatype-cell"><strong>Was speichern?</strong></div>
+                    <div class="datatype-cell"><strong>Beispiel</strong></div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Number</div>
+                    <div class="datatype-cell">Zahlen (Ganzzahlen und Dezimalzahlen)</div>
+                    <div class="datatype-cell">42, 3.14</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">String</div>
+                    <div class="datatype-cell">Text, Buchstaben, Zahlen als Text</div>
+                    <div class="datatype-cell">"Hallo", '123'</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Boolean</div>
+                    <div class="datatype-cell">Wahrheitswerte (true/false)</div>
+                    <div class="datatype-cell">true, false</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Object</div>
+                    <div class="datatype-cell">Datenstrukturen (Schlüssel-Wert-Paare)</div>
+                    <div class="datatype-cell">{name: "Max", age: 30}</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Undefined</div>
+                    <div class="datatype-cell">Nicht initialisierte Variablen</div>
+                    <div class="datatype-cell">let x;</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Null</div>
+                    <div class="datatype-cell">Explizit leerer Wert</div>
+                    <div class="datatype-cell">null</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">Symbol</div>
+                    <div class="datatype-cell">Einzigartige, unveränderliche Identifikatoren</div>
+                    <div class="datatype-cell">Symbol("id")</div>
+                </div>
+                <div class="datatype-row">
+                    <div class="datatype-cell">BigInt</div>
+                    <div class="datatype-cell">Sehr große Ganzzahlen</div>
+                    <div class="datatype-cell">1234567890123456789012345678901234567890n</div>
+                </div>
+            </div>
+        </div>
+    </li>
+        
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was passiert, wenn ich 10 + "Apfel" schreibe? Warum?</span>
+            <p>Wenn man 10 + "Apfel" schreibt, wird die Zahl 10 automatisch in einen String umgewandelt, <code>da der + - Operator in JavaScript auch zur Verkettung von Strings dient.</code></p>
+            <p>Das Ergebnis dieser Operation ist der String: <strong>"10Apfel"</strong></p>
+            <div class="code-box">
+                <code>
+                console.log(10 + "Apfel");  // Ausgabe: "10Apfel"
+                </code>
+            </div>
+        </li>
+
+        <br>
+
+        <li class="textColor02">
+            <span class="underline">Was passiert wenn ich 0.1 + 0.2 schreibe? Warum?</span>
+            <p>Wenn man <code>0.1 + 0.2</code> schreibt, ergibt das <strong>0.30000000000000004</strong> und nicht exakt <strong>0.3</strong>, aufgrund der Art und Weise, wie Fließkommazahlen in JavaScript im Binärformat gespeichert werden.</p>
+            <div class="code-box">
+                <code>
+                    console.log(0.1 + 0.2);  // Ausgabe: 0.30000000000000004
+                </code>
+            </div>
+        </li>
+        
+            
+        
+        
+        
+            
+            
+                

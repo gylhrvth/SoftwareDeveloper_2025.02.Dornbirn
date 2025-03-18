@@ -4,7 +4,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #fefefe; 
     color: #333;
-    margin-left: 60px; 
+    padding: 60px;
+    box-sizing: border-box;
 }
 
 .textColor01 {
@@ -89,4 +90,26 @@ code {
     display: block; 
     white-space: pre; 
     word-wrap: break-word;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.datatype-row {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+.datatype-row:nth-child(even) {
+    background-color: #f4f4f4;
+}
+.datatype-cell {
+    width: 30%;
 }
