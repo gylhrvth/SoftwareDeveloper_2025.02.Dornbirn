@@ -26,14 +26,17 @@ function printChar(text, number) {
       console.log(text, number);
     }
 }
-
 printHr("");
+
+
+
+
 
 printH(1, "Aufgabe 2, printSquare function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
 
 
 
-printSquare(5, "X");
+printSquare(5, "C");
 
 function printSquare(size, symbol) {
     for(let i = 0; i < size; i++)  {
@@ -43,12 +46,13 @@ function printSquare(size, symbol) {
         printLn("");
     }
 }
-
 printHr("");
 
+
+
+
+
 printH(1, "Aufgabe 3, printRectangle function");
-
-
 
 printRectangle("X", 10, 3);
 
@@ -60,7 +64,64 @@ function printRectangle(letter, width, length) { // Schleife für die Länge (Ze
         printLn("");  // Neue Zeile nach einer Reihe
     }
 }
+printHr("");
 
+
+
+
+
+printH(1, "Aufgabe 4, printTriangle 1-4 function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
+printH(3, "1)");
+
+printTriangle1(5, "A");
+
+function printTriangle1(size, symbol) {
+    for(let i = 0; i < size; i++)  {
+        for(let j = 0; j < i; j++) {
+            print(symbol);
+        }
+        printLn("");
+    }
+}
+printHr("");
+
+
+
+
+
+printH(1, "Aufgabe 4, printTriangle 1-4 function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
+printH(3, "2)");
+
+printTriangle2(4, "B");
+
+function printTriangle2(sayi, harf) {
+    for ( let row = 0; row < sayi; row++){
+        for ( let column = 0; column < sayi - row; column++){
+            print(harf);
+       }
+       printLn("");
+    }
+}
+printHr("");
+
+
+
+
+
+printH(1, "Aufgabe 4, printTriangle 1-4 function"); //monospace-Schriftart für bessere Übersichtlichkeit (Zeichnen);
+printH(3, "3)");
+
+printTriangle3(4, "B");
+
+function printTriangle3(sayi, harf) {
+    for ( let row = 0; row < sayi; row++){
+        for ( let column = 0; column < sayi - row; column++){
+            print(harf);
+       }
+       printLn("");
+    }
+}
+printHr("");
 
 
 

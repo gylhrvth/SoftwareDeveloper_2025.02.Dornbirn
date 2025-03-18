@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Nested Loops 09</title>
+</head>
+<body>
+
+    <script>
+
+        printH(1, "printPiramyd + printInvertedPiramyd");
+
+        printLn();
+
+        printPyramid(10, "*");
+
+        function printPyramid(size, char) {
+
+            for(let i = 1; i <= size; i++) {
+                let spaces = "";
+                let stars = "";
+                
+                for(let j = 1; j <= size - i; j++) {
+                    spaces += " "; //Add one space for each iteration
+                    //printLn("i" + i + "j" + j + " " +spaces);
+                }
+
+                for(let k = 1; k <= 2 * i - 1; k++) {
+                    stars += char; // Add one star (character) for each iteration
+                }
+
+               let row = spaces + stars;
+
+                printLn(row);
+            }
+            
+        } 
+
+        printLn();
+
+        printInvertedPyramid(10,"*");
+
+        function printInvertedPyramid(size, char){
+
+            for(let i = 1; i <= size; i++) {
+                let spaces = "";
+                let stars = "";
+                
+                for(let j = 1; j < i; j++) {
+                    spaces += " "; //Add one space for each iteration
+                    //printLn("i" + i + "j" + j + " " +spaces);
+                }
+
+                for(let k = 1; k <=  2 * (size-i) + 1; k++) {
+                    stars += char; // Add one star (character) for each iteration
+                }
+
+               let row = spaces + stars;
+
+                printLn(row);
+            }
+            
+        }
+
+
+
+    /* function printPyramid02(n, char) {
+        for (let i = 1; i <= n; i++) {
+            let spaces = "";  // Initialize an empty string for spaces
+            let stars = "";   // Initialize an empty string for stars
+    
+            // Add spaces manually
+            for (let j = 1; j <= n - i; j++) {
+                spaces += " "; // Add one space for each iteration
+            }
+    
+            // Add stars manually
+            for (let k = 1; k <= 2 * i - 1; k++) {
+                stars += char; // Add one star (character) for each iteration
+            }
+    
+            // Combine spaces and stars and print the row
+            let row = spaces + stars;
+            printLn(row);
+        }
+    }
+    
+    // Call the function with desired height and character
+    printPyramid02(5, "X"); */
+
+    </script>
+    
+</body>
+</html>
