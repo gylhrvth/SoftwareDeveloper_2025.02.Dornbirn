@@ -8,24 +8,11 @@
     <script src="/Kurs/common.js"></script>
     <link rel="stylesheet" href="../../css datei/common.css">
 </head>
-<style>
-    body {
-        font-family: monospace;
-    }
-</style>
 
 <body>
 
 </body>
 <script>
-    printH(1, "Aufgaben");
-    printLn("Vorlage:");
-    printLn(" ");
-
-    let a = 5;
-    let b = 5;
-
-    printVorlage(a, b);
 
     function printVorlage(a, b) {
         for (let i = 0; i < a; i++) {
@@ -35,6 +22,37 @@
             printLn("");
         }
     }
+
+
+    function printSanduhr(letter, n, m) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                if ((i <= n / 2 && j >= i && j < m - i || i == j || i + j == m - 1) || (i >= n / 2 && j >= m - i - 1 && j <= i)) {
+                    print(letter);
+                } else {
+                    print(" ")
+                }
+            } printLn(" ");
+        }
+
+    }
+
+    function printRhombus(letter, n) {
+       
+    }
+   
+   
+   
+   
+   printH(1, "Aufgaben");
+    printLn("Vorlage:");
+    printLn(" ");
+
+    let a = 6;
+    let b = 6;
+
+    printVorlage(a, b);
+
 
 
     printH(2, "Aufgabe 1");
@@ -48,52 +66,14 @@
 
     printSanduhr(letter, n, m);
 
-    function printSanduhr(letter, n, m) {
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < m; j++) {
-                if (i <= n / 2) {
-                    if (j >= i && j < m - i) {
-                        print(letter);
-                    } else if (i == j || i + j == m - 1) {
-                        print(letter);
-                    } else {
-                        print(" ")
-                    }
-                } else {
-                    if (j >= m - i - 1 && j <= i) {
-                        print(letter);
-                    } else {
-                        print(" ");
-                    }
-                }
-            }
-            printLn(" ");
-        }
-    }
 
     printHr()
     printH(2, "Aufgabe 2");
     printLn("Erzeuge eine Rhombus");
 
-    printRhombus("X", 5, 5)
+    printRhombus("X", 6);
 
-    function printRhombus(letter, n, m) {
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < m; j++) {
-                if (i <= n / 2){
-                    if (j >= (m / 2) - i && j <= (m / 2) + i) {
-                        print(letter);
-                    } else {
-                        print(" ")
-                    }
-                    
-                }else {
-                    print("-")
-                }
-            }
-            printLn(" ")
-        }
-    }
+
 
     printHr()
 

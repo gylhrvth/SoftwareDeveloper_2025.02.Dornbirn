@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Übungen</title>
+    <link rel="stylesheet" href="../../../Work/Sandro/style.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+
+        function calculateRectangleArea(a,b){
+            print('The area of the rectangle is: '+ (a*b));
+
+        }
+
+        function calculateCircleArea(r){
+            print('The area of the circle is: ' + (r**2*Math.PI));
+        }
+
+        function calculateLinearFunction(a, b, x){
+            print('f(x) = ax + b = '+ (a*x + b));
+        }
+
+        function calculateCubicFunction(a, b, c, d, x){
+            print('f(x) = ax**3 + bx**2 + cx + d = ' + (a*x**3 + b*x**2 + c*x + d));
+        }
+
+        printH(2, 'calculateRectangleArea');
+        calculateRectangleArea(2, 2);
+
+        printH(2, 'calculateCircleArea');
+        calculateCircleArea(5);
+
+        printH(2, 'calculateLinearFunction');
+        calculateLinearFunction(1.5,2,1);
+
+        printH(2, 'calculateCubicFunction');
+        calculateCubicFunction(1, 2, 3, 4, 1);
+
+
+
+
+
+
+    </script>
+</body>
+</html>

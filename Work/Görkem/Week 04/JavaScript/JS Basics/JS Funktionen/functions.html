@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+    <link rel="stylesheet" href="/Kurs/common.css">
+    <script src="/Kurs/common.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+<style>
+    body > span{
+        font-family: "Red Hat Mono", monospace;
+    }
+</style>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    function printRectangle(wort, width, heigth){
+        for(let i = 0; i < width; i++) {
+            for( j = 0; j < heigth; j++) {
+                print(wort);
+            }
+            printLn("");
+        }
+
+    }
+
+    function printSquare(text, size){
+        for(let i = 0; i < size; i++){
+            print("i"+i+"_");
+            for(let j = 0; j < size; j++){
+                print("j"+j+"_");
+            }
+            printLn("");
+           
+        }
+    }
+
+    function printPyramid(rows, symbol) {
+        for(let i = 0; i < rows; i++) {
+            for(let j = 0; j < rows - i; j++) {
+                print(rows + symbol);
+            }
+            printLn("");
+        }
+    }
+
+    function printDynamid(rows, symbol) {
+        for(let i = 0; i < rows; i++) {
+            for(let j = 0; j < i + 1; j++) {
+                print(rows + symbol);
+            }
+            printLn("");
+        }
+    }
+    
+
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    let wort = "Selam";
+    let länge = 3;
+    let breite = 10;
+
+    printH(1, "Einfache Beispiele, Funktionen")
+    printRectangle(wort,länge,breite);
+    printHr();
+
+    let letter = "A";
+    let num = 5;
+
+    printSquare(letter, num)
+    printHr();
+
+    printPyramid (5, "*");
+
+    printDynamid(10, "*");
+    printHr();
+
+    printSetup()
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

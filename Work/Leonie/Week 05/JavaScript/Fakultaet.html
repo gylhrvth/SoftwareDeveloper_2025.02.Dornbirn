@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakultät</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    function fakulteat(number) {
+        let result = 1;
+        for (let i = 1; i <= number; i++) {
+            result = result * i;
+            printLn(i + "! = " + result)
+        }
+        return result;
+    }
+
+    function counter(number) {
+        for (let i = 0; i < number; i += 0.1)
+            printLn(i.toFixed(1))
+    }
+
+    function leibniz(number){
+        let a = 4;
+        let result = 0;
+        for (let i = 0, x = 1; i < number; i++, x += 2){
+            if (i % 2 == 0) {
+                result += a / x
+                //print("+ " + a + "/" + x + " ")
+            }else {
+                result -= a / x
+                //print("- " + a + "/" + x + " ")
+            }
+        }
+        printLn("Ergebnis: " + result);
+    }
+        
+
+    printH(2, "Aufgabe 1");
+    printLn("Erzeuge eine Fakultät");
+    printHr();
+
+    fakulteat(20);
+
+    printH(2, "Aufgabe 2");
+    printLn("Zähle von 0 bis 10 in Schritten von 0.1");
+    printHr();
+
+    counter(1);
+
+    printH(2, "Aufgabe 3");
+    printLn("Gregory-Leibniz berechnen");
+    printHr();
+
+    leibniz(6000)
+
+</script>
+
+</html>

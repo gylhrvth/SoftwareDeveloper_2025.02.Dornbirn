@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <title>Faktorielle</title>
+</head>
+<body>
+
+    <script>
+
+        let par = 10
+
+        let n = 5;
+
+       printLn("Die Summe der ersten " + par + " Zahlen ist " + summe(par))
+
+        printHr()
+
+        //faktor(5);
+
+        printLn("Die Multiplikation der ersten " + n + " Zahlen ist " + faktor(n));
+
+        function summe(par){
+            let result = 0
+            for (let i = 0; i <= par; ++i){
+                result += i
+            }
+            return result
+        }
+
+        
+
+        function faktor(n){
+            let result = 1;
+            for(let i = 1; i <= n; i++){
+                result *= i;
+                //printLn(result);
+            }
+            return result;
+        }
+
+        
+
+    </script>
+    
+</body>
+</html>
