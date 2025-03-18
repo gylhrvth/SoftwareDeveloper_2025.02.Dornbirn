@@ -22,22 +22,79 @@
 </body>
 <script>
 
-    let wort = "Selam";
-    let länge = 3;
-    let breite = 10;
-
-    printRectangle(wort,länge,breite);
-
     function printRectangle(wort, width, heigth){
-        for(let i = 0; i < width; i++){
-            
-            for( j = 0; j< heigth; j++){
+        for(let i = 0; i < width; i++) {
+            for( j = 0; j < heigth; j++) {
                 print(wort);
             }
             printLn("");
         }
 
     }
+
+    function printSquare(text, size){
+        for(let i = 0; i < size; i++){
+            print("i"+i+"_");
+            for(let j = 0; j < size; j++){
+                print("j"+j+"_");
+            }
+            printLn("");
+           
+        }
+    }
+
+    function printPyramid(rows, symbol) {
+        for(let i = 0; i < rows; i++) {
+            for(let j = 0; j < rows - i; j++) {
+                print(rows + symbol);
+            }
+            printLn("");
+        }
+    }
+
+    function printDynamid(rows, symbol) {
+        for(let i = 0; i < rows; i++) {
+            for(let j = 0; j < i + 1; j++) {
+                print(rows + symbol);
+            }
+            printLn("");
+        }
+    }
+    
+
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    let wort = "Selam";
+    let länge = 3;
+    let breite = 10;
+
+    printH(1, "Einfache Beispiele, Funktionen")
+    printRectangle(wort,länge,breite);
+    printHr();
+
+    let letter = "A";
+    let num = 5;
+
+    printSquare(letter, num)
+    printHr();
+
+    printPyramid (5, "*");
+
+    printDynamid(10, "*");
+    printHr();
+
+
+
+ 
 
 
 
