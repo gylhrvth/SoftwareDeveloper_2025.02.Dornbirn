@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <title>Faktorielle</title>
+</head>
+<body>
+
+    <script>
+
+        zählen(0,10);
+
+        printHr();
+
+        zählen2(0,10);
+
+        let num = 0.3
+
+        printHr();
+
+        printLn(0.3);
+
+        function zählen(from, to){
+            for(let i = from; i <= to; i+= 0.1){
+                printLn(i);
+            }
+        }
+
+        // In zählen2 wird die Funktion korrigiert (zuerst *100 und dann /100). So vermeidet man die akkumulierten Floating-Point ungenaue Zahlen (im function zählen zu sehen.)
+
+        function zählen2(from, to){
+            for(let i = 100 * from; i <= 100* to; i+= 10){
+                printLn(i / 100);
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
