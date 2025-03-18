@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Nested Loops 10</title>
+</head>
+<body>
+
+    <script>
+
+        printH(3, "Simple Step-by-Step Pyramid & Inverted Pyramid");
+    
+        printLn(); // Print a new line for clarity
+    
+        // Function to print the pyramid
+        function printPyramid(size, char) {
+    
+            // Loop for each row of the pyramid
+            for(let i = 1; i <= size; i++) {
+                // i represents the current row number, starting from 1 up to the size of the pyramid
+                
+                let spaces = "";  // Step 1: Initialize an empty string for spaces
+                let stars = "";   // Step 2: Initialize an empty string for stars
+
+                printLn("i" + i, "green");
+    
+                // Step 3: Add spaces for each row
+                // Inner loop for spaces
+                for(let j = 1; j <= size - i; j++) {
+                    // j represents the current iteration for spaces
+                    // For each row i, j will iterate from 1 to (size - i)
+                    // This means that as i increases, the number of spaces decreases
+                    //spaces +=" ";  // Add one space to the spaces string for each iteration
+                    spaces += "1";  // Add one space to the spaces string for each iteration
+                }
+    
+                // Step 4: Add stars for each row
+                // Inner loop for stars
+                for(let k = 1; k <= 2 * i - 1; k++) {
+                    // k represents the current iteration for stars
+                    // For each row i, k will iterate from 1 to (2 * i - 1)
+                    // This means that as i increases, the number of stars increases
+                    stars += char;  // Add one star to the stars string for each iteration
+                }
+    
+                // Step 5: Combine spaces and stars for the final row
+                let row = spaces + stars;
+    
+                // Step 6: Print the row with spaces and stars
+                printLn(row);
+            }
+    
+        }
+
+
+        // Function to print the inverted pyramid
+        function printInvertedPyramid(size, char) {
+    
+            // Loop for each row of the inverted pyramid
+            for(let i = size; i >= 1; i--) {
+                // i represents the current row number, starting from size down to 1
+                
+                let spaces = "";  // Step 1: Initialize an empty string for spaces
+                let stars = "";   // Step 2: Initialize an empty string for stars
+    
+                // Step 3: Add spaces for each row
+                // Inner loop for spaces
+                for(let j = 1; j <= size - i; j++) {
+                    // j represents the current iteration for spaces
+                    // For each row i, j will iterate from 1 to (size - i)
+                    // This means that as i decreases, the number of spaces increases
+                    //spaces += " ";  // Add one space to the spaces string for each iteration
+                    spaces += "1";  // Add one space to the spaces string for each iteration
+                }
+    
+                // Step 4: Add stars for each row
+                // Inner loop for stars
+                for(let k = 1; k <= 2 * i - 1; k++) {
+                    // k represents the current iteration for stars
+                    // For each row i, k will iterate from 1 to (2 * i - 1)
+                    // This means that as i decreases, the number of stars decreases
+                    stars += char;  // Add one star to the stars string for each iteration
+                }
+    
+                // Step 5: Combine spaces and stars for the final row
+                let row = spaces + stars;
+    
+                // Step 6: Print the row with spaces and stars
+                printLn(row);
+            }
+    
+        }
+    
+        printLn(); // Print a new line for clarity
+        
+    
+        // Call the function to print the pyramid with size 5 and "*" as the character
+        printPyramid(5, "*");
+
+        printLn();
+        
+        // Call the function to print the inverted pyramid with size 5 and "*" as the character
+        printInvertedPyramid(5, "*");
+    
+        </script>
+    
+</body>
+</html>

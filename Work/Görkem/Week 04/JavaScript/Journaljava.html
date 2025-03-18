@@ -46,10 +46,111 @@
         <p>Es gibt verschiedene Möglichkeiten, JavaScript in ein Projekt zu integrieren:</p>
 
         <ul>
-            <li><b>1. Inline JavaScript:</b> Direkt im HTML-Tag einfügen.</li>
+            <li><b>Inline Script:</b> Direkt im HTML-Tag einfügen.</li>
             <div class="code-box">
+            <code>
+                 &lt;button onclick="alert('Hallo, Welt!')"&gt;Klicke mich&lt;/button&gt;
+            </code>
+            </div>
+            <li><p>Im &lt;script&gt;-Tag innerhalb von HTML</p></li>
+            <div class="code-box">  
                 <code>
-                    &lt;button onclick="alert('Hallo, Welt!')"&gt;Klicke mich&lt;/button&gt;
+                &lt;script&gt;
+                console.log("Hallo, Welt!");
+                &lt;/script&gt;
+                </code>
+            </div>
+            <li><p><b>Externe JavaScript-Datei: </b>Externe JavaScript-Datei (.js-Datei)</p></li>
+            <div class="code-box">  
+                <code>
+                &lt;script src="script.js"&gt;&lt;/script&gt;
                 </code>
             </div>
 
+            <li><p>Modulbasiertes System mit type="module"</p></li>
+            <div class="code-box">  
+                <code>
+                &lt;script type="module" src="script.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+            <p>JavaScript im Server-Umfeld mit Node.js</p>
+            </ul>
+            
+            <li class="textColor02"> 
+                <span class="underline">Wie setzt man Kommentare in JavaScript?</span>
+            </li>
+            <p>In JavaScript gibt es zwei Kommentararten:</p>
+            <ul>
+                <li>
+                    <p>Einzeiliger Kommentar (//)</p>
+                    <div class="code-box">  
+                        <pre><code>
+            // Das ist ein einzeiliger Kommentar
+            console.log("Hallo, Welt!"); // Kommentar nach einer Codezeile
+                        </code></pre>
+                    </div>
+                </li>
+            
+                <li>
+                    <p>Mehrzeiliger Kommentar (/* ... */)</p>
+                    <div class="code-box">  
+                        <pre><code>
+            /*
+            Das ist ein mehrzeiliger Kommentar.
+            Er kann über mehrere Zeilen gehen.
+            *\
+            console.log("Hallo, Welt!");
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+
+            <br>
+
+            <li class="textColor02">
+                <span class="underline"> Wenn man Namen definiert für Variablen oder Funktionen, welche Regeln muss man beachten?</span></li>
+            
+            <ul>
+                <li><p>✅ Erlaubt:</p></li>
+    
+                <ul>
+                    <li><p>Buchstaben (a-z, A-Z)</p></li>
+                    <li><p>Ziffern (0-9), aber nicht am Anfang</p></li>
+                    <li><p>_ (Unterstrich) und $ (Dollarzeichen)</p></li>
+                    <li><p>Groß- und Kleinschreibung wird unterschieden (name ≠ Name)</p></li>
+                </ul>
+    
+                <li><p>❌ Nicht erlaubt:</p></li>
+    
+                <ul>
+                    <li><p>Namen dürfen nicht mit einer Zahl beginnen (1variable ❌)</p></li>
+                    <li><p>Keine Leerzeichen oder Sonderzeichen außer _ und $</p></li>
+                    <li><p>Reservierte Wörter (z. B. let, function, return) dürfen nicht als Namen verwendet werden</p></li>
+                </ul>
+    
+            </ul>
+    
+            <br>
+    
+            <h4>JS Programming Basics</h4>
+    
+            <ul>
+    
+                <li class="textColor02">
+                    <span class="underline">Was sind sogenannte Statements?</span></li>
+                <p>Ein Statement (Anweisung) in JavaScript ist eine einzelne ausführbare Codezeile, die eine bestimmte Aktion ausführt.
+                    (z. B. eine Variable setzen, eine Bedingung prüfen oder eine Schleife ausführen).
+                </p>
+                <div class="code-box">  
+                    <code>
+                    let name = "Welt";   // Variablenzuweisung
+                    console.log(name);     // Funktionsaufruf
+                    if (name === "Welt") {  // Bedingung
+                        console.log("Hallo, Welt!");
+                    }
+                    </code>
+                </div>
+    
+                <br>
+            
+                

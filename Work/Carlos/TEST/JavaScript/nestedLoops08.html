@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Nested Loops 08</title>
+</head>
+<body>
+
+   <script>
+   
+   /*printPyramid(5);
+
+    function printPyramid(n) {
+    for (let i = 1; i <= n; i++) {
+        let row = "";
+        //print("i" + i);
+
+        // First inner loop: Add spaces
+        for (let j = 1; j <= n - i; j++) {
+            row += " ";
+            //row += " ";
+            //print("j" + j);
+        }
+
+        //print("       ");
+
+        // Second inner loop: Add stars
+        for (let k = 1; k <= 2 * i - 1; k++) {
+            //row += ("i" + i + "k" + k);
+            row += "*";
+        }
+
+        printLn(row); // Print the row
+    }
+} */
+
+printLn();
+
+// Call the function with desired height
+
+    printPyramid02(5, "X");
+    printPyramid03(5, "X");
+
+    function printPyramid02(n, char) {
+
+        for (let i = 1; i <= n; i++) {
+            let spaces = " ".repeat(n - i);      // Create spaces
+            let stars = char.repeat(2 * i - 1);   // Create stars
+            let row = spaces + stars;            // Combine spaces and stars
+            printLn(row);                     // Print the row
+        }
+    }
+    
+    function printPyramid03(n, char){
+
+        for (let i = 1; i <= n; i++) {
+            let spaces = " ".repeat(i);
+            let stars = char.repeat(((n-i)*2)-1);
+            let row = spaces + stars;
+            printLn(row);
+        }
+
+    }
+
+
+
+   
+   
+   
+   
+   
+   </script>
+    
+</body>
+</html>
+
