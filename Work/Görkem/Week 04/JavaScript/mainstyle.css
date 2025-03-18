@@ -144,3 +144,7 @@ code {
   .scroll-btn:hover {
     background-color: #0056b3; 
   }
+
+  body > span{
+    font-family: "Red Hat Mono", monospace;
+}
