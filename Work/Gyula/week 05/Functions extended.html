@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+
+function makeSomeMagic(){
+    console.log('Hello World!')
+}
+
+function sayHello(name){
+    console.log('Hello ' + name)
+    return 'Hello zurück!'
+}
+
+function sayManyHello(name, count = 3){
+    for (let i = 0; i < count; ++i){
+        console.log('Hello ' + name)
+    }
+    return 'Hello zurück!'
+}
+
+function cleanRoom(nameOfRoom, callbackFunction){
+    console.log('Cleaning ' + nameOfRoom)
+    callbackFunction('Leonie', 7)
+}
+
+/************************************************/
+
+function countEvenNumber(from, to){
+    let result = 0
+    for (let num = from; num <= to; ++num){
+        if (num % 2 === 0){
+            ++result
+        }
+    }
+    return result
+}
+
+/************************************************/
+
+function summeWithLoop(to){
+    let summe = 0
+    for (let i = 1; i <= to; ++i){
+        summe += i
+        console.log('Summe: ' + summe, 'i: ' + i)
+    }
+    return summe
+}
+
+function summeWithRecursive(to){
+    console.log('summeWithRecursive: ' + to)
+    if (to === 1){
+        return 1
+    }
+    let result = to + summeWithRecursive(to - 1)
+    console.log('result: ' + result)
+    return result
+}
+
+
+/*
+makeSomeMagic()
+let answer = sayHello('Alp')
+console.log('Answer from Alp: ', answer)
+
+answer = sayManyHello('Görkem')
+console.log('Answer from Görkem: ', answer)
+
+let sageHello = sayManyHello                // sageHello ist ein Alias für sayManyHello
+answer = sageHello('Carlos', 2)
+console.log('Answer from Carlos: ', answer)
+
+cleanRoom('Kursraum', sayManyHello)         // sayManyHello ist ein Callback
+
+cleanRoom('Kursraum klein', function(name, count){  // anonyme Funktion
+    console.log("ready")
+})
+
+let washCar = () => {    // arrow function (anoyme Funktion)
+    console.log('Washing car')
+}
+*/
+
+let count = countEvenNumber(10, 14)
+printLn('Count of even numbers: ' + count)
+
+let resultSummeLoop = summeWithLoop(10)
+printLn('Result of summeWithLoop: ' + resultSummeLoop)
+
+let resultSummeRecursive = summeWithRecursive(10)
+printLn('Result of resultSummeRecursive: ' + resultSummeRecursive)
+
+</script>
+</body>
+</html>
