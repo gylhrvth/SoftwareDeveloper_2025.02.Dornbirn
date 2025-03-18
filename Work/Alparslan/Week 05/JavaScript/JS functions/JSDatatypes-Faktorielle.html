@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Kurs/common.css">
+    <script src="/Kurs/common.js"></script>
+
+<style>
+    body > span{
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+</head>
+<body>
+</body>
+<script>
+    // Iterative Lösung
+function factorial(n) {  
+    if (n < 0) return "Ungültige Eingabe"; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
+    let result = 1; // Variable zur Speicherung des Ergebnisses, beginnt bei 1.  
+
+    for (let i = 2; i <= n; i++) { // Schleife beginnt bei 2 und läuft bis n.  
+        result *= i; // Multipliziert die aktuelle Zahl i mit result (Fakultät-Berechnung).  
+    }
+
+    return result; // Gibt das berechnete Fakultät-Ergebnis zurück.  
+}
+
+console.log(factorial(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (5! = 5 * 4 * 3 * 2 * 1).  
+
+
+
+
+
+//-------------------------------------------------------------------------------------------//
+
+
+
+
+// Rekursive Lösung
+function factorialRecursive(n) {  
+    if (n < 0) return "Ungültige Eingabe"; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
+
+    return n <= 1 ? 1 : n * factorialRecursive(n - 1);  
+    // Falls n 1 oder 0 ist, wird 1 zurückgegeben (Abbruchbedingung).  
+    // Andernfalls ruft sich die Funktion selbst auf, wobei n um 1 reduziert wird, bis die Abbruchbedingung erreicht ist.  
+}
+
+console.log(factorialRecursive(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (rekursive Berechnung).  
+console.log("Hello Alp!")
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------//
+
+
+
+
+// Funktion, die von 0 bis 10 in Schritten von 0.1 zählt
+function countWithStep() {
+
+// Eine Schleife, die mit i = 0 beginnt und bis 10 läuft
+for (let i = 0; i <= 10; i = Math.round((i + 0.1) * 10) / 10) {
+    
+    // Gibt den aktuellen Wert von i in der Konsole aus, formatiert auf eine Nachkommastelle
+    console.log(i.toFixed(1)); 
+    
+    // Beispiel:
+    // Ohne toFixed(1): i könnte als 0.30000000000000004 ausgegeben werden (Rundungsfehler)
+    // Mit toFixed(1): i wird als "0.3" ausgegeben (saubere Darstellung)
+}
+}
+
+// Ruft die Funktion auf, sodass die Schleife ausgeführt wird
+countWithStep();
+
+</script>
+</html>
