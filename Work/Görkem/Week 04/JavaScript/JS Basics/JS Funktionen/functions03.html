@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktorielle</title>
+    <link rel="stylesheet" href="/Work/Görkem/Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+</body>
+<script>
+
+function makeSomeMagic(){  // Funktion makeSomeMagic wird definiert
+    console.log('Hello World!') // Die Funktion gibt "Hello World!" in der Konsole aus
+
+}
+
+function sayHello(name){  // Funktion sayHello wird definiert
+    console.log('Hello ' + name) // Die Funktion gibt "Hello " + name in der Konsole aus (´Görkem')
+    return 'Hello zurück!'  // Die Funktion gibt den Text "Hello zurück!" als Rückgabewert zurück.
+}
+
+function factioral(n){  // Funktion factorial wird definiert
+    if (n === 1){  // Wenn n gleich 1 ist
+        return 1  // Dann wird 1 zurückgegeben
+    } else {  // Ansonsten
+        return n * factioral(n - 1)  // Wird n mit der Funktion factorial(n - 1) multipliziert und zurückgegeben.
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+makeSomeMagic()
+let answer = sayHello('Alp')
+console.log('Answer from Alp: ', answer)
+
+answer = sayHello('Görkem') // Die Funktion sayHello wird mit dem Argument 'Görkem' aufgerufen und der Rückgabewert wird in der Variable answer gespeichert.
+console.log('Answer from Görkem: ', answer) // Der Wert der Variable answer wird in der Konsole ausgegeben.
+
+
+
+</script>
+</html>

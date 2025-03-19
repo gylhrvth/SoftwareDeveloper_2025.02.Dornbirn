@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Work/Sandro/style.css">
+    <title>Functions01</title>
+</head>
+<body>
+
+    <h3>Call a function inside a function</h3>
+
+    <script>
+
+    
+
+    function greeting(name) {
+        console.log("Hello, " + name);
+    }
+    
+    function execute(func, name) {
+        func(name);  // func here refers to greeting
+    }
+    
+    execute(greeting, "Carlos");  // Calls `greeting("Carlos")`
+
+    // 	•	greeting doesn’t know about name directly inside execute—you have to explicitly pass name to it when you call func(name) in execute.
+	//  •	name isn’t “inside” func until func (which is greeting) is called with name as an argument.
+
+    
+    </script>
+    
+</body>
+</html>
