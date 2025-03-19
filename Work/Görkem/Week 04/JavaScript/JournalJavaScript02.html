@@ -9,9 +9,100 @@
     <script src="../../../Kurs/common.js" defer></script>
     <title>JavaScript</title>
 
-    <h1>Java Script</h1>
+    <h1>JavaScript</h1>
     <h2>Donnerstag, 13. März 2025</h2>
 
-    <h3 class="textColor01">JavaScript Basics</h3>
+    <h3 class="textColor01">JavaScript Function</h3>
     
 <ul>
+    <li class="textColor02">
+        <span class="underline">Was sind Funktionen, wofür sind Sie nützlich?</span>
+        <p>In <b>JavaScript</b> sind Funktionen wiederverwendbare Codeblöcke, die eine bestimmte Aufgabe ausführen. Funktionen machen den Code strukturierter, übersichtlicher und wiederverwendbar, da sie einmal definiert und beliebig oft aufgerufen werden können.</p>
+        <p><strong>🔹Warum sind Funktionen nützlich?</strong></p>
+        <ol>
+            <li><strong>Wiederverwendbarkeit</strong> - Einmal definierte Funktionen können mehrfach aufgerufen werden.</li>
+            <li><strong>Struktur & Lesbarkeit</strong> - Code wird modularer und einfacher zu verstehen.</li>
+            <li><strong>Vermeidung von Redundanz</strong> - Gleicher Code muss nicht mehrfach geschrieben werden.</li>
+            <li><strong>Wartbarkeit</strong> - Änderungen müssen nur an einer Stelle vorgenommen werden.</li>
+            <li><strong>Kapselung</strong> - Funktionen können Daten und Logik verbergen, um ungewollte Änderungen zu verhindern.</li>
+        </ol>
+        <p><strong>🔹Funktion erstellen & aufrufen</strong></p>
+        <div class="code-box">
+            <code>
+                function sagHallo(name) {
+                    console.log("Hallo " + name + "!");
+                }
+                sagHallo("Görkem"); // Ausgabe: Hallo Görkem!
+            </code>
+        </div>
+    </li>
+</ul>
+<br>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was sind eingabe Parametern einer Funktion, kann ich eine Parameter als Optional verwenden?</span>
+        <p>Eingabeparameter (Argumente) sind Werte, die einer Funktion übergeben werden, um sie flexibel nutzbar zu machen. Ja! In JavaScript kannst du Parameter optional machen, indem du Standardwerte oder undefined-Checks verwendest.</p>
+        <p><strong>🔹Beispiel: Funktion mit Parametern</strong></p>
+        <div class="code-box">
+            <code>
+                function begruessung(name) {
+                    console.log("Hallo " + name + "!");
+                }
+                begruessung("Görkem"); // Ausgabe: Hallo Görkem!
+                begruessung("Max"); // Ausgabe: Hallo Max!
+            </code>
+        </div>
+    </li>
+</ul>
+<br>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was ist ein Rückgabewert? Was muss ich da berücksichtigen?</span>
+        <p>Ein Rückgabewert ist das Ergebnis, das eine Funktion nach ihrer Ausführung zurückliefert. In JavaScript geschieht dies mit return.</p>
+        <p><strong>🔹Beispiel: Funktion mit Rückgabewert</strong></p>
+        <div class="code-box">
+            <code>
+                function addiere(a, b) {
+                    return a + b;
+                }
+                let summe = addiere(5, 3);
+                console.log(summe); // Ausgabe: 8
+            </code>
+        </div>
+        <p>✅ return gibt das Ergebnis zurück, das in einer Variable gespeichert oder weiterverwendet werden kann.</p>
+        <p>📌 Fazit</p>
+            <ul>
+                <li>🔹 return liefert einen Wert zurück und beendet die Funktion.</li>
+                <li>🔹 Ohne return gibt die Funktion undefined zurück.</li>
+                <li>🔹 Um mehrere Werte zurückzugeben, nutzt man Arrays oder Objekte. 🚀</li>
+            </ul>
+    
+    </li>
+</ul>
+<br>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was bedeuten die Begriffe "pass by value" und "pass by reference"?</span>
+        <p>Bei <strong>Pass by Value</strong> wird eine Kopie des Wertes an eine Funktion übergeben. Änderungen an der Kopie beeinflussen das Original nicht.</p>
+        <div class="code-box">
+            <code>
+                let zahl = 5;
+                function verdopple (x) {
+                    x = x * 2;
+                }
+                verdopple(zahl);
+                console.log(zahl); // Ausgabe: 5 bleibt unverändert
+            </code>
+        </div>
+    </li>
+</ul>
+
+
+        
+
+
+</head>
+</html>   
