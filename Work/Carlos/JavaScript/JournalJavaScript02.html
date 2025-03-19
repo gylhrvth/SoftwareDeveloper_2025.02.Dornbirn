@@ -29,6 +29,13 @@
 
     <h2 id="day22">Mittwoch, 19. März 2025</h2>
 
+    <h3>🔥 Let's code mit Gyula! (Gruppen Coding Session):</h3>
+
+    <ul>
+    <li></li>
+    <li></li>
+    </ul>
+
     <h3 class="textColor01">JavaScript (Functions)</h3>
 
     <ul>
@@ -190,7 +197,7 @@
         <br>
         <br>
         
-        <a href ="../../Gyula/week 05/">-> Beispiel by Gyula</a>
+        <a href ="../../Gyula/week 05/passByValue_passByReference.html">-> Beispiel by Gyula</a>
         <br>
         <br>
 
@@ -234,8 +241,10 @@
                 <li><p>Abbruchbedingung (Basisfall): Jede rekursive Funktion benötigt eine Bedingung, die den rekursiven Aufruf stoppt, um eine unendliche Schleife zu vermeiden. Diese Bedingung tritt ein, wenn das Problem so stark vereinfacht ist, dass es ohne weitere Rekursion gelöst werden kann.</p></li>
             </ul>
 
-            <li class="textColor02"><strong>Beispiel für eine rekursive Funktion: Factorial -></strong></li>
             <br>
+
+            <li class="textColor02"><strong>Beispiel für eine rekursive Funktion -> Factorial</strong></li>
+            <p>Die Fakultät (Factorial) einer Zahl n ist das Produkt aller positiven ganzen Zahlen bis n:</p>
             <div class="code-sample">  
                 <code>
                     function factorial(n) {
@@ -257,7 +266,28 @@
                 <li>Der rekursive Aufruf passiert im return n * factorial(n - 1);. Hier ruft sich die Funktion selbst auf, aber mit einem kleineren Wert von n.</li>
             
             </ul>
+            <br>
 
+            <li class="textColor02"><strong>Beispiel für eine rekursive Funktion -> Fibonacci</strong></li>
+            <p>Die Fibonacci-Folge ist eine Sequenz, in der jede Zahl die Summe der beiden vorherigen Zahlen ist, beginnend mit 0 und 1:</p>
+        
+            <div class="code-sample">  
+                <code>
+                    function fibonacci(n) {
+                        if (n === 0) return 0;
+                        if (n === 1) return 1;
+                        return fibonacci(n - 1) + fibonacci(n - 2);
+                      }
+                </code>
+            </div>
+            <br>
+
+            <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions04.html">-> Fibonacci Recursive (HTML)</a>
+
+            <br>
+            <br>
+
+            <li class="textColor02"><strong>Was sind die Vor- und Nachteile, rekursive Funktionen zu verwenden?</strong></li>
 
 
     </ul>
