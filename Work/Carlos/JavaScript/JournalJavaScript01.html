@@ -17,23 +17,111 @@
     <h1 class="textColor01">Lernerfolgsbuch: JavaScript Basics Journal</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-    <h3 class="textColor01">▷ <a href="#day22">DI 18/03/25</a>: JavaScript (Basics)</h3>
+    <h3 class="textColor01">▷ <a href="#day22">DI 18/03/25</a>: JavaScript (Basics / Datatypes)</h3>
     <h3 class="textColor01">▷ <a href="#day21">MO 17/03/25</a>: JavaScript (Basics)</h3>
     <h3 class="textColor01">▷ <a href="#day20">FR 14/03/25</a>: JavaScript (Basics)</h3>
     <h3 class="textColor01">▷ <a href="#day19">DO 13/03/25</a>: JavaScript (Basics)</h3>
-        
-    </body>
-    </html>
-
+    
     </div>
 
     <br>
 
     <h2 id="day22">Dienstag, 18. März 2025</h2>
 
-    <h3 class="textColor01">JavaScript (Basics)</h3>
-    
+    <h3 class="textColor01">JavaScript (Datatypes)</h3>
+
+    <ul>
+
+    <li class="textColor02"><strong>Was sind die 7 + 1 standard JS Datatypes?</strong></li>
+    <p>In JavaScript gibt es primitive und nicht-primitive (Referenz-) Datentypen.</p>
+    <ul>
+        <li><p>Primitive Datentypen (immutable, werden direkt im Speicher gespeichert):</p></li>
+        <ul>
+            <li>string: let name = "Carlos";</li>
+            <li>number: let age = 35;</li>
+            <li>boolean: let isDeveloper = true;</li>
+            <li>undefined: Eine Variable, die deklariert, aber nicht initialisiert wurde -> let notAssigned;</li>
+            <li>null: Bewusste leere -> let emptyValue = null;</li>
+            <li>bigint: Große ganze Zahlen Nummer endet mit "n"-> let bigNumber = 9007199254740991n;</li>
+            <li>symbol: Einzigartige Identifikatoren -> let uniqueId = Symbol("id");</li>
+        </ul>
+        <br>
+
+        <li><p>Complex Datentypen (verweisen auf Speicheradressen):</p></li>
+        <ul>
+            <li>Object: Sammlungen von Werten -> let person = { name: "Carlos", age: 35 };</li>
+        </ul>
+    </ul>
+
+    <br>
+
+    <li class="textColor02"><strong>Was passiert wenn man verschiedene Datatypen zusammen verwendet?</strong></li>
+    <p>Das Verhalten hängt davon ab, welche Typen man kombiniert. Das nennt man Type Coercion (Typumwandlung). JavaScript wandelt dabei automatisch Werte in kompatible Typen um.</p>
+
+    <ul>
+        <li><p>Bei additionen: String + Number → String -> console.log("10" + 5); // "105"</p></li>
+        <li><p>Bei anderen Operatoren: Hier erkennt JavaScript, dass die Strings eigentlich Zahlen sind, und wandelt sie in number um -> console.log("10" - 5); // 5 (String wird in Number umgewandelt)</p></li>
+        <li><p>Boolean + Number: console.log(true + 1);  // 2 (true wird zu 1) / console.log(false + 1); // 1 (false wird zu 0)</p></li>
+        <li><p>Null: console.log(null + 5); // 5  (null wird zu 0)</p></li>
+        <li><p>Undefined: console.log(undefined + 5); // NaN (not a number) (undefined kann nicht in eine Zahl umgewandelt werden)</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Beispiel: Was passiert wenn man 10 + "Apfel" schreibt?</strong></li>
+    <p>Man bekommt als Ergebnis einen string: "10Apfel". Das passiert wenn man ein Number mit einem String kombiniert.</p>
+
+    <li class="textColor02"><strong>Beispiel: Was passiert wenn man 0.1 + 0.2 schreibt?</strong></li>
+    <p>Man bekommt als Ergebnis 0.30000000000000004. Das liegt an der IEEE 754 Gleitkommazahlen-Darstellung, die JavaScript (und viele andere Sprachen) für number-Werte verwendet.</p>
+    <p>0.1 und 0.2 haben keine exakte binäre Darstellung, ähnlich wie 1/3 in Dezimalsystem unendlich viele Nachkommastellen hat (0.33333…).</p>
+    <p>Dadurch entstehen kleine Rundungsfehler bei Berechnungen. </p>
+
+    <li class="textColor02"><strong>Was macht die toFixed() Funktion? Wofür ist die geeignet?</strong></li>
+    <p>Die Funktion toFixed(n) rundet auf "n" Nachkommastellen, gibt aber einen String zurück.</p>
+    <p>Beispiel: console.log((0.1 + 0.2).toFixed(2)); // "0.30" (String!)</p>
+    <p>Number(...) konvertiert den String zurück in eine Zahl. Beispiel: console.log(Number((0.1 + 0.2).toFixed(2))); // 0.3 (Number)</p>
+
+    <li class="textColor02"><strong>Was macht die toString() Funktion? Wofür ist die geeignet?</strong></li>
+    <p>Die toString()-Funktion in JavaScript wandelt eine Zahl, ein Objekt oder einen anderen Wert in einen String um.</p>
+    <p>Beispiel: let num = 42; -> console.log(num.toString()); // "42"</p>
+
+    <li class="textColor02"><strong>Was macht die valueOf() Funktion? Wofür ist die geeignet?</strong></li>
+    <p>Die Methode valueOf() gibt den “echten” Wert eines Objekts zurück.</p>
+    <ul>
+        <li><p>Bei Zahlen, Strings oder Booleans: valueOf() gibt einfach den Wert selbst zurück. Beispiel: console.log(("Hallo").valueOf());  // "Hallo"</p></li>
+        <li><p>Bei Objekten (Standardverhalten): let obj = { a: 10 }; console.log(obj.valueOf()); // { a: 10 } -> Hier passiert nichts Besonderes – das Objekt bleibt ein Objekt.</p></li>
+        <li><p>valueOf() wird nützlich, wenn man ein Objekt in eine Zahl oder einen String umwandeln will. Beispiel: let date = new Date("2024-03-18"); -> console.log(date.valueOf());  // 1710705600000 (Zeit in Millisekunden)</p></li>
+    </ul>
+
+    <li class="textColor02"><strong>Was ist der typeof Operator? Wofür ist der nützlich?</strong></li>
+    <p>Der typeof Operator gibt den Datentyp eines Werts in JavaScript als String zurück. Beispiele: console.log(typeof 42);// "number"</p>
+    <p>Es ist sehr nützlich für Typ-Prüfungen und Fehlervermeidung.</p>
+
+
+    </ul>
+
     <h4>‼️➡️ Aufgaben</h4>
+    <ul>
+
+        <li><h4><a href="JS Datatypes/01. faktorielleFunktion.html">Funktionen -> Faktorielle Funktion</a></h4></li>
+        <li><h4><a href="JS Datatypes/02. decimalZählen.html">Funktionen -> Zählen mit 0.1</a></h4></li>
+    
+    </ul>
+
+
+
+    <h3 class="textColor01">JavaScript (Basics)</h3>
+
+    <h4>‼️➡️ Aufgaben</h4>
+    <ul>
+        <li><h4><a href="JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/nestedLoops07.html">Funktionen -> Extra Aufgabe: printInvertedPyramid</a></h4></li>
+        <ul>
+            <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/stepByStep/step01.png">Step 01</a></li>
+            <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/stepByStep/step02.png">Step 02</a></li>
+            <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/stepByStep/step03.png">Step 03</a></li>
+            <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/stepByStep/step04.png">Step 04</a></li>
+            <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops07 (printInvertedPyramid)/stepByStep/step05.png">Step 05</a></li>
+        </ul>
+        <li><h4><a href="JS Basics/04. JS Nested Loops/nestedLoops08.html">Funktionen -> Extra Aufgabe: printPyramid & printInvertedPyramid</a></h4></li>
+    </ul>
 
     <h2 id="day21">Montag, 17. März 2025</h2>
 
@@ -52,8 +140,6 @@
             <li><a href="./JS Basics/04. JS Nested Loops/nestedLoops06 (printPyramid)/stepByStep/step05.png">Step 05</a></li>
         </ul>
     </ul>
-
-    <br>
 
     <h2 id="day20">Freitag, 14. März 2025</h2>
 
@@ -264,3 +350,6 @@
 
 
     </ul>
+
+</body>
+</html>
