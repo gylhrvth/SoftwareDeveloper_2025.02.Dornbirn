@@ -43,6 +43,25 @@
         }
         printLn("Ergebnis: " + result);
     }
+
+    function leibnizWithPrecision(precision){
+        let a = 4;
+        let result = 0;
+        let i = 0;
+        let x = 1;
+        let pi = Math.PI;
+        while (Math.abs(result - pi) > precision) {
+            if (i % 2 == 0) {
+                result += a / x;
+            } else {
+                result -= a / x;
+            }
+            i++;
+            x += 2;
+        }
+        printLn("Ergebnis mit Präzision: " + result);
+        printLn("Iterationen: " + i);
+    }
         
 
     printH(2, "Aufgabe 1");
@@ -62,6 +81,8 @@
     printHr();
 
     leibniz(6000)
+
+    leibnizWithPrecision(0.0001); // Beispielaufruf mit einer Genauigkeit von 0.000000001
 
 </script>
 
