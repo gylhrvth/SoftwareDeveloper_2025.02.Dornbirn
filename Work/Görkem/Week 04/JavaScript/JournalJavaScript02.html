@@ -97,8 +97,20 @@
                 console.log(zahl); // Ausgabe: 5 bleibt unverändert
             </code>
         </div>
+        <p>Bei <strong>Pass by Reference</strong> wird die Speicheradresse des Werts übergeben. Änderungen an der Referenz beeinflussen das Original.</p>
+        <div class="code-box">
+            <code>
+                let arr = [1, 2, 3];
+                function addiereElement(arr) {
+                    arr.push(4);
+                }
+                addiereElement(arr);
+                console.log(arr); // Ausgabe: [1, 2, 3, 4] // wurde verändert
+            </code>
+        </div>
     </li>
 </ul>
+
 
 
         
