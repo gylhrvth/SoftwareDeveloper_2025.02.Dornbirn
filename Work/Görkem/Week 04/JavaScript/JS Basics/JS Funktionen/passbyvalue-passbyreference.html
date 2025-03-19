@@ -16,20 +16,32 @@
 </body>
 <script>
 
-let a = 5;
 
-function changeValue(b) {
-    b = 10;
-    printLn("Inside: " + b);
+let obj = { value: 10 };
+
+function increase(obj) {
+    obj.value++;  // Erhöht den Wert der Eigenschaft 'value' des Objekts
+    printLn(obj.value); // Gibt den neuen Wert von 'value' aus
+}
+
+
+let obj2 = { value: 20 };
+
+function changeValue(obj2) {
+    obj2.value++
+    printLn(obj2.value);
 }
 
 
 
 
-function changeValue2(b) {
-    b = false;
-    printLn("Inside: " + b);
-}
+
+
+
+
+
+
+
 
 
 
@@ -37,11 +49,20 @@ function changeValue2(b) {
 
 
 printH(1, "Pass by Value & Pass by Reference");
-changeValue(a);
-printLn("Outside: " + a);
+printH(2, "Pass by Value");
+increase(obj);
+console.log(obj.value); // Ausgabe: 11 (Originalobjekt wurde geändert)
 
-changeValue2(a);
-printLn("Outside: " + a);
+
+changeValue(obj2);
+console.log(obj2.value); // Ausgabe: 21 (Originalobjekt wurde geändert)
+printHr();
+
+
+
+
+
+
 
 
 
