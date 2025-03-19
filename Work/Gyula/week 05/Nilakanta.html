@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+        printH(1, 'Nilakantha\'s Pi Serie')
+        printLn("Pi = " + Math.PI)
+        let calcPi = nilakantha(20)
+        printLn("Pi = " + calcPi)
+
+function nilakantha(iter = 10){
+    let result = 3 
+    for (let i = 1; i <= iter; ++i){
+        let division = 4 / (2*i * (2*i + 1) * (2*i + 2))
+        if (i % 2 == 1){
+            result += division
+        } else {
+            result -= division
+        }
+    }
+    return result
+}        
+    </script>
+
+</body>
+</html>
