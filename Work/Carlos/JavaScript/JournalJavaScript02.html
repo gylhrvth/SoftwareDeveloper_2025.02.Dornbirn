@@ -156,7 +156,43 @@
 
         <li class="textColor02"><strong>Wie können Parameter durch Referenz oder Wert übergeben werden?</strong></li>
         <p>In JavaScript gibt es den Unterschied zwischen primitiven Typen (z.B. Zahlen, Strings) und komplexen Typen (z.B. Objekte, Arrays). Bei primitiven Typen wird der Wert kopiert, während bei komplexen Typen die Referenz übergeben wird.</p>
-        <a href ="">Beispiel by Gyula</a>
+        <ul>
+            <li><p>Beispiel mit einem primitiven Typ (Wertübergabe):</p></li>
+            <div class="code-sample">  
+                <code>
+            function modifyValue(x) {
+                x = 10;
+                }
+                
+                let a = 5;
+                modifyValue(a);
+                console.log(a);  // Gibt 5 aus, weil a nicht verändert wurde
+                </code>
+            </div>
+
+            <li><p>Beispiel mit einem komplexen Typ (Referenzübergabe):</p></li>
+            <div class="code-sample">  
+                <code>
+        function modifyObject(obj) {
+            obj.name = "Carlos";
+            }
+            
+            let person = { name: "John" };
+            modifyObject(person);
+            console.log(person.name);  // Gibt "Carlos" aus, weil die Referenz auf das Objekt verändert wurde
+                </code>
+            </div>
+            <br>
+        </ul>
+
+        <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions02.html">-> Code in HTML</a>
+
+        <br>
+        <br>
+        
+        <a href ="../../Gyula/week 05/">-> Beispiel by Gyula</a>
+        <br>
+        <br>
 
 
         <li class="textColor02"><strong>Wie funktioniert die Übergabe einer Funktion in JavaScript?</strong></li>
@@ -174,7 +210,7 @@
                 
                 execute(greeting, "Carlos");  // "Hello, Carlos"
             </code>
-            </div>
+        </div>
 
             <p>Erklärung:</p>
             <ol>
@@ -188,7 +224,42 @@
             <p>-> Beispiel: <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions01.html">Parameter Übergabe 01</a></p>
             <p>-> Parameter Übergabe 01 - <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions01.png">Erklärung</a></p>
 
-    
+
+
+            <li class="textColor02"><strong>Was ist eine rekursive Funktion?</strong></li>
+            <p>Eine rekursive Funktion ist eine Funktion, die sich selbst aufruft, um eine Aufgabe zu lösen. Bei der Rekursion ruft die Funktion in ihrem eigenen Körper sich selbst auf, um das Problem in kleinere Teilprobleme zu zerlegen. Dies ist besonders nützlich, wenn ein Problem in kleinere, ähnliche Teilprobleme unterteilt werden kann.</p>
+            <p>Es gibt zwei Hauptbestandteile einer rekursiven Funktion:</p>
+            <ul>
+                <li><p>Rekursiver Aufruf: Die Funktion ruft sich selbst mit neuen Eingabewerten auf, die das Problem weiter vereinfachen.</p></li>
+                <li><p>Abbruchbedingung (Basisfall): Jede rekursive Funktion benötigt eine Bedingung, die den rekursiven Aufruf stoppt, um eine unendliche Schleife zu vermeiden. Diese Bedingung tritt ein, wenn das Problem so stark vereinfacht ist, dass es ohne weitere Rekursion gelöst werden kann.</p></li>
+            </ul>
+
+            <li class="textColor02"><strong>Beispiel für eine rekursive Funktion: Factorial -></strong></li>
+            <br>
+            <div class="code-sample">  
+                <code>
+                    function factorial(n) {
+                        // Basisfall: Wenn n 0 ist, gebe 1 zurück
+                        if (n === 0) {
+                          return 1;
+                        }
+                        // Rekursiver Aufruf: n * (n-1)!
+                        return n * factorial(n - 1);
+                      }
+                      
+                      console.log(factorial(5)); // Gibt 120 aus (5 * 4 * 3 * 2 * 1)
+                </code>
+            </div>
+
+            <p>-> Erklärung:</p>
+            <ul>
+                <li>Der Basisfall ist n === 0, bei dem die Funktion den Wert 1 zurückgibt. Das ist die Bedingung, die die Rekursion beendet.</li>
+                <li>Der rekursive Aufruf passiert im return n * factorial(n - 1);. Hier ruft sich die Funktion selbst auf, aber mit einem kleineren Wert von n.</li>
+            
+            </ul>
+
+
+
     </ul>
 
     <br>
