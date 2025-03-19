@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreis</title>
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../css datei/common.css">
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+    function printVorlage(a, b) {
+        for (let i = 0; i < a; i++) {
+            for (let j = 0; j < b; j++) {
+                print("[i" + i + "][j" + j + "]");
+            }
+            printLn("");
+        }
+    }
+
+
+    function printKreis(letter, number) {
+        if (number % 2 === 0) {
+            printLn("Die Zahl ist gerade. Kein Kreis wird dargestellt.");
+        } else {
+            for (let i = 0; i < number; i++) {
+                for (let j = 0; j < number; j++) {
+                    if (i + j > number / 4 && j < number && i + j < number + number / 2 && j <= i + number / 2 + 1 && i <= j + number / 2 + 1 && (i != 0 && j < number) && (i != number - 1 && j < number)) {
+                        print(letter);
+                    } else {
+                        print(" ");
+                    }
+                } printLn(" ");
+            }
+        }
+
+    }
+
+    printHr();
+    printH(2, "Aufgabe 1");
+    printLn("Erzeuge einen Kreis");
+    printHr();
+    printVorlage(7, 7);
+
+    printKreis("o", 7);
+
+
+
+</script>
+
+</html>
