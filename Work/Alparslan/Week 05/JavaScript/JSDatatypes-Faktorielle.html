@@ -16,9 +16,26 @@
 <body>
 </body>
 <script>
+start() // Aufruf der Funktion
+
+
+function start(){ // Hier werden folgende Funktionsaufrufe in einer eigenen Funktion zusammengefasst
+    //Aufruf Iterative Funktion
+    console.log(factorial(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (5! = 5 * 4 * 3 * 2 * 1).  
+
+    // Aufruf Rekursive Funktion
+    console.log(factorialRecursive(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (rekursive Berechnung).  
+    console.log("Hello Alp!")
+
+    // Ruft die Funktion auf, sodass die Schleife ausgeführt wird
+    countWithStep();
+}
+
+
+
     // Iterative Lösung
 function factorial(n) {  
-    if (n < 0) return "Ungültige Eingabe"; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
+    if (n < 0) return 0; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
     let result = 1; // Variable zur Speicherung des Ergebnisses, beginnt bei 1.  
 
     for (let i = 2; i <= n; i++) { // Schleife beginnt bei 2 und läuft bis n.  
@@ -28,7 +45,6 @@ function factorial(n) {
     return result; // Gibt das berechnete Fakultät-Ergebnis zurück.  
 }
 
-console.log(factorial(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (5! = 5 * 4 * 3 * 2 * 1).  
 
 
 
@@ -41,15 +57,15 @@ console.log(factorial(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (
 
 // Rekursive Lösung
 function factorialRecursive(n) {  
-    if (n < 0) return "Ungültige Eingabe"; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
+    if (n < 0) return 0; // Falls die Eingabe negativ ist, wird eine Fehlermeldung zurückgegeben.  
 
     return n <= 1 ? 1 : n * factorialRecursive(n - 1);  
     // Falls n 1 oder 0 ist, wird 1 zurückgegeben (Abbruchbedingung).  
     // Andernfalls ruft sich die Funktion selbst auf, wobei n um 1 reduziert wird, bis die Abbruchbedingung erreicht ist.  
 }
 
-console.log(factorialRecursive(5)); // Ruft die Funktion mit n = 5 auf und gibt 120 aus (rekursive Berechnung).  
-console.log("Hello Alp!")
+
+
 
 
 
@@ -77,8 +93,7 @@ for (let i = 0; i <= 10; i = Math.round((i + 0.1) * 10) / 10) {
 }
 }
 
-// Ruft die Funktion auf, sodass die Schleife ausgeführt wird
-countWithStep();
+
 
 </script>
 </html>
