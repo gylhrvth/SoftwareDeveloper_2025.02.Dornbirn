@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Funktion</title>
+    <link rel="stylesheet" href="../../mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+let a = 5;
+
+function changeValue(b) {
+    b = 10;
+    printLn("Inside: " + b);
+}
+
+
+
+
+function changeValue2(b) {
+    b = false;
+    printLn("Inside: " + b);
+}
+
+
+
+
+
+
+printH(1, "Pass by Value & Pass by Reference");
+changeValue(a);
+printLn("Outside: " + a);
+
+changeValue2(a);
+printLn("Outside: " + a);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
