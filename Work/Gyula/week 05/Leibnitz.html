@@ -10,7 +10,8 @@
 <body>
 <script>
 printH(1, "Leibnitz Serie")
-calculateLeibnitz(0.0001)
+let = [piMin, piMax] = calculateLeibnitz(0.000000001)
+printLn("PiMin: " + piMin + " PiMax: " + piMax)
 
 function calculateLeibnitz(precision){
     let piMax = 4.0
@@ -22,8 +23,9 @@ function calculateLeibnitz(precision){
         divid += 2
         piMax = piMin + (4.0 / divid)
         divid += 2
-        printLn("PiMin: " + piMin + " PiMax: " + piMax)
+        //printLn("PiMin: " + piMin + " PiMax: " + piMax)
     }
+    return [piMin, piMax]
 }
 
 </script>
