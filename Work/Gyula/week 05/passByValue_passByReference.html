@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+    
+<script>
+let value = 10;
+let valueObject = { value: 10 }
+let text = 'This'
+
+printH(1, 'Pass by value')
+printLn('Value before calling passByValue: ' + value)
+passByValue(value)
+printLn('Value after calling passByValue: ' + value)
+
+printH(1, 'Pass by reference')
+printLn('Value before calling passByReference: ' + valueObject.value)
+passByReference(valueObject)
+printLn('Value after calling passByReference: ' + valueObject.value)
+
+printH(1, 'Pass of String')
+printLn('String before calling passExample: ' + text)
+passExample(text)
+printLn('String after calling passExample: ' + text)
+
+function passExample(s){
+    printLn('String inside passExample: ' + s)
+    s += ' is a string'
+    printLn('String inside passExample after modification: ' + s)
+}
+
+function passByValue(v){
+    printLn('Value inside passByValue: ' + v)
+    v *= 2
+    printLn('Value inside passByValue after modification: ' + v)
+}
+
+function passByReference(r){
+    printLn('Value inside passByReference: ' + r.value)
+    r.value *= 2
+    printLn('Value inside passByReference after modification: ' + r.value)
+}
+
+</script>
+
+</body>
+</html>

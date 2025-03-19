@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="/Work/Sandro/style.css">
     <script src="/Kurs/common.js"></script>
     <style>
-        body > span{
+        body>span {
             font-family: 'Courier New', Courier, monospace;
         }
     </style>
@@ -19,159 +20,216 @@
 
     <script>
 
-function printLine(){
-    for (let col = 0; col < 10; col++){
-        print('X ');
-    }
-    printHr();
-}
-
-
-function printSquare(symbol,size){
-    for (let row = 0; row < size; row++) {              
-        for (let col = 0; col < size; col++) {          
-            print(symbol);
+        function printLine() {
+            for (let col = 0; col < 10; col++) {
+                print('X ');
+            }
+            printHr();
         }
-        printLn("");
-    }
-    printHr();  
-}
 
 
-
-function printRect(symbol, width, height){
-    for (let i = 0; i < height; i++){
-        for( let j = 0; j < width; j++){
-           print(symbol);
-        }
-       printLn('');
-    }
-    printHr();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-function printTriangle(symbol, size){
-    for (let row = 0; row < size; row++){                
-        print("Row: " + row + " ")
-        for (let col = 0; col < size; col++){
-            if (col <= row){
-                print(symbol);
-            } 
-            else{
-                print('. ')
-            }
-        }
-        printLn('');
-    }
-    printHr();
-}
-
-
-function printTriangle_2(symbol, size){
-    for (let row = 0; row < size; row++){
-        for (let col = 0; col < size; col++){
-            if (col >= row){
-                print(symbol);
-            }
-            else{
-                print('. ')
-            }
-
-        }
-        printLn('')
-    }
-    printHr();
-}
-
-
-
-function printTriangle_3(symbol, size){
-    for (let row = 0; row < size; row++){
-        for (let col = size; col > 0; col--){
-            if (col > row){
-                print(symbol);
-            }
-            else{
-                print('. ');
-            }
-        } 
-        printLn();   
-    }
-    printHr();
-}
-
-function printTriangle_4(symbol, size){
-    for (let row = 0; row <= size-1; row++){
-        for (let col = size-1; col >= 0; col--){
-            if (col <= row){
-                print(symbol);
-            }
-                else{
-                    print('. ');
+        function printSquare(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    print(symbol);
                 }
-        }
-        printLn();
-    }
-    printHr();
-}
-
-
-function emptySquare(symbol, size){
-    for (let row = 0; row < size; row++){
-        for (let col = 0; col < size; col++){
-            if (col == 0 | row ==0 | col == size-1 | row == size-1){
-                print(symbol)
+                printLn("");
             }
-            else{
-                print('. ')
+            printHr();
+        }
+
+
+
+        function printRect(symbol, width, height) {
+            for (let i = 0; i < height; i++) {
+                for (let j = 0; j < width; j++) {
+                    print(symbol);
+                }
+                printLn('');
+            }
+            printHr();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        function printTriangle(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                print("Row: " + row + " ")
+                for (let col = 0; col < size; col++) {
+                    if (col <= row) {
+                        print(symbol);
+                    }
+                    else {
+                        print('. ')
+                    }
+                }
+                printLn('');
+            }
+            printHr();
+        }
+
+
+        function printTriangle_2(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (col >= row) {
+                        print(symbol);
+                    }
+                    else {
+                        print('. ')
+                    }
+
+                }
+                printLn('')
+            }
+            printHr();
+        }
+
+
+
+        function printTriangle_3(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = size; col > 0; col--) {
+                    if (col > row) {
+                        print(symbol);
+                    }
+                    else {
+                        print('. ');
+                    }
+                }
+                printLn();
+            }
+            printHr();
+        }
+
+        function printTriangle_3b(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (col + row <= size - 1) {
+                        print(symbol);
+                    }
+                    else {
+                        print('. ');
+                    }
+                }
+                printLn();
+            }
+            printHr();
+        }
+
+
+
+        function printTriangle_4(symbol, size) {
+            for (let row = 0; row <= size - 1; row++) {
+                for (let col = size - 1; col >= 0; col--) {
+                    if (col <= row) {
+                        print(symbol);
+                    }
+                    else {
+                        print('. ');
+                    }
+                }
+                printLn();
+            }
+            printHr();
+        }
+
+
+        function emptySquare(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (col == 0 | row == 0 | col == size - 1 | row == size - 1) {
+                        print(symbol)
+                    }
+                    else {
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+            printHr();
+        }
+
+
+
+        function printPyramide2(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (row == (size/2) | row ==(size/2)-col | col+1 ==(size/2)+row ){
+                        print(symbol)
+                    }
+                    else{
+                        print('. ')
+                    }
+                }
+                printLn();
             }
         }
-        printLn();
-    }
-    printHr();
-}
+
+        function printPyramide2(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (row == (size/2)){
+                        print(symbol);
+                    }
+                    else{
+                        print('. ');
+                    }
+                }
+                printLn();
+            }
+        }
 
 
-printH(1, 'JS for loop Übungen??????')
-printH(2, 'Print line (fix 10 lang)')
-printLine();
+        printH(1, 'JS for loop Übungen??????')
+        printH(2, 'Print line (fix 10 lang)')
+        printLine();
 
-printH(2, 'Print Quadrat mit Grösse 5')
-printSquare("X ",5);
+        printH(2, 'Print Quadrat mit Grösse 5')
+        printSquare("X ", 5);
 
-printH(2, 'Print Quadrat mit Grösse 8')
-printSquare("A ",8);
+        printH(2, 'Print Quadrat mit Grösse 8')
+        printSquare("A ", 8);
 
-printH(2, 'Print Rechteck mit Grösse 3x10 und Buchstabe X')
-printRect("X ", 10, 3);
+        printH(2, 'Print Rechteck mit Grösse 3x10 und Buchstabe X')
+        printRect("X ", 10, 3);
 
-printH(2, 'Print Dreieck mit Rechtmwinkel links unten')
-printTriangle("X ", 10);
+        printH(2, 'Print Dreieck mit Rechtmwinkel links unten')
+        printTriangle("X ", 10);
 
-printH(2, 'Print Dreieck mit Rechtemwinkel recht oben')
-printTriangle_2('X ',10);
+        printH(2, 'Print Dreieck mit Rechtemwinkel recht oben')
+        printTriangle_2('X ', 10);
 
-printH(2,'Print Dreieck Rechterwinkel links oben' )
-printTriangle_3('X ', 10);
+        printH(2, 'Print Dreieck Rechterwinkel links oben')
+        printTriangle_3('X ', 10);
 
-printH(2, 'Print Dreieck Rechterwinkrl rechts unten')
-printTriangle_4('X ',10);
+        printH(2, 'Print Dreieck Rechterwinkel links oben (Version B)')
+        printTriangle_3b('X ', 10);
 
-printH(2, 'Print emptySquare');
-emptySquare('X ', 10);
-   
+        printH(2, 'Print Dreieck Rechterwinkrl rechts unten')
+        printTriangle_4('X ', 10);
+
+        printH(2, 'Print emptySquare');
+        emptySquare('X ', 10);
+
+        printH(2, 'Pyramide');
+        printPyramide('X ', 16);
+
+        printH(2, 'Pyramide2');
+        printPyramide2('X ', 18)
+
 
     </script>
-    
+
 </body>
+
 </html>
