@@ -33,9 +33,165 @@
 
     <ul>
 
-        <li class="textColor02"><strong>Was ist ein Rückgabewert? Was muss ich da berücksichtigen?</strong></li>
+        <li class="textColor02"><strong>Was ist ein Argument und wie unterscheidet er sich von einem Parameter?</strong></li>
+        <p>Argument ist der tatsächliche Wert, den man beim Funktionsaufruf übergibt. Parameter ist der Platzhalter in der Funktionsdefinition.</p>
 
+
+        <div class="code-sample">  
+            <code>
+            function begruessung(name) {  // "name" ist der Parameter
+            console.log("Hallo, " + name + "!");
+            }
+            
+            begruessung("Paul"); // "Paul" ist das Argument
+            </code>
+        </div>
+        <br>
+
+
+        <li class="textColor02"><strong>Was ist ein Rückgabewert? Was muss ich da berücksichtigen?</strong></li>
+        <p>Ein Rückgabewert ist der Wert, den eine Funktion zurückgibt, nachdem sie ausgeführt wurde. In JavaScript (und vielen anderen Programmiersprachen) wird ein Rückgabewert mit return festgelegt.</p>
+        <p>Falls return nicht verwendet wird, gibt die Funktion automatisch undefined zurück.</p>
+        <p>Nach return wird die Funktion sofort beendet – Code danach wird nicht mehr ausgeführt.</p>
+
+        <div class="code-sample">  
+            <code>
+                function sagHallo() {
+                    return "Hallo!";
+                }
+                
+                console.log(sagHallo()); // "Hallo!"
+            </code>
+        </div>
+
+        <br>
+
+        <li class="textColor02"><strong>Was ist ein Objekt in JavaScript?</strong></li>
+        <p>Eine Sammlung von Eigenschaften (auch Schlüssel-Wert-Paare genannt), die zusammen eine strukturierte Information darstellen. Jedes Objekt besteht aus einem Schlüssel (Key) und einem Wert (Value).</p>
+
+        <div class="code-sample">  
+            <code>
+                let person = {
+                    name: "Carlos",
+                    alter: 35,
+                    beruf: "Softwareentwickler",
+                    istVerheiratet: false
+                };
+            </code>
+        </div>
+
+        <p>In dem Beispiel, person ist das Objekt und hat vier Eigenschaften: </p>
+        <ul>
+            <li>name ist der Schlüssel, und "Carlos" ist der Wert.</li>
+            <li>alter ist der Schlüssel, und 35 ist der Wert.</li>
+            <li>beruf ist der Schlüssel, und "Softwareentwickler" ist der Wert.</li>
+            <li>istVerheiratet ist der Schlüssel, und false ist der Wert.</li>
+           
+        
+        </ul>
+
+        <br>
+
+        <li class="textColor02"><strong>Was sind Arrays in JavaScript?</strong></li>
+        <p>Ein Array ist eine geordnete Sammlung von Werten, die unter einem einzelnen Variablennamen gespeichert werden. Arrays können mehrere Werte eines beliebigen Datentyps (Zahlen, Strings, Objekte, andere Arrays, etc.) enthalten und bieten eine einfache Möglichkeit, diese Werte zu organisieren und darauf zuzugreifen.</p>
+        <p>Arrays sind nützlich, wenn man mehrere ähnliche Elemente (z.B. Zahlen oder Namen) speichern möchte.</p>
+        <div class="code-sample">  
+            <code>
+                let zahlen = [1, 2, 3, 4, 5];
+                let namen = ["Carlos", "Anna", "John"];
+            </code>
+        </div>
+
+        <br>
+
+        <li class="textColor02"><strong>Was bedeuten die Begriffe "pass by value" und "pass by reference"?</strong></li>
+        <ul>
+            <li><p>Pass by Value (Wertübergabe): Gilt für primitive Datentypen (number, string, boolean, null, undefined, symbol, bigint).</p></li>
+            <p>Bei einer Wertübergabe wird eine Kopie des Werts übergeben. Änderungen innerhalb der Funktion beeinflussen nicht die ursprüngliche Variable.</p>
+            <div class="code-sample">  
+            <code>
+                function verdoppeln(x) {
+                    x = x * 2;
+                    console.log("Innerhalb der Funktion:", x); // 20
+                }
+                
+                let zahl = 10;
+                verdoppeln(zahl);
+                console.log("Außerhalb der Funktion:", zahl); // 10 (unverändert!)
+            </code>
+            </div>
+
+            <li><p>Pass by Reference (Referenzübergabe): Gilt für Objekte und Arrays. Bei einer Referenzübergabe wird die Speicheradresse des Objekts übergeben, nicht eine Kopie. Änderungen in der Funktion wirken sich direkt auf das ursprüngliche Objekt aus.</p></li>
+
+            <div class="code-sample">  
+                <code>
+                    function updatePerson(person) {
+                        person.name = "Carlos";  // Schritt 2
+                    }
+                    
+                    let personObj = { name: "Anna" };  // Schritt 1
+                    updatePerson(personObj);  // Schritt 3
+                    
+                    console.log(personObj.name);  // Schritt 4
+                </code>
+                </div>
+
+                <br>
+
+            <p>Erklärung:
+                <ul>
+                   <p><li>Schritt 1: Ein Objekt wird erstellt -> Hier wird ein Objekt personObj erstellt, das ein Eigenschaft name mit dem Wert "Anna" enthält.<br>
+                    Das Objekt personObj ist im Speicher gespeichert, und es wird eine Referenz auf diesen Speicherort in der Variable personObj abgelegt.</li></p>
+                   <p><li>Schritt 2: Definition der Funktion updatePerson -> Die Funktion updatePerson erwartet ein Objekt (person) als Parameter.<br>
+                    Innerhalb der Funktion wird die Eigenschaft name des Objekts person auf den Wert "Carlos" gesetzt.</li></p>
+                   <p><li>Schritt 3: Aufruf der Funktion updatePerson -> Die Funktion updatePerson wird mit personObj als Argument aufgerufen. Da Objekte in JavaScript per Referenz übergeben werden, wird nicht eine Kopie des Objekts, sondern die Referenz auf personObj an die Funktion übergeben.<br>
+                    Das bedeutet, die Funktion ändert nicht das gesamte Objekt, sondern nur die Eigenschaft name des Objekts, auf das die Referenz zeigt.</li></p>
+                   <p><li>Schritt 4: Das Ergebnis ausgeben -> Nach dem Aufruf der Funktion updatePerson(personObj) wurde die Eigenschaft name des Objekts personObj von "Anna" auf "Carlos" geändert.<br>
+                    Deshalb zeigt console.log(personObj.name) den Wert "Carlos" an, da das ursprüngliche Objekt durch die Funktionsänderung tatsächlich verändert wurde.</li></p>
+                </ul>
+            </p>
+
+
+        </ul>
+
+        <li class="textColor02"><strong>Wie können Parameter durch Referenz oder Wert übergeben werden?</strong></li>
+        <p>In JavaScript gibt es den Unterschied zwischen primitiven Typen (z.B. Zahlen, Strings) und komplexen Typen (z.B. Objekte, Arrays). Bei primitiven Typen wird der Wert kopiert, während bei komplexen Typen die Referenz übergeben wird.</p>
+        <a href ="">Beispiel by Gyula</a>
+
+
+        <li class="textColor02"><strong>Wie funktioniert die Übergabe einer Funktion in JavaScript?</strong></li>
+        <p>In JavaScript kann man eine Funktion als Argument an eine andere Funktion übergeben. Das ist möglich, weil Funktionen in JavaScript Objekte sind und wie jede andere Variable behandelt werden können.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                function greeting(name) {
+                    console.log("Hello, " + name);
+                }
+                
+                function execute(func, name) {
+                    func(name);  // The passed function is called here
+                }
+                
+                execute(greeting, "Carlos");  // "Hello, Carlos"
+            </code>
+            </div>
+
+            <p>Erklärung:</p>
+            <ol>
+                <li>The greeting function prints a greeting message when given a name.</li>
+                <li>The execute function expects a function and a name as arguments. It calls the passed function with the name. (Inside execute, func(name) calls the function that was passed (e.g., greeting) and provides name as an argument to it).</li>
+                <li>When execute(greeting, "Carlos") is called, it calls the greeting function with "Carlos" as the argument, and the greeting is displayed in the console.</li>
+            
+            </ol>
+               
+            
+            <p>-> Beispiel: <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions01.html">Parameter Übergabe 01</a></p>
+            <p>-> Parameter Übergabe 01 - <a href="./JS Funktionen/Beispiele/parameterÜbergabe/functions01.png">Erklärung</a></p>
+
+    
     </ul>
+
+    <br>
 
     <h2 id="day22">Dienstag, 18. März 2025</h2>
 
