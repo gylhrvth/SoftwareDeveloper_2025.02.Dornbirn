@@ -1,0 +1,100 @@
+
+.delius-regular {
+    font-family: "Delius", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+body {
+
+    background: linear-gradient(to right, rgb(225, 135, 253), rgb(248, 146, 177), rgb(250, 147, 223), rgb(227, 145, 244));
+    color: white;
+    font-family: "Delius", cursive;
+
+}
+.main_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5em;
+    background: linear-gradient(rgba(251, 248, 248, 0.825), rgba(251, 248, 248, 0.333));
+    margin-bottom: 1em;
+    
+}
+.link_container h1{
+    font-family: "Delius", cursive;
+    font-size: 2.5em;
+    /*color: rgb(88, 3, 109);*/
+}
+
+.link_container li {
+    font-family: "Delius", cursive;
+    font-size: 2em;
+}
+.link_container p {
+    font-family: "Delius", cursive;
+    font-size: 1.5em;
+}
+
+.link_container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background: rgba(241, 239, 239, 0.267);
+    justify-content: space-evenly;
+    align-items: center;
+    
+    
+    padding: 1em;
+    border-radius: 1em;
+    outline: rgb(181, 5, 235);
+    box-shadow: 0 0 5px 5px hsla(0, 0%, 100%, 0.426);
+    margin: 2em;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background: rgba(135, 33, 103, 0.267);
+    justify-content: space-evenly;
+    align-items: center;
+    
+    
+    padding: 1em;
+    border-radius: 1em;
+    outline: rgb(181, 5, 235);
+   /* box-shadow: 0 0 5px 5px hsla(0, 0%, 100%, 0.426);*/
+    margin: 2em;   
+}
+
+@keyframes aaa {
+    0% { transform: translateX(0px); filter: invert(1) hue-rotate(0deg);}
+    50% {transform: translateX(5px); filter: invert(1) hue-rotate(90deg);}
+    100% { transform: translateX(0px); filter: invert(1) hue-rotate(0deg);}
+}
+
+.norm{
+    height: 15em;
+    min-width: 20%;
+    filter: invert(1);
+    animation: aaa 300ms ease-in infinite;
+}
+
+.small_img{
+    height: 7em;
+    min-width: 20%;
+    filter: invert(1);
+}
+
+.style_big{
+    font-size: 1.5em;;
+}
