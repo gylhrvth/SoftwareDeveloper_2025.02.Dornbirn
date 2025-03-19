@@ -20,6 +20,7 @@ function printTriagle(letter, count) {
     for (let i = 0; i < count; i++) {
         for (let j = 0; j < count; j++) {
             if (i == j || i == count || j >= i) {
+                print(i)
                 print(letter);
             } else {
                 print(" ");
@@ -28,6 +29,11 @@ function printTriagle(letter, count) {
         printLn("");
     }
 }
+
+printHr()
+
+printH(3, "test")
+
 
 </script>
 </html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 05</title>
+    <link rel="stylesheet" href="Journal Week 05.css">
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="link_container">
+            <h1> Datatypes:</h1>
+            <h2>primitive-Datentypen:</h2>
+            <p>Diese Datentypen enthalten einfache Werte und werden direkt im Speicher gespeichert.</p>
+            <ul>
+                <li>String</li>
+                <p>Ein String (oder Text-String) ist eine Folge von Zeichen, wie "John Doe".<br>
+
+                    Strings werden in Anführungszeichen geschrieben. Du kannst einfache oder<br>
+                    doppelte Anführungszeichen verwenden<br>
+
+                    Du kannst Anführungszeichen innerhalb eines Strings verwenden, solange sie<br>
+                    nicht mit den Anführungszeichen übereinstimmen, die den String umschließen:</p>
+
+                <li>Number</li>
+                <p>Alle JavaScript-Zahlen werden als Dezimalzahlen (Gleitkommazahlen) gespeichert.<br>
+                    Zahlen können mit oder ohne Dezimalstellen geschrieben werden.</p>
+
+                <li>Bigint</li>
+                <p>Alle JavaScript-Zahlen werden im 64-Bit-Gleitkommaformat gespeichert.<br>
+
+                    JavaScript BigInt ist ein neuer Datentyp (ES2020), der verwendet werden kann,<br>
+                    um Ganzzahlen zu speichern, die zu groß sind, um mit einer normalen<br>
+                    JavaScript-Number dargestellt zu werden.</p>
+
+                <li>Undefined</li>
+                <p>Ermöglicht die Darstellung extrem großer Ganzzahlen<br>
+                    Eine Variable ohne einen Wert, hat den Wert "undefiniert". Der Typ is ebenso undefiniert.</p>
+
+                <li>Null</li>
+                <p>Absichtlich kein Wert</p>
+
+                <li>Symbol</li>
+                <p>Erzeugt einzigartige Werte, die nicht dupliziert werden können<br>
+                    Wird oft für Objektschlüssel verwendet</p>
+
+                <li>Objekt</li>
+                <p>JavaScript objekte werden mit geschwungenen Kllammer {} geschrieben.<br>
+                    Objekt Eigenschaften werden mit Kommas getrennt.<br>
+                </p>
+
+                <li>Booleans</li>
+                <p>Booleans können nur zwei Werte haben: true oder false.</p>
+            </ul>
+        </div>
+
+        <div class="link_container">
+            <p>Was passiert wenn ich 10+"Apfel" schreibe?<br>
+                JavaScript erkennt "10" und "Apfel als String daraus Folgt: "10Apfel"</p>
+
+        </div>
+
+        <div class="link_container">
+            <p>Was passiert wenn ich 0.1 + 0.2 schreibe?<br>
+                JavaScript erkennt die Werte als float daraus Folgt: 0.3</p>
+        </div>
+
+        <div class="link_container">
+            <h2>toString()-Funktion:</h2>
+            <p>Die Methode toString() wird in JavaScript verwendet, um einen Wert in<br>
+                eine Zeichenkette (string) umzuwandeln.</p>
+
+            <ul>
+                <li>Grundlegende Verwendung:</li>
+                <p>Die Methode gibt eine String-Darstellung des Werts zurück</p>
+
+                <li>mit verschiedenen Datentypen:</li>
+                <p>Die toString()-Methode kann auch eine Zahl in verschiedenen Zahlensystemen ausgeben.</p>
+                <img class="norm" src="img/toString_versch.Dat.png">
+                <li>mit Objecten</li>
+                <p>Bei normalen Objekten gibt toString() standardmäßig "[object Object]" zurück.</p>
+                <img class="norm" src="img/toString_objekte.png">
+                <li>mit Date</li>
+                <p>Das Date-Objekt hat eine eigene Implementierung von toString(), die ein lesbares Datum zurückgibt.
+                </p>
+                <img class="small_img" src="img/toString_Date1.png"><br>
+                <img class="small_img" src="img/toString Date2.png">
+            </ul>
+        </div>
+
+        <div class="link_container">
+            <h2>valueOf()-Funktion:</h2>
+            <p>Die valueOf()-Methode in JavaScript wird verwendet, um den primitiven Wert eines Objekts zu erhalten.<br>
+                Das bedeutet, sie gibt die "einfache" Version eines Objekts zurück, die du in Berechnungen oder<br>
+                Vergleichen verwenden kannst.</p>
+            <p>Wenn du mit Objekten wie Zahlen, Datum oder benutzerdefinierten Objekten arbeitest und diese in<br>
+                Berechnungen verwenden möchtest, sorgt valueOf() dafür, dass sie in die richtigen "einfachen"<br>
+                Werte (Zahlen, Strings, etc.) umgewandelt werden.</p>
+        </div>
+
+        <div class="link_container">
+            <h1>Funktionen</h1>
+            <h2> Was sind Funktionen</h2>
+            <p>Funktionen sind ein fundamentales Konzept in der Programmierung und der Mathematik. Eine Funktion ist<br>
+                ein Codeblock, der eine bestimmte Aufgabe ausführt und bei Bedarf mehrfach aufgerufen werden kann.<br>
+                Funktionen nehmen oft Eingaben (Parameter) entgegen, verarbeiten diese und liefern ein Ergebnis
+                (Rückgabewert).</p>
+
+            <h2>Wofür sind sie nützlich?</h2>
+            <ul>
+                <li>Wiederverwendbarkeit</li>
+                <p>Einmal definierte Funktionen können mehrfach verwendet werden, ohne dass man den Code kopieren muss.
+                </p>
+                <li>Strukturierung & Lesbarkeit</li>
+                <p>Der Code wird modular und leichter verständlich, weil komplexe Abläufe in kleinere Einheiten zerlegt
+                    werden.</p>
+                <li>Wartbarkeit</li>
+                <p>Änderungen müssen nur in der Funktion vorgenommen werden, anstatt an mehreren Stellen im Code.</p>
+                <li>Reduzierung von Fehlern </li>
+                <p>Durch die Kapselung({eigene Welt}) von Code in Funktionen werden Fehlerquellen minimiert und das
+                    Debugging erleichtert.
+                </p>
+                <li>Parameter & Rückgabewerte</li>
+                <p>Funktionen können flexibel mit unterschiedlichen Eingabewerten arbeiten und Ergebnisse zurückgeben.
+                </p>
+            </ul>
+        </div>
+        <div class=" link_container">
+            <h2>Eingabe Parameter</h2>
+            <p>Eingabeparameter (auch Argumente genannt) sind Werte, die an eine Funktion übergeben werden, damit sie
+                innerhalb<br>
+                der Funktion verwendet oder verarbeitet werden können.</p>
+
+            <p>Wie funktionieren Parameter in JavaScript?</p>
+            <ul>
+                <li>Eine Funktion kann keine, eine oder mehrere Parameter haben.</li>
+                <li>Parameter werden in den runden Klammern () der Funktionsdefinition angegeben.</li>
+                <li>Beim Aufruf der Funktion werden Werte (Argumente) an diese Parameter übergeben.</li>
+            </ul>
+        </div>
+        <div class="link_container">
+            <h2> Arten von Parametern In JS</h2>
+            <li>Pflichtparameter</li>
+            <p>Das sind die normalen Parameter, die eine Funktion erwartet. Wenn diese beim Funktionsaufruf<br>
+                nicht übergeben werden, erhalten sie den Wert undefined.</p>
+            <img class="norm" src="img/Pflichtparameter Bsp..png">
+
+            <li>Standardwerte für Parameter </li>
+            <p>Man kann Standardwerte definieren, falls der Benutzer keinen Wert übergibt.</p>
+            <img class="norm" src="img/Standardwerte für Parameter.png">
+
+            <li>Mehrere Parameter in einer Funktion</li>
+            <p>Funktionen können mehrere Parameter haben, die bei jedem Aufruf durch verschiedene Werte ersetzt werden.</p>
+
+
+        </div>
+
+        <div class="link_container">
+            <h2>Unterschied zwischen Parametern und Argumenten</h2>
+            <li>Parameter sind die Platzhalter in der Funktionsdefinition.</li>
+            <li>Argumente sind die tatsächlichen Werte, die beim Aufruf übergeben werden.</li>
+        </div>
+
+        <div class="link_container">
+            <h1>Rückgabewerte</h1>
+            <p>Ein Rückgabewert ist das Ergebnis, das eine Funktion nach ihrer Ausführung zurückliefert. In JavaScript wird<br>
+                dafür das return-Keyword verwendet.</p>
+            <p>Wie funktioniert return?</p>
+            <ul>
+                <li>Eine Funktion kann mit return einen Wert zurückgeben.</li>
+                <li>Nach return wird die Funktion sofort beendet.</li>
+                <li>Falls return fehlt, gibt die Funktion undefined zurück.</li>
+            </ul>
+        </div>
+        <div class="link_container">
+            <h1>"Pass by Value" vs. "Pass by Reference"</h1>
+            <p>Diese Begriffe beschreiben, wie Werte an eine Funktion übergeben werden. Sie bestimmen, ob Änderungen innerhalb der<br>
+                Funktion auch außerhalb der Funktion sichtbar sind.</p>
+            
+            <h2>Pass by Value (Wertübergabe)</h2>
+            <p> "Pass by Value" bedeutet, dass eine Kopie des Wertes übergeben wird.<br>
+                Änderungen innerhalb der Funktion betreffen nicht das Original.</p>
+            <p>Beispiel mit primitiven Datentypen (Pass by Value)<br>
+                Primitiven Datentypen in JavaScript sind:<br>
+                Number, String, Boolean, null, undefined, Symbol, BigInt.</p>
+
+                <div class="container2">
+                    <h2>Pass by Value einfach erklärt 🧐</h2>
+                    <p>Wenn du eine Variable an eine Funktion übergibst, wird eine Kopie des Wertes erstellt. Die Funktion<br>
+                        arbeitet nur mit dieser Kopie und ändert nicht das Original.</p>
+                    
+                    <p>Beispiel mit einem Glas Wasser 💧<br>
+                        Stell dir vor, du hast ein Glas Wasser.<br>
+                        Dein Freund fragt nach einem Glas Wasser.<br>
+                        Anstatt dein Glas zu geben, füllst du ein neues Glas mit der gleichen Menge Wasser und gibst es ihm.<br>
+                        Dein Freund kann sein Glas Wasser trinken oder Zucker hinzufügen – aber dein Original-Glas bleibt unverändert!</p>
+                    
+                </div>
+
+            <h2>Pass by Reference (Referenzübergabe)</h2>
+            <p>"Pass by Reference" bedeutet, dass eine Referenz (Adresse im Speicher) übergeben wird.<br>
+                Änderungen innerhalb der Funktion wirken sich auch außerhalb aus.<br>
+                
+                In JavaScript gilt das für Objekte, Arrays und Funktionen.</p>
+
+                <div class="container2">
+                    <h2>Pass by Reference einfach erklärt 🧐</h2>
+                    <p>Wenn du ein Objekt oder ein Array an eine Funktion übergibst, übergibst du keine Kopie, sondern eine Referenz auf das Original.<br>
+                    Das bedeutet: Wenn die Funktion das Objekt ändert, ändert sich auch das Original!</p>
+
+                    <p>Beispiel mit einer Pizza 🍕<br>
+                        Stell dir vor, du und dein Freund teilen eine einzige Pizza.<br>
+                        Dein Freund fügt extra Käse hinzu.<br>
+                        Da ihr die gleiche Pizza teilt, kannst du den zusätzlichen Käse auch sehen und schmecken.<br>
+                        Die Pizza wurde verändert – nicht nur die Kopie!</p>
+                </div>
+
+        </div>
+
+        <div class="link_container">
+            <h2>Warum ist es wichtig zu wissen, wie Parameter übergeben werden?</h2>
+            <p>Als Entwickler musst du verstehen, wie Werte in Funktionen übergeben werden, weil es sich direkt auf den Code und das<br>
+                Verhalten deiner Programme auswirkt. Wenn du das Konzept von Pass by Value und Pass by Reference nicht kennst, kann es<br>
+                zu unerwarteten Fehlern kommen.</p>
+                <ul>
+                    <li>Vermeidung unerwarteter Änderungen an Daten</li>
+                    <p>Wenn du ein Objekt oder ein Array an eine Funktion übergibst (Pass by Reference), kann die Funktion das Original<br>
+                        verändern, oft ohne dass du es merkst!</p>
+                    <li>Schutz von Originalwerten (Immutability)</li>
+                    <p>Manchmal möchtest du sichergehen, dass eine Funktion das Original nicht verändert.</p>
+                    <li>Effizienter Umgang mit Speicher und Performance</li>
+                    <p>Primitiven Werte (Pass by Value) sind leicht zu kopieren, weil sie klein sind.<br>
+                        Große Objekte oder Arrays werden per Referenz übergeben, weil das Kopieren zu viel Speicher und Zeit verbrauchen würde</p>
+                    <li>Kontrolle über Seiteneffekte (Side Effects)</li>
+                    <p>"Pass by Reference" kann unerwartete Nebeneffekte (Side Effects) verursachen.</p>
+                </ul>
+                <h2>Wie funktioniert Rekursion?</h2>
+           
+                <p>Rekursion funktioniert in der Regel in zwei Phasen:</p>
+
+                   <p> Rekursiver Aufruf:<br> Die Funktion ruft sich selbst mit veränderten Parametern auf, um das Problem zu verkleinern.<br>
+                    Basisfall:<br> Ein einfacher Fall, bei dem die Funktion nicht mehr rekursiv aufgerufen wird,<br> sondern die Antwort direkt zurückgegeben wird.</p>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreis</title>
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../css datei/common.css">
+</head>
+<body>
+    
+</body>
+<script>
+    printH(2, "Aufgabe 1");
+    printLn("Erzeuge einen Kreis");
+    printHr();
+
+    printH(2, "Aufgabe 1");
+    printLn("Erzeuge ein Kreis-Objekt, das einen Radius r hat. Schreibe Methoden, die den Umfang und die Fläche des Kreises berechnen.");
+    printLn("Erzeuge ein Kreis-Objekt mit Radius 5 und gib den Umfang und die Fläche aus.");
+    printHr();
+
+    function Kreis(r) {
+        this.r = r;
+        this.umfang = function() {
+            return 2 * Math.PI * this.r;
+        }
+        this.fläche = function() {
+            return Math.PI * this.r * this.r;
+        }
+    }
+
+    let kreis = new Kreis(5);
+    printLn("Umfang: " + kreis.umfang());
+    printLn("Fläche: " + kreis.fläche());
+    printHr();
+
+
+</script>
+</html>
