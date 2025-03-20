@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>functions_exercises</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2em;
+    }
+</style>
+
+<body>
+    <!--<canvas id="canvas" width="500" height="500" style="border:1px solid rgb(243, 233, 233);"></canvas>-->
+    <script>
+
+
+        function printPyramide(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (row == (size / 2) | row == (size / 2) - col | col + 1 == (size / 2) + row) {
+                        print(symbol)
+                    }
+                    else {
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+        }
+
+
+        function printPyramide2(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if (row == (size / 2) | row == (size / 2) - col - 1 | col + 1 == (size / 2) + row + 1) {
+                        print(symbol)
+                    }
+                    else {
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+        }
+
+
+        function printPyramide3(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col <= size; col++) {
+                    if (row == (size / 2) | row == (size / 2) - col | col == (size / 2) + row) {
+                        print(symbol)
+                    }
+                    else {
+                        print('_ ')
+                    }
+                }
+                printLn();
+            }
+        }
+
+        function printPyramide4(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < 2 * size; col++) {
+                    if (col >= size - row && col <= size + row) {
+                        print(symbol); // X kommt hier rein
+                    } else {
+                        print(". "); // Leerstellen
+                    }
+                }
+                printLn(); // Neue Zeile
+            }
+        }
+
+
+        function printPyramide5(symbol, size) {
+            for (let row = 0; row < size / 2; row++) {
+                for (let col = 0; col < size + 1; col++) {
+                    if (col == 4 | col == 4 - row | col == 4 + row) {
+                        print(symbol)
+                    }
+                    else {
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+        }
+
+
+        function printPyramide6(symbol, size) {
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < 2 * size - 1; col++) {
+                    if (row + col == size - 1 ||
+                        col - row == size - 1 ||
+                        row == size - 1
+                    ) {
+                        print(symbol)
+                    } else {
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+        }
+
+
+        function counter(count, end) {
+            while (count < end) {
+                printLn('Zähler:' + count);
+                count++
+            }
+
+        }
+
+
+
+        /*  function primZahl(zahl) {
+              for (let i = 0; i < zahl; i++) {
+                  if ((zahl / zahl) == 1 && (zahl / 1) == zahl) {
+                      print('Prim:' + zahl);
+                  }
+                 printLn(); 
+              }
+              
+          }*/
+
+
+        function istPrimZahl(n) {
+            if (n <= 1) {        //neg + 1 --> keine prim
+                return false;
+            }
+
+            if (n === 2) {       //eiz. gerade prim
+                return true;
+            }
+
+
+            if (n % 2 === 0) {   //gerade --> kein prim
+                return false;
+            }
+
+            let sqrtN = Math.sqrt(n);  // Quadratwurzel von n berechnen
+            for (let i = 3; i <= sqrtN; i += 2) { // Nur ungerade Zahlen prüfen / += nach jedem durchlauf wird i um 2 erhöht 
+                if (n % i === 0) {  // Wenn n durch i teilbar ist, dann keine Primzahl
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function isPrimByGyula(numberToTest) {
+            if (numberToTest < 2) return false;
+
+            for (let divident = 2; divident <= numberToTest - 1; ++divident) {
+                if (numberToTest % divident == 0) {
+                    return false;
+                }
+            }
+           
+            return true
+
+        }
+
+        let numberToTest = 100; // Beispielwert, bis zu welcher Zahl getestet wird
+        for (let divident = 2; divident <= numberToTest; divident++) {
+            if (isPrimByGyula(divident)) {
+                print(divident);
+            }
+        }
+        /*Warum numberToTest - 1?
+        Der Grund, warum die Schleife bis numberToTest - 1 geht, liegt in der Tatsache, dass eine Zahl nicht durch sich selbst (außer 1) teilbar sein sollte, um als Primzahl zu gelten. Ein Divisor einer Zahl n muss kleiner als n sein, aber nicht gleich der Zahl n selbst.
+    
+        Beispiel:
+        Für die Zahl 7:
+        Sie ist nur durch 1 und 7 teilbar.
+        Die Schleife überprüft also die Zahlen von 2 bis 6 (also bis numberToTest - 1), um zu sehen, ob eine Zahl im Bereich von 2 bis numberToTest - 1 die Zahl 7 teilt.
+        Wenn sie einen Divisor findet, ist 7 keine Primzahl. Wenn nicht, ist sie eine Primzahl. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Testaufruf mit einer Größe von 7
+
+
+
+        /* function drawTriangle() {
+             let canvas = document.getElementById("canvas");
+             let ctx = canvas.getContext("2d");
+ 
+             ctx.beginPath();
+             ctx.moveTo(250, 100); // Spitze des Dreiecks
+             ctx.lineTo(150, 300); // Linke Ecke
+             ctx.lineTo(350, 300); // Rechte Ecke
+             ctx.closePath();
+ 
+             ctx.fillStyle = "red"; // Farbe des Dreiecks
+             ctx.fill();
+             ctx.stroke();
+         }*/
+
+        /* printPyramide3('X ', 10);
+ 
+         printPyramide('x ',12);
+         printPyramide2('X ', 20);
+         printPyramide4("X ", 7);
+         printPyramide5('x ', 8);
+         printHr();
+         printPyramide6('x ', 8);*/
+
+        /*drawTriangle();*/
+
+
+        counter(0, 10);
+        isPrimByGyula(97);
+
+
+
+
+    </script>
+
+</body>
+
+</html>
