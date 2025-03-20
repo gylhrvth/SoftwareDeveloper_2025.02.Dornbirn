@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    printH(1, 'The first 100 prim numbers')
+    listOfPrims(100)
+    printHr();
+    listeDerPrimzahlen(50)
+
+/* Prim Zahlen sind NUR mit 1 und sich selbst Teilbar 
+   Beispiele: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,....
+
+   Step 1: For schleife zu prüfen, ob ein Zahl teilbar ist, durch kleinere Zahlen 
+   Step 2: if / else mit eine Bedingung, wenn die Zahl teilbar ist ohne Rest, dann ist es keine Primzahl, also soll NICHT ausgeben, sonst ausgeben
+
+   Step 3: while schleife zu prüfen alle Zahlen, solange dass wir die 100. Primzahl gefunden haben
+*/
+
+function isPrim(x){
+    if (x < 2) return false
+    for (let i = 2; i <= x - 1; ++i){
+        if (x % i == 0){
+            return false
+        }
+    }
+    return true
+}
+
+function listOfPrims(n){
+    let primsfound = 0
+    let valueToTest = 2
+    while (primsfound < n){
+        if (isPrim(valueToTest)){
+            ++primsfound
+            printLn(primsfound + ". prim is " + valueToTest)
+        }
+        ++valueToTest
+    }
+}
+
+
+
+
+function primzahlen(x){                     // Erstellung der Funktion, welches Prüft ob eine Zahl eine Primzahl ist und gibt ja((true) oder nein(false) aus
+    for (let i = 2; i <= x - 1; ++i){       // i startet bei 2; läuft bis i kleiner gleich x-1 Warum x - 1? → x selbst wird nicht geprüft, weil jede Zahl durch sich selbst also x teilbar ist.
+        if (x % i == 0){                    // → Falls x durch i ohne Rest teilbar ist (x % i == 0), bedeutet das, x ist keine Primzahl, weil es einen Teiler außer 1 und x selbst gibt.
+            return false                    // gibt false zurück sobald ein Teiler gefunden wurde
+        }
+    }return true                            // gibt true zurück wenn kein Teiler ausser 1 und die Zahl selber gefundne wurde
+}
+
+function listeDerPrimzahlen(n){
+    let gefundenePrimzahlen = 0             // Variable Startet mit 0, weil noch keine Primzahl gefunden wurde.
+    let zuTesten = 2                        // Variable Beginnt bei 2, da 2 die kleinste Primzahl ist.
+    while (gefundenePrimzahlen < n){        // Solange die Anzahl gefundener Primzahlen kleiner als n ist, geht die Schleife weiter
+        if (primzahlen (zuTesten)){         // Funktionsaufruf von "primzahlen" Wenn sie true zurückgibt (also zuTesten eine Primzahl ist), wird der Codeblock ausgeführt
+            ++gefundenePrimzahlen           // Wenn vorheriger Schritt "true" ausgegeben hat, also eine Primzahl gefunden wurde, so wird "gefundenePrimzahlen" um eins erhöht
+            printLn(gefundenePrimzahlen + ". Primzahl ist " + zuTesten) // → Ausgabe der gefundenen Primzahl + Beschreibung
+        }
+        ++zuTesten                          // → Erhöht zuTesten um 1, weil die obigen funktionen jede zahl prüfen ob es eine Primzahl ist oder nicht
+    }
+}
+
+
+
+/* Warum x - 1?
+
+Die for-Schleife:
+for (let i = 2; i <= x - 1; ++i)
+
+läuft von 2 bis x - 1.
+Das bedeutet:
+Wenn x = 7, dann läuft die Schleife von 2 bis 6.
+Wenn x = 11, dann läuft die Schleife von 2 bis 10.
+Wir prüfen, ob x ohne Rest teilbar ist. Wenn ja, ist es keine Primzahl.
+
+
+💡 Warum nicht i <= x?
+Eine Zahl ist immer durch sich selbst teilbar (7 % 7 == 0 ist immer wahr).
+Aber Primzahlen dürfen nur durch 1 und sich selbst teilbar sein.
+Darum prüfen wir nur bis x - 1, um x selbst auszuschließen. */
+
+</script>
+
+
+
+</body>
+</html>
