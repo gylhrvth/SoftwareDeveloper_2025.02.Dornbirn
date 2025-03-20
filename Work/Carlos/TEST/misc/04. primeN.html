@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Prime Numbers</title>
+</head>
+<body>
+
+    <script>
+
+        let n = 2;
+
+        printH(2, "Is " + n + " a prime number?")
+
+        printHr();
+
+        print("for loop Methode: " + isPrime(n));
+
+        printHr();
+
+        print("while loop Methode: " + isPrimeWhile(n));
+
+
+
+        function isPrime(n){
+            for (let i = 2; i <= n -1; i++){
+                if(n % i == 0){
+                    return false;
+                }
+            } 
+            return true;
+        }
+
+                
+        function isPrimeWhile(n){
+            let answer = true
+            let i = 2;
+            while (answer && i <= n - 1){
+                if(n % i == 0){
+                    answer = false
+                }
+                ++i
+            } 
+            return answer;
+        }
+
+        printHr();
+
+        print(printFirstPrimes(12));
+
+        function printFirstPrimes(n){
+
+            let count = 1;
+
+            for(i = 2; i <=n; i++){
+
+                if(isPrime(i)== true && count<=n){
+
+                    printLn(count + "." + i)
+                    count ++;
+                }
+
+            }
+
+        }
+        
+
+    </script>
+    
+</body>
+</html>
