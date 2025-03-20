@@ -21,10 +21,11 @@
             return true;
         }
 
+        let n = 100;
 
-      printH(2, "function: print the first (n) prime numbers" );
+      printH(2, "function: print the first " + (n) + " prime numbers" );
 
-      printFirstPrimes(100);
+      printFirstPrimes(n);
 
         function printFirstPrimes(n){
 
@@ -32,7 +33,7 @@
             let numberChecked = 2;
 
             while (primeCount < n){
-                if(isPrime(numberChecked)==true) {
+                if(isPrime(numberChecked)) {
                 
                     primeCount ++;  
                     printLn(primeCount + ". -> " + numberChecked);
@@ -44,23 +45,35 @@
 
         }
 
+        /*
+        Explanation: We have 2 variables at the start. 
 
+        Variable primeCount starts at 0 and increases by 1 everytime it founds a prime Number, using the function isPrime().
+        When we use a function which returns a boolean inside an if statement:
+            - If isPrime(numberChecked) returns true, the if statement executes the block.
+            - If isPrime(numberChecked) returns false, the if statement skips the block.
+        
+        The variable numberChecked defines which number will be evaluated to determine if prime or not prime.
+        We start with a value of 2 because 2 is always the first prime number. So it would be redundant to start with 0 or 1 if searching for prime numbers.
 
+        So it starts with a value of 2. Number 2 evaluates to prime, so primeCounter will be increased by 1.
+        Then because of numberChecked++; the next number to evaluate will be 3. NUmber 3 will be prime, so primeCounter will increase again by 1, having a value of 2.
+        Next numberChecked will be 4, not a prime, so primeCounter will still have a value of 2.
+        Next numberChecked will be 5, a prime, so so primeCounter will be updated with ++, having a value of 3.
 
+        So will be possible to evaluate every number until primeCounter reaches the desired number, in this case (n).
 
+        When primeCounter is = (n), then the while loop will stop. 
+        The total of prime numbers found will be n, and they will be the first (n) prime numbers of the serie starting with the prime number 2.
 
-
-            /*for(i = 2; i <=n; i++){
-
-                if(isPrime(i)== true && count<=n){
-
-                    printLn(count + "." + i)
-                    count ++;
-                }
-
-            }
-
-        } */
+        A while loop is a better choice here because we don’t know in advance how many numbers we need to check to find n prime numbers.
+        The number of iterations depends on how many primes we find, not on a predefined range.
+        We increment numberChecked dynamically, checking each number one by one.
+        The loop continues until primeCount reaches n, which makes it ideal for an unknown number of iterations.
+        
+        In this case, we can’t predict how many numbers we need to check before finding n primes.
+        It would also work with a for loop, but the while loop is often preferred when the stopping condition depends on a counter that is updated conditionally (like primeCount here).
+        */
         
 
     </script>

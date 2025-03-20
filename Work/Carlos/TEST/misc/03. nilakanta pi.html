@@ -11,11 +11,11 @@
 
     <script>
 
-        print(Math.PI);
+        print("Value of PI with Math.PI Method: " + "      " + Math.PI);
 
         printHr();
 
-        print(nilakantha(1000));
+        print("Value of PI with Nilakantha's Formula: " + nilakantha(1000));
 
         function nilakantha(precision){
         
@@ -35,6 +35,39 @@
         return result;
 
     }
+
+    //Example of Nilakantha's Formula: 3 + 4/(2*3*4) - 4/(4*5*6) + 4/(6*7*8) - 4/(8*10*12) + 4/n*(n+1)*(n+2) - ... 
+
+    /* Looking at the Formula, number 3 can be hard coded because it doesn't vary. 
+       That's why - let result -  begins with a value of 3.
+       The first divisor element of the formula begins with 2, multiplied by 3 and by 4.
+       That's why n is declared with a value of 2 at the start in the for loop.
+       Value n will keep on incrementing by 2 until the value of n reaches the value of precision.
+
+       It increments by 2 because everytime a new divisor is added or substracted, the first value of the new divisor is always n+2. (First 2, then 4, then 6 and so on...)
+       The divisor is made of three values that multiplicate each other, being value 1 = n, value 2 = n+1, value 3 = n+2. Example: 2*3*4 / 4*5*6 / 6*7*8
+       
+       The dividend of the formula is always 4, so we can hard code it as well.
+       
+       We use an if statement inside the for loop to determine for each iteration, if the new division will be added or substracted to number 3. (See Formula).
+       
+       We know that every divisor that begins with n = 4 or a multiple of 4 will be a substraction. 
+       So we can say: if(n % 4 == 0), then add the division as a substraction (-=) to the result.
+       All other n values will add the division as a sum (+=) to the result.
+
+       For example: The first division starts with n=2 -> 4/(2*4*6)
+       2 modulo 4 -> Number 4 is zero times in number 2. 
+       2 = 4*0 + Modulo -> So we have that 2 = Modulo, it is not 0.
+
+       Another example: 12 modulo 4 -> Number 4 is 3 times inside 12, no Restwert means modulo = 0.
+       12 = 4*3(4 is 3 times in 12) + Modulo -> 12 = 12 + 0 
+
+       Another example: 
+
+       10 = 4*2(4 is 2 times inside 10) + 2 (modulo is 2, that is the number I need for 8 to reach 10).
+       
+       
+       */
 
     </script>
     

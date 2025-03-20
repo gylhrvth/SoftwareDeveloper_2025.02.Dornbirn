@@ -13,29 +13,41 @@
 
         // for a n number, find the numbers which return modulo 0 while dividing
 
-        findPrimeDivisors(100);
+        let n = 100;
+
+        printH(2, "Find Prime Divisors Multiplication of number " + (n));
+
+        findPrimeDivisors(n);
 
         function findPrimeDivisors(n){
 
             let count = 2;
             let result = "";
+            let valueMult = 1;
 
             while (n > 1){
 
                 if(n % count == 0){
             
-                    result += count + " "; //2 * 2 * 5 * 5
+                    result += count + " "; //2  2  5  5
                     n = n/count;
+                    valueMult *= count; // saves the value of the multiplication happening in the while loop (first 1*2, then 2*2, then 2*2*5, then 2*2*5*5)
+
+                    if(n > 1){
+                        result += "* "; // 2 * 2 * 5 * 5
+                    }
 
                 } else {  
                     
                     count ++;
                 }
             }
-            print(result);
+            print("Result: " + result + " = " + valueMult);
         }
 
         /* Erklärung:
+
+        00. In JavaScript, if result is initialized as a string (e.g., let result = "";), then any value appended to it using result += will be converted to a string. This is because the += operator, when used with a string, performs string concatenation.
 
         01. I start with a value (n). I want to find out which are the smallest prime numbers inside 100 that I can use to multiply them and get to n.
 
