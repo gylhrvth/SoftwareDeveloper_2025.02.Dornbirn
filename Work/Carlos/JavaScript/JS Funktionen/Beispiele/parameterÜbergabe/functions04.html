@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../../Work/Sandro/style.css">
+    <title>Functions04</title>
+</head>
+<body>
+
+    <h3>Fibonacci</h3>
+
+    <script>
+
+        let n=5;
+
+        function fibonacci(n) {
+        
+        if (n === 0) return 0;
+        if (n === 1) return 1;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+
+        }
+
+        print("Result for n = 10: " + fibonacci(10));
+    
+    </script>
+    
+</body>

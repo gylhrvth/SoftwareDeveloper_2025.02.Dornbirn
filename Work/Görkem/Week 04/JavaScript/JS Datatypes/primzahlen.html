@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primzahlen</title>
+    <link rel="stylesheet" href="../mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    printH(1, 'First 100 prims')
+    printH(2, '1. Primzahl-Funktion schreiben, mit Überprüfung')
+    printFirstPrim(100)
+    printLn('100 ist ein Primzahl: ' + printFirstPrim(100))
+    printLn('101 ist ein Primzahl: ' + printFirstPrim(101))
+    printHr();
+
+    printH(2, '2. Primzahlen finden und ihre Teiler anzeigen')
+    primzahlenMitTeilern(30)
+    printHr();
+
+    printH(2, '3. Berechnung der ersten n Primzahlen')
+    printFirstNPrim(30)
+    
+   
+
+
+
+    
+  
+    function printFirstPrim(n) {
+        if (n < 1) return false;
+        for(let i = 2; i <= Math.sqrt(n); ++i){
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+
+    
+    
+    
+    
+    
+    
+    function primzahlenMitTeilern(limit) {
+    for (i = 2; i <= limit; i++) {
+        let divisors = '';  
+        let count = 0;
+        for (j = 1; j <= i; j++) {
+            if (i % j === 0) {
+                divisors += (divisors ? ', ' : '') + j; 
+                count++;  
+            }
+        }
+            if (count === 2) {
+                printLn(`${i} ist eine Primzahl.`);
+            } else  {
+            printLn(`${i} ist keine Primzahl, Teiler: ${divisors}`);
+            }
+        }
+    }
+
+
+    
+    
+    
+    
+    
+    
+    
+    function printFirstNPrim(count) {
+        let valueToTest = 2;
+        let primsFound = 0;
+  
+        while (primsFound < count) {
+            let isPrime = true;
+                for (let i = 2; i <= Math.sqrt(valueToTest); i++) {
+            if (valueToTest % i === 0) {
+                isPrime = false; 
+                break;
+            }
+        }
+
+        if (isPrime) {
+            primsFound++;
+            printLn(primsFound + ". prim is: " + valueToTest);
+        }
+
+        if (valueToTest === 2) {
+            valueToTest++;
+        } else {
+            valueToTest += 2;
+        }
+    }
+}
+
+
+    
+
+    
+
+
+        
+               
+                
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

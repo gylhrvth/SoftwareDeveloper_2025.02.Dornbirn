@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+    <style>
+body > span{
+    font-family: 'Courier New', Courier, monospace;
+}
+    </style>
+</head>
+<body>
+    
+<script>
+
+let x = 10;
+console.log(x)   // 10
+console.log(x++) // 10, erst Ausdruck, dann erhöhen   !!! SO WAS SCHREIBEN WIR NICHT
+console.log(x)   // 11
+console.log(++x) // 12, erst erhöhen, dann Ausdruck   !!! SO WAS SCHREIBEN WIR NICHT
+console.log(x)   // 12
+++x // wird einfach erhöht
+x++ // wird einfach erhöht
+
+printH(1, "Triangle Symetrisch")
+triangleEmpty('B', 6)
+
+// Step 1: Wie viel Spalten sein sollen? ==> for Loop mit 2*size-1 iterationen
+// Step 2: Wie viel Zeilen sein sollen? ==> for loop mit size iterationen
+// Step 3: Links from Trinagle die Leerzeichen setzen
+// Step 4: Rechts from Trinagle die Leerzeichen setzen
+
+function triangleEmpty(letter, size){
+    for (let row = 0; row < size; ++row){
+        for (let column = 0; column < 2 * size - 1; ++column){
+            if (row + column == size - 1 || 
+                column - row == size - 1 ||
+                row == size - 1) {
+                print(letter + ' ')
+            } else {
+                print('. ')
+            }
+        }
+        printLn("")
+    }
+}
+</script>
+
+</body>
+</html>

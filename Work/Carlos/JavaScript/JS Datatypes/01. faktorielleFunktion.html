@@ -15,19 +15,35 @@
 
         let n = 5;
 
+        printH(2, "Summe");
+
+        // Summe
+
        printLn("Die Summe der ersten " + par + " Zahlen ist " + summe(par))
 
         printHr()
 
         //faktor(5);
 
+        printH(2, "Multiplikation");
+
         printLn("Die Multiplikation der ersten " + n + " Zahlen ist " + faktor(n));
+        
+        printHr()
+
+        printH(2, "Multiplikation - Recursive");
+
+        printLn("Die Multiplikation der ersten " + n + " Zahlen ist " + factorial(n));
+
+
 
         function summe(par){
             let result = 0
             for (let i = 0; i <= par; ++i){
                 result += i
+                printLn(result);            
             }
+            printLn();
             return result
         }
 
@@ -37,10 +53,27 @@
             let result = 1;
             for(let i = 1; i <= n; i++){
                 result *= i;
-                //printLn(result);
+                printLn(result);
+               
             }
+            printLn();
             return result;
         }
+
+        function factorial(n) {
+        // Basisfall: Wenn n 0 ist, gebe 1 zurück
+        if (n === 0) {
+            return 1;
+        }
+        // Rekursiver Aufruf: n * (n-1)!
+        return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); // Gibt 120 aus (5 * 4 * 3 * 2 * 1)
+
+        
+
+
 
         
 

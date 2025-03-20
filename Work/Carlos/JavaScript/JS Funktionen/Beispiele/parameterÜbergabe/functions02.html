@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../../Work/Sandro/style.css">
+    <title>Functions02</title>
+</head>
+<body>
+
+    <h2>Parameter Übergabe</h2>
+
+    <script>
+
+        // Beispiel mit einem primitiven Typ (Wertübergabe):
+
+        printH(3, "Beispiel mit einem primitiven Typ (Wertübergabe)");
+
+        function modifyValue(x) {
+        x = 10;
+        }
+
+        let a = 5;
+        modifyValue(a);
+        console.log(a);  // Gibt 5 aus, weil a nicht verändert wurde
+
+        print(a);
+
+
+        // Beispiel mit einem komplexen Typ (Referenzübergabe):
+
+        printH(3, "Beispiel mit einem komplexen Typ (Referenzübergabe)");
+
+        function modifyObject(obj) {
+        obj.name = "Carlos";
+        }
+
+        let person = { name: "John" };
+        modifyObject(person);
+        console.log(person.name);  // Gibt "Carlos" aus, weil die Referenz auf das Objekt verändert wurde
+
+        print(person.name);
+
+    
+    </script>
+    
+</body>
+</html>

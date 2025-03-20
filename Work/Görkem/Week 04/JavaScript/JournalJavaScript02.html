@@ -126,9 +126,54 @@
             <li>Optimiert die Leistung, besonders bei großen Datenstrukturen </li>
             <li>Macht den Code klarer und leichter wartbar</li>
         </ul>
+        <li><p>Beispiel mit einem primitiven Typ (Wertübergabe):</p></li>
+        <div class="code-box">  
+            <code>
+                function modifyValue(x) {
+                x = 10;
+                }
+        
+                let a = 5;
+                modifyValue(a);
+                console.log(a);  // Gibt 5 aus, weil a nicht verändert wurde
+        </code>
+    </div>
+    <li><p>Beispiel mit einem komplexen Typ (Referenzübergabe):</p></li>
+        <div class="code-box">  
+            <code>
+                function modifyObject(obj) {
+                obj.name = "Ali";
+                }
+            
+                let person = { name: "Ali" };
+                modifyObject(person);
+                console.log(person.name);  // Gibt "Carlos" aus, weil die Referenz auf das Objekt verändert wurde
+            </code>
+        </div>
     </li>
 </ul>
 <br>
+    <h4>‼️➡️ Aufgaben</h4>
+    <ul>
+        <li><a href="../../../Gyula/week 05/passByValue_passByReference.html" -> Beispiel von Gyula</a></li>
+        <li><a href="JS Basics/JS Funktionen/passbyvalue-passbyreference.html" -> Code ist im HTML</a></li>
+    </ul>
+    <br>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was bedeut, dass eine Funktion rekursiv ist?</span>
+        <p>Eine rekursive Funktion ist eine Funktion, die sich selbst aufruft, um eine Aufgabe zu lösen. Bei der Rekursion ruft die Funktion in ihrem eigenen Körper sich selbst auf, um das Problem in kleinere Teilprobleme zu zerlegen. Dies ist besonders nützlich, wenn ein Problem in kleinere, ähnliche Teilprobleme unterteilt werden kann.</p>
+        <p>Es gibt zwei Hauptbestandteile einer rekursiven Funktion:</p>
+        <ul>
+            <li><p>Rekursiver Aufruf: Die Funktion ruft sich selbst mit neuen Eingabewerten auf, die das Problem weiter vereinfachen.</p></li>
+            <li><p>Abbruchbedingung (Basisfall): Jede rekursive Funktion benötigt eine Bedingung, die den rekursiven Aufruf stoppt, um eine unendliche Schleife zu vermeiden. Diese Bedingung tritt ein, wenn das Problem so stark vereinfacht ist, dass es ohne weitere Rekursion gelöst werden kann.</p></li>
+        </ul>
+
+        <br>
+
+    </li>
+</ul>
         
 
 
