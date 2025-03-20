@@ -11,17 +11,35 @@
 
     <script>
 
-        printH(1, "factorial");
-
+        printFactorial(5)
+        printFactorial(20)
         
-        print(factorial(5));
+        
+        function printFactorial(n){
+            //let message = ''
+            printH(1, "factorial of " + n);
+            printHr();
+            print(factorial(n) + ' = ');
+            //message += factorial(n) + ' = '
+            for (let i = 1; i <= n; ++i){
+                if (i > 1){
+                    print(' * ')
+                    //message += ' * '
+                }
+                print(i)
+                //message += i
+            }
+            //console.log(message)
+        }
+
 
         function factorial(n){
             let result = 1;
+            let operation ="";
             for(i = 1; i<=n; i++){
                 result*=i;
             }
-
+           
             return result;
         }
 
