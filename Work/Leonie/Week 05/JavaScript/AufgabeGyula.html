@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahl mit Primzahlen erreichen</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        printH(2, "Aufgabe 1");
+        printLn("z.B: 32 = 2*2*2*2*2 ; 100 = 2*2*5*5");
+        printHr();
+
+        primCalc(12345678)
+
+        /*function primCalc(number) {
+            let primArray = []; // Ein Array zur Speicherung der gefundenen Primfaktoren
+            let prim = 2; // Startwert für den Primfaktor
+
+            // Eine Schleife, die so lange läuft, bis die Zahl auf 1 reduziert ist
+            while (number > 1) {
+                // Überprüfen, ob die aktuelle Zahl durch den aktuellen Primfaktor teilbar ist
+                if (number % prim == 0) {
+                    // Wenn ja, füge den Primfaktor zum Array hinzu
+                    primArray.push(prim);
+                    // Teile die Zahl durch den Primfaktor
+                    number /= prim;
+                } else {
+                    // Wenn nein, erhöhe den Primfaktor um 1
+                    prim++;
+                }
+            }
+
+            // Ausgabe der Primfaktoren in der gewünschten Formatierung
+            printLn(primArray.join(" * "));
+        }*/
+
+        function primCalc(number){
+            let prim = 2;
+            while(number > 1){
+                if (number % prim == 0){
+                    print(prim + " ");
+                    number = number / prim; 
+                }else{
+                    ++prim
+                    //let findPrim = isPrim(prim);
+                }                
+            }
+            printLn()
+        }
+
+
+        function isPrim(n) {
+            if (n < 2) return false;
+            for (let i = 2; i <= (n - 1); ++i) {
+                if (n % i == 0) { // Es ist teilbar, also kein Prim
+                    return false;
+                }
+            }
+            return true // Es ist ein echtes Prim
+        }
+
+    </script>
+</body>
+
+</html>
