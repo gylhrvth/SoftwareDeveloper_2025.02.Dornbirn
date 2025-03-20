@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Test03 - Nilakantha Pi</title>
+</head>
+<body>
+
+    <script>
+
+        print(Math.PI);
+
+        printHr();
+
+        print(nilakantha(1000));
+
+        function nilakantha(precision){
+        
+        let result = 3; 
+
+        for(let n = 2; n<=precision; n+=2){
+            let divisor = (n*(n+1)*(n+2));
+            let division = (4/divisor);
+
+            if(n % 4 == 0){
+                result -= division;
+            } else {
+                result += division;
+            }
+        }
+
+        return result;
+
+    }
+
+    </script>
+    
+</body>
+</html>
