@@ -11,38 +11,6 @@
 
     <script>
 
-      /*  function isPrime(n){
-            for (let i = 2; i <= n -1; i++){
-                if(n % i == 0){
-                    return false;
-                }
-            } 
-            return true;
-        }
-
-
-      //printH();
-
-      //printFirstPrimes(100);
-
-        function printFirstPrimes(n){
-
-            let primeCount = 0;
-            let numberChecked = 2;
-
-            while (primeCount < n){
-                if(isPrime(numberChecked)==true) {
-                
-                    primeCount ++;  
-                    printLn(primeCount + ". -> " + numberChecked);
-                }
-
-                numberChecked++;
-                
-            }
-
-        } */
-
         // for a n number, find the numbers which return modulo 0 while dividing
 
         findPrimeDivisors(100);
@@ -69,11 +37,33 @@
 
         /* Erklärung:
 
-        I start with a value (n). I want to find out which prime numbers inside 100 can I use to multiply them and get to n.
+        01. I start with a value (n). I want to find out which are the smallest prime numbers inside 100 that I can use to multiply them and get to n.
 
-        For example, for 100 -> Which is the smallest prime number divisible with which I can divide 100?
+        02. For example, for 100 -> Which is the smallest prime number divisible with which I can divide 100?
 
-        In this case is 2. So I divide 100 / 2 and get 50.
+        03. We always beginn with the smallest prime number, in this case 2. Is 100 divisible by 2? Yes -> 100 /2 = 50. Now n = 50.
+
+        04. Until now we have used 2 (once).
+
+        04. Now, is 50 divisible by 2? Yes, it's 25. Now n is 25.
+
+        05. Until now we have used 2 twice.
+
+        06. Is 25 divisible by 2? It isn't. So we fetch the next number, after 2 it is 3.
+
+        07. Is 25 divisible by 3? No. So we fetch the next number, after 3 it is 4.
+
+        08. Is 25 divisible by 4? No. So we fetch the next number, after 4 it is 5.
+
+        09. Is 25 divisible by 5? Yes. 25/5 = 5. Until now we have used 2 (twice) and 5 (once). Now n = 5.
+        
+        10. Is 5 divisible by our current divisor 5? Yes. 5/5 = 1. Until now we have used 2 (twice) and 5 (twice).
+
+        11. In the beginning, n was 100. Now n equals 1. Because n is not bigger than 1 anymore, the while loop stops.
+
+
+
+
 
         Now I 
 
