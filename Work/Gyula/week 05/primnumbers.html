@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    printH(1, 'The first 100 prim numbers')
+    listOfPrims(100)
+
+/* Prim Zahlen sind NUR mit 1 und sich selbst Teilbar 
+   Beispiele: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,....
+
+   Step 1: For schleife zu prüfen, ob ein Zahl teilbar ist, durch kleinere Zahlen
+   Step 2: if / else mit eine Bedingung, wenn die Zahl teilbar ist, soll NICHT ausgeben, sonst ausgeben
+
+   Step 3: while schleife zu prüfen alle Zahlen, solange dass wir die 100. Primzahl gefunden haben
+*/
+
+function isPrim(x){
+    if (x < 2) return false
+    for (let i = 2; i <= x - 1; ++i){
+        if (x % i == 0){
+            return false
+        }
+    }
+    return true
+}
+
+function listOfPrims(n){
+    let primsfound = 0
+    let valueToTest = 2
+    while (primsfound < n){
+        if (isPrim(valueToTest)){
+            ++primsfound
+            printLn(primsfound + ". prim is " + valueToTest)
+        }
+        ++valueToTest
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    printH(1, 'First 10 prims')    
+    printFirstNPrim(10)
+
+
+function printFirstNPrim(count){
+    let valueToTest = 2
+    let primsFound = 0
+
+    while (primsFound < count){
+        if (isPrim(valueToTest)){
+            ++primsFound
+            printLn(primsFound + ". prim is: " + valueToTest)
+        }
+        
+        if (valueToTest % 2 == 0){
+            ++valueToTest
+        } else {
+            valueToTest += 2;
+        }
+    }
+}
+
+function isPrim(n){
+    if (n < 2) return false;
+    for (let i = 2; i <= (n - 1) ; ++i){
+        if (n % i == 0){ // Es ist teilbar, also kein Prim
+            return false;
+        }
+    }
+    return true // Es ist ein echtes Prim
+}
+
+</script>
+
+</body>
+</html>

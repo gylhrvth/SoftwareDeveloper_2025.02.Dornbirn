@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci-Folge</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+
+        calcFibonacci(20)
+        printHr()
+        fibonacciGuyla(20)
+
+
+        function calcFibonacci(duration) {
+            let firstNum = 0;
+            let secNum = 1;
+            for (let i = 0; i < duration; ++i) {
+                let addition = firstNum + secNum
+                printLn("First Number: " + firstNum + " Second Number: " + secNum + " = " + addition)
+                if (i % 2 == 0) {
+                    firstNum = addition
+                    //printLn("First Number addition")
+                } else {
+                    secNum = addition
+                    //printLn("Second Number addition")
+                }
+            }
+
+        }
+
+        function fibonacciGuyla(count) {
+            let firstNum = 0;
+            let secNum = 1;
+            for (let i = 0; i < count; ++i) {
+                let addition = firstNum + secNum
+                printLn("First Number: " + firstNum + " Second Number: " + secNum + " = " + addition)
+                firstNum = secNum
+                //printLn("First Number addition")
+                secNum = addition
+                //printLn("Second Number addition")
+            }
+        }
+
+    </script>
+</body>
+
+</html>
