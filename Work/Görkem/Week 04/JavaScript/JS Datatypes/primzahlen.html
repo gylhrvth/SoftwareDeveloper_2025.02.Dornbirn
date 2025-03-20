@@ -29,6 +29,13 @@
 
     printH(2, '3. Berechnung der ersten n Primzahlen')
     printFirstNPrim(30)
+    printHr();
+
+    findprimeDivison(100)
+
+
+
+
     
    
 
@@ -104,6 +111,26 @@
 }
 
 
+function findprimeDivison(n){
+    let count = 2;
+    
+    while(n > 1){  // solange n (100) größer als 1 ist, suchen wir nach Primfaktoren
+        if (n % count == 0){ // wenn n durch count teilbar ist, dann ist count ein Primfaktor
+            print(count + " "); // Primfaktor ausgeben 2 * 2 * 5 * 5
+            n = n / count;  // n wird durch count geteilt, um den nächsten Primfaktor zu finden
+        }else{
+            ++count // wenn n nicht durch count teilbar ist, dann wird count um 1 erhöht
+        }
+    }
+    printLn()
+}
+             
+
+        
+
+
+
+
     
 
     
@@ -113,9 +140,6 @@
                
                 
    
-
-
-
 
 
 
