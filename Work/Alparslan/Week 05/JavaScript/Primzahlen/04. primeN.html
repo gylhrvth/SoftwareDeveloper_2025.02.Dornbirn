@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Prime Numbers</title>
+</head>
+<body>
+
+    <script>
+
+        let numberToTest = 6;
+        printH(2, "Is " + numberToTest + " a prime number?")
+
+        printHr();
+        print("Methode mit for-Schleife: " + isPrime(numberToTest));
+
+        printHr();
+        print("Methode mit while-Schleife: " + isPrimeWhile(numberToTest));
+
+        printHr();
+        printFirstPrimes(12);
+
+
+
+
+
+
+        function isPrime(zahl){
+            for (let i = 2; i <= zahl -1; i++){
+                if(zahl % i == 0){
+                    return false;
+                }
+            } 
+            return true;
+        }
+
+                
+        function isPrimeWhile(zahl){
+            let answer = true
+            let i = 2;
+            while (answer && i <= zahl - 1){
+                if(zahl % i == 0){
+                    answer = false
+                }
+                ++i
+            } 
+            return answer;
+        }
+
+
+
+        function printFirstPrimes(targetCount){
+
+            let count = 1;
+            let i = 2
+
+            while (count <= targetCount){
+
+                if(isPrime(i)){
+
+                    printLn(count + ".) " + i)
+                    count ++;
+                }
+                ++i
+            }
+
+        }
+        
+
+    </script>
+    
+</body>
+</html>
