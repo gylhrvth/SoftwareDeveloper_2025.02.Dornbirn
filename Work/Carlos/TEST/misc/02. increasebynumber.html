@@ -11,7 +11,15 @@
     
 <script>
 
-    increaseByNumber(0.2, 2, 5)
+    let timesUp = 0.20;
+    
+    let startN = 3;
+
+    let endN = 8;
+
+    printH(2, "Starting from " + startN + ", increment value by " + timesUp + " until " + endN);
+
+    increaseByNumber(timesUp, startN, endN)
 
     function increaseByNumber(increment, from, to){
         for( i = 100*from; i <= 100*to; i+=increment*100){
@@ -19,6 +27,10 @@
         }
         
     }
+
+    /* In this formula there is a number "correction", where all the parameters are multiplied by 100
+    and the resulting i is then divided by 100. This is an usual workaround to avoid floating point decimals.
+    */
 
 </script>
 

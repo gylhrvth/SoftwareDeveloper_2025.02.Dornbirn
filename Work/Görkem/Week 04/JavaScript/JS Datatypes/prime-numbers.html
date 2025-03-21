@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primzahlen</title>
     <link rel="stylesheet" href="../mainstyle.css">
-    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="../../../../../../Kurs/common.js"></script>
+    <script src="../../../../../Kurs/common.js"></script>
 </head>
 
 <body>
@@ -29,6 +29,16 @@
 
     printH(2, '3. Berechnung der ersten n Primzahlen')
     printFirstNPrim(30)
+    printHr();
+
+    printH(2, '4. Primfaktorzerlegung')
+    findprimeDivison(100)
+    printLn(" = ist die Primfaktorzerlegung von 100")
+    
+
+
+
+
     
    
 
@@ -104,6 +114,25 @@
 }
 
 
+function findprimeDivison(n){
+    let count = 2;
+    
+    while(n > 1){  // solange n (100) größer als 1 ist, suchen wir nach Primfaktoren
+        if (n % count == 0){ // wenn n durch count teilbar ist, dann ist count ein Primfaktor
+            print(count + " "); // Primfaktor ausgeben 2 * 2 * 5 * 5
+            n = n / count;  // n wird durch count geteilt, um den nächsten Primfaktor zu finden
+        }else{
+            ++count // wenn n nicht durch count teilbar ist, dann wird count um 1 erhöht
+        }
+    }
+}
+             
+
+        
+
+
+
+
     
 
     
@@ -113,9 +142,6 @@
                
                 
    
-
-
-
 
 
 

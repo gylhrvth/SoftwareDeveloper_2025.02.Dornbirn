@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Kurs/common.js"></script>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <title>Factorial 02</title>
+</head>
+<body>
+
+    <script>
+
+        let n = 5;
+
+        printH(1, "Factorial of number " + n)
+
+        printHr();
+
+        print(showFactorial());
+
+        printHr();
+
+        print("Result: " + factorialN(n));
+
+        printHr();
+
+        function showFactorial(){
+            let mult = 1;
+            let showMult = "";
+            for(i = n; i >= 1; i--){
+                mult *= i;
+                showMult += i
+                if(i>1){
+                showMult += " * ";
+                //printLn(factorialN(n) + "=" + mult + "*"); 
+             }
+            }
+            printLn(showMult);
+        }
+
+        function factorialN(n){
+            let mult = 1;
+
+            for(i = n; i >1; i--){
+                mult *= i;
+            }
+            return mult;
+        }
+    </script>
+    
+</body>
+</html>

@@ -11,67 +11,41 @@
 
     <script>
 
-        printH(1, "factorial");
-
+        printFactorial(5)
+        printFactorial(20)
         
-        print(factorial(5));
+        
+        function printFactorial(n){
+            //let message = ''
+            printH(1, "factorial of " + n);
+            printHr();
+            print(factorial(n) + ' = ');
+            //message += factorial(n) + ' = '
+            for (let i = 1; i <= n; ++i){
+                if (i > 1){
+                    print(' * ')
+                    //message += ' * '
+                }
+                print(i)
+                //message += i
+            }
+            //console.log(message)
+        }
+
 
         function factorial(n){
             let result = 1;
+            let operation ="";
             for(i = 1; i<=n; i++){
                 result*=i;
             }
-
+           
             return result;
         }
 
         
-        /*function factorial(n){
-
-            let result = n;
-
-            for (i = n; i>=1; i--){
-                if(i != n) {
-                    result*=i;
-                }
-            }
-
-        return result;
-
-        }*/
-
-
-
-
-
-        // second try
-
-         /*function factorial(n){
-            
-            let result = n;
-
-            for(let i = n-1; i>=1; i--){
-
-                result *= i;
-                
-            }
-            
-            return result;
-
-        } */
-
-        // first try
-
-        /*function factorial(n){
-            
-            for(let i = 1; i <=n; i++ ){
-                let result = n *= i
-                
-            }
-            return result;
-            
-        } */
-
+        /* The function factorial() finds out the factorial value of a given number.
+           The printFactorial is responsible for the representation of function factorial() on the Browser.*/
 
     </script>
 

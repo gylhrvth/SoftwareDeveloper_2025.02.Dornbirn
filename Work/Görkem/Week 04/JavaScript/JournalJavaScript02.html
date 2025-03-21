@@ -147,7 +147,7 @@
             
                 let person = { name: "Ali" };
                 modifyObject(person);
-                console.log(person.name);  // Gibt "Carlos" aus, weil die Referenz auf das Objekt verändert wurde
+                console.log(person.name);  // Gibt "Ali" aus, weil die Referenz auf das Objekt verändert wurde
             </code>
         </div>
     </li>
@@ -172,17 +172,41 @@
 
         <br>
 
+        <li class="textColor02">
+            <span class="underline">Beispiel für eine rekursive Funktion -> Factorial</span>
+            <p>Die Fakultät (Factorial) einer Zahl n ist das Produkt aller positiven ganzen Zahlen bis n:</p>
+            <div class="code-box">  
+                <code>
+                    function factorial(n) {
+                        // Basisfall: Wenn n 0 ist, gebe 1 zurück
+                        if (n === 0) {
+                          return 1;
+                        }
+                        // Rekursiver Aufruf: n * (n-1)!
+                        return n * factorial(n - 1);
+                      }
+                      
+                      console.log(factorial(5)); // Gibt 120 aus (5 * 4 * 3 * 2 * 1)
+                </code>
+            </div>
+
+            <p>-> Erklärung:</p>
+            <ul>
+                <li>Der Basisfall ist n === 0, bei dem die Funktion den Wert 1 zurückgibt. Das ist die Bedingung, die die Rekursion beendet.</li>
+                <li>Der rekursive Aufruf passiert im return n * factorial(n - 1);. Hier ruft sich die Funktion selbst auf, aber mit einem kleineren Wert von n.</li>
+
+        </li>
     </li>
 </ul>
+<br>
+
+    <h4>🚀Gruppen Coding Session mit Gyula</h4>
+    <ul>
+        <li><a href="../../../Gyula/week 05/Nilakanta.html" -> Pi Zahl (nach Nilakanta)</a></li>
+        <li><a href="JS Datatypes/prime-numbers.html"-> Prim Zahlen </a></li>
         
-
-
-
-
-
-
+    </ul>
+            
         
-
-
 </head>
 </html>   

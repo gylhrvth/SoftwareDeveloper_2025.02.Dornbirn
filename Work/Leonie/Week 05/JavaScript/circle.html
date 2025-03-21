@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+
+<style>
+    body > span {
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+</head>
+<body>
+<script>
+
+printH(1, 'Circle')
+printCircle(21)
+
+
+function printCircle(size){
+    for (let row = 0; row < 2 * size; ++row){
+        for (let col = 0; col < 2 * size; ++col){
+            if (((col - size) * (col - size) +
+                (row - size) * (row - size) < size * size) && 
+                ((col - size) * (col - size) +
+                (row - size) * (row - size) > 0.55 * size * size)){
+                    print("x ")
+                } else {
+                    print(". ")
+                }
+        }
+        printLn()
+    }
+}
+
+</script>
+</body>
+</html>
+
+
+
