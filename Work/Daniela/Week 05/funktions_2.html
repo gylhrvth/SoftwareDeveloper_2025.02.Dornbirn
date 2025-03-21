@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2em;
+    }
+</style>
+
+<body>
+    <script>
+
+        /* ------------- Einfache Funktionen -------------*/
+
+
+        function printChar(symbol, number) {
+            for (let i = 0; i < number; i++) {               //Hier wird das symbol so of wie number geprintet
+                print(symbol);
+            }
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------------------------*/
+        function printCharWithNumb(symbol, number) {
+            for (let i = 0; i < number; i++) {
+                print('Nr.' + i + ': ' + symbol)       //Hier wird "Nr._:" und das symbol geprintet
+                printLn();                                          // aber zähler begint bei 0 weil i = 0 
+            }
+
+        }
+
+        function printCharWithNumb2(symbol, number) {
+            for (let i = 0; i < number; i++) {
+                print('Nr.' + (i + 1) + ': ' + symbol)       //Hier wird "Nr._:" und das symbol geprintet
+                printLn();                                          // aber zähler begint bei 1 weil (i+1) 
+            }
+
+        }
+        /*----------------------------------------------------------------------------------------------------------------------------------*/
+        function printSquare(symbol, numb){
+            for (let col = 0; col < numb; col++){
+                for (let row = 0; row < numb; row++){
+                    print(symbol)
+                }
+                printLn();
+            }
+        }
+        /*-----------------------------------------------------------------------------------------------------------------------------------*/
+        function printEmptySqur(symbol, size){
+            for (let row = 0; row < size; row++){
+                for (let col = 0; col < size; col++){
+                    if ( col == 0 | row == 0 | col == size - 1 | row == size - 1 ){
+                        print(symbol)
+                    }
+                    
+                    else{
+                        print('. ')
+                    }
+                }
+                printLn();
+            }
+        }
+        /*--------------------------------------------------------------------------------------------------------------------------------- */
+
+        printChar('*', 3);
+        printHr();
+        printChar('x', 5);
+        printHr();
+        printChar('#', 50);
+        printHr();
+        /*----------------------------------------------------------------------------------------------------------------------------------*/
+        printCharWithNumb('X', 5);
+        printHr();
+        printCharWithNumb2('Y', 5);
+        printHr();
+        printSquare('X ',5);
+        pritnHr();
+        printEmptySqur('X', 5);
+        printHr();
+
+    </script>
+</body>

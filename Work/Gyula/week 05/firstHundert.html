@@ -21,13 +21,8 @@ function printFirstNPrim(count){
         if (isPrim(valueToTest)){
             ++primsFound
             printLn(primsFound + ". prim is: " + valueToTest)
-        }
-        
-        if (valueToTest % 2 == 0){
-            ++valueToTest
-        } else {
-            valueToTest += 2;
-        }
+        }        
+        ++valueToTest
     }
 }
 
