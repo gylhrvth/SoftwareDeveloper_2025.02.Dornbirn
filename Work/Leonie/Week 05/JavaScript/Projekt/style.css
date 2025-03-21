@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#instructions {
+    margin-bottom: 20px
+}
+
+#userInput {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 200px;
+}
+
+.checkbutton {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+#feedback {
+    margin-bottom: 20px;
+    color: blue;
+}
+
+#result {
+    color: green;
+    font-weight: bold;
+}
