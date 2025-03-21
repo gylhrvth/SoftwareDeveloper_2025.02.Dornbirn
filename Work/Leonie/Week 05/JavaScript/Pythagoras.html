@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satz des Pythagoras</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+
+</head>
+
+<body>
+    <script>
+        pythagoras(20)
+
+        function pythagoras(size) {
+            for (let i = 0; i < 2 * size; ++i) {
+                for (let j = 0; j < 2 * size; ++j) {
+                    let a2 = (i - size) * (i - size);
+                    let b2 = (j - size) * (j - size);
+                    let c2 = a2 + b2;
+                    if (c2 < size * size){
+                        print("X ")
+                    }else{
+                        print(". ")
+                    }
+                }printLn()
+            }
+        }
+
+    </script>
+</body>
+
+</html>

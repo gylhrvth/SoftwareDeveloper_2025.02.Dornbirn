@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schleifen</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+    <h1>Hello World, Welcome to Loops/If-While Statment</h1>
+</body>
+<script>
+
+printH(2, 'While-Schleife');
+
+
+// While-Schleife
+let number = 0;
+
+    while(number < 100) { 
+        number = number + 10;
+        printLn(number);
+    }
+        print('Ende der Schleife');
+//
+
+// While-Schleife2
+printHr();
+
+
+let number2 = 0;
+
+    while(number2 < 100) { // Solange die Variable number kleiner als 100 ist, wird die Schleife ausgeführt
+        number2 += 10;  // Die Variable number wird um 10 erhöht deshalb wird die Schleife 10 mal ausgeführt bis 100 erreicht ist
+        printLn(number2);
+    }
+        print('Ende der Schleife2');
+//
+
+printH(2, 'For-Schleife');
+
+// For-Schleife
+
+    for(let number = 0; number < 100; number += 10) {
+        printLn(number);
+    }
+        print('durchlauf beendet');
+//
+
+// For in Schleife
+printH(2, 'For-In & for-of');
+
+    let liste = ['Apfel', 'Birne', 'Banane', 'Kirsche'];
+    liste.name = 'Liste';
+        
+        for(let info in liste) {
+            printLn(info);
+        }
+        for(let info of liste) {
+            printLn(info);
+        }
+//
+printH(2, 'For-in for-of Unterschiede');
+
+// for in Schleife2
+
+    let person = {
+        vorname: 'Elon',
+        nachname: 'Musk',
+        alter: 50,
+        adresse: 'USA'
+        };
+
+        for(let info in person) {   // da kommen wir an properties an einer Objekt
+            printLn(info);
+            }
+            for(let info of person) {   // mit for of Schleife kommen wir an die Werte ran
+            printLn(info);
+            }
+//
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
