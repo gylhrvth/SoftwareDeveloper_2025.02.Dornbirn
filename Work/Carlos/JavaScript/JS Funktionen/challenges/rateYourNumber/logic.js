@@ -67,8 +67,8 @@
     
     let counterSpan = document.getElementById("counter");
     counterSpan.innerText = clickCount;
+    
    }
-
   
    if(validInput == true){
 
