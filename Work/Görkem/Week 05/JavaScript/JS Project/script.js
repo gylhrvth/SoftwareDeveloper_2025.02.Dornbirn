@@ -17,7 +17,7 @@ function checkGuess() {
 
     // If- Statment
     if(userValue === randomNumber) {
-        hint.textContent = "Congratulations, you guessed it";
+        hint.textContent = "Congratulations, you guessed it :-)";
     } else if (userValue < randomNumber) {
         hint.textContent = "Too low! Try again.";
     } else {
