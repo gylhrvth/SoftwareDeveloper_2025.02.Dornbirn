@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumberGessing_Game</title>
+    <link rel="stylesheet" href="../Week 05/NumberGessing.css">
+    <script src="logic.js"></script>
+</head>
+
+<body>
+
+
+    <div class="mainContainer">
+        <div id="instructions" class="instructionsStyle">
+            Bitte geben Sie eine Zahl zwischen 1 und 1000 ein:
+        </div>
+        <input id="userInput" class="inputStyle" />
+        <button onclick="checkGuess()" class="buttonStyle">Überprüfen</button>
+        <div id="feedback" class="feedbackStyle">
+            Ihr Feedback erscheint hier.
+        </div>
+        <div id="result" class="resultStyle">
+        <div id="waveText" class="resultStyle"></div>
+<!--<div class="animatedText">Bunter animierter Text!</div>-->
+
+            <!-- Ergebnis wird hier angezeigt -->
+        </div>
+    </div>
+
+    <script>
+        //generates a random number between 1 and 100
+        const targetNumber = Math.floor(Math.random() * 1000) + 1;
+        console.log("Target Number is: " + targetNumber);
+
+        //call function checkGuess when the button is clicked
+        function checkGuess() {
+            //initialize variables, constants for dom elements
+            const userInput = document.getElementById('userInput').value;
+            const feedback = document.getElementById('feedback');
+            const result = document.getElementById('result');
+            console.log("User Input is: " + userInput);
+            console.log("Feedback is: " + feedback);
+            console.log("Result is: " + result);
+
+            //check if the user input is empty
+            if (!userInput) {
+                feedback.textContent = "Bitte geben Sie eine Zahl ein.";
+                return;
+            }
+            console.log("User Input");
+            //convert the user input to a number
+            //Die 10 in parseInt(userInput, 10) gibt die Basis (Radix) an, die für die Umwandlung des Strings in eine Ganzzahl verwendet wird. In diesem Fall bedeutet die Basis 10, dass der String als Dezimalzahl interpretiert wird.
+
+            let validInput = false;
+            let guess = userInput;
+
+            while (validInput == false) {
+                //convert the user input to a number, parseInt returns NaN if the input is not a number, 10 is the radix, 
+                guess = parseInt(userInput, 10);
+
+                if (!isNaN(guess)) {
+
+                    if (guess <= 0 || guess > 1000) {
+                        feedback.textContent = "Sie haben einen ungültigen Wert Eingegeben!";
+                        return;
+                    }
+                    else {
+                        validInput = true;
+                    }
+
+                } else {
+                    feedback.textContent = "Sie haben KEINE Zahl eingegeben!";
+                    return;
+                }
+            }
+
+            console.log("Guess is: " + guess);
+            console.log("Valid Input is: " + validInput);
+
+            //TODO: check if the number is between 1 and 100
+
+            // Anwendung:
+            const target = document.getElementById("waveText");
+
+            //check if the user input is correct
+            //if the number is lower than the target number, display "The number is too low."
+            if (guess < targetNumber) {
+                feedback.textContent = "Die Zahl " + guess + '. ' + " ist zu niedrig.";
+                //else if the number is higher than the target number, display "The number is too high."
+            } else if (guess > targetNumber) {
+                feedback.textContent = "Die Zahl " + guess + '. ' + "ist zu hoch.";
+                //otherwise, display "Congratulations! You guessed the right number!"
+            } else {
+                feedback.textContent = "";
+                waveTextEffect("Herzlichen Glückwunsch!   "+ '  ' + guess +'   '+ "   war die gesuchte Zahl", target);
+            }
+        }
+
+
+
+        /*Wafe Funktion*/
+
+        function waveTextEffect(text, element) {
+            element.innerHTML = text
+                .split("")
+                .map((char, i) => `<span style="animation-delay:${i * 100}ms">${char}</span>`)
+                .join("");
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
