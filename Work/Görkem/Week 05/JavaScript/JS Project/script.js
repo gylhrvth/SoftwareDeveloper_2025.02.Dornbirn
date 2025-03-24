@@ -17,7 +17,8 @@ function checkGuess() {
 
     // If- Statment
     if(userValue === randomNumber) {
-        hint.textContent = "Congratulations, you guessed it :-)";
+        hint.textContent = "🎉 Congratulations, you guessed it :-)";
+        fireConfetti();
     } else if (userValue < randomNumber) {
         hint.textContent = "Too low! Try again.";
     } else {
@@ -26,7 +27,14 @@ function checkGuess() {
 
     attemptsText.textContent =
     "Attempts: " + attempts;
+}
 
+function fireConfetti() {
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
 }
 
 
