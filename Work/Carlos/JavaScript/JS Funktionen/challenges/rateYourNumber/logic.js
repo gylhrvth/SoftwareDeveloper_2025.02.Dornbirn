@@ -77,7 +77,7 @@
 
    if(guess == targetNumber){
     feedback.textContent = "";
-    result.textContent = "Herzlichen Glückwunsch! Sie haben die richtige Zahl erraten!";
+    result.textContent = "Herzlichen Glückwunsch! Du hast die richtige Zahl erraten!";
    }
 
    else if ((guess > targetNumber && ((guess - targetNumber) <= 5)) || 
