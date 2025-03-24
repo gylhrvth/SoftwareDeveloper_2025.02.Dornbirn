@@ -17,7 +17,7 @@
     <h1 class="textColor01">Lernerfolgsbuch: JavaScript Functions Journal</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
-    <h3 class="textColor01">▷ <a href="#day26">MO 24/03/25</a>: JavaScript (Functions)</h3>
+    <h3 class="textColor01">▷ <a href="#day26">MO 24/03/25</a>: JavaScript (Strings)</h3>
     <h3 class="textColor01">▷ <a href="#day25">FR 21/03/25</a>: JavaScript (Functions)</h3>
     <h3 class="textColor01">▷ <a href="#day24">DO 20/03/25</a>: JavaScript (Functions)</h3>
     <h3 class="textColor01">▷ <a href="#day23">MI 19/03/25</a>: JavaScript (Functions)</h3>
@@ -32,11 +32,144 @@
 
     <h2 id="day26">Montag, 24. März 2025</h2>
 
-    <h3 class="textColor01">JavaScript (Functions)</h3>
+    <h3 class="textColor01">JavaScript (Strings)</h3>
 
     <ul>
+        <li class="textColor02"><strong>Was ist ein String?</strong></li>
+        <p>Ein String ist eine Folge von Zeichen, die als Text gespeichert wird. Das können Buchstaben, Zahlen, Leerzeichen oder Sonderzeichen sein. In der Programmierung nutzt man Strings, um Texte zu speichern und zu bearbeiten.
+           In den meisten Programmiersprachen, einschließlich JavaScript, kann man Strings mit Anführungszeichen (einfache oder doppelte) schreiben.</p>
+           <div class="code-sample">  
+            <code>
+                let text = "Hallo, Welt!";
 
-        <li class="textColor02"><strong>Was sind die Vor- und Nachteile, rekursive Funktionen zu verwenden?</strong></li>
+                let text = 'Hallo, Welt!';
+            </code>
+           </div>
+
+        <br>
+        
+        <li class="textColor02"><strong>Was ist der Unterschied zwischen einem nativen Typ und einem Wrapper-Objekt?</strong></li>
+        <p>Der Unterschied liegt in der Art, wie Daten in JavaScript behandelt werden.</p>
+        <ul>
+            <li><p>Native Typen (Primitives): Das sind einfache Werte, wie Zahlen oder Text. Sie speichern den Wert direkt und können nicht verändert werden.</p></li>
+            <li><p>Das sind spezielle Objekte, die um einfache Werte gebaut werden, damit man zusätzliche Funktionen oder Methoden auf ihnen anwenden kann.”</p></li>
+        </ul>
+        <p>Das passiert automatisch in JavaScript. Wenn man beispielsweise eine Methode wie .toUpperCase() auf einen primitiven String anwendet, wird im Hintergrund ein Wrapper-Objekt für den String erstellt, um diese Methode auszuführen.</p>
+        <li class="textColor02"><strong>Was macht "text".length?</strong></li>
+        <p>Die Eigenschaft .length gibt die Länge eines Strings zurück, also die Anzahl der Zeichen, die der String enthält.</p>
+        <div class="code-sample">  
+            <code>
+                let text = "Hallo";
+                console.log(text.length);  // 5
+            </code>
+           </div>
+
+           <br>
+        
+        <li class="textColor02"><strong>Was macht die Funktion charAt()?</strong></li>
+        <p>Die Funktion charAt() wird verwendet, um ein bestimmtes Zeichen aus einem String zu holen, basierend auf der Position des Zeichens.</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+        <code>
+            string.charAt(index);
+        </code>
+        </div>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+        <code>
+        let text = "Hallo";
+        console.log(text.charAt(0));  // "H"   (erstes Zeichen)
+        console.log(text.charAt(1));  // "a"   (zweites Zeichen)
+        console.log(text.charAt(4));  // "o"   (fünftes Zeichen)
+        </code>
+        </div>
+        <br>
+        <li class="textColor02"><strong>Was macht die Funktion concat()?</strong></li>
+        <p>Die Funktion concat() wird verwendet, um zwei oder mehr Strings miteinander zu verbinden (zu verknüpfen).</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+            <code>
+                string.concat(string2, string3, ..., stringN);
+            </code>
+        </div>
+        <p>	string2, string3, …, stringN (optional): Diese Parameter sind die Strings, die man an den ursprünglichen String anhängen möchte. Man kann beliebig viele Strings angeben, die hintereinandergefügt werden.</p>
+       
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                let text1 = "Hallo";
+                let text2 = "Welt";
+                let result = text1.concat(" ", text2);  // "Hallo Welt"
+                console.log(result);
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion repeat()?</strong></li>
+        <p>Die Funktion repeat() wird verwendet, um einen String mehrfach zu wiederholen.</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+            <code>
+                string.repeat(count);
+            </code>
+        </div>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                let text = "Hallo ";
+                let wiederholt = text.repeat(3); 
+                console.log(wiederholt); // "Hallo Hallo Hallo "
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion indexOf()?</strong></li>
+        <p>Die Funktion indexOf() wird verwendet, um herauszufinden, wo ein bestimmter Teilstring (z. B. ein Wort) in einem String steht.</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+            <code>
+                string.indexOf(searchValue, startIndex);
+            </code>
+        </div>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                let text = "Hallo, Welt!";
+                let position = text.indexOf("Welt");  // 7
+                console.log(position);
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <div class="code-sample">  
+            <code>
+                0   1   2   3   4   5      6      7   8   9   10  11
+                H   a   l   l   o   ,   (space)   W   e   l   t   !
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion lastIndexOf()?</strong></li>
+        <p>Die Funktion lastIndexOf() wird verwendet, um den Index des letzten Vorkommens eines bestimmten Substrings in einem String zu finden. Im Gegensatz zu indexOf(), das das erste Vorkommen sucht, sucht lastIndexOf() von hinten nach vorne.</p>
+        <div class="code-sample">  
+            <code>
+                string.lastIndexOf(searchValue, startIndex);
+            </code>
+        </div>
+        <p>startIndex (optional) ist der Index, ab dem die Suche rückwärts beginnen soll. Der Standardwert ist der letzte Index des Strings. Wenn man eine Zahl übergibst, wird die Suche ab diesem Punkt rückwärts durchgeführt.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+            const str = "Hallo Welt, Hallo!";
+            console.log(str.lastIndexOf("Hallo"));  // Gibt 12 zurück, weil "Hallo" zuletzt an Index 13 vorkommt
+            console.log(str.lastIndexOf("Welt"));   // Gibt 6 zurück, weil "Welt" zuletzt an Index 6 vorkommt
+            console.log(str.lastIndexOf("Test"));   // Gibt -1 zurück, weil "Test" nicht im String vorkommt
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion includes()?</strong></li>
+        
+        <!-- <li class="textColor02"><strong>Was sind die Vor- und Nachteile, rekursive Funktionen zu verwenden?</strong></li> -->
     
     </ul>
 
