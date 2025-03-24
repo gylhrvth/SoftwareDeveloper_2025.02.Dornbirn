@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript String</title>
+  <link rel="stylesheet" href="../common.css">
+  <script src="../common.js" defer></script>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="nosnippet">
+</head>
+
+<body>
+  <div class="menu">
+    <a href="../../index.html">Home</a>
+    <a href="../Aufgaben.html">Aufgaben</a>
+    <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+    <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+    <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+    <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+  </div>
+
+  <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+  <a href="https://www.javascripttutorial.net/javascript-string/">String (Einführung)</a>
+  <br>
+  <a href="https://www.javascripttutorial.net/javascript-string-type/">String (Object Wrapper)</a>
+  <br>
+  <a href="https://www.javascripttutorial.net/javascript-string-methods/">String Methods</a>
+  <br>
+  <a href="https://www.javascripttutorial.net/javascript-regular-expression/">Regular Expression</a>
+  <br>
+  <a href="https://www.w3schools.com/js/default.asp" target="_blank"
+    rel="noopener noreferrer">W3 Schools Documentation / JS</a>
+  <br>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener noreferrer">mdn
+    Web Documentation</a>
+
+  <h2>JavaScript Strings</h2>
+  <ul>
+    <li>Was ist ein String?</li>
+    <li>Was ist der unterschied zwischen eine native Type und Wrapper Objekt?</li>
+    <li>Was macht "text".length?</li>
+    <li>Was macht die Funktion charAt()?</li>
+  </ul>
+
+  <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+  <ol>
+    <li>Erfahrung in Journal Seite eintragen</li>
+    <li>mit Git Commit die Änderungen festlegen</li>
+    <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+  </ol>
+
+  <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+  <h2>Sample Code</h2>
+  <p>Wähle 7 nützliche JS String Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.</p>
+  
+  <h2>Text Analyse</h2>
+  <p>Nehme den folgende Beispiel Text und führe eine Analyse aus...</p>
+  <p>
+  <code>
+const text = "Maria Salomea Skłodowska-Curie[a] (Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kʲiˈri] ⓘ; née Skłodowska; 7 November 1867 – 4 July 1934), known simply as Marie Curie (/ˈkjʊəri/ KURE-ee;[1] French: [maʁi kyʁi]), was a Polish and naturalised-French physicist and chemist who conducted pioneering research on radioactivity.
+
+She was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields. Her husband, Pierre Curie, was a co-winner of her first Nobel Prize, making them the first married couple to win the Nobel Prize and launching the Curie family legacy of five Nobel Prizes. She was, in 1906, the first woman to become a professor at the University of Paris.[2]
+
+She was born in Warsaw, in what was then the Kingdom of Poland, part of the Russian Empire. She studied at Warsaw's clandestine Flying University and began her practical scientific training in Warsaw. In 1891, aged 24, she followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work. In 1895, she married the French physicist Pierre Curie, and she shared the 1903 Nobel Prize in Physics with him and with the physicist Henri Becquerel for their pioneering work developing the theory of "radioactivity"—a term she coined.[3][4] In 1906, Pierre Curie died in a Paris street accident. Marie won the 1911 Nobel Prize in Chemistry for her discovery of the elements polonium and radium, using techniques she invented for isolating radioactive isotopes.
+
+Under her direction, the world's first studies were conducted into the treatment of neoplasms by the use of radioactive isotopes. She founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres. During World War I, she developed mobile radiography units to provide X-ray services to field hospitals.
+
+While a French citizen, Marie Skłodowska Curie, who used both surnames,[5][6] never lost her sense of Polish identity. She taught her daughters the Polish language and took them on visits to Poland.[7] She named the first chemical element she discovered polonium, after her native country.[b]
+
+Marie Curie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy (Haute-Savoie), France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during World War I.[9] In addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995 she became the first woman to be entombed on her own merits in the Paris Panthéon,[10] and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry. She is the subject of numerous biographies."        
+  </code>
+  </p>
+  <p>Die Fragen zu beantworten sind:</p>
+  <ul>
+    <li>Wie viele Buchstaben beinhaltet der Text?</li>
+    <li>Wie lautet der 1., 5. und 20 Wort des Textes?</li>
+    <li>Wie viele Wörter gibt es in Text</li>
+    <li>Was lautet das Kürzeste Wort?</li>
+    <li>Was lautet das LÄNGSTE Wort?</li>
+    <li>Welches Wort ist das Erste (Lexikographisch = nach dem ABC)? (nach Deutsche Rechtschreibung)</li>
+    <li>Welches Wort ist das Letzte (Lexikographisch = nach dem ABC)?  (nach Deutsche Rechtschreibung)</li>
+    <li>Wie viel Mal wird der Name "Marie" erwähnt</li>
+  </ul>
+
+
+  <h2>Text Analyse (v2.0)</h2>
+  <p>Erstelle eine Webseite mit einem Input Feld und ein Button. Als der Button gedruckt wird, soll auf dem Content des Inputfelds die Analyse erstellt werden, als in der vorherige Aufgabe.</p>
+
+  <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+
+
+  <div class="menu">
+    <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+    <a href="../../Work/Carlos/main.html">Carlos</a>
+    <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+    <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+    <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+    <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+    <a href="../../Work/Sandro/Journal.html">Sandro</a>
+  </div>
+  <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>
