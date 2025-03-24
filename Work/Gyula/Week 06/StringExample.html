@@ -46,14 +46,14 @@ When I'm back on top, back on top in June"
     printLn(text9 + " < " + text1 + ": " + (text9 < text1))
 
     printHr()
-    let locale = "de-DE"; // German locale
-    let options = { usage: 'sort', sensitivity: 'accent' };
-    printLn(text1 + " compare " + text2 + ": " + (text1.localeCompare(text2, locale, options)))
-    printLn(text2 + " compare " + text1 + ": " + (text2.localeCompare(text1, locale, options)))
-    printLn(text2 + " compare " + text9 + ": " + (text2.localeCompare(text9, locale, options)))
-    printLn(text9 + " compare " + text2 + ": " + (text9.localeCompare(text2, locale, options)))
-    printLn(text1 + " compare " + text9 + ": " + (text1.localeCompare(text9, locale, options)))
-    printLn(text9 + " compare " + text1 + ": " + (text9.localeCompare(text1, locale, options)))
+    let collator = new Intl.Collator("de-AT", {collation: 'phonebk'})
+    collator.compare(text1, text2)
+    printLn(text1 + " compare " + text2 + ": " + collator.compare(text1, text2))
+    printLn(text2 + " compare " + text1 + ": " + collator.compare(text2, text1))
+    printLn(text2 + " compare " + text9 + ": " + collator.compare(text2, text9))
+    printLn(text9 + " compare " + text2 + ": " + collator.compare(text9, text2))
+    printLn(text1 + " compare " + text9 + ": " + collator.compare(text1, text9))
+    printLn(text9 + " compare " + text1 + ": " + collator.compare(text9, text1))
 
 
 
@@ -113,7 +113,12 @@ When I'm back on top, back on top in June"
 
     printLn("true || true && false = " + (true || true && false))
     
-    
+
+/*
+    const myWords = ['Ägypten', 'Apfel', 'zebra', 'Äpfel', 'Ägeis'];
+    myWords.sort(new Intl.Collator("de-AT", {collation: 'phonebk'}).compare);
+    console.log(myWords);
+*/  
 </script>
 </body>
 </html>
