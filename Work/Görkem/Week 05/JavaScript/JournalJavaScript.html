@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+    <script src="../../../../Kurs/common.js" defer></script>
+    <title>JavaScript</title>
+
+    <h1>JavaScript</h1>
+    <h2>Montag, 24. März 2025</h2>
+
+    <h3 class="textColor01">JavaScript String</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was ist ein String?</span>
+        <p>Ein <strong>String</strong> in JavaScript ist eine Zeichenkette, die in Anführungszeichen geschrieben wird.
+           Es kann ein einzelnes Wort, ein Satz oder auch nur ein einzelnes Zeichen sein.</p>
+        <p>Beispiel: Ein <strong>String</strong> kann so aussehen</p>
+        <div class="code-box">
+            <code>
+                let text = "Hallo, Welt";                                // doppeltes Anführungszeichen
+                let name = 'Max';                                       //  einfaches Anführungszeichen
+                let template = 'Das ist ein String mit Backticks!'
+            </code>
+        </div>
+    </li>
+    <br>
+    
+    <li class="textColor02">
+        <span class="underline">Was ist der unterschied zwischen eine native Type und Wrapper Objekt?</span>
+        <p><strong>Native (Primitive) Typen</strong> sind einfachsten Datentypen in JavaScript. Sie werden
+           direk <strong>im Speicher</strong> gespeichert und haben keine Methoden oder Eigenschaften.</p>
+        <p>Ein <strong>Wrapper-Objekt</strong> ist ein spezielles Objekt, das in Java Script verwendet wird, um primitive Werte
+           wie string, number oder boolean in ein Objekt zu verpacken (zu "wrappen").</p>
+        <p><strong>Fazit:</strong> 👉 Mann sollte primitive Typen verwenden, außer man hat einen speziellen Grund, ein Objekt zu benötigen.<br>
+           Die meisten Entwickler vermeiden Wrapper-Objekte, weil sie unerwartete Fehler verursachen können.</p>  
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht "text".length?</span>
+        <p>Die Eigenschaft .length gibt die Anzahl der Zeichen in einem String zurück.</p>
+        <p>Beispiel:</p>
+        <div class="code-box">
+            <code>
+                let text="Hallo";
+                console.log(text.length);   // Ausgabe 5
+            </code>
+        </div>
+    </li>
+    
