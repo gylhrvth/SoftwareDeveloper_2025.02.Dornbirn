@@ -29,8 +29,12 @@ text-align: center;
     margin-bottom: 20px; 
     color: blue;
 }
-
-
+#feedback.error{
+    color: rgb(220, 24, 24);
+}
+#feedback.close {
+    color:orange;
+}
 
 #result {
     color: green; 
@@ -41,10 +45,19 @@ text-align: center;
     color: orange; 
 }
 
-button {
-    margin-bottom: 20px; 
-    padding: 10px 20px;
+#counterDiv {
+    margin-bottom: 10px;
+}
+#gameOver.active{
+    background-color: black;
+    color: red;
+    padding: 5px;
+    font-weight: 800;
 }
 
 
 
+button {
+    margin-bottom: 20px; 
+    padding: 10px 20px;
+}
