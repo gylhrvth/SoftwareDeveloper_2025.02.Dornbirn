@@ -36,7 +36,7 @@ text-align: center;
     color:orange;
 }
 
-#result {
+#feedback.win {
     color: green; 
     font-weight: bold;
 }

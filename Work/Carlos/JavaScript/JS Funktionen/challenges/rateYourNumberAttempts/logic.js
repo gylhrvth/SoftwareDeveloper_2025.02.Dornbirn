@@ -1,8 +1,11 @@
+
+
 //generates a random number between 1 and 100
+
 const targetNumber = Math.floor(Math.random() * 100) + 1;
 console.log("Target Number is: " + targetNumber);
 
-let clickCount = 7; // The cliickCount must be declared outside the checkGuess Function. Otherwise, everytime I click the button, clickCount reinitializes to 0.
+let clickCount = 7; // The clickCount must be declared outside the checkGuess Function. Otherwise, everytime I click the button, clickCount reinitializes to 0.
 
 //call function checkGuess when the button is clicked
 function checkGuess() {
@@ -14,9 +17,17 @@ function checkGuess() {
   console.log("Feedback is: " + feedback);
   console.log("Result is: " + result);
 
+  if (clickCount < 1) {
+    const feedback = document.getElementById("feedback");
+    feedback.textContent = "Du hast keine Versuche mehr. Bitte starte das Spiel neu.";
+    feedback.classList.remove(...feedback.classList);
+    feedback.classList.add("error");
+    return; 
+  }
+
   //check if the user input is empty
   if (!userInput) {
-    feedback.textContent = "Bitte geben Sie eine Zahl ein.";
+    feedback.textContent = "Bitte gib eine Zahl ein.";
     feedback.classList.remove(...feedback.classList);
     feedback.classList.add("error")
     return;
@@ -30,7 +41,7 @@ function checkGuess() {
     //convert the user input to a number, parseInt returns NaN if the input is not a number, 10 is the radix,
     guess = parseInt(userInput, 10);
     if (isNaN(guess)) {
-        feedback.textContent = "Sie haben KEINE Zahl eingegeben!";
+        feedback.textContent = "Du hast KEINE Zahl eingegeben!";
         feedback.classList.remove(...feedback.classList);
         feedback.classList.add("error")
         return;
@@ -61,6 +72,7 @@ function updateCounter(){
       gameOverDiv.textContent = "GAME OVER";
       gameOverDiv.classList.remove(...gameOverDiv.classList)
       gameOverDiv.classList.add("active")
+      counterSpan.innerText = 0;
     }
 
 
@@ -70,8 +82,9 @@ function updateCounter(){
     feedback.classList.remove(...feedback.classList);
     if (userGuess == targetNumber) {
         feedback.textContent = "";
-        result.textContent = "Herzlichen Glückwunsch! Du hast die richtige Zahl erraten!";
-    } else {
+        feedback.textContent = "Herzlichen Glückwunsch! Du hast die richtige Zahl erraten!";
+        feedback.classList.add('win')
+      } else {
         --clickCount
         updateCounter()
         if (userGuess > targetNumber) {
@@ -92,32 +105,44 @@ function updateCounter(){
             }
         }
     }
+    if (clickCount < 1){
+    feedback.textContent = "Du hast keine Versuche mehr. Bitte starte das Spiel neu.";
+    feedback.classList.add("error")
+  
+  } 
 }
   
-
-  function resetButton() {
-    // Reset the input field
-    const userInput = document.getElementById("userInput");
-    userInput.value = "";
-
-    // Reset the feedback and result messages
-    const feedback = document.getElementById("feedback");
-    feedback.textContent = "Ihr Feedback erscheint hier.";
-    feedback.style.backgroundColor = "";
-    feedback.style.color = "";
-
-    const result = document.getElementById("result");
-    result.textContent = "";
-
-    // Reset the attempts counter
-    clickCount = 7; // Reset clickCount to its initial value
-    const counterSpan = document.getElementById("counter");
-    counterSpan.innerText = clickCount;
-
-    // Clear the "GAME OVER" message
-    const gameOver = document.getElementById("gameOver");
-    gameOver.textContent = "";
-    gameOver.style.backgroundColor = "";
-    gameOver.style.color = "";
+    function resetButton() {
+      // Reset the input field
+      const userInput = document.getElementById("userInput");
+      userInput.value = "";
+  
+      // Reset the feedback and result messages
+      const feedback = document.getElementById("feedback");
+      feedback.textContent = "Dein Feedback erscheint hier.";
+      feedback.style.backgroundColor = ""; // Remove background color
+      feedback.style.color = ""; // Remove text color
+      feedback.style.padding = ""; // Remove padding
+      feedback.style.fontWeight = ""; // Remove font weight
+      feedback.classList.remove(...feedback.classList); // Remove all classes
+  
+      const result = document.getElementById("result");
+      result.textContent = "";
+  
+      // Reset the attempts counter
+      clickCount = 7; // Reset clickCount to its initial value
+      const counterSpan = document.getElementById("counter");
+      counterSpan.innerText = clickCount;
+  
+      // Clear the "GAME OVER" message
+      const gameOver = document.getElementById("gameOver");
+      gameOver.textContent = "";
+      gameOver.style.backgroundColor = ""; // Remove background color
+      gameOver.style.color = ""; // Remove text color
+      gameOver.style.padding = ""; // Remove padding
+      gameOver.style.fontWeight = ""; // Remove font weight
+      gameOver.classList.remove(...gameOver.classList); // Remove all classes
   }
+
+
 
