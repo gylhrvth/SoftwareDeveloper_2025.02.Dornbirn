@@ -17,6 +17,7 @@
     <h1 class="textColor01">Lernerfolgsbuch: JavaScript Functions Journal</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day27">DI 25/03/25</a>: JavaScript (Strings)</h3>
     <h3 class="textColor01">▷ <a href="#day26">MO 24/03/25</a>: JavaScript (Strings)</h3>
     <h3 class="textColor01">▷ <a href="#day25">FR 21/03/25</a>: JavaScript (Functions)</h3>
     <h3 class="textColor01">▷ <a href="#day24">DO 20/03/25</a>: JavaScript (Functions)</h3>
@@ -27,6 +28,17 @@
     </html>
 
     </div>
+
+    <h2 id="day27">Dienstag, 25. März 2025</h2>
+
+    <h3 class="textColor01">JavaScript (Strings)</h3>
+
+    <h4>‼️➡️ Aufgaben</h4>
+    <ul>
+        <li><h4><a href="./JS Strings/Aufgaben/sampleCode.html">Strings: Sample Code</a></h4></li>
+        <li><h4><a href="">Strings: Text Analyse</a></h4></li>
+        <li><h4><a href="">Strings: Text Analyse (v2.0)</a></h4></li>
+    </ul>
 
     <br>
 
@@ -55,7 +67,15 @@
             <li><p>Das sind spezielle Objekte, die um einfache Werte gebaut werden, damit man zusätzliche Funktionen oder Methoden auf ihnen anwenden kann.”</p></li>
         </ul>
         <p>Das passiert automatisch in JavaScript. Wenn man beispielsweise eine Methode wie .toUpperCase() auf einen primitiven String anwendet, wird im Hintergrund ein Wrapper-Objekt für den String erstellt, um diese Methode auszuführen.</p>
-        <li class="textColor02"><strong>Was macht "text".length?</strong></li>
+        
+        <li class="textColor02"><strong>Index vs Position</strong></li>
+        <ul>
+            <li><p>Index starts at 0 (0-based). The second character is at index 1, and so on.</p></li>
+            <li><p>Position in methods like endsWith() is 1-based, and it refers to the count of characters, not the index itself. For example, if the length is 14, it refers to position 14 (which is index 13 in a 0-based index system).</p></li>
+        
+        </ul>
+        
+            <li class="textColor02"><strong>Was macht "text".length?</strong></li>
         <p>Die Eigenschaft .length gibt die Länge eines Strings zurück, also die Anzahl der Zeichen, die der String enthält.</p>
         <div class="code-sample">  
             <code>
@@ -155,12 +175,12 @@
                 string.lastIndexOf(searchValue, startIndex);
             </code>
         </div>
-        <p>startIndex (optional) ist der Index, ab dem die Suche rückwärts beginnen soll. Der Standardwert ist der letzte Index des Strings. Wenn man eine Zahl übergibst, wird die Suche ab diesem Punkt rückwärts durchgeführt.</p>
+        <p>startIndex (optional) ist der Index, ab dem die Suche rückwärts beginnen soll. Der Standardwert ist der letzte Index des Strings. Wenn man eine Zahl übergibt, wird die Suche ab diesem Punkt rückwärts durchgeführt.</p>
         <p>Beispiel:</p>
         <div class="code-sample">  
             <code>
             const str = "Hallo Welt, Hallo!";
-            console.log(str.lastIndexOf("Hallo"));  // Gibt 12 zurück, weil "Hallo" zuletzt an Index 13 vorkommt
+            console.log(str.lastIndexOf("Hallo"));  // Gibt 12 zurück, weil "Hallo" zuletzt an Index 12 vorkommt
             console.log(str.lastIndexOf("Welt"));   // Gibt 6 zurück, weil "Welt" zuletzt an Index 6 vorkommt
             console.log(str.lastIndexOf("Test"));   // Gibt -1 zurück, weil "Test" nicht im String vorkommt
             </code>
@@ -168,12 +188,270 @@
         <br>
 
         <li class="textColor02"><strong>Was macht die Funktion includes()?</strong></li>
+        <p> Sie prüft, ob ein bestimmtes Element (bei Arrays) oder eine bestimmte Zeichenfolge (bei Strings) enthalten ist, und gibt true oder false zurück.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+            const text = "Hallo Welt";
+
+            console.log(text.includes("Welt")); // true
+            console.log(text.includes("welt")); // false (Groß- und Kleinschreib)
+            </code>
+        </div>
+
+        <p>Man kann optional einen Startindex angeben:</p>
+
+        <div class="code-sample">  
+            <code>
+            const zahlen = [1, 2, 3, 4, 5];
+
+            console.log(zahlen.includes(3, 3)); // false (sucht erst ab Index 3)
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion startsWith()?</strong></li>
+        <p>Sie prüft, ob eine Zeichenkette mit einer bestimmten Zeichenfolge beginnt, und gibt true oder false zurück.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+            const text = "JavaScript ist großartig";
+
+            console.log(text.startsWith("JavaScript")); // true
+            console.log(text.startsWith("Script"));     // false
+            console.log(text.startsWith("ist", 11));    // true (Start ab Index 11)
+            </code>
+        </div>
+
+        <p>Sie unterscheidet nicht direkt zwischen einzelnen Buchstaben und ganzen Wörtern:</p>
+        <div class="code-sample">  
+            <code>
+            const text = "Hallo Welt";
+            console.log(text.startsWith("H")); // true
+            console.log(text.startsWith("Hal")); // true
+            console.log(text.startsWith("W")); // false
+            </code>
+        </div>
+
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion endsWith()?</strong></li>
+        <p>Sie prüft, ob eine Zeichenkette mit einer bestimmten Zeichenfolge endet, und gibt true oder false zurück.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "JavaScript ist großartig";
+
+                console.log(text.endsWith("ist", 14)); // true
+            </code>
+        </div>
+
+        <p>Erklärung: </p>
+        <div class="code-sample">  
+            <code>
+                J  a  v  a  S  c  r  i  p  t      i  s  t        g  r  o  ß  a  r  t  i  g
+                0  1  2  3  4  5  6  7  8  9  10  11 12 13  14  15 16 17 18 19 20 21 22 23
+            </code>
+        </div>
+        <p>Copilot says: When you use the endsWith() method with the second parameter (e.g., 14), it considers the first 14 characters of the string, starting from index 0 up to index 13. Since "JavaScript ist" does indeed end with "ist", the result is true.</p>
+        <p>Weitere Erklärung: At position 14 (index 13) there is only the character "t". However, the endsWith() method does not check if the substring starts at position 14. Instead, it checks if the substring ends at position 14.
+           Here, 14 is the length (position), meaning it is saying “only consider the first 14 characters of the string,” but the character at index 14 (empty space) itself is not included in the check.
+        <p>Position 14 is not the same as index 14!!</p>
+        </p>  
+
+        <p>Andere Beispiele:</p>
+
+        <div class="code-sample">  
+            <code>
+            const text = "JavaScript ist großartig";
+
+            console.log(text.endsWith("ist", 14)); // true (it refers to position 14 -> t)
+
+            console.log(text.charAt(13)); // t (it refers to index 13)
+
+            console.log(text.charAt(14)); // " " (It refers to index 14, the space between ist und großartig)
+
+            console.log(text.length); // 24 // (It refers to the length starting by 1, also counting spaces.)
+
+            console.log(text.indexOf("ist")); // 11 (Starting from index 0, and counting spaces, it refers to index 11 -> i)
+
+            </code>
+        </div>
+
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion substring()?</strong></li>
+        <p>The substring() method in JavaScript is used to extract a portion of a string based on the specified start and end indices.</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+            <code>
+                string.substring(indexStart, indexEnd);
+            </code>
+        </div>
+        <p>The indexStart is inclusive (it includes the character at that position).</p>
+        <p>The indexEnd is exclusive (it excludes the character at that position).</p>
+
         
-        <!-- <li class="textColor02"><strong>Was sind die Vor- und Nachteile, rekursive Funktionen zu verwenden?</strong></li> -->
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const str = "JavaScript";
+                console.log(str.substring(0, 4));  // "Java"
+            </code>
+        </div>
+        <p>Erklärung: </p>
+        <ul>
+        <p>Erklärung: </p>
+            <li><p>indexStart = 0: Starts at the first character, "J".</p></li>
+            <li><p>indexEnd = 4: Ends before index 4, which means it includes "Java" (but not "S").</p></li>
+        </ul> 
+        <p>So, "JavaScript".substring(0, 4) gives "Java" because index 0 to index 3 are included, but index 4 is excluded.</p>
+
+        <li class="textColor02"><strong>Was macht die Funktion toUpperCase()?</strong></li>
+        <p>Die Methode toUpperCase() in JavaScript wird verwendet, um alle Buchstaben eines Strings in Großbuchstaben umzuwandeln.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "hello world";
+                console.log(text.toUpperCase());  // "HELLO WORLD"
+            </code>
+        </div>
+        <br>
+        
+        <li class="textColor02"><strong>Was macht die Funktion toLowerCase()?</strong></li>
+        <p>Die Methode toLowerCase() in JavaScript wird verwendet, um alle Buchstaben eines Strings in Kleinbuchstaben umzuwandeln.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "HELLO WORLD";
+                console.log(text.toLowerCase());  // "hello world"
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion trim()?</strong></li>
+        <p>Sie entfernt alle leerzeichen (Whitespace-Zeichen) vom Anfang und Ende eines Strings.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "   Hello World!   ";
+                console.log(text.trim());  // "Hello World!"
+            </code>
+        </div>
+
+        <p>trim() verändert den Original-String nicht, sondern gibt einen neuen String zurück.</p>
+        <p>Nur Leerzeichen, Tabs und Zeilenumbrüche am Anfang und Ende des Strings werden entfernt. Leerzeichen innerhalb des Strings bleiben erhalten.</p>
+
+
+        <li class="textColor02"><strong>Was ist eine Regular Expression (RegExp)? </strong></li>
+        <p>A RegExp (short for Regular Expression) is a powerful pattern-matching tool used to search, match, and manipulate strings based on specific patterns. Regular expressions are sequences of characters that form a search pattern, which can be used for tasks like searching, replacing, or validating strings.</p>
+        <p>Syntax:</p>
+
+        <div class="code-sample">  
+            <code>
+                // Using literal syntax -> (between slashes /pattern/)
+                const regex = /hello/;     
+                
+                // Using RegExp constructor -> (new RegExp('pattern'))
+                const regex2 = new RegExp('hello');
+            </code>
+        </div>
+
+        <p>Regular Expressions can be combined with flags for advanced control. They are added after the closing slash of the regular expression. Some of them are:</p>
+        <ul>
+            <li>g (Global search): Finds all matches in the string, not just the first match.</li>
+            <li>i (Case-insensitive search): Makes the regular expression case-insensitive. It matches letters regardless of whether they are uppercase or lowercase.</li>
+            <li>Flags can be combined: For example, you could use both g (global) and i (case-insensitive) to find all occurrences of a word, regardless of case.</li>
+        </ul>
+        <br>
+
+        <div class="code-sample">  
+            <code>
+                const regex = /hello/gi;
+            </code>
+        </div>
+        
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion replace()?</strong></li>
+        <p>Die Methode replace() in JavaScript wird verwendet, um bestimmte Teile eines Strings zu ersetzen.</p>
+
+        <p>-> Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "Hello World";
+                console.log(text.replace("World", "JavaScript"));  // "Hello JavaScript"
+            </code>
+        </div>
+        <p>In diesem Beispiel wird das erste Vorkommen von "World" durch "JavaScript" ersetzt.</p>
+
+        <p>-> Beispiel mit Regulärem Ausdruck (globales Ersetzen):</p>
+        <div class="code-sample">  
+            <code>
+                const text = "apple, orange, apple, banana";
+                console.log(text.replace(/apple/g, "kiwi"));  // "kiwi, orange, kiwi, banana"
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion replaceAll()?</strong></li>
+        <p>Die Methode replaceAll() in JavaScript wird verwendet, um alle Vorkommen eines bestimmten Musters (String oder regulärer Ausdruck) in einem String zu ersetzen.</p>
     
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const text = "apple orange apple banana apple";
+                const newText = text.replaceAll("apple", "kiwi");
+                console.log(newText);  // "kiwi orange kiwi banana kiwi"
+            </code>
+        </div>
+
+        <p>Unterschiede zu replace():</p>
+        <ul>
+            <li><p>replaceAll() ersetzt alle Vorkommen eines Musters im gesamten String.</p></li>
+            <li><p>replace() ersetzt nur das erste Vorkommen eines Musters (es sei denn, ein regulärer Ausdruck mit dem g-Flag wird verwendet).</p></li>
+          
+        </ul>
+
+        <p>Die Methode replaceAll() ist eine praktischere Methode im Vergleich zu replace(), wenn man sicherstellen möchte, dass alle Vorkommen ersetzt werden, ohne einen globalen regulären Ausdruck zu verwenden.</p>
+    
+        <li class="textColor02"><strong>Was macht die Funktion split()?</strong></li>
+        <p>Die Methode split() in JavaScript wird verwendet, um einen String in ein Array von Teilstrings zu zerlegen, basierend auf einem angegebenen Trennzeichen.</p>
+
+        <p>-> Beispiel 1: Aufteilen eines Strings anhand eines Trennzeichens</p>
+        <div class="code-sample">  
+            <code>
+                const text = "apple,banana,cherry"; -> String
+                const fruits = text.split(","); -> Methode
+                console.log(fruits);  // ["apple", "banana", "cherry"] -> Array
+            </code>
+        </div>
+        <p>Der String "apple,banana,cherry" wird bei jedem Komma (,) aufgeteilt, und ein Array wird mit den einzelnen Frucht-Namen erstellt.</p>
+       
+        <p>-> Beispiel 2: Aufteilen anhand eines Leerzeichens</p>
+        <div class="code-sample">  
+            <code>
+                const sentence = "Hello World JavaScript"; -> String
+                const words = sentence.split(" "); -> Methode
+                console.log(words);  // ["Hello", "World", "JavaScript"] -> Array
+            </code>
+        </div>
+        <p>Hier wird der String "Hello World JavaScript" in ein Array von Wörtern aufgeteilt, wobei jedes Leerzeichen als Trennzeichen dient.</p>
+
+        <p>Beispiel 3: Begrenzung der Anzahl der Teilstrings</p>
+        <div class="code-sample">  
+            <code>
+                const text = "apple,banana,cherry,grape";
+                const fruits = text.split(",", 2);
+                console.log(fruits);  // ["apple", "banana"]
+            </code>
+        </div>
+        <p>In diesem Fall wird der String nur in zwei Teile aufgeteilt, auch wenn mehr Trennzeichen im String vorhanden sind.</p>
+
     </ul>
 
     <br>
+    
     <hr>
 
     <h2 id="day25">Freitag, 21. März 2025</h2>
