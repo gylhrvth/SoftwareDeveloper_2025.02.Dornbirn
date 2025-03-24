@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+<body>
+
+</body>
+
+<script>
+    // Array
+    printH(1, 'create an array')
+
+    let fruits = ['banane', 'apple', 'orange', 'pineapples'];
+    let fruits2 = new Array('banana', 'apple', 'orange', 'pineapples');
+
+    printLn(fruits[2]);                                                 // acces value at index 2nd
+   
+    fruits[0] = 'pear';
+    printLn(fruits);
+
+    for (let i = 0; i < fruits.length; i++){
+        printLn(fruits[i]);
+    }
+
+    // Array comon methods
+    printH(2, 'array common methods')
+
+    printLn('to string', fruits.toString());
+    printLn(fruits.join(' * '));
+    printLn(fruits.pop(), fruits);                                      // removed last Item
+    printLn(fruits.push('blackberries'), fruits);                       // appends
+    printLn(fruits[3]);
+    printLn(fruits[4]);
+    
+    fruits[fruits.length] = 'new fruit';                                // sama push
+    printLn(fruits)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
