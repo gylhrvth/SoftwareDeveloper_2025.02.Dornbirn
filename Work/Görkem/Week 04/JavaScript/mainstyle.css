@@ -89,7 +89,8 @@ p {
 
 code {
     font-family: 'Courier New', Courier, monospace; 
-    display: block; 
+    display: block;
+    color: #333;
     white-space: pre; 
     word-wrap: break-word;
 }
@@ -148,3 +149,4 @@ code {
   body > span{
     font-family: "Red Hat Mono", monospace;
 }
+
