@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
     <script src="../../../../../Kurs/common.js"></script>
-    <title>Text Analyse (v.01)</title>
+    <title>Text Analyse_Gyula(v.02)</title>
 </head>
 <body>
     <script>
 
         printH(1, "Text-Analyse");
+
+        printH(3, "Cleaned Text");
 
         printHr();
 
@@ -40,65 +42,13 @@
         // + → Ensures it replaces one or more occurrences at once.
         // g → Global flag to replace all occurrences.
 
-        // Split by Words: -------------------------------------------------------------------
-
-        const splitWords = textClean.split(" ");
-
-        // Find shortest word -> With split() Methode -------------------------------------------------------------------
-
-        findShortestWord(splitWords)
-
-        function findShortestWord(words){
-
-            let shortestWord = words[0];
-
-            for (let i = 0; i < words.length; i++){
-                if(words[i].length < shortestWord.length){
-                    shortestWord = words[i];
-                }
-            }
-            return shortestWord;
-        }
-
-        //----------------------------------------------------------------------------------
-
-        printH(2, "Base Text:")
-        printLn(text);
-        printHr();
-        printH(2, "Cleaning the Text:")
-        print(textClean);
-        printLn();
-        printHr();
-        printH(3, "Count and identify Words -> With split() Methode ")
-        print(splitWords);
-        printHr();
-        
-         // Find 1st, 5th, 20th word -----------------------------------------------------------------
-        
-         printH(3, "1st word:")
-        print(splitWords[0]);
-
-        printH(3, "5th word:")
-        print(splitWords[4]);
-        
-        printH(3, "20th word:")
-        print(splitWords[19]);
-
-        printHr();
-
-        // Count total words -----------------------------------------------------------------
-
-        print("Total number of words: " + splitWords.length);
-
-        printHr();
-
-    
-        //Count and identify Words -> With indexOf()
+        printLn(textClean)
+        printHr()
 
         printH(3, "Count and identify Words -> With indexOf() Method / without split() Method");
 
         textAnalyse(textClean)
-
+   
         //This function searches where is the first space after the beginning letter of a word. (Ending of the word)
         //Then adds one position to the empty spaces, which equals to the first letter of the next word. (Beginning of the word)
         // This way, words can be counted and identified.  
@@ -135,23 +85,15 @@
 
         }
 
-       
+
+
+
+
+
+
+
 
         
-
-      
-        // Hints:
-
-        /* Use of the charAT function to detect letters.
-
-        Use of indexOf() to see when a letter appears
-        
-        To recognize words, we can create a while loop: It itinerates through content from space to space. Between spaces there are words.
-
-        It makes sense to clean the text before the Analysis starts. We can eleiminate f.e this symbols [] and the content inside, with the replace function. */
-        
-        
-
     </script>
     
 </body>
