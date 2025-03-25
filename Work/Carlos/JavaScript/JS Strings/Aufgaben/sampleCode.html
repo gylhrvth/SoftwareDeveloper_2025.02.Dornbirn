@@ -12,10 +12,12 @@
     <script>
 
     printH(1, "Sample Code Analyse")
-    printH(4, "Wähle 7 nützliche JS String Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.");
+    printH(4, "-> Wähle 7 nützliche JS String Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.");
+    
 
-    printH(4, "Base Text:");
-    printH(4, "Hätte Hänschen Hans Holz hacken hören, hätte Hänschen Hans Holz hacken geholfen");
+    printH(4, "-> Base Text: Hätte Hänschen Hans Holz hacken hören, hätte Hänschen Hans Holz hacken geholfen");
+
+    printHr();
     let spruch = "Hätte Hänschen Hans Holz hacken hören, hätte Hänschen Hans Holz hacken geholfen";
 
     let spruchLength = spruch.length;
@@ -29,19 +31,35 @@
 
     printH(5, "01. Methode .length: " + spruchLength);
 
+    printHr();
+
     printH(5, "02. Methode .toUpperCase: " + spruchUpperCase);
+
+    printHr();
 
     printH(5, "03. Methode .endsWith('Holz', 24): " + spruchEnds);
 
+    printHr();
+
     printH(5, "04. Methode .split(' '): " + spruchSplit);
+
+    printHr();
 
     printH(5, "05. Methode .replace(/Hans/g, 'Joseph'): " + spruchReplace);
 
+    printHr();
+
     printH(5, "06. Methode .substring(0, 38): " + spruchSubstring);
+
+    printHr();
 
     printH(5, "07A. Methode .includes(54, Hans): " + spruchIncludes);
 
+    printHr();
+
     printH(5, "07B. Methode .includes(55, Hans): " + spruchIncludesNot);
+
+    printHr();
 
     </script>
     

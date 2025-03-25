@@ -373,6 +373,195 @@
         
         <br>
 
+        <li class="textColor02"><strong>Welche Eigenschaften definieren ein Pattern innerhalb einer Regulären Expression?</strong></li>
+        <p>Ein Pattern in einer regulären Expression hat mehrere Eigenschaften, die bestimmen, wie die Suche und Ersetzung funktioniert:</p>
+        <ul>
+            <li><p>Zeichenklassen (Character Classes): Definiert eine Menge von Zeichen, die an einer bestimmten Stelle erlaubt sind.</p></li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Bedeutung</th>
+                        <th>Beispiel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[abc]</td>
+                        <td>a, b oder c</td>
+                        <td>"Hallo" → Kein Treffer, "Cabrio" → Treffer</td>
+                    </tr>
+                    <tr>
+                        <td>[a-z]</td>
+                        <td>Kleinbuchstaben a bis z</td>
+                        <td>"Hallo" → Treffer</td>
+                    </tr>
+                    <tr>
+                        <td>[0-9]</td>
+                        <td>Ziffern 0 bis 9</td>
+                        <td>"Preis: 99€" → Treffer: "9"</td>
+                    </tr>
+                    <tr>
+                        <td>[^a-z]</td>
+                        <td>Nicht Kleinbuchstaben a-z</td>
+                        <td>"1A" → Treffer: "1"</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    let result = "Haus".match(/[aeiou]/g);
+                    console.log(result); // ["a", "u"]
+                </code>
+            </div>
+            <li><p>Quantifizierer (Repetition Operators): Steuert, wie oft ein Zeichen oder eine Gruppe vorkommen darf.</p></li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Bedeutung</th>
+                        <th>Beispiel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>a*</td>
+                        <td>0 oder mehr a</td>
+                        <td>"Hallo" → Treffer: "", "Haaaaaallo" → Treffer: "aaaaaa"</td>
+                    </tr>
+                    <tr>
+                        <td>a+</td>
+                        <td>1 oder mehr a</td>
+                        <td>"Hallo" → Treffer: "a"</td>
+                    </tr>
+                    <tr>
+                        <td>a?</td>
+                        <td>0 oder 1 a</td>
+                        <td>"Hallo" → Treffer: "a" oder ""</td>
+                    </tr>
+                    <tr>
+                        <td>a{3}</td>
+                        <td>genau 3 a</td>
+                        <td>"Haaaallo" → Treffer: "aaa"</td>
+                    </tr>
+                    <tr>
+                        <td>a{2,4}</td>
+                        <td>2 bis 4 a</td>
+                        <td>"Haaaaallo" → Treffer: "aaaa"</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    let result = "baaaall".match(/a{2,3}/);
+                    console.log(result); // ["aaa"]
+                </code>
+            </div>
+            
+            
+            
+            <li><p>Sonderzeichen: Sogenannte vorkonfigurierte Zeichenklassen</p></li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Bedeutung</th>
+                        <th>Beispiel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\d</td>
+                        <td>Ziffer (0-9)</td>
+                        <td>"Preis: 20€" → Treffer: "2"</td>
+                    </tr>
+                    <tr>
+                        <td>\w</td>
+                        <td>Buchstabe, Zahl oder _</td>
+                        <td>"Test_123" → Treffer: "T"</td>
+                    </tr>
+                    <tr>
+                        <td>\s</td>
+                        <td>Leerzeichen, Tab, Zeilenumbruch</td>
+                        <td>"Hallo Welt" → Treffer: " "</td>
+                    </tr>
+                    <tr>
+                        <td>.</td>
+                        <td>Beliebiges Zeichen außer Zeilenumbruch</td>
+                        <td>"Hallo!" → Treffer: "H"</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Important!: It stops when it founds the first match. That's if I don't write * or + als extra parameter.</p>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    let result = "abc123".match(/\d+/);
+                    console.log(result); // ["123"]
+                </code>
+            </div>
+            <li><p>Anker (^, $): Diese legen fest, wo ein Pattern im String vorkommen soll.</p></li>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Bedeutung</th>
+                        <th>Beispiel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>^Hallo</td>
+                        <td>Muss am Anfang des Textes stehen</td>
+                        <td>"Hallo Welt" → Treffer: "Hallo"</td>
+                    </tr>
+                    <tr>
+                        <td>Welt!$</td>
+                        <td>Muss am Ende des Textes stehen</td>
+                        <td>"Hallo Welt!" → Treffer: "Welt!"</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    let result = "Hallo Welt".match(/^Hallo/);
+                    console.log(result); // ["Hallo"]
+                </code>
+            </div>
+            
+            <li><p>Kombination von Pattern für komplexe Suchen:</p></li>
+            <p>Angenommen, man möchte eine deutsche Telefonnummer erkennen (+49 123 4567890):</p>
+            <div class="code-sample">  
+                <code>
+                    let pattern = /\+49\s\d{3}\s\d{6,7}/;
+                    let text = "Meine Nummer ist +49 123 4567890.";
+                    console.log(text.match(pattern)); 
+                    // Output: ["+49 123 4567890"]
+                </code>
+            </div>
+
+            <p>Erklärung:</p>
+            <ol>
+                <li>\+: Der reguläre Ausdruck findet das pluszeichen (+) im Eingabetext.</li>
+                <li>49: Es wird nach der Ländervorwahl 49 gesucht und diese wird im Text gefunden.</li>
+                <li>\s: Das Leerzeichen nach der Ländervorwahl wird gefunden.</li>
+                <li>\d{3}: Es werden 3 Ziffern für die Vorwahl gefunden, hier ist das 123.</li>
+                <li>\s: Ein weiteres Leerzeichen zwischen der Vorwahl und der Rufnummer wird gefunden.</li>
+                <li>\d{6,7}: Es werden 6 bis 7 Ziffern für die Rufnummer gefunden, hier ist das 4567890.</li>
+            
+            
+            </ol>
+            <br>
+        </ul>
+
+
+
+
+
+
         <li class="textColor02"><strong>Was macht die Funktion replace()?</strong></li>
         <p>Die Methode replace() in JavaScript wird verwendet, um bestimmte Teile eines Strings zu ersetzen.</p>
 
