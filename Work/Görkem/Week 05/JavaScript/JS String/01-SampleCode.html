@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Code (Strings)</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    printH(1, 'Sample Code Analyse')
+    printH(2, '👉 Wähle 7 nützliche JS String Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.')
+
+    printH(3, '👉 Base Text: Programmieren macht Spaß und ist sehr kreativ, Programmieren fördert Kreativität und logisches Denken')
+    printHr()
+
+    let text = 'Programmieren macht Spaß und ist sehr kreativ, Programmieren fördert Kreativität und logisches Denken';
+
+    let textLength = text.length;
+    let textUpperCase = text.toUpperCase();
+    let textEnds = (text.endsWith('logisches Denken'));
+    let textSplit = (text.split(" "));
+    let textReplace = (text.replace(/Programmieren/g, "Coding"));
+    let textIncludes = (text.includes("lernen"));
+
+
+
+
+
+
+
+
+
+
+
+    printH(3, '1. Methode .length: ' +  textLength);
+    printHr()
+
+    printH(3, "2. Methode .toUpperCase: " + textUpperCase);
+    printHr()
+
+    printH(3, "3. Methode .endsWith('logisches Denken'): " + textEnds);
+    printHr()
+
+    printH(3, "4. Methode .split('  '): " + textSplit);
+    printHr()
+
+    printH(3, "5. Methode .replace(/Programmieren/g, 'Coding'): " + textReplace)
+    prntHr()
+
+    printH(3, "6. Methode .includes(lernen): " + textIncludes);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

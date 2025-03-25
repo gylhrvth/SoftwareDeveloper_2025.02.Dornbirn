@@ -1,12 +1,13 @@
 
 body {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-family: Arial, sans-serif;
     background-color: #fefefe; 
     color: #333;
     padding: 50px;
     margin: 0;
     box-sizing: border-box;
+    word-spacing: 2px;
 }
 
 .textColor01 {
@@ -149,4 +150,6 @@ code {
   body > span{
     font-family: "Red Hat Mono", monospace;
 }
+
+
 
