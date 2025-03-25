@@ -29,13 +29,8 @@
     let textSplit = (text.split(" "));
     let textReplace = (text.replace(/Programmieren/g, "Coding"));
     let textIncludes = (text.includes("lernen"));
-
-
-
-
-
-
-
+    let textIncludes2 = (text.includes("Spaß"));
+    let textSubstring = (text.substring(0, 13));
 
 
 
@@ -53,9 +48,15 @@
     printHr()
 
     printH(3, "5. Methode .replace(/Programmieren/g, 'Coding'): " + textReplace)
-    prntHr()
+    printHr()
 
     printH(3, "6. Methode .includes(lernen): " + textIncludes);
+    printHr()
+
+    printH(3, "6A. Methode .includes(spaß): " + textIncludes2);
+    printHr()
+
+    printH(3, "7. Methode .substring(0, 13): " + textSubstring);
 
 
 
