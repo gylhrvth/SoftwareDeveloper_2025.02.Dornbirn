@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+    
+<style>
+    body {
+        color: lightgreen;
+        background-color: #111;
+        font-family: "Reddit Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+    }
+    div.centered {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
+    p{
+        font-size: 4vw;
+        margin: 1rem 4rem;
+    }
+
+    .type {
+        color:#0000;
+        background:
+            linear-gradient(-90deg,#00DFFC 5px,#0000 0) 10px 0,
+            linear-gradient(#00DFFC 0 0) 0 0;
+        background-size:calc(var(--n)*1ch*0) 200%;
+        -webkit-background-clip:padding-box,text;
+        background-clip:padding-box,text;
+        background-repeat:no-repeat;
+        animation: 
+            b .7s infinite steps(1),   
+            t calc(var(--n)*.2s) steps(var(--n)) forwards;
+        animation-delay: 4s;
+    }
+    @keyframes t{
+        from {background-size:0 200%}
+        to { background-size:calc(var(--n)*1ch) 200%;}
+    }
+    @keyframes b{
+        50% {background-position:0 -100%,0 0}
+    }
+
+</style>
+</head>
+<body>
+    <div class="centered">
+        <p class="q">Why do Javascript developers prefer dark mode?</p>
+        <p class="a">
+            <span class="type" style="--n: 115;">
+                Because light attracts bugs! (and it's enough with the illogical parts of the language)
+            </span>
+        </p>
+    </div>
+</body>
+</html>
