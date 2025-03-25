@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Strings</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="57114583-ca29-4415-9fc5-a6fc224a0258" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Strings</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@24. März 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/verified_gray.svg" style="width:14px;height:14px;display:block"/></span>Assignment</th><td><a href="https://www.notion.so/Text-Analyse-4f821f2d0e19431d99290cd10a1b96ea?pvs=21"><img class="icon" src="https://www.notion.so/icons/arrow-right-basic_gray.svg"/>Text Analyse</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/JS-Basics-1b5857bd249d805eb55ae774bdb6fde5?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>JS Basics</a>, <a href="https://www.notion.so/Funktionen-1ba857bd249d8022baaadf23b78a597d?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Funktionen</a>, <a href="https://www.notion.so/Syntax-Operatoren-Variablen-Schleifen-1b5857bd249d800ca318c0d319c728d3?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Syntax/Operatoren/Variablen/Schleifen</a>, <a href="https://www.notion.so/Datentypen-1ba857bd249d8011a8d1ec2a95af9a31?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Datentypen</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1c0857bd-249d-812c-9e40-e2b0c96d8e1b" class="column-list"><div id="1c0857bd-249d-814c-b10c-e82f3a58c5a3" style="width:50%" class="column"><h3 id="dd318c21-ebb3-4bf3-ba89-29b1ce2dc10d" class=""><strong>Was ist ein String?</strong></h3><p id="e4873120-0a41-40e3-bf53-fa91f25dbc98" class="">Ein String ist eine Folge von Zeichen, die als Text interpretiert wird. In JavaScript wird ein String durch Anführungszeichen (einfach oder doppelt) definiert.</p><h3 id="51ced434-e664-4b0b-9fcd-8532586d242b" class=""><strong>Was ist der Unterschied zwischen einem nativen Typ und einem Wrapper-Objekt?</strong></h3><p id="786c2362-5a50-4f94-80d4-bd5fccb962ed" class="">Ein nativer Typ (Primitive) ist ein grundlegender Datentyp, der direkt von der Sprache unterstützt wird, wie z.B. <code>string</code>, <code>number</code>, <code>boolean</code>. Ein Wrapper-Objekt ist ein Objekt, das einen nativen Typ umhüllt und zusätzliche Methoden und Eigenschaften bereitstellt, z.B. <code>String</code>, <code>Number</code>, <code>Boolean</code>.</p><h3 id="fdee45fe-a3c9-49d7-9811-951915c91bb1" class=""><strong>Was macht </strong><code><strong>&quot;text&quot;.length</strong></code><strong>?</strong></h3><p id="477ad064-e30a-4ac3-94cf-b52d48781461" class="">Die Eigenschaft <code>length</code> gibt die Anzahl der Zeichen in einem String zurück. Für <code>&quot;text&quot;</code> wäre das <code>4</code>.</p><h3 id="108fec66-22a1-4851-9065-c21d003fac18" class=""><strong>Was macht die Funktion </strong><code><strong>concat()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="49c19efd-8ac6-4345-8a8d-a8be18b9a995" class="">Die Funktion <code>concat()</code> verbindet zwei oder mehr Strings und gibt einen neuen String zurück. Parameter sind die Strings, die verbunden werden sollen.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="50782de0-db44-4980-93ec-45ab94972f68" class="code"><code class="language-JavaScript">let result = &quot;Hello&quot;.concat(&quot; &quot;, &quot;World&quot;); // &quot;Hello World&quot;</code></pre><h3 id="69e07872-f80e-43a7-a575-6b5518cc5215" class=""><strong>Was macht die Funktion </strong><code><strong>repeat()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="6c0ddfbb-0105-49f9-9a8d-6bbc363ed89d" class="">Die Funktion <code>repeat()</code> gibt einen neuen String zurück, der mit der angegebenen Anzahl von Kopien des ursprünglichen Strings gefüllt ist. Der Parameter ist die Anzahl der Wiederholungen.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3cde6b37-0376-4156-879f-7b3b7ab5799f" class="code"><code class="language-JavaScript">let result = &quot;abc&quot;.repeat(3); // &quot;abcabcabc&quot;</code></pre><h3 id="db952b12-b935-4717-b9f6-85a45aae65cf" class=""><strong>Was macht die Funktion </strong><code><strong>charAt()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="01d021d2-b671-4d51-933d-573eed8c113e" class="">Die Funktion <code>charAt()</code> gibt das Zeichen an der angegebenen Position im String zurück. Der Parameter ist der Index (nullbasiert).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a486af6-0ff7-47db-ba62-11e4edb10d54" class="code"><code class="language-JavaScript">let result = &quot;hello&quot;.charAt(1); // &quot;e&quot;</code></pre><h3 id="9b52437f-762a-4e51-b87b-fb28301ad202" class=""><strong>Was macht die Funktion </strong><code><strong>indexOf()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="dccddc13-21e1-40b7-afe5-10e3f44cdce6" class="">Die Funktion <code>indexOf()</code> gibt den Index des ersten Vorkommens eines angegebenen Werts im String zurück. Parameter sind der zu suchende Wert und optional der Startindex.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="73789f96-9e6e-4cdf-a0cf-4053e4131c2e" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.indexOf(&quot;o&quot;); // 4</code></pre><h3 id="737a8f04-fdda-4a50-a9f7-42fa63ccfad7" class=""><strong>Was macht die Funktion </strong><code><strong>lastIndexOf()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="9cc82a05-2996-4533-a5a3-6950fd443e3a" class="">Die Funktion <code>lastIndexOf()</code> gibt den Index des letzten Vorkommens eines angegebenen Werts im String zurück. Parameter sind der zu suchende Wert und optional der Startindex.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="53a7ae0d-43aa-4ef5-9a25-416215915e39" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.lastIndexOf(&quot;o&quot;); // 7</code></pre><h3 id="43329ac4-157f-4076-9d97-2de54611ac5b" class=""><strong>Was macht die Funktion </strong><code><strong>includes()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="ee66a9a4-d709-4d8c-b00e-78b2eb3811eb" class="">Die Funktion <code>includes()</code> prüft, ob ein String einen bestimmten Wert enthält, und gibt <code>true</code> oder <code>false</code> zurück. Parameter sind der zu suchende Wert und optional der Startindex.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="293699f7-ceb9-45ae-b782-b2b61c9403b5" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.includes(&quot;world&quot;); // true</code></pre><h3 id="896faf18-da6f-46cb-a486-79706270ef57" class=""><strong>Was macht die Funktion </strong><code><strong>startsWith()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="1ce34e18-dcad-41a5-afda-6a9cfcd873e7" class="">Die Funktion <code>startsWith()</code> prüft, ob ein String mit einem bestimmten Wert beginnt, und gibt <code>true</code> oder <code>false</code> zurück. Parameter sind der zu suchende Wert und optional der Startindex.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d403bc1e-c4b4-4708-ae6f-2ca33665f0cf" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.startsWith(&quot;hello&quot;); // true</code></pre><h3 id="f643dd53-734b-4909-82f9-928ea2d3a673" class=""><strong>Was macht die Funktion </strong><code><strong>endsWith()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="3d1eb77c-137e-4b59-adc3-ba765022d5fb" class="">Die Funktion <code>endsWith()</code> prüft, ob ein String mit einem bestimmten Wert endet, und gibt <code>true</code> oder <code>false</code> zurück. Parameter sind der zu suchende Wert und optional die Länge des Strings.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="acff5775-55af-4bef-b3ae-c521e883c933" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.endsWith(&quot;world&quot;); // true</code></pre><h3 id="ff4d23d6-16db-41be-861d-05b9fbfdd7f8" class=""><strong>Was macht die Funktion </strong><code><strong>substring()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="65625df3-bf5d-4750-a9f2-b0c49ac41991" class="">Die Funktion <code>substring()</code> gibt einen Teilstring zwischen zwei Indizes zurück. Parameter sind der Startindex und optional der Endindex.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aa3127b9-5c7a-4cf4-9a31-51be47d736a0" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.substring(0, 5); // &quot;hello&quot;</code></pre></div><div id="1c0857bd-249d-81ca-ae41-cb310a62bef7" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1c0857bd-249d-815d-92ac-e44688f10144"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1c0857bd-249d-8196-b2bb-d10ca5b2dd7a"/><p id="1c0857bd-249d-81a4-8499-e5d03e65605c" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1c0857bd-249d-814d-b8e2-ee72775d5d55"/><ul id="1c0857bd-249d-8138-bdf5-f7a419c385f7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1c0857bd-249d-81ce-aa5d-f4c3b6ffa492" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1c0857bd-249d-810e-bf0c-c847c1f9a1b7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1c0857bd-249d-817b-a758-ccc043060d1b" class="image"><a href="Strings%2057114583ca2944159fc5a6fc224a0258/33.png"><img style="width:425px" src="Strings%2057114583ca2944159fc5a6fc224a0258/33.png"/></a></figure><h3 id="08101f77-b7aa-4984-ab38-27a244855de8" class=""><strong>Was macht die Funktion </strong><code><strong>toUpperCase()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="59d7eeb7-e1ba-46a0-aae8-4ea3516b5fef" class="">Die Funktion <code>toUpperCase()</code> gibt einen neuen String zurück, bei dem alle Buchstaben in Großbuchstaben umgewandelt wurden. Sie hat keine Parameter.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="836621d9-41c5-42bb-aa7f-7ac8efb95cfe" class="code"><code class="language-JavaScript">let result = &quot;hello&quot;.toUpperCase(); // &quot;HELLO&quot;</code></pre><h3 id="bca04790-c2f4-4788-ac75-32bffc10798f" class=""><strong>Was macht die Funktion </strong><code><strong>toLowerCase()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="c2c07157-d757-4b09-b042-0a0503cbdbad" class="">Die Funktion <code>toLowerCase()</code> gibt einen neuen String zurück, bei dem alle Buchstaben in Kleinbuchstaben umgewandelt wurden. Sie hat keine Parameter.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fb2aa9ec-05b3-4a2c-9723-81e2b98f3f10" class="code"><code class="language-JavaScript">let result = &quot;HELLO&quot;.toLowerCase(); // &quot;hello&quot;</code></pre><h3 id="cc0f3221-aca5-46d1-ab2c-b9f5f9f3a3eb" class=""><strong>Was macht die Funktion </strong><code><strong>trim()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="9f2df96c-82e6-43ec-91a3-66ddc6d9f17f" class="">Die Funktion <code>trim()</code> entfernt Leerzeichen am Anfang und Ende eines Strings und gibt einen neuen String zurück. Sie hat keine Parameter.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8354bfd6-e9b7-4c1e-b9dd-9d827f65b4b2" class="code"><code class="language-JavaScript">let result = &quot;  hello  &quot;.trim(); // &quot;hello&quot;</code></pre><h3 id="d1cf9ab5-3942-48f1-bbd2-a15ec50b6833" class=""><strong>Was macht die Funktion </strong><code><strong>replace()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="cdb0bbde-cbab-429f-8088-0e33c6df5614" class="">Die Funktion <code>replace()</code> ersetzt das erste Vorkommen eines angegebenen Werts durch einen neuen Wert und gibt einen neuen String zurück. Parameter sind der zu ersetzende Wert und der neue Wert.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fc0eaaad-8011-4555-b2e4-60ab49489ddd" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.replace(&quot;world&quot;, &quot;there&quot;); // &quot;hello there&quot;</code></pre><h3 id="bc112fe6-5136-47c0-aa34-3808d5f11704" class=""><strong>Was macht die Funktion </strong><code><strong>replaceAll()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="20ff11d2-b48b-4279-96fb-b83c69c1164d" class="">Die Funktion <code>replaceAll()</code> ersetzt alle Vorkommen eines angegebenen Werts durch einen neuen Wert und gibt einen neuen String zurück. Parameter sind der zu ersetzende Wert und der neue Wert.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="704b31bc-a27b-4a1c-b008-226d3efddd08" class="code"><code class="language-JavaScript">let result = &quot;hello world world&quot;.replaceAll(&quot;world&quot;, &quot;there&quot;); // &quot;hello there there&quot;</code></pre><h3 id="cf41db0f-eb90-41e9-8ea6-30dfc32d5190" class=""><strong>Was macht die Funktion </strong><code><strong>split()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="5df180b7-a257-4705-8f50-2af698af4141" class="">Die Funktion <code>split()</code> teilt einen String in ein Array von Teilstrings anhand eines angegebenen Trennzeichens. Parameter sind das Trennzeichen und optional die maximale Anzahl der Teilstrings.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7f938d0c-daf5-4b90-85c1-cd4cd9d695b8" class="code"><code class="language-JavaScript">let result = &quot;hello world&quot;.split(&quot; &quot;); // [&quot;hello&quot;, &quot;world&quot;]</code></pre><h3 id="1c1857bd-249d-80f2-b6fa-cf20287679dc" class=""><strong>Was macht die Funktion </strong><code><strong>filter()</strong></code><strong>? Wie sehen die Parameter aus?</strong></h3><p id="1c1857bd-249d-80c1-b65c-d0221593896b" class="">Die Funktion <code>filter()</code> ist eine Methode von Arrays in JavaScript. Sie wird verwendet, um ein neues Array zu erstellen, das nur die Elemente enthält, die eine bestimmte Bedingung erfüllen.</p><h3 id="1c1857bd-249d-801c-9c24-c8d147e6e869" class=""><strong>Syntax:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c1857bd-249d-804a-a402-f1e21e43a5bd" class="code"><code class="language-JavaScript">array.filter(callback(element, index, array), thisArg);</code></pre><h3 id="1c1857bd-249d-807a-aa4d-dbb665900763" class=""><strong>Parameter:</strong></h3><ol type="1" id="1c1857bd-249d-8038-9cf9-c1b93e19eb61" class="numbered-list" start="1"><li><code><strong>callback</strong></code>:<ul id="1c1857bd-249d-8018-ab44-f9e02efa9889" class="bulleted-list"><li style="list-style-type:disc">Eine Funktion, die für jedes Element des Arrays ausgeführt wird.</li></ul><ul id="1c1857bd-249d-80bf-a96f-f79e96372788" class="bulleted-list"><li style="list-style-type:disc">Diese Funktion muss <code>true</code> zurückgeben, wenn das Element in das neue Array aufgenommen werden soll, und <code>false</code>, wenn es ausgeschlossen werden soll.</li></ul><ul id="1c1857bd-249d-808f-8719-dd4aba1564e2" class="bulleted-list"><li style="list-style-type:disc">Der <code>callback</code>Funktion werden drei Argumente übergeben:<ul id="1c1857bd-249d-8098-a701-c27ae68f10bf" class="bulleted-list"><li style="list-style-type:circle"><code><strong>element</strong></code>: Das aktuelle Element des Arrays.</li></ul><ul id="1c1857bd-249d-8093-b853-e6631b0a18df" class="bulleted-list"><li style="list-style-type:circle"><code><strong>index</strong></code> (optional): Der Index des aktuellen Elements.</li></ul><ul id="1c1857bd-249d-8073-a243-d8c514c00ad6" class="bulleted-list"><li style="list-style-type:circle"><code><strong>array</strong></code> (optional): Das Array, auf dem <code>filter()</code> aufgerufen wurde.</li></ul></li></ul></li></ol><ol type="1" id="1c1857bd-249d-80b0-bf09-c199ece856dd" class="numbered-list" start="2"><li><code><strong>thisArg</strong></code> (optional):<ul id="1c1857bd-249d-8099-887d-f05609482e23" class="bulleted-list"><li style="list-style-type:disc">Ein Wert, der als <code>this</code> innerhalb der <code>callback</code>Funktion verwendet wird.</li></ul></li></ol><h3 id="1c1857bd-249d-8042-9e21-f98fdcbcb3f5" class=""><strong>Rückgabewert:</strong></h3><ul id="1c1857bd-249d-8018-bcf7-ed210088cd52" class="bulleted-list"><li style="list-style-type:disc">Ein neues Array, das nur die Elemente enthält, für die die <code>callback</code>Funktion <code>true</code> zurückgegeben hat.</li></ul><hr id="1c1857bd-249d-808e-b616-c8b1fd9c1405"/><h3 id="1c1857bd-249d-80ab-88ae-ca4ca900bafd" class=""><strong>Beispiel:</strong></h3><h3 id="1c1857bd-249d-804e-9a9a-f0322dfd243e" class="">1. Filtern von Zahlen größer als 10:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c1857bd-249d-80a7-aa36-c55571397949" class="code"><code class="language-JavaScript">const numbers = [5, 12, 8, 130, 44];
+const filtered = numbers.filter(num =&gt; num &gt; 10);
+console.log(filtered); // Ausgabe: [12, 130, 44]</code></pre><ul id="1c1857bd-249d-8090-a326-fcbb6b3ae6b6" class="bulleted-list"><li style="list-style-type:disc">Die <code>filter()</code>Methode durchläuft jedes Element des Arrays <code>numbers</code>.</li></ul><ul id="1c1857bd-249d-8072-895c-cfdd1a390441" class="bulleted-list"><li style="list-style-type:disc">Nur die Zahlen, die größer als 10 sind, werden in das neue Array <code>filtered</code> aufgenommen.</li></ul><hr id="1c1857bd-249d-80b9-88e7-f758c685a586"/><h3 id="1c1857bd-249d-80be-8a9e-f9cc22fbc8e7" class="">2. Filtern von Wörtern mit einer bestimmten Bedingung:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c1857bd-249d-80b2-adf0-fa53022c3785" class="code"><code class="language-JavaScript">const words = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;];
+const filteredWords = words.filter(word =&gt; word.length &gt; 5);
+console.log(filteredWords); // Ausgabe: [&quot;banana&quot;, &quot;cherry&quot;]</code></pre><ul id="1c1857bd-249d-804b-bdd5-e299ee9f3b14" class="bulleted-list"><li style="list-style-type:disc">Hier werden nur Wörter mit mehr als 5 Buchstaben in das neue Array <code>filteredWords</code> aufgenommen.</li></ul></div></div><p id="2a3b0fce-77f2-44f0-8a51-7810eaf1fad0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

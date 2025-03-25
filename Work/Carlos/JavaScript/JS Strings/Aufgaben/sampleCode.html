@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+    <script src="/Kurs/common.js"></script>
+    <title>Sample Code (Strings)</title>
+</head>
+<body>
+
+    <script>
+
+    printH(1, "Sample Code Analyse")
+    printH(4, "-> Wähle 7 nützliche JS String Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.");
+    
+
+    printH(4, "-> Base Text: Hätte Hänschen Hans Holz hacken hören, hätte Hänschen Hans Holz hacken geholfen");
+
+    printHr();
+    let spruch = "Hätte Hänschen Hans Holz hacken hören, hätte Hänschen Hans Holz hacken geholfen";
+
+    let spruchLength = spruch.length;
+    let spruchUpperCase = spruch.toUpperCase();
+    let spruchEnds = (spruch.endsWith("Holz", 24));
+    let spruchSplit = (spruch.split(" "));
+    let spruchReplace =(spruch.replace(/Hans/g, "Joseph"));
+    let spruchSubstring = (spruch.substring(0, 38));
+    let spruchIncludes = (spruch.includes("Hans", 54));
+    let spruchIncludesNot = (spruch.includes("Hans", 55));
+
+    printH(5, "01. Methode .length: " + spruchLength);
+
+    printHr();
+
+    printH(5, "02. Methode .toUpperCase: " + spruchUpperCase);
+
+    printHr();
+
+    printH(5, "03. Methode .endsWith('Holz', 24): " + spruchEnds);
+
+    printHr();
+
+    printH(5, "04. Methode .split(' '): " + spruchSplit);
+
+    printHr();
+
+    printH(5, "05. Methode .replace(/Hans/g, 'Joseph'): " + spruchReplace);
+
+    printHr();
+
+    printH(5, "06. Methode .substring(0, 38): " + spruchSubstring);
+
+    printHr();
+
+    printH(5, "07A. Methode .includes(54, Hans): " + spruchIncludes);
+
+    printHr();
+
+    printH(5, "07B. Methode .includes(55, Hans): " + spruchIncludesNot);
+
+    printHr();
+
+    </script>
+    
+</body>
+</html>

@@ -26,21 +26,62 @@
 
         printHr();
         printH(3, "Wie viele Wörter gibt es in Text?");
+        printLn("Anzahl der Wörter: " + words.length);
 
         printHr();
         printH(3, "Was lautet das Kürzeste Wort ?");
+        let filteredWords = words.filter(word => /^[a-zA-ZäöüÄÖÜß]+$/.test(word));
+
+        let shortestWord = filteredWords[0];
+        for (let i = 1; i < filteredWords.length; i++) {
+            //console.log(i + " " + shortestWord);
+            if (filteredWords[i].length < shortestWord.length) {
+                shortestWord = filteredWords[i];
+            }
+        }
+        printLn("Kürzeste Wort: " + shortestWord);
 
         printHr();
         printH(3, "Was lautet das Längste Wort ?");
+        let longestWord = filteredWords[0];
+        for (let i = 1; i < filteredWords.length; i++) {
+            //console.log(i + " " + longestWord);
+            if (filteredWords[i].length > longestWord.length) {
+                longestWord = filteredWords[i];
+            }
+        }
+        printLn("Längste Wort: " + longestWord);
 
         printHr();
         printH(3, "Welches Wort ist das Erste(Lexikographisch = nach dem ABC) ? (nach Deutsche Rechtschreibung)");
-        
+        let firstWord = filteredWords[0];
+        for (let i = 1; i < filteredWords.length; i++) {
+            if (filteredWords[i].localeCompare(firstWord, 'de') < 0) {
+                firstWord = filteredWords[i];
+            }
+        }
+        printLn("Erste Wort: " + firstWord);
+
         printHr();
         printH(3, "Welches Wort ist das Letzte(Lexikographisch = nach dem ABC) ? (nach Deutsche Rechtschreibung)");
+        let lastWord = filteredWords[0];
+        for (let i = 1; i < filteredWords.length; i++) {
+            if (filteredWords[i].localeCompare(lastWord, 'de') < 0) {
+                lastWord = filteredWords[i];
+            }
+        }
+        printLn("Letztes Wort: " + lastWord);
+
 
         printHr();
         printH(3, "Wie oft wird der Name 'Marie' erwähnt ?");
+        let count = 0;
+        for (let i = 0; i < words.length; i++) {
+            if (words[i].toLowerCase() === "marie") {
+                count++;
+            }
+        }
+        printLn("Marie wird " + count + " mal erwähnt");
 
     </script>
 </body>
