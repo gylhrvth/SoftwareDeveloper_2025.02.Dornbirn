@@ -6,10 +6,15 @@ function startAnalysis() {
     const feedback = document.getElementById("feedback");
     const initalText = document.getElementById("initalText").value;
 
-    if (initalText.length < 20) {
-        feedback.textContent = "Bitte geben Sie einen Text ein, der mindestens 20 Zeichen enthält.";
+    // Überprüfen, ob der Text nur aus Leerzeichen besteht
+    if (initalText.trim() === "") {
+        feedback.textContent = "Bitte geben Sie einen gültigen Text ein, der nicht nur aus Leerzeichen besteht.";
+        return;
+    }else if (initalText.length < 20) {
+        feedback.textContent = "Bitte geben Sie einen Text ein, der mindestens 20 Buchstaben enthält.";
         return;
     }
+
 
     const clearSquareBracket = initalText.replace(/[^a-zA-ZäöüÄÖÜß ]/g, "");
     text = clearSquareBracket

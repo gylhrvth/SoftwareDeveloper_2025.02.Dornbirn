@@ -29,14 +29,10 @@
         
         // g: Global flag to replace all occurrences
         
-        .replace(/\(.*?\)/, " ")
-        // .replace(/\(.*?\)/, " ") → Replaces the first occurrence. Eliminates first () and its content
-        .replace(/\(.*?\)/, " ")
-        // .replace(/\(.*?\)/, " ") → Replaces the second occurrence. Eliminates second () and its content
-        .replace(/[.,\s]+/g, " ")
-        .replace(/\s+$/,"");
-        // Eliminates . , and whitespace
-        // [.,\s] → Targets dots (.), commas (,), and whitespace (\s).
+        .replace(/[—ˈ'–/();:.,?!"ⓘ-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .replace(/\s+$/,"")
+       
         // + → Ensures it replaces one or more occurrences at once.
         // g → Global flag to replace all occurrences.
 
@@ -104,8 +100,15 @@
         // This way, words can be counted and identified.  
 
         function textAnalyse(content){
+
             let startIndexWord = 0
             let countWords = 0
+            let longestWord = "";
+            let shortestWord = "";
+            let shortestWordLength = Infinity;
+            let longestWordLength = "";
+            let countMarie = 0;
+
             while (startIndexWord >= 0){
             //This loop keeps running as long as startIndexWord is greater than or equal to 0. 
             // It is used to process each word in the string.
@@ -129,18 +132,136 @@
                     // This means the current word is the last one in the string. substring(startIndexWord) extracts the remaining word starting from startIndexWord to the end of the string.
                     //The startIndexWord is set to -1 to exit the loop after processing the last word.
                 }
+
+                // Find longest Word function
+
+                if (word.length > longestWordLength){
+                    longestWord = word
+                    longestWordLength = word.length
+                } else if (word.length == longestWordLength && !longestWord.includes(word)){
+                    longestWord += ", " + word
+                }
+                
+                // Find shortest Word function
+
+                if (word.length < shortestWordLength){
+                    shortestWord = word
+                    shortestWordLength = word.length
+                } else if (word.length === shortestWordLength && !shortestWord.includes(word)){
+                    shortestWord += ", " + word
+                }
+
+                // Count word Marie
+
+                if (word == "Marie"){
+                    countMarie++;
+                }
+
                 ++countWords
                 printLn(countWords + ". word: \"" + word + "\"")
             }
 
+            printHr();
+
+            printLn("Longest word: \"" + longestWord + "\"");
+
+            printHr();
+
+            printLn("Shortest word: \"" + shortestWord + "\"");
+
+            printHr();
+
+            print("The word \"Marie\" appears " + countMarie + " times inside the text");
+
         }
 
-       
-
         
+//---------- Collator Function made by Gyula used to find -> First lexicopraphic word ----------------
 
-      
-        // Hints:
+        let collator = new Intl.Collator("de-AT", { collation: "phonebk" });
+        // The Intl.Collator object provides methods for comparing strings in a way that respects the rules of a specific locale (language or region).
+
+        function findFirstLexicographicalWord(content) {
+            let startIndexWord = 0;
+            let firstLexicographicalWord = null;
+
+            while (startIndexWord >= 0) {
+                let endIndexWord = content.indexOf(" ", startIndexWord);
+                let word = "";
+
+                if (endIndexWord >= 0) {
+                    word = content.substring(startIndexWord, endIndexWord);
+                    startIndexWord = endIndexWord + 1;
+                } else {
+                    word = content.substring(startIndexWord);
+                    startIndexWord = -1; // Exit the loop after processing the last word
+                }
+
+                // Exclude words that contain numbers and single letters like "a" (word.length must be at least 2)
+                if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word) && word.length >= 2) {
+                    // Initialize firstLexicographicalWord with the first valid word
+                    if (firstLexicographicalWord === null || collator.compare(word, firstLexicographicalWord) < 0) {
+                        firstLexicographicalWord = word;
+                    }
+                    // The collator.compare method compares two strings lexicographically based on the locale and collation rules defined by the Intl.Collator object.
+                    //function collator.compare() returns:
+                    // -1 if word is lexicographically smaller than firstLexicographicalWorld
+                    // 0 if word is equal to firstLexicographicalWorld
+                    // 1 if word is lexicographically greater than firstLexicographicalWorld
+                
+                }
+            }
+
+            return firstLexicographicalWord;
+        }
+
+        // Example Usage
+        const firstLexWord = findFirstLexicographicalWord(textClean);
+        printHr();
+        printLn("First lexicographical word which is at least 2 letters long: \"" + firstLexWord + "\"");
+            
+
+        //---------- Collator Function made by Gyula used to find -> Last lexicopraphic word----------------------
+                
+        function findLastLexicographicalWord(content) {
+            let startIndexWord = 0;
+            let lastLexicographicalWord = null;
+
+            while (startIndexWord >= 0) {
+                let endIndexWord = content.indexOf(" ", startIndexWord);
+                let word = "";
+
+                if (endIndexWord >= 0) {
+                    word = content.substring(startIndexWord, endIndexWord);
+                    startIndexWord = endIndexWord + 1;
+                } else {
+                    word = content.substring(startIndexWord);
+                    startIndexWord = -1; // Exit the loop after processing the last word
+                }
+
+                // Regular Expression: Exclude words that contain numbers
+                if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word)) {
+                    // Initialize lastLexicographicalWord with the first valid word
+                    if (lastLexicographicalWord === null || collator.compare(word, lastLexicographicalWord) > 0) {
+                        lastLexicographicalWord = word;
+                    }
+                }
+            }
+
+            return lastLexicographicalWord;
+        }
+
+        // Example Usage
+        const lastLexWord = findLastLexicographicalWord(textClean);
+        printHr();
+        printLn("Last lexicographical word: \"" + lastLexWord + "\"");
+            
+        
+//-----------------------------------------------------------
+
+
+
+// Hints:
 
         /* Use of the charAT function to detect letters.
 
