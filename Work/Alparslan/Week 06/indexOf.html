@@ -49,18 +49,18 @@
         function abcdefgh(content){                 // Aufruf der Funktion
             let beginWord = 0                       // Wortzählung beginnt bei 0
             let count = 0                           // Anzahl der gezählten Wörter ist 0
-            while (beginWord >= 0){                 // Schleife läuft solange wie beginWord grösser gleich 0 ist, also endet die Schleife bei unter 0 z.B. bei -1  
+            while (beginWord >= 0){                                     // Schleife läuft solange wie beginWord grösser gleich 0 ist, also endet die Schleife bei unter 0 z.B. bei -1  
                 let endWord = content.indexOf(" ", beginWord)           // Sucht Leerzeichen beginnend bei beginWord also 0, Leerzeichen wird gesucht weil es zwei Wörter voneinander trennt, somit können Wörter identifiziert werden. 
                 let word = undefined                                    // Setzt Variable auf undefined, dient als Platzhalter, damit diese Variable später überschrieben werden kann. 
-                if (endWord >= 0){                                              // Prüft, ob endWord grösser gleich 0 ist (d.h. ein Leerzeichen wurde gefunden).
+                if (endWord >= 0){                                              // Wenn endWord grösser gleich 0 ist, dann wurde ein Leerzeichen gefunden.
                     word = content.substring(beginWord, endWord)                // Extrahiert das Wort zwischen beginWord und endWord.
-                    beginWord = endWord + 1                                     // 
-                } else {
-                    word = content.substring(beginWord)   
-                    beginWord = -1
+                    beginWord = endWord + 1                                     // Aktualisiert beginWord und markiert Position nach dem Leerzeichen, damit Suche weitergehen kann.
+                } else {                                                // Falls kein Leerzteichen gefunden wurde.
+                    word = content.substring(beginWord)                 // Extrahiert das letzte Wort im Text, beginnend bei (beginword).
+                    beginWord = -1                                      // beendet die Schleife
                 }
-                ++count
-                printLn(count + ". word: \"" + word + "\"")
+                ++count                             // Erhöht count um 1, um die Anzahl der Wörter zu zählen.
+                printLn(count + ". word: \"" + word + "\"")     // Gibt die aktuelle Wortnummer und das Wort aus.
             }
         }
     </script>
