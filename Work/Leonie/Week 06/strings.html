@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        // Beispiel-String
+        let text = "     Hello World! JavaScript is awesome.     ";
+        printLn("Original: " + text);
+        printHr();
+
+        // 1. trim() - Entfernt Leerzeichen am Anfang und Ende
+        let trimmedText = text.trim();
+        printLn("trim(): " + trimmedText);
+        printHr();
+
+        // 2. toUpperCase() - Wandelt den String in Großbuchstaben um
+        let upperText = trimmedText.toUpperCase();
+        printLn("toUpperCase(): " + upperText);
+        printHr();
+
+        // 3. toLowerCase() - Wandelt den String in Kleinbuchstaben um
+        let lowerText = trimmedText.toLowerCase();
+        printLn("toLowerCase(): " + lowerText);
+        printHr();
+
+        // 4. includes() - Prüft, ob ein bestimmter Text enthalten ist
+        let includesJavaScript = trimmedText.includes("JavaScript");
+        printLn("includes('JavaScript'): " + includesJavaScript);
+        printHr();
+
+        // 5. indexOf() - Gibt den Index des ersten Vorkommens eines Textes zurück
+        let indexOfWorld = trimmedText.indexOf("World");
+        printLn("indexOf('World'): " + indexOfWorld);
+        printHr();
+
+        // 6. replace() - Ersetzt einen Teil des Strings durch einen anderen Text
+        let replacedText = trimmedText.replace("awesome", "great");
+        printLn("replace('awesome', 'great'): " + replacedText);
+        printHr();
+
+        // 7. split() - Teilt den String in ein Array von Teilstrings
+        let splitText = trimmedText.split(" ");
+        printLn("split(' '): " + splitText);
+    </script>
+</body>
+
+</html>

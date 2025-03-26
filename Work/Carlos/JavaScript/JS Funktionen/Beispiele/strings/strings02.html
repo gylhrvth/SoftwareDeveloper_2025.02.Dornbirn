@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+    const text = "JavaScript ist großartig";
+
+    console.log(text.endsWith("ist", 14)); // true
+
+    console.log(text.charAt(13)); // t
+
+    console.log(text.charAt(14)); // " "
+
+    console.log(text.length); // 24
+
+    console.log(text.indexOf("ist")); // 11
+
+    const str = "Hallo Welt, Hallo!";
+    console.log(str.lastIndexOf("Hallo"));  // Gibt 12 zurück, weil "Hallo" zuletzt an Index 12 vorkommt
+
+    const textFruits = "apple,banana,cherry,grape";
+    const splitFruits = textFruits.split(",", 2);
+    console.log(splitFruits);  // ["apple", "banana"]
+
+    </script>
+    
+    
+</body>
+</html>
