@@ -14,7 +14,7 @@
 // 1. `length`
 // Die `length`-Eigenschaft gibt die Anzahl der Zeichen in einem String zurück.
 // text.length`: Gibt die Anzahl der Zeichen im String `text` zurück.
-const text = "Hallo, Welt!";
+let text = "Hallo, Welt!";
 console.log(text.length);           // Ausgabe: 12
 
 
@@ -22,8 +22,8 @@ console.log(text.length);           // Ausgabe: 12
 // 2. `indexOf`
 // Die `indexOf`-Methode gibt die Position des ersten Vorkommens eines bestimmten Zeichens oder einer Zeichenfolge im String zurück.
 // - `text.indexOf("Welt")`: Sucht nach der Zeichenfolge "Welt" im String `text` und gibt die Position des ersten Vorkommens zurück.
-const text = "Hallo, Welt!";
-const position = text.indexOf("Welt");
+text = "Hallo, Welt!";
+let position = text.indexOf("Welt");
 console.log(position);              // Ausgabe: 7
 
 
@@ -31,7 +31,7 @@ console.log(position);              // Ausgabe: 7
 // 3. `repeat`
 // Die `repeat`-Methode wiederholt einen String eine bestimmte Anzahl von Malen.
 // `text.repeat(3)`: Wiederholt den String `text` dreimal.
-const text = "Hallo";
+text = "Hallo";
 const repeatedText = text.repeat(3);
 console.log(repeatedText);          // Ausgabe: "HalloHalloHallo"
 
@@ -40,8 +40,8 @@ console.log(repeatedText);          // Ausgabe: "HalloHalloHallo"
 // 4. `substring`
 // Die `substring`-Methode extrahiert einen Teil des Strings zwischen zwei angegebenen Indizes.
 // `text.substring(7, 11)`: Extrahiert die Zeichen zwischen den Indizes 7 und 11 (nicht inklusive 11).
-const text = "Hallo, Welt!";
-const part = text.substring(7, 11);
+text = "Hallo, Welt!";
+let part = text.substring(7, 11);
 console.log(part);                  // Ausgabe: "Welt"
 
 
@@ -49,7 +49,7 @@ console.log(part);                  // Ausgabe: "Welt"
 // 5. `replace`
 // Die `replace`-Methode ersetzt ein bestimmtes Zeichen oder eine Zeichenfolge durch eine andere.
 // `text.replace("Welt", "JavaScript")`: Ersetzt die Zeichenfolge "Welt" durch "JavaScript".
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const newText = text.replace("Welt", "JavaScript");
 console.log(newText);               // Ausgabe: "Hallo, JavaScript!"
 
@@ -58,7 +58,7 @@ console.log(newText);               // Ausgabe: "Hallo, JavaScript!"
 // 6. `trim`
 // Die `trim`-Methode entfernt Leerzeichen am Anfang und Ende eines Strings.
 // `text.trim()`: Entfernt alle Leerzeichen am Anfang und Ende des Strings `text`.
-const text = "   Hallo, Welt!   ";
+text = "   Hallo, Welt!   ";
 const trimmedText = text.trim();
 console.log(trimmedText);           // Ausgabe: "Hallo, Welt!"
 
@@ -67,7 +67,7 @@ console.log(trimmedText);           // Ausgabe: "Hallo, Welt!"
 // 7. `charAt`
 // Die `charAt`-Methode gibt das Zeichen an einer bestimmten Position im String zurück.
 // `text.charAt(1)`: Gibt das Zeichen an der Position 1 im String `text` zurück.
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const char = text.charAt(1);
 console.log(char);                  // Ausgabe: "a"
 
@@ -76,7 +76,7 @@ console.log(char);                  // Ausgabe: "a"
 // 8. `split`
 // Die `split`-Methode teilt einen String in ein Array von Teilstrings, basierend auf einem Trennzeichen.
 // `text.split(" ")`: Teilt den String `text` an jedem Leerzeichen und gibt ein Array von Teilstrings zurück.
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const words = text.split(" ");
 console.log(words);                 // Ausgabe: ["Hallo,", "Welt!"]
 
@@ -86,9 +86,9 @@ console.log(words);                 // Ausgabe: ["Hallo,", "Welt!"]
 // Die `toUpperCase`-Methode wandelt alle Zeichen eines Strings in Großbuchstaben um, und die `toLowerCase`-Methode wandelt alle Zeichen eines Strings in Kleinbuchstaben um.
 // `text.toUpperCase()`: Wandelt alle Zeichen des Strings `text` in Großbuchstaben um.
 // `text.toLowerCase()`: Wandelt alle Zeichen des Strings `text` in Kleinbuchstaben um.
-const text = "Hallo, Welt!";
-const upperText = text.toUpperCase();
-const lowerText = text.toLowerCase();
+text = "Hallo, Welt!";
+let upperText = text.toUpperCase();
+let lowerText = text.toLowerCase();
 console.log(upperText);             // Ausgabe: "HALLO, WELT!"
 console.log(lowerText);             // Ausgabe: "hallo, welt!"
 
@@ -97,7 +97,7 @@ console.log(lowerText);             // Ausgabe: "hallo, welt!"
 // 10. `includes`
 // Die `includes`-Methode überprüft, ob eine bestimmte Zeichenfolge im String enthalten ist.
 // `text.includes("Welt")`: Überprüft, ob die Zeichenfolge "Welt" im String `text` enthalten ist und gibt `true` oder `false` zurück.
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const containsWorld = text.includes("Welt");
 console.log(containsWorld);         // Ausgabe: true
 
@@ -116,7 +116,7 @@ console.log(combinedText);          // Ausgabe: "Hallo, Welt!"
 // 12. `startsWith`
 // Die `startsWith`-Methode überprüft, ob ein String mit einer bestimmten Zeichenfolge beginnt.
 // `text.startsWith("Hallo")`: Überprüft, ob der String `text` mit der Zeichenfolge "Hallo" beginnt und gibt `true` oder `false` zurück.
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const startsWithHallo = text.startsWith("Hallo");
 console.log(startsWithHallo);       // Ausgabe: true
 
@@ -125,8 +125,8 @@ console.log(startsWithHallo);       // Ausgabe: true
 // 13. `slice`
 // Die `slice`-Methode extrahiert einen Teil des Strings und gibt ihn als neuen String zurück.
 // `text.slice(7, 11)`: Extrahiert die Zeichen zwischen den Indizes 7 und 11 (nicht inklusive 11) und gibt sie als neuen String zurück.
-const text = "Hallo, Welt!";
-const part = text.slice(7, 11);
+text = "Hallo, Welt!";
+part = text.slice(7, 11);
 console.log(part);                  // Ausgabe: "Welt"
 
 
@@ -134,7 +134,7 @@ console.log(part);                  // Ausgabe: "Welt"
 // 14. `endsWith`
 // Die `endsWith`-Methode überprüft, ob ein String mit einer bestimmten Zeichenfolge endet.
 // `text.endsWith("Welt!")`: Überprüft, ob der String `text` mit der Zeichenfolge "Welt!" endet und gibt `true` oder `false` zurück.
-const text = "Hallo, Welt!";
+text = "Hallo, Welt!";
 const endsWithWelt = text.endsWith("Welt!");
 console.log(endsWithWelt);          // Ausgabe: true
 
@@ -143,7 +143,7 @@ console.log(endsWithWelt);          // Ausgabe: true
 // 15. `charCodeAt`
 // Die `charCodeAt`-Methode gibt den Unicode-Wert des Zeichens an einer bestimmten Position im String zurück.
 // `text.charCodeAt(0)`: Gibt den Unicode-Wert des Zeichens an der Position 0 im String `text` zurück.
-const text = "Hallo";
+text = "Hallo";
 const charCode = text.charCodeAt(0);
 console.log(charCode);              // Ausgabe: 72
 
@@ -153,7 +153,7 @@ console.log(charCode);              // Ausgabe: 72
 // Die `padStart`- und `padEnd`-Methoden fügen Zeichen am Anfang bzw. Ende eines Strings hinzu, um eine bestimmte Länge zu erreichen.
 // `text.padStart(10, '*')`: Fügt Sternchen am Anfang des Strings `text` hinzu, bis die Länge 10 erreicht ist.
 // `text.padEnd(10, '*')`: Fügt Sternchen am Ende des Strings `text` hinzu, bis die Länge 10 erreicht ist.
-const text = "Hallo";
+text = "Hallo";
 const paddedStartText = text.padStart(10, '*');
 const paddedEndText = text.padEnd(10, '*');
 console.log(paddedStartText);       // Ausgabe: "*****Hallo"
@@ -164,8 +164,8 @@ console.log(paddedEndText);         // Ausgabe: "Hallo*****"
 // 17. lastIndexOf
 // Die lastIndexOf-Methode gibt die Position des letzten Vorkommens eines bestimmten Zeichens oder einer Zeichenfolge im String zurück.
 // text.lastIndexOf("Hallo"): Sucht nach der Zeichenfolge "Hallo" im String text und gibt die Position des letzten Vorkommens zurück.
-const text = "Hallo, Welt! Hallo!";
-const position = text.lastIndexOf("Hallo");
+text = "Hallo, Welt! Hallo!";
+position = text.lastIndexOf("Hallo");
 console.log(position);              // Ausgabe: 13
 
 
@@ -173,8 +173,8 @@ console.log(position);              // Ausgabe: 13
 // 18. `search`
 // Die `search`-Methode sucht nach einem bestimmten Muster im String und gibt die Position des ersten Vorkommens zurück.
 // `text.search("Welt")`: Sucht nach der Zeichenfolge "Welt" im String `text` und gibt die Position des ersten Vorkommens zurück.
-const text = "Hallo, Welt!";
-const position = text.search("Welt");
+text = "Hallo, Welt!";
+position = text.search("Welt");
 console.log(position);              // Ausgabe: 7
 
 
@@ -183,9 +183,9 @@ console.log(position);              // Ausgabe: 7
 // Die toLocaleLowerCase- und toLocaleUpperCase-Methoden wandeln alle Zeichen eines Strings in Klein- bzw. Großbuchstaben um, basierend auf der Spracheinstellung des Hosts.
 // text.toLocaleLowerCase(): Wandelt alle Zeichen des Strings text in Kleinbuchstaben um, basierend auf der Spracheinstellung des Hosts.
 // text.toLocaleUpperCase(): Wandelt alle Zeichen des Strings text in Großbuchstaben um, basierend auf der Spracheinstellung des Hosts.
-const text = "Hallo, Welt!";
-const lowerText = text.toLocaleLowerCase();
-const upperText = text.toLocaleUpperCase();
+text = "Hallo, Welt!";
+lowerText = text.toLocaleLowerCase();
+upperText = text.toLocaleUpperCase();
 console.log(lowerText);             // Ausgabe: "hallo, welt!"
 console.log(upperText);             // Ausgabe: "HALLO, WELT!"
 
@@ -194,14 +194,15 @@ console.log(upperText);             // Ausgabe: "HALLO, WELT!"
 // 20. `match`
 // Die `match`-Methode sucht nach einem bestimmten Muster im String und gibt alle Übereinstimmungen als Array zurück.
 // `text.match(/Hallo/g)`: Sucht nach allen Vorkommen der Zeichenfolge "Hallo" im String `text` und gibt sie als Array zurück.
-const text = "Hallo, Welt! Hallo!";
+text = "Hallo, Welt! Hallo!";
 const matches = text.match(/Hallo/g);
 console.log(matches);               // Ausgabe: ["Hallo", "Hallo"]
 
-
+/*
 [1](https://www.w3schools.com/js/js_string_methods.asp): [JavaScript String Methods - W3Schools](https://www.w3schools.com/js/js_string_methods.asp)
 [2](https://www.w3schools.com/jsref/jsref_obj_string.asp): [JavaScript String Reference - W3Schools](https://www.w3schools.com/jsref/jsref_obj_string.asp)
 [3](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String): [String - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+*/
 </script>
 </body>
 </html>
