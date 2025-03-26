@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyse</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+   printH(1, "Text-Analyse");
+   printHr();
+
+
+   const text = "Maria Salomea Skłodowska-Curie[a] (Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kʲiˈri] ⓘ; née Skłodowska; 7 November 1867 – 4 July 1934), known simply as Marie Curie (/ˈkjʊəri/ KURE-ee;[1] French: [maʁi kyʁi]), was a Polish and naturalised-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields. Her husband, Pierre Curie, was a co-winner of her first Nobel Prize, making them the first married couple to win the Nobel Prize and launching the Curie family legacy of five Nobel Prizes. She was, in 1906, the first woman to become a professor at the University of Paris.[2] She was born in Warsaw, in what was then the Kingdom of Poland, part of the Russian Empire. She studied at Warsaw's clandestine Flying University and began her practical scientific training in Warsaw. In 1891, aged 24, she followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work. In 1895, she married the French physicist Pierre Curie, and she shared the 1903 Nobel Prize in Physics with him and with the physicist Henri Becquerel for their pioneering work developing the theory of 'radioactivity'—a term she coined.[3][4] In 1906, Pierre Curie died in a Paris street accident. Marie won the 1911 Nobel Prize in Chemistry for her discovery of the elements polonium and radium, using techniques she invented for isolating radioactive isotopes. Under her direction, the world's first studies were conducted into the treatment of neoplasms by the use of radioactive isotopes. She founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres. During World War I, she developed mobile radiography units to provide X-ray services to field hospitals. While a French citizen, Marie Skłodowska Curie, who used both surnames,[5][6] never lost her sense of Polish identity. She taught her daughters the Polish language and took them on visits to Poland.[7] She named the first chemical element she discovered polonium, after her native country.[b] Marie Curie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy (Haute-Savoie), France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during World War I.[9] In addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995 she became the first woman to be entombed on her own merits in the Paris Panthéon,[10] and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry. She is the subject of numerous biographies."
+
+   // Cleaning Text ----------------------
+
+   const textClean = text
+   .replace(/\[.*?\]|ⓘ|/g, "")               // entfernt text innerhalb von eckigen Klammern, sowie das Symbol und leere Strings
+   .replace(/\(.*?\)/, " ")                  // entfernt text innerhalb von runden Klammern, ersetzt durch ein Leerzeichen
+   .replace(/[.,\s]+/g, " ")                // Ersetzt alle Vorkommen von Punkten `.` oder Kommas `,` sowie beliebige Leerzeichen durch ein einzelnes Leerzeichen.
+   .replace(/\s+$/,"");                    // entfernt alle Leerzeichen am Ende des Textes.
+   
+   // split by Words ---------------------
+
+   const splitWords = textClean.split(" ");
+
+   // Find the shortest word with split Methode -------------------------------
+
+   findShortestWord(splitWords)
+
+        function findShortestWord(words){
+
+            let shortestWord = words[0];
+
+            for (let i = 0; i < words.length; i++){
+                if(words[i].length < shortestWord.length){
+                    shortestWord = words[i];
+                }
+            }
+            return shortestWord;
+        }
+
+
+
+
+
+   printH(2, "Base Text:")
+   printLn(text)
+   printHr()
+
+   printH(2, "Cleaning the text:")
+   printLn(textClean)
+   printHr()
+
+   printH(2, "With .split() Methode")
+   printLn(splitWords)
+   printHr()
+
+   // Find 1st, 5th, 20th word -----------------------------------------------------------------
+        
+   printH(3, "1st word:")
+   print(splitWords[0]);
+
+   printH(3, "5th word:")
+   print(splitWords[4]);
+   
+   printH(3, "20th word:")
+   print(splitWords[19]);
+   printHr()
+
+   // Wie viele Wörter gibt es in Text
+   print("Anzahl der Wörter im Text: " + splitWords.length);
+
+
+
+
+</script>
+</html>

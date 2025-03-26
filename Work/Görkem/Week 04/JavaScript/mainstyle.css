@@ -1,12 +1,13 @@
 
 body {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-family: Arial, sans-serif;
     background-color: #fefefe; 
     color: #333;
     padding: 50px;
     margin: 0;
     box-sizing: border-box;
+    word-spacing: 2px;
 }
 
 .textColor01 {
@@ -89,7 +90,8 @@ p {
 
 code {
     font-family: 'Courier New', Courier, monospace; 
-    display: block; 
+    display: block;
+    color: #333;
     white-space: pre; 
     word-wrap: break-word;
 }
@@ -148,3 +150,6 @@ code {
   body > span{
     font-family: "Red Hat Mono", monospace;
 }
+
+
+
