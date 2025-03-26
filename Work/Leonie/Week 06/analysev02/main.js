@@ -83,19 +83,11 @@ function firstWordDE(words) {
 
 // Funktion zur Ermittlung des letzten Wortes (alphabetisch)
 function lastDEword(words) {
-    // Filtere nur Wörter mit deutschen Buchstaben
-    const germanWords = words.filter(word => /^[a-zA-ZäöüÄÖÜß]+$/.test(word));
-    console.log(germanWords);
-
-    if (germanWords.length === 0) {
-        return "Keine deutschen Wörter gefunden";
-    }
-
-    let lastDEword = germanWords[0];
-    for (let i = 1; i < germanWords.length; i++) {
-        if (germanWords[i].localeCompare(lastDEword, "de") > 0) {
-            lastDEword = germanWords[i];
-            
+    let lastDEword = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].localeCompare(lastDEword, "de") > 0) {
+            lastDEword = words[i];
+            console.log(lastDEword);
         }
     }
     return lastDEword;
