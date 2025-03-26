@@ -81,8 +81,6 @@ function firstWordDE(words) {
 
 // Funktion zur Ermittlung des letzten Wortes (alphabetisch)
 function lastDEword(words) {
-    const collator = new Intl.Collator('de-DE');
-    words = words.sort(collator.compare);
     let lastDEword = words[0];
     lastDEword = words[words.length - 1];
     return lastDEword;
@@ -98,7 +96,6 @@ function marieCount(words) {
     }
     return count;
 }
-
 // Event-Listener für den Button
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("analysButton");
