@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array erstellen</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+<script>
+    printH(1, "Array erstellen")
+    printH(2, "👉Einfaches Array")
+
+    // _ ist das aktuelle Element (hier undefined, aber wir ignorieren es).
+    // i ist der Index des Elements (also 0, 1, 2, 3, 4).
+    // i + 1 bedeutet, dass wir 1 zum Index addieren.
+
+    function createArray (size) {
+        return Array.from({length: size}, (_, i) => i + 1);    
+
+    }
+    printLn(createArray(5));
+    printHr()
+
+    //Random Array--------------------------
+    
+    printH(2, "👉Random Array")
+    
+    
+    // size: Das ist der Parameter, der angibt, wie viele Zahlen du im Array haben möchtest.
+    // Array.from({ length: size }): Dies erstellt ein Array mit der Größe size. Wenn du also generateRandomArray(5) aufrufst, wird ein Array mit 5 "Plätzen" erstellt.
+    // () => Math.floor(Math.random() * 100) + 1: Diese Funktion wird für jeden "Platz" im Array ausgeführt. Sie erstellt eine zufällige Zahl zwischen 1 und 100 und setzt sie an die Stelle im Array.
+    // Die Zahl 5 in generateRandomArray(5) sagt einfach der Funktion, dass du 5 Elemente im Array haben
+    
+    function generateRandomArray(size) {
+        return Array.from({ length: size }, () => Math.floor(Math.random() * 100) + 1);
+    }   
+    printLn(generateRandomArray(6));
+    printHr()
+
+    // Minimum Suche -For Schleife
+
+    printH(2, "👉Minimum Suche For-Schleife")
+
+    function minValue (arr) {
+        let min = arr [0]     // Anfangs setzen wir das erste Element als Minimum.
+        
+        for(let i = 1; i < arr.length; i++) {             // Durchlaufe das Array, beginnend bei Index 1, da wir das erste Element bereits als Minimum gesetzt haben.
+            if (arr[i] < min) {                          // Überprüfe, ob das aktuelle Element kleiner als das aktuelle Minimum ist.
+                min = arr[i];                            // Wenn das aktuelle Element kleiner ist, setze es als neues Minimum.
+            }
+        }
+
+        return min;
+    }
+    printLn(minValue([5, 3, 8, 1, 9]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
