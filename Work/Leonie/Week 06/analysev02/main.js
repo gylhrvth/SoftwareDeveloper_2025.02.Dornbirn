@@ -72,24 +72,19 @@ function longestWord(words) {
 
 // Funktion zur Ermittlung des ersten Wortes (alphabetisch)
 function firstWordDE(words) {
+    const collator = new Intl.Collator('de-DE');
+    words = words.sort(collator.compare);
     let firstDEword = words[0];
-    for (let i = 1; i < words.length; i++) {
-        if (words[i].localeCompare(firstDEword, "de") < 0) {
-            firstDEword = words[i];
-        }
-    }
+    firstDEword = words[0];
     return firstDEword;
 }
 
 // Funktion zur Ermittlung des letzten Wortes (alphabetisch)
 function lastDEword(words) {
+    const collator = new Intl.Collator('de-DE');
+    words = words.sort(collator.compare);
     let lastDEword = words[0];
-    for (let i = 1; i < words.length; i++) {
-        if (words[i].localeCompare(lastDEword, "de") > 0) {
-            lastDEword = words[i];
-            console.log(lastDEword);
-        }
-    }
+    lastDEword = words[words.length - 1];
     return lastDEword;
 }
 
