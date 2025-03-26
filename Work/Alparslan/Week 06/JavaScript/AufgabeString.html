@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    printH(1, 'Aufgabe JavaScript String')
+
+    
+
+
+
+//Schritt 1 - Text als Variable festlegen, Nicht-Buchstaben entfernen, Buchstaben zählen
+const userText = "apfel im \"korm" // Achte auf dem " innerhalb des Textes
+
+// 1. Text als Variable (const text) festlegen
+const text = "Maria Salomea Skłodowska-Curie[a] (Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kʲiˈri] ⓘ; née Skłodowska; 7 November 1867 – 4 July 1934), known simply as Marie Curie (/ˈkjʊəri/ KURE-ee;[1] French: [maʁi kyʁi]), was a Polish and naturalised-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields. Her husband, Pierre Curie, was a co-winner of her first Nobel Prize, making them the first married couple to win the Nobel Prize and launching the Curie family legacy of five Nobel Prizes. She was, in 1906, the first woman to become a professor at the University of Paris.[2] She was born in Warsaw, in what was then the Kingdom of Poland, part of the Russian Empire. She studied at Warsaw's clandestine Flying University and began her practical scientific training in Warsaw. In 1891, aged 24, she followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work. In 1895, she married the French physicist Pierre Curie, and she shared the 1903 Nobel Prize in Physics with him and with the physicist Henri Becquerel for their pioneering work developing the theory of \"radioactivity\"—a term she coined.[3][4] In 1906, Pierre Curie died in a Paris street accident. Marie won the 1911 Nobel Prize in Chemistry for her discovery of the elements polonium and radium, using techniques she invented for isolating radioactive isotopes. Under her direction, the world's first studies were conducted into the treatment of neoplasms by the use of radioactive isotopes. She founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres. During World War I, she developed mobile radiography units to provide X-ray services to field hospitals. While a French citizen, Marie Skłodowska Curie, who used both surnames,[5][6] never lost her sense of Polish identity. She taught her daughters the Polish language and took them on visits to Poland.[7] She named the first chemical element she discovered polonium, after her native country.[b] Marie Curie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy (Haute-Savoie), France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during World War I.[9] In addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995 she became the first woman to be entombed on her own merits in the Paris Panthéon,[10] and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry. She is the subject of numerous biographies."
+let words = text.split(' ');
+// 2. Alle Nicht-Buchstaben entfernen
+const lettersOnly = text.replace(/[^a-zA-ZäöüÄÖÜß]/g, '');
+
+// 3. Anzahl der Buchstaben zählen
+const letterCount = lettersOnly.length;
+printLn(`Number of letters: ${letterCount}`);
+
+
+
+
+
+
+
+
+
+
+//Schritt 2 Wie lautet das 1., 5. und 20. Wort des Textes?
+// Text in Wörter aufteilen
+words = text.split(' ');  // Teilt den Text in eine Liste von Wörtern, wobei jedes Wort durch ein Leerzeichen getrennt wird
+
+// Spezifische Wörter abrufen
+const firstWord = words[0];  // Das erste Wort in der Liste
+const fifthWord = words[4];  // Das fünfte Wort in der Liste
+const twentiethWord = words[19];  // Das zwanzigste Wort in der Liste
+
+printLn(`First word: ${firstWord}`);  // Ausgabe des ersten Wortes
+printLn(`Fifth word: ${fifthWord}`);  // Ausgabe des fünften Wortes
+printLn(`Twentieth word: ${twentiethWord}`);  // Ausgabe des zwanzigsten Wortes
+
+
+
+
+
+
+
+
+
+
+// Schritt 3 Wie viele Wörter gibt es im Text?
+// Anzahl der Wörter zählen
+const wordCount = words.length;                 // Zählt die Anzahl der Wörter in der Liste
+printLn(`Number of words: ${wordCount}`);   // Ausgabe der Anzahl der Wörter
+// `words.length`: Gibt die Länge der Liste zurück, was der Anzahl der Wörter entspricht.
+// `console.log(...)`: Gibt die Anzahl der Wörter in der Konsole aus.
+
+
+
+
+
+
+
+
+
+
+// Schritt 4 Was ist das kürzeste Wort?
+// Kürzestes Wort finden
+const shortestWord = words.reduce((shortest, current) => {              // `words.reduce(...)`: Verwendet die `reduce`-Methode, um das kürzeste Wort in der Liste zu finden.
+    return current.length < shortest.length ? current : shortest;       // `current.length < shortest.length ? current : shortest`: Vergleicht die Länge des aktuellen Wortes mit dem kürzesten Wort und gibt das kürzere zurück.
+}, words[0]);                                                           // Findet das kürzeste Wort basierend auf der Länge
+
+printLn(`Shortest word: ${shortestWord}`);  // Ausgabe des kürzesten Wortes
+// `printLn(...)`: Gibt das kürzeste Wort in der Konsole aus.
+
+
+
+
+
+
+
+
+
+
+// Schritt 5 Was ist das längste Wort?
+// Längstes Wort finden
+const longestWord = words.reduce((longest, current) => {                // `words.reduce(...)`: Verwendet die `reduce`-Methode, um das längste Wort in der Liste zu finden.
+    return current.length > longest.length ? current : longest;         // `current.length > longest.length ? current : longest`: Vergleicht die Länge des aktuellen Wortes mit dem längsten Wort und gibt das längere zurück.
+}, words[0]);                                                           // Findet das längste Wort basierend auf der Länge
+
+printLn(`Longest word: ${longestWord}`);  // Ausgabe des längsten Wortes
+// `printLn(...)`: Gibt das längste Wort in der Konsole aus.
+
+
+
+
+
+
+
+
+
+
+// Schritt 6 Welches Wort ist das erste (lexikographisch)?
+// Erstes Wort lexikographisch finden
+const firstLexWord = words.sort()[0];                                   // `words.sort()`: Sortiert die Wörter alphabetisch.// `words.sort()[0]`: Gibt das erste Wort in der sortierten Liste zurück.// Sortiert die Wörter alphabetisch und gibt das erste zurück
+printLn(`Lexicographically first word: ${firstLexWord}`);               // Ausgabe des ersten Wortes lexikographisch
+// `printLn(...)`: Gibt das erste Wort lexikographisch in der Konsole aus.
+
+
+
+
+
+
+
+
+
+
+// Schritt 7 Welches ist das letzte Wort lexikographisch?
+// Text in Wörter aufteilen
+words = text.split(' ');                                          // Teilt den Text in eine Liste von Wörtern, wobei jedes Wort durch ein Leerzeichen getrennt wird
+
+// Wörter alphabetisch sortieren
+const sortedWords = words.sort();                                       // Sortiert die Wörter alphabetisch
+
+// Letztes Wort in der sortierten Liste finden
+const lastLexWord = sortedWords[sortedWords.length - 1];                // Das letzte Wort in der sortierten Liste
+
+printLn(`Lexicographically last word: ${lastLexWord}`);  
+// Ausgabe des letzten Wortes lexikographisch
+
+
+
+
+
+
+
+
+
+
+// Schritt 8 Wie oft wird der Name "Marie" erwähnt?
+// Anzahl der Vorkommen von "Marie" zählen
+const marieCount = (text.match(/Marie/g) || []).length;  // Zählt die Anzahl der Vorkommen des Namens "Marie"
+
+printLn(`Occurrences of 'Marie': ${marieCount}`);  
+// Ausgabe der Anzahl der Vorkommen von "Marie"
+
+</script>
+</body>
