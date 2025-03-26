@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AllStrings</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+
 </head>
 <body>
     <script>
-     
+     let text = "Hallo, Welt!";
+     let part = text.substring(7, 11);
+     let position = text.indexOf("Welt");
+     let upperText = text.toUpperCase();
+     let lowerText = text.toLowerCase();
+
+
+
      // Die wichtigsten String Funktionen sind 1 - 12!!!!
 
 
 // 1. `length`
 // Die `length`-Eigenschaft gibt die Anzahl der Zeichen in einem String zurück.
 // text.length`: Gibt die Anzahl der Zeichen im String `text` zurück.
-let text = "Hallo, Welt!";
-console.log(text.length);           // Ausgabe: 12
+text = "Hallo, Welt!";
+printLn(text.length);           // Ausgabe: 12
 
 
 
@@ -23,8 +33,8 @@ console.log(text.length);           // Ausgabe: 12
 // Die `indexOf`-Methode gibt die Position des ersten Vorkommens eines bestimmten Zeichens oder einer Zeichenfolge im String zurück.
 // - `text.indexOf("Welt")`: Sucht nach der Zeichenfolge "Welt" im String `text` und gibt die Position des ersten Vorkommens zurück.
 text = "Hallo, Welt!";
-let position = text.indexOf("Welt");
-console.log(position);              // Ausgabe: 7
+position = text.indexOf("Welt");
+printLn(position);              // Ausgabe: 7
 
 
 
@@ -33,7 +43,7 @@ console.log(position);              // Ausgabe: 7
 // `text.repeat(3)`: Wiederholt den String `text` dreimal.
 text = "Hallo";
 const repeatedText = text.repeat(3);
-console.log(repeatedText);          // Ausgabe: "HalloHalloHallo"
+printLn(repeatedText);          // Ausgabe: "HalloHalloHallo"
 
 
 
@@ -41,8 +51,8 @@ console.log(repeatedText);          // Ausgabe: "HalloHalloHallo"
 // Die `substring`-Methode extrahiert einen Teil des Strings zwischen zwei angegebenen Indizes.
 // `text.substring(7, 11)`: Extrahiert die Zeichen zwischen den Indizes 7 und 11 (nicht inklusive 11).
 text = "Hallo, Welt!";
-let part = text.substring(7, 11);
-console.log(part);                  // Ausgabe: "Welt"
+part = text.substring(7, 11);
+printLn(part);                  // Ausgabe: "Welt"
 
 
 
@@ -51,7 +61,7 @@ console.log(part);                  // Ausgabe: "Welt"
 // `text.replace("Welt", "JavaScript")`: Ersetzt die Zeichenfolge "Welt" durch "JavaScript".
 text = "Hallo, Welt!";
 const newText = text.replace("Welt", "JavaScript");
-console.log(newText);               // Ausgabe: "Hallo, JavaScript!"
+printLn(newText);               // Ausgabe: "Hallo, JavaScript!"
 
 
 
@@ -60,7 +70,7 @@ console.log(newText);               // Ausgabe: "Hallo, JavaScript!"
 // `text.trim()`: Entfernt alle Leerzeichen am Anfang und Ende des Strings `text`.
 text = "   Hallo, Welt!   ";
 const trimmedText = text.trim();
-console.log(trimmedText);           // Ausgabe: "Hallo, Welt!"
+printLn(trimmedText);           // Ausgabe: "Hallo, Welt!"
 
 
 
@@ -69,7 +79,7 @@ console.log(trimmedText);           // Ausgabe: "Hallo, Welt!"
 // `text.charAt(1)`: Gibt das Zeichen an der Position 1 im String `text` zurück.
 text = "Hallo, Welt!";
 const char = text.charAt(1);
-console.log(char);                  // Ausgabe: "a"
+printLn(char);                  // Ausgabe: "a"
 
 
 
@@ -78,7 +88,7 @@ console.log(char);                  // Ausgabe: "a"
 // `text.split(" ")`: Teilt den String `text` an jedem Leerzeichen und gibt ein Array von Teilstrings zurück.
 text = "Hallo, Welt!";
 const words = text.split(" ");
-console.log(words);                 // Ausgabe: ["Hallo,", "Welt!"]
+printLn(words);                 // Ausgabe: ["Hallo,", "Welt!"]
 
 
 
@@ -87,10 +97,10 @@ console.log(words);                 // Ausgabe: ["Hallo,", "Welt!"]
 // `text.toUpperCase()`: Wandelt alle Zeichen des Strings `text` in Großbuchstaben um.
 // `text.toLowerCase()`: Wandelt alle Zeichen des Strings `text` in Kleinbuchstaben um.
 text = "Hallo, Welt!";
-let upperText = text.toUpperCase();
-let lowerText = text.toLowerCase();
-console.log(upperText);             // Ausgabe: "HALLO, WELT!"
-console.log(lowerText);             // Ausgabe: "hallo, welt!"
+upperText = text.toUpperCase();
+lowerText = text.toLowerCase();
+printLn(upperText);             // Ausgabe: "HALLO, WELT!"
+printLn(lowerText);             // Ausgabe: "hallo, welt!"
 
 
 
@@ -99,7 +109,7 @@ console.log(lowerText);             // Ausgabe: "hallo, welt!"
 // `text.includes("Welt")`: Überprüft, ob die Zeichenfolge "Welt" im String `text` enthalten ist und gibt `true` oder `false` zurück.
 text = "Hallo, Welt!";
 const containsWorld = text.includes("Welt");
-console.log(containsWorld);         // Ausgabe: true
+printLn(containsWorld);         // Ausgabe: true
 
 
 
@@ -109,7 +119,7 @@ console.log(containsWorld);         // Ausgabe: true
 const text1 = "Hallo";
 const text2 = "Welt";
 const combinedText = text1.concat(", ", text2, "!");
-console.log(combinedText);          // Ausgabe: "Hallo, Welt!"
+printLn(combinedText);          // Ausgabe: "Hallo, Welt!"
 
 
 
@@ -118,7 +128,7 @@ console.log(combinedText);          // Ausgabe: "Hallo, Welt!"
 // `text.startsWith("Hallo")`: Überprüft, ob der String `text` mit der Zeichenfolge "Hallo" beginnt und gibt `true` oder `false` zurück.
 text = "Hallo, Welt!";
 const startsWithHallo = text.startsWith("Hallo");
-console.log(startsWithHallo);       // Ausgabe: true
+printLn(startsWithHallo);       // Ausgabe: true
 
 
 
@@ -127,7 +137,7 @@ console.log(startsWithHallo);       // Ausgabe: true
 // `text.slice(7, 11)`: Extrahiert die Zeichen zwischen den Indizes 7 und 11 (nicht inklusive 11) und gibt sie als neuen String zurück.
 text = "Hallo, Welt!";
 part = text.slice(7, 11);
-console.log(part);                  // Ausgabe: "Welt"
+printLn(part);                  // Ausgabe: "Welt"
 
 
 
@@ -136,7 +146,7 @@ console.log(part);                  // Ausgabe: "Welt"
 // `text.endsWith("Welt!")`: Überprüft, ob der String `text` mit der Zeichenfolge "Welt!" endet und gibt `true` oder `false` zurück.
 text = "Hallo, Welt!";
 const endsWithWelt = text.endsWith("Welt!");
-console.log(endsWithWelt);          // Ausgabe: true
+printLn(endsWithWelt);          // Ausgabe: true
 
 
 
@@ -145,7 +155,7 @@ console.log(endsWithWelt);          // Ausgabe: true
 // `text.charCodeAt(0)`: Gibt den Unicode-Wert des Zeichens an der Position 0 im String `text` zurück.
 text = "Hallo";
 const charCode = text.charCodeAt(0);
-console.log(charCode);              // Ausgabe: 72
+printLn(charCode);              // Ausgabe: 72
 
 
 
@@ -156,8 +166,8 @@ console.log(charCode);              // Ausgabe: 72
 text = "Hallo";
 const paddedStartText = text.padStart(10, '*');
 const paddedEndText = text.padEnd(10, '*');
-console.log(paddedStartText);       // Ausgabe: "*****Hallo"
-console.log(paddedEndText);         // Ausgabe: "Hallo*****"
+printLn(paddedStartText);       // Ausgabe: "*****Hallo"
+printLn(paddedEndText);         // Ausgabe: "Hallo*****"
 
 
 
@@ -166,7 +176,7 @@ console.log(paddedEndText);         // Ausgabe: "Hallo*****"
 // text.lastIndexOf("Hallo"): Sucht nach der Zeichenfolge "Hallo" im String text und gibt die Position des letzten Vorkommens zurück.
 text = "Hallo, Welt! Hallo!";
 position = text.lastIndexOf("Hallo");
-console.log(position);              // Ausgabe: 13
+printLn(position);              // Ausgabe: 13
 
 
 
@@ -175,7 +185,7 @@ console.log(position);              // Ausgabe: 13
 // `text.search("Welt")`: Sucht nach der Zeichenfolge "Welt" im String `text` und gibt die Position des ersten Vorkommens zurück.
 text = "Hallo, Welt!";
 position = text.search("Welt");
-console.log(position);              // Ausgabe: 7
+printLn(position);              // Ausgabe: 7
 
 
 
@@ -186,8 +196,8 @@ console.log(position);              // Ausgabe: 7
 text = "Hallo, Welt!";
 lowerText = text.toLocaleLowerCase();
 upperText = text.toLocaleUpperCase();
-console.log(lowerText);             // Ausgabe: "hallo, welt!"
-console.log(upperText);             // Ausgabe: "HALLO, WELT!"
+printLn(lowerText);             // Ausgabe: "hallo, welt!"
+printLn(upperText);             // Ausgabe: "HALLO, WELT!"
 
 
 
@@ -196,7 +206,7 @@ console.log(upperText);             // Ausgabe: "HALLO, WELT!"
 // `text.match(/Hallo/g)`: Sucht nach allen Vorkommen der Zeichenfolge "Hallo" im String `text` und gibt sie als Array zurück.
 text = "Hallo, Welt! Hallo!";
 const matches = text.match(/Hallo/g);
-console.log(matches);               // Ausgabe: ["Hallo", "Hallo"]
+printLn(matches);               // Ausgabe: ["Hallo", "Hallo"]
 
 /*
 [1](https://www.w3schools.com/js/js_string_methods.asp): [JavaScript String Methods - W3Schools](https://www.w3schools.com/js/js_string_methods.asp)
