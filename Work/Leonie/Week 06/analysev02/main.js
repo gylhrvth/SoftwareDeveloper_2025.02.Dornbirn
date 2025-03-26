@@ -1,1 +1,119 @@
-const text = "Maria Salomea Skłodowska-Curie[a] (Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kʲiˈri] ⓘ; née Skłodowska; 7 November 1867 – 4 July 1934), known simply as Marie Curie (/ˈkjʊəri/ KURE-ee;[1] French: [maʁi kyʁi]), was a Polish and naturalised-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields. Her husband, Pierre Curie, was a co-winner of her first Nobel Prize, making them the first married couple to win the Nobel Prize and launching the Curie family legacy of five Nobel Prizes. She was, in 1906, the first woman to become a professor at the University of Paris.[2] She was born in Warsaw, in what was then the Kingdom of Poland, part of the Russian Empire. She studied at Warsaw's clandestine Flying University and began her practical scientific training in Warsaw. In 1891, aged 24, she followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work. In 1895, she married the French physicist Pierre Curie, and she shared the 1903 Nobel Prize in Physics with him and with the physicist Henri Becquerel for their pioneering work developing the theory of 'radioactivity'—a term she coined.[3][4] In 1906, Pierre Curie died in a Paris street accident. Marie won the 1911 Nobel Prize in Chemistry for her discovery of the elements polonium and radium, using techniques she invented for isolating radioactive isotopes. Under her direction, the world's first studies were conducted into the treatment of neoplasms by the use of radioactive isotopes. She founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres. During World War I, she developed mobile radiography units to provide X-ray services to field hospitals. While a French citizen, Marie Skłodowska Curie, who used both surnames,[5][6] never lost her sense of Polish identity. She taught her daughters the Polish language and took them on visits to Poland.[7] She named the first chemical element she discovered polonium, after her native country.[b] Marie Curie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy (Haute-Savoie), France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during World War I.[9] In addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995 she became the first woman to be entombed on her own merits in the Paris Panthéon,[10] and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry. She is the subject of numerous biographies.";
+let text = ""; // Globale Variable für den bereinigten Text
+let words = []; // Globale Variable für die Wörter des Textes
+
+// Funktion zur Analyse des Textes
+function startAnalysis() {
+    const feedback = document.getElementById("feedback");
+    const initalText = document.getElementById("initalText").value;
+
+    if (initalText.length < 20) {
+        feedback.textContent = "Bitte geben Sie einen Text ein, der mindestens 20 Zeichen enthält.";
+        return;
+    }
+
+    const clearSquareBracket = initalText.replace(/[^a-zA-ZäöüÄÖÜß ]/g, "");
+    text = clearSquareBracket
+        .replace(/\s+/g, " ")
+        .replace(/^\s+/, "")
+        .replace(/\s+$/, "");
+
+    words = splitText(text); // Initialisiere die globale Variable `words`
+    //console.log("Bereinigter Text:", text);
+    startPrint(); // Ergebnisse anzeigen
+}
+
+// Funktion zum Aufteilen des Textes in Wörter
+function splitText(text) {
+    return text.split(" ");
+}
+
+// Funktion zur Anzeige der Ergebnisse
+function startPrint() {
+    const length = document.getElementById("length");
+    const wordsFind = document.getElementById("wordsFind");
+    const wordsLength = document.getElementById("wordsLength");
+    const shortWord = document.getElementById("shortWord");
+    const longWord = document.getElementById("longWord");
+    const firstWord = document.getElementById("firstWord");
+    const lastWord = document.getElementById("lastWord");
+    const countMarie = document.getElementById("countMarie");
+
+    length.textContent = text.length;
+    wordsFind.textContent = words[0] + ", " + (words[4] || "N/A") + ", " + (words[19] || "N/A");
+    wordsLength.textContent = words.length;
+    shortWord.textContent = shortestWord(words);
+    longWord.textContent = longestWord(words);
+    firstWord.textContent = firstWordDE(words);
+    lastWord.textContent = lastDEword(words);
+    countMarie.textContent = marieCount(words);
+}
+
+// Funktion zur Ermittlung des kürzesten Wortes
+function shortestWord(words) {
+    let shortestWord = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].length < shortestWord.length) {
+            shortestWord = words[i];
+        }
+    }
+    return shortestWord;
+}
+
+// Funktion zur Ermittlung des längsten Wortes
+function longestWord(words) {
+    let longestWord = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].length > longestWord.length) {
+            longestWord = words[i];
+        }
+    }
+    return longestWord;
+}
+
+// Funktion zur Ermittlung des ersten Wortes (alphabetisch)
+function firstWordDE(words) {
+    let firstDEword = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].localeCompare(firstDEword, "de") < 0) {
+            firstDEword = words[i];
+        }
+    }
+    return firstDEword;
+}
+
+// Funktion zur Ermittlung des letzten Wortes (alphabetisch)
+function lastDEword(words) {
+    // Filtere nur Wörter mit deutschen Buchstaben
+    const germanWords = words.filter(word => /^[a-zA-ZäöüÄÖÜß]+$/.test(word));
+    console.log(germanWords);
+
+    if (germanWords.length === 0) {
+        return "Keine deutschen Wörter gefunden";
+    }
+
+    let lastDEword = germanWords[0];
+    for (let i = 1; i < germanWords.length; i++) {
+        if (germanWords[i].localeCompare(lastDEword, "de") > 0) {
+            lastDEword = germanWords[i];
+            
+        }
+    }
+    return lastDEword;
+}
+
+// Funktion zur Zählung des Wortes "Marie"
+function marieCount(words) {
+    let count = 0;
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].toLowerCase() === "marie") {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Event-Listener für den Button
+document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("analysButton");
+    button.addEventListener("click", startAnalysis);
+});
