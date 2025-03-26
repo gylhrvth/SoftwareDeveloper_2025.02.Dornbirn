@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <title>Text Analyse (v.01)</title>
+</head>
+<body>
+    <script>
+
+        printH(1, "Text-Analyse");
+
+        printHr();
+
+        const text = "Maria Salomea Skłodowska-Curie[a] (Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kʲiˈri] ⓘ; née Skłodowska; 7 November 1867 – 4 July 1934), known simply as Marie Curie (/ˈkjʊəri/ KURE-ee;[1] French: [maʁi kyʁi]), was a Polish and naturalised-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields. Her husband, Pierre Curie, was a co-winner of her first Nobel Prize, making them the first married couple to win the Nobel Prize and launching the Curie family legacy of five Nobel Prizes. She was, in 1906, the first woman to become a professor at the University of Paris.[2] She was born in Warsaw, in what was then the Kingdom of Poland, part of the Russian Empire. She studied at Warsaw's clandestine Flying University and began her practical scientific training in Warsaw. In 1891, aged 24, she followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work. In 1895, she married the French physicist Pierre Curie, and she shared the 1903 Nobel Prize in Physics with him and with the physicist Henri Becquerel for their pioneering work developing the theory of 'radioactivity'—a term she coined.[3][4] In 1906, Pierre Curie died in a Paris street accident. Marie won the 1911 Nobel Prize in Chemistry for her discovery of the elements polonium and radium, using techniques she invented for isolating radioactive isotopes. Under her direction, the world's first studies were conducted into the treatment of neoplasms by the use of radioactive isotopes. She founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres. During World War I, she developed mobile radiography units to provide X-ray services to field hospitals. While a French citizen, Marie Skłodowska Curie, who used both surnames,[5][6] never lost her sense of Polish identity. She taught her daughters the Polish language and took them on visits to Poland.[7] She named the first chemical element she discovered polonium, after her native country.[b] Marie Curie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy (Haute-Savoie), France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during World War I.[9] In addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995 she became the first woman to be entombed on her own merits in the Paris Panthéon,[10] and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry. She is the subject of numerous biographies."
+        
+        // Clean text: --------------------------------------------------------------
+    
+        const textClean = text
+        .replace(/\[.*?\]|ⓘ|/g, "") 
+        // Target: Eliminates [] symbols and their content. Or ⓘ symbol.
+        
+        // \[: Targets the literal [ symbol to be replaced
+        // \]: Targets the literal ] symbol to be replaced
+        // .*?: Targets any characters inside the brackets, (? ensures it stops at the first ])
+        // Zusammengefasst: Der reguläre Ausdruck \[.*?\] sucht nach Text, der in eckigen Klammern eingeschlossen ist, wobei der Text in den Klammern beliebige Zeichen enthalten kann und die Suche dabei so schnell wie möglich stoppt, sobald die erste schließende Klammer gefunden wird.
+        
+        // g: Global flag to replace all occurrences
+        
+        .replace(/[—ˈ'–/();:.,?!"ⓘ-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .replace(/\s+$/,"")
+       
+        // + → Ensures it replaces one or more occurrences at once.
+        // g → Global flag to replace all occurrences.
+
+        // Split by Words: -------------------------------------------------------------------
+
+        const splitWords = textClean.split(" ");
+
+        // Find shortest word -> With split() Methode -------------------------------------------------------------------
+
+        findShortestWord(splitWords)
+
+        function findShortestWord(words){
+
+            let shortestWord = words[0];
+
+            for (let i = 0; i < words.length; i++){
+                if(words[i].length < shortestWord.length){
+                    shortestWord = words[i];
+                }
+            }
+            return shortestWord;
+        }
+
+        //----------------------------------------------------------------------------------
+
+        printH(2, "Base Text:")
+        printLn(text);
+        printHr();
+        printH(2, "Cleaning the Text:")
+        print(textClean);
+        printLn();
+        printHr();
+        printH(3, "Count and identify Words -> With split() Methode ")
+        print(splitWords);
+        printHr();
+        
+         // Find 1st, 5th, 20th word -----------------------------------------------------------------
+        
+         printH(3, "1st word:")
+        print(splitWords[0]);
+
+        printH(3, "5th word:")
+        print(splitWords[4]);
+        
+        printH(3, "20th word:")
+        print(splitWords[19]);
+
+        printHr();
+
+        // Count total words -----------------------------------------------------------------
+
+        print("Total number of words: " + splitWords.length);
+
+        printHr();
+
+    
+        //Count and identify Words -> With indexOf()
+
+        printH(3, "Count and identify Words -> With indexOf() Method / without split() Method");
+
+        textAnalyse(textClean)
+
+        //This function searches where is the first space after the beginning letter of a word. (Ending of the word)
+        //Then adds one position to the empty spaces, which equals to the first letter of the next word. (Beginning of the word)
+        // This way, words can be counted and identified.  
+
+        function textAnalyse(content){
+
+            let startIndexWord = 0
+            let countWords = 0
+            let longestWord = "";
+            let shortestWord = "";
+            let shortestWordLength = Infinity;
+            let longestWordLength = "";
+            let countMarie = 0;
+
+            while (startIndexWord >= 0){
+            //This loop keeps running as long as startIndexWord is greater than or equal to 0. 
+            // It is used to process each word in the string.
+                let endIndexWord = content.indexOf(" ", startIndexWord) 
+                // The upper line looks for the first space (" ") after the startIndexWord index.
+                // For the first word Maria, the first space would be after "a".
+                //Then the index of this empty space is saved on endIndexWord.
+                let word = ""
+                //On the upper line, variable "word" is empty at the beginning, there are no words found yet.
+                if (endIndexWord >= 0){
+                    word = content.substring(startIndexWord, endIndexWord)
+                //The substring(startIndexWord, endIndexWord) method extracts the word between startIndexWord and endIndexWord.
+                // Example: Between startIndexWord = 0 and endIndexWord = 5 (the first space after the first word), we exctract the substring "Maria".
+                    startIndexWord = endIndexWord + 1
+                //Then, startIndexWord is updated to endIndexWord + 1 to point to the first letter after the space.
+                // This will be also the first letter of the next word, so the next word can be processed in the next loop iteration.
+                } else {
+                    word = content.substring(startIndexWord)   
+                    startIndexWord = -1
+                    // If -1 is returned, it means no space is found after a word's last letter. 
+                    // This means the current word is the last one in the string. substring(startIndexWord) extracts the remaining word starting from startIndexWord to the end of the string.
+                    //The startIndexWord is set to -1 to exit the loop after processing the last word.
+                }
+
+                // Find longest Word function
+
+                if (word.length > longestWordLength){
+                    longestWord = word
+                    longestWordLength = word.length
+                } else if (word.length == longestWordLength && !longestWord.includes(word)){
+                    longestWord += ", " + word
+                }
+                
+                // Find shortest Word function
+
+                if (word.length < shortestWordLength){
+                    shortestWord = word
+                    shortestWordLength = word.length
+                } else if (word.length === shortestWordLength && !shortestWord.includes(word)){
+                    shortestWord += ", " + word
+                }
+
+                // Count word Marie
+
+                if (word == "Marie"){
+                    countMarie++;
+                }
+
+                ++countWords
+                printLn(countWords + ". word: \"" + word + "\"")
+            }
+
+            printHr();
+
+            printLn("Longest word: \"" + longestWord + "\"");
+
+            printHr();
+
+            printLn("Shortest word: \"" + shortestWord + "\"");
+
+            printHr();
+
+            print("The word \"Marie\" appears " + countMarie + " times inside the text");
+
+        }
+
+        
+//---------- Collator Function made by Gyula used to find -> First lexicopraphic word ----------------
+
+        let collator = new Intl.Collator("de-AT", { collation: "phonebk" });
+        // The Intl.Collator object provides methods for comparing strings in a way that respects the rules of a specific locale (language or region).
+
+        function findFirstLexicographicalWord(content) {
+            let startIndexWord = 0;
+            let firstLexicographicalWord = null;
+
+            while (startIndexWord >= 0) {
+                let endIndexWord = content.indexOf(" ", startIndexWord);
+                let word = "";
+
+                if (endIndexWord >= 0) {
+                    word = content.substring(startIndexWord, endIndexWord);
+                    startIndexWord = endIndexWord + 1;
+                } else {
+                    word = content.substring(startIndexWord);
+                    startIndexWord = -1; // Exit the loop after processing the last word
+                }
+
+                // Exclude words that contain numbers and single letters like "a" (word.length must be at least 2)
+                if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word) && word.length >= 2) {
+                    // Initialize firstLexicographicalWord with the first valid word
+                    if (firstLexicographicalWord === null || collator.compare(word, firstLexicographicalWord) < 0) {
+                        firstLexicographicalWord = word;
+                    }
+                    // The collator.compare method compares two strings lexicographically based on the locale and collation rules defined by the Intl.Collator object.
+                    //function collator.compare() returns:
+                    // -1 if word is lexicographically smaller than firstLexicographicalWorld
+                    // 0 if word is equal to firstLexicographicalWorld
+                    // 1 if word is lexicographically greater than firstLexicographicalWorld
+                
+                }
+            }
+
+            return firstLexicographicalWord;
+        }
+
+        // Example Usage
+        const firstLexWord = findFirstLexicographicalWord(textClean);
+        printHr();
+        printLn("First lexicographical word which is at least 2 letters long: \"" + firstLexWord + "\"");
+            
+
+        //---------- Collator Function made by Gyula used to find -> Last lexicopraphic word----------------------
+                
+        function findLastLexicographicalWord(content) {
+            let startIndexWord = 0;
+            let lastLexicographicalWord = null;
+
+            while (startIndexWord >= 0) {
+                let endIndexWord = content.indexOf(" ", startIndexWord);
+                let word = "";
+
+                if (endIndexWord >= 0) {
+                    word = content.substring(startIndexWord, endIndexWord);
+                    startIndexWord = endIndexWord + 1;
+                } else {
+                    word = content.substring(startIndexWord);
+                    startIndexWord = -1; // Exit the loop after processing the last word
+                }
+
+                // Regular Expression: Exclude words that contain numbers
+                if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word)) {
+                    // Initialize lastLexicographicalWord with the first valid word
+                    if (lastLexicographicalWord === null || collator.compare(word, lastLexicographicalWord) > 0) {
+                        lastLexicographicalWord = word;
+                    }
+                }
+            }
+
+            return lastLexicographicalWord;
+        }
+
+        // Example Usage
+        const lastLexWord = findLastLexicographicalWord(textClean);
+        printHr();
+        printLn("Last lexicographical word: \"" + lastLexWord + "\"");
+            
+        
+//-----------------------------------------------------------
+
+
+
+// Hints:
+
+        /* Use of the charAT function to detect letters.
+
+        Use of indexOf() to see when a letter appears
+        
+        To recognize words, we can create a while loop: It itinerates through content from space to space. Between spaces there are words.
+
+        It makes sense to clean the text before the Analysis starts. We can eleiminate f.e this symbols [] and the content inside, with the replace function. */
+        
+        
+
+    </script>
+    
+</body>
+</html>
