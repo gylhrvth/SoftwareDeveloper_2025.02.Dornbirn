@@ -1,0 +1,40 @@
+body{
+    background: linear-gradient(to right, rgb(169, 185, 242), rgb(50, 110,150));
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+body h1{
+    font-size: 3em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.first_container{
+    display: flex;
+    width: 100%;
+    background: rgba(10, 64, 77, 0.79);
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0 0 15px 15px hsla(0, 0%, 100%, 0.426);
+    margin-bottom: 5em;
+    color: white
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background: rgba(241, 239, 239, 0.267);
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0 0 5px 5px hsla(0, 0%, 100%, 0.426);
+    margin-bottom: 5em;
+}
+
+div p{
+    font-size: 1.5em;
+}

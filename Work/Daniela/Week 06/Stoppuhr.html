@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoppuhr</title>
+</head>
+<body>
+    
+    <div class="button">Start</div>
+    <div class="button">Pause</div>
+    <div class="button">Neustart</div>
+    
+
+
+
+    <script>
+        let seconds = 0;
+        let minutes = 0;
+        let timerInterval;
+
+        function updateTimerDisplay() {
+            let formattedTime = 
+                (minutes < 10 ? "0" : "") + minutes + ":" + 
+                (seconds < 10 ? "0" : "") + seconds;
+            document.getElementById("timer").innerText = formattedTime;
+        }
+
+        function startTimer() {
+            if (!timerInterval) { // Verhindert mehrfaches Starten
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;
+                        minutes++;
+                    }
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null; // Zurücksetzen
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            seconds = 0;
+            minutes = 0;
+            updateTimerDisplay();
+        }
+    </script>
+
+</body>
+</html>
