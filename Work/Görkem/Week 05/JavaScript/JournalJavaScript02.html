@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+    <script src="../../../../Kurs/common.js" defer></script>
+    <title>JavaScript Array</title>
+
+    <h1>JavaScript</h1>
+    <h2>Mittwoch, 26. März 2025</h2>
+
+    <h3 class="textColor01">JavaScript Array</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was ist ein Array?</span>
+        <p>Ein <strong>JavaScript-Array</strong> ist eine Datenstruktur, die eine <strong>geordnete Liste von Werten speichert</strong>. Diese Werte können verschiedene Datentypen sein, z. B. Zahlen, Strings, Objekte oder sogar andere Arrays.</p>
+        <p>Arrays in JavaScript sind <strong>nullbasiert</strong>, d. h. das erste Element hat den Index 0, das zweite den Index 1 usw.</p>
+        <p>1. Ein Array erstellen:</p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];                              // Array mit zahlen
+                let namen = ["Anna", "Tom", "Carlos"];                       // Array mit Strings
+                let gemischt =  [42, "Hallo", true, { name: "Lisa" }];        // Gemischtes Array
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich ein Array variable?</span>
+        <p>Ein Array in JavaScript kann mit den Schlüsselwörtern <strong>let, const oder var</strong> erstellt werden. Hier sind einige Möglichkeiten, eine Array-Variable zu definieren:</p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];
+                const namen = ["Alice", "Bob", "Charlie"]; 
+            </code>
+        </div>
+        <p>✅ let erlaubt Änderungen des Arrays (Hinzufügen/Entfernen von Elementen).<br>
+           ❌ const verhindert eine Neuzuweisung der Variablen, aber der Inhalt kann geändert werden.</p>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].length?</span>
+        <p>Der Ausdruck:</p>
+        <div class="code-box">
+            <code>
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].length
+            </code>
+        </div>
+        <p><strong>gibt die Anzahl der Elemente im Array</strong> zurück. Da das Array 10 Elemente enthält, ist das Ergebnis: <strong>10!</strong></p>
+        <p>Erklärung:</p>
+        <ul>
+            <li>Das .length-Eigenschaft eines Arrays gibt immer die Anzahl der Elemente zurück.</li>
+            <li>In diesem Fall enthält das Array die Zahlen 1 bis 10, also ist .length gleich 10.</li>
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht arr[5]?</span>
+        <p>Der Ausdruck arr[5] greift auf das <strong>6. Element</strong> eines Arrays arr zu, da JavaScript-Arrays nullbasiert sind (d. h. der erste Index ist 0).</p>
+        <p>1.<strong>Wenn das Array mindestens 6 Elemente hat:</strong></p>
+        <div class="code-box">
+            <code>
+                let arr = [10, 20, 30, 40, 50, 60, 70]; 
+                console.log(arr[5]); // Ausgabe: 60
+            </code>
+        </div>
+        <p>✅ Hier ist arr[5] das 6. Element, also 60.</p>
+        <p>2. <strong>Wenn das Array weniger als 6 Elemente hat:</strong></p>
+        <div class="code-box">
+            <code>
+                let arr = [1, 2, 3, 4];
+                console.log(arr[5]); // Ausgabe: undefined
+            </code>
+        </div>
+        <p>❌ Da das Array nur 4 Elemente hat (arr.length = 4), gibt arr[5] undefined zurück, weil dieser Index nicht existiert.</p>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion at()?</span>
+        <p>Die at()-Methode in JavaScript gibt das Element an einer bestimmten Position im Array zurück. Sie funktioniert ähnlich wie arr[index], aber mit einem zusätzlichen Vorteil: Sie unterstützt negative Indizes, um Elemente von hinten zu zählen.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.at(index)
+            </code>
+        </div>
+        <ul>
+            <li>index (Zahl) Die Position des Elements im Array.</li>
+            <li><strong>Positive Werte:</strong> Zählen vom Anfang (0 = erstes Element).</li>
+            <li><strong>Negative Werte:</strong> Zählen vom Ende (-1 = letztes Element).</li>
+        </ul>
+        <br>
+        <p><strong>Beispiel:</strong></p>
+        <p>1. Zugriff mit positivem Index</p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40, 50];
+                console.log(zahlen.at(2)); // 30 (3. Element)
+            </code>
+        </div>
+        <p>2. Zugriff mit negativem Index (von hinten)</p>
+        <div class="code-box">
+            <code>
+                console.log(zahlen.at(-1)); // 50 (letztes Element)
+                console.log(zahlen.at(-2)); // 40 (vorletztes Element)
+            </code>
+        </div>
+        <p>❗ Vorteil gegenüber arr[arr.length - 1]
+            Mit at(-1) kann man das letzte Element direkt holen, ohne arr[arr.length - 1] schreiben zu müssen.</p>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die push()-Methode?</span>
+        <p>Die push()-Methode in JavaScript <strong>fügt ein oder mehrere Elemente am Ende eines Arrays hinzu</strong> und gibt die neue Länge des Arrays zurück.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.push(element1, element2, ..., elementN)
+            </code>
+        </div>
+        <p><strong>Beispiel:</strong></p>
+        <p>1. Ein einzelnes Element hinzufügen</p>
+        <div class="code-box">
+            <code>
+                let zahlen = [1, 2, 3];
+                let neueLänge = zahlen.push(4);
+
+                console.log(zahlen); // [1, 2, 3, 4]
+                console.log(neueLänge); // 4
+            </code>
+        </div>
+        <p>✅ Das Element 4 wird am Ende hinzugefügt, und die neue Länge ist 4.</p>
+    </li>
+    <br>
+            
