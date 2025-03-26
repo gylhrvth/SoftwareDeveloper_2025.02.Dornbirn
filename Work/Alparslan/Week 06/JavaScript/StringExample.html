@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    printH(1, 'String (Basics)')
+
+    let text1 = "Apfel"
+    let text2 = 'Birne'
+    let text3 = "Apfel im \"Korb\""
+    let text4 = 'Apfel im "Korb"'
+
+    let text5 = "That's life (that's life) \
+That's what all the people say \
+You're riding high in April, shot down in May \
+But I know I'm gonna change that tune \
+When I'm back on top, back on top in June"
+
+    let text6 = '               Apfel                  '
+    let text7 = 'Apfel                            Birne'
+    let text8 = 'Apfel;Birne;Banane'
+    let text9 = 'Ägypten'
+
+    printLn(text1)
+    printLn(text2)
+    printLn(text3)
+    printLn(text4)
+
+    printLn("text1 === text1 " + (text1 === text1))
+    printLn("text3 === ..." + (text3 === (text1 + " im \"Korb\"")))
+    printLn("text1 !==  Birne " + (text1 !== "Birne"))
+
+    printHr()
+
+    printLn(text1 + " < " + text2 + ": " + (text1 < text2))
+    printLn(text2 + " < " + text1 + ": " + (text2 < text1))
+    printLn(text2 + " < " + text9 + ": " + (text2 < text9))
+    printLn(text9 + " < " + text2 + ": " + (text9 < text2))
+    printLn(text1 + " < " + text9 + ": " + (text1 < text9))
+    printLn(text9 + " < " + text1 + ": " + (text9 < text1))
+
+    printHr()
+    let collator = new Intl.Collator("de-AT", {collation: 'phonebk'})
+    collator.compare(text1, text2)
+    printLn(text1 + " compare " + text2 + ": " + collator.compare(text1, text2))
+    printLn(text2 + " compare " + text1 + ": " + collator.compare(text2, text1))
+    printLn(text2 + " compare " + text9 + ": " + collator.compare(text2, text9))
+    printLn(text9 + " compare " + text2 + ": " + collator.compare(text9, text2))
+    printLn(text1 + " compare " + text9 + ": " + collator.compare(text1, text9))
+    printLn(text9 + " compare " + text1 + ": " + collator.compare(text9, text1))
+
+
+
+    printH(1, 'String Attribute')
+    printLn(text1 + " besteht aus " + text1.length + " Buchstaben")
+
+    printH(1, 'String Methods')
+    printLn('3. Buchstabe des Texts "' + text1 + '" ist ' + text1.charAt(2))
+    printLn('Im Text "' + text1 + '" steht "f" an der Position: ' + text1.indexOf('f'))
+
+
+
+    printLn(text5)
+    printLn('Im Text (siehe oben) steht "f" an der Position: ' + text5.indexOf('f'))
+    printLn('Im Text (siehe oben) steht "f" an der Position: ' + text5.indexOf('f', 10))
+    printLn('Im Text (siehe oben) steht "f" an der Position: ' + text5.lastIndexOf('f'))
+    
+    printLn('Text beinhaltet "riding" ist ' + text5.includes("riding"))
+    printLn('Text beinhaltet "Apfel" ist ' + text5.includes("Apfel"))
+
+    printLn('Text beginnt mit "That\'s life" ist ' + text5.startsWith("That's life"))
+    printLn('Text beginnt "Apfel" ist ' + text5.startsWith("Apfel"))
+    
+
+    printH(3, 'Mit substring ein Teiltext ausschneiden')
+    printLn(text5.substring(9))
+    printLn(text5.substring(9, 22))
+
+    printH(3, 'Klein und Großbuchstaben')
+    printLn(text1.toUpperCase())
+    printLn(text1.toLocaleLowerCase())
+
+    printH(3, 'Trim')
+    printLn(text6.length)
+    printLn(text6.trim().length)
+    printLn(text7.length)
+    printLn(text7.trim().length)
+
+    printH(3, 'Replace')
+    printLn(text3)
+    printLn(text3.replace('im', 'neben dem'))
+    printLn(text3.replace(/im/g, 'neben dem'))
+
+
+    printH(3, 'Split')
+    printLn(text8)
+    let words = text8.split(';')
+    for (let i = 0; i < words.length; ++i){
+        printLn(i + '. word is: ' + words[i] )
+    }
+
+    printHr()
+    printH(1, 'Operator Precendence')
+    printLn("3 + 4 * 5 = " + (3 + 4 * 5))
+    printLn("(3 + 4) * 5 = " + ((3 + 4) * 5))
+    printLn("3 + 4 * 5 = " + (3 + 4 * 5 == 23))
+
+    printLn("true || true && false = " + (true || true && false))
+    
+
+/*
+    const myWords = ['Ägypten', 'Apfel', 'zebra', 'Äpfel', 'Ägeis'];
+    myWords.sort(new Intl.Collator("de-AT", {collation: 'phonebk'}).compare);
+    console.log(myWords);
+*/  
+</script>
+</body>
+</html>
