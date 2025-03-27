@@ -61,6 +61,23 @@
     <h2>shortest Word</h2>
     <p id="shortestWordOutputGPT"></p>
 
+    <h2>longest Word</h2>
+    <p id="longestWordOutputGPT"></p>
+
+    <h2>sortedWords</h2>
+    <p id="sortedWords"></p>
+
+    <h2>first Word in alphabeth</h2>
+    <p id="shortestWord"></p>
+
+    <h2>longest Word</h2>
+    <p id="longestWord"></p>
+
+    <h2>include</h2>
+    <p id="includesOutput"></p>
+
+    <h2>searchMarie()</h2>
+    <p id = "searchMariesOutput"></p>
 
 
 
@@ -161,10 +178,94 @@
             console.log("Keine gültigen Wörter gefunden!");
         }
         /*--------------------------------------------------------------------*/
+        const words3 = text2.match(/\b[a-zA-ZäöüÄÖÜß]+\b/g);
 
+        if (words) {
 
+            const longestWords = words.reduce((longestArr, current) => {
+                const maxLength = longestArr[0].length;
+                if (current.length > maxLength) {
+                    return [current];
+                } else if (current.length === maxLength) {
+                    return [...longestArr, current];
+                }
+                return longestArr;
+            }, [words[0]]);
 
+            console.log(longestWords);
+            document.getElementById("longestWordOutputGPT").innerText = longestWords.join(", ");
+        } else {
+            console.log("Keine gültigen Wörter gefunden!");
+        }
+        /*------------------------------------------------------------------*/
+        sortedWords = text2.match(/\b[a-zA-ZäöüÄÖÜß]+\b/g);
+        document.getElementById("sortedWords").innerText = searchFirstWorldByAlphabet(sortedWords)
+        /*
+                if(sortedWords){
+                    sortedWords.sort((a, b) => a.localeCompare(b, "de"));
+                    document.getElementById("sortedWords").innerText = sortedWords.join(", ");
+                }
+                else{
+                    console.log("Keine gültigen Wörter gefunden!");
+                }
+        */
+        /*----------------------------------------------------------------------------------------------*/
+        sortedWords = text2.match(/\b[a-zA-ZäöüÄÖÜß]+\b/g);
+        document.getElementById("sortedWords").innerText = searchFirstWorldByAlphabet(sortedWords)
 
+        function searchFirstWorldByAlphabet(arr) {
+            let firstWord = undefined
+            const collator = new Intl.Collator("de-AT", { collation: 'phonebk' })
+
+            for (let i = 0; i < arr.length; ++i) {
+                if (firstWord === undefined || collator.compare(arr[i], firstWord) < 0) {
+                    bestie = arr[i]
+                }
+            }
+
+            return firstWord
+        }
+        /*---------------------------------------------------------------------------------------------*/
+        document.getElementById("shortestWord").innerText = searchShortestWord(sortedWords)
+
+        function searchShortestWord(arr) {
+            if (arr.length === 0) return null; // Falls Array leer, gib null zurück
+
+            let shortestWord = arr[0]; // Erstes Wort als Referenz setzen
+
+            for (let i = 1; i < arr.length; ++i) {
+                if (arr[i].length < shortestWord.length) {
+                    shortestWord = arr[i]; // Neues kürzestes Wort gefunden
+                }
+            }
+
+            return shortestWord;
+        }
+        /*-----------------------------------------------------------------------------------------------------------*/
+        document.getElementById("longestWord").innerText = searchLongestWord(words)
+
+        function searchLongestWord(arr) {
+            if (arr.length === 0) return null; // Falls Array leer, gib null zurück
+
+            let longestWord = arr[0]; // Erstes Wort als Referenz setzen
+
+            for (let i = 1; i < arr.length; ++i) {
+                if (arr[i].length > longestWord.length) {
+                    longestWord = arr[i];
+                }
+            }
+
+            return longestWord;
+        }
+        /*----------------------------------------------------------------------------------------------------------------*/
+            let matches = text2.match(/Marie/gi); // Sucht nach allen Vorkommen von "Marie" im Text. global mit i(gi) wird gross klein schreibung ignoriert 
+            let count = matches ? matches.length : 0; // Falls .match() keine Übereinstimmungen findet, gibt es null zurück. Deshalb nutzen wir matches ? matches.length : 0, um zu verhindern, dass ein Fehler auftritt.
+            console.log(count);
+            document.getElementById("searchMariesOutput").innerText = count;
+        /*----------------------------------------------------------------------------------------------------------------*/       
+
+        
+    
 
 
     </script>
