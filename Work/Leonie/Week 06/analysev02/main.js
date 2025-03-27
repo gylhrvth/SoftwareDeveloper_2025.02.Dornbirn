@@ -6,15 +6,10 @@ function startAnalysis() {
     const feedback = document.getElementById("feedback");
     const initalText = document.getElementById("initalText").value;
 
-    // Überprüfen, ob der Text nur aus Leerzeichen besteht
-    if (initalText.trim() === "") {
-        feedback.textContent = "Bitte geben Sie einen gültigen Text ein, der nicht nur aus Leerzeichen besteht.";
-        return;
-    }else if (initalText.length < 20) {
-        feedback.textContent = "Bitte geben Sie einen Text ein, der mindestens 20 Buchstaben enthält.";
+    if (initalText.length < 20) {
+        feedback.textContent = "Bitte geben Sie einen Text ein, der mindestens 20 Zeichen enthält.";
         return;
     }
-
 
     const clearSquareBracket = initalText.replace(/[^a-zA-ZäöüÄÖÜß ]/g, "");
     text = clearSquareBracket
@@ -77,17 +72,24 @@ function longestWord(words) {
 
 // Funktion zur Ermittlung des ersten Wortes (alphabetisch)
 function firstWordDE(words) {
-    const collator = new Intl.Collator('de-DE');
-    words = words.sort(collator.compare);
     let firstDEword = words[0];
-    firstDEword = words[0];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].localeCompare(firstDEword, "de") < 0) {
+            firstDEword = words[i];
+        }
+    }
     return firstDEword;
 }
 
 // Funktion zur Ermittlung des letzten Wortes (alphabetisch)
 function lastDEword(words) {
     let lastDEword = words[0];
-    lastDEword = words[words.length - 1];
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].localeCompare(lastDEword, "de") > 0) {
+            lastDEword = words[i];
+            console.log(lastDEword);
+        }
+    }
     return lastDEword;
 }
 
@@ -101,6 +103,7 @@ function marieCount(words) {
     }
     return count;
 }
+
 // Event-Listener für den Button
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("analysButton");
