@@ -3,6 +3,7 @@ window.print = print;
 window.printH = printH;
 window.printLn = printLn;
 window.printHr = printHr;
+window.printBr = printBr;
 
 function printTest(conntent) {
     console.log(conntent);
@@ -72,4 +73,31 @@ function printHr() {
     const hr = document.createElement('hr');
     // Append the horizontal rule to the body of the document
     document.body.appendChild(hr);
+}
+
+function printBr(amount) {
+    if (amount === undefined || amount === 0) {
+        amount = 1;
+    }
+    // Ensure amount is a number
+    // parse to a int 
+    // check if is not a number
+    if (isNaN(amount)) {
+        // amount = 0;
+        alert('Please enter a number at printBr()');
+    }
+    // Range 
+    if (amount < 0) {
+        amount *= -1;
+    } else if (amount > 100) {
+        amount = 100;
+    }
+
+    //for loop to create multiple line breaks   
+    for (let i = 0; i < amount; i++) {
+        // Create a new line break element
+        const br = document.createElement('br');
+        // Append the line break to the body of the document
+        document.body.appendChild(br);
+    }
 }
