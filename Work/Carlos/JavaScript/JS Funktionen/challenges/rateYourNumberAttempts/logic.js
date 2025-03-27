@@ -2,7 +2,7 @@
 
 //generates a random number between 1 and 100
 
-const targetNumber = Math.floor(Math.random() * 100) + 1;
+let targetNumber = Math.floor(Math.random() * 100) + 1;
 console.log("Target Number is: " + targetNumber);
 
 let clickCount = 7; // The clickCount must be declared outside the checkGuess Function. Otherwise, everytime I click the button, clickCount reinitializes to 0.
@@ -113,6 +113,11 @@ function updateCounter(){
 }
   
     function resetButton() {
+
+      //Chooses a new random number
+      targetNumber = Math.floor(Math.random() * 100) + 1;
+      console.log("New targetNumber on reset: " +  targetNumber);
+
       // Reset the input field
       const userInput = document.getElementById("userInput");
       userInput.value = "";
