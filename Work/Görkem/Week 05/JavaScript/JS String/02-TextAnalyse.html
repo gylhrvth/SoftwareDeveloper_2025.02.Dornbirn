@@ -79,6 +79,254 @@
 
    // Wie viele Wörter gibt es in Text
    print("Anzahl der Wörter im Text: " + splitWords.length);
+   printHr()
+
+   //Count and identify Words -> With indexOf()
+
+   printH(3, "Count and identify Words -> With indexOf() Method / without split() Method");
+
+textAnalyse(textClean)
+
+//This function searches where is the first space after the beginning letter of a word. (Ending of the word)
+//Then adds one position to the empty spaces, which equals to the first letter of the next word. (Beginning of the word)
+// This way, words can be counted and identified.  
+
+function textAnalyse(content){
+
+    let startIndexWord = 0
+    let countWords = 0
+    let longestWord = "";
+    let shortestWord = "";
+    let shortestWordLength = Infinity;
+    let longestWordLength = "";
+    let countMarie = 0;
+
+    while (startIndexWord >= 0){
+    //This loop keeps running as long as startIndexWord is greater than or equal to 0. 
+    // It is used to process each word in the string.
+        let endIndexWord = content.indexOf(" ", startIndexWord) 
+        // The upper line looks for the first space (" ") after the startIndexWord index.
+        // For the first word Maria, the first space would be after "a".
+        //Then the index of this empty space is saved on endIndexWord.
+        let word = ""
+        //On the upper line, variable "word" is empty at the beginning, there are no words found yet.
+        if (endIndexWord >= 0){
+            word = content.substring(startIndexWord, endIndexWord)
+        //The substring(startIndexWord, endIndexWord) method extracts the word between startIndexWord and endIndexWord.
+        // Example: Between startIndexWord = 0 and endIndexWord = 5 (the first space after the first word), we exctract the substring "Maria".
+            startIndexWord = endIndexWord + 1
+        //Then, startIndexWord is updated to endIndexWord + 1 to point to the first letter after the space.
+        // This will be also the first letter of the next word, so the next word can be processed in the next loop iteration.
+        } else {
+            word = content.substring(startIndexWord)   
+            startIndexWord = -1
+            // If -1 is returned, it means no space is found after a word's last letter. 
+            // This means the current word is the last one in the string. substring(startIndexWord) extracts the remaining word starting from startIndexWord to the end of the string.
+            //The startIndexWord is set to -1 to exit the loop after processing the last word.
+        }
+
+        // Find longest Word function
+
+        if (word.length > longestWordLength){
+            longestWord = word
+            longestWordLength = word.length
+        } else if (word.length == longestWordLength && !longestWord.includes(word)){
+            longestWord += ", " + word
+        }
+        
+        // Find shortest Word function
+
+        if (word.length < shortestWordLength){
+            shortestWord = word
+            shortestWordLength = word.length
+        } else if (word.length === shortestWordLength && !shortestWord.includes(word)){
+            shortestWord += ", " + word
+        }
+
+        // Count word Marie
+
+        if (word == "Marie"){
+            countMarie++;
+        }
+
+        ++countWords
+        printLn(countWords + ". word: \"" + word + "\"")
+    }
+
+    printHr();
+
+    printLn("Longest word: \"" + longestWord + "\"");
+
+    printHr();
+
+    printLn("Shortest word: \"" + shortestWord + "\"");
+
+    printHr();
+
+    print("The word \"Marie\" appears " + countMarie + " times inside the text");
+
+}
+
+
+//---------- Collator Function made by Gyula used to find -> First lexicopraphic word ----------------
+
+let collator = new Intl.Collator("de-AT", { collation: "phonebk" });
+// The Intl.Collator object provides methods for comparing strings in a way that respects the rules of a specific locale (language or region).
+
+function findFirstLexicographicalWord(content) {
+    let startIndexWord = 0;
+    let firstLexicographicalWord = null;
+
+    while (startIndexWord >= 0) {
+        let endIndexWord = content.indexOf(" ", startIndexWord);
+        let word = "";
+
+        if (endIndexWord >= 0) {
+            word = content.substring(startIndexWord, endIndexWord);
+            startIndexWord = endIndexWord + 1;
+        } else {
+            word = content.substring(startIndexWord);
+            startIndexWord = -1; // Exit the loop after processing the last word
+        }
+
+        // Exclude words that contain numbers and single letters like "a" (word.length must be at least 2)
+        if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word) && word.length >= 2) {
+            // Initialize firstLexicographicalWord with the first valid word
+            if (firstLexicographicalWord === null || collator.compare(word, firstLexicographicalWord) < 0) {
+                firstLexicographicalWord = word;
+            }
+            // The collator.compare method compares two strings lexicographically based on the locale and collation rules defined by the Intl.Collator object.
+            //function collator.compare() returns:
+            // -1 if word is lexicographically smaller than firstLexicographicalWorld
+            // 0 if word is equal to firstLexicographicalWorld
+            // 1 if word is lexicographically greater than firstLexicographicalWorld
+        
+        }
+    }
+
+    return firstLexicographicalWord;
+}
+
+// Example Usage
+const firstLexWord = findFirstLexicographicalWord(textClean);
+printHr();
+printLn("First lexicographical word which is at least 2 letters long: \"" + firstLexWord + "\"");
+    
+
+//---------- Collator Function made by Gyula used to find -> Last lexicopraphic word----------------------
+        
+function findLastLexicographicalWord(content) {
+    let startIndexWord = 0;
+    let lastLexicographicalWord = null;
+
+    while (startIndexWord >= 0) {
+        let endIndexWord = content.indexOf(" ", startIndexWord);
+        let word = "";
+
+        if (endIndexWord >= 0) {
+            word = content.substring(startIndexWord, endIndexWord);
+            startIndexWord = endIndexWord + 1;
+        } else {
+            word = content.substring(startIndexWord);
+            startIndexWord = -1; // Exit the loop after processing the last word
+        }
+
+        // Regular Expression: Exclude words that contain numbers
+        if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word)) {
+            // Initialize lastLexicographicalWord with the first valid word
+            if (lastLexicographicalWord === null || collator.compare(word, lastLexicographicalWord) > 0) {
+                lastLexicographicalWord = word;
+            }
+        }
+    }
+
+    return lastLexicographicalWord;
+}
+
+// Example Usage
+const lastLexWord = findLastLexicographicalWord(textClean);
+printHr();
+printLn("Last lexicographical word: \"" + lastLexWord + "\"");
+    
+
+//---------Find most frequent word, done by Copilot, I still have to understand it 😂--------------------------------------------------
+
+
+function findMostFrequentWord(content) {
+    let startIndexWord = 0;
+    let mostFrequentWord = null;
+    let highestCount = 0;
+
+    while (startIndexWord >= 0) {
+    let endIndexWord = content.indexOf(" ", startIndexWord);
+    let word = "";
+
+    if (endIndexWord >= 0) {
+    word = content.substring(startIndexWord, endIndexWord);
+    startIndexWord = endIndexWord + 1;
+} else {
+    word = content.substring(startIndexWord);
+    startIndexWord = -1; // Exit the loop after processing the last word
+}
+
+// Clean and validate the word (exclude numbers and ensure it's at least 2 letters long)
+if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word)) {
+    word = word.toLowerCase(); // Convert to lowercase to count case-insensitively
+
+    // Count occurrences of the current word
+    let count = 0;
+    let innerStartIndex = 0;
+
+    while (innerStartIndex >= 0) {
+        let innerEndIndex = content.indexOf(" ", innerStartIndex);
+        let innerWord = "";
+
+        if (innerEndIndex >= 0) {
+            innerWord = content.substring(innerStartIndex, innerEndIndex);
+            innerStartIndex = innerEndIndex + 1;
+        } else {
+            innerWord = content.substring(innerStartIndex);
+            innerStartIndex = -1; // Exit the loop after processing the last word
+        }
+
+        // Clean and validate the inner word
+        if (/^[a-zA-ZäöüÄÖÜß]+$/.test(innerWord) && innerWord.length >= 2) {
+            innerWord = innerWord.toLowerCase(); // Convert to lowercase
+
+            if (innerWord === word) {
+                count++; // Increment count if the words match
+            }
+        }
+    }
+
+    // Update the most frequent word if the current word has a higher count
+    if (count > highestCount) {
+        mostFrequentWord = word;
+        highestCount = count;
+    }
+            }
+        }
+
+    // Return the most frequent word and its count as a string
+    return "The most frequent word is " + "\""+mostFrequentWord+"\"" + " and it appears " + highestCount + " times.";
+    }
+
+        // Example Usage
+        const result = findMostFrequentWord(textClean);
+        printHr();
+        printLn(result);
+
+
+// Hints:
+
+/* Use of the charAT function to detect letters.
+
+Use of indexOf() to see when a letter appears
+
+To recognize words, we can create a while loop: It itinerates through content from space to space. Between spaces there are words.
+
+It makes sense to clean the text before the Analysis starts. We can eleiminate f.e this symbols [] and the content inside, with the replace function. */
+
 
 
 

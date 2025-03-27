@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Code (Arrays)</title>
+    <link rel="stylesheet" href="../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="../../../../../Kurs/common.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    printH(1, 'Sample Code Analyse')
+    printH(2, '👉 Wähle 7 nützliche JS Arrays Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.')
+
+    printH(3, '👉 Beispiel Code: mit 7 Methoden, let zahlen = [10, 20, 30, 40, 50];')
+    printHr()
+
+    let zahlen = [10, 20, 30, 40, 50];
+
+    // 1. .push() - Element am Ende hinzufügen
+    let zahlenPush = [...zahlen];
+    zahlenPush.push(60);
+    
+    printH(3, "1. Methode .push(60): " + zahlenPush);
+    printHr();
+
+    // 2. .pop() - Letztes Element entfernen
+    let zahlenPop = [...zahlen];
+    let popElement = zahlenPop.pop();
+    
+    printH(3, "2. Methode .pop(): " + zahlenPop + " (Entfernt: " + popElement + ")");
+    printHr();
+
+    // 3. .shift() - Erstes Element entfernen
+    let zahlenShift = [...zahlen];
+    let shiftElement = zahlenShift.shift();
+
+    printH(3, "3. Methode .shift(): " + zahlenShift + " (Entfernt: " + shiftElement + ")");
+    printHr()
+
+    // 4. .map() - Jedes Element verdoppeln
+    let zahlenMap = zahlen.map(num => num * 2);
+    
+    printH(3, "5. Methode .map(x2): " + zahlenMap + " (verdoppelt jedes Zahl x2)");
+    printHr();
+
+    // 6. .filter() - Nur Werte größer als 25 behalten
+    let zahlenFilter = zahlen.filter(num => num > 25);
+    printH(3, "6. Methode .filter(>25): " + zahlenFilter + " (Nur Werte größer als 25 behalten)");
+    printHr();
+
+    // 7. .reduce() - Summe aller Zahlen berechnen
+    let zahlenReduce = zahlen.reduce((acc, num) => acc + num, 0);
+    printH(3, "7. Methode .reduce (Summe): " + zahlenReduce + " (Summe aller Zahlen berechnen)");
+    printHr();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
