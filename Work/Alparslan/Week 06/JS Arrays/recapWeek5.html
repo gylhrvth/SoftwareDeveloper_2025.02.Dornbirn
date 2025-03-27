@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../lib.js"></script>
+</head>
+
+<body>
+</body>
+
+<script>
+  printH(1, "Recap Week 5");
+  printH(2, "String Manipulation");
+
+
+  let fruits = ["Apple", "Banana", "Cherry", "Strawberry", "Orange"];
+
+  console.log(fruits);
+
+  let rndNumb = Math.floor(Math.random() * fruits.length);
+  console.log(rndNumb);
+
+  let word = fruits[rndNumb];
+  console.log("Orginal = " + word);
+
+  word = word.toLowerCase();
+  console.log("To Lower case = " + word);
+
+  let letters = word.split("");
+  console.log(letters);
+
+  let guess = "a";
+  console.log("Guess = " + guess);
+
+  let result = letters.includes(guess);
+  console.log("resulut = " + result);
+  let index = letters.indexOf(guess);
+  console.log("index at = " + index);
+
+  for (let i = 0; i < letters.length; i++) {
+    if (letters[i] === guess) {
+      console.log("Found at index = " + i);
+    }
+  }
+
+  let finalGuess = "banana";
+  console.log("Final Guess = " + finalGuess);
+
+  let finalResult = word === finalGuess;
+
+
+
+
+
+
+</script>
+
+</html>

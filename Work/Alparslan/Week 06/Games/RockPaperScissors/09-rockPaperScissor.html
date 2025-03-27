@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RockPaperScissors</title>
+  <script src="09-rockPaperScissorJS.js" defer></script>
+
+
+</head>
+
+<body>
+  <h1>Rock Paper Scissors</h1>
+
+  <button onclick="
+    playGame('rock');
+  ">Rock</button>
+
+
+  <button onclick="
+  playGame('paper')
+  ">Paper</button>
+
+
+  <button onclick="
+  playGame('scissor')
+  ">Scissors</button>
+
+  <!-- We set up the lines in HTML with paragraph, and give the some clear, understandable ID´s -->
+  <p class="js-move"></p>
+  <p class="js-result"></p>
+  <p class="js-score"></p>
+  <!-- At first, they do nothing and we dont have any lines in the browser, after we click a button, play and generate values, we create with JS this Paragraphs content and the show up-->
+
+  <button onclick="
+  resetScore();
+  ">ResetScore</button>
+
+</body>
+
+</html>
