@@ -140,4 +140,128 @@
         <p>✅ Das Element 4 wird am Ende hinzugefügt, und die neue Länge ist 4.</p>
     </li>
     <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion pop()?</span>
+        <p>Die Methode pop() wird in JavaScript für Arrays verwendet. Sie entfernt das letzte Element eines Arrays und gibt es zurück. Nach dem Aufruf von pop() wird das ursprüngliche Array verändert (das letzte Element fehlt dann).</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.pop();
+            </code>
+        </div>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];
+
+                let letztesElement = zahlen.pop();  // Entfernt 40
+                console.log(letztesElement);  // 40
+                console.log(zahlen);  // [10, 20, 30]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion shift()?</span>
+        <p>Die shift()-Methode entfernt das erste Element eines Arrays und gibt es zurück. Dadurch verschieben sich die verbleibenden Elemente nach vorne, um den Platz zu füllen. Das Array wird dabei verändert.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.shift();
+            </code>
+        </div>
+        <p><strong>Beispiel: Erstes Element entfernen</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];
+
+                let erstesElement = zahlen.shift();  // Entfernt 10
+                console.log(erstesElement);  // 10
+                console.log(zahlen);  // [20, 30, 40]
+            </code>
+        </div>
+        <p>📌 Erklärung:</p>
+        <ul>
+            <li>shift() entfernt die 10 aus dem Array.</li>
+            <li>Die restlichen Elemente (20, 30, 40) rücken nach vorne.</li>
+            <li>Das Array ist jetzt [20, 30, 40].</li>
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion splice()?</span>
+        <p>Die splice()-Methode wird verwendet, um Elemente eines Arrays hinzuzufügen, zu entfernen oder zu ersetzen. Dabei wird das ursprüngliche Array verändert.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.splice(startIndex, deleteCount, item1, item2, ...);
+            </code>
+        </div>
+        <p><strong>Beispiel für splice();</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40, 50];
+
+                let entfernteElemente = zahlen.splice(1, 2);  // Entfernt 2 Elemente ab Index 1
+                console.log(entfernteElemente);  // [20, 30]
+                console.log(zahlen);  // [10, 40, 50]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion concat()?</span>
+        <p>Die concat()-Methode in JavaScript wird verwendet, um zwei oder mehr Arrays oder Werte zusammenzuführen. Sie gibt ein neues Array zurück, das alle Elemente der ursprünglichen Arrays oder Werte enthält.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                let neuesArray = arr1.concat(arr2, arr3, ..., value1, value2, ...);
+            </code>
+        </div>
+        <ul>
+            <li>arr1 ist das Ausgangs-Array, mit dem die anderen Arrays oder Werte kombiniert werden.</li>
+            <li>arr2, arr3, ... sind die Arrays oder Werte, die du hinzufügen möchtest.</li>
+            <li>value1, value2, ... sind Werte, die ebenfalls zum neuen Array hinzugefügt werden können.</li>
+        </ul>
+        <p><strong>Beispiel 1: Arrays zusammenfügen</strong></p>
+        <div class="code-box">
+            <code>
+                let arr1 = [1, 2, 3];
+                let arr2 = [4, 5, 6];
+
+                let result = arr1.concat(arr2);
+                console.log(result);  // Ausgabe: [1, 2, 3, 4, 5, 6]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion indexOf()?</span>
+        <p>Die indexOf()-Methode in JavaScript wird verwendet, um den Index des ersten Vorkommens eines bestimmten Werts in einem Array oder String zu finden. Wenn der Wert gefunden wird, gibt indexOf() den Index dieses Werts zurück. Wenn der Wert nicht gefunden wird, gibt die Methode -1 zurück.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.indexOf(suchwert, startIndex);
+            </code>
+        </div>
+        <ul>
+            <li>suchwert: Der Wert, nach dem gesucht wird.</li>
+            <li>startIndex (optional): Der Index, ab dem die Suche gestartet wird. Standardmäßig wird die Suche ab dem Index 0 gestartet.</li>
+        </ul>
+        <p><strong>Beispiel 1: Verwendung mit Arrays</strong></p>
+        <div class="code-box">
+            <code>
+                let arr = [10, 20, 30, 40, 50];
+                let index = arr.indexOf(30);
+                
+                console.log(index);  // Ausgabe: 2
+            </code>
+        </div>
+        <p>📌Erklärung: indexOf(30) gibt den Index des ersten Vorkommens von 30 im Array zurück, der 2 ist, da 30 an der dritten Stelle des Arrays steht (der Index beginnt bei 0).</p>
+    </li>
             

@@ -60,6 +60,66 @@
     }
     printLn(minValue([5, 3, 8, 1, 9]));
 
+    // Minimum Suche -Mit For Each
+
+    printH(2, "👉Minimum Suche forEach")
+
+    function minValue(arr){
+        let min = arr[0];
+
+        arr.forEach(num => {    // Wir verwenden die forEach()-Methode, um jedes Element (num) im Array zu durchlaufen.
+            if (num < min){     // Falls num kleiner als unser aktuelles min ist, setzen wir min auf num.
+                min = num;      // Dadurch speichert min immer den kleinsten bisher gefundenen Wert.
+            }
+        });
+        
+        return min;
+    }
+    printLn(minValue([4, 2, 8, 1, 9])); // min.4 (Startwert), 2 < 4 -> min 2; 8 < 2 -> min bleibt 2; 1 < 2 -> min 1; 9 < 1 -> min bleibt 1 (Rückgabewert) 
+    //*printLn(minValue([-5, -10, 0, 3]));*//
+    printHr()
+
+    // Maximum Suche -Mit For Schleife
+
+    printH(2, "👉Maximum Suche For-Schleife")
+
+    function maxValue(arr) {
+        if (arr.length === 0) return undefined; // Falls das Array leer ist, gib undefined zurück.
+
+        let max = arr[0]; // Setze das erste Element als Maximum
+
+        for (let i = 1; i < arr.length; i++) { // Durchlaufe das Array ab Index 1
+            if (arr[i] > max) { // Falls ein größeres Element gefunden wird
+            max = arr[i]; // Aktualisiere max
+            }
+        }
+
+        return max;
+        }
+        printLn(maxValue([4, 2, 8, 1, 9]));
+
+    // Maximum Suche -Mit For Each
+
+    printH(2, "👉Maximum Suche forEach")
+
+    function maxValue(arr) {
+        if (arr.length === 0) return undefined; // Falls das Array leer ist, gib undefined zurück.
+
+        let max = arr[0]; // Setze das erste Element als Maximum
+
+        arr.forEach(num => { // Gehe durch jedes Element im Array
+            if (num > max) { // Falls ein größeres Element gefunden wird
+            max = num; // Aktualisiere max
+            }
+        });
+
+        return max;
+        }
+        printLn(maxValue([4, 2, 8, 1, 9])); 
+        printHr()
+
+
+
 
 
 
