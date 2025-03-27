@@ -278,7 +278,7 @@ function findMostFrequentWord(content) {
         }
 
         // Clean and validate the word (exclude numbers and ensure it's at least 2 letters long)
-        if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word)) {
+        if (/^[a-zA-ZäöüÄÖÜß]+$/.test(word) && word.length > 2 && word.toLowerCase() !== "the") {
             word = word.toLowerCase(); // Convert to lowercase to count case-insensitively
 
             // Count occurrences of the current word
@@ -316,7 +316,7 @@ function findMostFrequentWord(content) {
                 }
 
             // Return the most frequent word and its count as a string
-            return "The most frequent word is " + "\""+mostFrequentWord+"\"" + " and it appears " + highestCount + " times.";
+            return "The most frequent word which is bigger than two words and is not \"the\" is: " + "\""+mostFrequentWord+"\"" + " and it appears " + highestCount + " times.";
             }
 
                 // Example Usage
