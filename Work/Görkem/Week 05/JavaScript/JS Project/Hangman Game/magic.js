@@ -1,71 +1,96 @@
+
 const fruits = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'papaya', 'raspberry', 'strawberry', 'watermelon'];
 
-let randomWord = ""; // Global variable for the selected word
-let wordLetters = []; // Global variable for the letters of the word
+let randomWord = "";
+let wordLetters = [];
+let gameActive = false;
+let wrongGuesses = 0;
+const maxGuesses = 7;
 
 function startGame() {
     resetButtons();
     resetWordBox();
 
-    // Select a random word and split it into letters
+    gameActive = true;
+    wrongGuesses = 0;
+    updateWrongGuesses();
+
     randomWord = randomWordSelector(fruits);
     wordLetters = letterSplitter(randomWord);
 
     console.log("startGame - Random Word: " + randomWord);
-    console.log("startGame - Word Letters: " + wordLetters);
 
-    // Generate the word list (underscores)
     generateWordList(randomWord);
 }
 
 function randomWordSelector(randomArray) {
-    let localRandomIndex = Math.floor(Math.random() * randomArray.length);
-    console.log("Random Word Index: " + localRandomIndex);
-    let localRandomWord = randomArray[localRandomIndex];
-    console.log("Random Word: " + localRandomWord);
-    return localRandomWord;
+    let index = Math.floor(Math.random() * randomArray.length);
+    return randomArray[index];
 }
 
-function letterSplitter(randomWord) {
-    let wordSplit = randomWord.split("");
-    console.log("Letters: " + wordSplit);
-    return wordSplit;
+function letterSplitter(word) {
+    return word.split("");
 }
 
-function generateWordList(randomWord) {
+function generateWordList(word) {
     const wordList = document.getElementById("wordList");
-    wordList.innerHTML = ""; // Clear any existing <li> elements
+    wordList.innerHTML = ""; 
 
-    for (let i = 0; i < randomWord.length; i++) {
+    for (let i = 0; i < word.length; i++) {
         const li = document.createElement("li");
-        li.textContent = "_"; // Initially set to "_"
+        li.textContent = "_";
         wordList.appendChild(li);
     }
 }
 
 function checkGuess(guess) {
-    console.log("Guessed Letter is: " + guess);
-    let result = wordLetters.includes(guess.toLowerCase()); // Ensure case-insensitivity
-    console.log("Letter " + "\"" + guess + "\"" + " present inside " + randomWord + ": " + result);
+    if (!gameActive) return;
 
+    guess = guess.toLowerCase();
+    console.log("Guessed Letter: " + guess);
+    
+    let correctGuess = false;
     const wordList = document.getElementById("wordList");
     const liElements = wordList.getElementsByTagName("li");
 
     for (let i = 0; i < wordLetters.length; i++) {
-        if (wordLetters[i] === guess.toLowerCase()) {
-            console.log("Letter found at index = " + i);
-            liElements[i].textContent = guess; // Update the <li> with the guessed letter
+        if (wordLetters[i] === guess) {
+            liElements[i].textContent = guess;
+            correctGuess = true;
         }
+    }
+
+    if (!correctGuess) {
+        wrongGuesses++;
+        updateWrongGuesses();
+
+        if (wrongGuesses >= maxGuesses) {
+            gameActive = false;
+            alert("Game Over! Das Wort war: " + randomWord);
+        }
+    } else {
+        checkWin();
+    }
+}
+
+function checkWin() {
+    const wordList = document.getElementById("wordList");
+    const letters = Array.from(wordList.getElementsByTagName("li")).map(li => li.textContent);
+    
+    if (!letters.includes("_")) {
+        gameActive = false;
+        alert("Glückwunsch! Du hast das Wort erraten: " + randomWord);
     }
 }
 
 function handleKeyPress(letter) {
-    console.log("Guess = " + letter);
+    if (!gameActive) {
+        console.log("Spiel nicht gestartet! Bitte zuerst auf 'StartGame' klicken.");
+        return;
+    }
 
-    // Call the checkGuess function with the guessed letter
     checkGuess(letter);
 
-    // Find the button element by its text content and disable it
     const button = document.querySelector(`button[onclick="handleKeyPress('${letter}')"]`);
     if (button) {
         button.disabled = true;
@@ -73,19 +98,27 @@ function handleKeyPress(letter) {
     }
 }
 
+function updateWrongGuesses() {
+    const wrongGuessesDisplay = document.getElementById("wrong-guesses");
+    if (wrongGuessesDisplay) {
+        wrongGuessesDisplay.textContent = wrongGuesses + " / " + maxGuesses;
+    }
+}
+
 function resetButtons() {
     const disabledButtons = document.querySelectorAll('button.disabled');
-    for (let i = 0; i < disabledButtons.length; i++) {
-        disabledButtons[i].disabled = false;
-        disabledButtons[i].classList.remove('disabled');
-    }
+    disabledButtons.forEach(button => {
+        button.disabled = false;
+        button.classList.remove('disabled');
+    });
 }
 
 function resetWordBox() {
     const wordList = document.getElementById("wordList");
     if (wordList) {
-        wordList.innerHTML = ""; // Clear the word list
+        wordList.innerHTML = "";
     }
 }
+
 
 

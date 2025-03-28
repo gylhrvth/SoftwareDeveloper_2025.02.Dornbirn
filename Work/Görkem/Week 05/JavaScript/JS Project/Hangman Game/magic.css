@@ -109,3 +109,10 @@
     cursor: pointer;
     transition: background-color 0.2s;
   }
+
+  #fruit-header{
+    text-align: center;
+    font-size: 24px;
+    color: #4CAF50; 
+    margin-bottom: 15px;
+  }
