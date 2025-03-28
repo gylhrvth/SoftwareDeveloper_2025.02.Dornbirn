@@ -18,7 +18,7 @@ function startGame() {
     randomWord = randomWordSelector(fruits);
     wordLetters = letterSplitter(randomWord);
 
-    console.log("startGame - Random Word: " + randomWord);
+    console.log("StartGame - Random Word: " + randomWord);
 
     generateWordList(randomWord);
 }
@@ -119,6 +119,7 @@ function resetWordBox() {
         wordList.innerHTML = "";
     }
 }
+
 
 
 
