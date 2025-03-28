@@ -140,4 +140,389 @@
         <p>✅ Das Element 4 wird am Ende hinzugefügt, und die neue Länge ist 4.</p>
     </li>
     <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion pop()?</span>
+        <p>Die Methode pop() wird in JavaScript für Arrays verwendet. Sie entfernt das letzte Element eines Arrays und gibt es zurück. Nach dem Aufruf von pop() wird das ursprüngliche Array verändert (das letzte Element fehlt dann).</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.pop();
+            </code>
+        </div>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];
+
+                let letztesElement = zahlen.pop();  // Entfernt 40
+                console.log(letztesElement);  // 40
+                console.log(zahlen);  // [10, 20, 30]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion shift()?</span>
+        <p>Die shift()-Methode entfernt das erste Element eines Arrays und gibt es zurück. Dadurch verschieben sich die verbleibenden Elemente nach vorne, um den Platz zu füllen. Das Array wird dabei verändert.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.shift();
+            </code>
+        </div>
+        <p><strong>Beispiel: Erstes Element entfernen</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40];
+
+                let erstesElement = zahlen.shift();  // Entfernt 10
+                console.log(erstesElement);  // 10
+                console.log(zahlen);  // [20, 30, 40]
+            </code>
+        </div>
+        <p>📌 Erklärung:</p>
+        <ul>
+            <li>shift() entfernt die 10 aus dem Array.</li>
+            <li>Die restlichen Elemente (20, 30, 40) rücken nach vorne.</li>
+            <li>Das Array ist jetzt [20, 30, 40].</li>
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion splice()?</span>
+        <p>Die splice()-Methode wird verwendet, um Elemente eines Arrays hinzuzufügen, zu entfernen oder zu ersetzen. Dabei wird das ursprüngliche Array verändert.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.splice(startIndex, deleteCount, item1, item2, ...);
+            </code>
+        </div>
+        <p><strong>Beispiel für splice();</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40, 50];
+
+                let entfernteElemente = zahlen.splice(1, 2);  // Entfernt 2 Elemente ab Index 1
+                console.log(entfernteElemente);  // [20, 30]
+                console.log(zahlen);  // [10, 40, 50]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion concat()?</span>
+        <p>Die concat()-Methode in JavaScript wird verwendet, um zwei oder mehr Arrays oder Werte zusammenzuführen. Sie gibt ein neues Array zurück, das alle Elemente der ursprünglichen Arrays oder Werte enthält.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                let neuesArray = arr1.concat(arr2, arr3, ..., value1, value2, ...);
+            </code>
+        </div>
+        <ul>
+            <li>arr1 ist das Ausgangs-Array, mit dem die anderen Arrays oder Werte kombiniert werden.</li>
+            <li>arr2, arr3, ... sind die Arrays oder Werte, die du hinzufügen möchtest.</li>
+            <li>value1, value2, ... sind Werte, die ebenfalls zum neuen Array hinzugefügt werden können.</li>
+        </ul>
+        <p><strong>Beispiel 1: Arrays zusammenfügen</strong></p>
+        <div class="code-box">
+            <code>
+                let arr1 = [1, 2, 3];
+                let arr2 = [4, 5, 6];
+
+                let result = arr1.concat(arr2);
+                console.log(result);  // Ausgabe: [1, 2, 3, 4, 5, 6]
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion indexOf()?</span>
+        <p>Die indexOf()-Methode in JavaScript wird verwendet, um den Index des ersten Vorkommens eines bestimmten Werts in einem Array oder String zu finden. Wenn der Wert gefunden wird, gibt indexOf() den Index dieses Werts zurück. Wenn der Wert nicht gefunden wird, gibt die Methode -1 zurück.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.indexOf(suchwert, startIndex);
+            </code>
+        </div>
+        <ul>
+            <li>suchwert: Der Wert, nach dem gesucht wird.</li>
+            <li>startIndex (optional): Der Index, ab dem die Suche gestartet wird. Standardmäßig wird die Suche ab dem Index 0 gestartet.</li>
+        </ul>
+        <p><strong>Beispiel 1: Verwendung mit Arrays</strong></p>
+        <div class="code-box">
+            <code>
+                let arr = [10, 20, 30, 40, 50];
+                let index = arr.indexOf(30);
+                
+                console.log(index);  // Ausgabe: 2
+            </code>
+        </div>
+        <p>📌Erklärung: indexOf(30) gibt den Index des ersten Vorkommens von 30 im Array zurück, der 2 ist, da 30 an der dritten Stelle des Arrays steht (der Index beginnt bei 0).</p>
+    </li>
+    <br>
+
+        <li class="textColor02">
+        <span class="underline">Was macht die Funktion lastIndexOf()</span>
+        <p>Die Methode lastIndexOf() sucht nach dem letzten Vorkommen eines bestimmten Elements in einem Array oder einer Zeichenkette, beginnend vom Ende. Sie gibt den Index des letzten Vorkommens zurück oder -1, wenn das Element nicht gefunden wird.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.lastIndexOf(element, start)
+            </code>
+        </div>
+            <ul>
+                <li>element: Das Element, nach dem gesucht wird.</li>
+                <li>start (optional): Der Index, ab dem die Suche beginnen soll (von hinten). Standardmäßig wird das letzte Element als Startpunkt verwendet.</li>
+            </ul>
+            <p><strong>Beispiele: mit Array</strong></p>
+            <div class="code-box">
+                <code>
+                    let arr = [1, 2, 3, 2, 4];
+                    let index = arr.lastIndexOf(2); // Gibt 3 zurück
+                </code>
+            </div>
+            <p>Zusammenfassung:</p>
+            <ul>
+                <li>Sucht nach dem letzten Vorkommen von 2 und gibt den Index 3 zurück (das letzte 2 befindet sich an Index 3).</li>
+            </ul>
+        </li>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion includes()?</span>
+        <p>Die Methode includes() prüft, ob ein bestimmtes Element in einem Array oder String enthalten ist. Sie gibt true zurück, wenn das Element gefunden wurde, andernfalls false.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.includes(element, start)
+                string.includes(substring, start)
+            </code>
+        </div>
+        <ul>
+            <li>element / substring: Das gesuchte Element oder die gesuchte Zeichenkette.</li>
+            <li>start (optional): Der Index, ab dem die Suche beginnt (Standard: 0).</li>
+        </ul>
+        <p><strong>Beispiele: mit Array</strong></p>
+        <div class="code-box">
+            <code>
+                let fruits = ["Apfel", "Banane", "Kirsche"];
+                console.log(fruits.includes("Banane")); // true
+                console.log(fruits.includes("Mango"));  // false
+            </code>
+        </div>
+        <p>Erklärt:</p>
+        <ul>
+            <li>"Banane" ist enthalten → true</li>
+            <li>"Mango" ist nicht enthalten → false</li> 
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion findIndex()?</span>
+        <p>Die findIndex()-Methode in JavaScript wird verwendet, um den Index des ersten Elements in einem Array zu finden, das eine bestimmte Bedingung erfüllt. Wenn kein Element die Bedingung erfüllt, gibt sie -1 zurück.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.findIndex(callback(element, index, array))
+            </code>
+        </div>
+        <p>Parameter:</p>
+        <ul>
+            <li>callback: Eine Funktion, die für jedes Element im Array ausgeführt wird. Diese Funktion nimmt folgende Parameter:</li>
+            <li>index (optional) → Der Index des aktuellen Elements.</li>
+            <li>element → Das aktuelle Element im Array.</li>
+            <li>array (optional) → Das gesamte Array.</li>
+        </ul>
+        <p>Beispiel 1: Erster Wert über 30 finden</p>
+        <div class="code-box">
+            <code>
+                let zahlen = [10, 20, 30, 40, 50];
+
+                let index = zahlen.findIndex(num => num > 30);
+                console.log(index);  // Ausgabe: 3
+            </code>
+        </div>
+        <p>📌 Erklärung:</p>
+        <ul>
+            <li>Die Funktion sucht das erste Element, das größer als 30 ist.</li>
+            <li>40 ist das erste Element, das die Bedingung erfüllt.</li>
+            <li>Der Index von 40 ist 3, also gibt findIndex() 3 zurück.</li>
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion join()?</span>
+        <p>Die join()-Methode in JavaScript verbindet alle Elemente eines Arrays zu einem einzigen String. Standardmäßig werden die Elemente durch ein Komma (,) getrennt, aber man kann ein eigenes Trennzeichen angeben.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                array.join(separator);
+            </code>
+        </div>
+        <p>separator (optional): Das Zeichen oder der String, mit dem die Elemente getrennt werden sollen. Standardmäßig ist es ein Komma (,)!</p>
+        <p><strong>Beispiele:</strong></p>
+        <div class="code-box">
+            <code>
+                let namen = ["Alice", "Bob", "Charlie"];
+
+                console.log(namen.join());        // "Alice,Bob,Charlie" (Standard: Komma)
+                console.log(namen.join(" - "));   // "Alice - Bob - Charlie"
+                console.log(namen.join(""));      // "AliceBobCharlie" (Ohne Trennzeichen)
+                console.log(namen.join(" & "));   // "Alice & Bob & Charlie"
+            </code>
+        </div>
+        <p>📌 Anwendung: join() wird oft benutzt, um Arrays als Strings auszugeben, z. B. für Listen oder URLs.</p>
+    </li>
+    <br>
+
+    <li class="textColor020">
+        <span class="underline">Was macht die Funktion map()?</span>
+        <p>Die map()-Methode wird verwendet, um jedes Element eines Arrays zu transformieren und ein neues Array zu erstellen. Sie verändert das ursprüngliche Array nicht, sondern gibt ein neues Array mit den veränderten Werten zurück.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                let neuesArray = array.map(callback(element, index, array));
+            </code>
+        </div>
+        <p>-- callback → Die Funktion, die auf jedes Element angewendet wird.</p>
+        <ul>
+            <li>element → Das aktuelle Element im Array.</li>
+            <li>index (optional) → Der Index des aktuellen Elements.</li>
+            <li>array (optional) → Das gesamte ursprüngliche Array.</li>
+        </ul>
+        <p><strong>Beispiel: alle Zahlen verdoppeln</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [1, 2, 3, 4, 5];
+
+                let verdoppelt = zahlen.map(num => num * 2);
+
+                console.log(verdoppelt); // [2, 4, 6, 8, 10]
+                console.log(zahlen);     // [1, 2, 3, 4, 5] (Das Original bleibt unverändert)
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht die Funktion filter()?</span>
+        <p>Die filter()-Methode wird verwendet, um bestimmte Elemente aus einem Array herauszufiltern. Sie gibt ein neues Array zurück, das nur die Elemente enthält, die eine bestimmte Bedingung erfüllen.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                let neuesArray = array.filter(callback(element, index, array));
+            </code>
+        </div>
+        <p>callback → Die Funktion, die für jedes Element geprüft wird.</p>
+        <ul>
+            <li>element → Das aktuelle Element im Array.</li>
+            <li>index (optional) → Der Index des aktuellen Elements.</li>
+            <li>array (optional) → Das gesamte ursprüngliche Array.</li>
+        </ul>
+        <p><strong>Beispiel 1: Gerade Zahlen filtern</strong></p>
+        <div class="code-box">
+            <code>
+                let zahlen = [1, 2, 3, 4, 5, 6];
+
+                let geradeZahlen = zahlen.filter(num => num % 2 === 0);
+
+                console.log(geradeZahlen); // [2, 4, 6]
+            </code>
+        </div>
+    </li>
+    <br>
+    <ul>
+        <li><a href="../JavaScript/JS Arrays/01-SampleCode.html">Sample Code Array Analyse</a></li>
+        <li><a href="../JavaScript/JS Arrays/02-ArrayDemo.html">Array Demo</a></li>
+    </ul>
+    
+
+
+
+   
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</head>
+</html>
+</body>
+
+
+    
+
+
+
+            
+            
+
+
             

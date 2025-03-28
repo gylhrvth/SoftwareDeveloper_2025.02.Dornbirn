@@ -1,0 +1,128 @@
+.key-pad {
+  background: linear-gradient(30deg, #000000 80%, #4d4d4d, #b3b3b3, #000000 10%);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  animation: gradient-shift 3s infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background: linear-gradient(30deg, #000000 80%, #4d4d4d, #b3b3b3, #000000 10%);
+  }
+
+  10% {
+    background: linear-gradient(30deg, #000000 70%, #4d4d4d, #b3b3b3, #000000 20%);
+  }
+
+  20% {
+    background: linear-gradient(30deg, #000000 60%, #4d4d4d, #b3b3b3, #000000 30%);
+  }
+
+  30% {
+    background: linear-gradient(30deg, #000000 50%, #4d4d4d, #b3b3b3, #000000 40%);
+  }
+
+  40% {
+    background: linear-gradient(30deg, #000000 40%, #4d4d4d, #b3b3b3, #000000 50%);
+  }
+
+  50% {
+    background: linear-gradient(30deg, #000000 30%, #4d4d4d, #b3b3b3, #000000 60%);
+  }
+
+  60% {
+    background: linear-gradient(30deg, #000000 20%, #4d4d4d, #b3b3b3, #000000 70%);
+  }
+
+  70% {
+    background: linear-gradient(30deg, #000000 10%, #4d4d4d, #b3b3b3, #000000 80%);
+  }
+
+  80% {
+    background: linear-gradient(30deg, #000000 20%, #4d4d4d, #b3b3b3, #000000 70%);
+  }
+
+  90% {
+    background: linear-gradient(30deg, #000000 30%, #4d4d4d, #b3b3b3, #000000 60%);
+  }
+
+  100% {
+    background: linear-gradient(30deg, #000000 80%, #4d4d4d, #b3b3b3, #000000 10%);
+  }
+}
+
+
+.key-pad .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.key-pad button {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: blue;
+  font-size: 16px;
+  color: white;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s, text-shadow 0.2s;
+  box-shadow: 0 0 10px blue, 0 0 20px blue;
+  animation: button-color-change 3s infinite;
+}
+
+@keyframes button-color-change {
+  0% {
+    background-color: blue;
+    box-shadow: 0 0 10px blue, 0 0 20px blue;
+  }
+
+  25% {
+    background-color: green;
+    box-shadow: 0 0 10px green, 0 0 20px green;
+  }
+
+  50% {
+    background-color: yellow;
+    box-shadow: 0 0 10px yellow, 0 0 20px yellow;
+  }
+
+  75% {
+    background-color: red;
+    box-shadow: 0 0 10px red, 0 0 20px red;
+  }
+
+  100% {
+    background-color: purple;
+    box-shadow: 0 0 10px purple, 0 0 20px purple;
+  }
+}
+
+.key-pad button:hover {
+  box-shadow: 0 0 15px blue, 0 0 30px blue;
+}
+
+.key-pad button:hover {
+  transform: translateY(-2px);
+  background-color: #d0d0d0;
+}
+
+.key-pad button:active {
+  transform: translateY(0);
+}
+
+.key-pad button.disabled {
+  background-color: #555555;
+  color: #333333;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  text-shadow: none;
+  opacity: 0.6;
+}
