@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage beispiel</title>
+    <link rel="stylesheet" href="../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        /*localStorage.setItem("vorname", "Leonie");
+        localStorage.setItem("alter", "20");
+        localStorage.setItem("hobby", "Tennis");
+
+        let vorname = localStorage.getItem("vorname");
+        let alter = localStorage.getItem("alter");
+        let hobby = localStorage.getItem("hobby");
+        let ausgabe = document.createElement("div");
+        ausgabe.innerHTML = `Vorname: ${vorname}, Alter: ${alter}, Hobby: ${hobby}`;
+        document.body.appendChild(ausgabe);
+        // localStorage.clear(); // Löscht alle Einträge im localStorage
+        // localStorage.removeItem("vorname"); // Löscht den Eintrag mit dem Schlüssel "vorname"
+
+        sessionStorage.setItem("vorname", "Leonie");
+        sessionStorage.setItem("alter", "20");
+        sessionStorage.setItem("hobby", "Tennis");
+        let name = sessionStorage.getItem("vorname");
+        let age = sessionStorage.getItem("alter");
+        let hobbys = sessionStorage.getItem("hobby");
+        printLn(`Vorname: ${name}, Alter: ${age}, Hobby: ${hobbys}`);
+
+        // sessionStorage.clear(); // Löscht alle Einträge im sessionStorage
+        // sessionStorage.removeItem("vorname"); // Löscht den Eintrag mit dem Schlüssel "vorname"
+*/
+
+        let score = JSON.parse(localStorage.getItem('Score'));
+
+        if (score === null) {
+            score = {
+                wins: 0,
+                losses: 0,
+                ties: 0,
+            };
+        }
+        printLn(`Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+        score.wins += 1;
+        localStorage.setItem('Score', JSON.stringify(score));
+        printLn(`Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+        
+
+        let test = JSON.parse(sessionStorage.getItem('Test'));
+        if (test === null) {
+            test = {
+                name: "Tic Tac Toe",
+                players: 2,
+                losses: 0,
+                ties: 0,
+            };
+        }
+        printLn(`Name: ${test.name}, Players: ${test.players}, Losses: ${test.losses}, Ties: ${test.ties}`);
+        test.losses += 1;
+        sessionStorage.setItem('Test', JSON.stringify(test));
+        printLn(`Name: ${test.name}, Players: ${test.players}, Losses: ${test.losses}, Ties: ${test.ties}`);
+        test.name = "Tic Tac Toe 2";
+        sessionStorage.setItem('Test', JSON.stringify(test));
+        printLn(`Name: ${test.name}, Players: ${test.players}, Losses: ${test.losses}, Ties: ${test.ties}`);
+    </script>
+</body>
+
+</html>
