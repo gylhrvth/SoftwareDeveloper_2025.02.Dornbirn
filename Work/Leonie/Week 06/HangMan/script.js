@@ -1,4 +1,10 @@
 const fruits = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'papaya', 'raspberry', 'strawberry', 'watermelon'];
+const cars = ['audi', 'bmw', 'ford', 'mercedes', 'toyota', 'volkswagen'];
+const animals = ['cat', 'dog', 'elephant', 'giraffe', 'lion', 'monkey', 'tiger', 'zebra'];
+const countries = ['austria', 'belgium', 'canada', 'denmark', 'finland', 'germany', 'hungary', 'ireland', 'japan', 'netherlands', 'norway', 'sweden'];
+const categorieName = [fruits, cars, animals, countries];
+const categories = ['Fruits', 'Cars', 'Animals', 'Countries'];
+let catNumb = 0;
 let word = '';
 let splitWord = [];
 let indexLetter = 0;
@@ -23,6 +29,8 @@ function startGame() {
   // Clear the word-box div
   resetWordBox();
   // Select a random word
+  chooseCategory();
+  // Select a random word from the chosen category
   selectRndWord();
   // Split the word into an array of letters
   splitingWord();
@@ -54,6 +62,10 @@ function resetGame() {
   feedback.textContent = '';
 }
 
+function chooseCategory() {
+  catNumb = Math.floor(Math.random() * categorieName.length);
+}
+
 function checkGuess() {
   let correctGuess = false;
   wordList = document.getElementById('wordlist');
@@ -63,12 +75,12 @@ function checkGuess() {
       console.log('Right guesses:', rightGuess);
       correctGuess = true;
       wordList.children[i].textContent = guess;
-    } 
+    }
   }
   if (!correctGuess) {
-      console.log('Wrong guess');
-      wrongGuess();
-    }
+    console.log('Wrong guess');
+    wrongGuess();
+  }
   if (rightGuess === splitWord.length) {
     score.wins++;
     localStorage.setItem('Score', JSON.stringify(score));
@@ -99,7 +111,7 @@ function wrongGuess() {
   }
   if (wrongGuesses === 3) {
     const hint = document.getElementById('hint-text');
-    hint.textContent = 'This is a fruit';
+    hint.textContent = `This is a ${categories[catNumb]}`;
     console.log('Hint:', hint.textContent);
 
   }
@@ -145,9 +157,13 @@ function displayWord() {
 }
 
 function selectRndWord() {
-  let rndNmbr = Math.floor(Math.random() * fruits.length);
-  word = fruits[rndNmbr];
-  console.log("Word = " + word);
+  // Wähle das Array basierend auf catNumb
+  const selectedCategory = categorieName[catNumb];
+
+  // Wähle ein zufälliges Wort aus dem ausgewählten Array
+  let rndNmbr = Math.floor(Math.random() * selectedCategory.length);
+  word = selectedCategory[rndNmbr];
+
   return word;
 }
 
@@ -186,4 +202,11 @@ function handleKeyPress(letter) {
 function showScore() {
   alert(`Wins: ${score.wins}
 Losses: ${score.losses}`);
+}
+
+function resetScore() {
+  score.wins = 0;
+  score.losses = 0;
+  localStorage.setItem('Score', JSON.stringify(score));
+  alert('Score has been reset');
 }
