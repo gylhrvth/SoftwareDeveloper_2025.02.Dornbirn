@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hangman</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="keypad.css">
   <script src="script.js"></script>
 </head>
 
@@ -16,14 +17,15 @@
       <!-- Hangman image will be dynamically added here -->
     </div>
     <div class="word-box">
-      <ul id="charlist">
-        <!-- Word will be dynamically added here -->
+      <ul id="wordlist">
+
       </ul>
+      <!-- Word will be dynamically added here -->
       <div class="hint-box">
-        <p><strong>Hint:</strong> <span id="hint-text">Your hint will appear here</span></p>
+        <p><strong>Hint:</strong> <span id="hint">Your hint will appear here</span></p>
       </div>
       <div class="info-box">
-        <p><strong>Wrong Guesses:</strong> <span id="wrong-guesses">0</span></p>
+        <p><strong>Guesses left:</strong> <span id="counter">6</span></p>
       </div>
 
 

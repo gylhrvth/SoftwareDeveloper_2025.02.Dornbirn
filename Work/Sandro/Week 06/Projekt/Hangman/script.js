@@ -1,78 +1,287 @@
 const fruits = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'papaya', 'raspberry', 'strawberry', 'watermelon'];
 
-// -- global variables --
-let lettersPressed = []; // Array to store pressed letters
-let selectedWord = null; // Variable to store the selected word
-let disabledButtons = document.querySelectorAll('button.disabled');
+// Disable all buttons on initial load
+window.onload = () => {
+  const buttons = document.querySelectorAll('.key-pad button');
+  buttons.forEach(button => {
+    button.disabled = true;
+    button.classList.add('disabled');
+  });
+};
 
+//--global variables--//
+let selectedWord = null;
+let hint = '';
 
-// -- functions --
-// Function to start the game and Reset the game state
-// Just calls a bunch of functions, didnt do anything on its own
 
 function startGame() {
+  // hide button
+  hideStartButton();
+  // load pictures
+  initializeHangmanImage();
   // Reset all disabled buttons
   resetButtons();
   // Clear the word-box div
   resetWordBox();
+  // set counter to 6
+  resetHint();
+  // Reset the Hint box
+  resetCounter();
   // Select a random word
   selectRndWord();
   // Display the selected word
   displayWord();
+  // Display Container
+  showContainer();
+
 
 }
-// Main Function to proceed the game.
-// This function is called when a letter button is pressed, so every click lets us update the game state
+function showContainer() {
+  const elements = ['.main-container', '.hangman-box', '.word-box', '.hint-box', '.info-box'];
+  elements.forEach(selector => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.style.display = 'flex';
+    }
+  });
+}
+
+function hideStartButton() {
+  const startButton = document.querySelector('#start-game');
+  if (startButton) {
+    startButton.style.display = 'none'; // Hide the button
+    startButton.disabled = true; // Disable the button
+  }
+}
+
+function resetHint() {
+  const hintBox = document.querySelector('.hint-box #hint');
+  hintBox.textContent = ''; // Clear the hint box
+  hint = ''; // Reset the hint variable}
+}
+
+function resetCounter() {
+  const infoBox = document.querySelector('.info-box #counter');
+  infoBox.textContent = 6;
+}
+
+function resetWordBox() {
+  const wordBox = document.querySelector('.word-box #wordlist');
+  wordBox.innerHTML = '';
+}
+
+function displayWord() {
+  console.log('Selected word:', selectedWord);
+  // Write the selected word to the word-box div
+  let letters = selectedWord.toUpperCase().split('');
+
+  const wordBox = document.querySelector('.word-box #wordlist');
+  for (let i = 0; i < selectedWord.length; i++) {
+    const li = document.createElement('li');
+    li.textContent = letters[i]; // Placeholder for each letter
+    wordBox.appendChild(li);
+  }
+
+
+}
+
+function selectRndWord() {
+  selectedWord = fruits[Math.floor(Math.random() * fruits.length)];
+  //console.log('Selected word:', selectedWord);
+  return selectedWord;
+}
+
+function resetButtons() {
+  const disabledButtons = document.querySelectorAll('button.disabled');
+  for (let i = 0; i < disabledButtons.length; i++) {
+    disabledButtons[i].disabled = false;
+    disabledButtons[i].classList.remove('disabled');
+  }
+
+}
+
 function handleKeyPress(letter) {
-  console.log("Letter pressed: " + letter);
+  letter = letter.toUpperCase();
+  console.log("Letter = " + letter);
   const button = document.querySelector(`button[onclick="handleKeyPress('${letter}')"]`);
   if (button) {
     button.disabled = true;
     button.classList.add('disabled');
     // Log all disabled buttons
-    disabledButtons = document.querySelectorAll('button.disabled');
+    const disabledButtons = document.querySelectorAll('button.disabled');
     console.log('Disabled buttons:', Array.from(disabledButtons).map(btn => btn.textContent));
     console.log(`Key pressed: ${letter}`);
-    // --- added code ---
-    // Collect all pressed letters in an array
-    lettersPressed.push(letter);
-    console.log('Letters pressed:', lettersPressed);
+  }
+  checkGuess(letter);
+  updateHangmanImage();
+  checkWinCondition();
+  showHint();
 
-    console.log("Selected word in the button pressed function: " + selectedWord);
+}
+
+function checkGuess(guess) {
+  const wordBox = document.querySelector('.word-box #wordlist');
+  const letters = wordBox.querySelectorAll('li');
+  let found = false;
+
+  for (let i = 0; i < letters.length; i++) {
+    if (letters[i].textContent.toUpperCase() === guess.toUpperCase()) {
+      letters[i].style.color = 'green'; // Change color to green
+      letters[i].classList.add('animate-correct'); // Add a CSS class for animation
+      found = true;
+    }
+  }
+
+  if (found) {
+    console.log(`The letter "${guess}" is in the word.`);
+  } else {
+    updateCounter();
+    console.log(`The letter "${guess}" is not in the word.`);
+  }
 
 
+}
 
+function showEndGamePopup(message) {
+  // Create a popup container
+  const popup = document.createElement('div');
+  popup.style.position = 'fixed';
+  popup.style.top = '0';
+  popup.style.left = '0';
+  popup.style.width = '100%';
+  popup.style.height = '100%';
+  popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+  popup.style.display = 'flex';
+  popup.style.justifyContent = 'center';
+  popup.style.alignItems = 'center';
+  popup.style.zIndex = '1000';
+
+  // Create a message box
+  const messageBox = document.createElement('div');
+  messageBox.style.backgroundColor = 'white';
+  messageBox.style.padding = '20px';
+  messageBox.style.borderRadius = '10px';
+  messageBox.style.textAlign = 'center';
+  messageBox.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+
+  // Add the message
+  const messageText = document.createElement('p');
+  messageText.textContent = message;
+  messageText.style.fontSize = '24px';
+  messageText.style.marginBottom = '20px';
+  messageBox.appendChild(messageText);
+
+  // Add a restart button
+  const restartButton = document.createElement('button');
+  restartButton.textContent = 'Restart Game';
+  restartButton.style.padding = '10px 20px';
+  restartButton.style.fontSize = '18px';
+  restartButton.style.cursor = 'pointer';
+  restartButton.addEventListener('click', () => {
+    popup.remove();
+    startGame();
+  });
+  messageBox.appendChild(restartButton);
+
+  popup.appendChild(messageBox);
+  document.body.appendChild(popup);
+}
+
+function checkWinCondition() {
+  const wordBox = document.querySelector('.word-box #wordlist');
+  const letters = wordBox.querySelectorAll('li');
+  let allRevealed = true;
+
+  for (let i = 0; i < letters.length; i++) {
+    if (letters[i].style.color !== 'green') {
+      allRevealed = false;
+      break;
+    }
+  }
+
+  if (allRevealed) {
+    showEndGamePopup('Congratulations! You won!');
+  }
+}
+function showHint() {
+  const infoBox = document.querySelector('.info-box #counter');
+  const counter = parseInt(infoBox.textContent) || 6;
+  console.log('Hint-boxCounter:', counter);
+  console.log('Selected word:', selectedWord);
+  console.log('Hint:', hint);
+
+  if (selectedWord === 'apple') {
+    hint = "Its mostly Red, but sometimes green, yellow or pink";
+  }
+  if (selectedWord === 'banana') {
+    hint = "Its yellow and long";
+  }
+  if (selectedWord === 'cherry') {
+    hint = "Its red and small";
+  }
+  if (selectedWord === 'grape') {
+    hint = "Its small and round";
+  }
+  if (selectedWord === 'kiwi') {
+    hint = "Its brown and hairy";
+  }
+  if (selectedWord === 'lemon') {
+    hint = "Its yellow and sour";
+  }
+  if (selectedWord === 'mango') {
+    hint = "Its yellow and sweet";
+  }
+  if (selectedWord === 'orange') {
+    hint = "Its orange and round";
+  }
+  if (selectedWord === 'papaya') {
+    hint = "Its orange and long";
+  }
+  if (selectedWord === 'raspberry') {
+    hint = "Its red and small";
+  }
+  if (selectedWord === 'strawberry') {
+    hint = "Its red and small";
+  }
+  if (selectedWord === 'watermelon') {
+    hint = "Its green and red";
+  }
+
+  if (counter === 2) {
+    const hintBox = document.querySelector('.hint-box #hint');
+    hintBox.textContent = hint;
   }
 }
 
+function updateCounter() {
+  const infoBox = document.querySelector('.info-box #counter');
+  let counter = parseInt(infoBox.textContent) || 6;
 
-// Helper functions
-// Functions get a job, simply and plain. Does that job and nothing else.
-// Name them after the job they do, so you know what they do at first glance.
-
-function resetWordBox() {
-
-}
-function resetButtons() {
-  for (let i = 0; i < disabledButtons.length; i++) {
-    disabledButtons[i].disabled = false;
-    disabledButtons[i].classList.remove('disabled');
+  if (counter > 0) {
+    counter--;
+    infoBox.textContent = counter;
   }
-  console.log('All buttons reset to enabled state.');
 
-}
-function displayWord() {
-}
-function selectRndWord() {
-  const randomIndex = Math.floor(Math.random() * fruits.length);
-  // later update more arrays with diffrent categories
-  selectedWord = fruits[randomIndex];
-  // Store the selected word in a global variable or pass it to displayWord function
-  console.log("Selected word in function [selectRndWord]: " + selectedWord);
-  return selectedWord;
-
+  if (counter === 0) {
+    console.log('Game Over');
+    setTimeout(() => {
+      showEndGamePopup('Game Over! You lost!');
+    }, 1000);
+  }
 }
 
+function updateHangmanImage() {
+  const hangmanBox = document.querySelector('.hangman-box img');
+  const infoBox = document.querySelector('.info-box #counter');
+  const wrongGuesses = 6 - parseInt(infoBox.textContent) || 0;
 
+  if (wrongGuesses >= 0 && wrongGuesses <= 6) {
+    hangmanBox.src = `img/hangman-${wrongGuesses}.svg`;
+  }
+}
 
+function initializeHangmanImage() {
+  const hangmanBox = document.querySelector('.hangman-box');
+  hangmanBox.innerHTML = '<img src="img/hangman-0.svg" alt="Hangman">';
+}
 
