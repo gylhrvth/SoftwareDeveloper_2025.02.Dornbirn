@@ -6,6 +6,17 @@ let guess = '';
 let wrongGuesses = 0;
 let rightGuess = 0;
 
+let score = JSON.parse(localStorage.getItem('Score'));
+
+if (score === null) {
+  score = {
+    wins: 0,
+    losses: 0,
+    ties: 0,
+  };
+}
+
+
 function startGame() {
   // Reset all disabled buttons
   resetButtons();
@@ -59,6 +70,8 @@ function checkGuess() {
       wrongGuess();
     }
   if (rightGuess === splitWord.length) {
+    score.wins++;
+    localStorage.setItem('Score', JSON.stringify(score));
     const feedback = document.getElementById('feedback');
     feedback.textContent = `Congratulations! You won! The word was: ${word}`;
     setTimeout(() => {
@@ -91,6 +104,8 @@ function wrongGuess() {
 
   }
   if (wrongGuesses === 6) {
+    score.losses++;
+    localStorage.setItem('Score', JSON.stringify(score));
     const hangmanImage = document.getElementById('hangman-image');
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
     const feedback = document.getElementById('feedback');
@@ -168,4 +183,7 @@ function handleKeyPress(letter) {
   }
 }
 
-
+function showScore() {
+  alert(`Wins: ${score.wins}
+Losses: ${score.losses}`);
+}
