@@ -38,6 +38,9 @@ function resetGame() {
   // Reset hint
   const hint = document.getElementById('hint-text');
   hint.textContent = '';
+
+  const feedback = document.getElementById('feedback');
+  feedback.textContent = '';
 }
 
 function checkGuess() {
@@ -49,11 +52,29 @@ function checkGuess() {
       console.log('Right guesses:', rightGuess);
       correctGuess = true;
       wordList.children[i].textContent = guess;
-    }
+    } 
   }
   if (!correctGuess) {
+      console.log('Wrong guess');
+      wrongGuess();
+    }
+  if (rightGuess === splitWord.length) {
+    const feedback = document.getElementById('feedback');
+    feedback.textContent = `Congratulations! You won! The word was: ${word}`;
+    setTimeout(() => {
+      resetGame();
+    }
+      , 1000);
+  }
+}
+
+function wrongGuess() {
+  console.log('Wrong guess started');
+  wordList = document.getElementById('wordlist');
+  if (wrongGuesses < 6) {
+    // Füge einen weiteren falschen Versuch hinzu
     wrongGuesses++;
-    //console.log('Wrong guesses:', wrongGuesses);
+    console.log('Wrong guesses:', wrongGuesses);
 
     const wrongGuessesElement = document.getElementById('wrong-guesses');
     wrongGuessesElement.textContent = `${6 - wrongGuesses}/6`;
@@ -61,32 +82,25 @@ function checkGuess() {
     // Ersetze das Bild basierend auf der Anzahl der falschen Versuche
     const hangmanImage = document.getElementById('hangman-image');
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
-  }
 
+  }
   if (wrongGuesses === 3) {
     const hint = document.getElementById('hint-text');
     hint.textContent = 'This is a fruit';
+    console.log('Hint:', hint.textContent);
 
   }
-
   if (wrongGuesses === 6) {
     const hangmanImage = document.getElementById('hangman-image');
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
-    
+    const feedback = document.getElementById('feedback');
+    feedback.textContent = `Game over: You lost! The word was: ${word}`;
+    console.log('Game over: You lost! The word was:', word);
+
     setTimeout(() => {
-      alert(`Game over: You lost! The word was: ${word}`);
       resetGame();
     }
-    , 100);
-
-  }
-
-  if (rightGuess === splitWord.length) {
-    setTimeout(() => {
-      alert(`Congratulations! You won! The word was: ${word}`);
-      resetGame();
-    }
-    , 100);
+      , 1000);
   }
 }
 
@@ -133,6 +147,13 @@ function resetButtons() {
 
 function handleKeyPress(letter) {
   guess = letter;
+  const wordList = document.getElementById('wordlist');
+
+  // Überprüfen, ob <li>-Elemente in der wordlist vorhanden sind
+  if (!wordList || wordList.children.length === 0) {
+    //console.log('No <li> elements found in wordlist');
+    return; // Beende die Funktion, wenn keine <li>-Elemente vorhanden sind
+  }
   console.log("Guess = " + guess);
   const button = document.querySelector(`button[onclick="handleKeyPress('${letter}')"]`);
   if (button) {
