@@ -1,0 +1,28 @@
+
+#mainBox{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+
+
+}
+
+#inputBox{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+#inputText{
+    height: 400px; /* Adjust height as needed */
+    width: 800px;
+    padding: 10px; /* Add padding to position the text */
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
