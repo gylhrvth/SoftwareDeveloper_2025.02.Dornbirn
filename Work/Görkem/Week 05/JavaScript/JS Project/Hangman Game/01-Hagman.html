@@ -9,57 +9,58 @@
 </head>
 <body>
   
-  <button id="start-game" onclick="startGame()">Start Game</button>
-  <div class="main-container">
-      <div class="hangman-box">
-          <!-- Hangman image will be dynamically added here -->
-      </div>
-      <div class="word-box">
-        <h2 id="fruit-header">Errate die Frucht!</h2> <!-- Neue Überschrift -->
-          <ul id="wordList">
-              <!-- Word will be dynamically added here -->
-          </ul>
-          <div class="hint-box">
-              <p><strong>Hint:</strong> <span id="hint-text">Your hint will appear here</span></p>
-          </div>
-          <div class="info-box">
-              <p><strong>Wrong Guesses:</strong> <span id="wrong-guesses">0</span></p>
-          </div>
-      </div>
-  </div>
-  <div class="key-pad">
-      <div class="row">
-          <button onclick="handleKeyPress('Q')">Q</button>
-          <button onclick="handleKeyPress('W')">W</button>
-          <button onclick="handleKeyPress('E')">E</button>
-          <button onclick="handleKeyPress('R')">R</button>
-          <button onclick="handleKeyPress('T')">T</button>
-          <button onclick="handleKeyPress('Y')">Y</button>
-          <button onclick="handleKeyPress('U')">U</button>
-          <button onclick="handleKeyPress('I')">I</button>
-          <button onclick="handleKeyPress('O')">O</button>
-          <button onclick="handleKeyPress('P')">P</button>
-      </div>
-      <div class="row">
-          <button onclick="handleKeyPress('A')">A</button>
-          <button onclick="handleKeyPress('S')">S</button>
-          <button onclick="handleKeyPress('D')">D</button>
-          <button onclick="handleKeyPress('F')">F</button>
-          <button onclick="handleKeyPress('G')">G</button>
-          <button onclick="handleKeyPress('H')">H</button>
-          <button onclick="handleKeyPress('J')">J</button>
-          <button onclick="handleKeyPress('K')">K</button>
-          <button onclick="handleKeyPress('L')">L</button>
-      </div>
-      <div class="row">
-          <button onclick="handleKeyPress('Z')">Z</button>
-          <button onclick="handleKeyPress('X')">X</button>
-          <button onclick="handleKeyPress('C')">C</button>
-          <button onclick="handleKeyPress('V')">V</button>
-          <button onclick="handleKeyPress('B')">B</button>
-          <button onclick="handleKeyPress('N')">N</button>
-          <button onclick="handleKeyPress('M')">M</button>
-      </div>
-  </div>
-  </body>
+  <body>
+    <button id="start-game" onclick="startGame()">Start Game</button>
+    <div class="main-container">
+        <div class="hangman-box">
+            <!-- Hangman image will be dynamically added here -->
+        </div>
+        <div class="word-box">
+            <ul id="wordList">
+                <!-- Word will be dynamically added here -->
+            </ul>
+            <div class="hint-box">
+                <p><strong>Hint:</strong> <span id="hint-text">Your hint will appear here</span></p>
+            </div>
+            <div class="info-box">
+                <p><strong>Wrong Guesses:</strong> <span id="wrong-guesses">0</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="key-pad">
+        <div class="row">
+            <button onclick="handleKeyPress('Q')">Q</button>
+            <button onclick="handleKeyPress('W')">W</button>
+            <button onclick="handleKeyPress('E')">E</button>
+            <button onclick="handleKeyPress('R')">R</button>
+            <button onclick="handleKeyPress('T')">T</button>
+            <button onclick="handleKeyPress('Y')">Y</button>
+            <button onclick="handleKeyPress('U')">U</button>
+            <button onclick="handleKeyPress('I')">I</button>
+            <button onclick="handleKeyPress('O')">O</button>
+            <button onclick="handleKeyPress('P')">P</button>
+        </div>
+        <div class="row">
+            <button onclick="handleKeyPress('A')">A</button>
+            <button onclick="handleKeyPress('S')">S</button>
+            <button onclick="handleKeyPress('D')">D</button>
+            <button onclick="handleKeyPress('F')">F</button>
+            <button onclick="handleKeyPress('G')">G</button>
+            <button onclick="handleKeyPress('H')">H</button>
+            <button onclick="handleKeyPress('J')">J</button>
+            <button onclick="handleKeyPress('K')">K</button>
+            <button onclick="handleKeyPress('L')">L</button>
+        </div>
+        <div class="row">
+            <button onclick="handleKeyPress('Z')">Z</button>
+            <button onclick="handleKeyPress('X')">X</button>
+            <button onclick="handleKeyPress('C')">C</button>
+            <button onclick="handleKeyPress('V')">V</button>
+            <button onclick="handleKeyPress('B')">B</button>
+            <button onclick="handleKeyPress('N')">N</button>
+            <button onclick="handleKeyPress('M')">M</button>
+        </div>
+    </div>
+</body>
 </html>
+

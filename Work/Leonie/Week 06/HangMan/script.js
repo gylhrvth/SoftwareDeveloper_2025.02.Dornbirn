@@ -36,7 +36,7 @@ function startGame() {
   splitingWord();
   // Display the selected word
   displayWord();
-
+  console.log(`Selected word: ${categories[catNumb]} - ${word}`);
 
 }
 function resetGame() {
@@ -60,6 +60,8 @@ function resetGame() {
 
   const feedback = document.getElementById('feedback');
   feedback.textContent = '';
+  catNumb = 0;
+  // Reset category
 }
 
 function chooseCategory() {
@@ -72,13 +74,11 @@ function checkGuess() {
   for (let i = 0; i < splitWord.length; i++) {
     if (splitWord[i] === guess) {
       rightGuess++;
-      console.log('Right guesses:', rightGuess);
       correctGuess = true;
       wordList.children[i].textContent = guess;
     }
   }
   if (!correctGuess) {
-    console.log('Wrong guess');
     wrongGuess();
   }
   if (rightGuess === splitWord.length) {
@@ -94,12 +94,10 @@ function checkGuess() {
 }
 
 function wrongGuess() {
-  console.log('Wrong guess started');
   wordList = document.getElementById('wordlist');
   if (wrongGuesses < 6) {
     // Füge einen weiteren falschen Versuch hinzu
     wrongGuesses++;
-    console.log('Wrong guesses:', wrongGuesses);
 
     const wrongGuessesElement = document.getElementById('wrong-guesses');
     wrongGuessesElement.textContent = `${6 - wrongGuesses}/6`;
@@ -112,8 +110,6 @@ function wrongGuess() {
   if (wrongGuesses === 3) {
     const hint = document.getElementById('hint-text');
     hint.textContent = `This is a ${categories[catNumb]}`;
-    console.log('Hint:', hint.textContent);
-
   }
   if (wrongGuesses === 6) {
     score.losses++;
@@ -122,7 +118,6 @@ function wrongGuess() {
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
     const feedback = document.getElementById('feedback');
     feedback.textContent = `Game over: You lost! The word was: ${word}`;
-    console.log('Game over: You lost! The word was:', word);
 
     setTimeout(() => {
       resetGame();
@@ -133,7 +128,6 @@ function wrongGuess() {
 
 function splitingWord() {
   splitWord = word.toUpperCase().split('');
-  console.log('Split word:', splitWord);
 
 }
 
@@ -152,7 +146,6 @@ function displayWord() {
     const li = document.createElement('li');
     li.textContent = '_'; // Platzhalter für den Buchstaben
     wordList.appendChild(li);
-    console.log('Wordlist:', wordList);
   }
 }
 
@@ -163,7 +156,6 @@ function selectRndWord() {
   // Wähle ein zufälliges Wort aus dem ausgewählten Array
   let rndNmbr = Math.floor(Math.random() * selectedCategory.length);
   word = selectedCategory[rndNmbr];
-
   return word;
 }
 
