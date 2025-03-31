@@ -1,3 +1,38 @@
+@keyframes rainbow-animation {
+  0% {
+    background: radial-gradient(circle, red, black, red, black);
+  }
+
+  14% {
+    background: radial-gradient(circle, black, red, black, red);
+  }
+
+  28% {
+    background: radial-gradient(circle, red, black, red, black);
+  }
+
+  42% {
+    background: radial-gradient(circle, black, red, black, red);
+  }
+
+  57% {
+    background: radial-gradient(circle, red, black, red, black);
+  }
+
+  71% {
+    background: radial-gradient(circle, black, red, black, red);
+  }
+
+  85% {
+    background: radial-gradient(circle, red, black, red, black);
+  }
+
+  100% {
+    background: radial-gradient(circle, black, red, black, red);
+  }
+}
+
+
 .key-pad {
   display: flex;
   flex-direction: column;
@@ -46,7 +81,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  animation: rainbow-animation 2s infinite;
 }
 
 .main-container {
@@ -101,10 +136,23 @@ body {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background: url(img/gradient.jpg) center;
+  background-size: cover;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  animation: button-animation 10s linear infinite;
+  /*background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s;*/
+}
+
+@keyframes button-animation {
+  to {
+    background-position-x: -200px;
+  }
 }

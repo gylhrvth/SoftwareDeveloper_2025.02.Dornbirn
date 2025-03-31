@@ -61,11 +61,12 @@
   
   .hangman-box {
     flex: 1;
-    background-color: #ffcccc;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    position: relative;
+}
 
   .word-box {
     flex: 1;
@@ -117,4 +118,30 @@
     margin-bottom: 15px;
   }
 
+  #hint {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+#hint.visible {
+    opacity: 1;
+    visibility: visible;
+}
   
+#game-title {
+  text-align: center;
+  font-size: 24px;
+  color: #4CAF50;  /* Passende grüne Farbe für das Thema Frucht */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+
