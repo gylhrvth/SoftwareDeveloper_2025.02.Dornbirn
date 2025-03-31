@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./magic.css">
+    <script src="./magic.js"></script>
+    <title>Hangman1</title>
+</head>
+<body>
+    <button id="start-game" onclick="startGame()">Start Game</button>
+    <div class="main-container">
+        <div class="hangman-box">
+            <img id="hangman-0" src="./img/hangman-0.svg" alt="Seil mit Gargel" style="display: none;">
+            <img id="hangman-1" src="./img/hangman-1.svg" alt="Kopf" style="display: none;">
+            <img id="hangman-2" src="./img/hangman-2.svg" alt="Körper" style="display: none;">
+            <img id="hangman-3" src="./img/hangman-3.svg" alt="Arme Links" style="display: none;">
+            <img id="hangman-4" src="./img/hangman-4.svg" alt="Arme Rechts" style="display: none;">
+            <img id="hangman-5" src="./img/hangman-5.svg" alt="Beine Links" style="display: none;">
+            <img id="hangman-6" src="./img/hangman-6.svg" alt="Beine Rechts" style="display: none;">
+            
+            <!-- Hangman image will be dynamically added here -->
+        </div>
+        <div class="word-box">
+            <h2 id="game-title">Errate die Frucht!</h2> <!-- Überschrift hinzugefügt -->
+            <ul id="wordList">
+                <!-- Word will be dynamically added here -->
+            </ul>
+            <div class="hint-box">
+                <p><strong>Hint:</strong> <span id="hint-text">Your hint will appear here</span></p>
+                
+            </div>
+            <div class="info-box">
+                <p><strong>Wrong Guesses:</strong> <span id="wrong-guesses">0</span></p>
+            </div>
+            <div id="hint" class="hint"></div> 
+            </div>
+        </div>
+    </div>
+    <div class="key-pad">
+        <div class="row">
+            <button onclick="handleKeyPress('Q')">Q</button>
+            <button onclick="handleKeyPress('W')">W</button>
+            <button onclick="handleKeyPress('E')">E</button>
+            <button onclick="handleKeyPress('R')">R</button>
+            <button onclick="handleKeyPress('T')">T</button>
+            <button onclick="handleKeyPress('Y')">Y</button>
+            <button onclick="handleKeyPress('U')">U</button>
+            <button onclick="handleKeyPress('I')">I</button>
+            <button onclick="handleKeyPress('O')">O</button>
+            <button onclick="handleKeyPress('P')">P</button>
+        </div>
+        <div class="row">
+            <button onclick="handleKeyPress('A')">A</button>
+            <button onclick="handleKeyPress('S')">S</button>
+            <button onclick="handleKeyPress('D')">D</button>
+            <button onclick="handleKeyPress('F')">F</button>
+            <button onclick="handleKeyPress('G')">G</button>
+            <button onclick="handleKeyPress('H')">H</button>
+            <button onclick="handleKeyPress('J')">J</button>
+            <button onclick="handleKeyPress('K')">K</button>
+            <button onclick="handleKeyPress('L')">L</button>
+        </div>
+        <div class="row">
+            <button onclick="handleKeyPress('Z')">Z</button>
+            <button onclick="handleKeyPress('X')">X</button>
+            <button onclick="handleKeyPress('C')">C</button>
+            <button onclick="handleKeyPress('V')">V</button>
+            <button onclick="handleKeyPress('B')">B</button>
+            <button onclick="handleKeyPress('N')">N</button>
+            <button onclick="handleKeyPress('M')">M</button>
+        </div>
+    </div>
+</body>
+</html>
+

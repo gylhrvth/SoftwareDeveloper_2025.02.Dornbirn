@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Hangman</title>
+</head>
+<body>
+    <canvas id="gameCanvas" width="500" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function drawScene(stage) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+            // Draw sky
+            ctx.fillStyle = "#87CEEB";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw ground (color black)
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 450, canvas.width, 50);
+
+            // Draw stick figure
+            let yOffset = stage * 50;
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 3;
+            
+            // Head
+            ctx.beginPath();
+            ctx.arc(250, 100 + yOffset, 20, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Body
+            ctx.moveTo(250, 120 + yOffset);
+            ctx.lineTo(250, 180 + yOffset);
+            
+            // Arms
+            ctx.moveTo(220, 150 + yOffset);
+            ctx.lineTo(280, 150 + yOffset);
+            
+            // Legs
+            ctx.moveTo(250, 180 + yOffset);
+            ctx.lineTo(230, 230 + yOffset);
+            ctx.moveTo(250, 180 + yOffset);
+            ctx.lineTo(270, 230 + yOffset);
+            
+            ctx.stroke();
+
+            // Draw balloons
+            let colors = ["red", "orange", "yellow", "green", "blue"];
+            colors = colors.slice(0, Math.max(0, 5 - stage)); // Remove balloons progressively
+
+            colors.forEach((color, i) => {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(230 + i * 20, 50 + yOffset, 15, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                ctx.moveTo(230 + i * 20, 65 + yOffset);
+                ctx.lineTo(250, 100 + yOffset);
+                ctx.stroke();
+            });
+
+            // If the stage is the last one (8), add the cross on the ground
+            if (stage === 8) {
+                // Draw cross on the ground (aligned above the ground)
+                ctx.strokeStyle = "red";
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                
+                // Horizontal line of the cross
+                ctx.moveTo(200, 475); // Left end of the horizontal line
+                ctx.lineTo(300, 475); // Right end of the horizontal line
+                
+                // Vertical line of the cross (centered)
+                ctx.moveTo(250, 450); // Top of the vertical line
+                ctx.lineTo(250, 500); // Bottom of the vertical line
+                
+                ctx.stroke();
+
+                // Add blood splatters
+                ctx.fillStyle = "red";
+                ctx.beginPath();
+                ctx.arc(240, 480, 5, 0, Math.PI * 2); // Small blood splatter
+                ctx.arc(260, 485, 7, 0, Math.PI * 2); // Medium blood splatter
+                ctx.arc(245, 495, 4, 0, Math.PI * 2); // Another blood splatter
+                ctx.fill();
+            }
+        }
+
+        function saveImage(stage) {
+            let link = document.createElement('a');
+            link.download = `stage_${stage}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+
+        // Draw and save each stage every second
+        let stage = 0;
+        let interval = setInterval(() => {
+            if (stage < 9) {
+                drawScene(stage);
+                saveImage(stage);
+                stage++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
