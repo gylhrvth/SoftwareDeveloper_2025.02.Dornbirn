@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Logik</title>
+    <link rel="stylesheet" href="../../../../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        function bubbleSort(arr) {
+            let n = arr.length;
+            let swapped;
+            do {
+                swapped = false;
+                for (let i = 0; i < n - 1; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        // Swap arr[i] and arr[i + 1]
+                        let temp = arr[i];
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
+                        swapped = true;
+                    }
+                }
+                n--; // Reduce the range of the next iteration
+            } while (swapped);
+            return arr;
+        }
+
+        function bubbleSortV2(arr) {
+            const n = arr.length;
+            for (let i = 0; i < n - 1; i++) { // Äußere Schleife: Anzahl der Durchläufe
+                printLn("Durchlauf " + (i + 1)); // Ausgabe des aktuellen Arrays
+                for (let j = 0; j < n - i - 1; j++) { // Innere Schleife: Vergleiche benachbarte Elemente
+                    printLn("  Vergleich: " + arr[j] + " > " + arr[j + 1]); // Ausgabe der Vergleiche
+                    if (arr[j] > arr[j + 1]) { // Wenn das linke Element größer ist, tausche
+                        printLn("        Tausch: " + arr[j] + " Index:" + arr.indexOf(arr[j]) + " und " + arr[j + 1] + " Index:" + arr.indexOf(arr[j + 1])); // Ausgabe des Tauschs
+                        printLn("        Array vor Tausch:  " + arr); // Ausgabe des Arrays vor dem Tausch
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Swap
+                        printLn("        Array nach Tausch: " + arr); // Ausgabe des Arrays nach dem Tausch
+                    }
+                    printHr(); // Ausgabe einer horizontalen Linie
+                }
+            }
+            return arr; // Rückgabe des sortierten Arrays
+        }
+
+        // Example usage
+        let arrayToSort = [64, 34, 25, 12, 22, 11, 90];
+        let arrayToSortV2 = [64, 34, 25, 12, 22, 11, 90];
+        printLn("Unsorted array: " + arrayToSort);
+        let sortedArray = bubbleSort(arrayToSort);
+        printLn("Sorted array: " + sortedArray);
+        printHr();
+        printLn("Unsorted array V2: " + arrayToSortV2);
+        let sortedArrayV2 = bubbleSortV2(arrayToSortV2);
+        printLn("Sorted array V2: " + sortedArrayV2);
+    </script>
+</body>
+
+</html>
