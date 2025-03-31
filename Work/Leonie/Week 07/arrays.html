@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        printH(1, "Gestellte Fragen von Gyula lösen")
+
+        printH(3, "Sample Code")
+        printLn("Wähle 7 nützliche JS Array Methoden, und erstelle eine Beispiel - Code in dem du die verwendest.")
+
+        // 1. forEach - Iteration über ein Array
+        const numbers = [1, 2, 3, 4, 5];
+        numbers.forEach(num => printLn(`forEach: ${num}`));
+
+        // 2. map - Transformation eines Arrays
+        const squared = numbers.map(num => num * num);
+        printLn(`map: ${squared}`);
+
+        // 3. filter - Filtern von Elementen
+        const evenNumbers = numbers.filter(num => num % 2 === 0);
+        printLn(`filter: ${evenNumbers}`);
+
+        // 4. reduce - Reduzieren auf einen Wert
+        const sum = numbers.reduce((acc, num) => acc + num, 0);
+        printLn(`reduce: ${sum}`);
+
+        const test = numbers.reduce((a, b) => a + b, 0);
+        printLn(`reduce: ${test}`);
+
+        // 5. find - Finden eines Elements
+        const firstEven = numbers.find(num => num % 2 === 0);
+        printLn(`find: ${firstEven}`);
+
+        // 6. sort - Sortieren eines Arrays
+        const unsorted = [5, 3, 8, 1, 2];
+        const sorted = unsorted.sort((a, b) => a - b);
+        printLn(`sort: ${sorted}`);
+
+        // 7. includes - Überprüfen, ob ein Element existiert
+        const hasThree = numbers.includes(3);
+        printLn(`includes: ${hasThree}`);
+
+        printHr()
+        printH(3, "Einfaches Array")
+        printLn("Erstelle eine Funktion mit einem Parameter size erstelle eine neue Array mit der Größe und fülle mit 1, 2, 3, ... bis zu size.Gebe als Ergebnis das Array zurück.")
+
+        function createArray(size) {
+            const arr = [];
+            for (let i = 1; i <= size; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+        const size = 5;
+        const result = createArray(size);
+        printLn(`createArray(${size}): ${result}`);
+
+        printHr()
+        printH(3, "Random Array")
+        printLn("Erstelle eine Funktion mit einem Parameter size erstelle eine neue Array mit der Größe und fülle mit zufällige Zahlen zwischen 1 und 100. Gebe als Ergebnis das Array zurück.")
+
+        function randomArray(size) {
+            const arr = [];
+            for (let i = 0; i < size; i++) {
+                arr.push(Math.floor(Math.random() * 100) + 1);
+            }
+            return arr;
+        }
+        const randomSize = 5;
+        const randomResult = randomArray(randomSize);
+        printLn(`randomArray(${randomSize}): ${randomResult}`);
+
+        printHr()
+        printH(3, "Minimum suche")
+        printLn("Erstelle eine Funktion minValue(arr), die das kleinste Wert aus dem Array zurückgibt.Löse das Problem mit for schleife und mit forEach")
+
+        function minValue(arr) {
+            let min = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+        const minResult = minValue(randomResult);
+        printLn(`minValue(${randomResult}): ${minResult}`);
+        // forEach implementation
+        let minForEach = randomResult[0];
+        randomResult.forEach(num => {
+            if (num < minForEach) {
+                minForEach = num;
+            }
+        });
+        printLn(`minValue with forEach(${randomResult}): ${minForEach}`);
+
+        printHr()
+        printH(3, "Maximum suche")
+        printLn("Erstelle eine Funktion maxValue(arr), die das GRÖßTE Wert aus dem Array zurückgibt.Löse das Problem mit for schleife und mit forEach")
+
+        function maxValue(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        const maxResult = maxValue(randomResult);
+        printLn(`maxValue(${randomResult}): ${maxResult}`);
+        // forEach implementation
+        let maxForEach = randomResult[0];
+        randomResult.forEach(num => {
+            if (num > maxForEach) {
+                maxForEach = num;
+            }
+        });
+        // forEach implementation V2 = kürzer
+        let maxForEachv2 = randomResult[0];
+        randomResult.forEach(value => {
+            maxForEachv2 = (value > maxForEachv2) ? value : maxForEachv2
+        })
+        printLn(`maxValue with forEach V2(${randomResult}): ${maxForEachv2}`);
+        printLn(`maxValue with forEach(${randomResult}): ${maxForEach}`);
+
+        printHr()
+        printH(3, "Suche nach Position(min)")
+        printLn("Erstelle eine Funktion minValueIndex(arr), die der Index des kleinsten Wert aus dem Array zurückgibt.Löse das Problem mit for schleife und mit forEach")
+
+        function minValueIndex(arr) {
+            let min = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+        const minResultIndex = minValueIndex(randomResult);
+        const minIndex = randomResult.indexOf(minResultIndex);
+        printLn(`minValueIndex(${randomResult}): ${minResultIndex} at index ${minIndex}`);
+        // forEach implementation
+        let minForEachIndex = randomResult[0];
+        let minIndexForEach = 0;
+        randomResult.forEach((num, index) => {
+            if (num < minForEachIndex) {
+                minForEachIndex = num;
+                minIndexForEach = index;
+            }
+        });
+        printLn(`minValueIndex with forEach(${randomResult}): ${minForEachIndex} at index ${minIndexForEach}`);
+
+        printHr()
+        printH(3, "Suche nach Position(max)")
+        printLn("Erstelle eine Funktion maxValueIndex(arr), die der Index des GRÖßTEN Wert aus dem Array zurückgibt.Löse das Problem mit for schleife und mit forEach")
+
+        function maxValueIndex(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        const maxResultIndex = maxValueIndex(randomResult);
+        const maxIndex = randomResult.indexOf(maxResultIndex);
+        printLn(`maxValueIndex(${randomResult}): ${maxResultIndex} at index ${maxIndex}`);
+        // forEach implementation
+        let maxForEachIndex = randomResult[0];
+        let maxIndexForEach = 0;
+        randomResult.forEach((num, index) => {
+            if (num > maxForEachIndex) {
+                maxForEachIndex = num;
+                maxIndexForEach = index;
+            }
+        });
+        printLn(`maxValueIndex with forEach(${randomResult}): ${maxForEachIndex} at index ${maxIndexForEach}`);
+
+        printHr()
+        printH(3, "Aufsteigend sortieren")
+        printLn("Erstelle eine Funktion sortASC(arr), die Werte aufsteigend sortiert.Verwende die sort() methode.")
+
+        function sortASC(arr) {
+            return arr.sort((a, b) => a - b);
+        }
+        const sortedAsc = sortASC(randomResult);
+        printLn(`sortASC(${randomResult}): ${sortedAsc}`);
+
+        printHr()
+        printH(3, "Absteigend sortieren")
+        printLn("Erstelle eine Funktion sortDESC(arr), die Werte absteigend sortiert.Verwende die sort() methode.")
+
+        function sortDESC(arr) {
+            return arr.sort((a, b) => b - a);
+        }
+        const sortedDesc = sortDESC(randomResult);
+        printLn(`sortDESC(${randomResult}): ${sortedDesc}`);
+
+        printHr()
+        printH(3, "Eigene Sort Algorithmus")
+        printLn("Erstelle eine Funktion bubbleSort(arr), die Werte aufsteigend sortiert.Verwende die Logik des Bubble Sort.")
+
+        function bubbleSort(arr) {
+            const n = arr.length;
+            for (let i = 0; i < n - 1; i++) { // Äußere Schleife: Anzahl der Durchläufe
+                for (let j = 0; j < n - i - 1; j++) { // Innere Schleife: Vergleiche benachbarte Elemente
+                    if (arr[j] > arr[j + 1]) { // Wenn das linke Element größer ist, tausche
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Swap
+                    }
+                }
+            }
+            return arr; // Rückgabe des sortierten Arrays
+        }
+        const bubbleSorted = bubbleSort([...randomResult]); // Copy the array to avoid modifying the original
+        printLn(`bubbleSort(${randomResult}): ${bubbleSorted}`);
+    </script>
+</body>
+
+</html>
