@@ -1,0 +1,176 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);
+  animation: rainbow-animation 0.9s infinite;
+}
+
+@keyframes rainbow-animation {
+  0% {
+    background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);
+  }
+
+  14% {
+    background: radial-gradient(circle, orange, yellow, green, blue, indigo, violet, red);
+  }
+
+  28% {
+    background: radial-gradient(circle, yellow, green, blue, indigo, violet, red, orange);
+  }
+
+  42% {
+    background: radial-gradient(circle, green, blue, indigo, violet, red, orange, yellow);
+  }
+
+  57% {
+    background: radial-gradient(circle, blue, indigo, violet, red, orange, yellow, green);
+  }
+
+  71% {
+    background: radial-gradient(circle, indigo, violet, red, orange, yellow, green, blue);
+  }
+
+  85% {
+    background: radial-gradient(circle, violet, red, orange, yellow, green, blue, indigo);
+  }
+
+  100% {
+    background: radial-gradient(circle, violet, indigo, blue, green, yellow, orange, red);
+  }
+}
+
+.main-container,
+.hangman-box,
+.word-box,
+.hint-box,
+.info-box {
+  display: none;
+}
+
+.main-container {
+  display: flex;
+  width: 80%;
+  height: 50%;
+  margin-top: 1rem;
+}
+
+.hangman-box {
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.word-box ul {
+  font-family: monospace;
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+}
+
+.word-box ul li {
+  box-shadow: 0 0 10px white, 0 0 20px white;
+  background-color: white;
+  border-radius: 1px;
+  padding: 10px;
+  margin: 0 5px;
+  text-decoration: underline;
+  text-decoration-color: #000;
+  color: white;
+  margin: 0 5px;
+}
+
+.word-box ul li.correct {
+  color: black !important;
+  background-color: transparent !important;
+  text-shadow: none !important;
+}
+
+@keyframes led-effect {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+  }
+
+  50% {
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 50px #00ff00;
+  }
+}
+
+.hint-box,
+.info-box {
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+  animation: text-glow 2s infinite;
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+  }
+
+  50% {
+    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+  }
+
+  100% {
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+  }
+}
+
+.hint-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.info-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#start-game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  background-color: blue;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s, text-shadow 0.2s;
+  box-shadow: 0 0 10px blue, 0 0 20px blue;
+  animation: button-color-change 3s infinite;
+}
+
+#start-game:hover {
+  box-shadow: 0 0 15px blue, 0 0 30px blue;
+  transform: translate(-50%, -52%);
+  background-color: #d0d0d0;
+}
+
+#start-game:active {
+  transform: translate(-50%, -50%);
+}
