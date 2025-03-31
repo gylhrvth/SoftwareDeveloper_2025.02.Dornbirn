@@ -1,0 +1,166 @@
+
+.key-pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .key-pad .row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .key-pad button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .key-pad button:hover {
+    transform: translateY(-2px);
+    background-color: #d0d0d0;
+  }
+  
+  .key-pad button:active {
+    transform: translateY(0);
+  }
+  
+  .key-pad button.disabled {
+    background-color: #a0a0a0;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .main-container {
+    display: flex;
+    width: 80%;
+    height: 60%;
+    border: 2px solid #000;
+    background-color: #fff;
+    margin-top: 1rem;
+  }
+  
+  .hangman-box {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+  .word-box {
+    flex: 1;
+    background-color: #ccffcc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .word-box ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .word-box ul li {
+    margin: 0 5px;
+  }
+  
+  .hint-box {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .info-box {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #start-game {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  #fruit-header{
+    text-align: center;
+    font-size: 24px;
+    color: #4CAF50; 
+    margin-bottom: 15px;
+  }
+
+  #hint {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 0s linear 1s; /* Verzögerung beim Verstecken */
+}
+
+#hint.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 0s linear; /* Sofort sichtbar */
+}
+  
+#game-title {
+  text-align: center;
+  font-size: 24px;
+  color: #4CAF50;  /* Passende grüne Farbe für das Thema Frucht */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hangman-box {
+  position: relative; /* Ermöglicht absolute Positionierung der Bilder */
+  width: 200px; /* Setze eine feste Breite für die Box */
+  height: 600px; /* Feste Höhe der Box */
+  margin: 0 auto; /* Optional, um die Box zu zentrieren */
+}
+
+.hangman-box img {
+  position: absolute; /* Absolute Positionierung der Bilder */
+  top: 50%; /* Start bei der obersten Position */
+  left: 50%; /* Mittig horizontal */
+  transform: translate(-50%, -50%); /* Verschiebt das Bild nach links, um es exakt zu zentrieren */
+  display: none; /* Standardmäßig werden die Bilder nicht angezeigt */
+  width: 100%; /* Breite anpassen */
+  max-width: 50%; /* Maximalbreite der Bilder */
+  height: auto; /* Höhe automatisch skalieren */
+}
+
+
