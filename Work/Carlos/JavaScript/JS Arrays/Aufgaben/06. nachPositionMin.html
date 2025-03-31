@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Suche nach Position (min)</title>
+</head>
+<body>
+
+    <script>
+
+        // Erstelle eine Funktion minValueIndex(arr), die der Index des kleinsten Wert aus dem Array zurückgibt. Löse das Problem mit for schleife und mit forEach
+
+        printH(1, "Suche nach Position (min)");
+
+        let numberArr = [13, 2, 15, 5, 7, 21, 6];
+
+        printH(3, "for Methode");
+        
+
+        function minValueIndex(array){
+            let min = array[0]
+            let minIndex = 0;
+
+            for(let i = 1; i < array.length; i++){
+                if(array[i] < min) {
+                    min = array[i];
+                    minIndex = i;
+                }
+            }
+            return minIndex;
+        }
+
+        print("The array is: " + numberArr);
+        printLn();
+        print("The minimum number Index: " + minValueIndex(numberArr));
+
+        printHr();
+
+        printH(3, "forEach Methode");
+
+        print("The array is: " + numberArr);
+        printLn();
+        print("The minimum number Index: " + getMinValueIndexForEach(numberArr));
+    
+
+
+        function getMinValueIndexForEach(arr){
+            let min = arr[0] //Assume first element is the smallest
+            let minIndex = 0; // Track the index of the smallest element
+        arr.forEach((i, index) => {
+            if (i < min){
+                min = i;
+                minIndex = index; // Update index of the smallest value
+
+            }
+        })
+        return minIndex
+}
+
+
+
+    </script>
+    
+</body>
+</html>
