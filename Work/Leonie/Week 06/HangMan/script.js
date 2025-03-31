@@ -89,7 +89,7 @@ function checkGuess() {
     setTimeout(() => {
       resetGame();
     }
-      , 1000);
+      , 4000);
   }
 }
 
@@ -122,7 +122,7 @@ function wrongGuess() {
     setTimeout(() => {
       resetGame();
     }
-      , 1000);
+      , 4000);
   }
 }
 
