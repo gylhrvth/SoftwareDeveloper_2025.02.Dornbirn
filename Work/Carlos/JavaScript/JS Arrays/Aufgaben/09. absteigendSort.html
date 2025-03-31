@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Absteigend sortieren</title>
+</head>
+<body>
+
+    <script>
+
+        // Erstelle eine Funktion sortASC(arr), die Werte aufsteigend sortiert. Verwende die sort() methode.
+
+        printH(1, "Suche nach Position (max)");
+
+        let numberArr = [13, 2, 15, 5, 7, 21, 6];
+
+        function sortDESC(arr){
+
+            arr.sort(function(a,b) {
+                return b - a; // Absteigend sortieren
+            });
+
+            return arr; // Explicitly return the sorted array
+
+        }
+
+        print("The array is: " + numberArr);
+
+        printLn();
+
+        print("The sorted descending array is: " + sortDESC(numberArr));
+
+    </script>
+    
+</body>
+</html>

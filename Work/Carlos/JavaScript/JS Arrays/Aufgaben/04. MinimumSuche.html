@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Minimum Suche</title>
+</head>
+<body>
+
+    <script>
+
+    //Erstelle eine Funktion minValue(arr), die das kleinste Wert aus dem Array zurückgibt. Löse das Problem mit for schleife und mit forEach
+        
+    printH(1, "Minimum Suche");
+
+    // mit for Schleife-----------------------------------------
+
+    printH(3, "Minimum Suche mit for loop");
+
+    let numberArr = [13, 2, 15, 5, 7, 21, 6];
+
+    function minValue(array){
+        let min = array[0];
+        for(let i = 1; i < array.length; i++){
+            if(array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    print("The array is: " + numberArr);
+    printLn();
+    print("The minimum number is: " + minValue(numberArr));
+
+
+        /* Gyulas Beispiel:
+
+        function getMinWithFor(arr){
+        let minValue = Infinity
+        for (let i = 0; i < arr.length; ++i){
+            if (arr[i] < minValue){
+                minValue = arr[i]
+            }
+        }
+        return minValue
+        }
+        }
+
+    */
+
+
+    // mit forEach ---------------------------------------------
+
+    printH(3, "Minimum Suche mit forEach");
+
+    let numberArr02 = [13, 2, 15, 5, 7, 21, 6];
+    
+    function minValueForEach(arr){
+
+    if (arr.length === 0){ // Handle empty array case
+        return null;
+    }
+
+    let min = arr[0]; // Start with the first element
+
+    arr.forEach(i => {
+        if(i < min){
+            min = i; // Update if a smaller number is found
+        }
+    });
+        return min; // Return the smallest number
+    }
+
+    print("The array is: " + numberArr02);
+    printLn();
+    print("The minimum number is: " + minValueForEach(numberArr02));
+
+    /* Gyulas Beispiel:
+
+    function getMinWithForEach(arr){
+    let minValue = Infinity
+    arr.forEach((value) => {
+        if (value < minValue){
+            minValue = minValue
+        }
+    })
+    return minValue
+}
+
+    */
+
+
+    </script>
+    
+</body>
+</html>

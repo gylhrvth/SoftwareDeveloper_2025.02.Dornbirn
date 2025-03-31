@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Sample Code (Arrays)</title>
+</head>
+<body>
+
+    <script>
+
+        //Wähle 7 nützliche JS Array Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.
+
+        //Beispiel mit at():
+
+        printH(1, "Array Methoden");
+
+        printHr();
+
+        printH(3, "01 .at()-Methode");
+        
+        let buchstabenAt = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Index 2: " + "\"" +buchstabenAt.at(2) + "\"");
+
+        printHr();
+
+        printH(3, "02 .push()-Methode");
+
+        let buchstabenPush = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Show original Array: " + "\"" + buchstabenPush + "\"");
+
+        printLn();
+
+        print("Push new Length: " + "\"" + buchstabenPush.push("h", "i") + "\"");
+
+        printLn();
+
+        print("Show updated Array: " + "\"" + buchstabenPush + "\"");
+
+        printHr();
+
+        printH(3, "03 .pop()-Methode");
+
+        let buchstabenPop = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Pop last element: " + "\"" + buchstabenPush.pop() + "\"");
+
+        printHr();
+
+        printH(3, "04 .shift()-Methode");
+
+        let buchstabenShift = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Shift first element: " + "\"" + buchstabenPush.shift() + "\"");
+
+        printHr();
+
+        printH(3, "05 .concat()-Methode");
+
+        let buchstabenConcat01 = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        let buchstabenConcat02 = ["h", "i", "j", "k"];
+
+        let buchstabenCombination = buchstabenConcat01.concat(buchstabenConcat02);
+
+        print("Array: " + "\"" + buchstabenConcat01 + "\"");
+
+        printLn()
+
+        print("Array: " + "\"" + buchstabenConcat02 + "\"");
+
+        printLn()
+
+        print("Array 01 + Array 02: " + "\"" + buchstabenCombination + "\"");
+
+        printHr();
+
+        printH(3, "06 .findIndex()-Methode");
+
+        let buchstabenFindIndex = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
+
+        let findCondition = buchstabenFindIndex.findIndex(function(element, index, array) {
+            return element === "d";  
+            });
+
+        print("Search for index of first d: " + "\"" + findCondition + "\"");
+
+        printHr();
+
+        printH(3, "07 .forEach()-Methode");
+
+        let buchstabenForEach = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
+
+        let sortForEach = buchstabenForEach.forEach(function(element, index, array) {
+                  printLn(`Element: ${element}, Index: ${index}, Array: ${array}`);
+                });
+
+
+        printLn();
+
+
+    </script>
+    
+</body>
+</html>
