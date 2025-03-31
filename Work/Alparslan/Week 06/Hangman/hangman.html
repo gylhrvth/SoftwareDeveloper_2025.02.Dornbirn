@@ -6,39 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hangman</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="keypad.css">
   <script src="script.js"></script>
 </head>
 
 <body>
   <button id="start-game" onclick="startGame()">Start Game</button>
-  <button id="start-game" onclick="showScore()">Show Score</button>
-  <button id="start-game" onclick="resetScore()">Reset Score</button>
-  
-  <div class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">&times;</span>
-      <h2>Game Over</h2>
-      <p id="game-over-message">Your message will appear here</p>
-      <button id="play-again" onclick="playAgain()">Play Again</button>
-    </div>
-  </div>
-
   <div class="main-container">
     <div class="hangman-box">
-      <img id="hangman-image" src="../../Week 05/JavaScript/Projekt/img/hangman-0.svg" alt="Hangman">
+      <!-- Hangman image will be dynamically added here -->
     </div>
     <div class="word-box">
       <ul id="wordlist">
-        <!-- Word will be dynamically added here -->
+
       </ul>
+      <!-- Word will be dynamically added here -->
       <div class="hint-box">
-        <p><strong>Hint:</strong> <span id="hint-text">Your hint will appear here</span></p>
+        <p><strong>Hint:</strong> <span id="hint">Your hint will appear here</span></p>
       </div>
       <div class="info-box">
-        <p><strong>Guesses Left:</strong> <span id="wrong-guesses">6/6</span></p>
-      </div>
-      <div class="hint-box">
-        <p><strong>Feedback:</strong> <span id="feedback">Your feedback will appear here</span></p>
+        <p><strong>Guesses left:</strong> <span id="counter">6</span></p>
       </div>
 
 

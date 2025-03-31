@@ -9,93 +9,118 @@
 </head>
 <body>
 <script>
+let arrEmpty = []  // Leeres Array erstellen // 'let' ist eine Variablendeklaration, 'arrEmpty' ist der Name der Variable, '[]' ist die Syntax für ein leeres Array
+let arrNumbers = [1, 2, 5, 3, 6, 4, 7]  // Array mit Zahlen erstellen // 'arrNumbers' ist der Name der Variable, '[1, 2, 5, 3, 6, 4, 7]' ist ein Array mit Zahlen
+let arrText = createArray()  // Funktion 'createArray' aufrufen und das Ergebnis in 'arrText' speichern // 'arrText' speichert das Rückgabewert von 'createArray()'
+myPrint(arrEmpty)  // Funktion 'myPrint' mit dem Argument 'arrEmpty' aufrufen // 'arrEmpty' ist das leere Array
+myPrint(arrText)  // Funktion 'myPrint' mit dem Argument 'arrText' aufrufen // 'arrText' ist das Array, das von 'createArray()' erstellt wurde
+upperCase(arrText)  // Funktion 'upperCase' mit dem Argument 'arrText' aufrufen // 'arrText' wird bearbeitet, um jedes zweite Wort in Großbuchstaben zu setzen
+myPrint(arrText)  // Funktion 'myPrint' mit dem Argument 'arrText' nach der Änderung durch 'upperCase' aufrufen // zeigt die bearbeiteten Daten an
 
-let arrEmpty = []  // Leeres Array erstellen
-let arrNumbers = [1, 2, 5, 3, 6, 4, 7]
-let arrText = createArray()
-myPrint(arrEmpty)
-myPrint(arrText)
-upperCase(arrText)
-myPrint(arrText)
+console.log("Number 1", createNumberArray(5))  // 'console.log' gibt eine Nachricht und das Ergebnis von 'createNumberArray(5)' aus // Gibt ein Array der ersten 5 Zahlen aus
+console.log("Number 2", createNumberArrayV2(5))  // 'console.log' gibt eine Nachricht und das Ergebnis von 'createNumberArrayV2(5)' aus // Gibt ein Array der ersten 5 Zahlen aus, aber mit einer anderen Methode
 
-console.log("Number 1", createNumberArray(5))
-console.log("Number 2", createNumberArrayV2(5))
+let textFromNumbers = createNumberArrayV2(7).join(" -> ")  // Array von Zahlen mit 'createNumberArrayV2' erstellen, dann alle Zahlen zu einem String zusammenfügen, der mit " -> " getrennt ist
+printLn(textFromNumbers)  // Funktion 'printLn' aufrufen, um den String 'textFromNumbers' zu drucken
 
-let textFromNumbers = createNumberArrayV2(7).join(" -> ")
-printLn(textFromNumbers)
 
-function createArray(){
-    let arr = ["Hello", "World!", "Heute", "ist", "ein", "Montag."]
-    return arr
+
+function createArray(){  // Funktion 'createArray' definieren, die ein Array von Texten zurückgibt
+    let arr = ["Hello", "World!", "Heute", "ist", "ein", "Montag."]  // Array mit verschiedenen Wörtern erstellen
+    return arr  // Das Array 'arr' zurückgeben
 }
 
-function myPrint(arr){
-    if (arr.length == 0){
-        console.log('There is nothing to print')
+
+
+
+function myPrint(arr){  // Funktion 'myPrint' definieren, die ein Array ausgibt
+    if (arr.length == 0){  // Prüfen, ob das Array leer ist
+        console.log('There is nothing to print')  // Falls das Array leer ist, eine Nachricht ausgeben
     }
 
-    for (let i = 0; i < arr.length; ++i){
-        if (i > 0){
-            print(" ")
+    for (let i = 0; i < arr.length; ++i){  // Schleife durch das Array 'arr'
+        if (i > 0){  // Wenn 'i' größer als 0 ist, füge ein Leerzeichen hinzu, bevor der nächste Wert gedruckt wird
+            print(" ")  // Ein Leerzeichen ausgeben
         }
-        print(arr[i])
+        print(arr[i])  // Das Element an Index 'i' des Arrays 'arr' ausgeben
     }
-    printLn()
-}
-
-function upperCase(arr){
-    for (let i = 0; i < arr.length; ++i){
-        if (i % 2 == 1){
-            arr[i] = arr[i].toUpperCase()
-        }
-    }
+    printLn()  // Eine neue Zeile nach dem Drucken des gesamten Arrays ausgeben
 }
 
 
-function createNumberArray(size){
-    let arr = []
-    for (let i = 0; i < size; ++i){
-        arr.push(i + 1)
-    }
-    return arr
-}
 
 
-function createNumberArrayV2(size){
-    let arr = []
-    for (let i = 0; i < size; ++i){
-        arr = [...arr, i + 1]
-    }
-    return arr
-}
 
-function getMinWithFor(arr){
-    let minValue = Infinity
-    for (let i = 0; i < arr.length; ++i){
-        if (arr[i] < minValue){
-            minValue = arr[i]
+function upperCase(arr){  // Funktion 'upperCase' definieren, die jedes zweite Element in Großbuchstaben umwandelt
+    for (let i = 0; i < arr.length; ++i){  // Schleife durch das Array 'arr'
+        if (i % 2 == 1){  // Prüfen, ob der Index 'i' ungerade ist
+            arr[i] = arr[i].toUpperCase()  // Das Element an Index 'i' in Großbuchstaben umwandeln
         }
     }
-    return minValue
 }
 
-function getMinWithForEach(arr){
-    let minValue = Infinity
-    arr.forEach((value) => {
-        if (value < minValue){
-            minValue = value
+
+
+
+function createNumberArray(size){  // Funktion 'createNumberArray' definieren, die ein Array mit Zahlen von 1 bis 'size' erstellt
+    let arr = []  // Leeres Array 'arr' erstellen
+    for (let i = 0; i < size; ++i){  // Schleife von 0 bis 'size'
+        arr.push(i + 1)  // Die Zahl 'i + 1' zum Array 'arr' hinzufügen
+    }
+    return arr  // Das Array 'arr' zurückgeben
+}
+
+
+
+
+
+function createNumberArrayV2(size){  // Funktion 'createNumberArrayV2' definieren, die ein Array mit Zahlen von 1 bis 'size' erstellt, aber eine andere Syntax verwendet
+    let arr = []  // Leeres Array 'arr' erstellen
+    for (let i = 0; i < size; ++i){  // Schleife von 0 bis 'size'
+        arr = [...arr, i + 1]  // Die Zahl 'i + 1' mit der Spread-Syntax zum Array 'arr' hinzufügen
+    }
+    return arr  // Das Array 'arr' zurückgeben
+}
+
+
+
+
+
+function getMinWithFor(arr){  // Funktion 'getMinWithFor' definieren, die das kleinste Element in einem Array mit einer for-Schleife findet
+    let minValue = Infinity  // 'minValue' auf 'Infinity' setzen, um den größten Wert zu initialisieren
+    for (let i = 0; i < arr.length; ++i){  // Schleife durch das Array 'arr'
+        if (arr[i] < minValue){  // Wenn das Element an Index 'i' kleiner als 'minValue' ist
+            minValue = arr[i]  // Setze 'minValue' auf dieses Element
+        }
+    }
+    return minValue  // Das kleinste Element zurückgeben
+}
+
+
+
+
+function getMinWithForEach(arr){  // Funktion 'getMinWithForEach' definieren, die das kleinste Element in einem Array mit der forEach-Methode findet
+    let minValue = Infinity  // 'minValue' auf 'Infinity' setzen
+    arr.forEach((value) => {  // Die forEach-Methode durchläuft jedes Element im Array 'arr' und ruft für jedes Element die Funktion mit dem Argument 'value' auf
+        if (value < minValue){  // Wenn das aktuelle Element kleiner als 'minValue' ist
+            minValue = value  // Setze 'minValue' auf dieses Element
         }
     })
-    return minValue
+    return minValue  // Das kleinste Element zurückgeben
 }
 
-function getMinWithForEachV2(arr){
-    let minValue = Infinity
-    arr.forEach((value) => {
-        minValue = (value < minValue) ? value : minValue
+
+
+
+
+function getMinWithForEachV2(arr){  // Funktion 'getMinWithForEachV2' definieren, die das kleinste Element in einem Array mit der forEach-Methode findet
+    let minValue = Infinity  // 'minValue' auf 'Infinity' setzen
+    arr.forEach((value) => {  // Die forEach-Methode durchläuft jedes Element im Array 'arr' und ruft für jedes Element die Funktion mit dem Argument 'value' auf
+        minValue = (value < minValue) ? value : minValue  // Eine Bedingung: wenn 'value' kleiner als 'minValue' ist, setze 'minValue' auf 'value', andernfalls bleibt 'minValue' unverändert
     })
-    return minValue
+    return minValue  // Das kleinste Element zurückgeben
 }
+
 
 
 </script>    

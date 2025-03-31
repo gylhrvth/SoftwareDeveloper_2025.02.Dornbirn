@@ -1,4 +1,4 @@
-.key-pad {
+.key-pad { 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,13 +23,14 @@
   transition: transform 0.2s, background-color 0.2s;
 }
 
+/* Hover-Effekt für das Keypad */
 .key-pad button:hover {
-  transform: translateY(-2px);
-  background-color: #d0d0d0;
+  transform: translateY(-2px); /* Taste hebt sich leicht an */
+  background-color: #d0d0d0; /* Farbe der Taste ändert sich beim Hover */
 }
 
 .key-pad button:active {
-  transform: translateY(0);
+  transform: translateY(0); /* Zurücksetzen der Position bei Klick */
 }
 
 .key-pad button.disabled {
@@ -107,4 +108,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+/* Hover-Effekt für den Start-Button */
+#start-game:hover {
+  background-color: #388e3c; /* Dunkleres Grün beim Hover */
+  transform: translateY(-3px); /* Button hebt sich leicht an */
+}
+
+#start-game:active {
+  background-color: #2c6c2f; /* Noch dunkleres Grün beim Klick */
+  transform: translateY(0); /* Zurücksetzen der Position */
 }
