@@ -48,7 +48,7 @@
     printH(2, "👉Minimum Suche For-Schleife")
 
     function minValue (arr) {
-        let min = arr [0]     // Anfangs setzen wir das erste Element als Minimum.
+        let min = arr[0]     // Anfangs setzen wir das erste Element als Minimum.
         
         for(let i = 1; i < arr.length; i++) {             // Durchlaufe das Array, beginnend bei Index 1, da wir das erste Element bereits als Minimum gesetzt haben.
             if (arr[i] < min) {                          // Überprüfe, ob das aktuelle Element kleiner als das aktuelle Minimum ist.
@@ -65,7 +65,7 @@
     printH(2, "👉Minimum Suche forEach")
 
     function minValue(arr){
-        let min = arr[0];
+        let min = Infinity;
 
         arr.forEach(num => {    // Wir verwenden die forEach()-Methode, um jedes Element (num) im Array zu durchlaufen.
             if (num < min){     // Falls num kleiner als unser aktuelles min ist, setzen wir min auf num.
