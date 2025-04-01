@@ -1,28 +1,28 @@
 // Erstellt ein Array mit verschiedenen Fruchtnamen als Zeichenketten (Strings). 
-const fruits = [  // 'const' ist ein Schlüsselwort, das eine Konstante (Variable, deren Wert nicht verändert werden kann) deklariert.
-  'apple',       // 'apple' ist ein String (Text), der den Namen der Frucht 'Apfel' darstellt.
-  'banana',      // 'banana' ist ein String (Text), der den Namen der Frucht 'Banane' darstellt.
-  'cherry',      // 'cherry' ist ein String (Text), der den Namen der Frucht 'Kirsche' darstellt.
-  'grape',       // 'grape' ist ein String (Text), der den Namen der Frucht 'Traube' darstellt.
-  'kiwi',        // 'kiwi' ist ein String (Text), der den Namen der Frucht 'Kiwi' darstellt.
-  'lemon',       // 'lemon' ist ein String (Text), der den Namen der Frucht 'Zitrone' darstellt.
-  'mango',       // 'mango' ist ein String (Text), der den Namen der Frucht 'Mango' darstellt.
-  'orange',      // 'orange' ist ein String (Text), der den Namen der Frucht 'Orange' darstellt.
-  'papaya',      // 'papaya' ist ein String (Text), der den Namen der Frucht 'Papaya' darstellt.
-  'raspberry',   // 'raspberry' ist ein String (Text), der den Namen der Frucht 'Himbeere' darstellt.
-  'strawberry',  // 'strawberry' ist ein String (Text), der den Namen der Frucht 'Erdbeere' darstellt.
-  'watermelon',  // 'watermelon' ist ein String (Text), der den Namen der Frucht 'Wassermelone' darstellt.
-  'pear',        // 'pear' ist ein String (Text), der den Namen der Frucht 'Birne' darstellt.
-  'peach',       // 'peach' ist ein String (Text), der den Namen der Frucht 'Pfirsich' darstellt.
-  'plum',        // 'plum' ist ein String (Text), der den Namen der Frucht 'Pflaume' darstellt.
-  'apricot',     // 'apricot' ist ein String (Text), der den Namen der Frucht 'Aprikose' darstellt.
-  'blueberry',   // 'blueberry' ist ein String (Text), der den Namen der Frucht 'Blaubeere' darstellt.
-  'blackberry',  // 'blackberry' ist ein String (Text), der den Namen der Frucht 'Brombeere' darstellt.
-  'pomegranate', // 'pomegranate' ist ein String (Text), der den Namen der Frucht 'Granatapfel' darstellt.
-  'fig',         // 'fig' ist ein String (Text), der den Namen der Frucht 'Feige' darstellt.
-  'cantaloupe',  // 'cantaloupe' ist ein String (Text), der den Namen der Frucht 'Cantaloupe' (Zuckermelone) darstellt.
-  'nectarine',   // 'nectarine' ist ein String (Text), der den Namen der Frucht 'Nektarine' darstellt.
-  'dragonfruit'  // 'dragonfruit' ist ein String (Text), der den Namen der Frucht 'Drachenfrucht' darstellt.
+const fruits = [  
+  'apple',       
+  'banana',      
+  'cherry',      
+  'grape',       
+  'kiwi',        
+  'lemon',       
+  'mango',       
+  'orange',      
+  'papaya',      
+  'raspberry',   
+  'strawberry',  
+  'watermelon',  
+  'pear',        
+  'peach',       
+  'plum',        
+  'apricot',     
+  'blueberry',   
+  'blackberry',  
+  'pomegranate', 
+  'fig',         
+  'cantaloupe',  
+  'nectarine',   
+  'dragonfruit'  
 ];              // ']' schließt das Array ab.
 
 
@@ -31,7 +31,7 @@ const fruits = [  // 'const' ist ein Schlüsselwort, das eine Konstante (Variabl
 let selectedWord = '';   // 'let' deklariert eine veränderbare Variable 'selectedWord', die einen String speichert. Sie ist leer initialisiert.
 let displayedWord = '';  // 'let' deklariert eine veränderbare Variable 'displayedWord', die ebenfalls einen String speichert. Sie ist leer initialisiert.
 let wrongGuesses = 0;    // 'let' deklariert eine veränderbare Variable 'wrongGuesses', die die Anzahl der falschen Versuche speichert. Initialisiert mit 0.
-const maxWrongGuesses = 15; // 'const' deklariert eine Konstante 'maxWrongGuesses', die die maximal erlaubten falschen Versuche speichert. Initialisiert mit 6.
+const maxWrongGuesses = 10; // 'const' deklariert eine Konstante 'maxWrongGuesses', die die maximal erlaubten falschen Versuche speichert. Initialisiert mit 6.
 
 
 

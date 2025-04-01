@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="rps.js" defer></script>
+    <link rel="stylesheet" href="rps.css">
+    <title>Rock-Paper-Scissors v.02</title>
+</head>
+<body>
+
+    <main>
+
+        <div id="titleContainer">
+
+        <h2>Rock - Paper - Scissors</h2>
+        <img src="./assets/icons/ropasci.png">
+    
+        </div>
+
+        <hr>
+
+        <h3>Choose your action:</h3>
+
+        <div id="images">
+
+            <img id="rock" onclick="clickRock()" src="./assets/icons/rock.png" alt="rock">
+            <img id="paper" onclick="clickPaper()" src="./assets/icons/paper.png" alt="paper">
+            <img id="scissors" onclick="clickScissors()" src="./assets/icons/scissors.png" alt="scissors">
+
+        </div>
+
+
+        <div id="feedbackContainer">
+            <p id ="feedbackText">Your input</p>
+        </div>
+
+<!--
+       <button id="playButton" onclick="playAgainst()">Play against the CPU</button>
+-->   
+       <hr>
+
+       <div id="actionContainer">
+        
+        <span>You</span> 
+        <img id="playerMove" src ="./assets/icons/question.png">
+        <span id="versus">VS</span> 
+        <img id="cpuMove" src ="./assets/icons/question.png">
+        <span>CPU</span>
+    
+       </div>
+
+       <div id="outcomeContainer">
+        <p id="outcomeText">Outcome</p>
+       </div>
+
+       <button id="resetButton" onclick="resetGame()">Reset</button>
+      
+    </main>
+    
+</body>
+</html>

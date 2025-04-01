@@ -33,12 +33,6 @@ function startGame() {
         document.getElementById(`hangman-${i}`).style.display = 'none';
     }
 
-    const lastAttemptMessage = document.getElementById("last-attempt");
-    if (lastAttemptMessage) {
-        lastAttemptMessage.classList.add("hidden"); // Versteckt es wieder
-        lastAttemptMessage.classList.remove("visible"); 
-    }
-
     const hintContainer = document.getElementById("hint");
     hintContainer.classList.remove("visible");
     hintContainer.textContent = "";
@@ -109,7 +103,6 @@ function updateHangmanImage() {
     if (wrongGuesses >= 7) {
         document.getElementById('hangman-6').style.display = 'block'; // Letztes Bild (Game Over)
     }
-    
 }
 // Überprüft, ob der geratene Buchstabe korrekt ist
 function checkGuess(guess) {
@@ -136,25 +129,19 @@ function checkGuess(guess) {
     if (!correctGuess) {
         wrongGuesses++;
         updateWrongGuesses();
-        updateHangmanImage();
+        updateHangmanImage(); 
 
         // Tipp nach 3 und 6 Fehlversuchen geben
         if (wrongGuesses === 3) {
             giveHint(randomWord, false);  // allgemeiner Tipp
+        } else if (wrongGuesses === 6) {
+            giveHint(randomWord, true);   // detaillierter Tipp
         }
-        if (wrongGuesses === 6) {
-            const lastAttemptMessage = document.getElementById("last-attempt");
-            lastAttemptMessage.classList.remove("hidden");
-            setTimeout(() => lastAttemptMessage.classList.add("visible"), 100); // Verzögerung für sanfte Animation
-        }
-    
 
         // Beende das Spiel, wenn die maximale Anzahl an Fehlversuchen erreicht ist
         if (wrongGuesses >= maxGuesses) {
             gameActive = false;
-            setTimeout(() => {
-                alert("Game Over! Das Wort war: " + randomWord);
-            }, 50)
+            alert("Game Over! Das Wort war: " + randomWord);
         }
     } else {
         checkWin();  // Überprüfe, ob das Spiel gewonnen wurde
