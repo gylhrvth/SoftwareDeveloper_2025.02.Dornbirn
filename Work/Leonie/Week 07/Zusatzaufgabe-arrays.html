@@ -40,7 +40,6 @@ printLn("Alphabetisch sortierte Texte: " + texts2);
 
 printHr();
 printH(3, "bubble sort wie viele schritte macht es und wie kann man es verbessern");
-printH(4, "Bubble Sort");
 
 function createRandomArray(size, max) {
     return Array.from({ length: size }, () => Math.floor(Math.random() * max));
@@ -48,7 +47,6 @@ function createRandomArray(size, max) {
 
 function bubbleSort(arr) {
     const numbers = [...arr];
-    console.log("Unsorted array bubble: " + numbers);
     const n = numbers.length;
     let steps = 0;
     for (let i = 0; i < n - 1; i++) {
@@ -64,7 +62,6 @@ function bubbleSort(arr) {
 
 function bubbleSortOptimized(arr) {
     const numbers = [...arr];
-    console.log("Unsorted array bubble opt: " + numbers);
     let n = numbers.length;
     let steps = 0;
     let swapped;
@@ -84,7 +81,6 @@ function bubbleSortOptimized(arr) {
 
 function cocktailShakerSort(arr) {
     const numbers = [...arr];
-    console.log("Unsorted array cocktail: " + numbers);
     let n = numbers.length;
     let steps = 0;
     let swapped = true;
@@ -116,7 +112,6 @@ function cocktailShakerSort(arr) {
 
 function bubbleSortWithLastSwap(arr) {
     const numbers = [...arr];
-    console.log("Unsorted array last swap: " + numbers);
     let n = numbers.length;
     let steps = 0;
     while (n > 0) {
@@ -139,7 +134,6 @@ function quickSort(arr, steps = { count: 0 }) {
     if (numbers.length <= 1) return numbers; // Basisfall: Ein Element ist bereits sortiert
 
     const pivot = numbers[numbers.length - 1]; // Wähle das letzte Element als Pivot
-    steps.count++; // Schritt für die Auswahl des Pivot-Elements
 
     const left = numbers.filter((el) => {
         steps.count++; // Schritt für jeden Vergleich im Filter
