@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Callback function 01</title>
+</head>
+<body>
+
+    <script>
+
+    //BEISPIEL 01:
+
+    // This defines a regular function named greet, which takes two parameters:
+    // name: A string that represents the name of the person to greet.
+    // callback: A function that will be executed after the greeting message is printed.
+
+    function greet(name, callback) {
+        console.log("Hello, " + name);
+        callback();  // Callback function is executed here
+    }
+
+    // Erklärung:
+    // First, the function logs "Hello, " + name to the console. 
+    // This prints a greeting message that includes the value of name passed to the function.
+
+    // After the greeting message is printed, the function executes callback(). 
+    // This means that the callback function passed as an argument to greet will run at this point.
+
+    // Calling the greet function:
+  
+    greet("Carlos", function() {
+        console.log("This is the callback function!");
+    });
+
+    // The greet function is called with two arguments:
+    // "Carlos": This is the value for the name parameter. It will be used to personalize the greeting message.
+    // function() { console.log("This is the callback function!"); }: This is an anonymous function passed as the callback argument. 
+    // It does not have a name, and it contains a console.log() statement that will print "This is the callback function!" when executed.
+
+    // The greet function is executed with "Carlos" as the value for name, and the anonymous function as the callback.
+    // Inside the greet function:
+    // The statement console.log("Hello, " + name) is executed, which prints "Hello, Carlos".
+    // After that, callback() is called. This triggers the anonymous function that was passed as the second argument to greet.
+    // The anonymous function executes its console.log("This is the callback function!"), so this message gets printed as well.
+
+    // Fazit: In this example, the callback is executed after the greeting message is printed, which demonstrates how callbacks allow you to execute additional logic after certain operations have completed. 
+    // The callback allows you to define behavior that happens after the main function (in this case, the greeting) has been executed.
+    
+    
+    // BEISPIEL 02: Simple function with and without callback -> Function that doubles the number and prints the result
+    // This time we use a named function, not anonymous
+
+    // Without callback:
+    
+    function double01(number) {
+
+        let result = number * 2;  // Doubles the number
+        console.log("The result is: " + result);  // Prints the result directly
+    }
+
+    // Calling the double function with the number
+    double01(5);
+
+    //------------------------------------------------------
+
+    // With callback:
+
+    function double02(number, callback) {
+        let result = number*2;
+        callback(result); // Passes the result to the callback function
+    }
+
+    //Inside the function, the number is doubled (let result = number * 2).
+    // Instead of printing the result directly, the doubled value (result) is passed to the callback function, using callback(result).
+    // By doing this, you’re essentially saying, “Hey, once I calculate the doubled value, please handle it with the callback function I passed.”
+
+    function printResult(result) {
+        console.log("The result is: " + result);
+    }
+
+    double02(5, printResult);
+
+    // Explanation: We need to pass result indside the callback function and then access it inside printResult. This happens with callback(result);
+    // The printResult function is defined to take a parameter called result. This is the value that is passed from the double02 function when the callback is called.
+    // The printResult function is the callback function. It takes one parameter (result), which represents the data (the doubled value) that was passed from the double02 function.
+    // Inside printResult, you access result to print it.
+
+    // Fazit: You need to define the parameter (result) inside printResult to access the value passed by callback(result). 
+    // Even though you have result in the double02 function, you need to pass it explicitly to the callback so that the callback can handle it.
+    
+    // The key idea is that callbacks are functions that handle results after a task is completed, and by passing result into the callback function, you ensure the callback has access to the data needed to proceed with its logic.
+    
+    
+    
+    </script>
+    
+</body>
+</html>
