@@ -1,28 +1,28 @@
 // Erstellt ein Array mit verschiedenen Fruchtnamen als Zeichenketten (Strings). 
-const fruits = [  // 'const' ist ein Schlüsselwort, das eine Konstante (Variable, deren Wert nicht verändert werden kann) deklariert.
-  'apple',       // 'apple' ist ein String (Text), der den Namen der Frucht 'Apfel' darstellt.
-  'banana',      // 'banana' ist ein String (Text), der den Namen der Frucht 'Banane' darstellt.
-  'cherry',      // 'cherry' ist ein String (Text), der den Namen der Frucht 'Kirsche' darstellt.
-  'grape',       // 'grape' ist ein String (Text), der den Namen der Frucht 'Traube' darstellt.
-  'kiwi',        // 'kiwi' ist ein String (Text), der den Namen der Frucht 'Kiwi' darstellt.
-  'lemon',       // 'lemon' ist ein String (Text), der den Namen der Frucht 'Zitrone' darstellt.
-  'mango',       // 'mango' ist ein String (Text), der den Namen der Frucht 'Mango' darstellt.
-  'orange',      // 'orange' ist ein String (Text), der den Namen der Frucht 'Orange' darstellt.
-  'papaya',      // 'papaya' ist ein String (Text), der den Namen der Frucht 'Papaya' darstellt.
-  'raspberry',   // 'raspberry' ist ein String (Text), der den Namen der Frucht 'Himbeere' darstellt.
-  'strawberry',  // 'strawberry' ist ein String (Text), der den Namen der Frucht 'Erdbeere' darstellt.
-  'watermelon',  // 'watermelon' ist ein String (Text), der den Namen der Frucht 'Wassermelone' darstellt.
-  'pear',        // 'pear' ist ein String (Text), der den Namen der Frucht 'Birne' darstellt.
-  'peach',       // 'peach' ist ein String (Text), der den Namen der Frucht 'Pfirsich' darstellt.
-  'plum',        // 'plum' ist ein String (Text), der den Namen der Frucht 'Pflaume' darstellt.
-  'apricot',     // 'apricot' ist ein String (Text), der den Namen der Frucht 'Aprikose' darstellt.
-  'blueberry',   // 'blueberry' ist ein String (Text), der den Namen der Frucht 'Blaubeere' darstellt.
-  'blackberry',  // 'blackberry' ist ein String (Text), der den Namen der Frucht 'Brombeere' darstellt.
-  'pomegranate', // 'pomegranate' ist ein String (Text), der den Namen der Frucht 'Granatapfel' darstellt.
-  'fig',         // 'fig' ist ein String (Text), der den Namen der Frucht 'Feige' darstellt.
-  'cantaloupe',  // 'cantaloupe' ist ein String (Text), der den Namen der Frucht 'Cantaloupe' (Zuckermelone) darstellt.
-  'nectarine',   // 'nectarine' ist ein String (Text), der den Namen der Frucht 'Nektarine' darstellt.
-  'dragonfruit'  // 'dragonfruit' ist ein String (Text), der den Namen der Frucht 'Drachenfrucht' darstellt.
+const fruits = [  
+  'apple',       
+  'banana',      
+  'cherry',      
+  'grape',       
+  'kiwi',        
+  'lemon',       
+  'mango',       
+  'orange',      
+  'papaya',      
+  'raspberry',   
+  'strawberry',  
+  'watermelon',  
+  'pear',        
+  'peach',       
+  'plum',        
+  'apricot',     
+  'blueberry',   
+  'blackberry',  
+  'pomegranate', 
+  'fig',         
+  'cantaloupe',  
+  'nectarine',   
+  'dragonfruit'  
 ];              // ']' schließt das Array ab.
 
 
@@ -31,7 +31,7 @@ const fruits = [  // 'const' ist ein Schlüsselwort, das eine Konstante (Variabl
 let selectedWord = '';   // 'let' deklariert eine veränderbare Variable 'selectedWord', die einen String speichert. Sie ist leer initialisiert.
 let displayedWord = '';  // 'let' deklariert eine veränderbare Variable 'displayedWord', die ebenfalls einen String speichert. Sie ist leer initialisiert.
 let wrongGuesses = 0;    // 'let' deklariert eine veränderbare Variable 'wrongGuesses', die die Anzahl der falschen Versuche speichert. Initialisiert mit 0.
-const maxWrongGuesses = 6; // 'const' deklariert eine Konstante 'maxWrongGuesses', die die maximal erlaubten falschen Versuche speichert. Initialisiert mit 6.
+const maxWrongGuesses = 10; // 'const' deklariert eine Konstante 'maxWrongGuesses', die die maximal erlaubten falschen Versuche speichert. Initialisiert mit 6.
 
 
 
@@ -121,10 +121,10 @@ const handleKeyPress = letter => {  // 'const handleKeyPress' deklariert eine Fu
 // Funktion zur Überprüfung, ob das Spiel gewonnen oder verloren wurde.
 const checkGameOver = () => {  // 'const checkGameOver' deklariert eine Funktion zur Überprüfung des Spielstatus.
   if (displayedWord === selectedWord) {  // Überprüft, ob das angezeigte Wort dem ausgewählten Wort entspricht. Falls ja, wurde das Spiel gewonnen.
-    alert('Herzlichen Glückwunsch! Du hast das Wort erraten! 🎉'); // Zeigt eine Gewinnnachricht an.
+    alert('Herzlichen Glückwunsch!! Du hast das Wort erraten!! 🎉'); // Zeigt eine Gewinnnachricht an.
     startGame(); // Startet das Spiel neu, indem 'startGame()' aufgerufen wird.
   } else if (wrongGuesses >= maxWrongGuesses) { // Falls die maximale Anzahl falscher Versuche erreicht wurde:
-    alert(`Spiel vorbei! Das gesuchte Wort war: ${selectedWord} 😞`); // Zeigt eine Nachrichtenbox mit dem gesuchten Wort an und informiert, dass das Spiel verloren wurde.
+    alert(`GAME OVER, Das Spiel ist vorbei!!! Das gesuchte Wort war: ${selectedWord} 😞`); // Zeigt eine Nachrichtenbox mit dem gesuchten Wort an und informiert, dass das Spiel verloren wurde.
     startGame(); // Startet das Spiel neu.
   }
 };

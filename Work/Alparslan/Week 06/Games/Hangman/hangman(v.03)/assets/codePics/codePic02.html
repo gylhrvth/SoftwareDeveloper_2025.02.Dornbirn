@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cemetery Cross with Splash</title>
+</head>
+<body>
+    <canvas id="cemeteryCanvas" width="500" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById("cemeteryCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function drawScene() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the background (light blue sky)
+            ctx.fillStyle = "#87CEEB";  // Light blue color for the sky
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the ground
+            ctx.fillStyle = "#2f2f2f";  // Dark ground color
+            ctx.fillRect(0, 400, canvas.width, 100);
+
+            // Draw the cross (vertical part should touch the ground)
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            // Vertical part of the cross (centered, touching the ground)
+            ctx.moveTo(250, 250); // Top of the vertical line of cross
+            ctx.lineTo(250, 400); // Bottom of the vertical line at ground level
+            // Horizontal part of the cross
+            ctx.moveTo(200, 300); // Left end of the horizontal line
+            ctx.lineTo(300, 300); // Right end of the horizontal line
+            ctx.stroke();
+
+            // Add the word "SPLASH" in the background
+            ctx.font = "60px Arial";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("SPLASH", 250, 150);
+
+            // Optional: Add blood splatter effect only on the ground
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(230, 475, 5, 0, Math.PI * 2); // Blood splatter 1
+            ctx.arc(270, 475, 5, 0, Math.PI * 2); // Blood splatter 2
+            ctx.arc(240, 485, 4, 0, Math.PI * 2); // Blood splatter 3
+            ctx.arc(260, 485, 4, 0, Math.PI * 2); // Blood splatter 4
+            ctx.fill();
+        }
+
+        drawScene();
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Aufsteigend sortieren (Bubble Sort)</title>
+</head>
+<body>
+
+    <script>
+
+        // Erstelle eine Funktion sortASC(arr), die Werte aufsteigend sortiert. Verwende die sort() methode.
+
+        printH(1, "Bubble Sort - Aufsteigend");
+
+        let numberArr = [13, 2, 15, 5, 7, 21, 6];
+
+        function bubbleSort(arr){
+
+            let l = arr.length;
+            let swapped = true; // Startwert für den ersten Durchlauf
+
+            while(swapped) { // Continue as long as swaps are happening
+                swapped = false; // Reset swapped to false
+                for(let i = 0; i < l-1; i++){
+                    if(arr[i] > arr[i +1]) {
+                    // Swap elements if they are in the wrong order
+                    [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
+                    swapped = true; // Mark that a swap happened
+                    }
+                }
+                l--; // Reduce the range since the largest element is now in place
+            }
+            return arr;
+        }
+
+        print("The array is: " + numberArr);
+
+        printLn();
+
+        print("The sorted ascending array is: " + bubbleSort(numberArr));
+
+    </script>
+    
+</body>
+</html>

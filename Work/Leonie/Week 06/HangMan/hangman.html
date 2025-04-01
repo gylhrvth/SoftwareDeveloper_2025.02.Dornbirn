@@ -13,6 +13,16 @@
   <button id="start-game" onclick="startGame()">Start Game</button>
   <button id="start-game" onclick="showScore()">Show Score</button>
   <button id="start-game" onclick="resetScore()">Reset Score</button>
+  
+  <div class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2>Game Over</h2>
+      <p id="game-over-message">Your message will appear here</p>
+      <button id="play-again" onclick="playAgain()">Play Again</button>
+    </div>
+  </div>
+
   <div class="main-container">
     <div class="hangman-box">
       <img id="hangman-image" src="../../Week 05/JavaScript/Projekt/img/hangman-0.svg" alt="Hangman">
