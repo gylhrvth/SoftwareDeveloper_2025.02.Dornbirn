@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../../../../../Kurs/common.js"></script>
-    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
     <title>Einfaches Array</title>
 </head>
 <body>
@@ -13,11 +13,14 @@
 
         // Erstelle eine Funktion mit einem Parameter size erstelle eine neue Array mit der Größe und fülle mit 1, 2, 3, ... bis zu size. Gebe als Ergebnis das Array zurück.
 
-        function arrayInputSize(size){
-            let arrayExample = [];
-            for(i=0; i<=arrayExample.length; i++);
-            
-        }
+        function arrayInputSize(size){                  //Erstellung Funktion mit parameter size
+            let arrayExample = [];                      //Leere Variable erstellt, Array ist leer, soll später mit zahlen befüllt werden
+
+            for(let i=0; i<=size; i++){                 //Schleife fängt bei 0 an, läuft solange i kleiner als size ist, erhöht jede runde um 1
+            arrayExample.push(i);               //push fügt elemente ein, in demfall die zahlen von i(0) bis size(10) 
+        }return arrayExample;                   //gibt das arrayExample zurück, nun aber befüllt mit Zahlen.
+    }
+        console.log(arrayInputSize(10));        //Aufruf der Funktion in der Konsole mit parameter 10
 
 
     </script>
