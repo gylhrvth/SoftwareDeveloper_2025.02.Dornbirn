@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Examples</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+let createRandomArray = (size, min, max) => {
+    let result = []
+    for (let i = 0; i < size; ++i){
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())]
+    }
+    return result
+    /*
+    return Array.from({length: size}, (_, i) => {
+        return min + Math.floor((max - min + 1) * Math.random())
+        //return 'a'.repeat(i + 1)
+    })
+    */
+}
+
+
+
+
+
+printH(1, "Array Examples (advanced)")
+let arr = createRandomArray(20, 20, 50)
+printLn('[' + arr.join(', ') + ']')
+printH(2, "forEach()")
+arr.forEach((value) => {
+    printLn(value)
+})
+printHr()
+arr.forEach((value, i) => {
+    printLn(i + '. value: ' + value)
+})
+
+
+printH(2, 'map')
+let newArr = []
+arr.forEach(element => {
+    newArr = [...newArr, 2 * element]
+})
+printLn('[' + newArr.join(', ') + ']')
+
+let newArrWithMap = arr.map(element => {
+    return 2 * element
+})
+printLn('[' + newArrWithMap.join(', ') + ']')
+
+
+printH(2, "reduce")
+let minPosition = arr.reduce(
+    (minPos, _, index, array) => {
+        if (minPos == undefined || array[index] < array[minPos]){
+            return index
+        }
+        return minPos
+    }, undefined)
+printLn('index of min value: ' + minPosition)
+
+
+let summe = arr.reduce((sum, value) => {
+    return sum + value
+})
+printLn('Summe: ' + summe)
+
+printH(2, 'sort')
+arr.sort((a, b) => {
+    return a - b
+})
+printLn('[' + arr.join(', ') + ']')
+arr.sort((a, b) => {
+    return b - a
+})
+printLn('[' + arr.join(', ') + ']')
+arr.sort((a, b) => {
+    if (a % 2 == 0) {
+        a *= -1
+    }
+    if (b % 2 == 0) {
+        b *= -1
+    }
+    return a - b
+})
+printLn('[' + arr.join(', ') + ']')
+</script>
+</body>
+</html>

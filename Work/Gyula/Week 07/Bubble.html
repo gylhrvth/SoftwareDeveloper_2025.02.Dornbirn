@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+let arr = [5, 4, 3, 2, 1]
+printArray(arr)
+bubbleSort(arr)
+printArray(arr)
+
+function printArray(arr){
+    console.log(arr)
+    let t = '[' + arr.join(', ') + ']'
+    printLn(t)
+}
+
+function bubbleSort(arr){
+    for (let i = 0; i < arr.length; ++i){
+        for (let j = 0; j < arr.length - 1; ++j){
+            if (arr[j] > arr[j + 1]){
+                swap(arr, j, j + 1)
+            }
+            printArray(arr)
+        }
+        printHr()
+    }
+
+}
+
+function swap(arr, i, j){
+    let temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+}
+
+</script>
+</body>
+</html>
