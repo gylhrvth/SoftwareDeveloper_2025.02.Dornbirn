@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Example 01</title>
+</head>
+<body>
+
+    <script>
+
+        function bubbleSort(arr) {
+        let n = arr.length; // Step 1: Get the length of the array
+        let swapped = true; // Step 2: Set a flag to track swaps
+
+        while (swapped) { // Step 3: Continue looping as long as swaps happen
+            swapped = false; // Step 4: Reset swap flag before each pass
+            for (let i = 0; i < n - 1; i++) { // Step 5: Iterate through the array
+            if (arr[i] > arr[i + 1]) { // Step 6: Compare adjacent elements
+                // Step 7: Swap them if they are in the wrong order
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                swapped = true; // Step 8: Mark that a swap happened
+            }
+            }
+            n--; // Step 9: Reduce the range, since the largest element is in place
+        }
+
+        return arr; // Step 10: Return the sorted array
+        }
+
+        // Example:
+        let numbers = [5, 2, 9, 1, 5, 6];
+        console.log(bubbleSort(numbers)); // Output: [1, 2, 5, 5, 6, 9]
+
+
+
+    </script>
+    
+</body>
+</html>
