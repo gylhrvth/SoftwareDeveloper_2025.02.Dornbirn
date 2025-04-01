@@ -1,0 +1,741 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Arrays von Gyula erklärt: forEach, map, reduce, sort</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1c8857bd-249d-807d-9c1f-ec5c824b7abe" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Arrays von Gyula erklärt: forEach, map, reduce, sort</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@1. April 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Array-1c3857bd249d80928c9eefa1a1a1ca97?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Array</a>, <a href="https://www.notion.so/JS-Basics-1b5857bd249d805eb55ae774bdb6fde5?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>JS Basics</a>, <a href="https://www.notion.so/Array-V2-1c7857bd249d80c8a0ffc6a50d9fe559?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Array V2</a>, <a href="https://www.notion.so/Strings-sortieren-1c2857bd249d80b2b574f6cb922df519?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Strings sortieren</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1c8857bd-249d-80e0-9868-fe83c51e073b" class="column-list"><div id="1c8857bd-249d-80e9-b1c6-e3801bdc10d8" style="width:50%" class="column"><h3 id="1c8857bd-249d-8002-b093-da157e31bc67" class=""><strong>1. Funktion </strong><code><strong>createRandomArray</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-80da-abaa-d27bec80708c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let createRandomArray = (size, min, max) =&gt; {
+    let result = []
+    for (let i = 0; i &lt; size; ++i){
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())]
+    }
+    return result
+}
+</code></pre><h3 id="1c8857bd-249d-80cb-95b8-df4161fe328b" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-802f-a2bb-c58f697266da" class="bulleted-list"><li style="list-style-type:disc"><strong>Zweck:</strong> Diese Funktion erstellt ein Array mit zufälligen Zahlen.</li></ul><ul id="1c8857bd-249d-807b-8196-cbf63b937845" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameter:</strong><ul id="1c8857bd-249d-80c5-92eb-ebd2a08c4b50" class="bulleted-list"><li style="list-style-type:circle"><code>size</code>: Die Anzahl der Elemente im Array.</li></ul><ul id="1c8857bd-249d-8017-9430-f5eb447ce1df" class="bulleted-list"><li style="list-style-type:circle"><code>min</code>: Der minimale Wert eines Elements.</li></ul><ul id="1c8857bd-249d-804a-a652-fae654481961" class="bulleted-list"><li style="list-style-type:circle"><code>max</code>: Der maximale Wert eines Elements.</li></ul></li></ul><ul id="1c8857bd-249d-80a1-908d-ebec31383c85" class="bulleted-list"><li style="list-style-type:disc"><strong>Funktionsweise:</strong><ul id="1c8857bd-249d-8000-a683-eb0f4af32c15" class="bulleted-list"><li style="list-style-type:circle">Ein leeres Array <code>result</code> wird erstellt.</li></ul><ul id="1c8857bd-249d-80a4-9cb4-ecaab0c22efb" class="bulleted-list"><li style="list-style-type:circle">Eine Schleife läuft <code>size</code>mal.</li></ul><ul id="1c8857bd-249d-806c-b276-d7794b91260a" class="bulleted-list"><li style="list-style-type:circle">In jedem Schleifendurchlauf wird eine zufällige Zahl zwischen <code>min</code> und <code>max</code> generiert:<ul id="1c8857bd-249d-8022-981c-fe807f48c64e" class="bulleted-list"><li style="list-style-type:square"><code>Math.random()</code> erzeugt eine Zahl zwischen 0 und 1.</li></ul><ul id="1c8857bd-249d-80b7-ac17-e7617f3bbb96" class="bulleted-list"><li style="list-style-type:square"><code>(max - min + 1) * Math.random()</code> skaliert diese Zahl auf den Bereich <code>[0, max - min + 1)</code>.</li></ul><ul id="1c8857bd-249d-8075-8870-f573a5721179" class="bulleted-list"><li style="list-style-type:square"><code>Math.floor()</code> rundet ab, und <code>min</code> wird addiert, um den Bereich <code>[min, max]</code> zu erhalten.</li></ul></li></ul><ul id="1c8857bd-249d-80d4-8d63-d3597d1c0f9e" class="bulleted-list"><li style="list-style-type:circle">Die neue Zahl wird mit dem Spread-Operator (<code>...result</code>) zum Array hinzugefügt.</li></ul><ul id="1c8857bd-249d-8044-9d6d-f94423878a2d" class="bulleted-list"><li style="list-style-type:circle">Am Ende wird das Array zurückgegeben.</li></ul></li></ul><hr id="1c8857bd-249d-8095-ad95-fd24082755fb"/><h3 id="1c8857bd-249d-80d0-9aed-ddba274a395d" class=""><strong>2. Verwendung von </strong><code><strong>createRandomArray</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-8094-b568-f14b90a6edcf" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let arr = createRandomArray(20, 20, 50)
+printLn(&#x27;[&#x27; + arr.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-80d7-bf90-f459a19bb70b" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-80ae-8d9e-e7cf8be12b6e" class="bulleted-list"><li style="list-style-type:disc">Ein Array <code>arr</code> mit 20 zufälligen Zahlen zwischen 20 und 50 wird erstellt.</li></ul><ul id="1c8857bd-249d-8046-b11f-c083e0368753" class="bulleted-list"><li style="list-style-type:disc"><code>arr.join(&#x27;, &#x27;)</code> wandelt das Array in einen String um, wobei die Elemente durch Kommas getrennt sind.</li></ul><ul id="1c8857bd-249d-8045-9252-c825909caf36" class="bulleted-list"><li style="list-style-type:disc"><code>printLn</code> gibt diesen String aus.</li></ul><hr id="1c8857bd-249d-8072-9567-ffb962c56a54"/><h3 id="1c8857bd-249d-800f-ae4b-c2cd6f6bc169" class=""><strong>3. </strong><code><strong>forEach</strong></code><strong>Methode</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-807c-99f5-f9ee50a65049" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">arr.forEach((value) =&gt; {
+    printLn(value)
+})
+</code></pre><h3 id="1c8857bd-249d-8092-890b-dfb81e574e51" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-80db-b90f-d7c0e4bd697c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>forEach</strong></code> iteriert über jedes Element des Arrays <code>arr</code>.</li></ul><ul id="1c8857bd-249d-804e-8a60-c87c1e60335c" class="bulleted-list"><li style="list-style-type:disc">Die Callback-Funktion <code>(value)</code> wird für jedes Element aufgerufen.</li></ul><ul id="1c8857bd-249d-8000-a71a-c155593b337b" class="bulleted-list"><li style="list-style-type:disc"><code>printLn(value)</code> gibt jedes Element des Arrays aus.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-809e-83e9-cbc43fc331eb" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">arr.forEach((value, i) =&gt; {
+    printLn(i + &#x27;. value: &#x27; + value)
+})
+</code></pre><h3 id="1c8857bd-249d-8055-8488-f1e575c8bee8" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-8033-aef9-e86c6fd50a2e" class="bulleted-list"><li style="list-style-type:disc">Hier wird zusätzlich der Index <code>i</code> jedes Elements ausgegeben.</li></ul><ul id="1c8857bd-249d-80ab-9969-cfa5c5b639a9" class="bulleted-list"><li style="list-style-type:disc">Beispielausgabe:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-809d-bef0-c77ae35c50c5" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">0. value: 25
+1. value: 30
+2. value: 45
+</code></pre></li></ul><hr id="1c8857bd-249d-8064-bdf1-d0e973cd7102"/><h3 id="1c8857bd-249d-800e-afe7-c89fe9ab8929" class=""><strong>4. </strong><code><strong>map</strong></code><strong>Methode</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-8003-9bd7-d785adc23ef6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let newArr = []
+arr.forEach(element =&gt; {
+    newArr = [...newArr, 2 * element]
+})
+printLn(&#x27;[&#x27; + newArr.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-8043-aa2b-d919bfa884d4" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-80a8-be2d-f41c21f0c60a" class="bulleted-list"><li style="list-style-type:disc">Ein neues Array <code>newArr</code> wird erstellt.</li></ul><ul id="1c8857bd-249d-80b5-966c-c02f210c8ba2" class="bulleted-list"><li style="list-style-type:disc">Für jedes Element in <code>arr</code> wird das Doppelte berechnet und zu <code>newArr</code> hinzugefügt.</li></ul><ul id="1c8857bd-249d-804e-b9e9-d1fe7ffe6dac" class="bulleted-list"><li style="list-style-type:disc">Das Ergebnis wird ausgegeben.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-807d-843d-c1efe35664b6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let newArrWithMap = arr.map(element =&gt; {
+    return 2 * element
+})
+printLn(&#x27;[&#x27; + newArrWithMap.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-8061-bf05-f6a74e59eade" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-8041-896a-f0bf9dcaa1ca" class="bulleted-list"><li style="list-style-type:disc"><code><strong>map</strong></code> ist eine effizientere Methode, um ein neues Array zu erstellen.</li></ul><ul id="1c8857bd-249d-8007-9ec7-fc68555e8948" class="bulleted-list"><li style="list-style-type:disc">Für jedes Element in <code>arr</code> wird das Doppelte berechnet und in das neue Array <code>newArrWithMap</code> eingefügt.</li></ul><ul id="1c8857bd-249d-80f5-80c8-f9edae21993d" class="bulleted-list"><li style="list-style-type:disc">Das Ergebnis ist dasselbe wie bei der <code>forEach</code>Version, aber der Code ist kürzer und effizienter.</li></ul><hr id="1c8857bd-249d-8051-9f20-c913ba77f7d8"/></div><div id="1c8857bd-249d-80cb-b5d5-f96a9b6e52a9" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1c8857bd-249d-8002-ad96-ca58ee13c07e"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1c8857bd-249d-8065-bb03-e3b6f6c57dcd"/><p id="1c8857bd-249d-808a-909a-ecffbd5f6633" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1c8857bd-249d-80b7-8bda-fdfbbcc4e1e3"/><ul id="1c8857bd-249d-808f-837a-eff36ba9fa6f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1c8857bd-249d-80fd-ba91-df395a260d85" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1c8857bd-249d-8094-b7f2-ca0117da15f0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1c8857bd-249d-8063-8e77-e00133b8a9a7" class="image"><a href="Arrays%20von%20Gyula%20erkla%CC%88rt%20forEach,%20map,%20reduce,%20so%201c8857bd249d807d9c1fec5c824b7abe/33.png"><img style="width:425px" src="Arrays%20von%20Gyula%20erkla%CC%88rt%20forEach,%20map,%20reduce,%20so%201c8857bd249d807d9c1fec5c824b7abe/33.png"/></a></figure><h3 id="1c8857bd-249d-8095-b922-d7e975439c0c" class=""><strong>5. </strong><code><strong>reduce</strong></code><strong>Methode</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-80ae-aa83-dfc2e27dd7e7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let minPosition = arr.reduce(
+    (minPos, _, index, array) =&gt; {
+        if (minPos == undefined || array[index] &lt; array[minPos]){
+            return index
+        }
+        return minPos
+    }, undefined)
+printLn(&#x27;index of min value: &#x27; + minPosition)
+</code></pre><h3 id="1c8857bd-249d-8011-af4c-e22daa954faa" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-8090-bd75-c749b7efddc3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>reduce</strong></code> wird verwendet, um den Index des kleinsten Werts im Array zu finden.</li></ul><ul id="1c8857bd-249d-80a6-9350-e47da405b3e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameter der Callback-Funktion:</strong><ul id="1c8857bd-249d-80fa-a2c0-e89845342600" class="bulleted-list"><li style="list-style-type:circle"><code>minPos</code>: Der aktuelle Index des kleinsten Werts.</li></ul><ul id="1c8857bd-249d-8049-9155-d2bd5871a12e" class="bulleted-list"><li style="list-style-type:circle"><code>_</code>: Der aktuelle Wert (wird hier nicht verwendet).</li></ul><ul id="1c8857bd-249d-80ac-a56f-ce18deef88d0" class="bulleted-list"><li style="list-style-type:circle"><code>index</code>: Der Index des aktuellen Werts.</li></ul><ul id="1c8857bd-249d-800f-8932-f0cbcb203d2a" class="bulleted-list"><li style="list-style-type:circle"><code>array</code>: Das gesamte Array.</li></ul></li></ul><ul id="1c8857bd-249d-8075-a54d-c93d5d48ab3f" class="bulleted-list"><li style="list-style-type:disc"><strong>Funktionsweise:</strong><ul id="1c8857bd-249d-80aa-99e8-fab834b4a38d" class="bulleted-list"><li style="list-style-type:circle">Wenn <code>minPos</code> nicht definiert ist oder der aktuelle Wert kleiner ist als der Wert an <code>minPos</code>, wird <code>index</code> zurückgegeben.</li></ul><ul id="1c8857bd-249d-80e6-b191-fc4059ae9ca3" class="bulleted-list"><li style="list-style-type:circle">Am Ende enthält <code>minPosition</code> den Index des kleinsten Werts.</li></ul></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-809a-a1f2-c8c870d169bd" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let summe = arr.reduce((sum, value) =&gt; {
+    return sum + value
+})
+printLn(&#x27;Summe: &#x27; + summe)
+</code></pre><h3 id="1c8857bd-249d-80b4-97dd-f47a363f13c7" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-80fc-9cf0-dc59c6f6e777" class="bulleted-list"><li style="list-style-type:disc"><code><strong>reduce</strong></code> wird verwendet, um die Summe aller Elemente im Array zu berechnen.</li></ul><ul id="1c8857bd-249d-80cc-8db6-f1db5b72e796" class="bulleted-list"><li style="list-style-type:disc"><code>sum</code> ist der Akkumulator, der die Zwischensumme speichert.</li></ul><ul id="1c8857bd-249d-803f-9ca3-e53d8b48c7dc" class="bulleted-list"><li style="list-style-type:disc"><code>value</code> ist das aktuelle Element.</li></ul><ul id="1c8857bd-249d-80bd-b814-f7a399bd1782" class="bulleted-list"><li style="list-style-type:disc">Am Ende enthält <code>summe</code> die Gesamtsumme.</li></ul><hr id="1c8857bd-249d-808a-b43b-feb5991e2db6"/><h3 id="1c8857bd-249d-80a3-87cf-ef142f488606" class=""><strong>6. </strong><code><strong>sort</strong></code><strong>Methode</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-8024-b8ff-c73599a29635" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">arr.sort((a, b) =&gt; {
+    return a - b
+})
+printLn(&#x27;[&#x27; + arr.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-803e-a960-c6e6baf07d24" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-80f5-84df-cc511974e602" class="bulleted-list"><li style="list-style-type:disc"><code><strong>sort</strong></code> sortiert das Array in aufsteigender Reihenfolge.</li></ul><ul id="1c8857bd-249d-80b5-9e45-f1bdd38ebf11" class="bulleted-list"><li style="list-style-type:disc">Der Vergleich <code>(a - b)</code> sorgt dafür, dass kleinere Werte vor größeren stehen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-8097-a663-cc7469178436" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">arr.sort((a, b) =&gt; {
+    return b - a
+})
+printLn(&#x27;[&#x27; + arr.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-8087-a2e7-d366a4fd0e18" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-8019-ab2e-fbeec227bd54" class="bulleted-list"><li style="list-style-type:disc">Hier wird das Array in absteigender Reihenfolge sortiert.</li></ul><ul id="1c8857bd-249d-8087-96f0-feda2baa6da7" class="bulleted-list"><li style="list-style-type:disc">Der Vergleich <code>(b - a)</code> sorgt dafür, dass größere Werte vor kleineren stehen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c8857bd-249d-8053-81f4-c791730fdd97" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">arr.sort((a, b) =&gt; {
+    if (a % 2 == 0) {
+        a *= -1
+    }
+    if (b % 2 == 0) {
+        b *= -1
+    }
+    return a - b
+})
+printLn(&#x27;[&#x27; + arr.join(&#x27;, &#x27;) + &#x27;]&#x27;)
+</code></pre><h3 id="1c8857bd-249d-80be-a55a-d323ef2f1e57" class=""><strong>Erklärung:</strong></h3><ul id="1c8857bd-249d-8013-909b-e5c06f401d81" class="bulleted-list"><li style="list-style-type:disc">Diese Sortierfunktion bevorzugt gerade Zahlen.</li></ul><ul id="1c8857bd-249d-80c5-9261-feb00d5bfece" class="bulleted-list"><li style="list-style-type:disc">Gerade Zahlen werden negativ gemacht (<code>a *= -1</code>), um sie vor ungeraden Zahlen zu platzieren.</li></ul><ul id="1c8857bd-249d-80f0-b726-ce40a7948dbf" class="bulleted-list"><li style="list-style-type:disc">Das Array wird dann basierend auf diesen modifizierten Werten sortiert.</li></ul><hr id="1c8857bd-249d-80d3-81ed-dd921b0568e4"/><h3 id="1c8857bd-249d-804d-b7c1-f0d25cea7b9e" class=""><strong>Zusammenfassung:</strong></h3><ul id="1c8857bd-249d-808f-94df-d3f23b2c7215" class="bulleted-list"><li style="list-style-type:disc"><code><strong>createRandomArray</strong></code>: Erstellt ein Array mit zufälligen Zahlen.</li></ul><ul id="1c8857bd-249d-80b6-a4a0-cb1c62bf429a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>forEach</strong></code>: Iteriert über ein Array und führt eine Aktion für jedes Element aus.</li></ul><ul id="1c8857bd-249d-801c-8c64-f1c292297e2d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>map</strong></code>: Erstellt ein neues Array, indem es jedes Element transformiert.</li></ul><ul id="1c8857bd-249d-809e-bbab-c7d9e092ebac" class="bulleted-list"><li style="list-style-type:disc"><code><strong>reduce</strong></code>: Reduziert ein Array auf einen einzigen Wert (z. B. Summe oder Minimum).</li></ul><ul id="1c8857bd-249d-8023-8ef7-ffeb7eafe393" class="bulleted-list"><li style="list-style-type:disc"><code><strong>sort</strong></code>: Sortiert ein Array basierend auf einer Vergleichsfunktion.</li></ul><p id="1c8857bd-249d-807b-99ae-dedf61377c11" class="">Dieser Code zeigt verschiedene Möglichkeiten, wie man mit Arrays in JavaScript arbeiten kann, und kombiniert grundlegende und fortgeschrittene Techniken.</p></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

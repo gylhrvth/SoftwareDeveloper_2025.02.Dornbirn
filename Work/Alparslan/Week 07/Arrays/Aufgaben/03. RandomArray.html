@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Random Array</title>
+    </head>
+
+
+    <body>
+        <script>
+
+            function rnd(size){             //Erstellung einer Funktion
+                let arrayExample = [];      // Leere Variable defnieren, platzhalter
+
+                for (let i = 0; i < size; i++){         // Schleife beginnt bei 0, läuft solange i kleiner als size, erhöht um1
+                    let randomNumber = Math.floor(Math.random()*100) +1             // Erzeugt Ganzzahl zwichen 1 und 100
+                    arrayExample.push(randomNumber)                                 // Die Erzeugte Ganzzahl wird dem ArrayExample hinzugefügt
+                }
+                return arrayExample                                     //Gibt arrayExample zurück
+
+            }
+
+            console.log(rnd(100))
+
+        </script>
+    </body>
+    </html>

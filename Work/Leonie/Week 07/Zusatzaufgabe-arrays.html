@@ -10,235 +10,185 @@
 </head>
 
 <body>
-    <script>
-        printH(1, "Zusatzaufgabe Arrays");
-        printHr();
-        printH(3, "Aufsteigend und absteigen Zahlen sortieren");
+<script>
+printH(1, "Zusatzaufgabe Arrays");
+printHr();
+printH(3, "Aufsteigend und absteigen Zahlen sortieren");
 
-        let numbers1 = [5, 3, 8, 1, 2];
-        numbers1.sort((a, b) => a - b);
-        printLn("Aufsteigend sortierte Zahlen: " + numbers1);
-        numbers1.sort((a, b) => b - a);
-        printLn("Absteigend sortierte Zahlen: " + numbers1);
+let numbers1 = [5, 3, 8, 1, 2];
+numbers1.sort((a, b) => a - b);
+printLn("Aufsteigend sortierte Zahlen: " + numbers1);
+numbers1.sort((a, b) => b - a);
+printLn("Absteigend sortierte Zahlen: " + numbers1);
 
-        printHr();
-        printH(3, "Aufsteigend und absteigend texte nach länge sortieren");
+printHr();
+printH(3, "Aufsteigend und absteigend texte nach länge sortieren");
 
-        let texts = ["Zebra", "Apfel", "Banane", "Kiwi", "Erdbeere", "Ananas", "Mango", "Papaya", "Melone", "Traube"];
-        texts.sort((a, b) => a.length - b.length);
-        printLn("Aufsteigend sortierte Texte nach Länge: " + texts);
-        texts.sort((a, b) => b.length - a.length);
-        printLn("Absteigend sortierte Texte nach Länge: " + texts);
+let texts = ["Zebra", "Apfel", "Banane", "Kiwi", "Erdbeere", "Ananas", "Mango", "Papaya", "Melone", "Traube"];
+texts.sort((a, b) => a.length - b.length);
+printLn("Aufsteigend sortierte Texte nach Länge: " + texts);
+texts.sort((a, b) => b.length - a.length);
+printLn("Absteigend sortierte Texte nach Länge: " + texts);
 
-        printHr();
-        printH(3, "texte nach alphabetisch sortieren");
+printHr();
+printH(3, "texte nach alphabetisch sortieren");
 
-        let texts2 = ["Zebra", "Apfel", "Banane", "Ägypt", "Kiwi", "Erdbeere", "Ananas", "Mango", "Papaya", "Melone", "Traube"];
-        const comparAlphabetically = new Intl.Collator('de-DE', { sensitivity: 'base' }).compare;
-        texts2.sort(comparAlphabetically);
-        printLn("Alphabetisch sortierte Texte: " + texts2);
+let texts2 = ["Zebra", "Apfel", "Banane", "Ägypt", "Kiwi", "Erdbeere", "Ananas", "Mango", "Papaya", "Melone", "Traube"];
+const comparAlphabetically = new Intl.Collator("de-AT", { collation: 'phonebk' })
+texts2.sort(comparAlphabetically.compare);
+printLn("Alphabetisch sortierte Texte: " + texts2);
 
-        printHr();
-        printH(3, "bubble sort wie viele schritte macht es und wie kann man es verbessern");
-        let numbers = createArray(13)
-        printH(4, "Bubble Sort");
+printHr();
+printH(3, "bubble sort wie viele schritte macht es und wie kann man es verbessern");
 
+function createRandomArray(size, max) {
+    return Array.from({ length: size }, () => Math.floor(Math.random() * max));
+}
 
-        function createArray(size) {
-            return Array.from({ length: size }, (_, i) => size - i);
-        }
-
-        function bubbleSort(arr) {
-            const n = arr.length;
-            let steps = 0; // Zähler für Schritte
-            for (let i = 0; i < n - 1; i++) { // Äußere Schleife: Anzahl der Durchläufe
-                console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i + 1]}`);
-                for (let j = 0; j < n - i - 1; j++) { // Innere Schleife: Vergleiche benachbarte Elemente
-                    steps++;
-                    if (arr[j] > arr[j + 1]) { // Wenn das linke Element größer ist, tausche
-                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Swap
-                    }
-                }
-            }
-            return { sortedArray: arr, steps: steps }; // Rückgabe des sortierten Arrays
-        }
-        let { sortedArray: sortedArrayV0, steps: stepsV0 } = bubbleSort(numbers);
-        printLn("Sorted array V0: " + sortedArrayV0);
-        printLn("Number of steps V0: " + stepsV0);
-        printHr();
-
-        printH(4, "Bubble Sort mit Optimierung");
-        function bubbleSortOptimized(arr) {
-            let n = arr.length;
-            let steps = 0;
-            let swapped;
-            do {
-                swapped = false;
-                for (let i = 0; i < n - 1; i++) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i + 1]}`);
-                    if (arr[i] > arr[i + 1]) {
-                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; // Swap
-                        swapped = true;
-                    }
-                }
-                n--; // Reduziere den Bereich, der sortiert werden muss
-            } while (swapped); // Beende, wenn keine Vertauschungen mehr stattfinden
-            return { sortedArray: arr, steps: steps };
-        }
-        numbers = createArray(13)
-        let { sortedArray: sortedArrayV1, steps: stepsV1 } = bubbleSortOptimized(numbers);
-        printLn("Sorted array V1: " + numbers);
-        printLn("Number of steps V1: " + stepsV1);
-        printHr();
-
-        printH(4, "Cocktail Shaker Sort");
-        function cocktailShakerSort(arr) {
-            let n = arr.length;
-            let steps = 0;
-            let swapped = true;
-            let start = 0;
-            let end = n - 1;
-
-            while (swapped) {
-                swapped = false;
-
-                // Von links nach rechts sortieren
-                for (let i = start; i < end; i++) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i + 1]}`);
-                    if (arr[i] > arr[i + 1]) {
-                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; // Swap
-                        swapped = true;
-                    }
-                }
-                end--;
-
-                // Von rechts nach links sortieren
-                for (let i = end; i > start; i--) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i - 1]}`);
-                    if (arr[i] < arr[i - 1]) {
-                        [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]]; // Swap
-                        swapped = true;
-                    }
-                }
-                start++;
-            }
-            return { sortedArray: arr, steps: steps };
-        }
-        let { sortedArray, steps } = cocktailShakerSort(numbers);
-        printLn("Sorted array: " + sortedArray);
-        printLn("Number of steps: " + steps);
-        printHr();
-
-        printH(4, "Bubble Sort mit letzten Tausch");
-        function bubbleSortWithLastSwap(arr) {
-            let n = arr.length;
-            let steps = 0;
-            while (n > 0) {
-                let lastSwap = 0;
-                for (let i = 0; i < n - 1; i++) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i + 1]}`);
-                    if (arr[i] > arr[i + 1]) {
-                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; // Swap
-                        lastSwap = i + 1; // Markiere den Index des letzten Tauschs
-                    }
-                }
-                n = lastSwap; // Reduziere den Bereich auf den letzten Tausch
-            }
-            return { sortedArray: arr, steps: steps };
-        }
-        let { sortedArray: sortedArrayV2, steps: stepsV2 } = bubbleSortWithLastSwap(numbers);
-        printLn("Sorted array V2: " + numbers);
-        printLn("Number of steps V2: " + stepsV2);
-
-        printHr();
-        printH(4, "Bubble Sort mit vollständig optimiertem letzten Tausch");
-
-        function bubbleSortFullyOptimized(arr) {
-            let n = arr.length;
-            let steps = 0;
-            while (n > 0) {
-                let newN = 0; // Speichert den letzten Tausch
-                for (let i = 0; i < n - 1; i++) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[i]} and ${arr[i + 1]}`);
-                    if (arr[i] > arr[i + 1]) {
-                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; // Swap
-                        newN = i + 1; // Speichere den Index des letzten Tauschs
-                    }
-                }
-                n = newN; // Reduziere den Bereich auf den letzten Tausch
-            }
-            return { sortedArray: arr, steps: steps };
-        }
-        let { sortedArray: sortedArrayV3, steps: stepsV3 } = bubbleSortFullyOptimized(numbers);
-        printLn("Sorted array V3: " + numbers);
-        printLn("Number of steps V3: " + stepsV3);
-
-        printHr();
-        printH(4, "Bubble Sort mit Hybrid-Ansatz");
-
-        function hybridBubbleInsertionSort(arr) {
-            let n = arr.length;
-            let steps = 0;
-
-            // Bubble Sort für grobe Sortierung
-            for (let i = 0; i < n - 1; i++) {
-                let swapped = false;
-                for (let j = 0; j < n - i - 1; j++) {
-                    steps++;
-                    console.log(`Step ${steps}: Comparing ${arr[j]} and ${arr[j + 1]}`);
-                    if (arr[j] > arr[j + 1]) {
-                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Swap
-                        swapped = true;
-                    }
-                }
-                if (!swapped) break; // Beende, wenn keine Vertauschungen mehr stattfinden
-            }
-
-            // Insertion Sort für Feinsortierung
-            for (let i = 1; i < n; i++) {
-                let key = arr[i];
-                let j = i - 1;
-                while (j >= 0 && arr[j] > key) {
-                    steps++;
-                    arr[j + 1] = arr[j];
-                    j--;
-                }
-                arr[j + 1] = key;
-            }
-
-            return { sortedArray: arr, steps: steps };
-        }
-        let { sortedArray: sortedArrayV4, steps: stepsV4 } = hybridBubbleInsertionSort(numbers);
-        printLn("Sorted array V4: " + numbers);
-        printLn("Number of steps V4: " + stepsV4);
-
-        printHr();
-        printH(4, "Quick Sort");
-
-        function quickSort(arr) {
-            let steps = 0;
+function bubbleSort(arr) {
+    const numbers = [...arr];
+    const n = numbers.length;
+    let steps = 0;
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
             steps++;
-            if (arr.length <= 1) return arr;
-            const pivot = arr[arr.length - 1];
-            const left = arr.filter((el) => el < pivot);
-            const right = arr.filter((el) => el > pivot);
-            return [...quickSort(left), pivot, ...quickSort(right)];
-            console.log(`Step: Comparing ${arr} with pivot ${pivot}`);
-
+            if (numbers[j] > numbers[j + 1]) {
+                [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+            }
         }
-        numbers = createArray(13)
-        let quickSortedArray = quickSort(numbers);
-        printLn("Quick Sorted array: " + quickSortedArray);
-        printLn("Number of steps: " + steps);
+    }
+    return { sortedArray: numbers, steps: steps };
+}
 
-        printHr();
+function bubbleSortOptimized(arr) {
+    const numbers = [...arr];
+    let n = numbers.length;
+    let steps = 0;
+    let swapped;
+    do {
+        swapped = false;
+        for (let i = 0; i < n - 1; i++) {
+            steps++;
+            if (numbers[i] > numbers[i + 1]) {
+                [numbers[i], numbers[i + 1]] = [numbers[i + 1], numbers[i]];
+                swapped = true;
+            }
+        }
+        n--;
+    } while (swapped);
+    return { sortedArray: numbers, steps: steps };
+}
 
-    </script>
+function cocktailShakerSort(arr) {
+    const numbers = [...arr];
+    let n = numbers.length;
+    let steps = 0;
+    let swapped = true;
+    let start = 0;
+    let end = n - 1;
+
+    while (swapped) {
+        swapped = false;
+        for (let i = start; i < end; i++) {
+            steps++;
+            if (numbers[i] > numbers[i + 1]) {
+                [numbers[i], numbers[i + 1]] = [numbers[i + 1], numbers[i]];
+                swapped = true;
+            }
+        }
+        end--;
+
+        for (let i = end; i > start; i--) {
+            steps++;
+            if (numbers[i] < numbers[i - 1]) {
+                [numbers[i], numbers[i - 1]] = [numbers[i - 1], numbers[i]];
+                swapped = true;
+            }
+        }
+        start++;
+    }
+    return { sortedArray: numbers, steps: steps };
+}
+
+function bubbleSortWithLastSwap(arr) {
+    const numbers = [...arr];
+    let n = numbers.length;
+    let steps = 0;
+    while (n > 0) {
+        let lastSwap = 0;
+        for (let i = 0; i < n - 1; i++) {
+            steps++;
+            if (numbers[i] > numbers[i + 1]) {
+                [numbers[i], numbers[i + 1]] = [numbers[i + 1], numbers[i]];
+                lastSwap = i + 1;
+            }
+        }
+        n = lastSwap;
+    }
+    return { sortedArray: numbers, steps: steps };
+}
+
+function quickSort(arr, steps = { count: 0 }) {
+    const numbers = [...arr]; // Kopiere das Array, um das Original nicht zu verändern
+
+    if (numbers.length <= 1) return numbers; // Basisfall: Ein Element ist bereits sortiert
+
+    const pivot = numbers[numbers.length - 1]; // Wähle das letzte Element als Pivot
+
+    const left = numbers.filter((el) => {
+        steps.count++; // Schritt für jeden Vergleich im Filter
+        return el < pivot; // Elemente kleiner als Pivot
+    });
+
+    const right = numbers.filter((el) => {
+        steps.count++; // Schritt für jeden Vergleich im Filter
+        return el > pivot; // Elemente größer als Pivot
+    });
+
+    // Rekursiver Aufruf für linke und rechte Teile
+    return [
+        ...quickSort(left, steps), // Sortiere die linke Seite
+        pivot, // Füge das Pivot-Element hinzu
+        ...quickSort(right, steps), // Sortiere die rechte Seite
+    ];
+}
+
+let originalNumbers = createRandomArray(1000, 2000); // Zufälliges Array
+printLn("Original array: " + originalNumbers);
+printHr();
+
+printLn("Bubble Sort:");
+let { sortedArray: sortedArrayV0, steps: stepsV0 } = bubbleSort([...originalNumbers]);
+printLn("Sorted array V0: " + sortedArrayV0);
+printLn("Number of steps V0: " + stepsV0);
+printHr();
+
+printLn("Bubble Sort with Optimization:");
+let { sortedArray: sortedArrayV1, steps: stepsV1 } = bubbleSortOptimized([...originalNumbers]);
+printLn("Sorted array V1: " + sortedArrayV1);
+printLn("Number of steps V1: " + stepsV1);
+printHr();
+
+printLn("Cocktail Shaker Sort:");
+let { sortedArray, steps } = cocktailShakerSort([...originalNumbers]);
+printLn("Sorted array: " + sortedArray);
+printLn("Number of steps: " + steps);
+printHr();
+
+printLn("Bubble Sort with Last Swap:");
+let { sortedArray: sortedArrayV2, steps: stepsV2 } = bubbleSortWithLastSwap([...originalNumbers]);
+printLn("Sorted array V2: " + sortedArrayV2);
+printLn("Number of steps V2: " + stepsV2);
+printHr();
+
+printLn("Quick Sort:");
+let stepsV3 = { count: 0 };
+let sortedArrayV3 = quickSort([...originalNumbers], stepsV3);
+printLn("Sorted array V3: " + sortedArrayV3);
+printLn("Number of steps V3: " + stepsV3.count);
+printHr();
+
+</script>
 </body>
 
 </html>
