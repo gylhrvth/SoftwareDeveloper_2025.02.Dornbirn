@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascalsches Dreieck</title>
+    <link rel="stylesheet" href="../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        printH(1, "Pascalsches Dreieck");
+        printHr();
+
+        function generatePascalsRectangle(rows) {
+            const rectangle = [];
+            for (let i = 0; i < rows; i++) {
+                rectangle[i] = new Array(rows).fill(0);
+                for (let j = 0; j < rows; j++) {
+                    if (i === 0 || j === 0) {
+                        rectangle[i][j] = 1; // Oberste und linke Reihe sind 1
+                    } else {
+                        rectangle[i][j] = rectangle[i - 1][j] + rectangle[i][j - 1];
+                    }
+                }
+            }
+            return rectangle;
+        }
+
+        function printPascalsTriangle(triangle) {
+            for (let i = 0; i < triangle.length; i++) {
+                let row = "";
+                for (let j = 0; j < triangle[i].length; j++) {
+                    row += triangle[i][j] + " ";
+                }
+                printLn(row);
+            }
+        }
+        const rows = 6; // Anzahl der Reihen
+         printPascalsTriangle(generatePascalsRectangle(rows));
+
+    </script>
+</body>
+
+</html>
