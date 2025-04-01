@@ -54,9 +54,53 @@
             </code>
         </div>
         <p>.push() verändert das Original-Array (zahlen).</p>
-    
-    
-    
+        <br>
+
+        <li class="textColor02"><strong>Was macht die Funktion reduce()?</strong></li>
+        <p>Die reduce()-Methode nimmt ein Array und macht daraus einen einzigen Wert. Das kann eine Summe, ein Produkt, ein Maximalwert oder sogar ein Text sein.</p>
+        <p>Syntax:</p>
+        <div class="code-sample">  
+            <code>
+                array.reduce((accumulator, currentValue) => {
+                    return newAccumulatorValue;
+                }, initialValue);
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>accumulator: This stores the result of the previous iteration. It starts with the initialValue (if provided).</li>
+            <li>currentValue: The current element of the array.</li>
+            <li>initialValue (optional): The starting value of the accumulator. If not provided, the first element of the array is used as the initial value.</li>
+        </ul>
+        
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                let numbers = [1, 2, 3, 4];
+
+                // Using reduce to sum the numbers
+                let sum = numbers.reduce((accumulator, currentValue) => {
+                    return accumulator + currentValue;
+                }, 0);
+                
+                console.log(sum); // 10
+            </code>
+        </div>
+        <p>Step-by-Step Erklärung:</p>
+            <ul>
+                <li>accumulator starts with 0 (because we provided it as the initialValue).</li>
+                <li>currentValue is the first element of the array, which is 1.</li>
+                <li>Iteration 1 (accumulator = 0, currentValue = 1): accumulator + currentValue → 0 + 1 = 1 -> updated accumulator value</li>
+                <li>Iteration 2 (accumulator = 1, currentValue = 2): accumulator + currentValue → 1 + 2 = 3 -> updated accumulator value</li>
+                <li>Iteration 3 (accumulator = 3, currentValue = 3): accumulator + currentValue → 3 + 3 = 6 -> updated accumulator value</li>
+                <li>Iteration 4 (accumulator = 6, currentValue = 4): accumulator + currentValue → 6 + 4 = 10 -> updated accumulator value</li>
+                <li>Final result: The sum of all the numbers is 10 -> final accumulator value is 10</li>
+            </ul>
+        
+        
+        <br>
+        <li class="textColor02"><strong>Was sind Arrow Functions?</strong></li>
+        <p></p>
     
     
     </ul>
@@ -122,7 +166,10 @@
             <code>
                 let zahlen = [10, 20, 30, 40, 50];
 
-                console.log(zahlen.at(2)); // 30 (3. Element, da Index 2)
+                console.log(zahlen.at(2));   // 30  -> Drittes Element (Index 2)
+                console.log(zahlen.at(-1));  // 50  -> Letztes Element (Index -1)
+                console.log(zahlen.at(-3));  // 30  -> Drittletztes Element (Index -3)
+                console.log(zahlen[2]);      // 30  -> Gleichwertig mit at(2), aber nicht mit negativen Indizes
             </code>
         </div>
         <br>
