@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Array Test 02</title>
+</head>
+<body>
+
+    <script>
+
+    // Mit Arrays experimentieren:
+
+    // Die Funktion createRandomArray erstellt ein Array mit zufälligen Zahlen in einem bestimmten Bereich.
+
+    let createRandomArray = (size, min, max) => {
+
+    let result = []
+
+    for (let i = 0; i < size; ++i){
+        
+        //Beschreibung der mathematischen Förmel:
+        // 01. Math.random() erzeugt eine Zufallszahl zwischen 0 und 1.
+        // 02. (max - min + 1) * Math.random() skaliert sie in den Bereich [min, max].
+        // 03. Math.floor(...) sorgt dafür, dass das Ergebnis eine ganze Zahl ist.
+        // 04. min + ... verschiebt die Zahl in den gewünschten Bereich.
+
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())]
+    }
+    return result
+  
+
+    }
+
+
+  /* Alternative version:
+
+    let createRandomArray = (size, min, max) => {
+
+    let result = []
+
+    for (let i = 0; i < size; ++i){
+    return Array.from({length: size}, (_, i) => {
+        return min + Math.floor((max - min + 1) * Math.random())
+        //return 'a'.repeat(i + 1)
+    })
+    
+    */
+
+
+
+
+
+
+
+
+    </script>
+
+    
+</body>
+</html>
