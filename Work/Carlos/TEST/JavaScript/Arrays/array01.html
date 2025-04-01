@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Array Test 01</title>
+</head>
+<body>
+
+    <script>
+
+        // Create a function with parameter "size". If size is 5, show an array from 1 to 5.
+
+        numberCounter(5);
+        
+        function numberCounter(size){
+            let count = [1];
+
+            for(let i = 1; i <= size; i++){
+                count.push(i);
+            }
+
+            return count;
+
+        }
+
+        
+
+        numberCountdown(5);
+
+
+        function numberCountdown(size){
+            let countdown = [];
+
+            for (let i = size; i >= 0; i--){
+                countdown.push(i);
+            }
+
+            return countdown
+
+        }
+
+        numberCountdownEven(10);
+
+        function numberCountdownEven(size){
+            let countdown = [];
+
+            for (let i = size; i >= 0; i--){
+                if(i % 2 === 0){
+                    countdown.push(i)
+                } else {
+                    countdown.push("odd")
+                }
+            }
+
+            return countdown
+
+        }
+
+
+        // Create a function that generates (size) random numbers from 1 to 100 and returns them multiplied by 2 and then minus 1. 
+
+        // Then arrange them from smaller to bigger.
+
+        randomTwiceGenerator(12);
+
+
+        function randomTwiceGenerator(size){
+
+            let randomArr = [];
+
+                for(i = 1; i <= size; i++){
+                    randomArr.push(Math.floor((Math.random()*100)+1));
+                }
+
+            let doubleRandomArr = randomArr.map(function(element){
+                return (element*2)-1;
+            });
+
+            let doubleOrderedRandomArr = doubleRandomArr.sort(function (a, b) {
+                return a - b;
+            });
+
+            return doubleOrderedRandomArr
+
+        }
+
+        // Given an array of numbers, use .forEach() to print each number multiplied by 3.
+
+        tripleArr();
+        
+
+        function tripleArr(){
+
+            let baseArr = [3, 7, 11, 15, 19, 23];
+            let newArr = [];
+                baseArr.forEach((number) => {
+                     newArr.push(number*3)
+                     
+                });
+
+
+                return newArr;
+               
+        }
+        
+
+
+
+
+
+
+
+    </script>
+
+    
+</body>
+</html>
