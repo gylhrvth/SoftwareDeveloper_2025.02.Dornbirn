@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Regular VS Arrow 02</title>
+</head>
+<body>
+
+    <script>
+
+    // Exercise 1: Simple Function
+
+    function greet01(name) {
+        return "Hello, " + name + "!";
+    }
+
+    // Task: Convert the greet function into an arrow function.
+
+    let greet02 = (name)=> {
+        return "Hello, " + name + "!";
+    }
+
+    // Explanation: The arrow function is equivalent to the regular function but in a more concise form.
+    // It takes one parameter, name, and returns a string that greets the name.
+
+    //Simplifying Further:
+
+    let greet03 = (name)=> "Hello, " + name + "!";
+
+    let greet04 = name => "Hello, " + name + "!";
+
+    // Important!!: The reason this works without using return and without braces is because arrow functions in JavaScript have an implicit return feature when they consist of a single expression.
+    // The absence of braces {} indicates that the function consists of just one expression. This expression is immediately returned.
+
+    // Breakdown:
+    // The function takes name as an argument.
+    // The expression "Hello, " + name + "!" is evaluated.
+    // Since there are no braces ({}), this is treated as a single expression, and its result is automatically returned.
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

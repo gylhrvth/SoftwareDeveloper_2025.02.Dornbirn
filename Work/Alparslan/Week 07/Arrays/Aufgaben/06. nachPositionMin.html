@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Minimum Maximum Suche</title>
+    </head>
+
+
+    <body>
+        <script>
+ function minValueIndex(inputArray) {                                // Funktion, die den Index des kleinsten Wertes mit einer For-Schleife findet
+ let minIndex = 0;                                                   // Setzt den Startwert des Index auf 0 (der erste Wert im Array)
+
+ for (let i = 1; i < inputArray.length; i++) {                       // Durchläuft das Array ab dem zweiten Element
+      if (inputArray[i] < inputArray[minIndex]) {                    // Wenn der aktuelle Wert kleiner ist als der bisher kleinste Wert
+            minIndex = i;                                            // Setzt den Index des kleinsten Wertes auf den aktuellen Index
+       }
+ }
+
+  return minIndex;                                                   // Gibt den Index des kleinsten Wertes zurück
+}
+
+function maxValueIndex(inputArray) {                                 // Funktion, die den Index des größten Wertes mit einer For-Schleife findet
+let maxIndex = 0;                                                    // Setzt den Startwert des Index auf 0 (der erste Wert im Array)
+
+ for (let i = 1; i < inputArray.length; i++) {                       // Durchläuft das Array ab dem zweiten Element
+      if (inputArray[i] > inputArray[maxIndex]) {                    // Wenn der aktuelle Wert größer ist als der bisher größte Wert
+            maxIndex = i;                                            // Setzt den Index des größten Wertes auf den aktuellen Index
+       }
+    }
+    return maxIndex;                                                 // Gibt den Index des größten Wertes zurück
+}
+
+
+
+
+
+function minWertIndex(inputArray) {                                   // Funktion, die den Index des kleinsten Wertes mit einer forEach-Schleife findet
+    let minIndex = 0;                                                 // Setzt den Startwert des Index auf 0 (der erste Wert im Array)
+
+    inputArray.forEach(function(element, index) {                     // Durchläuft das Array mit forEach
+        if (element < inputArray[minIndex]) {                        // Wenn der aktuelle Wert kleiner ist als der bisher kleinste Wert
+            minIndex = index;                                        // Setzt den Index des kleinsten Wertes auf den aktuellen Index
+        }
+    });
+
+    return minIndex;                                                 // Gibt den Index des kleinsten Wertes zurück
+}
+
+function maxWertIndex(inputArray) {                                  // Funktion, die den Index des größten Wertes mit einer forEach-Schleife findet
+    let maxIndex = 0;                                                // Setzt den Startwert des Index auf 0 (der erste Wert im Array)
+
+    inputArray.forEach(function(element, index) {                    // Durchläuft das Array mit forEach
+        if (element > inputArray[maxIndex]) {                        // Wenn der aktuelle Wert größer ist als der bisher größte Wert
+            maxIndex = index;                                        // Setzt den Index des größten Wertes auf den aktuellen Index
+        }
+    });
+
+    return maxIndex;                                                 // Gibt den Index des größten Wertes zurück
+}
+
+
+
+
+
+function run() {
+    let arr = Array.from({ length: 20 }, () => { return 1 + Math.floor(100 * Math.random()) });  // Erzeugt ein Array mit 20 zufälligen Zahlen zwischen 1 und 100
+    console.log(arr);  // Gibt das Array aus
+    console.log('min (for loop index):', minValueIndex(arr));                        // Gibt den Index des kleinsten Wertes mit der for-Schleife aus
+    console.log('max (for loop index):', maxValueIndex(arr));                        // Gibt den Index des größten Wertes mit der for-Schleife aus
+
+    console.log('min (forEach loop index):', minWertIndex(arr));                     // Gibt den Index des kleinsten Wertes mit der forEach-Schleife aus
+    console.log('max (forEach loop index):', maxWertIndex(arr));                     // Gibt den Index des größten Wertes mit der forEach-Schleife aus
+}
+
+run();                                                                               // Führt die Funktion aus
+
+
+        </script>
+    </body>
+    </html>

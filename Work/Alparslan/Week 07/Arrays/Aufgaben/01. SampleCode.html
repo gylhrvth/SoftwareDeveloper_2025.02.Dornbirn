@@ -61,7 +61,7 @@
 
 
 
-        printH(3, "03 .pop()-Methode");                                 //Entfernt letzen Buchstaben im Array
+        printH(3, "03 .pop()-Methode");                                 //Entfernt letzen Buchstaben und gibt dieses zurück
 
         let buchstabenPop = ["a", "b", "c", "d", "e", "f", "g"];                // Original-Array
         let poppedElement = buchstabenPop.pop();                                // Entfernt "g" und speichert es
@@ -81,11 +81,15 @@
 
 
 
-        printH(3, "04 .shift()-Methode");
+        printH(3, "04 .shift()-Methode");                   //entfernt erstes Element und gibt dieses zurück
 
         let buchstabenShift = ["a", "b", "c", "d", "e" , "f", "g"];
 
         print("Shift first element: " + "\"" + buchstabenShift.shift() + "\"");
+
+        printLn();
+
+        print("Show new shifted elements" + "[" + buchstabenShift.join(", ") + "]");
 
         printHr();
 
@@ -95,7 +99,7 @@
 
 
 
-        printH(3, "05 .concat()-Methode");
+        printH(3, "05 .concat()-Methode");                  //Verkettet Arrays miteinander, also führt zusammen
 
         let buchstabenConcat01 = ["a", "b", "c", "d", "e" , "f", "g"];
 
@@ -121,7 +125,7 @@
 
 
 
-        printH(3, "06 .findIndex()-Methode");
+        printH(3, "06 .findIndex()-Methode");           //Findet ein Element welches eine Bedingung erfüllt und gibt dieses als Index zurück
 
         let buchstabenFindIndex = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
 
@@ -140,7 +144,7 @@
 
 
 
-        printH(3, "07 .forEach()-Methode");
+        printH(3, "07 .forEach()-Methode");             // durchläuft JEDES Element im Array und führt eine Funktion auf JEDEM Array aus
 
         let buchstabenForEach = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
 
