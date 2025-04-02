@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <title>Game of Life v.03</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+
+        #controls {
+            margin-bottom: 20px; /* Add spacing between the button and the grid */
+        }
+
+        #output-container {
+            display: inline-block; /* Center the grid */
+            text-align: left; /* Align grid content to the left */
+        }
+
+        #generation-header {
+            margin-bottom: 10px; /* Add spacing between the header and the grid */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="controls">
+        <h1>Game of Life</h1>
+        <button id="next-gen-btn">Next Generation</button>
+    </div>
+    <h2 id="generation-header">Generation: 0</h2>
+    <div id="output-container"></div>
+
+    <script>
+
+        // Functions -----------------------------------------------------
+
+        function createRandomGrid(rows, cols) {
+            let randomGrid = []; // Create empty array that contains the rows
+            for (let row = 0; row < rows; ++row) {
+                randomGrid.push([]); // Creates a new empty array for every row
+                for (let col = 0; col < cols; ++col) {
+                    randomGrid[row][col] = Math.floor(Math.random() * 2); // Fills the empty rows with either 0 or 1
+                }
+            }
+            return randomGrid;
+        }
+
+        function print2Darray(arr) {
+            const outputContainer = document.getElementById("output-container");
+            outputContainer.innerHTML = ""; // Clear the previous grid
+
+            for (let i = 0; i < arr.length; ++i) {
+                for (let j = 0; j < arr[i].length; ++j) {
+                    if (arr[i][j] === 0) {
+                        print(" ⬜️"); // Use your custom `print` function
+                    } else {
+                        print(" 🦠"); // Use your custom `print` function
+                    }
+                }
+                printLn(); // Move to the next line after each row using your custom `printLn` function
+               
+            }
+            printHr()
+        }
+
+        function nextGen(arr) {
+            let nextGrid = []; // Create a new grid to store the next generation
+
+            for (let i = 0; i < arr.length; ++i) {
+                nextGrid.push([]); // Initialize each row in the new grid
+
+                for (let j = 0; j < arr[i].length; ++j) {
+                    let countLiving = 0;
+
+                    // Check all 8 neighbors
+                    for (let dx = -1; dx <= 1; ++dx) {
+                        for (let dy = -1; dy <= 1; ++dy) {
+                            if (dx === 0 && dy === 0) continue; // Skip the current cell
+
+                            let newRow = i + dx;
+                            let newCol = j + dy;
+
+                            // Check if the neighbor is within bounds
+                            if (newRow >= 0 && newRow < arr.length && newCol >= 0 && newCol < arr[i].length) {
+                                if (arr[newRow][newCol] === 1) {
+                                    countLiving++; // Increment the counter if the neighbor is alive
+                                }
+                            }
+                        }
+                    }
+
+                    // Apply the rules of the Game of Life
+                    if (arr[i][j] === 1) { // If the cell is alive
+                        nextGrid[i][j] = (countLiving < 2 || countLiving > 3) ? 0 : 1; // Dies if underpopulated or overpopulated
+                    } else { // If the cell is dead
+                        nextGrid[i][j] = (countLiving === 3) ? 1 : 0; // Becomes alive if exactly 3 neighbors are alive
+                    }
+                }
+            }
+
+            // Update the original array with the next generation
+            for (let i = 0; i < arr.length; ++i) {
+                for (let j = 0; j < arr[i].length; ++j) {
+                    arr[i][j] = nextGrid[i][j];
+                }
+            }
+        }
+
+        // Global Variables
+        let grid01 = createRandomGrid(25, 25); // Initial grid
+        let generation = 0; // Track the current generation
+
+        // Initial Render
+        print2Darray(grid01);
+
+        // Event Listener for Button
+        document.getElementById("next-gen-btn").addEventListener("click", () => {
+            nextGen(grid01); // Generate the next generation
+            print2Darray(grid01); // Re-render the grid
+            generation++; // Increment the generation counter
+            document.getElementById("generation-header").textContent = `Generation: ${generation}`; // Update the header
+        });
+
+    </script>
+    
+</body>
+</html>
