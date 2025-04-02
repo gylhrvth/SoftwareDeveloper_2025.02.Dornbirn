@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Numbers - Array 2D</title>
+    <link rel="stylesheet" href="../../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // ------------------ Functions --------------------------------------------
+
+printH(2, "Erstellen und Formatieren eines zweidimensionalen Arrays mit Zufallswerten")
+
+function generateRandomMatrix(rows, cols) {
+    let matrix = []; // Initialize the 2D array
+
+    // Create matrix with random numbers
+    for (let r = 0; r < rows; r++) {
+        let rowArray = [];
+        for (let c = 0; c < cols; c++) {
+            rowArray.push(Math.floor(Math.random() * 100) + 1);
+        }
+        matrix.push(rowArray);
+    }
+
+    return matrix;
+}
+
+function printMatrix(matrix) {
+    for (let r = 0; r < matrix.length; r++) {
+        for (let c = 0; c < matrix[r].length; c++) {
+            print(matrix[r][c].toString().padStart(5, " ")); // Print each number with padding
+        }
+        printLn(); // New line after each row
+    }
+    printHr(); // Print horizontal line separator
+}
+
+// --------------------- Calls -------------------------
+
+let randomMatrix = generateRandomMatrix(10, 10);
+printMatrix(randomMatrix);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</html>
