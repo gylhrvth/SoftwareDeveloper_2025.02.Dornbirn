@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 600;
+        canvas.height = 400;
+
+        const maxIter = 100;
+        const zoom = 200;
+        const offsetX = canvas.width / 2;
+        const offsetY = canvas.height / 2;
+
+        function mandelbrot(cx, cy) {
+            let x = 0, y = 0;
+            let iter = 0;
+
+            while (x*x + y*y < 4 && iter < maxIter) {
+                let xtemp = x*x - y*y + cx;
+                y = 2*x*y + cy;
+                x = xtemp;
+                iter++;
+            }
+            return iter;
+        }
+
+        function draw() {
+            for (let px = 0; px < canvas.width; px++) {
+                for (let py = 0; py < canvas.height; py++) {
+                    const cx = (px - offsetX) / zoom;
+                    const cy = (py - offsetY) / zoom;
+                    const iter = mandelbrot(cx, cy);
+                    const color = iter === maxIter ? "black" : `hsl(${iter * 10}, 100%, 50%)`;
+
+                    ctx.fillStyle = color;
+                    ctx.fillRect(px, py, 1, 1);
+                }
+            }
+        }
+
+        draw();
+    </script>
+
+
+</body>
+</html>
