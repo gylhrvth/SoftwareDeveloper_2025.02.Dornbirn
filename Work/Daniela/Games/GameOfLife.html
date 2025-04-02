@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameOfLife</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const rows = 60;
+        const cols = 60;
+        const cellSize = canvas.width / rows;
+
+        // 2D Array für den Zustand der Zellen
+         let grid = Array.from({ length: rows }, () => Array(cols).fill(false));
+
+        // Zufällige initiale Zellen
+        function initializeGrid() {
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    grid[row][col] = Math.random() < 0.3; // 30% Chance für eine lebendige Zelle
+                }
+            }
+        }
+
+        // Zeichne das Gitter
+        function drawGrid() {
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    ctx.beginPath();
+                    ctx.rect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    ctx.fillStyle = grid[row][col] ? "#000" : "#fff"; // Lebendig oder tot
+                    ctx.fill();
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Zähle die lebendigen Nachbarn einer Zelle
+        function countAliveNeighbors(row, col) {
+            const directions = [
+                [-1, -1], [-1, 0], [-1, 1],
+                [0, -1],          [0, 1],
+                [1, -1], [1, 0], [1, 1]
+            ];
+            let count = 0;
+            directions.forEach(([dx, dy]) => {
+                const newRow = row + dx;
+                const newCol = col + dy;
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                    if (grid[newRow][newCol]) count++;
+                }
+            });
+            return count;
+        }
+
+        // Aktualisiere das Gitter basierend auf den Regeln des Spiels
+        function updateGrid() {
+            const newGrid = grid.map((row, i) => 
+                row.map((cell, j) => {
+                    const aliveNeighbors = countAliveNeighbors(i, j);
+                    if (cell) {
+                        // Eine lebendige Zelle stirbt, wenn sie weniger als 2 oder mehr als 3 Nachbarn hat
+                        return aliveNeighbors === 2 || aliveNeighbors === 3;
+                    } else {
+                        // Eine tote Zelle wird lebendig, wenn sie genau 3 Nachbarn hat
+                        return aliveNeighbors === 3;
+                    }
+                })
+            );
+            grid = newGrid;
+        }
+
+        // Hauptschleife für das Spiel
+        function gameLoop() {
+            updateGrid();
+            drawGrid();
+        }
+
+        // Initialisieren und starten
+        initializeGrid();
+        setInterval(gameLoop, 100); // 100 ms zwischen den Schritten
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+}
+
+main{
+    display: grid;
+    grid-template-columns: repeat(12, 60px);
+    grid-template-rows: repeat(12, 60px);
+    border: 4px solid black;
+}
+
+.square {
+    width: 60px;
+    height: 60px;
+    background-color: antiquewhite;
+    outline: solid gray
+}
+

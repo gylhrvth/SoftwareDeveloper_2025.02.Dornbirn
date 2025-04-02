@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Übungen</title>
+    <link href="Array Übungen.js">
+</head>
+
+<body>
+
+    <p id="ArrayTestOutput"></p>
+    <p id="arrOutput"></p>
+
+    <h3>.at()</h3>
+    <p id="zahlenOutput"></p>
+    <h3>.push()</h3>
+    <p id="pushOutput"></p>
+    <h3>.pop()</h3>
+    <p id="popOutput"></p>
+    <h3>.shift()</h3>
+    <p id="shiftOutput"></p>
+    <h3>.splice(startIndex, deleteCount, element1, element2, ..., elementN);</h3>
+    <p id="spliceOutput"></p>
+    <h3>concat()</h3>
+    <p id="concatOutput"></p>
+    <h3>indexOf()</h3>
+    <p id="indexOfOutput"></p>
+    <h3>lastIndesOf()</h3>
+    <p id="lastIndexOfOutput"></p>
+    <h3>includes()</h3>
+    <p id="includesOutput"></p>
+    <p id="includesOutput2"></p>
+    <h3>join()</h3>
+    <p id="joinOutput"></p>
+    <h3>forEach()</h3>
+    <p id="forEachOutput"></p>
+    <h3>map()</h3>
+    <p id="mapOutput"></p>
+    <h3>filter()</h3>
+    <p id="filterOutput"></p>
+    <h3>sort()</h3>
+    <p id="alkOutput"></p>
+    <h3>simple Array</h3>
+    <p id="simpleOutput"></p>
+    <h3>randomArray</h3>
+    <p id="randomOutput"></p>
+    <h3>minValue</h3>
+    <p id="minValue"></p>
+    <h3>maxValue</h3>
+    <p id="maxValue"></p>
+    <h3>sortMyNum</h3>
+    <p id="sortSomeNum"></p>
+    <h3>sortMyNum2</h3>
+    <p id="sortSomeNum2"></p>
+    <h3>forEach</h3>
+    <ul id="produktListe"></ul>
+
+
+</body>
+<script>
+
+    let arrayTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].length
+
+    let zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    let someNum = [20, 56, 80, 78, 29, 1, 7, 88, 36, 67, 29, 27, 24, 9, 2, 3, 75, 38, 77, 16, 19, 11];
+
+    let arrText = ["Apfel", "Bannane", "Dattel", "Erdbeere", "Feige", "Goji-Beere"];
+    let arrText2 = ["Schraubenschlüssel", "Winkelschraubendreher"]
+    let arrText3 = ["Seitenschneider", "Rohrzange"]
+    //-----------------------------------------------
+
+    console.log(arrayTest);
+    document.getElementById("ArrayTestOutput").innerText = "ArrayTest: " + arrayTest;
+
+    arr = [5];
+    console.log(arr);
+    document.getElementById("arrOutput").innerHTML = "arr: " + arr;
+
+
+
+    console.log(zahlen.at(5));
+    document.getElementById("zahlenOutput").innerHTML = "zahlen.at(5): " + zahlen.at(5);
+
+    zahlen.push(21);
+    console.log(zahlen);
+    document.getElementById("pushOutput").innerHTML = "zahlen.push(21)" + zahlen + " - fügt ein oder mehrere Elemente ans Ende eines Array ein"
+
+
+    let lastValue = zahlen.pop()
+    console.log('last value: ' + lastValue + ' array content: ' + zahlen);
+    document.getElementById("popOutput").innerHTML = "zahlen.pop : " + zahlen.pop() + " -entfernt letztes Element";
+
+    console.log(zahlen.shift());
+    document.getElementById("shiftOutput").innerHTML = "zahlen.shift : " + zahlen.shift() + " -entfernt erstes Element";
+
+    console.log(arrText.splice(-1, 1, "Grapes"));
+    document.getElementById("spliceOutput").innerHTML = "splice: " + arrText.splice(-1, 1, "Grapes");
+
+    //----------------------------------------------------------------
+    let kombiniere = arrText.concat(arrText2, arrText3);                //spread (...) --> anschauen 
+    console.log(kombiniere);
+    console.log("arrText: " + arrText);
+    console.log("arraText2 :" + arrText2);
+    console.log("arrText3: " + arrText3);
+
+    document.getElementById("concatOutput").innerHTML = "concat: " + kombiniere;
+    //-----------------------------------------------
+    console.log("indexOf: " + kombiniere.indexOf("Grapes"));
+    document.getElementById("indexOfOutput").innerHTML = "indexOf: " + kombiniere.indexOf("Grapes");
+    //-----------------------------------------------
+    console.log("lastIndexOf: " + kombiniere.lastIndexOf("Seitenschneider"));
+    document.getElementById("lastIndexOfOutput").innerHTML = "lastIndexOf: " + kombiniere.lastIndexOf("Seitenschneider");
+    //-----------------------------------------------
+    console.log(kombiniere.includes("Hausschlussel"));
+    console.log(kombiniere.includes("Apfel"));
+    document.getElementById("includesOutput").innerHTML = kombiniere.includes("Hausschlussel");
+    document.getElementById("includesOutput2").innerHTML = kombiniere.includes("Apfel");
+    //-----------------------------------------------
+    console.log("join: " + kombiniere.join("-->"));
+    document.getElementById("joinOutput").innerHTML = "Join: " + kombiniere.join("--");     //wenn klammer(seperator) leer, wird Komma( , ) verwendet
+    //----------------------------------------------
+
+    let gemüse = ["Karotte", "Gurke", "Erbse"];
+
+    function callback(Gemüse) {
+        console.log("cons:" + Gemüse);
+    }
+    gemüse.forEach(callback);
+
+    document.getElementById("forEachOutput").innerHTML = "forEach: " + gemüse.forEach(callback);
+    // !!!!!!!!forEach kann auch als " =>" geschrieben werden macht funktion kürzer!!!!!!!
+
+    //------------------------------------
+    gemüse.forEach((value) => {
+        console.log('Hello ' + value + '!')     //Diese funktion ist gleichzusetzen mit **)
+    })
+
+    gemüse.forEach((value, i) => {
+        console.log(i + '. Hello ' + value + '!')
+    })
+
+
+    for (let i = 0; i < gemüse.length; ++i) {     // **)
+        let value = gemüse[i]
+        console.log('Hello ' + value + '!')
+    }
+    //------------------------------------
+    let number = [1, 2, 3];
+    let verdoppelt = number.map((num) => num * 2);
+    console.log(number);
+    console.log(verdoppelt);
+    document.getElementById("mapOutput").innerHTML = "New Numbers: " + verdoppelt;
+    //-------------------------------------------
+    let neueZahlen = zahlen.filter((num) => num % 2 === 0);
+
+    console.log(neueZahlen);
+    document.getElementById("filterOutput").innerText = "filter: " + neueZahlen;
+    //-------------------------------------------
+    let alk = ["Bier", "Wein", "Üppig", "Barcardi", "Öl", "Aperol", "Lilett", "Ärger", "Jägermeister", "milch"]
+    let collator = new Intl.Collator("de-AT", {
+        //    sensitivity: "variant",   // Unterscheidet Groß- und Kleinschreibung, Umlaute etc.
+        //    ignorePunctuation: true,  // Ignoriert Satzzeichen
+        //    numeric: true,            // Sortiert Zahlen korrekt (z. B. "A1", "A2", "A10")
+        collation: "phonebk"      // Telefonbuch-Sortierung (Umlaute als eigene Buchstaben)
+    });
+
+    alk.sort(collator.compare);
+    console.log(alk);
+
+    document.getElementById("alkOutput").innerText = '[' + alk.join(', ') + ']';
+    //-------------------------------------------
+    /*Aufgabe 3*/
+    //Einfaches Array
+
+    let simpleArray = (size) => {
+        let result = []
+        for (let i = 0; i < size; i++) {
+            result.push(i + 1);
+        }
+        return result
+    }
+
+    document.getElementById('simpleOutput').innerText = simpleArray(20);
+    //------------------------------------
+    //RandomArray
+    let randomArray = (size, min, max) => {
+        let result = []
+        for (let i = 0; i < size; i++) {
+            result.push((min + 1) + Math.floor((max - min) * Math.random()));
+        }
+        return result
+    }
+
+    let testArray = randomArray(20, 1, 100)
+    document.getElementById("randomOutput").innerText = testArray.join(', ');
+    /*Es wird ein Array mit 20 zufälligen Zahlen , von 0-100*/
+    //-----------------------------------
+    let minValue = testArray.reduce((min, num) => num < min ? num : min);
+    console.log("min: " + minValue);
+    document.getElementById("minValue").innerText = "minValue is:" + minValue;
+
+
+    let maxValue = testArray.reduce((max, num) => num > max ? num : max);
+    console.log("max: " + maxValue);
+    document.getElementById("maxValue").innerText = "maxValue is:" + maxValue;
+    //----------------------------------
+    someNum.sort((a, b) => a - b);
+    document.getElementById("sortSomeNum").innerText = someNum.join(", ");
+    //----------------------------------
+    someNum.sort((a, b) => b - a);
+    document.getElementById("sortSomeNum2").innerText = someNum.join(", ");
+    //--------------------------------
+    alk.forEach(function (name, alk) {
+        console.log(`Getränk ${alk + 1}:${name}`);
+    });
+    //--------------------------------
+    const produkte = ["Laptop", "Smartphone", "Tablet", "Ladekabel", "Fernseher", "Glühbirne"];
+    const liste = document.getElementById("produktListe");
+
+    produkte.forEach(produkt => {
+        const li = document.createElement("li");        //neues Listen Element erstellen 
+        li.textContent = produkt;                       // textContent = reiner Textinhalt des Elements wird angezeigt 
+        liste.appendChild(li);                         //fügt neues Element in die Liste ein 
+    });
+    //-------------------------------------------------------------------------------------------------------------------
+
+
+
+</script>
+
+</html>

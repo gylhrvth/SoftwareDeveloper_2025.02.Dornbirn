@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays</title>
+    <link rel="stylesheet" href="Journal Week 07.css">
+
+</head>
+
+
+
+
+<body>
+    <h1>Arrays</h1>
+<div class="container">
+    <p>Ein Array in JavaScript ist eine spezielle Art von Objekt, das eine geordnete Liste von Elementen speichert.<br>
+        Diese Elemente können beliebige Datentypen sein, einschließlich Zahlen, Strings, Objekte oder sogar andere Arrays.</p>
+    
+    <h2>Array erstellen mit eckigen Klammern [ ]</h2>
+        <p>In JavaScript kannst du eine Array-Variable am einfachsten mit eckigen Klammern [ ] erstellen. Diese Methode ist kurz, verständlich und flexibel.</p>
+</div>
+
+<div class="container">
+    <p>ArrayTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].length<br>
+        console.log(ArrayTest);</p>
+
+    <p>Wird der obenstehende Array mit .length combiniert so wird der Wert: 10 zurückgegeben.<br>
+        Da der Array die Anzahl der Elemente zurück gibt. 
+    </p>
+</div>
+
+<div class="container">
+<p>arr = [5];<br>
+    console.log(arr);</p>
+    <p>Erstellt ein Array mit einem einzigen Element: 5.<br>
+        console.log(arr); Gibt den gesamten Inhalt des Arrays aus.
+    </p>
+</div>
+
+<div class="container">
+   <h2>Die at()-Methode</h2> 
+   <p>Die Methode .at() ermöglicht den Zugriff auf ein bestimmtes Element eines Arrays über seinen Index.<br>
+    Der Unterschied zu arr[index] ist, dass .at() auch negative Indizes unterstützt.</p>
+</div>
+
+
+<div class="container">
+    <h2>Die push()-Methode</h2>
+    <p>Die Methode push() ist eine eingebaute Methode in JavaScript, die ein oder mehrere Elemente ans Ende eines Arrays hinzufügt.<br>
+        Sie verändert das ursprüngliche Array und gibt die neue Länge des Arrays zurück.</p>
+</div>
+
+<div class="container">
+    <h2>Die pop()-Methode</h2>
+    <p>Die Methode pop() ist eine eingebaute Methode in JavaScript, die das letzte Element eines Arrays entfernt und dieses Element zurückgibt.<br>
+        Sie verändert das ursprüngliche Array und reduziert seine Länge um eins.</p>
+</div>
+
+<div class="container">
+    <h2>Die shift()-Methode</h2>
+    <p>Die Methode shift() in JavaScript entfernt das erste Element eines Arrays und gibt dieses Element zurück.<br>
+        Dadurch wird die Länge des Arrays um eins reduziert. Sie verändert direkt das Array.</p>
+</div>
+
+<div class="container">
+    <h2>Die splice()-Methode</h2>
+    <p>Die Methode splice() in JavaScript ist eine sehr mächtige Funktion, die es dir ermöglicht, Elemente aus einem Array zu entfernen, zu ersetzen oder hinzuzufügen.<br>
+        Mit splice() kannst du an jeder beliebigen Stelle im Array einfügen oder entfernen, was sie zu einer der flexibelsten Array-Methoden macht.</p>
+         <img src="img/splice()-Methode.png" alt="Splice-Methode"> 
+</div>
+
+<div class="container">
+    <h2>concat()-Methode</h2>
+    <p>Die Methode concat() in JavaScript wird verwendet, um Arrays zusammenzuführen.<br>
+        Sie kombiniert zwei oder mehr Arrays (oder auch andere Werte wie Werte, Strings oder Objekte) und gibt ein neues Array zurück, ohne das ursprüngliche Array zu verändern.</p>
+</div>
+
+<div class="container">
+    <h2>indexOf()</h2>
+    <p>Die Methode indexOf() in JavaScript wird verwendet, um den ersten Index eines bestimmten Elements in einem Array zu finden. Wenn das Element im Array vorhanden ist,<br>
+        gibt die Methode den Index des ersten Vorkommens zurück. Wenn das Element nicht im Array gefunden wird, gibt sie -1 zurück.</p>
+</div>
+
+<div class="container">
+    <h2>lastIndexOf</h2>
+    <p>Die Methode lastIndexOf() in JavaScript funktioniert ähnlich wie indexOf(), aber statt den Index des ersten Vorkommens eines Elements im Array zu finden,<br>
+        gibt lastIndexOf() den letzten Index des gesuchten Elements im Array zurück. Wenn das Element nicht im Array gefunden wird, gibt sie -1 zurück.</p>
+         <img src="img/syntax of lastIndexOf.png">
+</div>
+
+<div class="container">
+    <h2>Die includes()-Methode</h2>
+    <p>Die includes()-Methode in JavaScript wird verwendet, um zu überprüfen, ob ein Array ein bestimmtes Element enthält. Sie gibt true zurück,<br>
+         wenn das Element im Array vorhanden ist, und false, wenn es nicht enthalten ist.</p>
+</div>
+
+<div class="container">
+    <h2>join()</h2>
+    <p>Die join()-Methode in JavaScript wird verwendet, um alle Elemente eines Arrays in einen einzelnen String zu verbinden. Du kannst dabei ein Trennzeichen angeben,<br>
+        das zwischen den Array-Elementen eingefügt wird. Wenn kein Trennzeichen angegeben wird, werden die Elemente durch ein Komma (,) getrennt.</p>
+        <img src="img/join()-methode.png">
+</div>
+
+<div class="container">
+    <h2>forEach()-Methode</h2>
+    <p>Die forEach()-Methode in JavaScript ist eine Methode, die auf Arrays angewendet wird. Sie führt eine angegebene Funktion einmal für jedes Element im Array aus,<br>
+        ohne ein Ergebnis zurückzugeben. Sie ist besonders nützlich, um alle Elemente eines Arrays zu durchlaufen und mit ihnen zu arbeiten, ohne dabei explizit eine Schleife zu schreiben.</p>
+        <img src = "img/forEach()-Methode.png">
+</div>
+
+<div class="container">
+    <h2>map()-Methode</h2>
+    <p>Die map()-Methode wird verwendet, um ein neues Array zu erstellen, indem sie eine Funktion auf jedes Element eines bestehenden Arrays anwendet.<br>
+        Im Gegensatz zu forEach(), das nichts zurückgibt, erzeugt map() ein neues Array mit den transformierten Werten.</p>
+</div>
+
+<div class="container">
+    <h2>filter()-Methode</h2>
+    <p>Die filter()-Methode wird verwendet, um ein neues Array zu erstellen, das nur die Elemente enthält, die eine bestimmte Bedingung erfüllen.
+        Im Gegensatz zu map() verändert filter() die Werte nicht, sondern wählt bestimmte Werte aus.</p>
+</div>
+
+<div class="container">
+    <h2>sort()-Methoode</h2>
+    <p>Die sort()-Methode in JavaScript wird verwendet, um die Elemente eines Arrays alphabetisch oder numerisch zu sortieren.<br>
+        Sie ändert das Original-Array und gibt das sortierte Array zurück.</p>
+</div>
+
+<div class="container">
+    <h2></h2>
+    <p></p>
+</div>
+
+<div class="container">
+    <h2></h2>
+    <p></p>
+</div>
+
+<div class="container">
+    <h2></h2>
+    <p></p>
+</div>
+
+
+
+
+</body>
+</html>

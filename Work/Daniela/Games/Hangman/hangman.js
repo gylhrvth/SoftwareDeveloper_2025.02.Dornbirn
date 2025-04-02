@@ -87,9 +87,6 @@ console.log("Include:"+ include);*/
 let include = letterArray.includes(guess);
 console.log("Include:"+ include);
 
-
-
-
 }
 
 
@@ -216,6 +213,43 @@ function increaseWrongGuesses() {
 }*/
 
 
+//--------------------------------------------------------------------------------------------------------------
+//canvas
+// Zugriff auf das Canvas und den Kontext
+const canvas = document.getElementById("hangmanCanvas");
+const ctx = canvas.getContext("2d");
+
+// Funktion zum Zeichnen eines Strichs
+function drawLine(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+}
+
+// Beispiel: Zeichnen eines einfachen Strichs
+drawLine(60, 0, 200, 0);  //galgen horizontal
+drawLine(60, 0, 60, 250);   // galgen vertikal 
+drawLine()
+drawLine()
+drawLine(200, 0, 200, 40);  //seil
+
+
+
+
+let x = 200; // X-Koordinate des Mittelpunktes
+let y = 55; // Y-Koordinate des Mittelpunktes
+let radius = 15; // Radius des Kreises
+let startAngle = 0; // Startwinkel (im Bogenmaß, 0 entspricht der rechten horizontalen Linie)
+let endAngle = 2 * Math.PI; // Endwinkel (2 * Math.PI entspricht einem vollen Kreis)
+let anticlockwise = false; // Uhrzeigersinn (false für Uhrzeigersinn, true für gegen den Uhrzeigersinn)
+
+// Zeichne den Kreis
+ctx.beginPath(); // Beginne einen neuen Pfad
+ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise); // Zeichne den Kreis
+ctx.fillStyle = "black"; // Füllfarbe des Kreises
+ctx.fill(); // Fülle den Kreis aus
+ctx.stroke(); // Umrandung des Kreises zeichnen
 
 
 

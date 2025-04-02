@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Erstelle ein Pascal’sches Dreieck als 2D-Array
+let pascalTriangle = [
+  [1],
+  [1, 1],
+  [1, 2, 1],
+  [1, 3, 3, 1],
+  [1, 4, 6, 4, 1],
+];
+
+// Funktion, die die Summe der benachbarten Zahlen berechnet
+function sumOfNeighbors(triangle, row, col) {
+  let sum = 0;
+  
+  // Überprüfe, ob es eine Zahl links oben gibt (nach oben und nach links)
+  if (row > 0 && col > 0) {
+    sum += triangle[row - 1][col - 1];
+  }
+  
+  // Überprüfe, ob es eine Zahl oben gibt (nach oben)
+  if (row > 0) {
+    sum += triangle[row - 1][col];
+  }
+  
+  // Überprüfe, ob es eine Zahl rechts gibt (nach rechts)
+  if (col < triangle[row].length - 1) {
+    sum += triangle[row][col + 1];
+  }
+  
+  // Überprüfe, ob es eine Zahl unten links gibt (nach unten und nach links)
+  if (row < triangle.length - 1 && col > 0) {
+    sum += triangle[row + 1][col - 1];
+  }
+  
+  // Überprüfe, ob es eine Zahl unten gibt (nach unten)
+  if (row < triangle.length - 1) {
+    sum += triangle[row + 1][col];
+  }
+  
+  // Überprüfe, ob es eine Zahl unten rechts gibt (nach unten und nach rechts)
+  if (row < triangle.length - 1 && col < triangle[row + 1].length) {
+    sum += triangle[row + 1][col + 1];
+  }
+  
+  return sum;
+}
+
+// Beispielaufruf: Berechne die Summe der benachbarten Zahlen für das Element in der Zeile 2, Spalte 1
+let row = 2;
+let col = 1;
+let result = sumOfNeighbors(pascalTriangle, row, col);
+console.log("Summe der benachbarten Zahlen:", result);
+
+</script>
+</body>
+</html>
