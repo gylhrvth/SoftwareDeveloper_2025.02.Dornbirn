@@ -9,6 +9,19 @@
   <script src="../common.js" defer></script>
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="nosnippet">
+<style>
+  @keyframes task {
+    0%   { transform: translateX(0);}
+    50%  { transform: translateX(50%);}
+    100% { transform: translateX(0);}
+    
+  }
+  .specialTask{
+    color:hsl(300, 85%, 25%);
+    font-size: 1.8em;
+    animation: task 4s linear infinite;
+  }
+</style>
 </head>
 
 <body>
@@ -106,6 +119,54 @@
   <p>Erstelle eine Funktion <b>sortDESC(arr)</b>, die Werte absteigend sortiert. Verwende die sort() methode.</p>
   <h2>Eigene Sort Algorithmus</h2>
   <p>Erstelle eine Funktion <b>bubbleSort(arr)</b>, die Werte aufsteigend sortiert. Verwende die Logik des Bubble Sort.</p>
+  
+  <h2 class="specialTask">Spezialauftrag für Leonie: Pascal Dreieck</h2>
+  <p>
+    Erstelle ein 2D Array und fülle mit den Werten des Pascal Dreiecks
+  </p>
+  <p>
+    <img src="https://slideplayer.com/slide/5126253/16/images/12/This+is+Pascal%E2%80%99s+original+triangle..jpg" alt="Pascal Dreieck">
+  </p>
+  <p>Regeln von Pascal Dreieck:</p>
+  <ol>
+    <li>In der ersten Zeile sind alle Werte 1</li>
+    <li>In der ersten Spalte sind alle Werte 1</li>
+    <li>In alle anderen Zellen das Wert ist die Summe von Wert direkt darüber und direkt links davon</li>
+  </ol>
+
+  <h2>Bonusaufgabe: Game of Life</h2>
+  <div>
+    <img style="float: left; padding-right: 2em; padding-bottom: 2em;" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Animated_glider_emblem.gif" alt="">
+    <p>Das Game of Life (auch bekannt als Conways Spiel des Lebens) ist ein zellulärer Automat, der 1970 vom Mathematiker John Horton Conway entwickelt wurde. Es handelt sich nicht um ein klassisches Spiel mit Spielern, sondern um eine Simulation, bei der sich Zellen auf einem Gitter nach einfachen Regeln über Generationen hinweg entwickeln.</p>
+    <p>
+      Grundprinzip:
+    </p>
+    <ul>
+      <li>Das Spielfeld ist ein <b>zweidimensionales Raster</b> aus Zellen.</li>
+      <li>Jede Zelle ist entweder lebendig oder tot.</li>
+    </ul>
+      
+      
+    <p>In jedem Schritt (Generation) entscheidet sich der Zustand jeder Zelle anhand ihrer acht Nachbarn nach folgenden Regeln:</p>
+    <ul>
+      <li><b>Überleben:</b> Eine lebendige Zelle mit 2 oder 3 lebenden Nachbarn bleibt am Leben.</li>
+      <li><b>Tod durch Einsamkeit:</b> Eine lebendige Zelle mit weniger als 2 lebenden Nachbarn stirbt.</li>
+      <li><b>Tod durch Überbevölkerung:</b> Eine lebendige Zelle mit mehr als 3 lebenden Nachbarn stirbt.</li>
+      <li><b>Wiedergeburt:</b> Eine tote Zelle mit genau 3 lebenden Nachbarn wird lebendig.</li>
+    </ul>
+    
+    <p>
+      Trotz dieser einfachen Regeln entstehen oft komplexe, unerwartete und teils chaotische Muster. Das Game of Life ist ein klassisches Beispiel dafür, wie aus simplen Regeln emergente Komplexität entstehen kann.</p>
+    </p>
+  </div>
+  <div>
+    <p><b>Hinweise zu umsetzung:</b></p>
+    <ul>
+      <li>Suche eine sinnvolle Datenrepresentation! number, boolean, string, array?</li>
+      <li>Verwende Sandro's print* Funktionen zu ausdrucken die jeweilige Generation</li>
+      <li>Verwende ein Button zu generieren die nächste Generation</li>
+    </ul>
+  </div>
   
 
   <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
