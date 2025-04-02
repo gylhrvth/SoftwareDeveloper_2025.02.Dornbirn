@@ -1,0 +1,150 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>arrays 2D 02 - Random Numbers</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+
+        printH(1, "2-Dimensional Array with random number generation")
+        printHr();
+
+     
+
+        // ---------------- Global ------------------------------------------------
+
+
+
+        // ------------------ Functions --------------------------------------------
+
+        // Version 01 -> with spread [...] ---------------------------------------------
+
+        function create2D_arrayRandom(givenRows, givenCols){
+
+            let arr2d = []; // Creates an empty array (which will contain the rows)
+
+            //Outer loop: Iterate through rows
+            for(let row = 0; row < givenRows; ++row){ 
+                let valuesInRow = []; // Initialize the current row
+
+                //Inner loop: Iterate through columns
+                for(let col = 0; col < givenCols; ++col){ 
+                    //Generate a random number between 1 and 100 and add it to the curren row
+                    valuesInRow = [...valuesInRow, (Math.floor((Math.random()*100))+1)]
+                }
+                arr2d = [...arr2d, valuesInRow];
+           
+            }
+
+            return arr2d
+        }
+
+        // Version 02 -> with push() ------------------------------------------------
+
+        // Debugger verwenden um die Funktion Schritt für Schritt zu verstehen
+
+    /*  Explanation step by step:
+
+        Subsection "Calls": let rand2 = create2D_arrayRandom2(4, 6); -> calls the function and at the same time saves the returned value in the variable rand2 
+        Inside the function create2D_arrayRandom2(givenRows, givenCols):
+        let arr2d = [] creates an empty array, which will contain the rows (as many as givenRows value) that at the same time will contain the random values (as many as givenColumns value)
+        The outer loop iterates through row 0 to row 3. When row = 3, it stops, because the loop end condition is row < givenRows (3 < 4).
+        At this point we will have 4 rows (arr2d[0], arr2d[1], arr2d[2], arr2d[3])
+        At every iteration from the outer loop, 2 things happen: First, a new empty array is created inside of the array arr2d.
+        Second thing that happens, for every row iteration, an inner loop will be run, with a counter named col.
+        For example, when row = 0, arr2d.push([]) creates an empty array inside arr2d and this new array will be filled with random numbers (from 1 to 100) as long as col < givenCols;
+        In this example, the inner loop will stop when col = 5 (because col = 6 woulnd't be smaller than givenCols = 6)
+        For example, for row = 0, inner loop will iterate like that:
+        arr2d[row = 0][col = 0] will generate a random value placed at index 0 of row 0.
+        arr2d[row = 0][col = 1] will generate a random value placed at index 1 of row 0.
+        arr2d[row = 0][col = 2] will generate a random value placed at index 2 of row 0.
+        And so on until we reach arr2d[row = 0][col = 5].
+        At this point, our "row = 0" array inside arr2d, or arr2d[0], will have 6 random generated values inside.
+        For example arr2d[0] = [12, 52, 9, 13, 72, 44]
+        This will happen everytime the outer loop runs, from row = 0 until row = 3.
+        At the end we will have an array named arr2d, which will contain 4 arrays (arr2d[0], arr2d[1], arr2d[2], arr2d[3] )
+        Everyone of this "sub"-arrays will contain 6 random values. For example for arr2d[0] -> [ arr2d[0][0], arr2d[0][1], arr2d[0][2], arr2d[0][3], arr2d[0][4], arr2d[0][5] ],
+        In the end, the function create2D_arrayRandom2(givenRows, givenCols) will return an array named arr2d containing 4 rows, each with 6 random values inside (6 columns).
+
+        */
+
+
+        function create2D_arrayRandom2(givenRows, givenCols){
+            let arr2d = [] // Create empty array that contains the rows
+            for (let row = 0; row < givenRows; ++row){
+                arr2d.push([]) // Creates a new empty array for every row
+                for (let col = 0; col < givenCols; ++col){
+                    arr2d[row][col] = 1 + Math.floor(100 * Math.random()); //fills the empty rows with random values
+                }
+            }
+            return arr2d;
+        }
+
+        // Function to print the 2D array on the browser with Sandros Custom print() Function -------------------------------------------------------------------------------------------
+    
+    /*  Explanation step by step:
+        
+        Subsection "Calls": We have saved create2D_arrayRandom2(4, 6) into the variable rand2.
+        When we call the function print2Darray(arr) with rand2 as an argument (print2Darray(rand2)), the following happens:
+        The outer loop will iterate through i, starting from i = 0, as long as i < arr.length.
+        In this case, arr.length = rand2.length -> rand2 has 4 rows, so rand2.length = 4.
+        This means, the outer loop will run up to i = 3. The loop will run 4 times -> (0,1,2,3)
+        Fro every iteration of i, an inner loop with a starting counter of j=0 will start.
+        
+        The inner loop will run as long as j < rand2[i].
+        So at j = 5, rand2 index[i] will be [3] (the fourth row)
+        Example: When i = 0 (first row) and j = 0 (first value of row 0), the random number contained in rand2[0][0] will be printed on the browser.
+
+    */
+
+
+        
+        function print2Darray(arr){
+            for(let i = 0; i < arr.length; ++i){
+                for(let j = 0; j < arr[i].length; ++j){
+                    print(arr[i][j].toString().padStart(5, " "))
+                }
+                printLn()
+            }
+        }
+
+        //--------------------- Calls -------------------------
+        
+        let random01 = create2D_arrayRandom(6, 6);
+
+        let rand2 = create2D_arrayRandom2(4, 6);
+
+        // ------------------- Prints -------------------------
+
+        printH(3, "2-Dimensional Array with nested for-loop -> Printed as Fake 1-Dimensional")
+
+        print(random01)
+        console.log(random01);
+
+        printHr()
+
+        printH(3, "2-Dimensional Array with nested for-loop -> Printed as 2-Dimensional")
+
+        print2Darray(random01);
+
+        printHr()
+       
+        print2Darray(rand2);
+
+    </script>
+
+    
+</body>
+</html>

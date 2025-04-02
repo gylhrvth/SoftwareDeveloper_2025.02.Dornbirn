@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>arrays 2D 03 - Random Numbers</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // ------------------ Functions --------------------------------------------
+
+        function print2D_arrayRandom(givenRows, givenCols) {
+            let result = []; // Initialize the 2D array
+
+            // Outer loop: Iterate through rows
+            for (let row = 0; row < givenRows; row++) {
+                let elementValue = []; // Initialize the current row
+
+                // Inner loop: Iterate through columns
+                for (let col = 0; col < givenCols; col++) {
+                    // Generate a random number between 1 and 100 and add it to the current row
+                    elementValue.push(Math.floor(Math.random() * 100) + 1);
+                }
+
+                // Add the current row to the 2D array
+                result.push(elementValue);
+            }
+
+            // Print the 2D array
+            for (let row = 0; row < result.length; row++) {
+                for (let col = 0; col < result[row].length; col++) {
+                    print(result[row][col].toString().padStart(5, " "));
+                }
+                printLn(); // Print a new line after each row
+            }
+
+            return result; // Return the 2D array
+        }
+
+        //--------------------- Calls -------------------------
+
+        print2D_arrayRandom(10, 10); // Generate and print a 10x10 2D array
+        printHr();
+
+    </script>
+
+    
+</body>
+</html>
