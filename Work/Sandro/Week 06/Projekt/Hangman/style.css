@@ -6,7 +6,7 @@ body {
   height: 100vh;
   margin: 0;
   background: radial-gradient(circle, red, orange, yellow, green, blue, indigo, violet);
-  animation: rainbow-animation 0.9s infinite;
+  animation: rainbow-animation 19s infinite;
 }
 
 @keyframes rainbow-animation {

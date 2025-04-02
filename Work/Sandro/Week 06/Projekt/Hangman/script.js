@@ -34,7 +34,6 @@ function startGame() {
   // Display Container
   showContainer();
 
-
 }
 function showContainer() {
   const elements = ['.main-container', '.hangman-box', '.word-box', '.hint-box', '.info-box'];
