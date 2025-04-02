@@ -1,16 +1,50 @@
-const fruits = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'papaya', 'raspberry', 'strawberry', 'watermelon'];
-const cars = ['audi', 'bmw', 'ford', 'mercedes', 'toyota', 'volkswagen'];
-const animals = ['cat', 'dog', 'elephant', 'giraffe', 'lion', 'monkey', 'tiger', 'zebra'];
-const countries = ['austria', 'belgium', 'canada', 'denmark', 'finland', 'germany', 'hungary', 'ireland', 'japan', 'netherlands', 'norway', 'sweden'];
-const categorieName = [fruits, cars, animals, countries];
-const categories = ['Fruits', 'Cars', 'Animals', 'Countries'];
+
 let catNumb = 0;
 let word = '';
+let categorieName = '';
 let splitWord = [];
-let indexLetter = 0;
 let guess = '';
 let wrongGuesses = 0;
 let rightGuess = 0;
+
+const wordMatrix = [
+  ['Obst', 'Apfel'],
+  ['Obst', 'Banane'],
+  ['Obst', 'Zitrone'],
+  ['Obst', 'Kirsche'],
+  ['Obst', 'Erdbeere'],
+  ['Automarke', 'Audi'],
+  ['Automarke', 'BMW'],
+  ['Automarke', 'Mercedes'],
+  ['Automarke', 'Volkswagen'],
+  ['Automarke', 'Ford'],
+  ['Tier', 'Katze'],
+  ['Tier', 'Hund'],
+  ['Tier', 'Elefant'],
+  ['Tier', 'Löwe'],
+  ['Tier', 'Tiger'],
+  ['Land', 'Österreich'],
+  ['Land', 'Deutschland'],
+  ['Land', 'Frankreich'],
+  ['Land', 'Italien'],
+  ['Land', 'Spanien'],
+  ['Obst', 'Birne'],
+  ['Obst', 'Traube'],
+  ['Obst', 'Pfirsich'],
+  ['Obst', 'Melone'],
+  ['Automarke', 'Toyota'],
+  ['Automarke', 'Honda'],
+  ['Automarke', 'Nissan'],
+  ['Automarke', 'Chevrolet'],
+  ['Tier', 'Pferd'],
+  ['Tier', 'Schaf'],
+  ['Tier', 'Kuh'],
+  ['Tier', 'Hase'],
+  ['Land', 'Belgien'],
+  ['Land', 'Niederlande'],
+  ['Land', 'Schweden'],
+  ['Land', 'Norwegen'],
+]
 
 let score = JSON.parse(localStorage.getItem('Score'));
 
@@ -28,15 +62,13 @@ function startGame() {
   resetButtons();
   // Clear the word-box div
   resetWordBox();
-  // Select a random word
-  chooseCategory();
-  // Select a random word from the chosen category
+  // Select a random word and category
   selectRndWord();
   // Split the word into an array of letters
   splitingWord();
   // Display the selected word
   displayWord();
-  console.log(`Selected word: ${categories[catNumb]} - ${word}`);
+  console.log(`Selected word: ${categorieName} - ${word}`);
 
 }
 function resetGame() {
@@ -64,10 +96,6 @@ function resetGame() {
   // Reset category
 }
 
-function chooseCategory() {
-  catNumb = Math.floor(Math.random() * categorieName.length);
-}
-
 function checkGuess() {
   let correctGuess = false;
   wordList = document.getElementById('wordlist');
@@ -85,7 +113,7 @@ function checkGuess() {
     score.wins++;
     localStorage.setItem('Score', JSON.stringify(score));
     const feedback = document.getElementById('feedback');
-    feedback.textContent = `Congratulations! You won! The word was: ${word}`;
+    feedback.textContent = `Herzlichen Glückwunsch! Das Wort war: ${word}`;
     setTimeout(() => {
       resetGame();
     }
@@ -109,7 +137,7 @@ function wrongGuess() {
   }
   if (wrongGuesses === 3) {
     const hint = document.getElementById('hint-text');
-    hint.textContent = `This is a ${categories[catNumb]}`;
+    hint.textContent = `Die Kategorie: ${categorieName}`;
   }
   if (wrongGuesses === 6) {
     score.losses++;
@@ -117,7 +145,7 @@ function wrongGuess() {
     const hangmanImage = document.getElementById('hangman-image');
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
     const feedback = document.getElementById('feedback');
-    feedback.textContent = `Game over: You lost! The word was: ${word}`;
+    feedback.textContent = `Game over: Du hast verloren! Das Wort war: ${word}`;
 
     setTimeout(() => {
       resetGame();
@@ -150,12 +178,12 @@ function displayWord() {
 }
 
 function selectRndWord() {
-  // Wähle das Array basierend auf catNumb
-  const selectedCategory = categorieName[catNumb];
-
   // Wähle ein zufälliges Wort aus dem ausgewählten Array
-  let rndNmbr = Math.floor(Math.random() * selectedCategory.length);
-  word = selectedCategory[rndNmbr];
+  let rndNmbr = Math.floor(Math.random() * wordMatrix.length);
+  word = wordMatrix[rndNmbr][1];
+  categorieName = wordMatrix[rndNmbr][0];
+
+
   return word;
 }
 
@@ -174,8 +202,10 @@ function handleKeyPress(letter) {
 
   // Überprüfen, ob <li>-Elemente in der wordlist vorhanden sind
   if (!wordList || wordList.children.length === 0) {
-    //console.log('No <li> elements found in wordlist');
     return; // Beende die Funktion, wenn keine <li>-Elemente vorhanden sind
+  }
+  if (feedback.textContent !== '') {
+    return; // Beende die Funktion, wenn bereits ein Feedback angezeigt wird
   }
   console.log("Guess = " + guess);
   const button = document.querySelector(`button[onclick="handleKeyPress('${letter}')"]`);
