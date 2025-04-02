@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nach Position Max</title>
+    <link rel="stylesheet" href="../../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+</body>
+    <script>
+        // Erstelle eine Funktion minValueIndex(arr), die der Index des kleinsten Wert aus dem Array zurückgibt. Löse das Problem mit for schleife und mit forEach
+
+        printH(1, "👉Suche nach Position (max)");
+
+        let numbArr = [13, 2, 1, 15, 5, 7, 21, 6];
+
+        printH(3, "for Methode");
+        
+
+        function maxValueIndex(array){
+            let max = array[0]
+            let maxIndex = 0;
+
+            for(let i = 1; i < array.length; i++){
+                if(array[i] > max) {
+                    max = array[i];
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+
+        print("The array is: " + numbArr);
+        printLn();
+        print("The maximum number Index: " + maxValueIndex(numbArr));
+
+        printHr();
+
+        printH(3, "forEach Methode");
+
+        print("The array is: " + numbArr);
+        printLn();
+        print("The maximum number Index: " + getMaxValueIndexForEach(numbArr));
+    
+
+
+        function getMaxValueIndexForEach(arr){
+            let max = arr[0] 
+            let maxIndex = 0; // Track the index of the smallest element
+        arr.forEach((i, index) => {
+            if (i > max){
+                max = i;
+                maxIndex = index; // Update index of the smallest value
+
+            }
+        })
+        return maxIndex
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</html>

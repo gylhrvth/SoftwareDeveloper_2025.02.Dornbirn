@@ -23,7 +23,7 @@ const hints = {
 };
 
 // Startet das Spiel, wenn der "Start Game"-Button geklickt wird
-document.getElementById("start-game").addEventListener("click", startGame);
+
 
 function startGame() {
     resetButtons();

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einfaches Array</title>
+    <link rel="stylesheet" href="../../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+
+    <script>
+
+        // Erstelle eine Funktion mit einem Parameter size erstelle eine neue Array mit der Größe und fülle mit 1, 2, 3, ... bis zu size. Gebe als Ergebnis das Array zurück.
+
+        printH(1,"👉Einfaches Array")
+        printH(3,"Push Methode")
+
+        print(createArray(5));
+
+        function createArray(size){
+
+            let arrayInputSize = [];
+
+            for(let i = 0; i < size; i++){
+                arrayInputSize.push(i);
+            }
+
+            return arrayInputSize;
+
+        }
+
+        printLn();
+
+        printHr();
+
+        // Funktion Methode ohne .push():
+
+        printH(3,"Ohne Push Methode")
+
+        print(showInputSize(5));
+        
+            function showInputSize(size) {
+                let arrayInputSize = []; 
+
+                for (let i = 0; i < size; i++) {
+                    arrayInputSize[i] = i; 
+
+            }
+        return arrayInputSize; 
+
+        }
+
+    </script>
+    
+</body>
+</html>
