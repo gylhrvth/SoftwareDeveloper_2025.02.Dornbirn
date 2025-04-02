@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>absteigend Sortieren</title>
+    <link rel="stylesheet" href="../../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+</body>
+    <script>
+        printH(1, "👉Suche nach Position (max)");
+
+        let numbArr = [13, 2, 1, 15, 5, 7, 21, 6];
+
+        function sortDESC(arr){
+
+            arr.sort(function(a,b) {
+                return b - a; // Absteigend sortieren
+            });
+
+            return arr; // Explicitly return the sorted array
+
+        }
+
+        print("The array is: " + numbArr);
+
+        printLn();
+
+        print("Die Absteigende Arrays folgen so: " + sortDESC(numbArr));
+
+    </script>
+</html>

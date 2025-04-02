@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Suche</title>
+    <link rel="stylesheet" href="../../../../Week 04/JavaScript/mainstyle.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+</body>
+    <script>
+            //Erstelle eine Funktion maxValue(arr), die das größte Wert aus dem Array zurückgibt. Löse das Problem mit for schleife und mit forEach
+        
+    printH(1, "👉Maximum Suche");
+
+    // mit for Schleife ---
+
+    printH(3, "Maximum Suche mit for loop");
+
+    let numbArr = [1, 13, 2, 15, 5, 7, 21, 6];
+
+    function maxValue(array){
+        let max = numbArr[0];
+        for(let i = 1; i < array.length; i++){
+            if(array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+
+    print("The array is: " + numbArr);
+    printLn();
+    print("The maximum number is: " + maxValue(numbArr));
+
+
+    // mit forEach ---
+
+    printH(3, "Maximum Suche mit forEach");
+
+    let numbArr02 = [1, 13, 2, 15, 5, 7, 21, 6];
+
+    function maxValueForEach(arr){
+
+    if (arr.length === 0){ // Handle empty array case
+        return null;
+    }
+
+    let max = arr[0]; // Start with the first element
+
+    arr.forEach(i => {
+        if(i > max){
+            max = i; // Update if a smaller number is found
+        }
+    });
+        return max; // Return the smallest number
+    }
+
+    print("The array is: " + numbArr02);
+    printLn();
+    print("The maximum number is: " + maxValueForEach(numbArr02));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</html>
