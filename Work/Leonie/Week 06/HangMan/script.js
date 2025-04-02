@@ -96,6 +96,18 @@ function resetGame() {
   // Reset category
 }
 
+function playAgain() {
+  // Verstecke das Popup
+  const popup = document.querySelector('.popup');
+  if (popup) {
+    popup.style.display = 'none'; // Setze das Display auf 'none'
+  }
+
+  // Reset all disabled buttons
+  resetGame();
+  startGame();
+}
+
 function checkGuess() {
   let correctGuess = false;
   wordList = document.getElementById('wordlist');
@@ -112,12 +124,14 @@ function checkGuess() {
   if (rightGuess === splitWord.length) {
     score.wins++;
     localStorage.setItem('Score', JSON.stringify(score));
+    // Zeige das Popup
+    const popup = document.querySelector('.popup');
+    if (popup) {
+      popup.style.display = 'block'; // Setze das Display auf 'block'
+    }
     const feedback = document.getElementById('feedback');
     feedback.textContent = `Herzlichen Glückwunsch! Das Wort war: ${word}`;
-    setTimeout(() => {
-      resetGame();
-    }
-      , 4000);
+
   }
 }
 
@@ -144,13 +158,13 @@ function wrongGuess() {
     localStorage.setItem('Score', JSON.stringify(score));
     const hangmanImage = document.getElementById('hangman-image');
     hangmanImage.src = `../../Week 05/JavaScript/Projekt/img/hangman-${wrongGuesses}.svg`;
+    // Zeige das Popup
+    const popup = document.querySelector('.popup');
+    if (popup) {
+      popup.style.display = 'block'; // Setze das Display auf 'block'
+    }
     const feedback = document.getElementById('feedback');
     feedback.textContent = `Game over: Du hast verloren! Das Wort war: ${word}`;
-
-    setTimeout(() => {
-      resetGame();
-    }
-      , 4000);
   }
 }
 
@@ -203,9 +217,6 @@ function handleKeyPress(letter) {
   // Überprüfen, ob <li>-Elemente in der wordlist vorhanden sind
   if (!wordList || wordList.children.length === 0) {
     return; // Beende die Funktion, wenn keine <li>-Elemente vorhanden sind
-  }
-  if (feedback.textContent !== '') {
-    return; // Beende die Funktion, wenn bereits ein Feedback angezeigt wird
   }
   console.log("Guess = " + guess);
   const button = document.querySelector(`button[onclick="handleKeyPress('${letter}')"]`);
