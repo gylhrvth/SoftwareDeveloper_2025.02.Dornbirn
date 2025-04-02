@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>arrays 2D 03 - Random Numbers</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+
+function createRandom2dArray(rows, cols){
+    let result = []
+    for (let row = 0; row < rows; ++row){
+        let values = []
+        for (let col = 0; col < cols; ++col){
+            values = [...values, 1 + Math.floor(100 * Math.random())]
+        }
+        result = [...result, values]
+    }
+    return result
+}
+
+//---function to display the arrays in 2D---------------------------------------
+
+function print2DArray(arr){
+    for (let i = 0; i < arr.length; ++i){
+        for (let j = 0; j < arr[i].length; ++j){
+            print(arr[i][j].toString().padStart(3, " "))
+        }
+        printLn()
+    }
+}
+
+//--call and print function------------------------------------------------
+
+    let rand2d = createRandom2dArray(4, 6)
+
+    printH(1, "Random 2D Array");
+    console.log(rand2d)
+    printH(3, "Arrays printed in 1D")
+    print(rand2d)
+    printHr()
+    printH(3, "Arrays printed in 2D")
+    print2DArray(rand2d)
+
+    </script>
+
+    
+</body>
+</html>
