@@ -74,6 +74,12 @@ function printHr() {
     document.body.appendChild(hr);
 }
 
+function clearScreen(){
+    document.querySelectorAll('body > span, body > br, body > hr').forEach(e => {
+        document.body.removeChild(e)
+    })
+}
+
 document.querySelector('button.toTheTop')?.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
