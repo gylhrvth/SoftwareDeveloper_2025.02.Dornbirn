@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Date - Beispiel01</title>
+</head>
+<body>
+
+    <script>
+
+        printH(1, "Date Übungen")
+        printHr()
+
+        printH(3, "Berechnung des nächsten Monats")
+
+        // Berechne das Datum für den nächsten Monat (wenn heute der 3. April 2025 ist, gib den 3. Mai 2025 zurück).
+
+        const jetzt = new Date();
+        printLn("Datum orginal = "+jetzt)
+
+
+        let monat = jetzt.getMonth()
+        let correctedMonat = monat+1
+        print("Aktueller Monat (mit +1 Korrektion): " + correctedMonat)
+        printLn()
+        jetzt.setMonth(jetzt.getMonth() + 1);
+        print("Nächster Monat (ohne +1 Korrektion): " + jetzt.getMonth())
+        printLn()
+        print("Nächster Monat: " + (correctedMonat + 1))
+
+
+
+        printH(3, "Date mit User Input erstellen:")
+
+        let year = 2023;
+        let month = 3;
+        let day = 7;
+
+        const datum = new Date(year,month,day);
+        printLn("User Input Date =" + datum)
+
+
+
+
+
+
+    </script>
+    
+    
+</body>
+</html>

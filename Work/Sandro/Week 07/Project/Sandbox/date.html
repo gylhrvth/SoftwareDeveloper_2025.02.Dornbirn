@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Sandbox</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <script src="../../../lib.js"></script>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  printH(1, "Date Sandbox")
+  let date = new Date()
+  printLn("New Date Object ohne Parameter")
+  printLn("Date: " + date.toString())
+  printHr();
+  date = new Date(2023, 0, 15)
+  printLn("New Date Object mit Parameter für Jahr, Monat, Tag")
+  printLn("Date: " + date.toString())
+  printHr();
+  printLn("Getter")
+  printLn("Get Day");
+  let day = date.getDay();
+  printLn("Welcher Wochentag ist es: " + day + " steht für Sonntag");
+  printLn("Get Month");
+  let month = date.getMonth();
+  printLn("Welcher Monat ist es: " + month + " steht für Januar");
+  printLn("Get Year");
+  let year = date.getFullYear();
+  printLn("Welches Jahr ist es: " + year);
+  printLn("Get Date");
+  let date2 = date.getDate();
+  printLn("Welches Datum ist es: " + date2 + " steht für den 15.");
+  printHr();
+
+  let today = new Date();
+  printLn("Welcher Tag ist heute?");
+  printLn("Date: " + today.toString());
+
+  let yesterday = new Date();
+  //minus 1 zu getDate abziehen um einen Tag zurück zu gehen
+  yesterday.setDate(today.getDate() - 1);
+  printLn("Welcher Tag war gestern?");
+  printLn("Date: " + yesterday.toString());
+
+  let tomorrow = new Date();
+  //plus 1 zu getDate addieren um einen Tag weiter zu gehen
+  tomorrow.setDate(today.getDate() + 1);
+  printLn("Welcher Tag wird morgen sein?");
+  printLn("Date: " + tomorrow.toString());
+
+  printHr();
+  printLn("Wie viele Tage hat der aktuelle Monat?");
+
+  let currentMonth = today.getMonth();  // Abfrage welcher Monat ist
+  let currentYear = today.getFullYear(); // Abfrage welches Jahr ist
+  let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  printLn("Der aktuelle Monat hat " + daysInMonth + " Tage.");
+  printLn(`
+Heute ist der 3. April 2025:
+currentMonth = 3 (April, da 0-basiert gezählt wird).
+currentYear = 2025.
+new Date(2025, 3+1, 0) erzeugt den 30. April 2025, weil wir einen Monat nach vorne springen und mit der Eingabe von Null (da es nicht den Nullten Tag gibt, automaisch in den letzten Tag des vorherigen Monats gehen.) Also wird erst der 0.Mai erzeugt und da es diesen Tag nicht gibt, rechnet JS das für uns um.
+ `);
+
+  printHr();
+  printBr(3);
+  printLn("Setter")
+  let date3 = new Date(2023, 0, 15)
+  printLn("Date 2023,0,15: " + date3.toString())
+  date3.setDate(20);
+  printLn("Date after setDate20: " + date3.toString());
+  date3.setDate(date3.getDate() + 5);
+  printLn("Date after setDate (getDate+ 5): " + date3.toString());
+
+
+  printBr(3);
+
+  printLn("Date Format")
+  let date4 = new Date(2023, 0, 15)
+  printLn("Date with toString: " + date4.toString())
+  printLn("Date with toDateString: " + date4.toDateString())
+  printLn("Date with toUTCString: " + date4.toUTCString())
+  printLn("Date with toLocaleString Deutsch: " + date4.toLocaleString())
+  printLn("Date with toLocaleString Englisch: " + date4.toLocaleString("en-US"))
+  printLn("Date with toLocaleDateString: " + date4.toLocaleDateString())
+
+
+</script>
+
+</html>
