@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <title>Date Methods</title>
+</head>
+<body>
+    <script>
+        printH(1, "JavaScript Date Methods")
+        printHr()
+        printH(2, "Get Methods")
+
+        let today = new Date();
+        let dayOfMonth = today.getDate();
+        let dayOfWeek = today.getDay();
+        let currentHour = today.getHours();
+        let currentMinutes = today.getMinutes();
+        
+        
+        
+        
+        
+        printLn("New Data Object: " + today);
+        printLn("Tag des Monats: " + dayOfMonth); // den aktuellen Tag des Monats abrufen
+        printLn("Wochentag: " + dayOfWeek); // den Wochentag abrufen
+        printLn("Aktuelle Stunde: " + currentHour); // Holt die aktuelle Stunde (0–23)
+        printLn("Aktuelle Minute: " + currentMinutes); // Holt die aktuellen Minuten (0–59)
+        printHr();
+
+        // Manipulieren von Datum & Uhrzeit -------------------------------------
+
+        printH(2, "Manipulieren von Datum und Uhrzeit")
+        
+        today.setDate(today.getDate() + 5);
+        let newDayOfMonth = today.getDate();
+        let newDayOfWeek = (today.getDate)
+        let newCurrentHour = (today.getHours() + 2);
+        let newCurrentMinutes = (today.getMinutes() + 30);
+
+        printLn("New Date Object (5 Tage später): " + today);
+        printLn("Neuer Tag des Monats (5 Tage später): " + newDayOfMonth);
+        printLn("Neue Stunde (2 Stunden später): " + newCurrentHour);
+        printLn("Neue Minute (30 Minuten später): " + newCurrentMinutes);
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
