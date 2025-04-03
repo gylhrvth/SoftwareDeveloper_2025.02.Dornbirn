@@ -38,6 +38,7 @@ body {
     color: var(--primary-color);
     margin: 2rem 2rem 0rem 2rem;
     font-size: 2em;
+    width: 80%;
 }
 
 code {
