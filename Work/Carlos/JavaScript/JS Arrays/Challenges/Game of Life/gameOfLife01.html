@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <title>Game of Life v.01</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <script>
+
+        // Functions -----------------------------------------------------
+
+
+    function createRandomGrid(rows, cols){
+        let randomGrid = [] // Create empty array that contains the rows
+        for (let row = 0; row < rows; ++row){
+            randomGrid.push([]) // Creates a new empty array for every row
+            for (let col = 0; col < cols; ++col){
+                randomGrid[row][col] = Math.floor(Math.random() * 2); //fills the empty rows with either 0 or 1
+            }
+        }
+        return randomGrid
+    }
+
+    //-------------------------------------------------------------------
+
+    //function print2Darray
+
+    function print2Darray(arr){
+            clearScreen()
+            for(let i = 0; i < arr.length; ++i){
+                for(let j = 0; j < arr[i].length; ++j){
+                    if(arr[i][j] === 0){
+                    print(" ⬜️")
+                } else print (" 🦠");
+
+                }
+                printLn()
+            }
+        }
+
+    //-----------------------------------------------------------------
+
+    // function nextGen()
+
+    function nextGen(arr){
+        let newGen = []
+        for(let i = 0; i < arr.length; ++i){
+            newGen[i] = []
+            for(let j = 0; j < arr[i].length; ++j){
+                const cnt = countLivingNeighbors(arr, i, j)
+                if (arr[i][j] == 1){ // Cell is living
+                    if (cnt >= 2 && cnt <= 3){
+                        newGen[i][j] = 1
+                    } else {
+                        newGen[i][j] = 0
+                    }
+                } else { // cell is dead
+                    if (cnt == 3){
+                        newGen[i][j] = 1
+                    } else {
+                        newGen[i][j] = 0
+                    }
+                }
+            }
+        }
+        return newGen
+    }
+
+    function countLivingNeighbors(grid, i, j){
+        let count = 0;
+        for (let newI = i -1; newI <= i + 1; ++newI){
+            for (let newJ = j - 1; newJ <= j + 1; ++newJ){
+                if (newI >= 0 && newI < grid.length && newJ >= 0 && newJ < grid[i].length){ // check wall outside
+                    if (i != newI || j != newJ) { // don't count the cell self
+                        if (grid[newI][newJ] == 1){
+                            ++count
+                        }
+                    }
+                }
+            }
+        }
+        return count
+    }
+
+
+
+    // Print Functions & Function Calls ----------------------------
+        
+        printH(1, "Game of Life")
+        
+        let grid01 = createRandomGrid(25, 25);
+
+        print(createRandomGrid(grid01))
+
+        print2Darray(grid01);
+
+        setInterval(() => {
+            grid01 = nextGen(grid01)
+            print2Darray(grid01)
+        }, 200)
+
+        printLn()
+        
+
+        // ------------------------------------------------------------
+        
+
+        //------ Code Flowchart ---------------------------------------
+
+        /*
+
+        START
+        │
+        ▼
+        Create a 2D grid with random 0s (dead) and 1s (alive)
+        (Function: createRandomGrid)
+        │
+        ▼
+        Print the grid using emojis ⬜ (dead) and 🦠 (alive)
+        (Function: print2Darray)
+        │
+        ▼
+        LOOP: Every 200ms, update the grid  
+        (Function: setInterval)
+        │
+        ▼
+        Generate the next state of the grid  
+        (Function: nextGen)
+        │
+        ├──► Count neighbors for each cell (Function: countLivingNeighbors)
+        │ ├── If cell is alive (1):  
+        │ │   ├── 2 or 3 neighbors → Stay alive  
+        │ │   ├── Otherwise → Die (0)  
+        │ │
+        │ ├── If cell is dead (0):  
+        │ │   ├── Exactly 3 neighbors → Become alive (1)
+        │ │   ├── Otherwise → Stay dead (0)
+        │
+        ▼
+        Print new grid  
+        (Function: print2Darray)
+        │
+        ├──► Repeat LOOP (Step 4)
+        │
+        ▼
+        END (when stopped manually)
+
+        */
+        
+       
+    </script>
+    
+</body>
+</html>
