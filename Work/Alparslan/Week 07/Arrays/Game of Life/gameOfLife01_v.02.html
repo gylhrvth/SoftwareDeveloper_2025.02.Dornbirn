@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <title>Game of Life 01_v.02</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            height: 100vh;
+        }
+
+        #output-container {
+            margin-bottom: 20px;
+            white-space: pre; /* Preserve spacing for grid display */
+        }
+
+        #next-gen-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #next-gen-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Game of Life</h1>
+    <div id="output-container"></div>
+    <button id="next-gen-btn">Start Simulation</button>
+
+    <script>
+
+        // Functions -----------------------------------------------------
+
+        function createRandomGrid(rows, cols) {
+            let randomGrid = []; // Create empty array that contains the rows
+            for (let row = 0; row < rows; ++row) {
+                randomGrid.push([]); // Creates a new empty array for every row
+                for (let col = 0; col < cols; ++col) {
+                    randomGrid[row][col] = Math.floor(Math.random() * 2); // Fills the empty rows with either 0 or 1
+                }
+            }
+            return randomGrid;
+        }
+
+        function clear() {
+            const outputContainer = document.getElementById("output-container");
+            outputContainer.innerHTML = ""; // Clear the output container
+        }
+
+        function print2Darray(arr) {
+            clear(); // Clear the previous grid
+
+            const outputContainer = document.getElementById("output-container");
+            let gridHTML = ""; // Use a string to build the grid
+
+            for (let i = 0; i < arr.length; ++i) {
+                for (let j = 0; j < arr[i].length; ++j) {
+                    gridHTML += arr[i][j] === 0 ? " ⬜️" : " 🦠";
+                }
+                gridHTML += "\n"; // Add a newline after each row
+            }
+
+            outputContainer.textContent = gridHTML; // Set the grid as text content
+        }
+
+        function nextGen(arr) {
+            let nextGrid = [];
+
+            for (let i = 0; i < arr.length; ++i) {
+                nextGrid.push([]);
+
+                for (let j = 0; j < arr[i].length; ++j) {
+                    let countLiving = 0;
+
+                    // Check all 8 neighbors
+                    for (let dx = -1; dx <= 1; ++dx) {
+                        for (let dy = -1; dy <= 1; ++dy) {
+                            if (dx === 0 && dy === 0) continue; // Skip the current cell
+
+                            let newRow = i + dx;
+                            let newCol = j + dy;
+
+                            // Check if the neighbor is within bounds
+                            if (newRow >= 0 && newRow < arr.length && newCol >= 0 && newCol < arr[i].length) {
+                                if (arr[newRow][newCol] === 1) {
+                                    countLiving++;
+                                }
+                            }
+                        }
+                    }
+
+                    // Apply the Game of Life rules
+                    if (arr[i][j] === 1) { // If the cell is alive
+                        nextGrid[i][j] = (countLiving < 2 || countLiving > 3) ? 0 : 1;
+                    } else { // If the cell is dead
+                        nextGrid[i][j] = (countLiving === 3) ? 1 : 0;
+                    }
+                }
+            }
+
+            return nextGrid;
+        }
+
+        // Global Variables
+        let grid = createRandomGrid(25, 25); // Initial grid
+        let simulationInterval = null; // Variable to store the interval ID
+
+        // Initial Render
+        print2Darray(grid);
+
+        // Event Listener for Button
+        document.getElementById("next-gen-btn").addEventListener("click", () => {
+            if (simulationInterval === null) {
+                // Start the simulation
+                simulationInterval = setInterval(() => {
+                    grid = nextGen(grid); // Generate the next generation
+                    print2Darray(grid); // Re-render the grid
+                }, 500); // Update every half second
+                document.getElementById("next-gen-btn").textContent = "Stop Simulation";
+            } else {
+                // Stop the simulation
+                clearInterval(simulationInterval);
+                simulationInterval = null;
+                document.getElementById("next-gen-btn").textContent = "Start Simulation";
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

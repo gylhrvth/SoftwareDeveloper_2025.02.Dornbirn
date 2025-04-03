@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>arrays 2D 01</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+
+        printH(1, "2-Dimensional Arrays")
+        printHr();
+
+        printH(3, "2-Dimensional Array with nested for-loop")
+
+        // ---------------- Global ------------------------------------------------
+
+        let arr2D = [
+            [1, 2, 3, 4, 5], // Item 01: length 1 / row at index 0
+            [6, 7, 8, 9, 10], // Item 02: length 2 / row at index 1
+            [11, 12, 13, 14, 15] // Item 03: length 3 / row at index 02
+        ];
+
+        // ------------------ Functions --------------------------------------------
+/**
+    Outer loop:
+    arr will later use the values of variable arr2D
+    arr2D has three "items" inside the array, so length will be 1,2,3
+    At length 1, row = 0 / At length 2, row =1 / At length 3, row = 2 / Loop stops (row cannot be bigger than length)
+
+    Inner loop:
+    Every item from arr2D is an array containing 5 elements.
+    variable "col" will start from zero and itinerate through every element from arr[row]
+    arr[row] means: from the main array (arr2D, which has three "rows"), cycle through the elements of row with index 0, then through row with index 1, then through row with index 2.
+    For arr[0], the inner for loop will cicle through [1,2,3,4,5]
+    For arr[1], the inner for loop will cicle through [6,7,8,9,10]
+    For arr[2], the inner for loop will cicle through [11,12,13,14,15]
+ */
+        function print2D_array(arr){
+            for(let row = 0; row < arr.length; row++){ // cicles through every row (at index 0, 1, 2)
+                for(let col = 0; col < arr[row].length; col++){ // cicles through every "column" (at index 0, 1, 2, 3, 4)
+                    print(arr[row][col].toString().padStart(5, " "));
+                }
+                printLn();
+            }
+        }
+
+        //--------------------- Calls -------------------------
+        
+        print2D_array(arr2D);
+        printHr()
+
+
+    </script>
+
+    
+</body>
+</html>

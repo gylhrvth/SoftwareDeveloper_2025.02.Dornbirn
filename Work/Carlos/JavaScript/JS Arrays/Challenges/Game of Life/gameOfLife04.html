@@ -13,21 +13,6 @@
             text-align: center;
         }
 
-        #start-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        #start-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
     </style>
 
 </head>
@@ -147,7 +132,7 @@
         
   
    
-    let randomGrid = createRandomGrid(20, 20);
+    let randomGrid = createRandomGrid(25, 25); // createRandomGrid is called once // randomGrid just stores the values of this function call. (which happens just once)
     let printGrid = print2Darray(randomGrid);
 
     setInterval(function() {
@@ -200,6 +185,46 @@
     END (when stopped manually)
 
     */
+
+
+    // Update process explanation:
+
+    /*
+    So first we have randomGrid. Than nextGen is called in setInterval. nextGen uses randomGrids values.  
+    This creates a newGen Grid which is then passed to randomGrid, so that randomGrid is updated. Then nextGen is called again. This is a cycle.
+        
+        The code avoids calling `createRandomGrid(20, 20)` more than once because it is only called **once** during the initialization phase, and its result is stored in the `randomGrid` variable. After that, the `randomGrid` variable is updated exclusively by the `nextGen` function inside the `setInterval`. Here's how this works step by step:
+
+---
+
+### 1. **`createRandomGrid` is Called Once**:
+```javascript
+let randomGrid = createRandomGrid(20, 20);
+```
+- This line creates the initial 20x20 grid with random values (`0` for dead cells and `1` for alive cells).
+- The result is stored in the `randomGrid` variable.
+- After this, `createRandomGrid` is **never called again** in the code.
+
+---
+
+### Summary:
+- The code avoids calling `createRandomGrid` more than once by:
+  1. Calling it only during initialization.
+  2. Using `nextGen` to update the grid during the simulation.
+- This ensures that the simulation progresses smoothly without resetting the grid.
+
+
+        ---
+
+        ### Summary:
+        - The `newGen` array is a temporary array used to store the updated state of the grid.
+        - It is created and populated inside the `nextGen` function based on the rules of the Game of Life.
+        - After processing all cells, `newGen` is returned and replaces the old grid (`randomGrid`).
+        - This process repeats continuously, creating the simulation.
+
+        ---
+
+            */
         
         
        

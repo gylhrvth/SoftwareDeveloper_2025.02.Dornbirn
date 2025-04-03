@@ -36,11 +36,33 @@
             return arr;
         }
 
+        // Sandros Version -------------------------------------------------------
+
+        function randomBubbleSort(arr) {
+            let l = arr.length;
+
+            for (let i = 0; i < l - 1; i++) {
+                for (let j = 0; j < l - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        // Swap elements using a temporary variable
+                        let temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
         print("The array is: " + numberArr);
 
         printLn();
 
-        print("The sorted ascending array is: " + bubbleSort(numberArr));
+        print("The sorted ascending array with bubble (v.01) is: " + bubbleSort(numberArr));
+
+        printLn();
+
+        print("The sorted ascending array with bubble (v.02) is: " + randomBubbleSort(numberArr));
 
     </script>
     
