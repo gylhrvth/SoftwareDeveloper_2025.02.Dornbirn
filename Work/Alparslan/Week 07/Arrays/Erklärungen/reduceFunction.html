@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>reduce Function</title>
+</head>
+<body>
+
+    <script>
+
+    // Functions ---------------------------------------------
+    
+    // Sum of Array Elements
+     
+    let numbersPlus = [1, 2, 3, 4, 5];
+
+    let sum = numbersPlus.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+    }, 0); // Initial value of accumulator is 0
+
+    console.log("Sum:" + sum); // Output: Sum: 15
+
+  
+
+
+    // Product of Array Elements
+
+    let numbersMult = [1, 2, 3, 4, 5];
+
+    let mult = numbersMult.reduce((totalMult, currentNumber) => {
+        return totalMult * currentNumber;
+    }, 1); // Initial value of totalMult is 1
+
+    console.log("Mult:" + mult);
+
+ 
+
+    // Find the Maximum Value
+
+    let numberArray = [12, 45, 20, 11, 49, 36, 32, 43]
+
+    //accumulator keeps track of the maximum number found so far
+    //currentValue is the current element being processed in the array
+
+
+    // The reduce function iterates over each element of the array.
+    // It starts from the second element, since the first element is used as the initial value
+
+    let maxVal = numberArray.reduce((accumulator, currentValue) => {
+        
+        // The return expression is a shorthand for an if-else statement.
+        // It evaluates a condition if(currentValue > accumulator)
+        // If condition true: If currentValue>accumulator, return currentValue ( ? symbol). 
+        // The currentValue becomes the new accumulator
+        // If condition false: Else return accumulator ( : symbol).
+        // The accumulator remains unchanged.
+
+        return currentValue > accumulator ? currentValue : accumulator;
+     }, numberArray[0]); //// Initial value of accumulator is the first element, which is 12
+    
+     console.log("maxVal: " + maxVal);
+
+
+    // Reverse a String
+
+    let str = "hello";
+
+    // The split("") method converts the string into an array of characters
+    // ["h", "e", "l", "l", "o"]
+    // accumulator keeps track of the reversed string so far
+    // currentValue is the current character being processed in the array
+
+    // The initial value of the accumulator is an empty string ("")
+    // Itineration1 -> Accumulator: "", CurrentValue: h / Updated accumulator: "h"
+    // Iteration 2 ->  Accumulator: h, CurrentValue: e / Updated accumulator: "e + h"
+    // Iteration 3 ->  Accumulator: eh, CurrentValue: l / Updated accumulator: "l + eh"
+    // Iteration 4 -> Accumulator: leh, CurrentValue: l / Updated accumulator: "l" + "leh"
+    // Iteration 5 -> Accumulator: lleh, CurrentValue: o / Updated accumulator: "o" + "lleh" = "olleh"
+    // Reversed String -> olleh
+       
+    let reversed = str.split("").reduce((accumulator, currentValue) => {
+        return currentValue + accumulator;
+    }, ""); // Initial value of accumulator is an empty string
+
+    console.log("Original String:", str);
+    console.log("Reversed String:", reversed); // Output: Reversed String: olleh
+
+    // Function Calls ----------------
+
+    printLn(sum);
+
+    printLn(mult);
+
+    printLn(maxVal);
+
+    printLn(reversed);
+    
+
+    </script>
+
+    
+</body>
+</html>

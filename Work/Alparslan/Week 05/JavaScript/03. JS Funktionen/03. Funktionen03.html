@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Funktionen 03</title>
+</head>
+
+<body>
+
+    <a href="http://127.0.0.1:5500/Kurs/02_JavaScript/Aufgaben/schleifen.html">Link</a>
+    <br>
+    <br>
+    
+</body>
+
+<script>
+    
+    printHr();
+
+
+    let letter = "A";
+    let num = 5;
+
+    printSquare(letter, num);
+
+    function printSquare(text, size){
+        for(let i = 0; i < size; i++){
+            print("i"+i+"_");
+            for(let j = 0; j < size; j++){
+                print("j"+j+"_");
+            }
+            printLn("");
+           
+        }
+    }
+
+    printHr();
+
+    let wort = "Hola";
+    let länge = 3;
+    let breite = 10;
+
+    printRectangle(wort,länge,breite);
+
+    function printRectangle(word, width, heigth){
+        for(let i = 0; i < width; i++){
+            
+            for( j = 0; j< heigth; j++){
+                print(word);
+            }
+            printLn("");
+        }
+
+    }
+
+
+
+
+
+</script>
+
+</html>
