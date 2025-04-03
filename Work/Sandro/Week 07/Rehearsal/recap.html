@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recap Week 07</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../lib.js"></script>
 </head>
 
 <body>
@@ -13,14 +15,56 @@
 </body>
 
 <script>
+  printH(1, "Recap Week 07");
+  printH(3, "Arrays und Bubblesort");
   // Array
-  // 2D Array
-  // Bubblesort
+  let arr = [];
 
-  // functions
-  // forEach
-  // Map
-  // Filter
+  for (let i = 0; i < 10; i++) {
+    arr.push(Math.floor(Math.random() * 100));
+  }
+  printLn(arr);
+
+  // Bubblesort
+  function bubbleSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+          // Swap arr[j] and arr[j+1]
+          let temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+          printProgression(arr, j, j + 1, i);
+        }
+      }
+    }
+    return arr;
+  }
+
+
+
+
+
+
+
+
+
+  function printProgression(arr, j, j2, i) {
+    let output = arr.map((num, index) => {
+      if (i > 0 && index >= arr.length - i) {
+        return `<span style="color: purple;">${num}</span>`;
+      }
+      if (index === j) {
+        return `<span style="color: red;">${num}</span>`;
+      } else if (index === j2) {
+        return `<span style="color: green;">${num}</span>`;
+      } else {
+        return num;
+      }
+    }).join(", ");
+    document.body.innerHTML += `<p>${output}</p>`;
+  }
 
 
 </script>
