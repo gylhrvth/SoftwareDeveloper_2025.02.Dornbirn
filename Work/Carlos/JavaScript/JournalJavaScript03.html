@@ -18,12 +18,217 @@
     <h1 class="textColor01">Lernerfolgsbuch: JavaScript Arrays Journal</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day34">DO 03/04/25</a>: JavaScript (Date)</h3>
     <h3 class="textColor01">▷ <a href="#day33">MI 02/04/25</a>: JavaScript (Arrays)</h3>
     <h3 class="textColor01">▷ <a href="#day32">DI 01/04/25</a>: JavaScript (Arrays)</h3>
     <h3 class="textColor01">▷ <a href="#day31">MO 31/03/25</a>: JavaScript (Arrays)</h3>
 
     </div>
 
+    <br>
+
+    <h2 id="day34">Donnerstag, 03. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript (Date)</h3>
+
+    <ul>
+        <li class="textColor02"><strong>Was ist ein Java Date Object?</strong></li>
+        <p>Ein Date Object in Java ist ein Objekt, das ein bestimmtes Datum und eine Uhrzeit speichert. Ein Java Date-Objekt wird verwendet, um ein bestimmtes Datum und eine Uhrzeit darzustellen. Es gehört zur java.util-Bibliothek und kann das aktuelle Datum oder ein benutzerdefiniertes Datum speichern.</p>
+        <p>Früher wurde die Date-Klasse aus java.util verwendet, um Datum und Uhrzeit zu speichern. Diese Klasse ist veraltet, schwer zu handhaben und unterstützt keine Zeitzonen gut.</p>
+        <p>Statt Date nutzt man heute LocalDateTime, da es einfacher und präziser ist.</p>
+        <p>Beispiel mit LocalDateTime: </p>
+        <div class="code-sample">  
+            <code>
+                const jetzt = new Date();
+                const datum = jetzt.toLocaleDateString(); // Holt das Datum
+                const uhrzeit = jetzt.toLocaleTimeString(); // Holt die Uhrzeit
+                
+                console.log(`Datum: ${datum}`); // Datum: 03.04.2025
+                console.log(`Uhrzeit: ${uhrzeit}`); // Uhrzeit: 14:45:30
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was ist JS.Date API?</strong></li>
+        <p>Die JavaScript Date API ist eine eingebaute API (Application Programming Interface) in JavaScript, mit der man Datum und Uhrzeit verwalten, erstellen und formatieren kann. Sie bietet Methoden, um Zeitstempel zu erstellen, Datumsoperationen durchzuführen und Daten im gewünschten Format darzustellen.</p>
+        
+        <li class="textColor02"><strong>Welche Möglichkeiten gibt es, ein Datum anzuzeigen?</strong></li>
+        <ul>
+            <li><p>Date-Objekt verwenden (Vanilla JavaScript): Das Date-Objekt ist die Standardmethode, um mit Datum und Uhrzeit zu arbeiten.</p></li>
+            <p>-> Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                const jetzt = new Date();
+                console.log(jetzt); // Gibt das vollständige Datum und die Uhrzeit aus -> 2025-04-03T15:45:30.123Z
+                </code>
+            </div>
+            <li><p>toLocaleString(): Mit der Methode kann man das Datum in einem lokalisierten Format ausgeben, das an die Regionseinstellungen des Benutzers angepasst wird.</p></li>
+            <p>-> Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                const jetzt = new Date();
+                console.log(jetzt.toLocaleString()); // Lokalisierte Ausgabe -> 3.4.2025, 17:45:30
+                </code>
+            </div>
+            
+            <li><p> toLocaleDateString() und toLocaleTimeString(): Wird verwendet um nur das Datum oder nur die Uhrzeit anzuzeigen.</p></li>
+            <p>-> Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                const jetzt = new Date();
+                console.log(jetzt.toLocaleDateString()); // Gibt nur das Datum aus -> 03.04.2025
+                console.log(jetzt.toLocaleTimeString()); // Gibt nur die Uhrzeit aus -> Uhrzeit: 17:45:30
+                </code>
+            </div>
+        </ul>
+            <br>
+            
+        <li class="textColor02"><strong>Was ist die "Zero Time" bei der JS Date.API</strong></li>
+        <p>In der JavaScript Date-API bezeichnet “Zero Time” den 1. Januar 1970, 00:00:00 UTC, auch bekannt als die Unix-Epoche oder Unix-Zeit. Diese Zeit wird als “Nullpunkt” verwendet, um Zeitstempel in der Date-API zu berechnen. Alle Zeitangaben in JavaScript basieren auf der Anzahl der Millisekunden seit diesem Zeitpunkt.</p>
+        <p>Beispiel:</p>    
+        <div class="code-sample">  
+            <code>
+                const zeroTime = new Date(0); // 0 Millisekunden seit der Unix-Epoche
+                console.log(zeroTime.toISOString());  // Gibt den Nullzeitpunkt aus -> 1970-01-01T00:00:00.000Z
+            </code>
+        </div>
+        <p>	Zeitstempel in JavaScript basieren auf der Anzahl der Millisekunden, die seit diesem Zeitpunkt vergangen sind.</p>
+            
+        <li class="textColor02"><strong>Mit welchem Input kann man ein new Date Object erstellen?</strong></li>
+        <p>In JavaScript kann man ein neues Date-Objekt auf verschiedene Arten erstellen: </p>
+        <ul>
+        <li><p>Aktuelles Datum und Uhrzeit:</p></li>
+        <div class="code-sample">  
+            <code>
+            const jetzt = new Date(); // Holt das aktuelle Datum und die Uhrzeit
+            console.log(jetzt);
+            </code>
+        </div>
+        <li><p>Mit Jahr, Monat, Tag, Stunde, Minute, Sekunde, Millisekunde:</p></li>
+        <div class="code-sample">  
+            <code>
+            const datumDetails = new Date(2025, 3, 3, 15, 30, 0, 0); // Jahr, Monat, Tag, Stunde, Minute, Sekunde, Millisekunde
+            console.log(datumDetails);
+            </code>
+        </div>
+        <li><p> Mit einem Datums-String (z. B. ISO 8601):</p></li>
+        <div class="code-sample">  
+            <code>
+            const datumString = new Date("2025-04-03T15:30:00Z"); // ISO 8601 Format
+            console.log(datumString);
+            </code>
+        </div>
+       </ul>     
+       <br>
+       <li class="textColor02"><strong>Wie werden in der JS.Date API die Monate gezählt?</strong></li>
+       <p>In der JavaScript Date API werden Monate von 0 bis 11 gezählt, wobei 0 für Januar und 11 für Dezember steht. Dies unterscheidet sich von vielen anderen Programmiersprachen, in denen der Januar üblicherweise als Monat 1 gezählt wird.</p>
+  
+       <li class="textColor02"><strong>Was passiert bei der "falschen" Eingabe von Tag oder Monat (Tag mehr als 31, oder Monat mehr als 12)?</strong></li>
+       <p>JavaScript wird intern versuchen, das Datum zu korrigieren und das übergeordnete Datum automatisch anpassen.</p>
+       <p>-> Beispiel:</p>
+       <div class="code-sample">  
+        <code>
+        const datum = new Date(2025, 0, 35);  // 35. Januar 2025
+        console.log(datum.toLocaleDateString()); // Ausgabe: 04.02.2025
+        </code>
+        </div>
+        <p>-> Erklärung:</p>
+        <p>Der 35. Januar ist ungültig, aber JavaScript korrigiert das Datum und gibt den 4. Februar 2025 zurück.
+        Januar hat nur 31 Tage, also wird das Datum auf den 4. Februar gesetzt.
+        </p>
+        
+    </ul>
+    <br>
+
+    <h3 class="textColor01">JavaScript (Date: Methods/Functions)</h3>
+
+    <ul>
+
+    <li><p>Getter Methoden -> Anwendung mit Code Beispiel:</p></li>
+    
+    <div class="code-sample">  
+        <code>
+            const jetzt = new Date(); // Erstelle ein neues Date-Objekt mit dem aktuellen Datum und der Uhrzeit
+
+            // Abrufen der verschiedenen Teile des Datums und der Uhrzeit
+
+            const tagDesMonats = jetzt.getDate();           // Tag des Monats (1-31)
+            const wochentag = jetzt.getDay();               // Wochentag (0-6, 0 = Sonntag, 6 = Samstag)
+            const jahr = jetzt.getFullYear();               // Jahr (z.B. 2025)
+            const monat = jetzt.getMonth();                 // Monat (0-11, Januar = 0)
+            const stunde = jetzt.getHours();                // Stunde (0-23)
+            const minute = jetzt.getMinutes();              // Minute (0-59)
+            const sekunde = jetzt.getSeconds();             // Sekunde (0-59)
+            const millisekunde = jetzt.getMilliseconds();   // Millisekunde (0-999)
+            const zeitstempel = jetzt.getTime();            // Zeitstempel (Millisekunden seit dem 1. Januar 1970)
+            
+            console.log("Aktuelles Datum und Uhrzeit:");    // Aktuelles Datum und Uhrzeit:
+            console.log(`Tag des Monats: ${tagDesMonats}`); // Tag des Monats: 3
+            console.log(`Wochentag: ${wochentag}`);         // Wochentag: 3 (Beachte: 0 = Sonntag, 6 = Samstag)
+            console.log(`Jahr: ${jahr}`);                   // Jahr: 2025
+            console.log(`Monat: ${monat + 1}`);             // Monat: 4 (Monat + 1, da getMonth() von 0 bis 11 zählt)
+            console.log(`Stunde: ${stunde}`);               // Stunde: 14           
+            console.log(`Minute: ${minute}`);               // Minute: 45
+            console.log(`Sekunde: ${sekunde}`);             // Sekunde: 30
+            console.log(`Millisekunde: ${millisekunde}`);   // Millisekunde: 123
+            console.log(`Zeitstempel: ${zeitstempel}`);
+        </code>
+    </div>
+
+    <li><p>Setter Methoden -> Anwendung mit Code Beispiel:</p></li>
+    <p>-> Beispiel:</p>
+    <div class="code-sample">  
+        <code>
+            const jetzt = new Date(); // Erstelle ein neues Date-Objekt mit dem aktuellen Datum und der Uhrzeit
+
+            // Ändern des Datums und der Uhrzeit mit den Settermethoden
+            jetzt.setDate(15);         // Setzt den Tag des Monats auf den 15.
+            jetzt.setFullYear(2023);   // Setzt das Jahr auf 2023
+            jetzt.setMonth(5);         // Setzt den Monat auf Juni (Monate sind 0-basiert, daher 5 für Juni)
+            jetzt.setHours(10);        // Setzt die Stunde auf 10 (10:00 Uhr)
+            jetzt.setMinutes(30);      // Setzt die Minuten auf 30
+            jetzt.setSeconds(45);      // Setzt die Sekunden auf 45
+            jetzt.setMilliseconds(500); // Setzt die Millisekunden auf 500
+            jetzt.setTime(1682036455000); // Setzt das Datum und die Uhrzeit basierend auf dem Zeitstempel (Millisekunden seit dem 1. Januar 1970)
+            
+            // Ausgabe des modifizierten Datums
+            console.log("Modifiziertes Datum und Uhrzeit:");
+            console.log(`Neues Datum und Uhrzeit: ${jetzt}`); // Neues Datum und Uhrzeit: Fri May 19 2023 10:30:45 GMT+0000 (Coordinated Universal Time)
+        </code>
+    </div>
+
+    <li><p>To Methoden -> Anwendung mit Code Beispiel:</p></li>
+    <p>-> Beispiel:</p>
+    <div class="code-sample">  
+        <code>
+        const jetzt = new Date(); // Erstelle ein neues Date-Objekt mit dem aktuellen Datum und der Uhrzeit
+
+        // Verwenden der verschiedenen Methoden zum Formatieren des Datums
+
+        const toStringFormat = jetzt.toString();        // Standard String-Darstellung des Datums
+        const toDateStringFormat = jetzt.toDateString(); // Gibt nur das Datum im Format "Weekday Month Day Year" zurück
+        const toUTCStringFormat = jetzt.toUTCString();  // Gibt das Datum im UTC-Format zurück
+        const toISOStringFormat = jetzt.toISOString();  // Gibt das Datum im ISO 8601-Format zurück
+
+        // Ausgabe der verschiedenen Formate
+        console.log("toString() Format: " + toStringFormat); // toString() Format: Thu Apr 03 2025 00:00:00 GMT+0200 (Central European Summer Time)
+        console.log("toDateString() Format: " + toDateStringFormat); // toDateString() Format: Thu Apr 03 2025
+        console.log("toUTCString() Format: " + toUTCStringFormat); // toUTCString() Format: Thu, 03 Apr 2025 00:00:00 GMT
+        console.log("toISOString() Format: " + toISOStringFormat); // toISOString() Format: 2025-04-03T00:00:00.000Z
+        </code>
+    </div>
+
+    </ul>
+
+    <h4>‼️➡️ Aufgaben</h4>
+
+    <ul>
+        <li><p>Date Code Beispiele:</p></li>
+
+        <h4>-> <a href="">Beispiel 01</a></h4>
+
+    </ul>
+    
     <br>
 
     <h2 id="day33">Mittwoch, 02. April 2025</h2>
@@ -57,6 +262,17 @@
                 }
             </code>
         </div>
+
+    </ul>
+
+    <br>
+
+    <h4>‼️➡️ Aufgaben</h4>
+
+    <ul>
+        <li><p>Erstelle the Game of Life:</p></li>
+
+        <h4>-> <a href="./JS Arrays/Challenges/Game of Life/gameOfLife01_v.02.html">The Game of Life</a></h4>
 
     </ul>
 
@@ -137,6 +353,7 @@
     </ul>
     
     <br>
+
 
     <h2 id="day31">Montag, 31. März 2025</h2>
 
