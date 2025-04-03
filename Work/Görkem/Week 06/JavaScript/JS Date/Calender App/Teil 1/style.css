@@ -1,0 +1,113 @@
+/* Grundlegende Stile für den gesamten Body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Höhe des Viewports */
+}
+
+/* Wrapper, der den gesamten Inhalt einfasst */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 900px; /* Maximale Breite des Containers */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container für die linke Seite mit Events und Erinnerungen */
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Linke Seite für Events und Erinnerungen */
+.calendar-left {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Event Section */
+.event-section {
+    margin-bottom: 20px;
+}
+
+.event-section h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.event-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.event-section button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.event-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Reminder Section */
+.reminder-section h3 {
+    color: #333;
+}
+
+#reminderList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#reminderList li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+}
+
+.delete-event {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-event:hover {
+    background-color: #c0392b;
+}
