@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>arrays 01</title>
+</head>
+<body>
+
+    <script>
+
+
+
+let createRandomArray = (size, min, max) => {
+    let result = []
+    for (let i = 0; i < size; ++i){
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())]
+    }
+    return result
+
+}
+
+    printH(2, 'map')
+
+    let arr = createRandomArray(20, 20, 50)
+    let newArr = []
+
+    printHr();
+    printH(3, "forEach Methode")
+    printHr();
+
+    arr.forEach(element => {
+        newArr = [...newArr, 2 * element]
+    })
+
+    printH(4, "Original Array")
+
+    printLn('[' + arr.join(', ') + ']')
+    
+
+    printH(4, "Modified Array")
+
+    printLn('[' + newArr.join(', ') + ']')
+
+    printHr();
+
+    printH(3, "map Methode")
+
+    printHr();
+
+    printH(4, "Original Array")
+
+    printLn('[' + arr.join(', ') + ']')
+
+    let newArrWithMap = arr.map(element => {
+        return 2 * element
+    })
+
+    printH(4, "Modified Array")
+
+    printLn('[' + newArrWithMap.join(', ') + ']')
+
+
+    </script>
+
+    
+</body>
+</html>

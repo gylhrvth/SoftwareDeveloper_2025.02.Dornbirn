@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <title>Nested Loops 06</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+printH(3, "printPyramid");
+
+
+function printPyramid(size, char){
+
+    for(let i = 1; i <= size; i++) {
+
+        let space = "";
+        let symbol = "";
+
+        for(let j = 1; j <= size - i; j++) { // j loop is in charge of adding spaces
+
+            space += " ";
+        }
+
+        for(let k = 1; k <= 2 * i - 1; k++){ // k loop is in charge of adding symbols
+
+            symbol += char;
+        }
+
+        let row = space + symbol;
+
+        printLn(row);
+
+    }
+
+}
+
+    printPyramid(5, "*");
+
+
+    
+
+
+</script>
+
+</html>
