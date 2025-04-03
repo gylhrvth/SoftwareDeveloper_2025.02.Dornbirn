@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+    <script src="../../../../Kurs/common.js" defer></script>
+    <title>JavaScript Date</title>
+</head>
+<body>
+
+    <h1>JavaScript</h1>
+    <h2>Donnerstag, 03. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript Date</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was ist ein Java Date Object?</span>
+        <p>Ein <strong>JavaScript Date-Objekt</strong> ist ein integriertes Objekt in JavaScript, das Datum und Uhrzeit speichert und verwaltet. Es ermöglicht das Abrufen, Setzen und Manipulieren von Datums- und Zeitwerten.</p>
+        <p>Die <strong>Syntax</strong> für das Erstellen eines JavaScript Date-Objekt sieht so aus:</p>
+        <div class="code-box">
+            <code>
+                new Date();                     // erstellt eine Date-Objekt mit dem aktuellen Datum und Uhrzeit
+                new Date(value)                 // erstellt ein Datum anhand eines Zeitstempels 
+                new Date(dateString)            // erstellt ein Datum aus einem String (z.B. "2024-04-03T14:30:00")
+                new Date(year, month, hours minutes, seconds, milliseconds)
+            </code>
+        </div>
+        <p><strong>1️⃣Beispiel:</strong> Aktuelles Datum und Uhrzeit</p>
+        <div class="code-box">
+            <code>
+                let now = new Date();
+                console.log(now)
+            </code>
+        </div>
+        <p><strong>2️⃣Beispiel:</strong> Datum mit Jahr, Monat, Tag (optional Zeit)</p>
+        <div class="code-box">
+            <code>
+                let specificDate = newDate(2024, 3, 3, 14, 30, 0);  // 3. April 2024, 14:30:00
+            </code>
+        </div>
+        <p><Strong>💡Wichtig:</Strong></p>
+        <ul>
+            <li><b>Monate sind 0-basiert</b> > Januar = 0, Februar = 1,...., Dezember = 11</li>
+            <li>Wird ein ungültiges Datum angegeben, gibt Date ein <b>"Invalid Date"</b> zurück.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Welche Möglichkeiten gibt es, ein Datum anzuzeigen?</span>
+        <p>Es gibt verschiedene Möglichkeiten, ein Datum in JavaScript anzuzeigen. Hier sind einige der wichtigsten Methoden:</p>
+        <p>1️⃣toString()-<b>Standard-Darstellung:</b></p>
+        <div class="code-box">
+            <code>
+                let date = new Date();
+                console.log(date.toString());
+                // Beispiel: "Wed Apr 03 2024 14:30:00 GMT+0200 (Central European Summer Time)"
+            </code>
+        </div>
+        <p>💡Gibt das Datum als vollständigen String zurück, inkl. Wochentag, Zeitzone usw.</p><br>
+        <p>2️⃣toTimeString()-<b>Nur die Uhrzeit</b></p>
+        <div class="code-box">
+            <code>
+                console.log(date.toTimeString());
+                // Beispiel: "Wed Apr 03 2024"
+            </code>
+        </div>
+        <p>💡Gibt nur das Datum ohne Zeit zurück</p><br>
+        <p>3️⃣toUTCString()-<b>Datumsformat in UTC</b></p>
+        <div class="code-box">
+            <code>
+                console.log(date.toUTCString());
+                // Beispiel: "Wed, 03 Apr 2024 12:30:00 GMT"
+            </code>
+        </div>
+        <p>💡Konvertiert das Datum in die UTC-Zeitzone</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist die "Zero Time" bei der JS Date.API</span>
+        <p>Die "Zero Time" in der JavaScript Date API bezieht sich auf den <b>epochalen Zeitstempel,</b> also den Ausgangspunkt der Zeitmessung in JavaScript.</p>
+        <p><strong>📌Definition der "Zero Time":</strong></p>
+        <ul>
+            <li>"Zero Time" ist der 1. Januar 1970, 00:00:00 UTC (Koordinierte Weltzeit).</li>
+            <li>Dies wird auch als Unix-Zeitstempel oder Unix-Epoche bezeichnet.</li>
+        </ul>
+        <br>
+        <p><strong>1️⃣Beispiel:</strong> Zero Time in JavaScript</p>
+        <div class="code-box">
+            <code>
+                let zeroTime = new Date(0);
+                console.log(zeroTime);
+                // Ergebnis:  "Thu Jan 01 1970 01:00:00 GMT+0100 (Central European Standard Time)"
+            </code>
+        </div>
+        <p><strong>Zeitstempel berechnen mit</strong> getTime()</p>
+        <p>Die Methode getTime() gibt die Millisekunden seit <b>Zero Time (1. Januar 1970, 00:00:00 UTC)</b> zurück</p>
+        <div class="code-box">
+            <code>
+                let now = new Date();
+                console.log(now.getTime()); // Beispiel: 1712149200000 (Millisekunden seit 1970)
+            </code>
+        </div>
+        <ul>
+        <br>
+            <li><b>Positive Werte</b> = Zeit nach 1970</li>
+            <li><b>Negative Werte</b> = Zeit vor 1970</li>
+        </ul>
+        <br>
+        <p><strong>📌Fazit</strong></p>
+        <ul>
+            <li>Die "Zero Time" in JavaScript ist 1. Januar 1970, 00:00:00 UTC.</li>
+            <li>Zeitwerte in JavaScript werden in Millisekunden seit diesem Zeitpunkt gespeichert.</li>
+            <li>new Date(0) gibt genau diesen Moment aus.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Mit welchem Input kann man ein new Date Object erstellen?</span>
+        <p>In JavaScript kannst du ein Date-Objekt mit verschiedenen Eingaben (Inputs) erstellen. Hier sind die 3 wichtigsten Möglichkeiten, ein Date-Objekt zu erzeugen:</p>
+        <p><strong>1️⃣Ohne Parameter - Aktuelles Datum & Uhrzeit</strong></p>
+        <div class="code-box">
+            <code>
+                let now = new Date();
+                console.log(now);
+                // Beispiel: "Wed Apr 03 2024 14:30:00 GMT+0200"
+            </code>
+        </div>
+        <p>💡Verwendet die aktuelle Systemzeit des Rechners.</p><br>
+        <p><strong>2️⃣Mit Millisekunden seit 1.1.1970 (Unix-Zeitstempel)</strong></p>
+        <div class="code-box">
+            <code>
+                let timestampDate = newDate(1712140200000);
+                console.log(timestampDate);
+                // Beispiel: "Wed Apr 03 2024 14:30:00 GMT+0200"
+            </code>
+        </div>
+        <p>💡Nützlich für Zeitberechnungen oder Datenbanken.</p>
+        <div class="code-box">
+            <code>
+                let zeroTime = new Date(0);
+                console.log(zeroTime);
+            </code>
+        </div>
+        <p>💡new Date(0) gibt exakt den <b>1. Januar 1970 UTC</b> aus.</p><br>
+        <p><strong>3️⃣Mit Datums-String</strong></p>
+        <div class="code-box">
+            <code>
+                new Date("April 3, 2024");            // "Wed Apr 03 2024 ..."
+                new Date("2024-04-03");              // "Wed Apr 03 2024 ..."
+                new Date("03 Apr 2024 14:30 GMT");   // "Wed Apr 03 2024 ..."
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie werden in der JS.Date API die Monate gezählt?</span>
+        <p>In der JavaScript Date API werden die Monate 0 - basiert gezählt. Das bedeutet:</p>
+        <div class="code-box">
+            <code>
+                Januar          0
+                Februar         1
+                März            2         
+                April           3
+                Mai             4
+                Juni            5
+                Juli            6
+                August          7
+                September       8
+                Oktober         9
+                November        10
+                Dezember        11
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <div class="textColor02">
+        <span class="underline">Was passiert bei der "falschen" Eingabe von Tag oder Monat (Tag mehr als 31, oder Monat mehr als 12)?</span>
+        <p>Wenn du in der JavaScript Date API einen <b>ungültigen Tag oder Monat</b> angibst, passt JavaScript das Datum automatisch an. Es gibt keinen Fehler, sondern das Datum wird intern korrigiert.</p>
+        <p><strong>1️⃣ Wenn der Monat größer als 11 ist (mehr als 12 Monate)</strong></p>
+        <div class="code-box">
+            <code>
+                let date = new Date(2024, 12, 1);  // 1.Monat zu viel
+                console.log(date);
+                // Ergebnis: "Wed Jan 01 2025 ..." (Springt auf Januar 2025)
+            </code>
+        </div>
+        <p>💡Warum?</p>
+        <ul>
+            <li>12 entspricht eigentlich Monat 13, also Januar des Folgejahres.</li>
+            <li>Intern: 2024 + 1 Jahr = 2025, Monat wird auf Januar gesetzt (0-basiert = 0).</li>
+        </ul>
+    </div>
+
+
+
+
+
+
+
+</ul>
+</body>
+</html>
