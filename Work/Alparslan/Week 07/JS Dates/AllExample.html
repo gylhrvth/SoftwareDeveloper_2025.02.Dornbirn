@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <title>JS Dates</title>
+</head>
+<body>
+    <script>
+
+//Definition der Variable date
+let date = new Date(); // Erstellt ein neues Date-Objekt mit dem aktuellen Datum und der aktuellen Uhrzeit
+
+
+
+// 1. new Date()
+printH(1,"new Date()");
+print(date);
+printHr();
+
+
+
+
+// 2. getDate()
+printH(1,"getDate()");
+print(date.getDate()); // Gibt den aktuellen Tag des Monats zurück
+printHr();
+
+
+
+
+// 3. getDay()
+printH(1,"getDay()");
+print(date.getDay()); // Gibt den Wochentag zurück (0 = Sonntag, 1 = Montag, ...)
+printHr();
+
+
+
+
+// 4. getFullYear()
+printH(1,"getFullYear()");
+print(date.getFullYear()); // Gibt das Jahr zurück
+printHr();
+
+
+
+
+// 5. getMonth()
+printH(1,"getMonth()");
+print(date.getMonth()); // Gibt den Monat zurück (0 = Januar, 11 = Dezember)
+printHr();
+
+
+
+
+// 6. getHours()
+printH(1,"getHours()");
+print(date.getHours()); // Gibt die aktuelle Stunde zurück (0–23)
+printHr();
+
+
+
+
+// 7. getMinutes()
+printH(1,"getMinutes()");
+print(date.getMinutes()); // Gibt die aktuellen Minuten zurück (0–59)
+printHr();
+
+
+
+
+// 8. getSeconds()
+printH(1,"getSeconds()");
+print(date.getSeconds()); // Gibt die aktuellen Sekunden zurück (0–59)
+printHr();
+
+
+
+
+// 9. getMilliseconds()
+printH(1,"getMilliseconds()");
+print(date.getMilliseconds()); // Gibt die Millisekunden zurück (0–999)
+printHr();
+
+
+
+
+// 10. getTime()
+printH(1,"getTime()");
+print(date.getTime()); // Gibt die Millisekunden seit dem 1. Januar 1970 zurück
+printHr();
+
+
+
+
+// 11. setDate()
+printH(1,"setDate()");
+printLn("Datum bevor Set = " +date)
+date.setDate(15); // Setzt den Tag des Monats auf 15
+printLn("Set date (15)")
+print("Datum nach Set = "+date);
+printHr();
+
+
+
+
+// 12. setFullYear()
+printH(1,"setFullYear()");
+date.setFullYear(2030); // Setzt das Jahr auf 2030
+print(date);
+printHr();
+
+
+
+
+// 13. setMonth()
+printH(1,"setMonth()");
+date.setMonth(5); // Setzt den Monat auf Juni (0-basiert)
+print(date);
+printHr();
+
+
+
+
+// 14. setHours()
+printH(1,"setHours()");
+date.setHours(18); // Setzt die Stunden auf 18 Uhr
+print(date);
+printHr();
+
+
+
+
+// 15. setMinutes()
+printH(1,"setMinutes()");
+date.setMinutes(45); // Setzt die Minuten auf 45
+print(date);
+printHr();
+
+
+
+
+// 16. setSeconds()
+printH(1,"setSeconds()");
+date.setSeconds(30); // Setzt die Sekunden auf 30
+print(date);
+printHr();
+
+
+
+
+// 17. setMilliseconds()
+printH(1,"setMilliseconds()");
+date.setMilliseconds(500); // Setzt die Millisekunden auf 500
+print(date);
+printHr();
+
+
+
+
+// 18. setTime()
+printH(1,"setTime()");
+date.setTime(0); // Setzt das Datum auf den 1. Januar 1970
+print(date);
+printHr();
+
+
+
+
+// 19. toString()
+printH(1,"toString()");
+print(date.toString()); // Gibt das Datum als String zurück
+printHr();
+
+
+
+
+// 20. toDateString()
+printH(1,"toDateString()");
+print(date.toDateString()); // Gibt das Datum als menschenlesbare Zeichenkette zurück
+printHr();
+
+
+
+
+// 21. toUTCString()
+printH(1,"toUTCString()");
+print(date.toUTCString()); // Gibt das Datum in UTC-Zeit zurück
+printHr();
+
+
+
+
+// 22. toISOString()
+printH(1,"toISOString()");
+print(date.toISOString()); // Gibt das Datum im ISO 8601-Format zurück
+printHr();
+
+
+
+
+
+
+    </script>
+</body>

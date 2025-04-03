@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.calendar-container {
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.date-input {
+  max-width: 30%;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.legend>span:nth-child(6) {
+  color: orange;
+}
+
+.legend>span:nth-child(7) {
+  color: red;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.grid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border: 1px solid #ccc;
+  background-color: #e6f7ff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.grid-cell.current-day {
+  background-color: #90ee90;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 10px 2px #90ee90, 0 0 20px 4px #90ee90;
+}
+
+.grid-cell.current-day:hover {
+  background-color: #90ee90;
+}
+
+.grid-cell.current-day:nth-child(7n+6):hover {
+  background-color: orange;
+}
+
+.grid-cell.current-day:nth-child(7n+7):hover {
+  background-color: red;
+}
+
+.grid-cell.current-day:nth-child(7n+6) {
+  color: white;
+  background-color: orange;
+  box-shadow: 0 0 10px 2px orange, 0 0 20px 4px orange;
+}
+
+.grid-cell.current-day:nth-child(7n+7) {
+  color: white;
+  background-color: red;
+  box-shadow: 0 0 10px 2px red, 0 0 20px 4px red;
+}
+
+.grid-cell:nth-child(7n+6) {
+  color: orange;
+}
+
+.grid-cell:nth-child(7n+7) {
+  color: red;
+}
+
+.grid-cell:hover {
+  background-color: #bae7ff;
+  transform: scale(1.05);
+}
+
+.grid-cell.selected {
+  background-color: #1890ff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.grid-cell:empty {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
