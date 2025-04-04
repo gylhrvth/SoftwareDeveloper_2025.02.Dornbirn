@@ -7,8 +7,8 @@ body {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(20, 20px);
-    grid-template-rows: repeat(20, 20px);
+    grid-template-columns: repeat(40, 20px);
+    grid-template-rows: repeat(40, 20px);
     gap: 1px;
 }
 .cell {
