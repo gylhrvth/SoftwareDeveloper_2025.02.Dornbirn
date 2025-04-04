@@ -1,3 +1,27 @@
+@keyframes cat {
+    0% {
+        transform: translateX(-10vw) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(100vw) rotate(360deg);
+    }
+}
+
+@keyframes text-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,6 +32,16 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+}
+
+img {
+    max-width: 5%;
+    height: auto;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    position: absolute;
+    animation: cat linear 1s infinite;
 }
 
 .container {
@@ -23,11 +57,13 @@ body {
     padding: 10px;
     box-sizing: border-box;
 }
+
 h1 {
     font-size: 2.5rem;
     color: #333;
     margin-bottom: 20px;
 }
+
 input[type="text"] {
     width: 80%;
     padding: 10px;
@@ -37,10 +73,12 @@ input[type="text"] {
     font-size: 1rem;
     text-align: center;
 }
+
 input[type="text"]:focus {
     border-color: black;
     outline: none;
 }
+
 button {
     padding: 10px 20px;
     background-color: #cfb67b;
@@ -52,6 +90,7 @@ button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.2s;
 }
+
 button:hover {
     background-color: #b39b62;
 }
@@ -74,16 +113,29 @@ button:hover {
     border-radius: 5px;
 }
 
+#animation p {
+    background: linear-gradient(90deg, red, purple, pink, blue);
+    background-size: 200%; /* Hintergrund größer machen */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-bottom: 0;
+    animation: text-animation 2s infinite;
+}
 
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 1.3rem;
     }
+
     button {
         font-size: 0.9rem;
     }
+
     p {
         font-size: 1rem;
     }
-    
+
 }
