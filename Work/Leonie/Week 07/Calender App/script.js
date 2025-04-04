@@ -133,6 +133,18 @@ function checkDate() {
         if (previousErrorMessage) {
             previousErrorMessage.remove();
         }
+        // p löschen
+        const ageOutput = document.getElementById("age");
+        ageOutput.textContent = "";
+        const daysOutput = document.getElementById("daysFromBirthday");
+        daysOutput.textContent = "";
+        const daysOutput2 = document.getElementById("daysToBirthday");
+        daysOutput2.textContent = "";
+        const dayOutput = document.getElementById("dayOfBirthdayLastYear");
+        dayOutput.textContent = "";
+        const dayOutput2 = document.getElementById("dayOfBirthdayNextYear");
+        dayOutput2.textContent = "";
+
         const feedback = document.getElementById("feedback");
         const errorMessage = document.createElement("p");
         errorMessage.id = "error-message"; // Eindeutige ID hinzufügen
@@ -152,6 +164,17 @@ function checkDate() {
         if (previousErrorMessage) {
             previousErrorMessage.remove();
         }
+        // p löschen
+        const ageOutput = document.getElementById("age");
+        ageOutput.textContent = "";
+        const daysOutput = document.getElementById("daysFromBirthday");
+        daysOutput.textContent = "";
+        const daysOutput2 = document.getElementById("daysToBirthday");
+        daysOutput2.textContent = "";
+        const dayOutput = document.getElementById("dayOfBirthdayLastYear");
+        dayOutput.textContent = "";
+        const dayOutput2 = document.getElementById("dayOfBirthdayNextYear");
+        dayOutput2.textContent = "";
         // Neues Fehler-Element erstellen
         const feedback = document.getElementById("feedback");
         const errorMessage = document.createElement("p");
