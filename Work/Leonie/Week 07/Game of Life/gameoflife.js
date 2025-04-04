@@ -1,6 +1,6 @@
 let grid = [];
-let rows = 20;
-let cols = 20;
+let rows = 40;
+let cols = 40;
 let nextGrid = [];
 
 function initializeGrid() {
@@ -39,7 +39,6 @@ function countNeighbors(x, y) {
             count = count + grid[row][col]; // Count alive neighbors
         }
     }
-    console.log(count);
     return count;
 
 }
@@ -58,11 +57,11 @@ function drawGrid() {
 
 function startGame() {
     setInterval(() => {
-        checkCell();
         drawGrid();
-    }, 500); // Update every 100 milliseconds
+        checkCell();
+        
+    }, 200); // Update every 100 milliseconds
 }
 
 initializeGrid();
-drawGrid();
 

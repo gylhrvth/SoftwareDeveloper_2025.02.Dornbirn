@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./logic.js"></script>
+    <title>Kalender App</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="calendar-container">
+            <div class="calendar-left">
+                <h1><strong>Geburts(Wochen)Tag</strong></h1>
+
+                <section class="event-section">
+                    <input type="date" id="eventDate">
+                    <input type="text" id="eventTitle" placeholder="Event Title">
+                    <input type="text" id="eventDescription" placeholder="Event Description">
+                    <button id="addEvent" onclick="addEvent()">Add</button>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

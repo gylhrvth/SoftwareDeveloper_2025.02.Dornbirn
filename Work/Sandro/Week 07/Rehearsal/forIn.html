@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For In Loop</title>
+  <script src="../../lib.js"></script>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+</body>
+<script>
+
+  let Person = {
+    firstName: "Sandro",
+    lastName: "Otra Vez",
+    age: 17,
+    svNumb: 7,
+    gernder: "male",
+    residence: "Austria",
+  }
+
+  let info = "";
+
+  for (let x in Person) {
+    info += Person[x] + " ";
+    printLn(info);
+  }
+
+
+  let alles = "";
+  for (const text in Person) {
+    if (Object.prototype.hasOwnProperty.call(Person, text)) {
+      alles += Person[text] + " ";
+    }
+    printLn(alles);
+  }
+
+
+</script>
+
+</html>
