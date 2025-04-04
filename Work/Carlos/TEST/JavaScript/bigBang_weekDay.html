@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function calculateBigBangWeekday() {
+    // Anzahl der Tage seit dem Urknall
+    const yearsSinceBigBang = 13.8 * Math.pow(10, 9);  // 13,8 Milliarden Jahre
+    const daysInYear = 365.25;
+    const totalDays = yearsSinceBigBang * daysInYear;  // Gesamte Anzahl der Tage
+
+    // Wochentag berechnen (1. Januar 1970 war ein Donnerstag)
+    const daysSinceEpoch = totalDays % 7;  // Modulo 7 gibt den Wochentag
+
+    // Array der Wochentage
+    const weekdays = ["Donnerstag", "Freitag", "Samstag", "Sonntag", "Montag", "Dienstag", "Mittwoch"];
+
+    // Wochentag des Urknalls
+    const bigBangWeekday = weekdays[Math.floor(daysSinceEpoch)];
+
+    return bigBangWeekday;
+}
+
+console.log(calculateBigBangWeekday()); // Gibt den Wochentag des Urknalls zurück
+    </script>
+</body>
+</html>
