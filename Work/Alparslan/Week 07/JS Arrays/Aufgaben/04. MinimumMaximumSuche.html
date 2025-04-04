@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Minimum Maximum Suche</title>
+    </head>
+
+
+    <body>
+        <script>
+function minValue(inputArray){          //For Schleife minValue 
+    let min = inputArray[0]
+
+    for (let i = 1; i<inputArray.length; i++){
+        if(inputArray[i] < min){
+            min = inputArray[i]
+        }
+    }
+    return min
+}
+
+function maxValue(inputArray){              //For Schleife maxValue
+    let min = inputArray[0]
+
+    for (let i = 1; i<inputArray.length; i++){
+        if(inputArray[i] > min){
+            min = inputArray[i]
+        }
+    }
+    return min
+}
+
+
+
+
+
+function minWert(input){                //forEach Schleife minWert
+    let min = input[0]
+
+    input.forEach(function(element, index){
+        if(element < min){
+            min = element
+        }
+    }) 
+    return min
+}
+
+function maxWert(input){             //forEach Schleife maxWert
+    let max = input[0]
+
+    input.forEach(function(element, index){
+        if(element >max){
+            max = element
+        }
+    }) 
+    return max
+}
+
+
+
+
+
+function run(){
+    let arr = Array.from({length: 20}, () => { return 1 + Math.floor(100 * Math.random())})
+    console.log(arr)
+    console.log('min:', minValue(arr))
+    console.log('max:', maxValue(arr))
+
+    console.log('min:', minWert(arr))
+    console.log('max:', maxWert(arr))
+}
+
+
+
+run()           
+
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object in Java Script</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../lib.js"></script>
+</head>
+
+<body>
+</body>
+
+
+<script>
+  printH(1, "Object in Java Script")
+  printH(2, "Ein Object ist eine Sammlung von Eigenschaften und Methoden")
+  printBr();
+
+  //Person ist ein Object mit den Eigenschaften firstName, lastName und age.
+  function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    if (age > 18) {
+      this.greeting = function () {
+        return "Hello, my Name is " + this.firstName + " " + this.lastName + ", where is my Code?";
+      };
+    } else {
+      this.greeting = function () {
+        return "Hello Amigos, my Name is " + this.firstName + " " + this.lastName + ", how are You Today?";
+      };
+    }
+  }
+
+  // Instanz von Person erstellen und die Eigenschaft für den Konstruktor übergeben
+  let sandro = new Person("Sandro", "Otra Vez", 17);
+  printLn("Object: " + sandro.firstName + " " + sandro.lastName + " " + sandro.age);
+  printLn("Greeting: " + sandro.greeting());
+
+
+  let gyula = new Person("Gyula", "El Hombre", 28);
+  printLn("Object: " + gyula.firstName + " " + gyula.lastName + " " + gyula.age);
+  printLn("Greeting: " + gyula.greeting());
+
+
+  Object.defineProperty(Person.prototype, 'getAge', {
+    get: function () {
+      return this.age;
+    }
+  });
+
+  Object.defineProperty(Person.prototype, 'setAge', {
+    set: function (newAge) {
+      if (typeof newAge === 'number' && newAge > 0) {
+        this.age = newAge;
+      } else {
+        console.error("Please provide a valid age.");
+      }
+    }
+  });
+
+  printHr();
+  printLn("Alter: " + sandro.getAge);
+  printLn("Aufruf der Funktion, darf die Person in den Club?");
+  darfDiePersonInDenClub(sandro);
+  printLn("Wir setzten das Alter auf 30");
+  sandro.setAge = 30;
+  printLn("Alter: " + sandro.getAge);
+  printLn("Aufruf der Funktion, darf die Person in den Club?");
+  darfDiePersonInDenClub(sandro);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function darfDiePersonInDenClub(person) {
+    if (person.age >= 18) {
+      printLn(person.firstName + " darf in den Club.");
+    } else {
+      printLn(person.firstName + " darf nicht in den Club.");
+    }
+  }
+
+
+
+</script>
+
+</html>

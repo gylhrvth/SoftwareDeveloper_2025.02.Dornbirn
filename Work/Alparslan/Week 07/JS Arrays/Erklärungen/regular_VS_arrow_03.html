@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Regular VS Arrow 03</title>
+</head>
+<body>
+
+    <script>
+
+// Exercise 2: Function with Multiple Parameters
+
+function add01(a, b) {
+    return a + b;
+}
+
+
+// Exercise 3 Function with a Conditional Statement
+
+function checkEvenOrOdd_01(num) {
+    if (num % 2 === 0) {
+        return "Even";
+    } else {
+        return "Odd";
+    }
+}
+
+function getSquares_01(arr) {
+    let squares = [];
+    for (let i = 0; i < arr.length; i++) {
+        squares.push(arr[i] * arr[i])
+    }
+    return squares;
+}
+//Exercise 5: Function with Implicit Return
+
+function multiply01(a, b) {
+    return a * b;
+}
+
+function start(){
+    // Task: Convert the add function into an arrow function.
+    let add02 = (a,b) => a + b;     
+
+    // Task: Convert the checkEvenOrOdd function into an arrow function.
+    let checkEvenOrOdd_02 = (num) => {
+        if (num % 2 === 0) {
+            return "Even";
+        } else {
+            return "Odd";
+
+        }
+    }
+    let checkEvenOrOdd_03 = num => num % 2 === 0?"Even":"Odd"
+
+    //------------------------------------------------------------
+    // Exercise 4: Function with a Loop
+    let arrNumbers = [2, 4, 6, 8, 10, 12]
+
+    // The function returns the squares array for a given array: [4, 9, 16, 25].
+    // Task: Convert the getSquares function into an arrow function using .map().
+    // arrNumbers.map
+    let getSquares_02 = arrNumbers.map(number => number * number);  
+    console.log("The result is: " + getSquares_02); 
+
+    //Task: Convert the multiply function into an arrow function with an implicit return.
+    let multiply02 = (a,b) => (a*b);
+    console.log("The result is: " + multiply02(3,5));
+}
+
+start()
+
+    </script>
+    
+</body>
+</html>

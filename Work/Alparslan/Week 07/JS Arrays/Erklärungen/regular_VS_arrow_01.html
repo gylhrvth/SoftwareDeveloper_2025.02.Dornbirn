@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="./../../../../Sandro/style.css">
+    <title>Regular VS Arrow 01</title>
+</head>
+<body>
+
+    <script>
+
+    //------------------------------- REGULAR VS ARROW FUNCTIONS ------------------------------------------------
+
+    // Regular named function:
+    // The named function (function createRandomArray(...) {...}) has a name (createRandomArray), and can be called directly by that name. 
+    // It’s a more traditional way to declare functions and is often more readable, especially for larger functions.
+
+    function createRandomArray00(size, min, max) {
+    let result = [];
+
+    for (let i = 0; i < size; ++i) {
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())];
+    }
+    return result;
+    }
+
+
+    //------------------------------------------------------------------------------------------------------------
+
+    // Example with Arrow Function:
+
+    // Die arrow function createRandomArray01 erstellt ein Array mit zufälligen Zahlen in einem bestimmten Bereich.
+    // The arrow function (let createRandomArray01 = (size, min, max) => {...}) is anonymous (it has no name), and is assigned to the createRandomArray01 variable. 
+    // It’s typically used for smaller, short functions and is often used in functional programming.
+
+      //Arrow function with three parameters: 
+      // size: the number of random numbers you want in the resulting array.
+      // min: the minimum possible random number.
+      // max: the maximum possible random number.
+
+      //The declaration let createRandomArray01 = (size, min, max) => {} is an example of an arrow function expression assigned to a variable. 
+      // It can function in the same way as a named function, but the key difference is that it doesn’t have its own name like a regular function declaration would.
+
+    let createRandomArray01 = (size, min, max) => {
+
+    //An empty array result is created to hold the random numbers that will be generated.
+    let result = []
+
+    //A for loop runs size times. Each time the loop runs, a new random number will be generated and added to the result array.
+    for (let i = 0; i < size; ++i){
+        
+        //Beschreibung der mathematischen Förmel:
+        // 01. Math.random() erzeugt eine Zufallszahl zwischen 0 und 1.
+        // 02. (max - min + 1) * Math.random() skaliert sie in den Bereich [min, max].
+        // 03. Math.floor(...) sorgt dafür, dass das Ergebnis eine ganze Zahl ist.
+        // 04. min + ... verschiebt die Zahl in den gewünschten Bereich.
+
+        //`...result` **spreads** the elements of the existing `result` array into a new array.
+        result = [...result, min + Math.floor((max - min + 1) * Math.random())]
+    }
+    return result
+  
+
+    }
+
+
+
+    // Alternative version with arrow function and push(), without spread---------------------------------------------------------
+
+    // Instead of using the spread operator, this arrow function simply adds the random number directly to the result array using push().
+
+    let createRandomArray02 = (size, min, max) => {
+    let result = [];  // Initialize an empty array
+
+    // Loop to generate 'size' random numbers
+    for (let i = 0; i < size; i++) {
+        // Generate a random number between min and max (inclusive)
+        let randomNumber = min + Math.floor((max - min + 1) * Math.random());
+        result.push(randomNumber);  // Add the number to the result array
+    }
+
+    return result;  // Return the generated array
+    };
+
+
+
+
+
+    // Alternative version:---------------------------------------------------------------------------------------
+
+  
+    // 
+    let createRandomArray03 = (size, min, max) => {
+        // Array.from() is a method that creates a new array from an array-like or iterable object. 
+        // In this case, { length: size } creates an array-like object with a specified length (size), which is the number of elements the new array will have.
+        // It essentially says, “Create an array of size elements.”
+        // When passed to Array.from(), this object tells Array.from() that it should create an array with size number of elements. 
+        // For example, if size is 5, it will create an array with 5 undefined items like this: [undefined, undefined, undefined, undefined, undefined]
+        
+        // The second argument of Array.from() is () => {return ... }. 
+        // It is s a mapping function that will be applied to each element in the new array.
+        // This mapping function generates a random number for each element of the array:
+
+        // How it works together:
+        // Array.from() uses { length: size } to create an array of size elements.
+        // For each element in the array, the mapping function generates a random number between min and max, and that value becomes the element in the new array.
+        
+        return Array.from({ length: size }, () => {
+            return min + Math.floor((max - min + 1) * Math.random());
+        });
+    }
+
+    createRandomArray02(15, 30, 50);
+
+
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <title>Date - Beispiel01</title>
+</head>
+<body>
+
+    <script>
+
+        printH(1, "Date Basics")
+        printHr()
+
+        printH(3, "Get Methoden")
+
+        let zeit = new Date();
+        printLn("New Date Objekt: " + zeit)
+        printLn()
+        const monat = zeit.getMonth();
+        printLn(".getMonth -> Monat: " + (monat+1)) // die Monate starten mit Januar (0) bis Dezember (11)
+        printLn()
+        const tag = zeit.getDate();
+        printLn(".getDate -> Tag im Monat: " + tag)
+        printLn()
+        const wochentag = zeit.getDay()
+        printLn(".getDay -> Wochentag: " + wochentag) // Sonntag hat value 0, Samstag hat value 6.
+        printLn()
+        const stunde = zeit.getHours()
+        printLn(".getHours -> Stunde: " + stunde)
+        printLn()
+        const minuten = zeit.getMinutes()
+        printLn(".getMinutes -> Minuten: " + minuten)
+        printLn()
+        const sekunde = zeit.getSeconds()
+        printLn(".getSeconds -> Sekunde: " + sekunde)
+        printLn()
+
+
+
+
+    </script>
+    
+    
+</body>
+</html>

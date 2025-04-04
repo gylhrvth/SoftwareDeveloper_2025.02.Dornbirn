@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <title>Sample Code (Arrays)</title>
+</head>
+<body>
+
+    <script>
+
+        //Wähle 7 nützliche JS Array Methoden, und erstelle eine Beispiel-Code in dem du die verwendest.
+
+        //Beispiel mit at():
+
+        printH(1, "Array Methoden");
+
+        printHr();
+
+
+
+
+
+
+        printH(3, "01 .at()-Methode");              // Ziegt location des Arrays
+        
+        let buchstabenAt = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Index 2: " + "\"" +buchstabenAt.at(3) + "\"");           //Zeigt Array an 3.Stelle fängt mit 0 an zu zählen
+
+        printHr();
+
+
+
+
+
+
+
+
+        printH(3, "02 .push()-Methode");        //Fügt etwas hinzu
+
+        let buchstabenPush = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Show original Array: " + "\"" + buchstabenPush + "\"");      // Zeigt Array an, welche in der Variable buchstabenPush definiert sind
+
+        printLn();
+
+        print("Push new Length: " + "\"" + buchstabenPush.push("h", "i") + "\"");       // Push fügt dem bestehenden Array die Buchstaben "h & i" hinzu
+
+        printLn();
+
+        print("Show updated Array: " + "\"" + buchstabenPush + "\"");               // Zeigt die neue Variable mit neu hinzugefügten Buchstaben
+
+        printHr();
+
+
+
+
+
+
+
+        printH(3, "03 .pop()-Methode");                                 //Entfernt letzen Buchstaben und gibt dieses zurück
+
+        let buchstabenPop = ["a", "b", "c", "d", "e", "f", "g"];                // Original-Array
+        let poppedElement = buchstabenPop.pop();                                // Entfernt "g" und speichert es
+
+        print("Pop last element: " + "\"" + poppedElement + "\"");                          // Zeigt "g" an
+
+        printLn();
+
+        print("Show new poppedArray: " + "[" + buchstabenPop.join(", ") + "]");         // Zeigt verändertes Array: "a, b, c, d, e, f"
+
+        printHr();
+
+
+
+
+
+
+
+
+        printH(3, "04 .shift()-Methode");                   //entfernt erstes Element und gibt dieses zurück
+
+        let buchstabenShift = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        print("Shift first element: " + "\"" + buchstabenShift.shift() + "\"");
+
+        printLn();
+
+        print("Show new shifted elements" + "[" + buchstabenShift.join(", ") + "]");
+
+        printHr();
+
+
+
+
+
+
+
+        printH(3, "05 .concat()-Methode");                  //Verkettet Arrays miteinander, also führt zusammen
+
+        let buchstabenConcat01 = ["a", "b", "c", "d", "e" , "f", "g"];
+
+        let buchstabenConcat02 = ["h", "i", "j", "k"];
+
+        let buchstabenCombination = buchstabenConcat01.concat(buchstabenConcat02);
+
+        print("Array: " + "\"" + buchstabenConcat01 + "\"");
+
+        printLn()
+
+        print("Array: " + "\"" + buchstabenConcat02 + "\"");
+
+        printLn()
+
+        print("Array 01 + Array 02: " + "\"" + buchstabenCombination + "\"");
+
+        printHr();
+
+
+
+
+
+
+
+        printH(3, "06 .findIndex()-Methode");           //Findet ein Element welches eine Bedingung erfüllt und gibt dieses als Index zurück
+
+        let buchstabenFindIndex = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
+
+        let findCondition = buchstabenFindIndex.findIndex(function(element, index, array) {
+            return element === "d";  
+            });
+
+        print("Search for index of first d: " + "\"" + findCondition + "\"");
+
+        printHr();
+
+
+
+
+
+
+
+
+        printH(3, "07 .forEach()-Methode");             // durchläuft JEDES Element im Array und führt eine Funktion auf JEDEM Array aus
+
+        let buchstabenForEach = ["a", "b", "c", "d", "e" , "f", "g", "f", "e", "d", "c", "b", "a"];
+
+        let sortForEach = buchstabenForEach.forEach(function(element, index, array) {
+                  printLn(`Element: ${element}, Index: ${index}, Array: ${array}`);
+                });
+
+
+        printLn();
+
+
+    </script>
+    
+</body>
+</html>
