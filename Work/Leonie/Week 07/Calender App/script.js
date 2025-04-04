@@ -18,14 +18,12 @@ function calcDayofBirthdayNextYear() {
         // Ausgabe des Wochentags
         const dayOutput = document.getElementById("dayOfBirthdayNextYear");
         dayOutput.textContent = `Dein Geburtstag wird ein ${dayOfWeek} sein.`;
-        console.log("TRUE")
     } else {
         birthdayLastYear.setFullYear(today.getFullYear()); // Setze den Geburtstag auf das aktuelle Jahr
         const dayOfWeek = daysOfWeek[birthdayLastYear.getDay()]; // Wochentag ermitteln
         // Ausgabe des Wochentags
         const dayOutput = document.getElementById("dayOfBirthdayNextYear");
         dayOutput.textContent = `Dein Geburtstag wird ein ${dayOfWeek} sein.`;
-        console.log("FALSE")
     }
 }
 
@@ -91,6 +89,15 @@ function calcAge() {
 }
 
 function startCalc() {
+    // Überprüfen, ob das Datum gültig ist
+    if (!checkDate()) {
+        return;
+    }
+    // Vorherige error-Nachricht entfernen
+    const previousErrorMessage = document.getElementById("error-message");
+    if (previousErrorMessage) {
+        previousErrorMessage.remove();
+    }
     // Input-Feld auslesen
     let inputDateValue = document.getElementById("date");
 
@@ -98,7 +105,7 @@ function startCalc() {
     [day, month, year] = inputDateValue.value.split(".");
     // Neues Date-Objekt erstellen
     dateInput = new Date(`${year}-${month}-${day}`);
-    date = dateInput.toLocaleDateString("de-DE") // Formatierung des Datums
+    date = dateInput.toLocaleDateString("de-DE"); // Formatierung des Datums
 
     // Berechnung des Alters
     calcAge();
@@ -109,4 +116,53 @@ function startCalc() {
     // Berechnung des Wochentags
     calcDayofBirthdayLastYear();
     calcDayofBirthdayNextYear();
+}
+
+function checkDate() {
+    // Überprüfen, ob das Datum gültig ist
+    let inputDateValue = document.getElementById("date").value;
+    let dateParts = inputDateValue.split(".");
+    let day = parseInt(dateParts[0]);
+    let month = parseInt(dateParts[1]);
+    let year = parseInt(dateParts[2]);
+
+    // Überprüfen, ob das Datum im richtigen Format ist
+    if (dateParts.length !== 3 || isNaN(day) || isNaN(month) || isNaN(year)) {
+        // Vorherige error-Nachricht entfernen
+        const previousErrorMessage = document.getElementById("error-message");
+        if (previousErrorMessage) {
+            previousErrorMessage.remove();
+        }
+        const feedback = document.getElementById("feedback");
+        const errorMessage = document.createElement("p");
+        errorMessage.id = "error-message"; // Eindeutige ID hinzufügen
+        errorMessage.textContent = "Bitte geben Sie ein Datum im Format TT.MM.JJJJ ein.";
+        errorMessage.style.color = "red";
+        errorMessage.style.fontWeight = "bold";
+        errorMessage.style.fontSize = "1.2em";
+        errorMessage.style.justifyContent = "center";
+        feedback.insertBefore(errorMessage, feedback.firstChild);
+        return false;
+    }
+
+    // Überprüfen, ob das Datum gültig ist
+    if (day > 31 || month > 12 || year < 1900) {
+        // Vorherige error-Nachricht entfernen
+        const previousErrorMessage = document.getElementById("error-message");
+        if (previousErrorMessage) {
+            previousErrorMessage.remove();
+        }
+        // Neues Fehler-Element erstellen
+        const feedback = document.getElementById("feedback");
+        const errorMessage = document.createElement("p");
+        errorMessage.id = "error-message"; // Eindeutige ID hinzufügen
+        errorMessage.textContent = "Bitte geben Sie ein gültiges Datum ein. Tag: 1-31, Monat: 1-12, Jahr: >= 1900.";
+        errorMessage.style.color = "red";
+        errorMessage.style.fontWeight = "bold";
+        errorMessage.style.fontSize = "1.2em";
+        errorMessage.style.justifyContent = "center";
+        feedback.insertBefore(errorMessage, feedback.firstChild);
+        return false;
+    }
+    return true;
 }

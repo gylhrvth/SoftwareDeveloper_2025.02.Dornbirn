@@ -15,12 +15,75 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: beige;
-    width: 50vw;
-    height: 40vh;
-    border-radius: 10px;
+    background: radial-gradient(circle, #eae0c8, #d1bc8a);
+    width: clamp(350px, 1200px, 70%);
+    height: clamp(350px, 700px, 70%);
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
+}
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+input[type="text"]:focus {
+    border-color: black;
+    outline: none;
+}
+button {
+    padding: 10px 20px;
+    background-color: #cfb67b;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+    background-color: #b39b62;
+}
+
+#feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    height: clamp(50px, 400px, 90%);
+    width: clamp(100px, 950px, 90%);
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    background-color: #cfb67b;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+    button {
+        font-size: 0.9rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+    
 }
