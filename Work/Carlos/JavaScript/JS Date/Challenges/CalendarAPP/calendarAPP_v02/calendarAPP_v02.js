@@ -81,7 +81,7 @@ function isValidInput(day, month, year) {
         valid = false;
         console.log("Compare Date: "+valid)
 
-         feedbackText.innerHTML = "Das ist kein valides Datum"
+         //feedbackText.innerHTML = "Das ist kein valides Datum"
     }
 
 
@@ -111,7 +111,7 @@ function checkWeekDay(){
     if(isValidInput(tag, monat, jahr)){ // This is an if statment with a function call inside
         let weekDays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
         console.log(weekDays);
-        feedbackText.innerText = "Der Tag ist: " + weekDays[userDate.getDay()];
+        feedbackText.innerText = "Der Tag war ein: " + weekDays[userDate.getDay()];
     return;
     } 
 

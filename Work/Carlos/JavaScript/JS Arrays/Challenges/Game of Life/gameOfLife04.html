@@ -29,10 +29,10 @@
 
     function createRandomGrid(rows, cols){
         let grid = [];
-        for(row = 0; row < rows; row++){
-            grid[row] = []; // grid at index row is now an empty array -> array grid = [[(array row with index 0)]]
-            for(col = 0; col < cols; col++){
-                grid[row].push(Math.floor(Math.random()*2));
+        for(let row = 0; row < rows; ++row){
+            grid.push([]); // grid at index row is now an empty array -> array grid = [[(array row with index 0)]]
+            for(let col = 0; col < cols; ++col){
+                grid[row][col] = (Math.floor(Math.random()*2));
             }     
         }
         return grid;
@@ -67,15 +67,17 @@
     // The logic to check if something alive dies und vice versa is applied with the function "countLivingNeighbors"
     function nextGen(arr){
         let newGen = []
-        for(let i = 0; i < arr.length; i++){
+        for(let i = 0; i < arr.length; ++i){
             newGen[i] = [];
-            for(let j = 0; j < arr[i].length; j++){
+            for(let j = 0; j < arr[i].length; ++j){
                 const neighborsAlive = countNeighborsAlive(arr, i, j); // We specify the coordinates (i,j) of a specific array
                 if(arr[i][j] === 1){ // Cell is alive
                     if(neighborsAlive >= 2 && neighborsAlive <= 3){
                         newGen[i][j] = 1 // alive
-                    } else newGen[i][j] = 0 // dead
-                }
+                    } else {
+                        newGen[i][j] = 0 // dead
+                    }
+                } 
 
                 else { // Cell is dead
                     if(neighborsAlive === 3){
@@ -109,12 +111,12 @@
     
     function countNeighborsAlive(grid, i, j){
         let count = 0;
-        for(let newI = i - 1; newI <= i + 1; newI++ ){ // newI++ means newI + 1
-            for(let newJ = j -1; newJ <= j + 1; newJ++){ // newJ++ means newJ + 1
-                if(newI >= 0 && newI < grid.length && newJ >= 0 && grid[i].length ){ // checks that the wall outside of the grid is not used for the counter. 
-                    if( i!== newI && j!== newJ){ // the logic should apply to the neighbors, not to the element itself [i][j]. This condition ensures that the cell itself is not used for the count.
+        for(let newI = i - 1; newI <= i + 1; ++newI){ // newI++ means newI + 1
+            for(let newJ = j -1; newJ <= j + 1; ++newJ){ // newJ++ means newJ + 1
+                if(newI >= 0 && newI < grid.length && newJ >= 0 && grid[i].length){ // checks that the wall outside of the grid is not used for the counter. 
+                    if( i!== newI || j!== newJ){ // the logic should apply to the neighbors, not to the element itself [i][j]. This condition ensures that the cell itself is not used for the count.
                         if(grid[newI][newJ] === 1){
-                        count++;
+                        ++count;
                         }
                     }
                 
