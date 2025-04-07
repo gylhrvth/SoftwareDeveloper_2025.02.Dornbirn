@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 08 Journal</title>
+    <link rel="stylesheet" href="Exmp.Exc.-Objekt.css">
+</head>
+
+<body>
+    <main>
+        
+    <h2>Objekts</h2>
+    <p>Ein Object ist eine Sammlung von Eigenschaften und deren Zugehörigen Werte.
+        Diese Eigenschaften und Werte sind Paare, die zusammen ein bestimmtes Merkmal oder Verhalten eines Objekts
+        beschreiben.
+    </p><br>
+
+    <p>Ein Objekt besteht aus einer Reihe von Schlüssel-Wert-Paaren, die durch ein Komma getrennt sind. Die
+        Schlüssel
+        (oder Keys) sind immer Strings (es sei denn, sie sind explizit als Symbol deklariert), während die Werte
+        beliebige
+        JavaScript-Datentypen sein können, wie Zahlen, Strings, Arrays, andere Objekte oder sogar Funktionen.
+    </p><br>
+
+    <p>In JavaScript kannst du ein Objekt auf mehrere Arten erstellen. Die einfachste und am häufigsten genutzte
+        Methode<br>
+        ist mit geschweiften Klammern {}.
+    </p><br>
+
+    <img src="img/erstellen eines Objects.png">
+
+    <h2>Attribute</h2>
+    <p>In JavaScript bezeichnet man die Eigenschaften eines Objekts als Attribute. </p><br>
+    <img src="img/attribute.png"><br>
+    <p>Attribute (Eigenschaften): Beschreiben den Zustand eines Objekts.</p><br>
+
+    <p>Ein Attribut muss nicht immer nur statisch ein Wert sein. Du kannst in einem Objekt auch berechnete Werte
+        speichern, die dynamisch berechnet werden.</p><br>
+    <img src="img/attribut bsp..png"><br>
+    <p>Zugriff auf Attribute mit:</p>
+    <p>
+    <ul>
+        <li>Punktnotation: objekt.namr</li>
+        <li>Eckige Klammer: objekt["name"]</li>
+    </ul>
+    </p>
+    <br>
+
+    <h3>überschreiben eines Attributs</h3>
+    <p>
+    <ul>
+        <li> ändern von Attributen mit: Punktnotation z.B.: auto.marke = " ";</li>
+        <li>hinzufügen neuer Attrinute mit: Punktnotation z.B.: auto.farbe ="rot"</li>
+        <li>Löschen von Attributen mit: delet auto.farbe;</li>
+    </ul>
+    </p>
+
+    <p>In JavaScript kannst du alle Attribute (Eigenschaften) eines Objekts auflisten,<br>
+        indem du entweder eine for...in-Schleife oder die Object.keys(), Object.values()<br>
+        oder Object.entries() Methoden verwendest.</p>
+
+    <h3>for...in Schleife</h3>
+    <ol>
+        <li>for ... in Schleife</li>
+        <p>Mit der for...in Schleife kannst du durch alle enumerierbaren (aufzählbaren)<br>
+            Eigenschaften eines Objekts iterieren, einschließlich der geerbten Eigenschaften.</p>
+
+        <li>Object.keys()</li>
+        <p>Die Object.keys() Methode gibt ein Array mit den Schlüsseln (Eigenschaften) eines Objekts zurück.</p>
+        <img src="img/objekt.keys().png">
+        <li>Object.values()</li>
+        <p>Die Object.values() Methode gibt ein Array mit den Werten der Eigenschaften eines Objekts zurück.</p>
+        <img src="img/objekt.values().png">
+        <li>Object.entries()</li>
+        <p>Die Object.entries() Methode gibt ein Array von [Schlüssel, Wert]-Paaren zurück, d. h. ein Array von<br>
+            Arrays, bei dem jedes innere Array ein Schlüssel-Wert-Paar repräsentiert.</p>
+        <img src="img/objekt.entries().png">
+    </ol>
+
+    <h3>weiteres Attribut in bestehendes Objekt einfügen</h3>
+    <p>In JavaScript kann in ein bestehendes mObjekt sehr einfach ein neues Attribut hinzugefügt werden:</p>
+    <ul>
+        <li>objekt.neuerKey = Wert;</li>
+        <li>objekt["neuerKey"] = Wert;</li>
+    </ul>
+
+    <h3>hinzufügen mehrerer Attribute</h3>
+    <img src="img/objekt.assign.png"><br>
+    <img src="img/objekt.assign bsp..png">
+
+    <h3>Funktionen als Attribut in einem Objekt speichern</h3>
+    <p>In JavaScript kannst du Funktionen als Attribut (Eigenschaft) in einem Objekt speichern<br>
+        – und das ist sogar eine sehr gängige Praxis. Solche Funktionen nennt man dann Methoden des Objekts.
+    </p>
+    <img src="img/Funktion als Attribut speichern.png">
+    <img src="img/Funk. a. A. s. Kurzform.png">
+    <img src="img/Funktion nachträglich hinzufügen.png">
+    <img src="img/Funktion dynamisch speichern.png">
+
+    <p>Du kannst eine for...in Schleife auf ein Array anwenden</p>
+    <p style="color: red;"> – aber das solltest du in den meisten Fällen vermeiden.</p>
+
+    <h3>⚠️ Warum nicht verwenden?</h3>
+    <p>for...in ist nicht für Arrays gedacht, weil:</p>
+    <p>
+    <ul>
+        <li>Es iteriert über alle aufzählbaren Eigenschaften – auch solche, die manuell hinzugefügt wurden<br>
+            oder vom Prototypen geerbt wurden.</li>
+        <li>Die Reihenfolge ist nicht garantiert!</li>
+        <li>Die Indizes sind vom Typ String, was bei Zahlenvergleichen Probleme machen kann.</li>
+    </ul>
+    </p>
+    <img src="img/Arrays und Schleifen.png">
+</main>
+</body>
+
+</html>
