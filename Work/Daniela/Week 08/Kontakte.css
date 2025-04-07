@@ -1,0 +1,6 @@
+.result{
+    display: flex;
+    flex-direction: column;
+    background-color: coral;
+    max-width: 30%;
+}
