@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <title>Sandbox 02</title>
+</head>
+<body>
+    <script>
+
+        // for()...in Schleife für key-value
+
+        // Die for...in Schleife iteriert über die Schlüssel eines Objekts (nicht über die Werte).
+	    // In jedem Durchlauf erhält man den Schlüssel des aktuellen Objekts und kann dann den Wert mit obj[key] aufrufen.
+
+        const canis = {
+        name: "Niko",
+        alter: 2,
+        rasse: "Rottweiler"
+        };
+
+        // Mit for...in Schleife
+        for (let key in canis) {
+        console.log(key + ": " + canis[key]);
+        }
+
+        //----------------------
+
+        // for()...of Schleife für key-value
+
+        const hund = {
+        name: "Balu",
+        alter: 4,
+        rasse: "Labrador"
+        };
+
+        // Mit Object.entries() und einer for...of Schleife
+        for (const [key, value] of Object.entries(hund)) {
+        console.log(`${key}: ${value}`);
+        }
+
+       //----------------------
+
+        // forEach() Schleife für key-value
+
+        const doggie = {
+        name: "Paco",
+        alter: 6,
+        rasse: "Akita"
+        };
+
+        // Mit Object.entries() und forEach
+        Object.entries(doggie).forEach(([key, value]) => {
+        console.log(`${key}: ${value}`);
+        });
+
+
+
+    </script>
+</body>
+</html>
