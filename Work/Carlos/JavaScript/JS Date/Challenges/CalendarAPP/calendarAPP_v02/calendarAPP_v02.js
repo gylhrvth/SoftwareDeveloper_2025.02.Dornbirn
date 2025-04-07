@@ -15,31 +15,56 @@
 
 // Function to validate all inputs (day, month, year)
 function isValidInput(day, month, year) {
+    let feedbackText = document.getElementById("textFeedback");
     let valid = true;
 
+    // Check if all inputs are integers
+    if(day === "" && month === "" && year === ""){
+        feedbackText.innerHTML = "Du musst etwas reinschreiben";
+        valid = false;
+    }
+
+    else {
     // Convert to numbers
     console.log("function call " +valid)
     day = Number(day)
     month = Number(month)
     year = Number(year)
 
-    // Check if all inputs are integers
-    if(!Number.isInteger(day) || !Number.isInteger(month) || !Number.isInteger(year)){ 
+ 
+
+    if (!Number.isInteger(day) || !Number.isInteger(month) || !Number.isInteger(year)){ 
         
         valid = false
+        feedbackText.innerHTML = "Das Datum muss ausschließlich aus ganzen Zahlen (Integern) bestehen.";
         console.log("Hallo das war kein int !!! " +valid)
-    } 
+    
+        // Check if values are within valid ranges
+        console.log("data : " +day, month, year)
+    
+    } else if(day < 1 || day > 31) {
+        
+      valid = false;
+        feedbackText.innerHTML = "Der Tag muss ein Wert zwischen 1 - 31 sein"
+        
+        console.log("Day valid : " +valid)
+    
+    } else if(month < 1 || month > 12) {
+        valid = false;
 
-    // Check if values are within valid ranges
-    console.log("data : " +day, month, year)
-    if(day < 1 || day > 31) valid = false;
-    console.log("Day valid : " +valid)
-    if(month < 1 || month > 12) valid = false;
-    console.log("Month valid : " +valid)
-    if(year < 1000 || year > 5000) valid = false;
-    console.log("Year valid : " +valid)
+        console.log("Month valid : " +valid)
 
+        feedbackText.innerHTML = "Der Monat muss ein Wert zwischen 1 - 12 sein"
 
+        console.log("Year valid : " +valid)
+
+    } else if (year < 1000 || year > 3000) {
+        valid = false;
+        feedbackText.innerHTML = "Das Jahr muss ein Wert zwischen 1900 - 2500 sein"
+    }
+
+}
+    
     // Check for real calendar dates (e.g., no Feb 30)
    
     const date = new Date(year, month-1, day); // months are 0 based
@@ -55,6 +80,8 @@ function isValidInput(day, month, year) {
         console.log("date compare day: " + (date.getDate() !== day))
         valid = false;
         console.log("Compare Date: "+valid)
+
+         //feedbackText.innerHTML = "Das ist kein valides Datum"
     }
 
 
@@ -81,14 +108,24 @@ function checkWeekDay(){
     let userDate = isValidInput(tag, monat, jahr)
     console.log ("userDate after function" + userDate)
 
-    if(!isValidInput(tag, monat, jahr)){ // This is an if statment with a function call inside
+    if(isValidInput(tag, monat, jahr)){ // This is an if statment with a function call inside
+        let weekDays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+        console.log(weekDays);
+        feedbackText.innerText = "Der Tag war ein: " + weekDays[userDate.getDay()];
+    return;
+    } 
+
+
+
+
+    /*if(!isValidInput(tag, monat, jahr)){ // This is an if statment with a function call inside
     feedbackText.innerText = "Falsches Date - Versuche es nochmals."
     return;
     } 
     else {
 
-         feedbackText.innerText = ("Tag ist: " + userDate.getDay())
-    }
+         feedbackText.innerText = userDate + " ist korrekt"
+    } */
 
     // Calculate Weekday using the date object returned in isValidInput(day, month, year)
 
