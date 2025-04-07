@@ -29,6 +29,292 @@
 
     <h3 class="textColor01">JavaScript (Objects)</h3>
 
+    <ul>
+    
+        <li class="textColor02"><strong>Was ist ein Object in JavaScript?</strong></li>
+        <p>Ein Object ist eine Sammlung von zusammengehörigen Daten und/oder Funktionen, die in sogenannten Eigenschaft–Wert-Paaren (Property–Value Pairs) gespeichert sind.</p>
+        
+        <li class="textColor02"><strong>Wie erstellt man ein neues Object?</strong></li>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const hund = {
+                    name: "Balu",
+                    alter: 5,
+                    rasse: "Labrador",
+                    bellen: function() {
+                      console.log("Wuff!");
+                    }
+                  };
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>name, alter, rasse und bellen sind Eigenschaften (Properties).</li>
+            <li>"Balu", 5 und "Labrador" und function() sind die Werte (Values).</li>
+            <li>bellen ist auch eine Methode (Function innerhalb eines Objekts), weil der Wert dieser Property eine Funktion ist.</li>
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Was ist eine Property in JavaScript?</strong></li>
+        <p>Ein Schlüssel–Wert-Paar, das zu einem Objekt gehört. Eine Property beschreibt ein Merkmal eines Objekts – z. B. Name, Alter, Farbe oder auch Funktionen (Methoden).</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const hund = {
+                    name: "Luna",
+                    alter: 3
+                  };
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>name ist eine Property mit dem Wert "Luna".</li>
+            <li>alter ist eine Property mit dem Wert 3.</li>
+        </ul>
+
+        <p>Allgemeine Struktur:</p>
+        <div class="code-sample">  
+            <code>
+                const objekt = {
+                    schlüssel (key): wert(value)
+                  };
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Auf Properties zugreifen:</strong></li>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                console.log(hund.name);       // "Luna"
+                console.log(hund["alter"]);   // 3
+            </code>
+        </div>
+        <p>Beide varianten sind erlaubt:</p>
+        <ul>
+            <li>Punktnotation (objekt.schlüssel)</li>
+            <li>Klammernotation (objekt["schlüssel"])</li>
+        </ul>
+        <p>Die Klammernotation ist nützlich, wenn der Schlüssel dynamisch ist.</p>
+
+        <p>Beispiel mit Punktnotation:</p>
+        <div class="code-sample">  
+            <code>
+                const hund = {
+                    name: "Balu",
+                    rasse: "Labrador",
+                    alter: 6
+                  };
+                  
+                  console.log(hund.name);   // → "Balu"
+                  console.log(hund.rasse);  // → "Labrador"
+                  console.log(hund.alter);  // → 6
+            </code>
+        </div>
+
+        <p>Beispiel mit Klammernotation (["key"]):</p>
+        <div class="code-sample">  
+            <code>
+                console.log(hund["name"]);   // → "Balu"
+                console.log(hund["rasse"]);  // → "Labrador"
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie kann man Attributen auflisten?</strong></li>
+        <p>Wenn man alle Properties (manchmal fälschlich „Attribute“ genannt) eines JavaScript-Objekts auflisten möchte, gibt es mehrere Methoden – je nachdem, was man genau braucht:</p>
+        <ul>
+            <li><p>Object.keys(obj) → Alle eigenen, enumerierbaren Property-Namen</p></li>
+            <div class="code-sample">  
+                <code>
+                    const hund = {
+                        name: "Balu",
+                        alter: 4,
+                        rasse: "Labrador"
+                      };
+                      
+                      console.log(Object.keys(hund));  
+                      // → ["name", "alter", "rasse"]
+                </code>
+            </div>
+
+            <li><p>Object.values(obj) → Nur die Werte</p></li>
+            <div class="code-sample">  
+                <code>
+                    console.log(Object.values(hund));  
+                    // → ["Balu", 4, "Labrador"]
+                </code>
+            </div>
+
+            <li><p>Object.entries(obj) → Schlüssel–Wert-Paare</p></li>
+            <div class="code-sample">  
+                <code>
+                    console.log(Object.entries(hund));  
+                    // → [["name", "Balu"], ["alter", 4], ["rasse", "Labrador"]]
+                </code>
+            </div>
+
+            <p>Das ist ideal für Schleifen:</p>
+            <div class="code-sample">  
+                <code>
+                    const hund = {
+                        name: "Balu",
+                        alter: 4,
+                        rasse: "Labrador"
+                      };
+                      
+                      // Mit Object.entries() und einer for...of Schleife
+
+                      for (const [key, value] of Object.entries(hund)) {
+                        console.log(`${key}: ${value}`);
+                      }
+                </code>
+            </div>
+
+            <p>Ausgabe:</p>
+
+            <div class="code-sample">  
+                <code>
+                    name: Balu
+                    alter: 4
+                    rasse: Labrador
+                </code>
+            </div>
+
+
+
+            <li><p>Mit for...in Schleife</p></li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    const canis = {
+                        name: "Niko",
+                        alter: 2,
+                        rasse: "Rottweiler"
+                        };
+                
+                        // Mit for...in Schleife
+                        for (let key in canis) {
+                        console.log(key + ": " + canis[key]);
+                        }
+                </code>
+            </div>
+
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Auf Properties zugreifen:</strong></li>
+        <p>Es gibt verschiedene Möglichkeiten, einem bestehenden Objekt in JavaScript neue Properties hinzuzufügen.</p>
+        <ul>
+            <li><p>Punktnotation (.)</p></li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    const hund = {
+                        name: "Balu",
+                        alter: 4
+                      };
+                      
+                      // Neue Property hinzufügen
+                      hund.rasse = "Labrador";
+                      
+                      console.log(hund);
+                      // → { name: "Balu", alter: 4, rasse: "Labrador" }
+                </code>
+            </div>
+
+            <li><p>Klammernotation ([])</p></li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    const hund = {
+                        name: "Balu",
+                        alter: 4
+                      };
+                      
+                      // Neue Property hinzufügen
+                      hund["rasse"] = "Labrador";
+                      
+                      console.log(hund);
+                      // → { name: "Balu", alter: 4, rasse: "Labrador" }
+                </code>
+            </div>
+
+            <li><p>Mit Object.assign()</p></li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                    const hund = {
+                        name: "Balu",
+                        alter: 4
+                      };
+                      
+                      // Mehrere Properties hinzufügen
+                      Object.assign(hund, { rasse: "Labrador", gewicht: 25 });
+                      
+                      console.log(hund);
+                      // → { name: "Balu", alter: 4, rasse: "Labrador", gewicht: 25 }
+                </code>
+            </div>
+            <p>Object.assign() ist besonders nützlich, wenn man mehrere Properties gleichzeitig zu einem Objekt hinzufügen möchte.</p>
+
+        </ul>
+
+        <li class="textColor02"><strong>Funktionen als Property:</strong></li>
+        <p>In JavaScript kann eine Funktion als Property (oder „Attribut“) eines Objekts gespeichert werden. Das bedeutet, dass man einer Property des Objekts eine Funktion zuweisen kann, und diese Funktion wird dann wie jede andere Property behandelt.</p>
+
+        <p>Beispiel:</p>
+
+        <div class="code-sample">  
+            <code>
+                const hund = {
+                    name: "Balu",
+                    alter: 4,
+                    
+                    // Funktion als Property
+                    bellen: function() {
+                      console.log("Wuff! Wuff!");
+                    }
+                  };
+                  
+                  // Die Funktion aufrufen
+                  hund.bellen();
+                  // → "Wuff! Wuff!"Was passiert wenn ich eine for...in Schleife auf eine Array anwende?
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Anwendung der for...in Schleife auf ein Array innerhalb eines Objekts:</strong></li>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const auto = {
+                    marke: "Volkswagen",
+                    modell: "Golf",
+                    jahr: 2020,
+                    farben: ["Rot", "Blau", "Schwarz"]
+                  };
+                  
+                  for (let index in auto.farben) {
+                    console.log(`Farbe ${index}: ${auto.farben[index]}`);
+                  }
+            </code>
+        </div>
+
+        <p>Ausgabe:</p>
+        <div class="code-sample">  
+            <code>
+                Farbe 0: Rot
+                Farbe 1: Blau
+                Farbe 2: Schwarz
+            </code>
+        </div>
+
+        <p>Hier wird die for...in Schleife auf das Array auto.farben angewendet, das drei Farben enthält.</p>
+        <p>Die Schleife iteriert über die Indizes des Arrays (0, 1, 2) und gibt den entsprechenden Wert für jede Farbe aus.</p>
+    
+    </ul>
 
 
 </body>

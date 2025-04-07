@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <title>Sandbox 01</title>
+</head>
+<body>
+    <script>
+
+        printH(1, "Objects - Basics")
+
+        let count = 0
+        let element = "Apfel"
+
+        print("Count:" + count + " " +  "Item: " + element)
+
+        printHr()
+
+        printH(3, "Object creation")
+
+        //Object creation ---------------
+
+        let item = {
+            product: "Apfel",
+            count: 3
+        }
+
+        printLn(item);
+
+        printLn()
+
+        printLn(`Item: ${item.count} Stk. ${item.product}`)
+
+        console.log(item)
+
+        let cart = [
+        { product: "Apfel", count: 3},
+        { product: "Birne", count: 1},
+        { product: "Sahne", count: 5},
+        { product: "Zucker", count: 1},
+        { product: "Milch", count: 10, producer: "Ländle Milch"},
+        { product: "Zimt", count: 1}
+        ]
+
+        console.log(cart);
+
+        // Neues attribute namens "unit" hinzugefügt. Value: "kg"
+
+        cart[3].unit = "kg"
+        console.log(cart)
+
+        printLn(`Item: ${cart[3].product} --> Unit ${cart[3].unit}`)
+
+        printHr()
+
+        printH(3, "for...in Loop")
+
+        // Cycle through "item"
+
+        for (let attribute in item){
+            printLn(`The value of attribute ${attribute} is ${item[attribute]}`)
+        }
+
+        // Cycle through "cart"
+
+        // for loop ---------------------------
+        // The for...in loop iterates over all the properties of an object.
+        // For example, if the object is { product: "Apfel", count: 3 }
+        // ${attribute} -> refers to the name of the current properties of the object "item"
+        // The attribute will take the values "product" and "count"
+        // ${item[attribute]} accesses the value of the property attribute in the object "item"
+        // Example: when attribute is "product", item[attribute] evaluates to "Apfel"
+        // When attribute is "count", item[attribute] evaluates to 3.
+
+        printHr();
+        printLn("[");
+        for (let i = 0; i < cart.length; i++) { // Normal for loop to iterate through the cart array
+        let item = cart[i]; // Access the current item in the cart
+        print("    { ");
+        for (let attribute in item) { // Iterate through the attributes of the current item
+        print(`${attribute}: ${item[attribute]}, `);
+        }
+        printLn("},");
+        }
+        printLn("]");
+
+        // forEach loop -----------------------
+
+        printHr()
+        printLn("[")
+        cart.forEach(item => {
+            print("    { ")
+            for (attribute in item ){
+                print(`${attribute}: ${item[attribute]}, `)
+            }
+            printLn("},")
+        })
+        printLn("]")
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
