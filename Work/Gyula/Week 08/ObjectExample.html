@@ -50,6 +50,13 @@
         printLn("},")
     })
     printLn("]")
+
+    printHr()
+    printLn(item)
+    item.toString = () => `Item: ${item.count} Stk. ${item.product}`
+    printLn(item)
+    console.log(item)
+
 </script>
 </body>
 </html>
