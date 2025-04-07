@@ -98,8 +98,12 @@ function checkPlayerGuess(guessValue, wordToGuess) {
     let liElements = wordList.getElementsByTagName("li");
     let matchFound = false;
 
-    for (let i = 0; i < wordToGuess.name.length; i++) {
-        if (wordToGuess.name[i] === guessValue.toLowerCase()) {
+    // Umwandlung des Wortes und der Eingabe in KLeinbuchstaben
+    let lowerCaseWord = wordToGuess.name.toLowerCase();
+    let lowerCaseGuess = guessValue.toLowerCase();
+
+    for (let i = 0; i < lowerCaseWord.length; i++) {
+        if (lowerCaseWord[i] === lowerCaseGuess) {
             liElements[i].textContent = guessValue;
             matchFound = true;
             console.log("matchFound variable will be set to: " + matchFound);
