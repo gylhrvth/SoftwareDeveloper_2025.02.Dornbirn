@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+let myCar = {
+    type: 'Opel',
+    model: 'Astra',
+    color: 'black',
+    year: 2017,
+    owner: {
+        firstName: 'Gyula',
+        lastName: 'Horvath',
+        birthYear: 1979,
+        address: {
+            street: 'Weppach 1f',
+            postalCode: 6850,
+            city: 'Dornbirn',
+            country: 'Austria',
+        },  
+    },
+    service: [
+        {
+            date: new Date(2018, 5, 15),
+            serviceType: 'oil change',
+            cost: 150,
+        },
+        {
+            date: new Date(2019, 5, 15),
+            serviceType: 'brake pads replacement',
+            cost: 300,
+        },
+    ],
+    fuel: 'diesel',
+    mileage: 120000,
+    built: new Date(2017, 5, 15),
+    hasAutomatic: false,
+}
+
+function printObject(obj, prefix = '') {
+    console.log(obj);
+    for (let key in obj) {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            if (obj[key].constructor.name === 'Date') {
+                printLn(prefix + '  ' + obj[key].toLocaleDateString('de-AT', { day: '2-digit', month: 'long', year: 'numeric' }) + " (" + obj[key].constructor.name + ")");
+            } else {
+                printLn(prefix + key + " (" + obj[key].constructor.name + ")" + ": ");
+                printObject(obj[key], prefix + '  ');
+            }
+        } else {
+            printLn(prefix + key + ": " + obj[key] + " (" + typeof obj[key] + ")");
+        }
+    }
+}
+
+printObject(myCar);
+    </script>
+</body>
+</html>
