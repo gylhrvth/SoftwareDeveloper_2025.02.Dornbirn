@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Sandro/style.css">
+    <script src="../../../../../Kurs/common.js"></script>
+    <title>Sandbox 03</title>
+</head>
+<body>
+    <script>
+
+        // 1. Exercise: List all properties of an object
+
+        const car = {
+        brand: "Toyota",
+        model: "Corolla",
+        year: 2020,
+        color: "blue"
+        };
+
+        // Use for...in to list all keys
+
+       for (let key in car) {
+        console.log(key)
+       }
+
+       // 2. Exercise: List both keys and values
+
+       for (let key in car) {
+        console.log(key + ":" + car[key]);
+       }
+
+       // 3. Exercise: Count the number of properties in an object: 
+       // Create an object and use a for...in loop to count the number of properties the object has.
+
+        const person = {
+        name: "John",
+        age: 30,
+        job: "developer",
+        country: "USA"
+        };
+
+        // Count the number of properties using for...in
+
+        let count = 0;
+
+        for (let key in car) {
+            count++
+            console.log(count)
+        }
+
+        console.log("Number of properties = " + count)
+
+
+        // 4. Exercise: Check if a property exists  -> Given an object, use for...in to check if a specific property (e.g., “age”) exists in the object.
+
+        const student = {
+        name: "Sarah",
+        grade: "A",
+        subject: "Math"
+        };
+
+        // Check if the 'age' property exists
+
+        let hasAgeProperty = false;
+
+        for (let key in student) {
+            if(key==="age"){
+               hasAgeProperty = true;
+               break; // Exit the loop once the property is found
+            }
+        }
+
+        if (hasAgeProperty){
+            console.log("The 'age' property exists in this object");
+        } else {
+            console.log("The 'age' property does not exist in this object");
+
+        }
+
+        // Check if the 'age' property exists using the "in" operator
+           
+        if ("age" in student) {
+        console.log(true);
+        } else {
+        console.log(false);
+        }
+
+        
+
+    </script>
+</body>
+</html>
