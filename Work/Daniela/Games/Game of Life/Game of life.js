@@ -3,7 +3,7 @@ const cols = 100;
 const cellSize = canvas.width / rows;
 
 const img = new Image();
-img.src="img/Skuls.png"
+img.src = "img/Skuls.png"
 img.onload = drawGrid; // Warten, bis das Bild geladen ist
 
 /*---------------------------------------------------------------------*/
@@ -40,7 +40,7 @@ function drawGrid() {
                 ctx.fillStyle = "#fff"; //wenn Zelle lebt weiss!
                 ctx.fill();
             } else {
-        
+
                 ctx.drawImage(img, col * cellSize, row * cellSize, cellSize, cellSize);
                 ctx.fill();
             }
@@ -51,21 +51,20 @@ function drawGrid() {
 }
 
 
-     // Zähle die lebendigen Nachbarn einer Zelle
-     function countAliveNeighbors(row, col) {
-        const directions = [
-            [-1, -1], [-1, 0], [-1, 1],
-            [0, -1],          [0, 1],
-            [1, -1], [1, 0], [1, 1]
-        ];
-        let count = 0;
-        directions.forEach(([dx, dy]) => {
-            const newRow = row + dx;
-            const newCol = col + dy;
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-                if (grid[newRow][newCol]) count++;
-            }
-        });
-        return count;
-    }
-                
+// Zähle die lebendigen Nachbarn einer Zelle
+function countAliveNeighbors(row, col) {
+    const directions = [
+        [-1, -1], [-1, 0], [-1, 1],
+        [0, -1], [0, 1],
+        [1, -1], [1, 0], [1, 1]
+    ];
+    let count = 0;
+    directions.forEach(([dx, dy]) => {
+        const newRow = row + dx;
+        const newCol = col + dy;
+        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+            if (grid[newRow][newCol]) count++;
+        }
+    });
+    return count;
+}

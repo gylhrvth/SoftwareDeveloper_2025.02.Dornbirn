@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 07 Journal 2 (Date)</title>
+</head>
+<style>
+    body {
+        background: linear-gradient(to right, rgb(225, 135, 253), rgb(14, 160, 245), rgb(134, 15, 245), rgb(227, 145, 244));
+    }
+
+    .link_container {
+        display: flex;
+        flex-direction: column;
+        background: rgba(241, 239, 239, 0.267);
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        border-radius: 1em;
+        outline: rgb(181, 5, 235);
+        box-shadow: 0 0 5px 5px hsla(0, 0%, 100%, 0.426);
+        margin: 2em;
+    }
+
+    .link_container>p {
+        color: white;
+        font-size: 1.5em;
+    }
+
+    .link_container>h2 {
+        color: rgb(227, 245, 168);
+        font-size: 2em;
+    }
+
+    .link_container>ul>li {
+        color: white;
+        font-size: 1.5em;
+    }
+
+    .link_container>ol>li {
+        color: white;
+        font-size: 1.5em;
+    }
+
+    div > img{
+        filter: invert(1);
+        margin: 0.5em;
+    }
+</style>
+
+<body>
+    <div class="link_container">
+        <h2 style="font-size: 3em;">Journal</h2>
+    </div>
+
+    <div class="link_container">
+        <h2>Was ist ein Date-Objekt in JavaScript?</h2>
+        <p>Ein Date-Objekt in JavaScript ist eine spezielle Art von Datenstruktur, die Datum und Uhrzeit
+            repräsentiert.<br>
+            Es speichert die Zeit in Millisekunden seit dem 1. Januar 1970 (UTC) – auch bekannt als Unix-Zeitstempel<br>
+            oder "Epoch Time".</p>
+        <h2>Warum gibt es das Date-Objekt?</h2>
+        <p>JavaScript wurde ursprünglich für Webentwicklung konzipiert. Da Websites oft mit Datum und Zeit arbeiten<br>
+            müssen (zum Beispiel für Kalender, Timer, Buchungssysteme oder Ablaufdaten), wurde das Date-Objekt<br>
+            eingeführt, um diese Funktionen bereitzustellen.</p>
+        <h2>Wie funktioniert das Date-Objekt?</h2>
+        <p>Das Date-Objekt speichert nicht einfach nur ein Datum wie "3. April 2024", sondern eine genaue<br>
+            Zeitangabe bis auf die Millisekunde.</p>
+        <p> Intern betrachtet JavaScript die Zeit als die Anzahl der Millisekunden seit Mitternacht am 1. Januar
+            1970<br>
+            (UTC-Zeit). Zum Beispiel:</p>
+        <ul>
+            <li>Der Wert 0 steht für den 1. Januar 1970, 00:00:00 Uhr UTC.</li>
+            <li>Der Wert 1.000 steht für den 1. Januar 1970, 00:00:01 Uhr UTC (eine Sekunde später).</li>
+            <li>Der Wert 86.400.000 steht für den 2. Januar 1970, 00:00:00 Uhr UTC (ein Tag später).</li>
+        </ul>
+        <p>Das bedeutet: Jedes Datum, das du siehst, ist eigentlich eine Berechnung basierend auf dieser Zeitreferenz.
+        </p>
+        <h2>Wie speichert JavaScript Datum und Zeit?</h2>
+        <p>Das Date-Objekt speichert intern die absolute Zeit als Zahl, aber wenn es ausgegeben wird, wandelt<br>
+            JavaScript diese Zahl in ein menschenlesbares Format um – z. B. "Wed Apr 03 2024 12:00:00 GMT+0200".</p>
+        <p>Wichtige Komponenten eines Datums:</p>
+        <ol>
+            <li>Jahr (z. B. 2024)</li>
+            <li>Monat (Achtung: JavaScript zählt ab 0, also Januar = 0, Dezember = 11)</li>
+            <li>Tag des Monats (1 bis 31)</li>
+            <li>Wochentag (0 = Sonntag, 6 = Samstag)</li>
+            <li>Stunde, Minute, Sekunde & Millisekunde</li>
+        </ol>
+        <p>Das Date-Objekt kann alle diese Werte abrufen oder verändern.</p>
+        <h2> Zeitzonen und UTC</h2>
+        <p>Ein großes Thema beim Arbeiten mit Datum und Uhrzeit sind Zeitzonen.</p>
+        <ul>
+            <li>Die meisten Methoden von Date arbeiten mit der lokalen Zeit deines Computers.</li>
+            <li>Es gibt aber auch Methoden, um die Zeit in UTC (Universal Coordinated Time) zu berechnen, die für<br>
+                internationale Systeme wichtig ist.</li>
+        </ul>
+        <p>Beispiel:</p>
+        <ul>
+            <li>Wenn dein Computer in Deutschland (Zeitzone GMT+2) steht und du die aktuelle Zeit abrufst,<br>
+                zeigt JavaScript die Uhrzeit basierend auf dieser Zeitzone an.</li>
+            <li>Wenn du jedoch die UTC-Zeit abrufst, zeigt JavaScript eine um zwei Stunden frühere Zeit an.</li>
+        </ul>
+        <p>Das ist besonders wichtig, wenn man z. B. eine weltweite Anwendung baut, die mit Servern<br>
+            kommuniziert, die in unterschiedlichen Zeitzonen stehen.</p>
+
+        <h2>Warum ist Date manchmal kompliziert?</h2>
+        <ol>
+            <li>Monate starten bei 0, nicht bei 1 → Januar = 0, Februar = 1 …</li>
+            <li>Zeitzonen beeinflussen Ergebnisse → Die gleiche Uhrzeit kann in verschiedenen Ländern anders<br>
+                angezeigt werden.</li>
+            <li>Schaltjahre & ungleichmäßige Monatslängen → Februar hat manchmal 28, manchmal 29 Tage.</li>
+            <li>Sommerzeit (Daylight Saving Time, DST) → Manchmal springt die Uhr eine Stunde vor oder zurück, was<br>
+                Berechnungen schwierig machen kann.</li>
+        </ol>
+
+
+    </div>
+
+    <div class="link_container">
+        <h2>Möglichkeiten, ein Datum in JavaScript anzuzeigen</h2>
+        <p>Es gibt viele Wege, ein Date-Objekt in JavaScript für den Menschen lesbar zu machen. Hier sind die<br>
+            wichtigsten Methoden und Formate:</p>
+
+        <img src="Img 2/1&2.png">
+        <img src="Img 2/3.png">
+        <img src="Img 2/4.png">
+        <img src="Img 2/5.png">
+        <img src="Img 2/6.png">
+        <img src="Img 2/7.png">
+
+    </div>
+    <div class="link_container">
+        <h2>newDate();</h2>
+        <img src="Img 2/newDate().png">
+
+    </div>
+
+</body>
+
+</html>

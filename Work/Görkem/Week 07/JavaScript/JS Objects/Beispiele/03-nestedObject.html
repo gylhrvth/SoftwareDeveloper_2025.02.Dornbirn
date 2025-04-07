@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objekt mit verschachtelten Eigenschaften</title>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Object definieren und Eigenschaften hinzufügen");
+        // Defining the object
+         // Defining the object
+         const person = {
+            firstName: "Görkem",
+            lastName: "Cinar",
+            age: 23,
+            greet: function () {
+                printLn("Hello, my name is " + this.firstName + " " + person.lastName + "." + " I am " + this.age + " years old.");
+            }
+        };
+
+        console.log(person.firstName); // Output: Görkem
+        console.log(person["lastName"]);
+
+   
+        person.greet();
+        printHr();
+        
+        printH(3, "Spiel-Daten-Object")
+        
+        let game = {
+            title: "Horizon Forbidden West",
+            genre: "Action RPG",
+            platform: "PlayStation 5",
+            releaseYear: 2022,
+            developer: "Guerrilla Games",
+            publisher: "Sony Interactive Entertainment",
+            rating: 9,
+            description: function () {
+                return `${this.title} is a ${this.genre} game released in ${this.releaseYear} for the ${this.platform}. The game was developed by ${this.developer} and published by ${this.publisher}. It has a rating of ${this.rating} out of 10.`;
+            }
+        };
+        printLn(game.description());
+        printHr();
+        printH(3, "Spiel-Daten-Object mit Methode");
+
+        // Ausgabe der Spielbeschreibung
+        console.log(game.description());
+
+        // Horizontale Linie in der Konsole
+        console.log('-------------------------------');
+
+
+    
+        
+    
+       
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

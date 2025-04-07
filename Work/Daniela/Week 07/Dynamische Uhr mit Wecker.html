@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamische Uhr</title>
+    <link rel="stylesheet" href="Dynamische Uhr mit Wecker.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+</head>
+
+
+
+<body>
+    <div></div>
+    <main>
+
+        <div class="container" id="currentDay"></div>
+
+
+        <div class="clock_container">
+            <div class="clock" id="currentHour1"></div>
+            <div class="clock" id="currentHour2"></div>
+
+            <div class="dots"></div>
+            <div class="dots2"></div>
+
+            <div class="clock" id="currentMin1"></div>
+            <div class="clock" id="currentMin2"></div>
+
+            <div class="dots"></div>
+            <div class="dots2"></div>
+
+            <div class="clock" id="currentSek1"></div>
+            <div class="clock" id="currentSek2"></div>
+
+
+        </div>
+
+        <div><input type="time" id="alarmTime"></div>      <!--mit type=time wandelt sich input feld in Uhrzeit-Auswahl-->
+        <button onclick="setAlert()">Set Alert</button>
+        <p id = "alertStatus"></p>
+
+    </main>
+
+</body>
+
+<script>
+
+    //current Day
+
+    setInterval(runTimer, 1000);
+
+    function runTimer() {
+        let currentDay = new Date();
+        updateDay(currentDay);
+        updateClock(currentDay);
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    // Hole den Tag, Monat und Jahr
+    function updateDay(currentDay) {
+        let day = currentDay.getDate().toString().padStart(2, '0'); // 0 einfügen mit padStart
+        let month = (currentDay.getMonth() + 1).toString().padStart(2, '0'); // Führende Null für den Monat
+        let year = currentDay.getFullYear(); // Jahr bleibt wie es ist
+
+        // Formatiertes Datum
+        let formattedDate = `${day}.${month}.${year}`;
+
+        // Zeige das formatierte Datum an
+        document.getElementById("currentDay").innerText = formattedDate;
+    }
+   
+    function updateClock(currentDay) {
+        let currentHour = currentDay.getHours().toString();
+
+        let firstDigitH = Math.floor(currentHour / 10); //erste Ziffer Stunde
+        let secondDigitH = currentHour % 10;
+
+        document.getElementById("currentHour1").innerText = firstDigitH;
+        document.getElementById("currentHour2").innerText = secondDigitH;
+        //----------------
+        //currentMin
+        let currentMinute = currentDay.getMinutes().toString();
+
+        let firstDigitM = Math.floor(currentMinute / 10); //erste Ziffer Stunde
+        let secondDigitM = currentMinute % 10;
+
+        document.getElementById("currentMin1").innerText = firstDigitM;
+        document.getElementById("currentMin2").innerText = secondDigitM;
+        //----------------
+        //currentSek
+        let currentSek = currentDay.getSeconds().toString();
+
+        let firstDigitS = Math.floor(currentSek / 10); //erste Ziffer Stunde
+        let secondDigitS = currentSek % 10;
+
+        document.getElementById("currentSek1").innerText = firstDigitS;
+        document.getElementById("currentSek2").innerText = secondDigitS;
+    } 
+    //---------------------------------------------------------------------------------------------------------------------
+    let alertTime = null;       //user Input wird in dieser Variable gespeichert 
+
+    function setaAlert() {
+
+        let userInput = document.getElementById("alarmTime").value;
+        if (userInput){
+            alertTime = userInput;
+            document.getElementById("alertStatus").innerText = "alert set to:" + alertTime;
+        }
+    }
+//------------------------------------------------------------------------------------------------------------------------
+
+
+
+</script>
+
+</html>

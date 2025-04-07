@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Übungen</title>
+    <link href="../../../Kurs/common.js">
+
+</head>
+
+
+
+
+<body>
+    <h2>new Date();</h2>
+    <p>______________________________________________________________________________________________________________________
+    </p>
+    <p>new Date ohne Argument:</p>
+    <p style="color: crimson;" , id="newDate"></p>
+    <p>______________________________________________________________________________________________________________________
+    </p>
+    <p>new Date, Argument: null</p>
+    <p style="color: crimson;" , id="newDateNull"></p>
+    <p>-ZeroTime</p>
+    <p>______________________________________________________________________________________________________________________
+    </p>
+    </p>
+    <p>getDate()</p>
+    <p>Tag des Monats: </p>
+    <p style="color: crimson;" , id="getDate"></p>
+    <p></p>
+    <p>______________________________________________________________________________________________________________________
+    </p>
+    <p>getDay</p>
+    <p>Der Wochentag wird ausgegeben:</p>
+    <p style="color: crimson;" , id="getDay"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>getFullYear</p>
+    <p>Jahr im vierstelligen Format:</p>
+    <p style="color: crimson;" , id="getFullYear"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>getMonth()</p>
+    <p></p>
+    <p style="color: crimson;" , id="getMonth"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>getHour()/getMinutes/getSeconds/getMilliseconds()</p>
+    <p></p>
+    <p style="color: crimson;" , id="getTimes"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>getTime</p>
+    <p>Millisekunden seit dem 1. Januar 1970 00:00:00 UTC:</p>
+    <p style="color: crimson;" , id="getTime"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>setDate()</p>
+    <p></p>
+    <p style="color: crimson;" , id="setDate"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>setFullYear/setMonth</p>
+    <p></p>
+    <p style="color: crimson;" , id="set-Y-M"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>setHour()/setMinutes()/setSeconds()/setMilliseconds</p>
+    <p></p>
+    <p style="color: crimson;" , id="setTimes"></p>
+
+    <p>try</p>
+    <p style="color: crimson;" , id="try"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>setTime</p>
+    <p></p>
+    <p style="color: crimson;" , id="setTime"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p></p>
+    <p>toString</p>
+    <p style="color: crimson;" , id="toString"></p>
+    <p>_______________________________________________________________________________________________________________________
+    </p>
+    <p>toDateString()</p>
+    <p style="color:crimson" id="toString2"></p>
+    <p>______________________________________________________________________________________________________________________</p>
+    <p>toUTC()</p>
+    <p style="color:crimson" id="toUTC"></p>
+    <p>______________________________________________________________________________________________________________________</p>
+</body>
+<script>
+
+    let datum = new Date();
+
+    //--------------------------------------------------------------------------------------
+    console.log(new Date());
+    document.getElementById("newDate").innerText = new Date();
+
+
+    document.getElementById("newDateNull").innerText = new Date(null);
+    //--------------------------------------------------------------------------------
+    let tagDesMonats = datum.getDate();
+
+    document.getElementById("getDate").innerText = new Date().getDate();
+    //--------------------------------------------------------------------------------
+    let DayOfWeek = new Date();
+    let Day = new Date().getDay();
+
+    document.getElementById("getDay").innerText = Day;
+    //--------------------------------------------------------------------------------
+    let FullYear = datum.getFullYear();
+    document.getElementById("getFullYear").innerText = FullYear;
+    //--------------------------------------------------------------------------------
+    let month = datum.getMonth();
+    document.getElementById("getMonth").innerText = "month: " + month;
+    //--------------------------------------------------------------------------------
+    let hour = datum.getHours()
+    let minute = datum.getMinutes()
+    let sek = datum.getSeconds();
+    let millSek = datum.getMilliseconds();
+    document.getElementById("getTimes").innerText = "Time rigth now: " + hour + ": " + minute + ": " + sek + ": " + millSek;
+    //--------------------------------------------------------------------------------
+    let time = datum.getTime();
+    document.getElementById("getTime").innerText = "Time: " + time;
+    //--------------------------------------------------------------------------------
+    setDat = datum.setDate(5);
+    document.getElementById("setDate").innerText = "Tag des Monats: " + setDat;
+    //-------------------------------------------------------------------------------
+    setFullYear = datum.setFullYear(2020);
+    setMonth = datum.setMonth(5);
+    document.getElementById("set-Y-M").innerText = "setFullYear - setMonth: " + setFullYear + " - " + setMonth;
+    //---------------------------------------------------------------------------------
+
+    //---------------------------------------------------------------------------------
+    hour1 = datum.setHours(50);
+    min1 = datum.setMinutes(7);
+    sec1 = datum.setSeconds(2);
+    millsec1 = datum.setMilliseconds(18);
+
+    document.getElementById("setTimes").innerText = hour1 + " - " + min1 + " - " + sec1 + " - " + millsec1;
+    //-----------------------------------------------------------------------------------
+
+    // Setze Stunden, Minuten, Sekunden und Millisekunden
+    datum.setHours(5);  // Setzt die Stunden auf 0
+    datum.setMinutes(0);  // Setzt die Minuten auf 5
+    datum.setSeconds(359);  // Setzt die Sekunden auf 100 (dies wird intern zu 1 Minute und 40 Sekunden umgewandelt)
+    datum.setMilliseconds(1);  // Setzt die Millisekunden auf 1
+
+    // Hole die geänderten Werte (Stunden, Minuten, Sekunden und Millisekunden)
+    let hours = datum.getHours();
+    let minutes = datum.getMinutes();
+    let seconds = datum.getSeconds();
+    let milliseconds = datum.getMilliseconds();
+
+    // Ausgabe der Ergebnisse in menschenlesbarer Form
+    document.getElementById("try").innerText =
+        "Zeit: " + hours + " Stunden " + minutes + " Minuten " + seconds + " Sekunden " + milliseconds + " Millisekunden";
+
+    //-----------------------------------------------------------------------------------
+    setTime = datum.setTime(5);
+    document.getElementById("setTime").innerText = setTime;
+    //-----------------------------------------------------------------------------------
+    let dateString = datum.toString();
+    document.getElementById("toString").innerText = "toString: " + dateString;
+    //-----------------------------------------------------------------------------------
+    let dateString2 = datum.toDateString();
+    document.getElementById("toString2").innerText = "toDateString: " + dateString2;
+    //--------------------------------------------------------------
+    let utcString = datum.toUTCString();
+    console.log("datum: " + datum);
+    document.getElementById("toUTC").innerText = "toUTCstring: " + utcString;
+    //--------------------------------------------------------------------------------------
+</script>
+
+
+
+</html>

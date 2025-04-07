@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+</head>
+<body>
+
+<script>
+    // 🎯 Ein Objekt mit ein paar Eigenschaften
+    let laptop = {
+        brand: "Lenovo",
+        model: "ThinkPad X1",
+        year: 2023,
+        isNew: true
+    };
+
+    console.log("📋 Alle Schlüssel + Werte im Objekt:\n");
+
+    // 🔁 for...in Schleife: Gehe durch alle Schlüssel
+    for (let key in laptop) {
+        console.log("🔑 Schlüssel: " + key);                 // z. B. "brand"
+        console.log("📦 Wert: " + laptop[key]);             // z. B. "Lenovo"
+        console.log("➡️ Typ des Werts: " + typeof laptop[key]); // z. B. "string"
+        console.log("---");
+    }
+
+    // 💡 Bonus: Zugriff mit Punkt vs. Zugriff mit eckigen Klammern
+    let propName = "model";
+
+    console.log("\n💡 Zugriff mit Punkt: laptop.model →", laptop.model);
+    console.log("💡 Zugriff mit Variable: laptop[propName] →", laptop[propName]);       // Gibt dasselbe wie zeile 34 aus!
+</script>
+
+</body>
+</html>
+
+    </script>
+
+</body>

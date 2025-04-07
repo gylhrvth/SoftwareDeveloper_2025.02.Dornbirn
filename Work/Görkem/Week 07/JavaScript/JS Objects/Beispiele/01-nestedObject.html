@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objekt mit verschachtelten Eigenschaften</title>
+    <link rel="stylesheet" href="../../../../../Sandro/style.css">
+    <link rel="stylesheet" href="../../../../../../Kurs/common.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Object - Basics");
+        printH(3, "Object - Erstellung");
+
+
+        let count = 0 // Variable für die Anzahl der Produkte
+        let text = "Apfel" // Variable für den Produktnamen
+
+        let item = {
+            product: "Apfel",
+            count: 3
+        }
+
+        let cart = [
+            { product: "Apfel", count: 3},
+            { product: "Birne", count: 1},
+            { product: "Sahne", count: 5},
+            { product: "Zucker", count: 1},
+            { product: "Milch", count: 10, producer: "Kuh Maximus"},
+            { product: "Zimt", count: 1}
+    ]
+    console.log(item)      // Log des Objekts item
+    console.log(cart)     // Log des Arrays cart
+
+    printLn(` Item: ${item.count} Stk. ${item.product}`)
+    printLn(` Item: ${cart[3].product} --> Unit ${cart[3].unit}`)
+
+    cart[3].unit = 'kg'
+    console.log(cart)
+    printLn(` Item: ${cart[3].product} --> Unit ${cart[3].unit}`)
+
+
+    printHr();
+    printH(2, "for in a loop");
+    for(let attribute in item){
+        printLn(`The value of attribute ${attribute} is ${item[attribute]}`)
+    }
+    
+    
+
+    printHr();
+    printLn("[");
+    cart.forEach(item => {
+        print("    { ")
+        for(attribute in item){
+            print(`${attribute}: ${item[attribute]}, `)
+        }
+        printLn("},")
+    }) 
+    printLn("]")
+    printHr();
+
+
+    printH(2, "toString()");
+    printLn(item);
+    item.toString = () => `Item: ${item.count} Stk. ${item.product}`
+    printLn(item);
+    console.log(item);
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+ 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

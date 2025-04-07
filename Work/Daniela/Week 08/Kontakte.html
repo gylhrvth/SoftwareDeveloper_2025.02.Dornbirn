@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakte</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const contacts = [
+        { firstName: "Max", secondName: "Musterman", number: "123456", email: "Max.Musterman@muster.com" },
+        { firstName: "Axel", secondName: "Schweiss", number: "456789", email: "Achsel.Schweiss@axelschweiss.com" },
+        { firstName: "Anna", secondName: "Bolika", number: "456123", email: "Anna.Bolika@annabolika.com" },
+        { firstName: "Peter", secondName: "Silie", number: "789123", email: "Peter.Silie@petersilie.com" },
+
+    ]
+
+    function showAllContact() {
+        for (let contact of contacts) {
+            console.log(`First Name: ${contact.firstName}\nSecond Name: ${contact.secondName}\nNumber: ${contact.number}\nEmail: ${contact.email}`);
+        }
+    }
+
+    function searchContact(name) {
+        const findContact = contacts.filter(contact =>
+            contact.firstName.toLowerCase().includes(name.toLowerCase()) ||
+            contact.secondName.toLowerCase().includes(name.toLowerCase())
+        );
+
+        if (findContact.length > 0) {
+            findContact.forEach(contact => {
+                console.log(`Gefundener Kontakt: ${contact.firstName} ${contact.secondName}, Nummer: ${contact.number}, Email: ${contact.email}`);
+            });
+        }
+        else {
+            console.log("Kein Kontakt gefunden.");
+        }
+
+    }
+    
+
+    showAllContact();
+    searchContact("Peter");
+    
+
+</script>
+
+</html>

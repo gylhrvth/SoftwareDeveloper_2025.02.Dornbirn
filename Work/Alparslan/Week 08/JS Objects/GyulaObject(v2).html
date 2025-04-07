@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../Kurs/common.css">
-    <script src="../../../Kurs/common.js"></script>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
 </head>
 <body>
 <script>
@@ -30,6 +30,7 @@
     console.log(cart)
 
     printLn(`Item: ${item.count} Stk. ${item.product}`)
+    // Gibt dasselbe wie Ziele 32 aus! printLn(`Item: ${item['count']} Stk. ${item['product']}`)
     printLn(`Item: ${cart[3].product} --> Unit: ${cart[3].unit}`)
 
     cart[3].unit = 'kg'
@@ -40,7 +41,6 @@
     for (let attribute in item){
         printLn(`The value of attribute ${attribute} is ${item[attribute]}`)
     }
-    
     printHr()
     printLn("[")
     cart.forEach(item => {

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+    <script src="../../../../Kurs/common.js" defer></script>
+    <title>JavaScript Object</title>
+</head>
+<body>
+
+    <h1>JavaScript</h1>
+    <h2>Donnerstag, 07. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript Object</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich ein neues Object?</span>
+        <p>Ein Objekt in JavaScript ist eine Sammlung von <b>Schlüssel-Wert-Paaren.</b> Jeder Schlüssel (Property Name) ist ein eindeutiger Identifier, und der Wert (Value) kann verschiedene Datentypen wie Zahlen, Strings, Arrays oder sogar Funktionen sein.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",         // Schlüssel: name, Wert: "John"
+                    age: 30,             // Schlüssel: age, Wert: 30
+                    country: "USA"       // Schlüssel: country, Wert: "USA"
+                  };
+            </code>
+        </div>
+        <p>in diesem Beispiel:</p>
+        <ul>
+            <li>person ist ein <b>Objekt</b></li>
+        </ul>
+        <p>💡Es hat drei <b>Eigenschaften</b> (Schlüssel-Wert-Paare):</p>
+        <ul>
+            <li>name mit dem Wert "John"</li>
+            <li>age mit dem Wert 30</li>
+            <li>country mit dem Wert "USA"</li>
+        </ul>
+        <br>
+        <p><b>Zugriff auf Objekt-Eigenschaften:</b></p>
+        <p>Punktnotation:</p>
+        <div class="code-box">
+            <code>
+                console.log(person.name); // Gibt "John" aus
+                console.log(person.age);  // Gibt 30 aus
+                console.log(person.country); // Gibt "USA" aus
+            </code>
+        </div>
+        <p>Klammernotation:</p>
+        <div class="code-box">
+            <code>
+                console.log(person["name"]); // Gibt "John" aus
+                console.log(person["age"]);  // Gibt 30 aus
+                console.log(person["country"]); // Gibt "USA" aus
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist ein Attribute eines Objects?</span>
+        <p>Ein <b>Attribut</b> eines Objekts in JavaScript ist einfach eine <b>Eigenschaft</b> oder <b>Schlüssel-Wert-Paar,</b> das einem Objekt zugeordnet ist. Es besteht aus einem Schlüssel (Property Name) und einem Wert (Value), der die Information oder Funktion darstellt.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",  // 'name' ist das Attribut
+                    age: 30        // 'age' ist das Attribut
+                  };
+            </code>
+        </div>
+        <p>in diesem Beispiel:</p>
+        <p>sind <b>name</b> und <b>age, Attribute</b> des Objekts person. Der Schlüssel ist der Name des Attributs, und der Wert ist die Information, die dieses Attribut enthält.</p>
+        <p><strong>💡Merkmale:</strong></p>
+        <ul>
+            <li><b>Schlüssel (Property Name):</b> Der Name des Attributs (z.B. name oder age).</li>
+            <li><b>Wert (Value)</b>: Der Wert, der dem Attribut zugeordnet ist (z.B. "John" oder 30).</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie kann ich lesen / überschreiben ein Attribute?</span>
+        <p>In JavaScript kannst du Attribute (Eigenschaften) eines Objekts auf zwei Arten lesen oder überschreiben:</p>
+        <p><strong>1️⃣Punktnotation (dot notation)</strong></p>
+        <p>Lesen eines Attributes:</p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30
+                };
+                  
+                console.log(person.name);  // Gibt "John" aus
+                console.log(person.age);   // Gibt 30 aus
+            </code>
+        </div>
+        <p><strong>Überschreiben eines Attributs:</strong></p>
+        <div class="code-box">
+            <code>
+                person.name = "Alice";    // Überschreibt den Wert von 'name'
+                person.age = 25;          // Überschreibt den Wert von 'age'
+
+                console.log(person.name);  // Gibt "Alice" aus
+                console.log(person.age);   // Gibt 25 aus
+            </code>
+        </div>
+        <br>
+        <p><strong>2️⃣Klammernotation (bracket notation)</strong></p>
+        <p>Die Klammernotation wird häufig verwendet, wenn der Attributname dynamisch ist oder spezielle Zeichen enthält, die in der Punktnotation nicht erlaubt sind.</p>
+        <p>Lesen eines Attributes:</p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30
+                };
+                  
+                console.log(person["name"]);  // Gibt "John" aus
+                console.log(person["age"]);   // Gibt 30 aus
+            </code>
+        </div>
+        <p><strong>Überschreiben eines Attributs:</strong></p>
+        <div class="code-box">
+            <code>
+                person["name"] = "Alice";   // Überschreibt den Wert von 'name'
+                person["age"] = 25;         // Überschreibt den Wert von 'age'
+
+                console.log(person["name"]); // Gibt "Alice" aus
+                console.log(person["age"]);  // Gibt 25 aus
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <ul>
+            <li>Punktnotation wird am häufigsten verwendet, wenn der Attributname fest und ohne spezielle Zeichen ist.</li>
+            <li>Klammernotation wird verwendet, wenn der Attributname dynamisch ist oder Sonderzeichen</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie kann ich alle Attribute auflisten?</span>
+        <p>Um alle <b>Attribute (Eigenschaften)</b> eines JavaScript-Objekts aufzulisten, kannst du eine der folgenden Methoden verwenden:</p>
+        <p>1️⃣for in...<strong>Schleife</strong></b></p>
+        <p>Die for...in Schleife iteriert über alle enumerable Eigenschaften eines Objekts, einschließlich der Attribute.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30,
+                    country: "USA"
+                  };
+                  
+                  for (let key in person) {
+                    if (person.hasOwnProperty(key)) {  // Optional, um nur eigene Eigenschaften zu listen
+                      console.log(key + ": " + person[key]);
+                    }
+                  }
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>Die Schleife geht alle Eigenschaften des Objekts person durch.</li>
+            <li>Mit person[key] greifst du auf den Wert der jeweiligen Eigenschaft zu.</li>
+            <li>hasOwnProperty(key) stellt sicher, dass nur die eigenen Eigenschaften des Objekts angezeigt</li>
+        </ul>
+        <br>
+        <p>2️⃣Object.entries() <strong>Methods</strong></b></p>
+        <p>Die Object.entries()-Methode gibt ein Array von [key, value]-Paaren zurück, mit dem du sowohl den Schlüssel als auch den Wert eines Attributs leicht durchgehen kannst.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30,
+                    country: "USA"
+                  };
+                  
+                  Object.entries(person).forEach(([key, value]) => {
+                    console.log(key + ": " + value);
+                  });
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>Object.entries(person) gibt ein Array von Arrays zurück, wobei jedes Array ein Schlüssel-Wert-Paar darstellt: [[key1, value1], [key2, value2], ...].</li>
+            <li>Mit <b>Destructuring</b> ([key, value]) kannst du beide Werte in einer Schleife verwenden.</li>
+        </ul>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <ul>
+            <li>for...in Schleife ist eine grundlegende Methode, um über die Eigenschaften eines Objekts zu iterieren.</li>
+            <li>Object.entries() gibt sowohl Schlüssel als auch Werte zurück und ist besonders nützlich, wenn du beides benötigst.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Kann ein Funktion als Attribute speichern?</span>
+        <p>Ja, in JavaScript kann eine <b>Funktion</b> als <b>Attribut (Eigenschaft)</b> in einem Objekt gespeichert werden. Solche Funktionen, die als Eigenschaften eines Objekts definiert sind, werden häufig als <b>Methoden</b> bezeichnet.</p>
+        <p><strong>Beispiel: Funktion als Attribut (Methode)</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30,
+                    
+                    // Funktion als Attribut
+                    greet: function() {
+                      console.log("Hallo, mein Name ist " + this.name);
+                    }
+                  };
+                  
+                  // Aufrufen der Funktion (Methode)
+                  person.greet();  // Ausgabe: "Hallo, mein Name ist John"
+            </code>
+        </div>
+        <br>
+        <p>💡Alternative Syntax (mit ES6-Kurzbefehl):</p>
+        <p>Ab ECMAScript 6 (ES6) gibt es eine kürzere Schreibweise, um Funktionen als Methoden zu definieren.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let person = {
+                    name: "John",
+                    age: 30,
+                    
+                    // Kurzsyntax für Funktionen als Attribut
+                    greet() {
+                      console.log("Hallo, mein Name ist " + this.name);
+                    }
+                  };
+                  
+                  // Aufrufen der Funktion (Methode)
+                  person.greet();  // Ausgabe: "Hallo, mein Name ist John"
+
+            </code>
+        </div>
+        <br>
+        <ul>
+            <li>In beiden Beispielen wird die Funktion greet als Attribut des Objekts person gespeichert.</li>
+            <li>Die Funktion kann wie jede andere Eigenschaft des Objekts aufgerufen werden, indem du den Namen der Funktion verwendest (person.greet()).</li>
+            <li>Das Schlüsselwort this innerhalb der Methode verweist auf das Objekt selbst (in diesem Fall person), sodass du auf andere Eigenschaften des Objekts zugreifen kannst.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was passiert wenn ich eine for...in Schleife auf eine Array anwende?</span>
+        <p>Wenn du eine for...in <b>Schleife</b> auf ein <b>Array</b> anwendest, wird die Schleife über die <b>Index-Werte</b> des Arrays iterieren, d. h. sie gibt die Indexnummern (als Strings) der Array-Elemente zurück, anstatt die Werte selbst.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                let fruits = ["Apfel", "Banane", "Kirsche"];
+
+                for (let index in fruits) {
+                console.log(index);  // Gibt die Indizes (Schlüssel) aus
+                console.log(fruits[index]);  // Gibt die Werte (Elemente) aus
+                }
+            </code>
+        </div>
+        <p><strong>Ausgabe:</strong></p>
+        <div class="code-box">
+            <code>
+                0
+                Apfel
+                1
+                Banane
+                2
+                Kirsche
+            </code>
+        </div>
+        <p>Erklärung:</p>
+        <ul>
+            <li>for...in gibt in diesem Fall die Indizes (Schlüssel) des Arrays zurück, z. B. 0, 1, 2.</li>
+            <li>fruits[index] gibt den Wert des Elements an diesem Index zurück, z. B. "Apfel", "Banane", "Kirsche".</li>
+        </ul>
+    </li>
+    <br>
+    <h4>Aufgabe!!</h4>
+    <li><a href="../JavaScript/JS Objects/Beispiele/01-nestedObject.html">Object Basics - Darstellung</a></li>
+

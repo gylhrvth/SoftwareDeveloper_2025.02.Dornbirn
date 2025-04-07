@@ -155,7 +155,7 @@
 
 .hangman-box img {
   position: absolute; /* Absolute Positionierung der Bilder */
-  top: 50%; /* Start bei der obersten Position */
+  top: 70%; /* Start bei der obersten Position */
   left: 50%; /* Mittig horizontal */
   transform: translate(-50%, -50%); /* Verschiebt das Bild nach links, um es exakt zu zentrieren */
   display: none; /* Standardmäßig werden die Bilder nicht angezeigt */
@@ -174,7 +174,7 @@
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   
   position: absolute;
-  bottom: 5px; /* Abstand unterhalb des Bildes */
+  bottom: -25%; /* Abstand unterhalb des Bildes */
   left: 50%;
   transform: translateX(-50%) scale(0.8);
 }
