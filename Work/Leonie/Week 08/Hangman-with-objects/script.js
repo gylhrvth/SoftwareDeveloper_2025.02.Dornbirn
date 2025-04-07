@@ -73,8 +73,14 @@ function resetGame() {
 function playAgain() {
   // Verstecke das Popup
   const popup = document.querySelector('.popup');
+  const boxtransp = document.querySelector('.boxtransp');
+
   if (popup) {
     popup.style.display = 'none'; // Setze das Display auf 'none'
+  }
+
+  if (boxtransp) {
+    boxtransp.style.display = 'none'; // Setze das Display auf 'none'
   }
 
   // Reset all disabled buttons
@@ -215,8 +221,6 @@ function resetScore() {
 function showPopup() {
   const popup = document.querySelector('.popup');
   const boxtransp = document.querySelector('.boxtransp');
-  console.log(popup);
-  console.log(boxtransp);
 
   if (popup) {
     popup.style.display = 'block'; // Zeige das Popup
@@ -231,10 +235,11 @@ function closePopup() {
   const boxtransp = document.querySelector('.boxtransp');
 
   if (popup) {
-    popup.style.display = 'none'; // Verstecke das Popup
+    popup.style.display = 'none'; // Zeige das Popup
   }
   if (boxtransp) {
-    boxtransp.style.display = 'none'; // Verstecke den transparenten Hintergrund
+    boxtransp.style.display = 'none'; // Zeige den transparenten Hintergrund
   }
   resetGame();
 }
+  

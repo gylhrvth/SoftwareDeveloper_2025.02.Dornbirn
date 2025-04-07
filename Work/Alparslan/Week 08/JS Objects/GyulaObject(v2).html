@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+    let count = 0
+    let text = "Apfel"
+
+    let item = {
+        product: "Apfel",
+        count: 3
+    }
+
+    let cart = [
+        { product: "Apfel", count: 3},
+        { product: "Birne", count: 1},
+        { product: "Sahne", count: 5},
+        { product: "Zucker", count: 1},
+        { product: "Milch", count: 10, producer: "Kuh Maximus"},
+        { product: "Zimt", count: 1}
+    ]
+
+    console.log(item)
+    console.log(cart)
+
+    printLn(`Item: ${item.count} Stk. ${item.product}`)
+    // Gibt dasselbe wie Ziele 32 aus! printLn(`Item: ${item['count']} Stk. ${item['product']}`)
+    printLn(`Item: ${cart[3].product} --> Unit: ${cart[3].unit}`)
+
+    cart[3].unit = 'kg'
+    console.log(cart)
+    printLn(`Item: ${cart[3].product} --> Unit: ${cart[3].unit}`)
+
+    printHr()
+    for (let attribute in item){
+        printLn(`The value of attribute ${attribute} is ${item[attribute]}`)
+    }
+    printHr()
+    printLn("[")
+    cart.forEach(item => {
+        print("    { ")
+        for (attribute in item){
+            print(`${attribute}: ${item[attribute]}, `)
+        }
+        printLn("},")
+    })
+    printLn("]")
+
+    printHr()
+    printLn(item)
+    item.toString = () => `Item: ${item.count} Stk. ${item.product}`
+    printLn(item)
+    console.log(item)
+
+</script>
+</body>
+</html>
