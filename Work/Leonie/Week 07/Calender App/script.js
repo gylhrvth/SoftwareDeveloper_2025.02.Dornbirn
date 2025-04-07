@@ -5,6 +5,52 @@ let month = "";
 let year = "";
 let inputDateValue = "";
 
+//Event: Button-Klick
+const button = document.getElementById("submit");
+if (button) {
+    button.addEventListener("mouseover", () => {
+        // Event-Handler
+    });
+}
+let timer; // Timer für die 3 Sekunden
+let isMouseOver = false; // Status, ob die Maus auf dem Button ist
+
+// Funktion, um den Button zufällig zu bewegen
+function moveButtonRandomly() {
+    // Berechne zufällige Positionen für X und Y
+    const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+    const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+
+    // Stelle sicher, dass der Button vollständig im sichtbaren Bereich bleibt
+    const clampedX = Math.max(0, Math.min(randomX, window.innerWidth - button.offsetWidth));
+    const clampedY = Math.max(0, Math.min(randomY, window.innerHeight - button.offsetHeight));
+
+    // Setze die neue Position des Buttons
+    button.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+}
+
+// Event: Maus über dem Button
+button.addEventListener("mouseout", () => {
+    if (!isMouseOver) {
+        isMouseOver = true;
+
+        // Starte den Timer für 3 Sekunden
+        timer = setTimeout(() => {
+            button.style.transform = "scale(1.5)"; // Button vergrößern
+            button.style.transition = "transform 0.5s ease"; // Animation für Vergrößerung
+            isMouseOver = false; // Timer abgeschlossen
+        }, 3000);
+    }   
+});
+
+// Event: Maus verlässt den Button
+button.addEventListener("mouseover", () => {
+    clearTimeout(timer); // Timer zurücksetzen
+    isMouseOver = false; // Maus ist nicht mehr über dem Button
+    moveButtonRandomly(); // Button bewegt sich zufällig
+});
+
+
 
 function calcDayofBirthdayNextYear() {
     // Berechnung des Wochentags
@@ -80,6 +126,7 @@ function calcAge() {
     // Berechnung des Alters
     const today = new Date();
     const ageInMilliseconds = today - dateInput;
+    console.log("calcAge " + dateInput)
     const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
 
     // Ausgabe des Alters
@@ -89,10 +136,6 @@ function calcAge() {
 }
 
 function startCalc() {
-    // Überprüfen, ob das Datum gültig ist
-    if (!checkDate()) {
-        return;
-    }
     // Vorherige error-Nachricht entfernen
     const previousErrorMessage = document.getElementById("error-message");
     if (previousErrorMessage) {
@@ -105,7 +148,21 @@ function startCalc() {
     [day, month, year] = inputDateValue.value.split(".");
     // Neues Date-Objekt erstellen
     dateInput = new Date(`${year}-${month}-${day}`);
+    console.log("startCalc " + month)
     date = dateInput.toLocaleDateString("de-DE"); // Formatierung des Datums
+
+    // Überprüfe, ob Month ein String ist
+    if (typeof month === "string") {
+        // Konvertiere Month in eine Zahl
+        month = parseInt(month);
+    }
+
+    // Überprüfen, ob das Datum gültig ist
+    if (!checkDate()) {
+        return;
+    }
+    console.log(day + " " + month + " " + year);
+    console.log(dateInput);
 
     // Berechnung des Alters
     calcAge();
@@ -120,11 +177,46 @@ function startCalc() {
 
 function checkDate() {
     // Überprüfen, ob das Datum gültig ist
-    let inputDateValue = document.getElementById("date").value;
-    let dateParts = inputDateValue.split(".");
-    let day = parseInt(dateParts[0]);
-    let month = parseInt(dateParts[1]);
-    let year = parseInt(dateParts[2]);
+    let inputDateValue = document.getElementById("date").value.trim();
+    let dateParts;
+
+    // Prüfen, ob das Datum im Format "TT.MM.JJJJ" oder "TT Monat JJJJ" vorliegt
+    if (inputDateValue.includes(".")) {
+        // Format "TT.MM.JJJJ"
+        dateParts = inputDateValue.split(".");
+    } else {
+        // Format "TT Monat JJJJ"
+        dateParts = inputDateValue.split(" ");
+    }
+
+
+    day = parseInt(dateParts[0]);
+    month = dateParts[1];
+    year = parseInt(dateParts[2]);
+
+    // Überprüfen, ob im Monat eine 0 steht
+    if (dateParts[1].length === 2 && dateParts[1].startsWith("0")) {
+        month = parseInt(dateParts[1].substring(1));
+    } else {
+        month = dateParts[1];
+    }
+    console.log("checkDate month " + month)
+
+    dateInput = new Date(`${year}-${month}-${day}`);
+    console.log("checkDate "+dateInput)
+    date = dateInput.toLocaleDateString("de-DE"); // Formatierung des Datums
+
+
+    // Wenn der Monat ein String ist, konvertiere ihn in eine Zahl
+    if (isNaN(parseInt(month))) {
+        const months = [
+            "januar", "februar", "märz", "april", "mai", "juni", "juli",
+            "august", "september", "oktober", "november", "dezember",
+        ];
+        month = months.findIndex(m => m.toLowerCase() === month.toLowerCase()) + 1;
+    } else {
+        month = parseInt(month);
+    }
 
     // Überprüfen, ob das Datum im richtigen Format ist
     if (dateParts.length !== 3 || isNaN(day) || isNaN(month) || isNaN(year)) {
@@ -148,7 +240,7 @@ function checkDate() {
         const feedback = document.getElementById("feedback");
         const errorMessage = document.createElement("p");
         errorMessage.id = "error-message"; // Eindeutige ID hinzufügen
-        errorMessage.textContent = "Bitte geben Sie ein Datum im Format TT.MM.JJJJ ein.";
+        errorMessage.textContent = "Bitte geben Sie ein Datum im Format TT.MM.JJJJ oder TT Monat JJJJ ein.";
         errorMessage.style.color = "red";
         errorMessage.style.fontWeight = "bold";
         errorMessage.style.fontSize = "1.2em";
