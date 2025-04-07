@@ -33,8 +33,6 @@ let arrayPool = [
     { category: 'dog', name: 'Husky', hint: 'A breed known for its strength and endurance.'},
 ]; // Stores different word categories
 let randomWord = ''
-let lettersInWord = [];
-let errorCounter = 0;
 
 // ------------------ General Function ------------------------------
 
@@ -47,12 +45,10 @@ function startGame() {
   resetElements();
   // randomWordSelector() -> Selects a random word
   randomWord = randomWordSelector();
-  // wordSplitter -> Splits the word into letters
-  wordSplitter(randomWord.name);
   // displayWord -> Show <li>_</li> for each letter in the word
   displayWord(randomWord.name);
   // hangmanImage -> Show the first hangman image 
-  hangmanImage();
+  hangmanImage(0);
 
 }
 
@@ -64,16 +60,6 @@ function randomWordSelector() {
     return arrayPool[Math.floor(Math.random() * arrayPool.length)];
 }
 
-//-------------------------------
-
-// wordSplitter(wordToSplit) -> Splits the selected word from randomWordSelector() into letters
-// Function called inside function startGame()
-function wordSplitter(wordToSplit) {
-
-    lettersInWord = wordToSplit.split("");
-    console.log("Letters in Word: " + lettersInWord);
-    return lettersInWord;
-}
 
 //-------------------------------
 
@@ -118,8 +104,8 @@ function checkPlayerGuess(guessValue, wordToGuess) {
     let matchFound = false; // Flag to track if a match is found. Initially is set to false.
 
     // Loop through the letters in the word
-    for (let i = 0; i < lettersInWord.length; i++) {
-        if (lettersInWord[i] === guessValue.toLowerCase()) {
+    for (let i = 0; i < wordToGuess.name.length; i++) {
+        if (wordToGuess.name[i] === guessValue.toLowerCase()) {
             console.log("The letter " + guessValue + " appears at Index: " + i);
             // Update the corresponding <li> with the guessed letter
             // Using getElementsByTagName we can specify which element we target with an index, like in an array
@@ -176,17 +162,14 @@ function updateCounterError(matchFound, wordToGuess){
         currentWrongGuesses++; // Increment the counter
         targetWrongGuesses.innerText = currentWrongGuesses; // Update the counter in the DOM
 
-        // Sync errorCounter with the DOM value
-         errorCounter = currentWrongGuesses;
-
         console.log("No matches found. Incrementing wrong guesses counter.");
 
         // Update the hangman image based on the error counter
         // The hangman image is called after the errorCounter is incremented, ensuring that hangman1 is displayed after the first wrong guess
-        hangmanImage();
+        hangmanImage(currentWrongGuesses);
 
          // Call errorCounterLogic() to handle additional logic
-         errorCounterLogic(wordToGuess);
+         errorCounterLogic(wordToGuess, currentWrongGuesses);
 
     }
 
@@ -198,7 +181,7 @@ function updateCounterError(matchFound, wordToGuess){
 //Sends different messages depending on the choosen array and the number of not matched guesses
 // The function is called inside updateCounterError(matchFound) function
 
-function errorCounterLogic(wordToGuess) {
+function errorCounterLogic(wordToGuess, errorCounter) {
     if(errorCounter >= 8){
         errorCounter = 8;
         document.getElementById("wrong-guesses").innerText = errorCounter;
@@ -235,11 +218,10 @@ function resetElements() {
     document.getElementById("hint-text").innerText = "You sure don't need one, do you??";
 
     // Reset the error counter to 0
-    errorCounter = 0;
-    document.getElementById("wrong-guesses").innerText = errorCounter; // Update the displayed value
+    document.getElementById("wrong-guesses").innerText = 0; // Update the displayed value
 
     // Reset the hangman image to stage 0
-    hangmanImage(); // This will display hangman0.png
+    hangmanImage(0); // This will display hangman0.png
 
     // Reset the result text
     document.getElementById("showResult").innerText = "That can't be too difficult...";
@@ -250,7 +232,7 @@ function resetElements() {
 
  //----------------------- Hangman Image (Copilot) -------------------------
 
- function hangmanImage() {
+ function hangmanImage(errorCounter) {
     const hangmanStages = [
         "./assets/pictures/hangman0.png", // Stage 0
         "./assets/pictures/hangman1.png", // Stage 1
