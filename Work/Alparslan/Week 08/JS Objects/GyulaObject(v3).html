@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <script src="../../../../Kurs/common.js"></script>
+</head>
+<body>
+    <script>
+let myCar = {                                   // Objekt myCar wird erstellt
+    type: 'Opel',
+    model: 'Astra',
+    color: 'black',
+    year: 2017,
+    dummy: null,
+    dummy2: undefined,
+    owner: {                                    // Verschachteltes Objekt: Besitzer
+        firstName: 'Gyula',
+        lastName: 'Horvath',
+        birthYear: 1979,
+        address: {                                  // Weitere Verschachtelung: Adresse
+            street: 'Weppach 1f',
+            postalCode: 6850,
+            city: 'Dornbirn',
+            country: 'Austria',
+        },  
+    },
+    service: [                                      // Array mit Serviceeinträgen
+        {
+            date: new Date(2018, 5, 15),                 // Erster Service-Eintrag
+            serviceType: 'oil change',
+            cost: 150,
+        },
+        {
+            date: new Date(2019, 5, 15),                // Zweiter Service-Eintrag
+            serviceType: 'brake pads replacement',
+            cost: 300,
+        },
+    ],
+    fuel: 'diesel',
+    mileage: 120000,
+    built: new Date(2017, 5, 15),
+    hasAutomatic: false,
+}
+
+
+function printObject(obj, prefix = '') {                                // rekursive Funktion zur Anzeige aller Werte
+    console.log(obj);                                                    // Zeigt das gesamte Objekt in der Konsole an
+    for (let key in obj) {                                               // Schleife über alle Schlüssel im Objekt
+        if (typeof obj[key] === 'object' && obj[key] !== null) {        // Holt (obj[key] also Parameter[Wert/Inhalt]) und holt davon den Datentyp(typeof) ob es ein Primitiver Datentyp ist oder nicht, vergleicht dies dann mit dem Datentyp 'object'  && (obj[key] also Parameter[Wert/Inhalt]) vergleich mit ungleich null. Wenn beide bedingungen erfüllt sind dann wird die Schleife ausgeführt, ansonsten geht es ausserhalb der schleife mit else weiter.
+            if (obj[key].constructor.name === 'Date') {
+                printLn(prefix + key + ": " + obj[key].toLocaleDateString('de-AT', { day: '2-digit', month: 'long', year: 'numeric' }) + " (" + obj[key].constructor.name + ")");
+            } else {
+                printLn(prefix + key + " (" + obj[key].constructor.name + ")" + ": ");
+                printLn(prefix + key + " (" + typeof obj[key] + ")" + ": ");
+                printObject(obj[key], prefix + '        ');
+            }
+        } else {
+            printLn(prefix + key + ": " + obj[key] + " (" + typeof obj[key] + ")");
+        }
+    }
+}
+
+printObject(myCar);
+    </script>
+</body>
+</html>
