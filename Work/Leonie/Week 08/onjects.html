@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects Selbsversuch</title>
+    <link rel="stylesheet" href="../css datei/common.css">
+    <script src="/Kurs/common.js"></script>
+</head>
+
+<body>
+    <script>
+        // Defining the object
+        const person = {
+            firstName: "Leonie",
+            lastName: "Ertl",
+            age: 20,
+            greet: function () {
+                printLn("Hello, my name is " + this.firstName + " " + person.lastName + "." + " I am " + this.age + " years old.");
+            }
+        };
+
+        // Accessing properties
+        console.log(person.firstName); // Output: Leonie
+        console.log(person["lastName"]); // Output: Schmidt
+
+        // Calling the method
+        person.greet(); // Output: Hello, my name is Leonie Schmidt
+
+        printHr();
+
+        let game = {
+            title: "The Legend of Zelda: Breath of the Wild",
+            genre: "Action-adventure",
+            platform: "Nintendo Switch",
+            releaseYear: 2017,
+            developer: "Nintendo",
+            publisher: "Nintendo",
+            rating: 10,
+            description: function () {
+                return `${this.title} is a ${this.genre} game released in ${this.releaseYear} for the ${this.platform}. The game was developed and published by ${this.developer}. It has a rating of ${this.rating} out of 10.`;
+            }
+        };
+
+        printLn(game.description());
+        printHr();
+        
+        let game2 = {
+            title: "The Legend of Zelda: Ocarina of Time",
+            genre: "Action-adventure",
+            platform: "Nintendo 64",
+            releaseYear: 1998,
+            developer: "Nintendo",
+            publisher: "Nintendo",
+            rating: 10,
+        };
+
+        // Accessing properties
+        for (let key in game2) {
+            printLn(key + ": " + game2[key]);
+        }
+    </script>
+</body>
+
+</html>
