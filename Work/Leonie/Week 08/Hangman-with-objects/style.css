@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .key-pad {
   display: flex;
   flex-direction: column;
@@ -59,11 +68,13 @@ body {
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+display: none; /* Initially hidden */
   display: none; /* Initially hidden */
-  width: clamp(300px, 50vw, 1200px); /* Responsive width */
-  height: clamp(200px, 50vh, 800px); /* Responsive height */
+  width: clamp(300px, 50vw, 1200px /* Responsive width */); /* Responsive width */
+  height: clamp(200px, 50vh, 800px /* Responsive height */); /* Responsive height */
   padding: 20px;
   z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
 }
 
 .popup-content {
@@ -81,6 +92,8 @@ body {
   box-sizing: border-box; /* Padding wird in die Gesamtgröße einbezogen */
   width: 100%; /* Passt sich an die Breite des übergeordneten Containers an */
   height: 100%; /* Passt sich an die Höhe des übergeordneten Containers an */
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+
 }
 
 #play-again {
@@ -92,6 +105,8 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+
 }
 
 .close{
@@ -104,6 +119,7 @@ body {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+
 }
 
 .boxtransp{
@@ -115,6 +131,8 @@ body {
   height: 100vh;
   z-index: 999; /* Unter dem Popup, aber über dem Rest der Seite */
   display: none; /* Standardmäßig unsichtbar */
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+
 }
 
 .main-container {
