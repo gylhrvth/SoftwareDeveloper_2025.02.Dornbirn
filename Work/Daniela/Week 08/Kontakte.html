@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakte</title>
+    <link rel="stylesheet" href="Kontakte.css">
 </head>
 
 <body>
+    <div>
+        <label for="searchName">Kontaktnamen suchen: </label>
+        <input type="text" id="searchName">
+        <button onclick="searchContact(document.getElementById('searchName').value)">Suchen</button>
+    </div>
+
+    <div class="result" id="result"></div> 
 
 </body>
 <script>
@@ -16,6 +24,7 @@
         { firstName: "Axel", secondName: "Schweiss", number: "456789", email: "Achsel.Schweiss@axelschweiss.com" },
         { firstName: "Anna", secondName: "Bolika", number: "456123", email: "Anna.Bolika@annabolika.com" },
         { firstName: "Peter", secondName: "Silie", number: "789123", email: "Peter.Silie@petersilie.com" },
+        { firstName: "Anna", secondName: "Nas", number: "456789", email: "Anna.Nas@annanas.com" },
 
     ]
 
@@ -31,21 +40,26 @@
             contact.secondName.toLowerCase().includes(name.toLowerCase())
         );
 
-        if (findContact.length > 0) {
-            findContact.forEach(contact => {
-                console.log(`Gefundener Kontakt: ${contact.firstName} ${contact.secondName}, Nummer: ${contact.number}, Email: ${contact.email}`);
-            });
-        }
-        else {
-            console.log("Kein Kontakt gefunden.");
-        }
+        const resultDiv = document.getElementById('result');
 
+        if (findContact.length > 0) {
+            resultDiv.innerHTML = ''; 
+            findContact.forEach(contact => {
+                resultDiv.innerHTML += `
+                <p>Gefundener Kontakt:\n ${contact.firstName} ${contact.secondName}\n,
+                \nNummer: ${contact.number}\n Email: ${contact.email}</p>
+            `;
+            });
+        } else {
+            resultDiv.innerHTML = '<p>Kein Kontakt gefunden.</p>';
+        }
     }
-    
 
     showAllContact();
     searchContact("Peter");
-    
+    searchContact("Schweiss");
+    searchContact("Valerie");
+
 
 </script>
 
