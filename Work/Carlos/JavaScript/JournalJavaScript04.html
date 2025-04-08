@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../carlosMainStyle.css">
     <link rel="stylesheet" href="../carlosMiscStyle.css">
     <script src="../../../Kurs/common.js" defer></script>
-    <title>JavaScript Objects Journal</title>
+    <title>JavaScript Objects & DOM & EH Journal</title>
 
 </head>
 
@@ -15,20 +15,733 @@
 
     <div id="mainSectionStyle">
 
-    <h1 class="textColor01">Lernerfolgsbuch: JavaScript Objects & DOM Journal</h1>
+    <h1 class="textColor01">Lernerfolgsbuch: JavaScript Objects & DOM & EH Journal</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day38">MI 09/04/25</a>: JavaScript (Event Handling)</h3>
     <h3 class="textColor01">▷ <a href="#day37">DI 08/04/25</a>: JavaScript (DOM)</h3>
     <h3 class="textColor01">▷ <a href="#day36">MO 07/04/25</a>: JavaScript (Objects)</h3>
 
 
     </div>
-    
+
     <br>
+
+    <h2 id="day38">Mittwoch, 09. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript (Event Handling)</h3>
+
+    <ul>
+
+        <li class="textColor02"><strong>Was ist ein Event?</strong></li>
+        <p>Ein Event ist in JavaScript ein Signal, das vom Browser oder einem Benutzer ausgelöst wird – zum Beispiel:</p>
+        <ul>
+            <li>click – jemand klickt auf ein Element</li>
+            <li>mouseover – Maus bewegt sich über ein Element</li>
+            <li>keydown - eine Taste wird gedrückt</li>
+            <li>submit - ein Formular wird abgeschickt</li>
+            <li>change - Eingabefeld ändert sich</li>
+            <li>input - Nutzer tippt in ein Textfeld</li>
+            <li>resize – Fenstergröße wird geändert</li>
+            <li>scroll – Nutzer scrollt auf der Seite</li>
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Was ist ein (Event) Handler?</strong></li>
+        <p>Ein Event Handler (auch Event Listener genannt) ist eine Funktion, die auf ein bestimmtes Ereignis (Event) reagiert. Der Event Handler wird auf ein Element „gesetzt“ und wird ausgeführt, wenn das Ereignis eintritt, wie zum Beispiel ein Klick, eine Tastenbetätigung oder eine Mausbewegung.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;button id="meineTaste"&gt;Klick mich!&lt;/button&gt;
+
+        &lt;script&gt;
+            const button = document.getElementById("meineTaste");
+        
+            // Event Handler für das 'click'-Event
+            button.addEventListener("click", function() {
+            alert("Der Button wurde geklickt!");
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie fügt man statisch ein Event Handler zu einen HTML Element?</strong></li>
+        <p>Um statisch einen Event Handler zu einem HTML-Element hinzuzufügen, kann man onclick, onmouseover, onchange, oder ein anderes Event-Attribut direkt im HTML-Tag verwenden. Dies wird als statische Event-Zuordnung bezeichnet, da der Event Handler direkt im HTML definiert wird.</p>
+
+        <p>Beispiel mit "onclick":</p>
+
+        <div class="code-sample">  
+            <code>
+        &lt;button onclick="zeigeNachricht()"&gt;Klick mich!&lt;/button&gt;
+
+        &lt;script&gt;
+            function zeigeNachricht() {
+                alert("Der Button wurde geklickt!");
+            }
+        &lt;/script&gt;
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie fügt man dynamisch ein Event Handler zu einen HTML Element?</strong></li>
+        <p>Um dynamisch einen Event Handler zu einem HTML-Element hinzuzufügen, verwendet man die Methode addEventListener() in JavaScript. Diese Methode ermöglicht es, ein Event und eine zugehörige Funktion (den Event Handler) zu einem Element hinzuzufügen.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+            &lt;button id="meineTaste"&gt;Klick mich!&lt;/button&gt;
+            &lt;script&gt;
+                const button = document.getElementById("meineTaste");
+            
+                // Event Handler für das 'click'-Event
+                button.addEventListener("click", function() {
+                    alert("Der Button wurde geklickt!");
+                });
+            &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird der Event Handler für das 'click'-Event dynamisch hinzugefügt, wenn die Seite geladen wird. Wenn der Button geklickt wird, wird die Funktion ausgeführt und eine Nachricht angezeigt.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist der Unterschied zwischen addEventListener und onclick?</strong></li>
+        <p>Der Hauptunterschied zwischen addEventListener und onclick ist:</p>
+        <ul>
+            <li><p>addEventListener ermöglicht es, mehrere Event Handler für dasselbe Event auf demselben Element hinzuzufügen. onclick hingegen überschreibt jeden vorherigen Event Handler, der für dasselbe Event auf demselben Element gesetzt wurde.</p></li>
+            <li><p>addEventListener bietet mehr Flexibilität und Kontrolle über die Ereignisbehandlung, während onclick einfacher zu verwenden ist, aber weniger Möglichkeiten bietet.</p></li>
+            <li><p>addEventListener kann auch für andere Ereignisse als nur "click" verwendet werden, während onclick speziell für das "click"-Ereignis gedacht ist.</p></li>
+            <li><p>addEventListener ermöglicht die Verwendung von Optionen wie "capture" und "once", während onclick diese Optionen nicht unterstützt.</p></li>
+        </ul>
+
+        <li class="textColor02"><strong>Was ist ein Page Load Event?</strong></li>
+        <p>Das Page Load Event ist ein Ereignis, das ausgelöst wird, wenn eine Webseite vollständig geladen ist. Dies bedeutet, dass alle HTML-Elemente, CSS-Stile und JavaScript-Skripte auf der Seite vollständig geladen und bereit sind.</p>
+        <p>Man sollte DOMContentLoaded verwenden, wenn man nur auf das Laden des HTML-Dokuments wartet.</p>
+        <p>Man sollte load verwenden, wenn man sicherstellen möchte, dass alle Ressourcen (wie Bilder) geladen sind.</p>
+
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;script&gt;
+            window.addEventListener("load", function() {
+                console.log("Die Seite ist vollständig geladen!");
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird eine Funktion registriert, die ausgeführt wird, wenn die Seite vollständig geladen ist. In diesem Fall wird eine Nachricht in der Konsole angezeigt.</p>
+        <br>
+
+        <li class="textColor02"><strong>Was ist eine Mouse Event?</strong></li>
+        <p>Ein Mouse Event ist ein Ereignis, das auftritt, wenn der Benutzer mit der Maus interagiert. Es gibt verschiedene Arten von Mouse Events, die in JavaScript verwendet werden können, um auf Mausaktionen zu reagieren.</p>
+        <p>Beispiele für Mouse Events sind:</p>
+        <ul>
+            <li>click – wenn der Benutzer auf ein Element klickt</li>
+            <li>dblclick – wenn der Benutzer doppelt auf ein Element klickt</li>
+            <li>mouseover – wenn der Mauszeiger über ein Element bewegt wird</li>
+            <li>mouseout – wenn der Mauszeiger das Element verlässt</li>
+            <li>mousemove – wenn sich die Maus über ein Element bewegt</li>
+            <li>mousedown – wenn eine Maustaste gedrückt wird</li>
+            <li>mouseup – wenn eine Maustaste losgelassen wird</li>
+            <li>wheel – wenn das Mausrad gedreht wird</li>
+            <li>contextmenu – wenn das Kontextmenü (Rechtsklick) geöffnet wird</li>
+        </ul>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;div id="meineBox" style="width: 200px; height: 200px; background-color: lightblue;"&gt;
+            &lt;/div&gt;
+        &lt;script&gt;
+            const box = document.getElementById("meineBox");
+
+            // Mouseover Event
+            box.addEventListener("mouseover", function() {
+                box.style.backgroundColor = "lightgreen";
+            });
+
+            // Mouseout Event
+            box.addEventListener("mouseout", function() {
+                box.style.backgroundColor = "lightblue";
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die Hintergrundfarbe der Box geändert, wenn der Mauszeiger darüber bewegt wird (mouseover) und zurückgesetzt, wenn der Mauszeiger die Box verlässt (mouseout).</p>
+        <br>
+
+        <li class="textColor02"><strong>Was ist ein Keyboard Event?</strong></li>
+        <p>Ein Keyboard Event ist ein Ereignis, das auftritt, wenn der Benutzer mit der Tastatur interagiert. Es gibt verschiedene Arten von Keyboard Events, die in JavaScript verwendet werden können, um auf Tasteneingaben zu reagieren.</p>
+        <p>Beispiele für Keyboard Events sind:</p>
+        <ul>
+            <li>keydown – wenn eine Taste gedrückt wird</li>
+            <li>keyup – wenn eine Taste losgelassen wird</li>
+            <li>keypress – wenn eine Taste gedrückt wird (veraltet, nicht mehr empfohlen)</li>
+        </ul> 
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;input type="text" id="textInput"&gt;
+        &lt;script&gt;
+            const input = document.getElementById("textInput");
+
+            // Keydown Event
+            input.addEventListener("keydown", function(event) {
+                console.log("Taste gedrückt: " + event.key);
+            });
+
+            // Keyup Event
+            input.addEventListener("keyup", function(event) {
+                console.log("Taste losgelassen: " + event.key);
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird eine Nachricht in der Konsole angezeigt, wenn eine Taste gedrückt oder losgelassen wird, während der Benutzer in das Eingabefeld tippt.</p>
+        <br>
+        <li class="textColor02"><strong>Woher weiß man welche Taste gedruckt wurde?</strong></li>
+        <p>In einem Keyboard Event, mit der Eigenschaft event.key.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;input type="text" id="textInput"&gt;
+        &lt;script&gt;
+            const input = document.getElementById("textInput");
+
+            // Keydown Event
+            input.addEventListener("keydown", function(event) {
+                console.log("Taste gedrückt: " + event.key);
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die gedrückte Taste in der Konsole angezeigt, wenn der Benutzer eine Taste drückt, während er in das Eingabefeld tippt.</p>
+        <p>Die function(event) ist eine anonyme Funktion, die als Event-Handler verwendet wird. Das event ist ein Parameter, der ein Event-Objekt darstellt. Dieses Objekt enthält Informationen über das Ereignis, das ausgelöst wurde, wie z. B. welche Taste gedrückt wurde, welches Element geklickt wurde oder welche Mausbewegung stattgefunden hat.</p>
+        <p>Diese Funktion wird ausgeführt, wenn das keydown-Ereignis ausgelöst wird (also wenn der Benutzer eine Taste drückt, während das Eingabefeld aktiv ist).</p>
+        <br>
+
+        <li class="textColor02"><strong>Was ist ein Form submit?</strong></li>
+        <p>Ein Form Submit ist ein Ereignis, das auftritt, wenn ein Formular abgeschickt wird. Dies geschieht normalerweise, wenn der Benutzer auf einen "Submit"-Button klickt oder die Eingabetaste drückt, während sich der Fokus im Formular befindet.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+        &lt;form id="meinFormular"&gt;
+            &lt;input type="text" id="name" placeholder="Name"&gt;
+            &lt;input type="email" id="email" placeholder="E-Mail"&gt;
+            &lt;button type="submit"&gt;Absenden&lt;/button&gt;
+        &lt;/form&gt;
+        &lt;script&gt;
+            const formular = document.getElementById("meinFormular");
+
+            formular.addEventListener("submit", function(event) {
+                event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+                console.log("Formular abgeschickt!");
+            });
+        &lt;/script&gt;
+            </code>
+        </div>
+        <p>In diesem Beispiel wird eine Nachricht in der Konsole angezeigt, wenn das Formular abgeschickt wird. Das event.preventDefault() verhindert, dass die Seite neu geladen wird, was normalerweise passiert, wenn ein Formular abgeschickt wird.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist die preventDefault() Funktion?</strong></li>
+        <p>Die preventDefault() Funktion ist eine Methode des Event-Objekts in JavaScript, die verwendet wird, um das Standardverhalten eines Ereignisses zu verhindern. Wenn diese Methode aufgerufen wird, wird das Standardverhalten des Browsers für dieses Ereignis nicht ausgeführt.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+            const formular = document.getElementById("meinFormular");
+
+            formular.addEventListener("submit", function(event) {
+                event.preventDefault(); // Verhindert das Standardverhalten
+            
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+            
+                if (name.trim() === "" || email.trim() === "") {
+                    console.log("Bitte füllen Sie alle Felder aus.");
+                } else {
+                    console.log("Formular erfolgreich abgeschickt!");
+                    // Hier könntest du die Daten manuell an den Server senden
+                }
+            });
+            </code>
+        </div>
+        <p>Es wird überprüft, ob die Felder "Name" und "E-Mail" ausgefüllt sind. Die Nachricht "Formular erfolgreich abgeschickt!" wird nur angezeigt, wenn die Validierung erfolgreich ist.</p>
+        <p>Das event.preventDefault() verhindert nur das Standardverhalten des Browsers, nicht die Ausführung des Event-Handlers.</p>
+       
+        <br>
+            
+    </ul>
 
     <h2 id="day37">Dienstag, 08. April 2025</h2>
 
     <h3 class="textColor01">JavaScript (DOM)</h3>
+
+    <ul>
+
+        <li class="textColor02"><strong>Wo für steht die Abkürzung DOM?</strong></li>
+            <p>Die Abkürzung DOM steht für: Document Object Model. </p>
+            <p>Das DOM ist eine Programmierschnittstelle (API), mit der man auf HTML- und XML-Dokumente zugreifen und sie verändern kann – z. B. mit JavaScript.</p>
+            <p>Das DOM ist der Weg, wie JavaScript mit einer Webseite interagiert.</p>
+
+        <li class="textColor02"><strong>Was kann man mit dem DOM bearbeiten? </strong></li>
+            <p>Mit dem DOM kann man z. B.:</p>
+                <ul>
+                    <p><li>Elemente hinzufügen/löschen (createElement, removeChild)</li></p>
+                    <p><li>Inhalte ändern (innerText, textContent)</li></p>
+                    <p><li>Stile verändern (element.style)</li></p>
+                    <p><li>Events anhängen (addEventListener)</li></p>
+                </ul>
+
+        <li class="textColor02"><strong>Was kann ich mit dem DOM nicht bearbeiten? </strong></li>
+
+            <ul>
+                <p><li>Auf Dateien/Festplatte zugreifen: Man kann z.B nicht auf Dateien des Nutzers zugreifen, Programme starten oder Betriebssystembefehle ausführen.</li></p>
+                <p><li>Auf fremde Webseiten zugreifen: Der Browser blockiert das aus Sicherheitsgründen (Cross-Origin Restriction).</li></p>
+                <p><li>Rechenintensive Aufgaben effizient lösen: Besser reines JavaScript verwenden.</li></p>
+                <p><li>Bilder direkt bearbeiten: Keine native Grafikbearbeitung.</li></p>
+
+            </ul>
+
+        <li class="textColor02"><strong>Wie kann ich ein HTML Element mit einem eindeutigen ID erreichen?</strong></li>
+            <p>Mit der Methode -> document.getElementById("ID")</p>
+            <p>Beispiel (html):</p>
+            <div class="code-sample">  
+                <code>
+                    &lt;h1 id="headline"&gt;Willkommen!&lt;/h1&gt;
+                    &lt;button onclick="changeText()"&gt;Klick mich&lt;/button&gt;
+                </code>
+            </div>
+            <p>Beispiel (js):</p>
+            <div class="code-sample">  
+                <code>
+                    function changeText() {
+                        let element = document.getElementById("headline")
+                        element.innerText = "Hallo vom DOM!"
+                    }
+                </code>
+            </div>
+
+            <br>
+
+        <li class="textColor02"><strong>Wie kann ich alle HTML Elementen erreichen, die eine class="xyz" haben?</strong></li>
+            <p>Mit der Methode -> document.getElementsByClassName("xyz")</p>
+            <p>Beispiel (html):</p>
+            <div class="code-sample">  
+                <code>
+                    &lt;p class="xyz"&gt;Text 1&lt;/p&gt;
+                    &lt;p class="xyz"&gt;Text 2&lt;/p&gt;
+                    &lt;div class="xyz"&gt;Ein div&lt;/div&gt;
+                </code>
+            </div>
+            <p>Beispiel (js):</p>
+            <div class="code-sample">  
+                <code>
+                    let elements = document.getElementsByClassName("xyz")
+
+                    for (let el of elements) {
+                        el.style.color = "blue"
+                    }
+                </code>
+            </div>
+
+            <p>Das macht alle Elemente mit der Klasse xyz blau.</p>
+
+        <li class="textColor02"><strong>Wie kann man alle HTML Elementen erreichen, die man mit einem CSS Selector beschreiben kann?</strong></li>
+            <p>Mit der Methode -> document.querySelectorAll(".xyz")</p>
+            <p>Beispiel (html):</p>
+            <div class="code-sample">  
+                <code>
+                    &lt;div class="box"&gt;Box 1&lt;/div&gt;
+                    &lt;div class="box"&gt;Box 2&lt;/div&gt;
+                    &lt;div class="box"&gt;Box 3&lt;/div&gt;
+
+                    &lt;button onclick="changeBoxes()"&gt;Ändere alle Boxen&lt;/button&gt;
+                </code>
+            </div>
+            <p>Beispiel (js):</p>
+            <div class="code-sample">  
+                <code>
+                    function changeBoxes() {
+
+                        // Alle Elemente mit der Klasse "box" auswählen
+
+                        let boxes = document.querySelectorAll(".box")
+                    
+                        // Durch alle ausgewählten Elemente iterieren
+
+                        boxes.forEach(box => {
+                            box.style.backgroundColor = "lightgreen"  // Hintergrundfarbe ändern
+                            box.style.padding = "20px"  // Padding ändern
+                            box.innerText = "Die Box wurde geändert!"  // Text ändern
+                        })
+                    }
+                </code>
+            </div>
+            <br>
+
+        <li class="textColor02"><strong>Wie kann man aus einem Element der Parent-Element erreichen? </strong></li>
+            <p>Mit der Eigenschaft parentElement.</p>
+            <p>Beispiel (html):</p>
+            <div class="code-sample">  
+                <code>
+                &lt;div id="parent"&gt;
+
+                    &lt;p id="child"&gt;Ich bin ein Kind-Element.&lt;/p&gt;
+
+                &lt;/div&gt;
+
+                &lt;button onclick="findParent()"&gt;Finde das Elternelement&lt;/button&gt;
+                </code>
+            </div>
+            <p>Beispiel (js):</p>
+            <div class="code-sample">  
+                <code>
+                function findParent() {
+
+                    let child = document.getElementById("child")
+
+                    let parent = child.parentElement  // Parent-Element des Kindes holen
+
+                    console.log(parent)  // Gibt das Elternelement im Console aus
+
+                    parent.style.backgroundColor = "lightblue"  // Optional: Hintergrundfarbe des Eltern-Elements ändern
+
+                }
+                </code>
+            </div>
+
+            <p>child.parentElement: Diese Eigenschaft gibt das Elternelement des child-Elements zurück.</p>
+            <p>Wenn man auf den Button klickt, wird die Konsole das Elternelement ausgeben und dessen Hintergrundfarbe ändern.</p>
+
+        <li class="textColor02"><strong>Wie kann man alle Child-Elements eines Elements erreichen?</strong></li>
+        <p>Um alle Child-Elemente eines bestimmten Elements zu erreichen, kann man die Eigenschaft "children" verwenden. Diese gibt eine HTMLCollection aller direkten Kinder eines Elements zurück.</p>
+        <p>Beispiel (html):</p>
+        <div class="code-sample">  
+            <code>
+            &lt;div id="parent"&gt;
+
+            &lt;p&gt;Kind 1&lt;/p&gt;
+            &lt;p&gt;Kind 2&lt;/p&gt;
+            &lt;p&gt;Kind 3&lt;/p&gt;
+
+            &lt;/div&gt;
+
+            &lt;button onclick="changeChildren()"&gt;Ändere alle Kind-Elemente&lt;/button&gt;
+            </code>
+        </div>
+
+        <p>Beispiel (js):</p>
+        <div class="code-sample">  
+            <code>
+            function changeChildren() {
+                let parent = document.getElementById("parent")  // Elternelement holen
+            
+                for (let child of parent.children) {
+                    child.style.color = "blue"  // Alle Kind-Elemente blau färben
+                }
+            }
+            </code>
+        </div>
+        <p>Wenn man auf den Button klickt, wird die Farbe jedes Kind-Elements (die p-Tags) blau gesetzt.</p>
+
+        <li class="textColor02"><strong>Wie kann man den Text Content eines Elements ändern?</strong></li>
+        <p>Um den Text-Inhalt eines Elements zu ändern, kannst man die Eigenschaft textContent verwenden. Mit textContent kannst man den gesamten Text eines Elements abrufen oder ändern.</p>
+        <p>Beispiel (html):</p>
+        <div class="code-sample">  
+            <code>
+            &lt;p id="textElement"&gt;Dieser Text wird geändert.&lt;/p&gt;
+            &lt;button onclick="changeText()"&gt;Ändere den Text&lt;/button&gt;
+        </code>
+        </div>
+        <p>Beispiel (js):</p>
+        <div class="code-sample">  
+            <code>
+            function changeText() {
+                let element = document.getElementById("textElement");  // Das Element holen
+                element.textContent = "Der Text wurde geändert!";  // Den Text ändern
+            }
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie kann man die Attribute eines Elements ändern?</strong></li>
+        <p>Um die Attribute eines Elements zu ändern, kann man die Methoden setAttribute oder direkt die Eigenschaften des spezifischen Attributs verwenden (wie src für ein Bild oder href für einen Link).</p>
+        <p>-> setAttribute Methode Beispiel (html):</p>
+        <div class="code-sample">  
+            <code>
+                &lt;img id="image" src="old-image.jpg" alt="Altes Bild" width="200"&gt;
+                &lt;button onclick="changeImage()"&gt;Bild ändern&lt;/button&gt;
+            </code>
+        </div>
+        <p>-> setAttribute Methode Beispiel (js):</p>
+        <div class="code-sample">  
+            <code>
+            function changeImage() {
+                let img = document.getElementById("image");  // Das Bild-Element holen
+                img.setAttribute("src", "new-image.jpg");    // Das src-Attribut ändern
+                img.setAttribute("alt", "Neues Bild");       // Das alt-Attribut ändern
+            }
+            </code>
+        </div>
+        <p>Für einige Standard-Attribute kann man auch direkt die entsprechende Eigenschaft des Elements verwenden (wie src für Bilder, href für Links):</p>
+        <p>-> Direkte Eigenschaft verwenden (html):</p>
+        <div class="code-sample">  
+            <code>
+            &lt;img id="image" src="old-image.jpg" alt="Old Image" width="200"&gt;
+            &lt;button onclick="changeImage()"&gt;Change Image&lt;/button&gt;
+            </code>
+        </div>
+        <p>-> Direkte Eigenschaft verwenden (js):</p>
+        <div class="code-sample">  
+            <code>
+            function changeImage() {
+                let img = document.getElementById("image");  // Get the image element
+                img.src = "new-image.jpg";  // Change the src attribute to a new image
+                img.alt = "New Image";      // Optionally, change the alt attribute as well
+            }
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie kann man die Class Liste eines Elements erreichen?</strong></li>
+        <p>Man kann die Class-Liste eines Elements in JavaScript mit der Eigenschaft .classList erreichen. Das ist ein praktisches Objekt, mit dem man Klassen hinzufügen, entfernen, toggeln oder überprüfen kann.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                &lt;p id="text" class="blau"&gt;Hallo Welt!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  // Zeigt alle Klassen im Element
+                  console.log(element.classList); // Ausgabe: ['blau']
+                
+                  // Eine neue Klasse hinzufügen
+                  element.classList.add("fett");
+                
+                  // Eine vorhandene Klasse entfernen
+                  element.classList.remove("blau");
+                &lt;/script&gt;
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht classList.add('abc') Funktion?</strong></li>
+        <p>Die Funktion classList.add('abc') fügt dem HTML-Element eine neue CSS-Klasse namens abc hinzu, falls sie noch nicht vorhanden ist.</p>
+        <div class="code-sample">  
+            <code>
+                &lt;p id="text" class="rot"&gt;Hallo!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  element.classList.add("fett");
+                  console.log(element.className); // Ausgabe: "rot fett"
+                &lt;/script&gt;
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Was macht classList.remove('abc') Funktion?</strong></li>
+        <p>Die Funktion classList.remove('abc') entfernt die CSS-Klasse abc von einem HTML-Element — aber nur, wenn sie vorhanden ist.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                &lt;p id="text" class="rot fett"&gt;Hallo!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  element.classList.remove("rot");
+                
+                  console.log(element.className); // Ausgabe: "fett"
+                &lt;/script&gt;
+            </code>
+        </div>
+        <br>
+        <li class="textColor02"><strong>Was macht classList.toggle('abc') Funktion?</strong></li>
+        <p>Die Funktion classList.toggle('abc') fügt die Klasse abc hinzu, wenn sie nicht vorhanden ist – und entfernt sie, wenn sie bereits vorhanden ist. Es ist also ein Ein/Aus-Schalter für Klassen.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                &lt;p id="text"&gt;Hallo!&lt;/p&gt;
+                &lt;button onclick="toggleFarbe()"&gt;Farbe wechseln&lt;/button&gt;
+                
+                &lt;script&gt;
+                  function toggleFarbe() {
+                    const element = document.getElementById("text");
+                    element.classList.toggle("rot");
+                  }
+                &lt;/script&gt;
+                
+                &lt;style&gt;
+                  .rot {
+                    color: red;
+                  }
+                &lt;/style&gt;
+            </code>
+        </div>
+        <br>
+        <li class="textColor02"><strong>Wie erstellt man ein neues HTML Element?</strong></li>
+        <p>Um ein neues HTML-Element mit JavaScript zu erstellen, verwendet man die Methode document.createElement().</p>
+        <p>Beispiel (js):</p>
+        <div class="code-sample">  
+            <code>
+            // Neues &lt;p&gt;-Element erstellen
+            const neuerAbsatz = document.createElement("p");
+            
+            // Textinhalt hinzufügen
+            neuerAbsatz.textContent = "Das ist ein neuer Absatz.";
+            
+            // Element in den DOM einfügen, z. B. in den Body
+            document.body.appendChild(neuerAbsatz);
+            </code>
+        </div>
+        <br>
+
+        <li class="textColor02"><strong>Wie kann man ein Element an eine bestimmte Position im HTML-Dokument einfügen?</strong></li>
+        <p>Die gängigsten Methoden sind:</p>
+        <ul>
+            <li><p>appendChild() → ans Ende eines Elements anhängen</p></li>
+            <div class="code-sample">  
+                <code>
+                elternElement.appendChild(neuesElement);
+                </code>
+            </div>
+
+            <li><p>prepend() → an den Anfang eines Elements anhängen</p></li>
+            <div class="code-sample">  
+                <code>
+                elternElement.prepend(neuesElement);
+                </code>
+            </div>
+            <li><p>insertBefore() → vor einem bestimmten Element einfügen</p></li>
+            <div class="code-sample">  
+                <code>
+                elternElement.insertBefore(neuesElement, referenzElement);
+                </code>
+            </div>
+
+            <li><p>insertAdjacentElement(position, element) → an eine genaue Position</p></li>
+            <ul>
+                <li>beforebegin: direkt vor dem #zielElement.</li>
+                <li>afterbegin: ganz oben innerhalb von #zielElement.</li>
+                <li>beforeend: ganz unten innerhalb von #zielElement</li>
+                <li>afterend: direkt nach dem #zielElement</li>
+            </ul>
+            <p>Beispiel (Ausgangs-HTML):</p>
+            <div class="code-sample">  
+                <code>
+                &lt;div id="box"&gt;
+
+                &lt;p&gt;Inhalt der Box&lt;/p&gt;
+
+                &lt;/div&gt;
+                </code>
+            </div>
+            <p>Beispiel (JavaScript):</p>
+            <div class="code-sample">  
+                <code>
+            const ziel = document.getElementById("box");
+
+            const beforeBegin = document.createElement("div");
+            beforeBegin.textContent = "👉 beforebegin";
+            beforeBegin.style.color = "blue";
+                
+            const afterBegin = document.createElement("div");
+            afterBegin.textContent = "👉 afterbegin";
+            afterBegin.style.color = "green";
+            
+            const beforeEnd = document.createElement("div");
+            beforeEnd.textContent = "👉 beforeend";
+            beforeEnd.style.color = "orange";
+            
+            const afterEnd = document.createElement("div");
+            afterEnd.textContent = "👉 afterend";
+            afterEnd.style.color = "red";
+            
+            // Elemente einfügen
+            ziel.insertAdjacentElement("beforebegin", beforeBegin);
+            ziel.insertAdjacentElement("afterbegin", afterBegin);
+            ziel.insertAdjacentElement("beforeend", beforeEnd);
+            ziel.insertAdjacentElement("afterend", afterEnd);
+                </code>
+            </div>
+
+            <p>Beispiel (resultierende HTML-Struktur):</p>
+            <div class="code-sample">  
+                <code>
+            &lt;!-- beforebegin --&gt;
+            &lt;div style="color: blue;"&gt;👉 beforebegin&lt;/div&gt;
+            
+            &lt;!-- ursprüngliches Ziel-Element --&gt;
+            &lt;div id="box"&gt;
+                
+            &lt;!-- afterbegin --&gt;
+            &lt;div style="color: green;"&gt;👉 afterbegin&lt;/div&gt;
+            
+            &lt;!-- Originalinhalt --&gt;
+            &lt;p&gt;Inhalt der Box&lt;/p&gt;
+            
+            &lt;!-- beforeend --&gt;
+            &lt;div style="color: orange;"&gt;👉 beforeend&lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- afterend --&gt;
+            &lt;div style="color: red;"&gt;👉 afterend&lt;/div&gt;
+                </code>
+            </div>
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Wie löscht man ein HTML Element?</strong></li>
+        <p>Ein HTML-Element kann man mit JavaScript auf zwei einfache Arten löschen:</p>
+        <ul>
+            <li>element.remove(): Ist die direkteste Methode.</li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+            const wegElement = document.getElementById("wegDamit");
+            wegElement.remove();
+                </code>
+            </div>
+            <br>
+            <li>parent.removeChild(child)</li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+            function eraseAbsatz() {
+                const eltern = document.getElementById("container");
+                const kind = document.getElementById("text");
+                eltern.removeChild(kind);
+                }
+                </code>
+            </div>
+        </ul>
+        <br>
+
+        <li class="textColor02"><strong>Wie kann man alle HTML Elemente eines bestimmten HTML-Elments löschen?</strong></li>
+        <p>Gängigsten Methoden:</p>
+        <ul>
+            <li><p>element.innerHTML = "" -> Entfernt alle Inhalte und Kindelemente des Containers. Schnell, aber löscht alles, auch Texte und Events.</p></li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                const container = document.getElementById("meinContainer");
+                container.innerHTML = "";
+                </code>
+            </div>
+            <br>
+            <li>Mit einer Schleife (while): Löscht ein Kind nach dem anderen, bis nichts mehr übrig ist.</li>
+            <p>Beispiel:</p>
+            <div class="code-sample">  
+                <code>
+                const container = document.getElementById("meinContainer");
+
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                </code>
+            </div>
+
+        </ul>
+
+    </ul>
 
     <br>
 
