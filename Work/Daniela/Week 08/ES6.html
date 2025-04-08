@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+let numbers= [1, 2, 3, 4, 5, 6];
+
+for(let i = 0; i < numbers.length; i++){
+    console.log(numbers[i])
+}
+//--------------------
+for(let number of numbers){
+    console.log("Mit let...of: " + number*2)
+}
+//-----------------------------------------------------------------------------------
+
+
+function greet(name){
+    console.log(`greet: Hallo ${name}`);
+}
+
+greet("Max");
+
+function begrüssen(name = "Unbekannter"){
+    console.log(`begrüssen: Hallo ${name}`);
+}
+begrüssen();
+//--------------------------------------------------------------------
+
+
+const func = (x, y) =>{
+    return x + y
+}
+console.log(func(1, 5));
+//-------------------------
+//Arrow Function 
+
+const func1 = (x, y) => x + y;
+console.log(func1(1, 2));
+
+//--------------------------------------------------------------------
+//Rest-Operator 
+const sum = (x, y, ...numbers) => {
+    let result = x + y;
+    for(let number of numbers){
+        result += number;
+    }
+    return result;
+};
+console.log(sum( 1, 2, 3, 4, 5, 6, 10, 20, ));
+//---------------------------------------------------------------
+//Spread-Operator
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = [10, 20, 30, 3];
+
+let longArr = [...arr1, ...arr2];
+
+//-----------------------------
+//Array destructoring 
+
+const [x, y, z, ...rest] = longArr;
+console.log(rest);
+//-----------------------------------------------------------------------
+let person = {
+    vorname: "Daniela",
+    nachname: "Pittner"
+}
+let {vorname, nachname} = person
+console.log(vorname, nachname);
+//--------------------------------------------------------------------
+//Set speicher unic Werte 
+
+const arr3 = [1, 2, 2, 3, 3, 4, 5];
+
+const set = new Set(arr3);
+
+console.log(set); //dublikate aus der liste werden aussortiert 
+//-------------------
+const map = new Map();
+map.set("name", "Daniela");
+map.set("age", 26);
+
+map.delete("age");
+
+/*console.log(map.get("age"));
+console.log(map.entries());
+console.log(map.has("name"));*/
+
+console.log(`get map: ` + map.get("age"));
+//------------------------------------------------ 
+
+
+
+
+
+//asynkrone Programmierung
+
+
+
+
+
+
+//-----------------------------------------------
+
+
+// !!!!!!!!!!!!!!!!!!!Gyula fragen!!!!!!!!!!!!!!!!
+//constructor nachmal erklären und classen 
+
+
+class Person {
+    constructor(firstName, lastName, age){
+        console.log("Constructor wird aufgerufen");
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    greet(){
+        console.log(
+            `Hallo ich bin ${this.firstName} ${this.lastName} und bin ${this.age} Jahre alt.`
+        );
+    }
+}
+const person1 = new Person("Max", "Musstermann", 17);
+const person2 = new Person("Lisa", "Blume", 18);
+
+class Teacher extends Person {
+    constructor(firstName, lastName, age, subject){
+        super(firstName, lastName, age)//durch super wird constructor von parent-class gecallt
+        this.subject = subject;           
+    }
+    greet(){
+        console.log(
+            `Hallo ich heisse ${this.firstName} ${this.lastName}, ich bin ${this.age} Jahre alt. Ich unterrichte ${this.subject}.`
+        );
+    } 
+}
+const teacher1 = new Teacher("Bernd", "Lehner", 56, "Biologie");
+
+console.log(person1);
+person1.greet();
+person2.greet();
+console.log(teacher1);
+teacher1.greet();
+//-------------------------------------------------------
+// Module --> für exporte aus anderen scriptern 
+
+
+</script>
+</html>
