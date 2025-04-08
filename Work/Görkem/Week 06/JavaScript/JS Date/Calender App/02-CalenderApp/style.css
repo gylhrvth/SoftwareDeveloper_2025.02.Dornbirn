@@ -1,134 +1,118 @@
 
-* {
-    margin: 0;
-    padding: 0;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1em;
+  background-color: #fdfdfd;
+  color: #333; /* Standard Textfarbe bleibt dunkel */
+  margin: 0;
+  padding: 0;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+}
+
+#introContainer {
+  text-align: center;
+  max-width: 600px;
+}
+
+#introContainer h1 {
+  font-size: 2em;
+  color: #333; /* Dunkelgrau für den Header */
+  margin-bottom: 10px;
+}
+
+#introContainer p {
+  font-style: italic;
+  color: #555;
+}
+
+#inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  background-color: #f1f1f1;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#inputContainer label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+#inputContainer input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+}
+
+button {
+  margin-top: 10px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: #333; /* Dunkelgrau für den Button */
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #444; /* Etwas helleres Grau beim Hover */
+}
+
+#feedbackContainer p {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.full-width {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.success {
+  color: #333; /* Dunkelgrau für Erfolgsmeldungen */
+  font-weight: bold;
+}
+
+.error {
+  color: #d9534f; /* Dunkelrot für Fehlermeldungen */
+  font-weight: bold;
+}
+
+/* Responsivität für mobile Geräte */
+@media (max-width: 600px) {
+  #inputContainer {
+      width: 90%;
+      padding: 15px 20px;
   }
-  
-  body {
-    height: 100vh;
-    background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Quicksand", sans-serif;
-    user-select: none;
+
+  button {
+      width: 100%;
+      padding: 15px 0;
   }
-  
-  .card {
-    width: 316px;
-    height: fit-content;
-    background-color: #FFFFFF;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px #efefef;
+
+  #feedbackContainer p {
+      font-size: 1em;
   }
-  
-  .calendar-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #efefef;
-  }
-  
-  .calendar-toolbar > .current-month {
-    font-size: 20px;
-    font-weight: bold;
-    color: #19181a;
-  }
-  
-  .calendar-toolbar > [class$="month-btn"] {
-    width: 40px;
-    aspect-ratio: 1;
-    text-align: center;
-    line-height: 40px;
-    font-size: 14px;
-    color: #19181a;
-    background: #f8f7fa;
-    border: none;
-    border-radius: 15px;
-  }
-  
-  .weekdays,
-  .calendar-days {
-    display: flex;
-    flex-wrap: wrap;
-    padding-inline: 18px;
-  }
-  .weekdays {
-    padding-top: 12px;
-  }
-  .calendar-days {
-    padding-bottom: 12px;
-  }
-  
-  .weekday-name,
-  [class$="-day"] {
-    width: 40px;
-    height: 40px;
-    color: #19181a;
-    text-align: center;
-    line-height: 40px;
-    font-weight: 500;
-    font-size: 1rem;
-  }
-  
-  .weekday-name {
-    color: #19181a;
-    font-weight: 700;
-  }
-  
-  .current-day {
-    background-color: rgb(112, 71, 235);
-    color: #f8f7fa;
-    border-radius: 15px;
-    font-weight: 700;
-    transition: 0.5s;
-    cursor: pointer;
-  }
-  
-  .padding-day {
-    color: #a5a5a5;
-    user-select: none;
-  }
-  
-  .calendar-toolbar > [class$="month-btn"]:hover,
-  .month-day:hover,
-  .btn:hover {
-    border-radius: 15px;
-    background-color: #f8f7fa;
-    color: rgb(112, 71, 235);
-    transition: 0.1s;
-    cursor: pointer;
-    box-shadow: inset 0px 0px 0px 1.5px rgb(112, 71, 235);
-  }
-  
-  .calendar-toolbar > [class$="month-btn"]:focus,
-  .month-day:focus,
-  .btn:focus {
-    border-radius: 15px;
-    background-color: rgb(112, 71, 235);
-    color: #f8f7fa;
-  }
-  
-  .goto-buttons {
-    border-top: 1px solid #efefef;
-    padding-block: 18px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .btn {
-    background: #f8f7fa;
-    border: none;
-    border-radius: 15px;
-    padding: 11px 13px;
-    color: #19181a;
-    font-family: "Quicksand", sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-right: 1px;
-    box-shadow: 0px 0px 0px #efefef;
-  }
-  
+}
