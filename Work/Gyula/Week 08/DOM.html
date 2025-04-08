@@ -92,6 +92,34 @@ function addReplacableImg(){
     document.getElementById('main').appendChild(imgElement)
 }
 
+// Explanation:
+
+/*
+
+Let’s go step by step with an example:
+
+Imagine this flow after several clicks:
+
+First click:
+	•	currentImg = 0
+	•	(0 + 1) % 3 = 1 // 3 is 0 times inside 1. From 0 to 1, moulo 1.
+	•	So currentImg = 1
+	•	Image becomes: 'PXL_20231028_132627428.RAW-01.COVER.jpg'
+
+Second click:
+	•	currentImg = 1
+	•	(1 + 1) % 3 = 2 // 3 is 0 times inside 2. From 0 to 2, modulo 2.
+	•	So currentImg = 2
+	•	Image becomes: '../Week 03/szobi.png'
+
+Third click:
+	•	currentImg = 2
+	•	(2 + 1) % 3 = 3 % 3 = 0 // 3 is 1 time inside 3. From 3 to 3, modulo 0.
+	•	So currentImg = 0
+	•	Image becomes: 'PXL_20250206_131640830.jpg'
+
+    */
+
 function addComplex(){
     let divElement = document.createElement('div')
     divElement.classList.add('container')
