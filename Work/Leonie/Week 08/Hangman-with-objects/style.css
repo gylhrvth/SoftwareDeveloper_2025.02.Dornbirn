@@ -197,7 +197,7 @@ display: none; /* Initially hidden */
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  animation: button-animation 10s linear infinite;
+  animation: button-animation 5s linear infinite;
   /*background-color: #4CAF50;
   color: white;
   border: none;
@@ -208,6 +208,6 @@ display: none; /* Initially hidden */
 
 @keyframes button-animation {
   to {
-    background-position-x: -121.81px;
+    background-position-x: -122.81px;
   }
 }
