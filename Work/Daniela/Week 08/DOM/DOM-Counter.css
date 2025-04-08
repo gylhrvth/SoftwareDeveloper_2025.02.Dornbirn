@@ -12,19 +12,21 @@ body{
 }
 
 .smallContainer{
-    background-color: rgba(139, 0, 139, 0.532);
+    background-color: rgba(139, 0, 139, 0.332);
 }
 
 button{
     width: 20vh;
     height: 10vh;
     color: aliceblue;
-    background-color: black;
-    margin: 1em;
-    font-size: 1.5em;
+    background-color: rgb(72, 4, 54);
+    margin: 0.5em;
+    font-size: 2em;
 }
 
 .myStyle{
     display: flex;
     justify-content: center;
+    font-size: 2em;
+    font-weight: 600;
 }
