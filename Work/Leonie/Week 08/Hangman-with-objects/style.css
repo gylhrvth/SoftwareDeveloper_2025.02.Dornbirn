@@ -191,7 +191,7 @@ display: none; /* Initially hidden */
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  background: url(img/gradient.jpg) center;
+  background: linear-gradient(to right,  lightblue, blue, purple);
   background-size: cover;
   border: none;
   border-radius: 5px;
@@ -208,6 +208,6 @@ display: none; /* Initially hidden */
 
 @keyframes button-animation {
   to {
-    background-position-x: -200px;
+    background-position-x: -121.81px;
   }
 }
