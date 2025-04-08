@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container > *:first-child{
+    flex-grow: 1;
+}
+
+.deleteButton{
+    font-size: 2em;
+    color: red;
+}
+
+.description.complete{
+    text-decoration: line-through;
+}
+
+.blur {
+    filter: blur(50px);
+}
+</style>
+
+</head>
+<body>
+    <h1 id="title">A</h1>
+    <button onclick="addText()">Add simple text</button>
+    <button onclick="addImg()">Add image</button>
+    <button onclick="addDeletableImg()">Add image (deletable)</button>
+    <button onclick="addReplacableImg()">Add image (replacable)</button>
+    <button onclick="addComplex()">Add complex div</button>
+    <button onclick="blurImages()">Blur</button>
+    
+    
+    <div id="main"></div>
+<script>
+let h1Element = document.getElementById('title')
+h1Element.innerText = 'Hello World!'
+h1Element.classList.add('redHeadline')
+
+
+function addText(){
+    // console.log('addText()')
+    let pElement = document.createElement('p')
+    pElement.innerText = 'Apfelsaftladenregal'
+    document.getElementById('main').appendChild(pElement)
+}
+
+function addImg(){
+    let imgElement = document.createElement('img')
+    imgElement.src = 'PXL_20250206_131640830.jpg'
+    imgElement.alt = 'cat washing'
+    imgElement.width = 150
+    document.getElementById('main').appendChild(imgElement)
+}
+
+function addDeletableImg(){
+    let imgElement = document.createElement('img')
+    imgElement.src = 'PXL_20250206_131640830.jpg'
+    imgElement.alt = 'cat washing'
+    imgElement.width = 150
+    imgElement.addEventListener('click', () => {
+        // console.log('deletable image was clicked')
+        document.getElementById('main').removeChild(imgElement)
+    })
+    document.getElementById('main').appendChild(imgElement)
+}
+
+function addReplacableImg(){
+    const imgNames = [
+        'PXL_20250206_131640830.jpg',
+        'PXL_20231028_132627428.RAW-01.COVER.jpg',
+        '../Week 03/szobi.png'
+    ]
+    let currentImg = 0
+    let imgElement = document.createElement('img')
+    imgElement.src = imgNames[currentImg]
+    imgElement.alt = 'cat washing'
+    imgElement.width = 150
+    imgElement.addEventListener('click', () => {
+        // console.log('replace image was clicked')
+        currentImg = (currentImg + 1) % imgNames.length
+        imgElement.src = imgNames[currentImg]
+    })
+    document.getElementById('main').appendChild(imgElement)
+}
+
+function addComplex(){
+    let divElement = document.createElement('div')
+    divElement.classList.add('container')
+
+    let pElement = document.createElement('p')
+    pElement.innerText = 'Hello World'
+    pElement.classList.add('description')
+    pElement.addEventListener('click', () => {
+        pElement.classList.toggle('complete')
+    })
+    divElement.appendChild(pElement)
+
+    let button = document.createElement('div')
+    button.classList.add('deleteButton')
+    button.innerText = 'X'
+    button.addEventListener('click', () => {
+        document.getElementById('main').removeChild(divElement)
+    })
+    divElement.appendChild(button)
+
+    document.getElementById('main').appendChild(divElement)
+}
+
+function blurImages(){
+    let images = document.querySelectorAll("img")
+    images.forEach(item => {
+        item.classList.toggle('blur')
+    })
+}
+</script>
+</body>
+</html>
