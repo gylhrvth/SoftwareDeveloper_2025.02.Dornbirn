@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Example</title>
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <script src="../../../Kurs/common.js"></script>
+</head>
+<body>
+<script>
+
+class Car {
+    constructor(type, color){
+        this.type = type
+        this.color = color
+    }
+
+    toString(){
+        return 'I\'m a ' + this.color + ' ' + this.type + '.'
+    }
+
+    repaint(newColor){
+        this.color = newColor
+    }
+}
+
+
+let car = new Car('opel', 'red')
+let text = car.toString()
+printLn('text: ' + text)
+printLn(car)
+car.repaint('pink')
+printLn(car)
+
+let carShop = []
+for (let i = 0; i < 10; ++i){
+    carShop = [...carShop, new Car('Audi ' + (i + 1), 'black')]
+}
+printLn(carShop)
+
+
+/*
+let car = {
+    type: 'opel',
+    color: 'red'
+}
+
+let car2 = {
+    size: 4.86,
+    engine: 'disel'
+}
+*/
+
+</script>
+</body>
+</html>
