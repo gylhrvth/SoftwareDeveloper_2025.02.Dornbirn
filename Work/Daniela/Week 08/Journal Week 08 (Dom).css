@@ -1,0 +1,34 @@
+.delius-regular {
+    font-family: "Delius", cursive;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, rgb(104, 162, 22), rgb(20, 150, 60));
+    color: white;
+    
+}
+main{
+    width: 70vh;
+}
+
+p, li{
+    font-family:"Delius", cursive;
+    font-size: 1.3em;
+}
+
+h1, h2, h3, ol, ul, li{
+    font-family:"Delius", cursive;
+    
+}
+h3{font-size: 1.4em;}
+
+ol >li{
+    text-decoration: underline;
+}

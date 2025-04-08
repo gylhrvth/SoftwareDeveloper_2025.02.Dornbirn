@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 08 - DOM</title>
+    <link rel="stylesheet" href="Journal Week 08 (Dom).css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delius&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <h1>DOM</h1>
+        <p>DOM steht für "Document Objekt Model"</p>
+        <p>Es handelt sich um eine Programmierschnittstelle (API) für HTML- und XML-Dokumente. Das DOM beschreibt die
+            Struktur eines Dokuments als Baum von Knoten (Nodes), wobei jeder Knoten ein Element, ein Attribut oder
+            einen Text repräsentiert. Dadurch können Webentwickler mit JavaScript die Struktur, das Styling und den
+            Inhalt eines HTML-Dokuments dynamisch verändern.</p>
+        <p>Im DOM wird diese Seite als Baumstruktur dargestellt, in der jedes Element (wie html>, head>, h1>, p>)
+            als Knoten existiert. Du kannst mit JavaScript auf diese Knoten zugreifen und sie verändern.</p>
+
+        <h3>✅ Was du mit dem DOM bearbeiten kannst (im Detail)</h3>
+        <p>Das DOM stellt die HTML-Seite als Baumstruktur dar. Jeder Teil dieser Seite (Tags, Text, Attribute) ist ein
+            Knoten (Node). JavaScript kann diesen Baum lesen und manipulieren.</p>
+        <ol>
+            <li>Texte und HTML Inhalte ändern</li>
+            <p>Du kannst den sichtbaren Text oder sogar HTML-Strukturen innerhalb eines Elements verändern.</p>
+            <img src="img2/Texte und HTML-inhalt ändern.png">
+            <ul>
+                <li>textContent = Nur Text</li>
+                <li>innerHTML = Auch HTML möglich</li>
+            </ul><br>
+
+            <li>Elemente hinzufügen oder löschen</li>
+            <p>Mit DOM-Methoden kannst du neue HTML-Elemente erstellen und sie irgendwo im Dokument einfügen oder löschen.</p>
+            <img src="img2/Elemente hinzufügen oder löschen.png"><br>
+            <li>Attribut bearbeiten</li>
+            <p>Du kannst Attribute wie src, href, alt, id, usw. ändern oder abfragen.</p>
+            <img src="img2/Attribute bearbeiten.png">
+            <li>CSS-Klassen und Styles verändern</li><br>
+            <li>Events (Benutzerinteraktion)</li>
+            <p> Du kannst auf Klicks, Mausbewegungen, Tastendrücke etc. reagieren</p>
+        </ol><br>
+        <h3>🚫 Was du NICHT mit dem DOM machen kannst</h3>
+        <ol>
+            <li>1. ❌ Daten vom Server holen oder speichern</li>
+            <p>DOM ist nur für die Anzeige und Manipulation der Seite zuständig.<br>
+                <br>Für Serverzugriffe brauchst du:</p>
+                <img src="img2/fetch().png">
+
+            <li>❌ Dateien auf dem Computer speichern</li>
+            <p>Du kannst keine Datei auf dem Rechner des Nutzers schreiben oder in seine Ordner schauen. Dafür brauchst du Node.js, Downloads, oder File API, aber nicht direkt das DOM.</p>
+            <li>❌ CSS-Dateien direkt ändern</li>
+            <p>Du kannst Klassen hinzufügen oder Styles setzen – aber nicht den Inhalt einer CSS-Datei bearbeiten</p>
+            <li>❌ Browserfunktionen wie Lesezeichen, Tabs, Sicherheitseinstellungen ändern</li>
+            <p>Das geht alles nicht mit dem DOM, aus Sicherheitsgründen – du bist im sogenannten „Sandbox-Modus“.</p>
+        </ol>
+        <img src="img2/DOM Zugriff-Uebersicht.png">
+        <img src="img2/DOM-Änderungen-Texte und Attribute.png">
+        <img src="img2/DOM-Klassen-übersicht.png">
+        <img src="img2/DOM-Manipulation.png">
+
+    </main>
+</body>
+
+</html>
