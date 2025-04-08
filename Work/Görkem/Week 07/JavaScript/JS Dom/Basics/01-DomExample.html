@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Example</title>
+    <link rel="styesheet" href="../../../../../Sandro/style.css">
+    <script src="../../../../../../Kurs/common.js"></script>
+</head>
+      <style>
+    .redHeadline {
+      color: red;
+    }
+
+    .blur {
+      filter: blur(5px);
+    }
+
+    .container {
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .description {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+
+    .complete {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .deleteButton {
+      background-color: red;
+      color: white;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    button {
+      margin: 4px;
+    }
+      </style>
+<body>
+    <h1 id="title">B</h1>
+    <button onclick="addText()">Add simple text</button>
+    <button onclick="addImg()">Add image</button>
+    <button onclick="addDeletableImg()">Add image (deletable)</button>
+    <button onclick="addReplacableImg()">Add image (replacable)</button>
+    <button onclick="addComplex()">Add complex div</button>
+    <button onclick="blurImages()">Blur</button>
+
+    <div id="main"></div>
+    <script>
+        // Schritt 2: h1 manipulieren + erste Funktion
+        let h1Element = document.getElementById('title')
+        h1Element.innerText = 'Hello World!'    // Ändert den Text der Überschrift
+        h1Element.classList.add('redHeadline')  // Fügt die CSS-Klasse redHeadline hinzu (macht den Text rot)
+
+        function addText(){   //Funktion, die beim Klick einen neuen <p> mit dem Wort Apfelsaftladenregal in das #main-Div einfügt
+            let pElement = document.createElement('p')
+            pElement.innerText = 'Apfelsaftladenregal'
+            document.getElementById('main').appendChild(pElement)
+        }
+
+        // Schritt 3: addImg() - einfaches Bild einfügen
+        function addImg(){
+            let imgElement = document.createElement ('img')
+            imgElement.src = '../../JS Objects/Hangman Game Erweiterung/img/hangman-6.svg'
+            imgElement.alt = 'Hangman'
+            imgElement.width = 150
+            //console.log('Neues Bild erzeugt: ', imgElement)
+
+            document.getElementById('main').appendChild(imgElement) 
+        }
+        
+        // Schritt 4: addDeletableImg() - Bild löschen per Klick
+        function addDeletableImg(){
+            let imgElement = document.createElement('img')   //	Neues Bild-Element erzeugen
+            imgElement.src = '../../../../Week 05/JavaScript/JS Project/Hangman Game/img/Sinkflug.jpg'
+            imgElement.alt = 'Sinkflug'
+            imgElement.width = 150
+
+            imgElement.addEventListener('click', () => {  // Reagiert auf Klicks auf dieses Bild
+                console.log('Das Bild wurde angeklickt und wird gelöscht.')
+                document.getElementById('main').removeChild(imgElement)  // Löscht dieses eine Bild wieder aus dem DOM
+            })
+            document.getElementById('main').appendChild(imgElement)
+        }
+
+        // Schritt 5: addReplaceImg() - Bild wechseln beim Klick
+        function addReplacableImg(){
+            const imgNames = [
+                '../../JS Objects/Hangman Game Erweiterung/img/hangman-6.svg',
+                '../../../../Week 05/JavaScript/JS Project/Hangman Game/img/Sinkflug.jpg',
+                '../../JS Objects/Hangman Game Erweiterung/img/hangman-5.svg'
+            ]
+
+            let currentImg = 0   // Startindex (zeigt zuerst das erste Bild)
+            let imgElement = document.createElement('img')
+            imgElement.src = imgNames[currentImg]
+            imgElement.alt = 'wechselndes Bild'
+            imgElement.width = 150
+
+            imgElement.addEventListener('click', () => {
+                currentImg = (currentImg + 1) % imgNames.length // Nächstes Bild nehmen (und am Ende wieder von vorn beginnen!)
+                imgElement.src = imgNames[currentImg]
+                console.log('Bild gewechselt zu:', imgElement.src)
+            })
+            document.getElementById('main').appendChild(imgElement)
+        }
+
+        // Schritt 6: addComplex() - Komplexe div mit Interaktivität
+
+        function addComplex(){
+            let divElement = document.createElement('div')
+            divElement.classList.add('container')
+
+        let pElement = document.createElement('p')
+        pElement.innerText = 'Hello World'
+        pElement.classList.add('description')
+        pElement.addEventListener('click', () => {
+            pElement.classList.toggle('complete')
+        })
+        divElement.appendChild(pElement)
+
+        let button = document.createElement('div')
+        button.classList.add('deleteButton')
+        button.innerText = 'X'
+        button.addEventListener('click', () => {
+        document.getElementById('main').removeChild(divElement)
+        })
+        divElement.appendChild(button)
+
+        document.getElementById('main').appendChild(divElement)
+        }
+
+        function blurImages(){
+            let images = document.querySelectorAll("img")
+            images.forEach(item => {
+            item.classList.toggle('blur')
+        })
+        s}
+
+    </script>
+
+</body>
+</html>
