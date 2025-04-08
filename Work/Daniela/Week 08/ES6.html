@@ -132,7 +132,7 @@ const person2 = new Person("Lisa", "Blume", 18);
 
 class Teacher extends Person {
     constructor(firstName, lastName, age, subject){
-        super(firstName, lastName, age)//durch super wird constructor von perantclass gecallt
+        super(firstName, lastName, age)//durch super wird constructor von parent-class gecallt
         this.subject = subject;           
     }
     greet(){
@@ -149,7 +149,7 @@ person2.greet();
 console.log(teacher1);
 teacher1.greet();
 //-------------------------------------------------------
-// Module --> für exporte aus anderen scriptern
+// Module --> für exporte aus anderen scriptern 
 
 
 </script>
