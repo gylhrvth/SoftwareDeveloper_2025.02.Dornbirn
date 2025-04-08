@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 60vh;
+    outline: solid rgb(111, 32, 111);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.smallContainer{
+    background-color: rgba(139, 0, 139, 0.532);
+}
+
+button{
+    width: 20vh;
+    height: 10vh;
+    color: aliceblue;
+    background-color: black;
+    margin: 1em;
+    font-size: 1.5em;
+}
+
+.myStyle{
+    display: flex;
+    justify-content: center;
+}
