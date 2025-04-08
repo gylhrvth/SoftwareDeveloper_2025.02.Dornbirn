@@ -42,6 +42,15 @@ button{
     text-align: center;
 }
 
+#feedbackContainer02>p{
+    border: rgb(212, 212, 212) solid 1px;
+    width: 600px;
+    padding: 5px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+
 .outputText {
     border: rgb(212, 212, 212) solid 1px;
     padding: 5px;

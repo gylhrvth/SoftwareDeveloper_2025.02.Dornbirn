@@ -102,4 +102,50 @@ function checkWeekDay(){
     return;
     } 
 
+    checkNextBirthWeekday()
+
 }
+
+// Function to determine the next year with a same-day-of-the-week-Birthday.
+
+function checkNextBirthWeekday(){
+    if (isValidInput.getMonth !== userDate.getMonth && isValidInput.getDay !== userDate.getDay()){
+
+        isValidInput.getYear ++
+
+    } else {
+        return console.log(isValidInput);
+    }
+}
+
+/* Solution
+
+function getNextSameWeekdayBirthday(day, month, year) {
+    // Validate the input date
+    const userDate = isValidInput(day, month, year);
+    if (!userDate) {
+        console.log("Invalid date input.");
+        return null;
+    }
+
+    // Get the original day of the week
+    const originalWeekday = userDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    console.log("Original Weekday: " + originalWeekday);
+
+    // Start checking from the next year
+    let nextYear = userDate.getFullYear() + 1;
+
+    while (true) {
+        // Create a new date for the same day and month in the next year
+        const nextDate = new Date(nextYear, userDate.getMonth(), userDate.getDate());
+
+        // Check if the day of the week matches the original
+        if (nextDate.getDay() === originalWeekday) {
+            console.log("Next same weekday birthday: " + nextDate.toDateString());
+            return nextDate; // Return the matching date
+        }
+
+        // Increment the year and continue checking
+        nextYear++;
+    }
+} */
