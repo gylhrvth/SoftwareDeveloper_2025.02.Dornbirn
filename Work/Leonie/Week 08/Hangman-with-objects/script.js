@@ -11,15 +11,24 @@ const wordMatrix = [
   {category: 'Animals', words: 'Hund', hint: 'Tier'},
   {category: 'Animals', words: 'Maus', hint: 'Tier'},
   {category: 'Animals', words: 'Vogel', hint: 'Tier'},
+  {category: 'Animals', words: 'Fisch', hint: 'Tier'},
+  {category: 'Animals', words: 'Pferd', hint: 'Tier'},
+  {category: 'Animals', words: 'Elefant', hint: 'Tier'},
+  {category: 'Animals', words: 'Löwe', hint: 'Tier'},
   {category: 'Cars', words: 'VW', hint: 'Automarke'},
   {category: 'Cars', words: 'BMW', hint: 'Automarke'},
   {category: 'Cars', words: 'Mercedes', hint: 'Automarke'},
   {category: 'Cars', words: 'Audi', hint: 'Automarke'},
+  {category: 'Cars', words: 'Porsche', hint: 'Automarke'},
+  {category: 'Cars', words: 'Opel', hint: 'Automarke'},
+  {category: 'Cars', words: 'Ford', hint: 'Automarke'},
+  {category: 'Cars', words: 'Nissan', hint: 'Automarke'},
   {category: 'Countries', words: 'Deutschland', hint: 'Land'},
   {category: 'Countries', words: 'Oesterreich', hint: 'Land'},
   {category: 'Countries', words: 'Schweiz', hint: 'Land'},
   {category: 'Countries', words: 'Frankreich', hint: 'Land'},
   {category: 'Countries', words: 'Italien', hint: 'Land'},
+  {category: 'Countries', words: 'Spanien', hint: 'Land'},
 ]
 
 let score = JSON.parse(localStorage.getItem('Score'));
@@ -172,8 +181,6 @@ function selectRndWord() {
   categorieName = randomWordObject.category;
   word = randomWordObject.words;
   wordhint = randomWordObject.hint;
-  
-
 
   return word;
 }
