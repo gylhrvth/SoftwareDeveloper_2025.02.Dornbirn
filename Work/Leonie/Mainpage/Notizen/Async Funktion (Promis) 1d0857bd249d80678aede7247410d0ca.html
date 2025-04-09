@@ -1,0 +1,809 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Async Funktion (Promis)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1d0857bd-249d-8067-8aed-e7247410d0ca" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Async Funktion (Promis)</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@9. April 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Funktionen-1ba857bd249d8022baaadf23b78a597d?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Funktionen</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1d0857bd-249d-80b5-9942-f550aba6e9a6" class="column-list"><div id="1d0857bd-249d-80ad-a490-d06975a1b5fe" style="width:50%" class="column"><h3 id="1d0857bd-249d-80aa-a483-d2fc8b02d076" class="">Async-Funktionen und Promises: Grundlagen und Funktionsweise</h3><h3 id="1d0857bd-249d-8016-89a5-e13950c8bffd" class=""><strong>Was ist eine </strong><code><strong>async</strong></code><strong>Funktion?</strong></h3><p id="1d0857bd-249d-8086-b1d1-e72bd3ec5f3c" class="">Eine <code>async</code>-Funktion ist eine spezielle Funktion in JavaScript, die es ermöglicht, asynchrone Operationen (z. B. Netzwerkaufrufe, Datenbankabfragen) einfacher und lesbarer zu schreiben. Sie basiert auf Promises und erlaubt die Verwendung des <code>await</code>-Schlüsselworts, um den Code wie synchronen Code aussehen zu lassen.</p><h3 id="1d0857bd-249d-8015-8d61-c595361b7d93" class=""><strong>Wichtige Eigenschaften von </strong><code><strong>async</strong></code><strong>Funktionen</strong></h3><ol type="1" id="1d0857bd-249d-807b-bc7b-f71d4e0c9fe0" class="numbered-list" start="1"><li><strong>Rückgabewert ist immer ein Promise</strong>:<ul id="1d0857bd-249d-8018-9242-fb04f91102ae" class="bulleted-list"><li style="list-style-type:disc">Eine <code>async</code>Funktion gibt immer ein Promise zurück, unabhängig davon, ob sie explizit ein Promise zurückgibt oder nicht.</li></ul><ul id="1d0857bd-249d-800e-b8c5-d8d030938ddc" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<br/>Hier wird der Rückgabewert <br/><code>&quot;Hello, World!&quot;</code> automatisch in ein Promise gewrappt.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-80ac-b9f1-f9d19a6cee37" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">async function example() {
+    return &quot;Hello, World!&quot;;
+}
+example().then(console.log); // Ausgabe: &quot;Hello, World!&quot;
+</code></pre></li></ul></li></ol><ol type="1" id="1d0857bd-249d-80e3-9d25-d988cedcb62b" class="numbered-list" start="2"><li><code><strong>await</strong></code><strong>Schlüsselwort</strong>:<ul id="1d0857bd-249d-8099-bc4f-de77b18af326" class="bulleted-list"><li style="list-style-type:disc">Innerhalb einer <code>async</code>Funktion kannst du <code>await</code> verwenden, um auf die Auflösung eines Promises zu warten.</li></ul><ul id="1d0857bd-249d-80be-a719-d0d929fa2a1b" class="bulleted-list"><li style="list-style-type:disc">Während <code>await</code> wartet, wird der Rest des Codes nicht blockiert (non-blocking).</li></ul><ul id="1d0857bd-249d-8006-8b49-c80f8aa1603c" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-803f-b078-f7fedd795b4a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">async function fetchData() {
+    const response = await fetch(&quot;&lt;https://api.example.com/data&gt;&quot;);
+    const data = await response.json();
+    console.log(data);
+}
+fetchData();
+</code></pre></li></ul></li></ol><ol type="1" id="1d0857bd-249d-80d6-8edb-ef820ffaa04e" class="numbered-list" start="3"><li><strong>Fehlerbehandlung mit </strong><code><strong>try...catch</strong></code>:<ul id="1d0857bd-249d-8096-a2b0-d63407db5a1a" class="bulleted-list"><li style="list-style-type:disc">Fehler in einer <code>async</code>Funktion können mit <code>try...catch</code> behandelt werden, ähnlich wie bei synchronem Code.</li></ul><ul id="1d0857bd-249d-8003-9a41-e234acf37f2e" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-80bc-ac2a-f45c7bd94df4" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">async function fetchData() {
+    try {
+        const response = await fetch(&quot;&lt;https://api.example.com/data&gt;&quot;);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(&quot;Fehler beim Abrufen der Daten:&quot;, error);
+    }
+}
+fetchData();
+</code></pre></li></ul></li></ol><hr id="1d0857bd-249d-8065-9cda-d2c338d5ade5"/><h3 id="1d0857bd-249d-80db-86df-c9032d906404" class=""><strong>Wie funktioniert eine </strong><code><strong>async</strong></code><strong>Funktion intern?</strong></h3><ol type="1" id="1d0857bd-249d-80aa-9a51-cac11714483e" class="numbered-list" start="1"><li><strong>Promise-basierte Architektur</strong>:<ul id="1d0857bd-249d-8094-b7e2-e791b6f4d9aa" class="bulleted-list"><li style="list-style-type:disc">Eine <code>async</code>Funktion ist syntaktischer Zucker (syntactic sugar) für die Arbeit mit Promises. Intern wird der Code in eine Kette von <code>then</code>und <code>catch</code>Aufrufen umgewandelt.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80fa-a0c1-c283924873e8" class="numbered-list" start="2"><li><strong>Event Loop und Microtasks</strong>:<ul id="1d0857bd-249d-8023-b572-c1a946bc1dc5" class="bulleted-list"><li style="list-style-type:disc">Wenn <code>await</code> auf ein Promise trifft, wird die Ausführung der Funktion pausiert, und die Kontrolle wird an die Event Loop zurückgegeben.</li></ul><ul id="1d0857bd-249d-80da-b894-d1d44c828465" class="bulleted-list"><li style="list-style-type:disc">Sobald das Promise aufgelöst ist (fulfilled oder rejected), wird die Funktion fortgesetzt.</li></ul><ul id="1d0857bd-249d-80a7-82eb-da7c59358540" class="bulleted-list"><li style="list-style-type:disc"><code>await</code> arbeitet mit der Microtask-Queue, was bedeutet, dass aufgelöste Promises Vorrang vor anderen Aufgaben in der Event Loop haben.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-8032-a4a0-dea90537d910" class="numbered-list" start="3"><li><strong>Nicht-blockierende Ausführung</strong>:<ul id="1d0857bd-249d-8005-b697-c37426f4f420" class="bulleted-list"><li style="list-style-type:disc">Während die <code>async</code>Funktion auf ein Promise wartet, können andere Teile des Programms weiterlaufen. Dies macht <code>async</code>Funktionen ideal für I/O-Operationen wie API-Aufrufe oder Dateizugriffe.</li></ul></li></ol><hr id="1d0857bd-249d-8077-88c1-eb37ca15f2e1"/><h3 id="1d0857bd-249d-8057-99cc-dbbb6250ff4a" class=""><strong>Wichtige Punkte zu Promises</strong></h3><ol type="1" id="1d0857bd-249d-80dd-a141-dcb175a41466" class="numbered-list" start="1"><li><strong>Promise-Zustände</strong>:<ul id="1d0857bd-249d-806b-ab9a-c1a116b4e458" class="bulleted-list"><li style="list-style-type:disc">Ein Promise hat drei Zustände:<ul id="1d0857bd-249d-8031-9cbe-e43ed1fd3361" class="bulleted-list"><li style="list-style-type:circle"><strong>Pending</strong>: Das Promise wurde erstellt, aber die Operation ist noch nicht abgeschlossen.</li></ul><ul id="1d0857bd-249d-80e8-8656-c6ba5dc5f578" class="bulleted-list"><li style="list-style-type:circle"><strong>Fulfilled</strong>: Die Operation wurde erfolgreich abgeschlossen, und ein Wert ist verfügbar.</li></ul><ul id="1d0857bd-249d-80ad-903c-f71b7bce5b13" class="bulleted-list"><li style="list-style-type:circle"><strong>Rejected</strong>: Die Operation ist fehlgeschlagen, und ein Fehler ist verfügbar.</li></ul></li></ul></li></ol><ol type="1" id="1d0857bd-249d-80d9-9105-ddc25379a205" class="numbered-list" start="2"><li><strong>Promise-Methoden</strong>:<ul id="1d0857bd-249d-806b-9f3f-d6743640d71b" class="bulleted-list"><li style="list-style-type:disc"><code><strong>then</strong></code>: Wird aufgerufen, wenn das Promise erfolgreich aufgelöst wurde.</li></ul><ul id="1d0857bd-249d-8082-8137-db1074b1bfed" class="bulleted-list"><li style="list-style-type:disc"><code><strong>catch</strong></code>: Wird aufgerufen, wenn das Promise abgelehnt wurde.</li></ul><ul id="1d0857bd-249d-807d-b8d9-c4aef898705f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>finally</strong></code>: Wird immer aufgerufen, unabhängig davon, ob das Promise erfüllt oder abgelehnt wurde.</li></ul><p id="1d0857bd-249d-80dc-9d65-e8887e40d738" class="">Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8086-85bc-e442e8dd2691" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const promise = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(&quot;Erfolg!&quot;), 1000);
+});
+
+promise
+    .then(result =&gt; console.log(result)) // Ausgabe: &quot;Erfolg!&quot;
+    .catch(error =&gt; console.error(error))
+    .finally(() =&gt; console.log(&quot;Fertig!&quot;));
+</code></pre></li></ol><ol type="1" id="1d0857bd-249d-80d8-b298-ec115a35c892" class="numbered-list" start="3"><li><strong>Promise.all und Promise.race</strong>:<ul id="1d0857bd-249d-80b0-81e7-db4f00ec8ba9" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Promise.all</strong></code>: Wartet, bis alle Promises in einem Array erfüllt sind, oder gibt einen Fehler zurück, wenn eines fehlschlägt.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8014-8838-f6091469b372" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const p1 = Promise.resolve(1);
+const p2 = Promise.resolve(2);
+const p3 = Promise.resolve(3);
+
+Promise.all([p1, p2, p3]).then(results =&gt; console.log(results)); // Ausgabe: [1, 2, 3]
+</code></pre></li></ul><ul id="1d0857bd-249d-80f2-8dd5-f2d11e13fb45" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Promise.race</strong></code>: Gibt das erste Promise zurück, das erfüllt oder abgelehnt wird.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8016-9cb2-e671dd342d4d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const p1 = new Promise(resolve =&gt; setTimeout(() =&gt; resolve(&quot;P1&quot;), 1000));
+const p2 = new Promise(resolve =&gt; setTimeout(() =&gt; resolve(&quot;P2&quot;), 500));
+
+Promise.race([p1, p2]).then(result =&gt; console.log(result)); // Ausgabe: &quot;P2&quot;
+</code></pre></li></ul></li></ol><hr id="1d0857bd-249d-80e1-aa34-d21dca106e7c"/><h3 id="1d0857bd-249d-801c-a9fe-df22a3b8c829" class=""><strong>Best Practices</strong></h3><ol type="1" id="1d0857bd-249d-80ce-9d8a-dee93a351eb8" class="numbered-list" start="1"><li><strong>Verwende </strong><code><strong>async</strong></code><strong>/</strong><code><strong>await</strong></code><strong> für Lesbarkeit</strong>:<ul id="1d0857bd-249d-8076-9fb2-eb7653571f74" class="bulleted-list"><li style="list-style-type:disc"><code>async</code>/<code>await</code> macht den Code einfacher zu lesen und zu verstehen, besonders bei komplexen asynchronen Abläufen.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-802c-bec1-f07d47cecf40" class="numbered-list" start="2"><li><strong>Fehlerbehandlung nicht vergessen</strong>:<ul id="1d0857bd-249d-8056-85e8-d47788d79b54" class="bulleted-list"><li style="list-style-type:disc">Immer <code>try...catch</code> oder <code>.catch()</code> verwenden, um Fehler zu behandeln.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-8014-8be0-d8af9c1ed359" class="numbered-list" start="3"><li><strong>Promise.all für parallele Operationen</strong>:<ul id="1d0857bd-249d-80d7-a294-fba3311cb3bd" class="bulleted-list"><li style="list-style-type:disc">Nutze <code>Promise.all</code>, wenn mehrere asynchrone Operationen unabhängig voneinander ausgeführt werden können.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-804f-9dee-c2fc878fbf43" class="numbered-list" start="4"><li><strong>Vermeide blockierende Operationen</strong>:<ul id="1d0857bd-249d-805e-bfa1-dd783e1cd564" class="bulleted-list"><li style="list-style-type:disc"><code>await</code> sollte nur verwendet werden, wenn es notwendig ist. Verwende es nicht in Schleifen, wenn die Operationen parallel ausgeführt werden können.</li></ul></li></ol><hr id="1d0857bd-249d-80d6-bc25-fa926b94089c"/><h3 id="1d0857bd-249d-80fd-9d32-d14ae9e3d79d" class=""><strong>Zusammenfassung</strong></h3><ul id="1d0857bd-249d-80bd-84a3-d1a8e6d0ba08" class="bulleted-list"><li style="list-style-type:disc"><code>async</code>/<code>await</code> ist eine moderne und lesbare Art, mit asynchronem Code zu arbeiten.</li></ul><ul id="1d0857bd-249d-8050-970d-cba4009a3afb" class="bulleted-list"><li style="list-style-type:disc">Es basiert auf Promises und nutzt die Event Loop, um nicht-blockierende Ausführung zu ermöglichen.</li></ul><ul id="1d0857bd-249d-808b-b680-fcf16cda8f9c" class="bulleted-list"><li style="list-style-type:disc">Fehlerbehandlung und parallele Ausführung sind wichtige Aspekte, die bei der Arbeit mit <code>async</code>Funktionen und Promises berücksichtigt werden sollten.</li></ul><p id="1d0857bd-249d-802d-953e-e06dd43f2e81" class="">Similar code found with 1 license type</p></div><div id="1d0857bd-249d-8013-a5d8-cd367e514614" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1d0857bd-249d-8047-b06d-c43395f5f234"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1d0857bd-249d-801b-bd94-f947c7424d24"/><p id="1d0857bd-249d-806a-9137-ec27dae76af1" class=""><a href="https://www.javascripttutorial.net/es6/javascript-promises/">https://www.javascripttutorial.net/es6/javascript-promises/</a></p><p id="1d0857bd-249d-80ea-a9f1-f892d63d8ee9" class="">Referrenz Gyulas Dateien<br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1d0857bd-249d-8075-a45e-da25fa5105af"/><ul id="1d0857bd-249d-8038-b7a5-c43a4fd17ca3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1d0857bd-249d-8053-b5fa-ee55968dc7da" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1d0857bd-249d-8037-b76c-f190825e8572" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1d0857bd-249d-809f-82c7-f8e32c45e845" class="image"><a href="Async%20Funktion%20(Promis)%201d0857bd249d80678aede7247410d0ca/33.png"><img style="width:425px" src="Async%20Funktion%20(Promis)%201d0857bd249d80678aede7247410d0ca/33.png"/></a></figure><figure id="1d0857bd-249d-8075-baf6-ea93044bdddf" class="image"><a href="Async%20Funktion%20(Promis)%201d0857bd249d80678aede7247410d0ca/JavaScript-Promises.svg"><img style="width:768px" src="Async%20Funktion%20(Promis)%201d0857bd249d80678aede7247410d0ca/JavaScript-Promises.svg"/></a></figure><h3 id="1d0857bd-249d-805e-bbd1-f3ed41d27c8e" class="">Erklärung von async Funktion - Wie funktioniert es</h3><p id="1d0857bd-249d-8005-ba0f-faf165081d9f" class="">Der gezeigte Code demonstriert verschiedene Ansätze, wie man mit asynchronen Daten in JavaScript arbeitet. Es wird gezeigt, wie man Daten simuliert, die erst nach einer Verzögerung verfügbar sind, und wie man mit diesen Daten arbeitet. Der Fokus liegt auf der Verwendung von <strong>Promises</strong> und deren Fehlerbehandlung.</p><hr id="1d0857bd-249d-8099-9be1-d51e2c58d763"/><h3 id="1d0857bd-249d-803d-9be5-d3ec70484b2d" class=""><strong>Version 001: Synchrone Daten</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8069-8c22-d91b9a95264c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getData(){
+    return [
+        { producer: &#x27;Audi&#x27;, model: &#x27;RS 3&#x27;, fuel: &#x27;petrol&#x27;},
+        { producer: &#x27;BMW&#x27;, model: &#x27;X5&#x27;, fuel: &#x27;diesel&#x27;},
+        ...
+    ]
+}
+</code></pre><ul id="1d0857bd-249d-804e-8e2f-d3b22533a9c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ul id="1d0857bd-249d-80ca-9dee-d4b67b819642" class="bulleted-list"><li style="list-style-type:circle">Die Funktion <code>getData</code> gibt sofort ein Array von Objekten zurück. Jedes Objekt repräsentiert ein Auto mit den Eigenschaften <code>producer</code>, <code>model</code> und <code>fuel</code>.</li></ul><ul id="1d0857bd-249d-80fb-bffc-c0ab9d3328f8" class="bulleted-list"><li style="list-style-type:circle"><strong>Problem</strong>: Diese Funktion ist synchron, d. h., die Daten sind sofort verfügbar. In der Realität (z. B. bei API-Aufrufen) sind Daten oft nicht sofort verfügbar, sondern benötigen Zeit, um geladen zu werden.</li></ul></li></ul><hr id="1d0857bd-249d-8057-aea3-fb1da5011430"/><h3 id="1d0857bd-249d-80b3-a4e8-e7554d3ffbe0" class=""><strong>Version 002: Asynchrone Daten mit </strong><code><strong>setTimeout</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-80c9-8014-f0191295498c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getData(){
+    let result = []
+
+    setTimeout(() =&gt; {
+        result = [
+            { producer: &#x27;Audi&#x27;, model: &#x27;RS 3&#x27;, fuel: &#x27;petrol&#x27;},
+            ...
+        ]
+    }, 1000)
+    return result
+}
+</code></pre><ul id="1d0857bd-249d-80bd-9546-d4139b9ffc4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ul id="1d0857bd-249d-80c4-b290-d21e4a9d0af6" class="bulleted-list"><li style="list-style-type:circle">Die Funktion <code>getData</code> verwendet <code>setTimeout</code>, um die Daten nach 1 Sekunde zu simulieren.</li></ul><ul id="1d0857bd-249d-80fb-87a7-f7f28daedf10" class="bulleted-list"><li style="list-style-type:circle"><strong>Problem</strong>: Die Funktion gibt das Array <code>result</code> sofort zurück, bevor <code>setTimeout</code> die Daten setzen kann. Das bedeutet, dass <code>result</code> immer leer bleibt, da die Funktion beendet wird, bevor die Daten verfügbar sind.</li></ul><ul id="1d0857bd-249d-8025-bc05-eadbe62aa9fd" class="bulleted-list"><li style="list-style-type:circle"><strong>Lösung</strong>: Man muss asynchrone Daten anders behandeln, z. B. mit <strong>Callbacks</strong> oder <strong>Promises</strong>.</li></ul></li></ul><hr id="1d0857bd-249d-80f7-8623-dc2528f3c118"/><h3 id="1d0857bd-249d-8098-9fd3-ee5ef19740be" class=""><strong>Version 003: Asynchrone Daten mit einem Callback</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8014-ac0f-e9d46a35f8f2" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getData(callback){
+    let result = []
+
+    setTimeout(() =&gt; {
+        result = [
+            { producer: &#x27;Audi&#x27;, model: &#x27;RS 3&#x27;, fuel: &#x27;petrol&#x27;},
+            ...
+        ]
+        callback(result)
+    }, 1000)
+}
+</code></pre><ul id="1d0857bd-249d-804d-b775-fcb32a8e906e" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ul id="1d0857bd-249d-8028-8e47-c4309f66a795" class="bulleted-list"><li style="list-style-type:circle">Die Funktion <code>getData</code> akzeptiert einen <strong>Callback</strong> als Parameter. Ein Callback ist eine Funktion, die aufgerufen wird, sobald die Daten verfügbar sind.</li></ul><ul id="1d0857bd-249d-801e-965f-e463869343ca" class="bulleted-list"><li style="list-style-type:circle">Nach 1 Sekunde wird <code>callback(result)</code> aufgerufen, und die Daten werden an die Callback-Funktion übergeben.</li></ul><ul id="1d0857bd-249d-80bf-8170-df4c72bf10a2" class="bulleted-list"><li style="list-style-type:circle"><strong>Vorteil</strong>: Die Daten werden erst verarbeitet, wenn sie verfügbar sind.</li></ul><ul id="1d0857bd-249d-8087-b564-dbd696ab9455" class="bulleted-list"><li style="list-style-type:circle"><strong>Nachteil</strong>: Callbacks können zu unübersichtlichem Code führen, wenn viele verschachtelte asynchrone Operationen nötig sind (sogenannte &quot;Callback-Hölle&quot;).</li></ul></li></ul><hr id="1d0857bd-249d-809c-a176-e386003926c7"/><h3 id="1d0857bd-249d-8064-98f4-e84cdff8bbac" class=""><strong>Version 004: Asynchrone Daten mit einem Promise</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-80e8-9653-fee3c50a7fef" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getData(){
+    return new Promise((resolve, reject) =&gt; {
+        let result = []
+        setTimeout(() =&gt; {
+            result = [
+                { producer: &#x27;Audi&#x27;, model: &#x27;RS 3&#x27;, fuel: &#x27;petrol&#x27;},
+                ...
+            ]
+            resolve(result)
+        }, 1000)
+    })
+}
+</code></pre><ul id="1d0857bd-249d-808a-8e52-d7865f3108f7" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ul id="1d0857bd-249d-80ef-8caa-f133ac2a463f" class="bulleted-list"><li style="list-style-type:circle">Die Funktion <code>getData</code> gibt ein <strong>Promise</strong> zurück.</li></ul><ul id="1d0857bd-249d-80ac-b18c-e29b112aeb03" class="bulleted-list"><li style="list-style-type:circle">Ein Promise ist ein Objekt, das einen zukünftigen Wert repräsentiert. Es hat zwei mögliche Zustände:<ul id="1d0857bd-249d-80c7-a1e9-d6ee2ca7d65f" class="bulleted-list"><li style="list-style-type:square"><code><strong>resolve</strong></code>: Die Operation war erfolgreich, und der Wert wird zurückgegeben.</li></ul><ul id="1d0857bd-249d-809c-b4b7-e1834c49f0e9" class="bulleted-list"><li style="list-style-type:square"><code><strong>reject</strong></code>: Die Operation ist fehlgeschlagen, und ein Fehler wird zurückgegeben.</li></ul></li></ul><ul id="1d0857bd-249d-8068-9387-f93abd6a806d" class="bulleted-list"><li style="list-style-type:circle">Nach 1 Sekunde wird <code>resolve(result)</code> aufgerufen, um die Daten bereitzustellen.</li></ul><ul id="1d0857bd-249d-8032-bcb8-d8053aafb851" class="bulleted-list"><li style="list-style-type:circle"><strong>Vorteil</strong>: Promises machen den Code lesbarer und einfacher zu handhaben als Callbacks.</li></ul></li></ul><hr id="1d0857bd-249d-80ad-bdaa-e50f69e26243"/><h3 id="1d0857bd-249d-80e7-90fb-ce4e556eb8b1" class=""><strong>Version 005: Promise mit Fehlerbehandlung</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-808e-a2a8-c35c495de85d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getData(){
+    return new Promise((resolve, reject) =&gt; {
+        let result = []
+        setTimeout(() =&gt; {
+            if (Math.random() &gt; 0.2){
+                result = [
+                    { producer: &#x27;Audi&#x27;, model: &#x27;RS 3&#x27;, fuel: &#x27;petrol&#x27;},
+                    ...
+                ]
+                resolve(result)
+            } else {
+                reject(&#x27;Ich mag dein Gesicht net!&#x27;)
+            }
+        }, 1000)
+    })
+}
+</code></pre><ul id="1d0857bd-249d-80c2-acd6-dfdbf63d4c3c" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ul id="1d0857bd-249d-807d-b75d-d3d61999a662" class="bulleted-list"><li style="list-style-type:circle">Die Funktion <code>getData</code> simuliert eine Situation, in der die Daten manchmal nicht verfügbar sind.</li></ul><ul id="1d0857bd-249d-804c-90a7-d6e26043761b" class="bulleted-list"><li style="list-style-type:circle">Mit einer Wahrscheinlichkeit von 80 % wird <code>resolve(result)</code> aufgerufen, um die Daten bereitzustellen.</li></ul><ul id="1d0857bd-249d-8047-b689-e4fe4bffe369" class="bulleted-list"><li style="list-style-type:circle">Mit einer Wahrscheinlichkeit von 20 % wird <code>reject(&#x27;Ich mag dein Gesicht net!&#x27;)</code> aufgerufen, um einen Fehler zu simulieren.</li></ul><ul id="1d0857bd-249d-8066-8a13-d4db3c96104d" class="bulleted-list"><li style="list-style-type:circle"><strong>Vorteil</strong>: Promises erlauben eine einfache Fehlerbehandlung mit <code>.catch()</code>.</li></ul></li></ul><hr id="1d0857bd-249d-80d0-a0e2-e7155b61bfcf"/><h3 id="1d0857bd-249d-8062-9ff5-e22c02dcaaf1" class=""><strong>Verwendung von </strong><code><strong>getData</strong></code><strong> in Kombination mit Promises</strong></h3><p id="1d0857bd-249d-8057-b8f3-d3cf9522f0b1" class="">Die Funktion <code>getCarByFuelType</code> soll Autos nach ihrem Kraftstofftyp filtern. Jede Version zeigt eine andere Herangehensweise, wie man mit den Daten arbeitet, die von der Funktion <code>getData</code> bereitgestellt werden. Hier ist eine detaillierte Erklärung der Versionen (ausgenommen Version 005).</p><hr id="1d0857bd-249d-803a-8f76-f50b926080c6"/><h3 id="1d0857bd-249d-8099-811f-ef4c0f5e93f2" class=""><strong>Version 002: Es geht nicht</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8030-b396-c26d2edd1709" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getCarByFuelType(fuel){
+    const data = getData()
+    const result = data.filter(car =&gt; car.fuel === fuel)
+
+    return result
+}
+</code></pre><h3 id="1d0857bd-249d-8028-b559-f8055148c461" class=""><strong>Was passiert hier?</strong></h3><ol type="1" id="1d0857bd-249d-804d-8cb6-fc139350c073" class="numbered-list" start="1"><li>Die Funktion <code>getData</code> wird aufgerufen, um die Daten zu erhalten.</li></ol><ol type="1" id="1d0857bd-249d-80c5-93f8-d2992115baab" class="numbered-list" start="2"><li>Die Rückgabe von <code>getData</code> wird in der Variablen <code>data</code> gespeichert.</li></ol><ol type="1" id="1d0857bd-249d-803d-ae0a-e64b0c8190f3" class="numbered-list" start="3"><li>Es wird versucht, die Autos mit dem gewünschten Kraftstofftyp (<code>fuel</code>) zu filtern, indem die <code>filter</code>Methode aufgerufen wird.</li></ol><ol type="1" id="1d0857bd-249d-80ba-84cd-e81391ad4cc8" class="numbered-list" start="4"><li>Das Ergebnis wird zurückgegeben.</li></ol><h3 id="1d0857bd-249d-807e-bb31-fe63e9f58888" class=""><strong>Warum funktioniert das nicht?</strong></h3><ul id="1d0857bd-249d-80c2-a840-e3d9f67492cf" class="bulleted-list"><li style="list-style-type:disc">Die Funktion <code>getData</code> in dieser Version arbeitet asynchron (z. B. mit <code>setTimeout</code>), gibt aber die Daten nicht sofort zurück. Stattdessen gibt sie ein leeres Array zurück, bevor die Daten verfügbar sind.</li></ul><ul id="1d0857bd-249d-804e-8393-caf4ce4ef350" class="bulleted-list"><li style="list-style-type:disc"><code>data</code> ist also leer, wenn <code>filter</code> aufgerufen wird, und das Ergebnis ist immer ein leeres Array.</li></ul><hr id="1d0857bd-249d-801e-a903-d3df4e8d7d90"/><h3 id="1d0857bd-249d-8007-84b9-d488d3db653d" class=""><strong>Version 003: Mit einem Callback</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-8041-bc67-e568242e7522" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getCarByFuelType(fuel){
+    getData((data) =&gt; {
+        const result = data.filter(car =&gt; car.fuel === fuel)
+        console.log(result)
+    })
+}
+</code></pre><h3 id="1d0857bd-249d-80d4-99f5-e4684e7dc7bc" class=""><strong>Was passiert hier?</strong></h3><ol type="1" id="1d0857bd-249d-807c-a8b9-fcf0afc7215e" class="numbered-list" start="1"><li>Die Funktion <code>getData</code> wird aufgerufen und ein <strong>Callback</strong> (eine Funktion) wird übergeben.</li></ol><ol type="1" id="1d0857bd-249d-8064-8f76-e52c458eadb5" class="numbered-list" start="2"><li>Sobald die Daten in <code>getData</code> verfügbar sind (nach der Verzögerung durch <code>setTimeout</code>), wird das Callback aufgerufen und die Daten (<code>data</code>) an das Callback übergeben.</li></ol><ol type="1" id="1d0857bd-249d-808d-93ca-d12a9e77b1ca" class="numbered-list" start="3"><li>Innerhalb des Callbacks wird die <code>filter</code>Methode verwendet, um die Autos mit dem gewünschten Kraftstofftyp (<code>fuel</code>) zu filtern.</li></ol><ol type="1" id="1d0857bd-249d-80be-bec8-c706bb055b6a" class="numbered-list" start="4"><li>Das Ergebnis wird in der Konsole ausgegeben.</li></ol><h3 id="1d0857bd-249d-808b-af1f-c4291188c34c" class=""><strong>Warum funktioniert das?</strong></h3><ul id="1d0857bd-249d-809b-afa3-cc43be32177a" class="bulleted-list"><li style="list-style-type:disc">Die Funktion <code>getData</code> verwendet ein Callback, um sicherzustellen, dass der Code erst ausgeführt wird, wenn die Daten verfügbar sind.</li></ul><ul id="1d0857bd-249d-8087-9c67-d329e9c69168" class="bulleted-list"><li style="list-style-type:disc">Das Callback wird erst nach der Verzögerung (1 Sekunde) aufgerufen, wenn die Daten bereitstehen.</li></ul><h3 id="1d0857bd-249d-8039-a1da-dade0bad8a5e" class=""><strong>Nachteile:</strong></h3><ul id="1d0857bd-249d-807a-8385-d1ef8a819cfc" class="bulleted-list"><li style="list-style-type:disc">Der Code wird unübersichtlich, wenn mehrere asynchrone Operationen verschachtelt werden (sogenannte &quot;Callback-Hölle&quot;).</li></ul><ul id="1d0857bd-249d-80bd-b99f-f656c36290a4" class="bulleted-list"><li style="list-style-type:disc">Es ist schwieriger, Fehler zu behandeln, da die Fehlerbehandlung manuell in jedem Callback implementiert werden muss.</li></ul><hr id="1d0857bd-249d-80e6-b79e-fa79f9a6fa89"/><h3 id="1d0857bd-249d-80fe-b6f9-fd289eacb87b" class=""><strong>Version 004: Mit einem Promise und </strong><code><strong>.then</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-80b9-8dd4-cc34d86b9975" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getCarByFuelType(fuel){
+    getData().then((data) =&gt; {
+        const result = data.filter(car =&gt; car.fuel === fuel)
+        console.log(result)
+    })
+}
+</code></pre><h3 id="1d0857bd-249d-80ce-9d4f-f773cbecc387" class=""><strong>Was passiert hier?</strong></h3><ol type="1" id="1d0857bd-249d-8076-b0f3-ed7370c112a0" class="numbered-list" start="1"><li>Die Funktion <code>getData</code> wird aufgerufen. Sie gibt ein <strong>Promise</strong> zurück.</li></ol><ol type="1" id="1d0857bd-249d-8096-9976-d79537a53ee8" class="numbered-list" start="2"><li>Mit <code>.then</code> wird eine Funktion registriert, die ausgeführt wird, sobald das Promise aufgelöst wird (d. h., wenn die Daten verfügbar sind).</li></ol><ol type="1" id="1d0857bd-249d-802b-a499-d88efd0f0126" class="numbered-list" start="3"><li>Innerhalb der <code>.then</code>Funktion wird die <code>filter</code>Methode verwendet, um die Autos mit dem gewünschten Kraftstofftyp (<code>fuel</code>) zu filtern.</li></ol><ol type="1" id="1d0857bd-249d-80ea-adb6-d5d437f4749f" class="numbered-list" start="4"><li>Das Ergebnis wird in der Konsole ausgegeben.</li></ol><h3 id="1d0857bd-249d-80f0-95d0-eb27267f1d7c" class=""><strong>Warum funktioniert das?</strong></h3><ul id="1d0857bd-249d-809e-a8c1-d4d9a1ccf1a2" class="bulleted-list"><li style="list-style-type:disc">Promises sind eine moderne und strukturierte Möglichkeit, mit asynchronem Code zu arbeiten.</li></ul><ul id="1d0857bd-249d-80c6-9201-f5809074eaea" class="bulleted-list"><li style="list-style-type:disc">Die <code>.then</code>Methode stellt sicher, dass der Code erst ausgeführt wird, wenn die Daten verfügbar sind.</li></ul><h3 id="1d0857bd-249d-807f-b042-c41aa41bdf08" class=""><strong>Vorteile gegenüber Callbacks:</strong></h3><ul id="1d0857bd-249d-8063-98cf-df4d94013aad" class="bulleted-list"><li style="list-style-type:disc">Der Code ist lesbarer und weniger verschachtelt.</li></ul><ul id="1d0857bd-249d-80a8-b3ed-c5ea4d3d62b2" class="bulleted-list"><li style="list-style-type:disc">Fehler können einfacher behandelt werden, indem <code>.catch</code> hinzugefügt wird (wie in Version 005).</li></ul><hr id="1d0857bd-249d-80d9-b074-f5a36ca5d78f"/><h3 id="1d0857bd-249d-80a2-91ee-cdff33f42a98" class=""><strong>Version 005: Daten filtern mit Fehlerbehandlung</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d0857bd-249d-806d-b891-ee0638495157" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getCarByFuelType(fuel){
+    getData()
+        .then(data =&gt; {
+            const result = data.filter(car =&gt; car.fuel === fuel)
+            console.log(result)
+        })
+        .catch(message =&gt; {
+            console.log(&#x27;etwas ist schief gelaufen&#x27;, message)
+        })
+}
+
+getCarByFuelType(&#x27;diesel&#x27;)
+</code></pre><ul id="1d0857bd-249d-8033-b705-d781448e4321" class="bulleted-list"><li style="list-style-type:disc"><strong>Was passiert hier?</strong><ol type="1" id="1d0857bd-249d-80cc-b79c-d4742ae27698" class="numbered-list" start="1"><li><code><strong>getData()</strong></code>:<ul id="1d0857bd-249d-8068-87db-c712430717c0" class="bulleted-list"><li style="list-style-type:disc">Ruft die Funktion <code>getData</code> auf, die ein Promise zurückgibt.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80f7-a6ce-db5548820470" class="numbered-list" start="2"><li><code><strong>.then(data =&gt; {...})</strong></code>:<ul id="1d0857bd-249d-804a-b3a9-d4446ee05986" class="bulleted-list"><li style="list-style-type:disc">Wenn das Promise erfolgreich aufgelöst wird (mit <code>resolve</code>), wird die Funktion im <code>then</code>Block ausgeführt. Die Daten (<code>data</code>) werden gefiltert, um nur Autos mit dem angegebenen <code>fuel</code>Typ zurückzugeben.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80e2-a262-d19422f9bbd5" class="numbered-list" start="3"><li><code><strong>.catch(message =&gt; {...})</strong></code>:<ul id="1d0857bd-249d-80c5-a215-f6fbd7dc7e87" class="bulleted-list"><li style="list-style-type:disc">Wenn das Promise abgelehnt wird (mit <code>reject</code>), wird die Funktion im <code>catch</code>Block ausgeführt. Der Fehler wird in der Konsole ausgegeben.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-802d-ae11-ed9713e91889" class="numbered-list" start="4"><li><strong>Ergebnis</strong>:<ul id="1d0857bd-249d-80eb-a9a0-e2226212fd3d" class="bulleted-list"><li style="list-style-type:disc">Wenn alles gut geht, werden die gefilterten Autos in der Konsole ausgegeben.</li></ul><ul id="1d0857bd-249d-8021-b2d9-cb13af3a501b" class="bulleted-list"><li style="list-style-type:disc">Wenn ein Fehler auftritt, wird die Fehlermeldung ausgegeben.</li></ul></li></ol></li></ul><hr id="1d0857bd-249d-80ba-b4ad-e0cfd85d35ee"/><h3 id="1d0857bd-249d-8033-bdfa-fb422a9e69e2" class=""><strong>Zusammenfassung</strong></h3><ol type="1" id="1d0857bd-249d-805d-88a1-c37b096685ae" class="numbered-list" start="1"><li><strong>Synchroner Code (Version 001)</strong>:<ul id="1d0857bd-249d-8089-9204-e529b8e8cb86" class="bulleted-list"><li style="list-style-type:disc">Einfach, aber nicht geeignet für asynchrone Operationen.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80c9-9d06-ebf7b174a2dc" class="numbered-list" start="2"><li><strong>Asynchroner Code mit </strong><code><strong>setTimeout</strong></code><strong> (Version 002)</strong>:<ul id="1d0857bd-249d-808c-8b4e-e7ac9132b195" class="bulleted-list"><li style="list-style-type:disc">Funktioniert nicht, da die Daten nicht rechtzeitig zurückgegeben werden.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80cc-97b8-d81e8fa6b6a2" class="numbered-list" start="3"><li><strong>Callbacks (Version 003)</strong>:<ul id="1d0857bd-249d-8076-96e0-ea5b11667847" class="bulleted-list"><li style="list-style-type:disc">Funktioniert, aber kann zu unübersichtlichem Code führen.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-80ab-a660-c5d5ad421adb" class="numbered-list" start="4"><li><strong>Promises (Version 004 und 005)</strong>:<ul id="1d0857bd-249d-800b-8972-c66cb3a6e91b" class="bulleted-list"><li style="list-style-type:disc">Bieten eine saubere und lesbare Möglichkeit, mit asynchronen Daten zu arbeiten.</li></ul><ul id="1d0857bd-249d-801b-b54d-c1e77be3da4e" class="bulleted-list"><li style="list-style-type:disc">Fehler können einfach mit <code>.catch()</code> behandelt werden.</li></ul></li></ol><ol type="1" id="1d0857bd-249d-8027-a8cc-e17dca406fdf" class="numbered-list" start="5"><li><strong>Fehlerbehandlung</strong>:<ul id="1d0857bd-249d-8048-bd1e-ea4cd21aa6c4" class="bulleted-list"><li style="list-style-type:disc">Es ist wichtig, immer mit Fehlern zu rechnen, besonders bei asynchronen Operationen.</li></ul></li></ol><hr id="1d0857bd-249d-8012-be70-dbf5ed943c26"/><h3 id="1d0857bd-249d-806d-9f8f-c244746b2a42" class=""><strong>Warum Promises?</strong></h3><ul id="1d0857bd-249d-806d-a553-fe59abf6c58c" class="bulleted-list"><li style="list-style-type:disc">Promises sind eine moderne und flexible Lösung für asynchrone Operationen.</li></ul><ul id="1d0857bd-249d-80b7-939f-d383da2a3425" class="bulleted-list"><li style="list-style-type:disc">Sie machen den Code lesbarer und vermeiden die &quot;Callback-Hölle&quot;.</li></ul><ul id="1d0857bd-249d-80de-b599-e752608c6c21" class="bulleted-list"><li style="list-style-type:disc">Mit Promises kannst du sowohl erfolgreiche als auch fehlgeschlagene Operationen einfach behandeln.</li></ul><hr id="1d0857bd-249d-8004-a30c-ec2a3a96da49"/><h3 id="1d0857bd-249d-8041-b856-f6400efef061" class=""><strong>Zusammenfassung der Unterschiede</strong></h3><table id="1d0857bd-249d-80ff-bd6f-c819c1ea0a0b" class="simple-table"><tbody><tr id="1d0857bd-249d-801e-9de2-ce8417b86971"><td id="X@D@" class="">Version</td><td id="fzm&gt;" class="">Ansatz</td><td id="}_yc" class="">Funktioniert?</td><td id="fJ;Q" class="">Vorteile</td><td id="ULBl" class="">Nachteile</td></tr><tr id="1d0857bd-249d-8054-a0db-f8ab5d4c9ed6"><td id="X@D@" class="">002</td><td id="fzm&gt;" class="">Direkter Aufruf</td><td id="}_yc" class="">❌ Nein</td><td id="fJ;Q" class="">Einfacher Code</td><td id="ULBl" class="">Funktioniert nicht mit asynchronen Daten.</td></tr><tr id="1d0857bd-249d-80ee-8223-de65345aaad6"><td id="X@D@" class="">003</td><td id="fzm&gt;" class="">Callback</td><td id="}_yc" class="">✅ Ja</td><td id="fJ;Q" class="">Funktioniert mit asynchronen Daten</td><td id="ULBl" class="">Unübersichtlich bei mehreren Callbacks (Callback-Hölle).</td></tr><tr id="1d0857bd-249d-8001-98fa-fddf410ee979"><td id="X@D@" class="">004</td><td id="fzm&gt;" class="">Promise mit .then</td><td id="}_yc" class="">✅ Ja</td><td id="fJ;Q" class="">Lesbarer Code, einfache Fehlerbehandlung</td><td id="ULBl" class="">Erfordert Verständnis von Promises.</td></tr><tr id="1d0857bd-249d-808f-94db-f3a50d642798"><td id="X@D@" class="">005</td><td id="fzm&gt;" class="">Promise mit .then und .catch</td><td id="}_yc" class="">✅ Ja</td><td id="fJ;Q" class="">Lesbarer Code, eingebaute Fehlerbehandlung</td><td id="ULBl" class="">Erfordert Verständnis von Promises.</td></tr></tbody></table><hr id="1d0857bd-249d-808e-973f-dcbe8c388818"/><h3 id="1d0857bd-249d-803f-8df7-cbae52ee3322" class=""><strong>Empfehlung</strong></h3><ul id="1d0857bd-249d-80d4-92b3-c70ce27f1632" class="bulleted-list"><li style="list-style-type:disc">Verwende <strong>Version 004</strong> (oder 005 mit Fehlerbehandlung), da Promises eine moderne und flexible Möglichkeit bieten, mit asynchronem Code zu arbeiten. Sie machen den Code lesbarer und einfacher zu warten.</li></ul></div></div><p id="1d0857bd-249d-8052-90f9-dd6d52e2ceb2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

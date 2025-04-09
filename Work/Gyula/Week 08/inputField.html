@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Field</title>
+</head>
+<body>
+    <h1>Schreibe eine Nachricht!</h1>
+    <p><input type="text" name="textField" id="textField"></p>
+    <p id="bigCap"></p>
+
+    <span style="background-color: yellow; color: hsl(60, 100%, 20%)">Hello Word</span>
+
+    <script>
+
+document.getElementById('textField').addEventListener('keyup', (event) => {
+    console.log('Eine Taste wurde gedruckt...', event)
+    let text = document.getElementById('textField').value
+    console.log('code', event.code)
+})
+
+    </script>
+</body>
+</html>
