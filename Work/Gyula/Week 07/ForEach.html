@@ -36,7 +36,11 @@ arr.forEach((value) => {
 })
 printHr()
 arr.forEach((value, i) => {
-    printLn(i + '. value: ' + value)
+    if (i % 2 == 0){
+        printLn(i + '. value: ' + value)
+    } else {
+        printLn(i + '. value: ' + value, 'blue')
+    }
 })
 
 

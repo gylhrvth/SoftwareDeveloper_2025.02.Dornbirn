@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receive Data</title>
+</head>
+<body>
+
+<script>
+/* // Version 001
+function getData(){
+    return [
+        { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+        { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+        { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+        { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+        { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+        { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+        { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+        { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+        { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+        { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+    ]
+}
+*/
+/*
+// Version 002 -- es geht nicht
+function getData(){
+    let result = []
+    
+    setTimeout(() => {
+        result = [
+            { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+            { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+            { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+            { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+            { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+            { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+            { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+            { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+            { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+            { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+        ]
+    }, 1000)
+    return result
+}
+*/
+
+/*
+// Version 003 -- mit einem Callback
+function getData(callback){
+    let result = []
+    
+    setTimeout(() => {
+        result = [
+            { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+            { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+            { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+            { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+            { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+            { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+            { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+            { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+            { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+            { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+        ]
+        callback(result)
+    }, 1000)
+}
+*/
+/*
+// Version 004 -- mit einem Callback
+function getData(){
+    return new Promise((resolve, reject) => {
+        let result = []  
+        setTimeout(() => {
+            result = [
+                { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+                { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+                { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+                { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+                { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+                { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+                { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+                { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+                { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+                { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+            ]
+            resolve(result)
+        }, 1000)
+    })
+}
+*/
+
+// Version 005 -- manchmal geht es doch schief
+function getData(){
+    return new Promise((resolve, reject) => {
+        let result = []  
+        setTimeout(() => {
+            if (Math.random() > 0.2){
+                result = [
+                    { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+                    { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+                    { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+                    { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+                    { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+                    { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+                    { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+                    { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+                    { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+                    { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+                ]
+                resolve(result)
+            } else {
+                reject('Ich mag dein Gesicht net!')
+            }
+        }, 1000)
+    })
+}
+
+
+/*
+// Version 002 -- es geht nicht
+function getCarByFuelType(fuel){
+    const data = getData()
+    const result = data.filter(car => car.fuel === fuel)
+
+    return result
+}
+*/
+
+/*
+// Version 003 -- callback
+function getCarByFuelType(fuel){
+    getData((data) => {
+        const result = data.filter(car => car.fuel === fuel)
+        console.log(result)
+    })
+}
+*/
+
+/*
+// Version 004 -- Promise then
+function getCarByFuelType(fuel){
+    getData().then((data) => {
+        const result = data.filter(car => car.fuel === fuel)
+        console.log(result)
+    })
+}
+*/
+
+// Version 005 -- Promise with then and catch
+function getCarByFuelType(fuel){
+    getData()
+        .then(data => {
+            const result = data.filter(car => car.fuel === fuel)
+            console.log(result)
+        })
+        .catch(message => {
+            console.log('etwas ist schief gelaufen', message)
+        })
+}
+
+
+getCarByFuelType('diesel')
+
+</script>
+</body>
+</html>
