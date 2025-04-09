@@ -177,4 +177,147 @@
     <br>
     <br>
 
+    <li class="textColor02">
+        <span class="underline">Wie bearbeite ich es, wenn ich irgendwo ein Promise bekomme?</span>
+        <p>Ein <b>Promise</b> ist ein Objekt, das <b>einen zukünftigen Wert verspricht</b> - z.B. das Ergebnis eines API-Calls, einer Dateioperation oder eines Timers.</p>
+        <p>Es hat 3 Zustände:</p>
+        <ul>
+            <li>pending → läuft noch</li>
+            <li>fulfilled → erfolgreich beendet</li>
+            <li>rejected → fehlgeschlagen</li>
+        </ul>
+        <p><strong>🚀 Wie bearbeite ich ein Promis:</strong></p>
+        <p>Es gibt zwei Hauptmethoden: mit <b>.then</b> und <b>.catch:/b></p>
+        <div class="code-box">
+            <code>
+                getData()
+                    .then(result => {
+                        console.log("Erfolg:", result);
+                })
+                    .catch(error => {
+                        console.error("Fehler:", error);
+                });
+            </code>
+        </div>
+        <p>➡️ .then() wird aufgerufen, wenn das Promise erfolgreich ist</p>
+        <p>➡️ .catch() fängt Fehler ab</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist eine final() Statement?</span>
+        <p>Die Methode .finally() wird <b>immer ausgeführt, egal ob das Promise erfüllt</b> (resolve) oder abgelehnt (reject) wurde.</p>
+        <p>Das ist nützlich, wenn du <b>aufräumen</b> oder etwas <b>abschließen willst</b> - z.B. einen Lade-Spinner ausblenden oder Logs schreiben.</p>
+        <p><strong>🔧Syntax & Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                fakeAPI()
+                    .then(data => {
+                        console.log("Erfolg:", data);
+                })
+                    .catch(err => {
+                        console.error("Fehler:", err);
+                })
+                    .finally(() => {
+                        console.log("Cleanup: Wird immer ausgeführt.");
+                });
+            </code>
+        </div>
+        <p><strong>Was macht finally()?</strong></p>
+        <ul>
+            <li>.then() - Promise erfolgreich (resolve)</li>
+            <li>.catch() - Promise fehlgeschlagen (reject)</li>
+            <li>.finally() - IMMER egal ob Erfolg oder Fehler</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist eine async Function?</span>
+        <p>Eine async Funktion ist <b>eine Funktion, die immer ein Promise zurückgibt</b> - selbst wenn du darin kein echtes Promise verwendest.</p>
+        <p>👉 Mit async kannst du await verwenden, um asynchrone Abläufe wie synchronen Code aussehen zu lassen.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                async function meineFunktion() {
+                    // hier drin kannst du 'await' benutzen
+                  }
+            </code>
+        </div>
+        <p><strong>Einfaches Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                async function hallo() {
+                    return "Hallo Welt!";
+                  }
+                  
+                  hallo().then(msg => console.log(msg));  // => "Hallo Welt!"
+            </code>
+        </div>
+        <p>➡️ Auch wenn du nur "Hallo Welt!" zurückgibst, wird das als Promise behandelt.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was kann man mit await machen?</span>
+        <p>Mit await kannst du den Code <b>anhalten</b>, bis ein Promise ein Ergebnis zurückgibt - <b>ohne</b> dass dein ganzer Code blockiert wird.</p>
+        <p>Du darfst await nur in async Funktionen benutzen.</p>
+        <p><strong>🔧Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                const result = await someAsyncFunction();
+            </code>
+        </div>
+        <p><strong> Was kannst du mit await machen?</strong></p>
+        <p>1. Auf ein Promis warten:</p>
+        <div class="code-box">
+            <code>
+                const data = await fetchData();  // fetchData gibt ein Promise zurück
+                console.log(data);  // wird erst ausgeführt, wenn das Promise resolved wurde
+            </code>
+        </div>
+        <p>2. Asynchrone Aufrufe sequentiell verarbeiten:</p>
+        <div class="code-box">
+            <code>
+                async function loadAll() {
+                    const user = await getUser();
+                    const profile = await getProfile(user.id);
+                    const posts = await getPosts(profile.id);
+                    console.log(posts);
+                  }
+            </code>
+        </div>
+        <p>➡️ Jeder Schritt wartet auf den vorherigen.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wann darf ich await schreiben? In welche Situation darf ich nicht?</span>
+        <p>Du darfst await <b>nur innerhalb einer</b> async <b>Funktion</b> schreiben.</p>
+        <p><strong>✅ Erlaubt:</strong></p>
+        <div class="code-box">
+            <code>
+                async function doStuff() {
+                    const data = await fetchData();  // ✔️ erlaubt
+                    console.log(data);
+                  }
+            </code>
+        </div>
+        <p><strong>❌ Nicht erlaubt:</strong></p>
+        <div class="code-box">
+            <code>
+                // ❌ SyntaxError: await is only valid in async functions
+                const data = await fetchData();  // ❌ NICHT erlaubt außerhalb von async
+            </code>
+        </div>
+    </li>
+</ul>
+</body>
+</html>
+     
+
 
