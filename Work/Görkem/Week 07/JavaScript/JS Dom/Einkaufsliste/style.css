@@ -1,0 +1,102 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: #eee;
+}
+
+h1{
+    text-align: center;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    padding: 5px 10px;
+}
+
+.container{
+    width: 480px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.shopping-form{
+    padding: 1rem;
+    background:  rgba(150, 150, 140, 0.3);
+    display: flex;
+    gap: 5px;
+    align-items: stretch;
+    border-radius: 5px;
+}
+
+.shopping-form input{
+    flex: 1;
+    padding: 5px 10px;
+    border-radius: inherit;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.shopping-form button{
+    padding: 5px 10px;
+    border-radius: inherit;
+    background: #000;;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.shopping-list{
+    list-style-type: none;
+    padding: 0;
+
+}
+
+.shopping-list li{
+    background: #fff;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Style for item name inside shopping list */
+.shopping-list li .item-name{
+    flex: 1;
+    padding: 5px 10px;
+}
+
+.shopping-list li .delete-button{
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #f00;
+    background: transparent;
+    transform: scale(0);
+    transition: transform 200ms;
+}
+
+.shopping-list li:hover .delete-button{
+    transform: scale(1);
+}
+
+.shopping-list li .drag-icon{
+    border: 1px solid #000;
+    width: 24px;
+    height: 24px;
+    font-size: 1.5rem;
+    line-height: 20px;
+    color: #ccc;
+    text-align: center;
+    cursor: move;
+}
+
+
+
