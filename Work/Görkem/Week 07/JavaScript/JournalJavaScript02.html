@@ -195,5 +195,341 @@
 
     <li class="textColor02">
         <span class="underline">Wie kann ich den Text Content eines Elements ändern?</span>
-        
+        <p>Um den Text-Inhalt eines Elements zu ändern, kannst man die Eigenschaft textContent verwenden. Mit textContent kannst man den gesamten Text eines Elements abrufen oder ändern.</p>
+        <p><strong>1️⃣Beispiel:</strong></p>
+        <p>HTML:</p>
+        <div class="code-box">
+            <code>
+                &lt;p id="textElement"&gt;Dieser Text wird geändert.&lt;/p&gt;
+                &lt;button onclick="changeText()"&gt;Ändere den Text&lt;/button&gt;
+            </code>
+        </div>
+        <p>JavaScript:</p>
+        <div class="code-box">
+            <code>
+                function changeText() {
+                    let element = document.getElementById("textElement");  // Das Element holen
+                    element.textContent = "Der Text wurde geändert!";  // Den Text ändern
+                }
+            </code>
+        </div>
     </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie kann ich die Attribute eines Elements ändern?</span>
+        <p>Um die Attribute eines Elements zu ändern, kann man die Methoden setAttribute oder direkt die Eigenschaften des spezifischen Attributs verwenden (wie src für ein Bild oder href für einen Link).</p>
+        <p><strong>1️⃣Beispiel: setAttribute</strong></p>
+        <p>HTML:</p>
+        <div class="code-box">
+            <code>
+                &lt;img id="image" src="old-image.jpg" alt="Altes Bild" width="200"&gt;
+                &lt;button onclick="changeImage()"&gt;Bild ändern&lt;/button&gt;
+            </code>
+        </div>
+        <p>JavaScript:</p>
+        <div class="code-box">
+            <code>
+                function changeImage() {
+                    let img = document.getElementById("image");  // Das Bild-Element holen
+                    img.setAttribute("src", "new-image.jpg");    // Das src-Attribut ändern
+                    img.setAttribute("alt", "Neues Bild");       // Das alt-Attribut ändern
+                }
+            </code>
+        </div>
+        <p>Für einige Standard-Attribute kann man auch direkt die entsprechende Eigenschaft des Elements verwenden (wie src für Bilder, href für Links):</p>
+        <p><strong>2️⃣Beispiel: Direkte Eigenschaft</strong></p>
+        <p>HTML:</p>
+        <div class="code-box">  
+            <code>
+            &lt;img id="image" src="old-image.jpg" alt="Old Image" width="200"&gt;
+            &lt;button onclick="changeImage()"&gt;Change Image&lt;/button&gt;
+            </code>
+        </div>
+        <p>JavaScript:</p>
+        <div class="code-box">  
+            <code>
+            function changeImage() {
+                let img = document.getElementById("image");  // Get the image element
+                img.src = "new-image.jpg";  // Change the src attribute to a new image
+                img.alt = "New Image";      // Optionally, change the alt attribute as well
+            }
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie kann ich die Class Liste eines Elements erreichen?</span>
+        <p>Man kann die Class-Liste eines Elements in JavaScript mit der Eigenschaft .classList erreichen. Das ist ein praktisches Objekt, mit dem man Klassen hinzufügen, entfernen, toggeln oder überprüfen kann.</p>
+        <p><strong>1️⃣Beispiel:</strong></p>
+        <div class="code-box">  
+            <code>
+                &lt;p id="text" class="blau"&gt;Hallo Welt!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  // Zeigt alle Klassen im Element
+                  console.log(element.classList); // Ausgabe: ['blau']
+                
+                  // Eine neue Klasse hinzufügen
+                  element.classList.add("fett");
+                
+                  // Eine vorhandene Klasse entfernen
+                  element.classList.remove("blau");
+                &lt;/script&gt;
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht classList.add('abc') Funktion?</span>
+        <p>Die Funktion classList.add('abc') fügt dem HTML-Element eine neue CSS-Klasse namens abc hinzu, falls sie noch nicht vorhanden ist.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                &lt;p id="text" class="rot"&gt;Hallo!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  element.classList.add("fett");
+                  console.log(element.className); // Ausgabe: "rot fett"
+                &lt;/script&gt;
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht classList.remove('abc') Funktion?</span>
+        <p>Die Funktion classList.remove('abc') entfernt die CSS-Klasse abc von einem HTML-Element — aber nur, wenn sie vorhanden ist.</p>
+        <p><strong>1️⃣Beispiel:</strong></p>
+        <div class="code-box">  
+            <code>
+                &lt;p id="text" class="rot fett"&gt;Hallo!&lt;/p&gt;
+
+                &lt;script&gt;
+                  const element = document.getElementById("text");
+                
+                  element.classList.remove("rot");
+                
+                  console.log(element.className); // Ausgabe: "fett"
+                &lt;/script&gt;
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was macht classList.toggle('abc') Funktion?</span>
+        <p>Die Funktion classList.toggle('abc') fügt die Klasse abc hinzu, wenn sie nicht vorhanden ist und entfernt sie, wenn sie bereits vorhanden ist. Es ist also ein Ein/Aus-Schalter für Klassen.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">  
+            <code>
+                &lt;p id="text"&gt;Hallo!&lt;/p&gt;
+                &lt;button onclick="toggleFarbe()"&gt;Farbe wechseln&lt;/button&gt;
+                
+                &lt;script&gt;
+                  function toggleFarbe() {
+                    const element = document.getElementById("text");
+                    element.classList.toggle("rot");
+                  }
+                &lt;/script&gt;
+                
+                &lt;style&gt;
+                  .rot {
+                    color: red;
+                  }
+                &lt;/style&gt;
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich eine neue HTML Element?</span>
+        <p>Um ein neues HTML-Element mit JavaScript zu erstellen, verwendet man die Methode document.createElement().</p>
+        <p><strong>1️⃣Beispiel:</strong></p>
+        <p>JavaScript:</p>
+        <div class="code-box">  
+            <code>
+            // Neues &lt;p&gt;-Element erstellen
+            const neuerAbsatz = document.createElement("p");
+            
+            // Textinhalt hinzufügen
+            neuerAbsatz.textContent = "Das ist ein neuer Absatz.";
+            
+            // Element in den DOM einfügen, z. B. in den Body
+            document.body.appendChild(neuerAbsatz);
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie füge ich eine Element an eine gewisse Position des HTML zu?</span>
+        <p>die gängigsten Methoden</p>
+        <ul>
+            <li><p>appendChild() → ans Ende eines Elements anhängen</p></li>
+            <div class="code-box">  
+                <code>
+                elternElement.appendChild(neuesElement);
+                </code>
+            </div>
+
+            <li><p>prepend() → an den Anfang eines Elements anhängen</p></li>
+            <div class="code-box">  
+                <code>
+                elternElement.prepend(neuesElement);
+                </code>
+            </div>
+            <li><p>insertBefore() → vor einem bestimmten Element einfügen</p></li>
+            <div class="code-box">  
+                <code>
+                elternElement.insertBefore(neuesElement, referenzElement);
+                </code>
+            </div>
+
+            <li><p>insertAdjacentElement(position, element) → an eine genaue Position</p></li>
+            <ul>
+                <li>beforebegin: direkt vor dem #zielElement.</li>
+                <li>afterbegin: ganz oben innerhalb von #zielElement.</li>
+                <li>beforeend: ganz unten innerhalb von #zielElement</li>
+                <li>afterend: direkt nach dem #zielElement</li>
+            </ul>
+            <p><b>1️⃣Beispiel:</b> HTML</p>
+            <div class="code-box">  
+                <code>
+                &lt;div id="box"&gt;
+
+                &lt;p&gt;Inhalt der Box&lt;/p&gt;
+
+                &lt;/div&gt;
+                </code>
+            </div>
+            <p><strong>Beispiel:</strong></p>
+            <p>JavaScript:</p>
+            <div class="code-box">  
+                <code>
+            const ziel = document.getElementById("box");
+
+            const beforeBegin = document.createElement("div");
+            beforeBegin.textContent = "👉 beforebegin";
+            beforeBegin.style.color = "blue";
+                
+            const afterBegin = document.createElement("div");
+            afterBegin.textContent = "👉 afterbegin";
+            afterBegin.style.color = "green";
+            
+            const beforeEnd = document.createElement("div");
+            beforeEnd.textContent = "👉 beforeend";
+            beforeEnd.style.color = "orange";
+            
+            const afterEnd = document.createElement("div");
+            afterEnd.textContent = "👉 afterend";
+            afterEnd.style.color = "red";
+            
+            // Elemente einfügen
+            ziel.insertAdjacentElement("beforebegin", beforeBegin);
+            ziel.insertAdjacentElement("afterbegin", afterBegin);
+            ziel.insertAdjacentElement("beforeend", beforeEnd);
+            ziel.insertAdjacentElement("afterend", afterEnd);
+                </code>
+            </div>
+
+            <p><strong>Beispiel:</strong> (resultierende HTML-Struktur):</p>
+            <div class="code-box">  
+                <code>
+            &lt;!-- beforebegin --&gt;
+            &lt;div style="color: blue;"&gt;👉 beforebegin&lt;/div&gt;
+            
+            &lt;!-- ursprüngliches Ziel-Element --&gt;
+            &lt;div id="box"&gt;
+                
+            &lt;!-- afterbegin --&gt;
+            &lt;div style="color: green;"&gt;👉 afterbegin&lt;/div&gt;
+            
+            &lt;!-- Originalinhalt --&gt;
+            &lt;p&gt;Inhalt der Box&lt;/p&gt;
+            
+            &lt;!-- beforeend --&gt;
+            &lt;div style="color: orange;"&gt;👉 beforeend&lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- afterend --&gt;
+            &lt;div style="color: red;"&gt;👉 afterend&lt;/div&gt;
+                </code>
+            </div>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie lösche ich ein HTML Element?</span>
+        <p>Ein HTML-Element kann man mit JavaScript auf zwei einfache Arten löschen:</p>
+        <ul>
+            <li>element.remove(): Ist die direkteste Methode.</li>
+            <p><strong>1️⃣Beispiel:</strong></p>
+            <div class="code-box">  
+                <code>
+            const wegElement = document.getElementById("wegDamit");
+            wegElement.remove();
+                </code>
+            </div>
+            <br>
+            <li>parent.removeChild(child)</li>
+            <p><strong>2️⃣Beispiel:</strong></p>
+            <div class="code-box">  
+                <code>
+            function eraseAbsatz() {
+                const eltern = document.getElementById("container");
+                const kind = document.getElementById("text");
+                eltern.removeChild(kind);
+                }
+                </code>
+            </div>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+        <li class="textColor02">
+            <span class="underline">Wie kann man alle HTML Elemente eines bestimmten HTML-Elments löschen?</span>
+        <p>Gängigsten Methoden:</p>
+        <ul>
+            <li><p>element.innerHTML = "" -> Entfernt alle Inhalte und Kindelemente des Containers. Schnell, aber löscht alles, auch Texte und Events.</p></li>
+            <p><strong>1️⃣Beispiel:</strong></p>
+            <div class="code-box">  
+                <code>
+                const container = document.getElementById("meinContainer");
+                container.innerHTML = "";
+                </code>
+            </div>
+            <br>
+            <li>Mit einer Schleife (while): Löscht ein Kind nach dem anderen, bis nichts mehr übrig ist.</li>
+            <p><strong>2️⃣Beispiel:</strong></p>
+            <div class="code-box">  
+                <code>
+                const container = document.getElementById("meinContainer");
+
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                </code>
+            </div>
+        </ul>
+        </li>
+</ul>
+</body>
+</html>

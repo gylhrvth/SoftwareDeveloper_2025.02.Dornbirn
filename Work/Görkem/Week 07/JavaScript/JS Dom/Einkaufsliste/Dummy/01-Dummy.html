@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste Dummy</title>
+    <link rel="stylesheet" href="../../../../../../Sandro/style.css">
+    <script src="./script.js"></script>
+    <style>
+        body{
+            background-color: #ffffff;
+            display: flex; /* Flexbox aktivieren */
+            justify-content: center; /* Horizontal zentrieren */
+            align-items: center; /* Vertikal zentrieren */
+            height: 70vh; /* Höhe des Viewports */
+            margin: 10vh; /* Standard-Margin entfernen */
+        }
+
+        container{
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 400;
+        }
+
+        button{
+            background-color: rgb(108, 99, 251);
+            border: none;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        input {
+            border-radius: 8px;
+            border: 1px solid rgb(0, 0, 0, 0.1);
+            padding: 3px 10px;
+        }
+
+        ul{
+        list-style-type: none;
+        }
+
+        input, select {
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 3px 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Meine To-do Einkaufsliste</h1>
+    <h2></h2>
+    <input  id="todoField" placeholder="Bitte Text eingeben">
+    <select id="categorySelect">
+        <option>Obst</option>
+        <option>Getränke</option>
+        <option>Haushalt</option>
+        <option>Sonstiges</option>
+    </select>
+    <button onClick="addTodo()">Speichern</button>
+    
+    <div class="filters">
+        <button onclick="filterTodos('alle')">Alle</button>
+        <button onclick="filterTodos('offen')">Offen</button>
+        <button onclick="filterTodos('erledigt')">Erledigt</button>
+      </div>
+  
+      <ul id="todoList"></ul>
+    </div>
+</body>
+</html>
