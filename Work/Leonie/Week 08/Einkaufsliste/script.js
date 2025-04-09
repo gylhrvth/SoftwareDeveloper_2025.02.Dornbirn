@@ -72,6 +72,11 @@ function createDiv() {
     const itemInput = document.getElementById("itemInput").value.trim();
     const quantityInput = document.getElementById("quantityInput").value.trim();
 
+    if (itemInput === "" || quantityInput === "") {
+        alert("Bitte Artikel und Menge eingeben.");
+        return;
+    }
+
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
     itemList.appendChild(itemDiv);
