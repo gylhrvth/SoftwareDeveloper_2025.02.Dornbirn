@@ -23,6 +23,14 @@ function getData(){
         { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
     ]
 }
+
+// Version 001
+function getCarByFuelType(fuel){
+    const data = getData()
+    const result = data.filter(car => car.fuel === fuel)
+
+    return result
+}
 */
 /*
 // Version 002 -- es geht nicht
@@ -43,6 +51,14 @@ function getData(){
             { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
         ]
     }, 1000)
+    return result
+}
+
+// Version 002 -- es geht nicht
+function getCarByFuelType(fuel){
+    const data = getData()
+    const result = data.filter(car => car.fuel === fuel)
+
     return result
 }
 */
@@ -68,6 +84,14 @@ function getData(callback){
         callback(result)
     }, 1000)
 }
+
+// Version 003 -- callback
+function getCarByFuelType(fuel){
+    getData((data) => {
+        const result = data.filter(car => car.fuel === fuel)
+        console.log(result)
+    })
+}
 */
 /*
 // Version 004 -- mit einem Callback
@@ -91,8 +115,17 @@ function getData(){
         }, 1000)
     })
 }
+
+// Version 004 -- Promise then
+function getCarByFuelType(fuel){
+    getData().then((data) => {
+        const result = data.filter(car => car.fuel === fuel)
+        console.log(result)
+    })
+}
 */
 
+/*
 // Version 005 -- manchmal geht es doch schief
 function getData(){
     return new Promise((resolve, reject) => {
@@ -119,37 +152,6 @@ function getData(){
     })
 }
 
-
-/*
-// Version 002 -- es geht nicht
-function getCarByFuelType(fuel){
-    const data = getData()
-    const result = data.filter(car => car.fuel === fuel)
-
-    return result
-}
-*/
-
-/*
-// Version 003 -- callback
-function getCarByFuelType(fuel){
-    getData((data) => {
-        const result = data.filter(car => car.fuel === fuel)
-        console.log(result)
-    })
-}
-*/
-
-/*
-// Version 004 -- Promise then
-function getCarByFuelType(fuel){
-    getData().then((data) => {
-        const result = data.filter(car => car.fuel === fuel)
-        console.log(result)
-    })
-}
-*/
-
 // Version 005 -- Promise with then and catch
 function getCarByFuelType(fuel){
     getData()
@@ -161,9 +163,51 @@ function getCarByFuelType(fuel){
             console.log('etwas ist schief gelaufen', message)
         })
 }
+*/
+
+// Version 006 -- async / await
+async function getData(){
+    let result = []  
+    await setTimeout(() => {}, 1000)
+    if (Math.random() > 0.2){
+        result = [
+            { producer: 'Audi', model: 'RS 3', fuel: 'petrol'},
+            { producer: 'BMW', model: 'X5', fuel: 'diesel'},
+            { producer: 'Mercedes', model: 'A-Class', fuel: 'petrol'},
+            { producer: 'Ford', model: 'Focus', fuel: 'diesel'},
+            { producer: 'Opel', model: 'Astra', fuel: 'petrol'},
+            { producer: 'Volkswagen', model: 'Golf', fuel: 'diesel'},
+            { producer: 'Toyota', model: 'Corolla', fuel: 'petrol'},
+            { producer: 'Honda', model: 'Civic', fuel: 'diesel'},
+            { producer: 'Nissan', model: 'Qashqai', fuel: 'petrol'},
+            { producer: 'Hyundai', model: 'i30', fuel: 'diesel'}    
+        ]
+        return result
+    } else {
+        return 'Ich mag dein Gesicht net!'
+    }
+}
+
+// Version 006 -- async / await
+async function getCarByFuelType(fuel){
+    let data = await getData()
+    if (typeof data === 'string'){
+        console.log('ERROR', data)
+    } else {
+        const result = data.filter(car => car.fuel === fuel)
+        console.log(result)
+    }
+}
 
 
 getCarByFuelType('diesel')
+
+
+let f1 = () => 5
+let f2 = async () => 5
+
+
+f2().then(console.log)
 
 </script>
 </body>
