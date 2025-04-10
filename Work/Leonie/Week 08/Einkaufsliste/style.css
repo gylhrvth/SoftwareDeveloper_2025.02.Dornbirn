@@ -4,6 +4,8 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, rgb(255, 209, 122), white, rgb(255, 209, 122));
 }
 
 .container {
@@ -17,6 +19,13 @@ body {
     background-color: #FFD160;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-family: Calibri, sans-serif;
+    font-size: 2.5rem;
+    margin-top: 40px;
+    margin-bottom: 0px;
 }
 
 #itemForm {
@@ -38,8 +47,16 @@ body {
     border: none;
     border-radius: 5px;
     margin-right: 5px;
-
 }
+
+#selectionInput{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
 #itemForm button {
     padding: 10px 20px;
     border: none;
@@ -56,8 +73,10 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    margin-bottom: 60px;
     background-color: #FCBB14;
-    width: clamp(400px, 30vw, 1000px);
+    width: clamp(400px, 31vw, 1000px);
+    height: 50vh;
     min-width: 400px;
     overflow-y: auto;
     border-radius: 10px;
@@ -66,11 +85,13 @@ body {
 
 .item {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 30px 1fr 1fr 35px 30px;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     text-align: center;
     padding: 10px;
+    border-bottom: 1px solid black;
 }
 
 input[type="checkbox"]{
@@ -81,6 +102,9 @@ input[type="checkbox"]{
 
 .item-name {
     font-family: Calibri, sans-serif;
+    overflow: hidden; /* Verhindert, dass der Text überläuft */
+    white-space: nowrap; /* Verhindert Zeilenumbrüche */
+    text-overflow: ellipsis; /* Zeigt "..." an, wenn der Text abgeschnitten wird */
 }
 
 .item-name.checked {
@@ -88,8 +112,12 @@ input[type="checkbox"]{
     color: rgb(121, 121, 121);
 }
 
-.item-qiantity {
+.item-quantity {
     font-family: Calibri, sans-serif;
+    overflow: hidden; /* Verhindert, dass der Text überläuft */
+    white-space: nowrap; /* Verhindert Zeilenumbrüche */
+    text-overflow: ellipsis; /* Zeigt "..." an, wenn der Text abgeschnitten wird */
+
 }
 
 .item-quantity.checked {
@@ -104,6 +132,7 @@ input[type="checkbox"]{
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 90%;
 }
 
 .delete-button:hover {

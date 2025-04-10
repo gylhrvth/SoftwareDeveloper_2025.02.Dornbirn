@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dummy.css">
+    <title>Einkaufsliste App Dummy</title>
+</head>
+<body>
+
+    <div id =mainContainer>
+
+        <div id="headerBox">Einkaufsliste App</div>
+
+        <div id="selectBox">
+            <label for="inputArtikel">Artikel:</label>
+            <input type="text" id="inputArtikel" placeholder="Enter item">
+
+            <label for="inputAnzahl">Anzahl:</label>
+            <input type="number" id="inputAnzahl" name="" min="0" max="99">
+
+            <label for="inputEinheit">Einheit:</label>
+            <input type="text" id="inputEinheit" placeholder="Enter unit">
+
+            <button id="addItem">Hinzufügen</button>
+        </div>  
+
+        <div id="feedbackBox"><p id="feedbackText">Gib ein Produkt ein</p></div>
+            
+        <div id="rowsBox"></div>
+        
+
+    </div>
+
+    <script src="./dummy.js"></script>
+    
+</body>
+</html>
