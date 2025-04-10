@@ -1,3 +1,6 @@
+
+
+
 // ------------------ Global Variables -------------------------------
 
 const fruits = ['apple', 'banana', 'cherry', 'grape', 'kiwi', 'lemon', 'mango', 'orange', 'papaya', 'raspberry', 'strawberry', 'watermelon'];
@@ -8,16 +11,14 @@ let arrayPool = [fruits, mountains, dogBreeds];
 
 let randomWord = ""; // Global variable for the selected word
 let lettersInWord = [];
-let randomArray = null;
+
 let errorCounter = 0;
 
 // ------------------ General Function ------------------------------
 
 function startGame() {
 
-  document.getElementById("hint-text").innerText = "You sure don't need one, do you?";
-
-  randomArray = arrayPool[Math.floor(Math.random() * arrayPool.length)];
+  let randomArray = arrayPool[Math.floor(Math.random() * arrayPool.length)];
   console.log("Selected Array: ", randomArray);
   // resetButtons() -> Reset all disabled buttons of the virtual keypad
   resetButtons();
@@ -30,10 +31,6 @@ function startGame() {
   // displayWord -> Displays the selected word as many <li>_</li> as letters has the word
   displayWord(randomWord);
 
-  errorCounter = 0; // Reset errorCounter to 0
-  document.getElementById("wrong-guesses").innerText = errorCounter; // Update the displayed value
-
-  document.getElementById("showGameOver").innerText = "That can't be too difficult...";
 
 }
 
@@ -124,81 +121,13 @@ function checkPlayerGuess(guessValue){
     if(!matchFound) { 
         errorCounter++;
         console.log("No matches found. Incrementing error counter.");
-        hangmanImage(); // Update the hangman image
     }
         
     
     target_wrong_guesses.innerText = errorCounter;
-
-    counterLogic();
-
 }
 
-//------------------Counter Logic Function -----------------------------------
 
-//Sends different messages depending on the choosen array and the number of not matched guesses
-function counterLogic() {
-    // Check if all <li> elements have a symbol different from "_"
-    const allLettersRevealed = Array.from(document.querySelectorAll("#wordList li"))
-        .every(li => li.textContent !== "_");
-
-    // Part made with Copilot ---> When user finds out all the letters, vicory message
-    if (allLettersRevealed) {
-        document.getElementById("hint-text").innerText = "Yaaaay";
-        document.getElementById("showGameOver").innerText = "You did it!!!";
-
-        // Disable all key-pad buttons when the word is guessed
-        document.querySelectorAll('.key-pad button').forEach(button => {
-            button.disabled = true;
-            button.classList.add('disabled');
-        });
-        return; // Exit the function to avoid further checks
-    }
-
-    if(errorCounter >= 8){
-        errorCounter = 8;
-        document.getElementById("wrong-guesses").innerText = errorCounter;
-        document.getElementById("showGameOver").innerText = "GAME OVER!!!";
-
-        // Disable all key-pad buttons if Game Over
-        const allPadButtons = document.querySelectorAll('.key-pad button');
-        allPadButtons.forEach(button => {
-            button.disabled = true;
-            button.classList.add('disabled');
-        });
-    } 
-
-    else if (errorCounter === 3){
-        document.getElementById("showGameOver").innerText = "You know what you're doing, aren't you...?"
-        }
-    
-    else if (errorCounter === 5){
-        document.getElementById("hint-text").innerText = "Uuuuh...";
-        document.getElementById("showGameOver").innerText = "Maybe you could really use some hint...?"
-
-    }
-
-    else if (errorCounter === 6){
-        document.getElementById("showGameOver").innerText = "There you have it"
-        if (randomArray === arrayPool[0]){
-        document.getElementById("hint-text").innerText = "Sweet Vitamines!!";
-        } 
-        else if(randomArray === arrayPool[1]){
-        document.getElementById("hint-text").innerText = "I'm getting altitude sickness...";
-        }
-        else if(randomArray === arrayPool[2]){
-        document.getElementById("hint-text").innerText = "Wuff Wuff!!";
-        }
-    }
-
-    else if (errorCounter === 7){
-        document.getElementById("showGameOver").innerText = "So last chance...?"
-
-    }
-
-
-
-}
 
 //------------------TO DO Functions (part of the Start Game Function) -----------------------------------
 
@@ -207,35 +136,11 @@ function resetWordBox() {
 
 }
 
- //------------------------ COPILOT Functions ------------------------------------------------------------
 
- //----------------------- Hangman Image (Copilot) -------------------------
 
-function hangmanImage() {
-    const hangmanStages = [
-        "./assets/pictures/hangman0.png", // Stage 0
-        "./assets/pictures/hangman1.png", // Stage 1
-        "./assets/pictures/hangman2.png", // Stage 2
-        "./assets/pictures/hangman3.png", // Stage 3
-        "./assets/pictures/hangman4.png", // Stage 4
-        "./assets/pictures/hangman5.png", // Stage 5
-        "./assets/pictures/hangman6.png", // Stage 6
-        "./assets/pictures/hangman7.png", // Stage 7
-        "./assets/pictures/hangman8.png"  // Stage 8 (Game Over)
-    ];
 
-    const targetHangmanBox = document.querySelector(".hangman-box");
-    targetHangmanBox.innerHTML = ""; // Clear any existing image
 
-    // Create and append the new image based on the errorCounter
-    const hangmanImg = document.createElement("img");
-    hangmanImg.src = hangmanStages[errorCounter];
-    hangmanImg.alt = `Hangman Stage ${errorCounter}`;
-    hangmanImg.style.width = "50%"; // Adjust the size as needed
-    hangmanImg.style.height = "auto";
 
-    targetHangmanBox.appendChild(hangmanImg);
-}
 
 
 //------------------ Sandros Functions -------------------------------
