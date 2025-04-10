@@ -1,4 +1,19 @@
 const savedItems = JSON.parse(localStorage.getItem("shoppingList")) || [];
+const counter = JSON.parse(localStorage.getItem("counter")) || 0;
+
+// Set the initial counter value
+const counterElement = document.getElementById("counter");
+if (counter === 0) {
+    counterElement.textContent = "Ware im Einkaufswagen: 0";
+}
+
+function countCheckedItems() {
+    const checkedItems = document.querySelectorAll(".item-checkbox:checked");
+    const checkedCount = checkedItems.length;
+    const counterElement = document.getElementById("counter");
+    counterElement.textContent = `Ware im Einkaufswagen: ${checkedCount}`;
+    localStorage.setItem("counter", JSON.stringify(checkedCount));
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const itemList = document.getElementById("itemList");
@@ -25,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 itemQuantity.classList.remove("checked");
             }
             saveItems();
+            countCheckedItems();
         }
         );
 
@@ -38,14 +54,29 @@ document.addEventListener("DOMContentLoaded", function () {
         itemQuantity.classList.add("item-quantity");
         itemDiv.appendChild(itemQuantity);
 
+        const itemSelection = document.createElement("span");
+        itemSelection.textContent = item.selection;
+        itemSelection.classList.add("item-selection");
+        itemDiv.appendChild(itemSelection);
+    
+
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Löschen";
+        deleteButton.textContent = "X";
         deleteButton.classList.add("delete-button");
         deleteButton.addEventListener("click", function () {
             itemList.removeChild(itemDiv);
             saveItems();
+            countCheckedItems();
         });
         itemDiv.appendChild(deleteButton);
+
+        const checkedItems = document.querySelectorAll(".item-checkbox:checked");
+        const checkedCount = checkedItems.length;
+        const counterElement = document.getElementById("counter");
+        counterElement.textContent = `Ware im Einkaufswagen: ${checkedCount}`;
+        countCheckedItems();
+
+    
 
         // Set checkbox state based on saved data
         itemCheckbox.checked = item.checked;
@@ -54,13 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
             itemQuantity.classList.add("checked");
         }
     });
-
-    // Override createDiv to include saving
-    // const originalCreateDiv = createDiv;
-    // window.createDiv = function () {
-    //     originalCreateDiv();
-    //     saveItems();
-    // };
 });
 
 
@@ -68,11 +92,22 @@ function createDiv() {
     const itemList = document.getElementById("itemList");
     const itemInput = document.getElementById("itemInput").value.trim();
     const quantityInput = document.getElementById("quantityInput").value.trim();
+    const selectionInput = document.getElementById("selectionInput").value;
 
     if (itemInput === "" || quantityInput === "") {
         alert("Bitte Artikel und Menge eingeben.");
         return;
     }
+    parseInt(quantityInput, 10);
+    if (isNaN(quantityInput)) {
+        alert("Bitte geben Sie eine gültige Menge ein.");
+        return;
+    }
+    if (quantityInput < 1) {
+        alert("Bitte geben Sie eine Menge größer als 0 ein.");
+        return;
+    }
+    
 
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
@@ -90,6 +125,7 @@ function createDiv() {
             itemName.classList.remove("checked");
             itemQuantity.classList.remove("checked");
         }
+        countCheckedItems();
     }
     );
 
@@ -104,14 +140,20 @@ function createDiv() {
     itemQuantity.classList.add("item-quantity");
     itemDiv.appendChild(itemQuantity);
 
+    const itemSelection = document.createElement("span");
+    itemSelection.textContent = selectionInput;
+    itemSelection.classList.add("item-selection");
+    itemDiv.appendChild(itemSelection);
+
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Löschen";
+    deleteButton.textContent = "X";
     deleteButton.classList.add("delete-button");
     deleteButton.addEventListener("click", function () {
         itemList.removeChild(itemDiv);
+        countCheckedItems();
+        saveItems();
     });
     itemDiv.appendChild(deleteButton);
-
     saveItems(); // Speichern der Artikel in localStorage
 
     // Felder zurücksetzen
@@ -125,9 +167,9 @@ function saveItems() {
     document.querySelectorAll(".item").forEach(itemDiv => {
         const name = itemDiv.querySelector(".item-name").textContent;
         const quantity = itemDiv.querySelector(".item-quantity").textContent;
+        const selection = itemDiv.querySelector(".item-selection").textContent;
         const checked = itemDiv.querySelector(".item-checkbox").checked; // Checkbox-Zustand speichern
-        items.push({ name, quantity, checked });
+        items.push({ name, quantity, selection, checked });
     });
     localStorage.setItem("shoppingList", JSON.stringify(items));
-    console.log("Items saved to localStorage:", items);
 }
