@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Ferienquiz</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../common.css">
+  <script src="../../common.js" defer></script>
+  <script src="script.js"></script>
+
+
+</head>
+
+<body>
+  <h1>🧠 JavaScript Ferienquiz</h1>
+
+  <div class="category">
+    <h2>📚 Kategorie: Grundlagen JavaScript</h2>
+
+    <div class="question">
+      <h3>1. Was ist JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">JavaScript ist eine Programmiersprache, die hauptsächlich für die Entwicklung von interaktiven
+        Webseiten verwendet wird.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie bindet man JavaScript in eine HTML-Datei ein?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem <code>&lt;script&gt;</code>-Tag, entweder inline oder durch Verlinkung einer externen
+        Datei.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist der Unterschied zwischen Inline-, Internem- und Externem-JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Inline-JavaScript ist direkt im HTML-Element, internes JavaScript im
+        <code>&lt;script&gt;</code>-Tag im HTML-Dokument, externes JavaScript in einer separaten Datei.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist eine Variable in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Variable ist ein Speicherplatz, der Daten speichern kann, z. B. Zahlen, Strings oder
+        Objekte.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie deklariert man eine Funktion in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Schlüsselwort <code>function</code>, z. B. <code>function name() { ... }</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>6. Was ist ein Event in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Event ist eine Benutzeraktion oder ein Systemereignis, z. B. ein Klick oder das Laden
+        einer Seite.</div>
+    </div>
+
+    <div class="question">
+      <h3>7. Wie kann man eine Schleife in JavaScript erstellen?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit Schleifen wie <code>for</code>, <code>while</code> oder <code>do-while</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>8. Was ist der Unterschied zwischen einer Funktion und einer Methode?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Funktion ist unabhängig, während eine Methode eine Funktion ist, die zu einem Objekt
+        gehört.</div>
+    </div>
+
+    <div class="question">
+      <h3>9. Was ist ein Callback in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Callback ist eine Funktion, die als Argument an eine andere Funktion übergeben wird und
+        später aufgerufen wird.</div>
+    </div>
+
+    <div class="question">
+      <h3>10. Was ist der Unterschied zwischen synchronem und asynchronem Code?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Synchroner Code wird Schritt für Schritt ausgeführt, asynchroner Code kann Aufgaben parallel
+        ausführen, z. B. mit Promises oder async/await.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔄 Kategorie: Schleifen</h2>
+
+    <div class="question">
+      <h3>1. Was ist eine Schleife in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Schleife ist eine Kontrollstruktur, die es ermöglicht, Codeblöcke wiederholt auszuführen,
+        solange eine Bedingung erfüllt ist.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie funktioniert eine for-Schleife?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine for-Schleife besteht aus einer Initialisierung, einer Bedingung und einem
+        Inkrement/Dekrement. Sie wird ausgeführt, solange die Bedingung wahr ist.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist der Unterschied zwischen einer while- und einer do-while-Schleife?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine while-Schleife prüft die Bedingung vor der Ausführung des Codes, während eine
+        do-while-Schleife den Code mindestens einmal ausführt, bevor die Bedingung geprüft wird.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Wie kann man eine Schleife vorzeitig beenden?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Schlüsselwort <code>break</code> kann man eine Schleife vorzeitig beenden.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie überspringt man eine Iteration in einer Schleife?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Schlüsselwort <code>continue</code> kann man die aktuelle Iteration überspringen und
+        mit
+        der nächsten fortfahren.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>📊 Kategorie: Datentypen</h2>
+
+    <div class="question">
+      <h3>1. Welche primitiven Datentypen gibt es in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">String, Number, Boolean, Null, Undefined, Symbol, BigInt</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Was ist der Unterschied zwischen null und undefined?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">null ist ein absichtlich gesetzter leerer Wert, undefined bedeutet, dass eine Variable
+        deklariert, aber nicht initialisiert wurde.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist ein Objekt in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Objekt ist eine Sammlung von Schlüssel-Wert-Paaren, z. B.
+        <code>{ name: "Max", alter: 25 }</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist der Unterschied zwischen einem Array und einem Objekt?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Array ist eine geordnete Liste von Werten, während ein Objekt Schlüssel-Wert-Paare
+        speichert.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie überprüft man den Datentyp einer Variable?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Operator <code>typeof</code>, z. B. <code>typeof variable</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔢 Kategorie: Variablen</h2>
+
+    <div class="question">
+      <h3>1. Was ist eine Variable?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Variable ist ein benannter Speicherplatz, der Daten speichern kann.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie deklariert man eine Variable in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit den Schlüsselwörtern <code>var</code>, <code>let</code> oder <code>const</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist der Unterschied zwischen <code>let</code> und <code>const</code>?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer"><code>let</code> erlaubt es, den Wert zu ändern, während <code>const</code> für Konstanten
+        verwendet wird, deren Wert nicht geändert werden kann.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist der Unterschied zwischen <code>var</code> und <code>let</code>?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer"><code>var</code> hat eine Funktion- oder globale Sichtbarkeit, während <code>let</code>
+        block-sichtbar ist.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Was ist eine globale Variable?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine globale Variable ist überall im Code verfügbar, wenn sie außerhalb einer Funktion
+        deklariert wurde.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>➕ Kategorie: Operatoren</h2>
+
+    <div class="question">
+      <h3>1. Was sind Operatoren in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Operatoren sind Symbole oder Schlüsselwörter, die Operationen auf Werten oder Variablen
+        ausführen, z. B. <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Was ist der Unterschied zwischen == und ===?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer"><code>==</code> prüft auf Gleichheit der Werte, während <code>===</code> zusätzlich den
+        Datentyp überprüft.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist der Modulo-Operator?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Der Modulo-Operator <code>%</code> gibt den Rest einer Division zurück, z. B.
+        <code>10 % 3</code> ergibt <code>1</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist der Unterschied zwischen ++ und --?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer"><code>++</code> erhöht den Wert um 1, während <code>--</code> den Wert um 1 verringert.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Was ist ein logischer Operator?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Logische Operatoren wie <code>&&</code> (und), <code>||</code> (oder) und <code>!</code>
+        (nicht) werden verwendet, um logische Ausdrücke zu kombinieren oder zu negieren.</div>
+    </div>
+  </div>
+
+
+  <div class="category">
+    <h2>📋 Kategorie: Arrays</h2>
+
+    <div class="question">
+      <h3>1. Was ist ein Array in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Array ist eine geordnete Sammlung von Werten, die mit einem Index zugänglich sind, z. B.
+        <code>[1, 2, 3]</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie fügt man ein Element zu einem Array hinzu?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit der Methode <code>push()</code> kann man ein Element am Ende eines Arrays hinzufügen.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>3. Wie entfernt man das letzte Element eines Arrays?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit der Methode <code>pop()</code> kann man das letzte Element eines Arrays entfernen.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Wie iteriert man über ein Array?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Man kann eine <code>for</code>-Schleife, <code>forEach()</code> oder andere Iterationsmethoden
+        wie <code>map()</code> verwenden.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie überprüft man, ob ein Wert in einem Array enthalten ist?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit der Methode <code>includes()</code>, z. B. <code>array.includes(wert)</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🛠️ Kategorie: Objekte</h2>
+
+    <div class="question">
+      <h3>1. Was ist ein Objekt in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Ein Objekt ist eine Sammlung von Schlüssel-Wert-Paaren, z. B.
+        <code>{ name: "Max", alter: 25 }</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie erstellt man ein Objekt in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit geschweiften Klammern <code>{}</code>, z. B. <code>let obj = { key: "value" };</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>3. Wie greift man auf Eigenschaften eines Objekts zu?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit Punktnotation <code>obj.key</code> oder mit eckigen Klammern <code>obj["key"]</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>4. Wie fügt man eine neue Eigenschaft zu einem Objekt hinzu?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit Punktnotation <code>obj.newKey = "value"</code> oder mit eckigen Klammern
+        <code>obj["newKey"] = "value"</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie entfernt man eine Eigenschaft aus einem Objekt?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Schlüsselwort <code>delete</code>, z. B. <code>delete obj.key</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔧 Kategorie: Funktionen</h2>
+
+    <div class="question">
+      <h3>1. Was ist eine Funktion in JavaScript?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Funktion ist ein wiederverwendbarer Codeblock, der ausgeführt wird, wenn er aufgerufen
+        wird.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie definiert man eine Funktion?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit dem Schlüsselwort <code>function</code>, z. B. <code>function name() { ... }</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Was ist der Unterschied zwischen einer normalen Funktion und einer Arrow-Funktion?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Arrow-Funktionen haben eine kürzere Syntax und binden <code>this</code> nicht an den
+        Funktionskontext.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Wie übergibt man Argumente an eine Funktion?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Indem man Werte in die Klammern schreibt, z. B.
+        <code>function add(a, b) { return a + b; }</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>5. Was ist eine anonyme Funktion?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine Funktion ohne Namen, z. B. <code>const func = function() { ... }</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔀 Kategorie: Kontrollstrukturen</h2>
+
+    <div class="question">
+      <h3>1. Was ist eine if/else-Bedingung?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine if/else-Bedingung ermöglicht es, Code basierend auf einer Bedingung auszuführen.
+        Beispiel: <code>if (bedingung) { ... } else { ... }</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie funktioniert eine switch-Anweisung?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine switch-Anweisung prüft einen Wert gegen mehrere Fälle und führt den passenden Code aus.
+        Beispiel: <code>switch (wert) { case 1: ...; break; default: ...; }</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Wann verwendet man if/else und wann switch?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">if/else wird für komplexe Bedingungen verwendet, während switch besser für die Prüfung eines
+        Wertes gegen mehrere mögliche Fälle geeignet ist.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist eine verschachtelte if-Bedingung?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Eine verschachtelte if-Bedingung ist eine if-Bedingung innerhalb einer anderen if-Bedingung.
+        Beispiel: <code>if (a) { if (b) { ... } }</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Was ist der Unterschied zwischen if/else und ternärem Operator?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Der ternäre Operator ist eine Kurzform von if/else und wird für einfache Bedingungen
+        verwendet. Beispiel: <code>bedingung ? wert1 : wert2</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🌐 Kategorie: DOM (Document Object Model)</h2>
+
+    <div class="question">
+      <h3>1. Was ist das DOM?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Das DOM ist eine Programmierschnittstelle, die HTML- oder XML-Dokumente als Baumstruktur
+        darstellt, wobei jedes Element ein Knoten ist.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Wie greift man auf ein Element im DOM zu?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit Methoden wie <code>document.getElementById()</code>, <code>document.querySelector()</code>
+        oder <code>document.getElementsByClassName()</code>.</div>
+    </div>
+
+    <div class="question">
+      <h3>3. Wie erstellt man ein neues Element im DOM?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit der Methode <code>document.createElement()</code>, z. B.
+        <code>let element = document.createElement('div');</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>4. Wie fügt man ein Element in das DOM ein?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit Methoden wie <code>appendChild()</code> oder <code>insertBefore()</code>, z. B.
+        <code>parent.appendChild(child);</code>.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie entfernt man ein Element aus dem DOM?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Mit der Methode <code>removeChild()</code>, z. B. <code>parent.removeChild(child);</code>,
+        oder mit <code>element.remove()</code>.</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🐞 Kategorie: Debugging</h2>
+
+    <div class="question">
+      <h3>1. Was ist Debugging?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Debugging ist der Prozess des Findens und Behebens von Fehlern im Code.</div>
+    </div>
+
+    <div class="question">
+      <h3>2. Welche Tools kann man zum Debugging verwenden?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Tools wie die Browser-Entwicklerkonsole, Debugger, Linters oder IDEs mit Debugging-Funktionen.
+      </div>
+    </div>
+
+    <div class="question">
+      <h3>3. Wie setzt man einen Breakpoint?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">In der Entwicklerkonsole oder IDE kann man auf die Zeilennummer klicken, um einen Breakpoint
+        zu setzen.</div>
+    </div>
+
+    <div class="question">
+      <h3>4. Was ist der Unterschied zwischen console.log() und debugger?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer"><code>console.log()</code> gibt Werte in der Konsole aus, während <code>debugger</code> den
+        Code anhält, um ihn zu untersuchen.</div>
+    </div>
+
+    <div class="question">
+      <h3>5. Wie kann man Syntaxfehler finden?</h3>
+      <input type="text" placeholder="Deine Antwort hier...">
+      <button onclick="toggleAnswer(this)">Antwort anzeigen</button>
+      <div class="answer">Syntaxfehler werden oft in der Konsole angezeigt oder durch einen Linter hervorgehoben.</div>
+    </div>
+  </div>
+  <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>

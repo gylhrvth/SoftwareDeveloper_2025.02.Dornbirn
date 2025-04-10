@@ -115,6 +115,15 @@ a:visited {
     font-size: 3em;
 }
 
+.button {
+    background-color: var(--secondary-background-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 3em;
+}
+
+
 .menu {
     padding: 0.2em 1em;
 }
