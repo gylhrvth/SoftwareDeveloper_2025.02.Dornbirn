@@ -20,7 +20,10 @@ button{
 .container{
     width: 480px;
     max-width: 90%;
-    margin: auto;
+    margin: 60px auto 100px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -131,6 +134,111 @@ button{
 .shopping-action button:hover{
     color: #000;
 }
+
+.shopping-content {
+    border-radius: 5px; /* Abgerundete Ecken */
+    padding: 1rem;
+    max-height: 250px; /* Maximale Höhe des Containers */
+    overflow-y: auto; /* Scrollbar hinzufügen, wenn der Inhalt die Höhe überschreitet */
+    margin-top: 1rem;
+    background-color: #f9f9f9; /* Optional: Hintergrundfarbe */
+}
+
+.shopping-action-container {
+    margin-top: 1rem; 
+}
+
+.shopping-filter {
+    position: sticky;
+    top: 0; /* Bleibt oben am Viewport kleben */
+    z-index: 10; /* Überlappt andere Elemente */
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Schatten */
+}
+
+.shopping-filter-container {
+    position: sticky;
+    top: 0; /* Bleibt oben am Viewport kleben */
+    z-index: 10; /* Überlappt andere Elemente */
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Schatten */
+}
+
+.item-unit {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    margin-left: 5px; /* Abstand zwischen Input und Dropdown */
+}
+
+.item-unit:focus {
+    outline: none;
+    border-color: rgba(150, 150, 140, 0.5);
+}
+
+.item-quantity {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    margin-left: 5px; /* Abstand zwischen den Feldern */
+}
+
+.item-quantity:focus {
+    outline: none;
+    border-color: rgba(150, 150, 140, 0.5);
+}
+
+/* Styling für das Eingabefeld für den Artikelnamen */
+.shopping-form input {
+    flex: 1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Sichtbare Umrandung */
+    outline: none;
+    font-size: 1rem;
+    color: #333; /* Textfarbe */
+    background-color: #fff; /* Weißer Hintergrund */
+}
+
+/* Platzhaltertext lesbarer machen */
+.shopping-form input::placeholder {
+    color: #666; /* Farbe des Platzhaltertexts */
+    font-style: italic; /* Kursiver Text */
+    font-size: 0.9rem; /* Etwas kleinere Schriftgröße */
+}
+
+.item-unit {
+    flex: 1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Sichtbare Umrandung */
+    outline: none;
+    font-size: 1rem;
+    color: #333; /* Textfarbe */
+    background-color: #fff; /* Weißer Hintergrund */
+    cursor: pointer;
+}
+
+/* Platzhaltertext für die erste Option */
+.item-unit option[value=""] {
+    color: #666; /* Farbe für die Platzhalteroption */
+    font-style: italic; /* Kursiver Text */
+}
+
+
+
+
+
+
 
 
 

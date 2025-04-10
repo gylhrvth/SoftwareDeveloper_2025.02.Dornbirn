@@ -8,20 +8,32 @@
     
 </head>
 <body>
+    <div class="container">
     <h1>Einkaufsliste</h1>
     
-    <div class="container">
         <form class="shopping-form">
             <input type="text" id="item" placeholder="Name des Artikels eingeben"/>
+            <input type="number" id="quantity" class="item-quantity" placeholder="Menge" min="1" />
+            <select id="unit" class="item-unit">
+                <option value="" disabled selected>Einheit</option>
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="l">l</option>
+                <option value="ml">ml</option>
+                <option value="Stk.">Stk.</option>
+            </select>
             <button type="submit">&plus;</button>
         </form>
-
+        
+    <div class="shopping-filter-content">
         <div class="shopping-filter">
             <button data-filter="all" class="active">Alle</button>
             <button data-filter="incomplete">Offen</button>
             <button data-filter="completed">Erledigt</button>
         </div>
-
+    </div>
+        
+    <div class="shopping-content">
         <ul class="shopping-list">
             <li>
                 <input type="checkbox" name="" id="">
@@ -42,12 +54,16 @@
                 <span class="drag-icon">&equiv;</span>
             </li>
         </ul>
+    </div>
         
+    <div class="shopping-action-container">
         <div class="shopping-action">
             <button data-clear="all">Clear All</button>
             <button data-clear="completed">Clear completed</button>
         </div>
     </div>
+</div>
+
 </body>
 <script src="logic.js" defer></script>
 </html>
