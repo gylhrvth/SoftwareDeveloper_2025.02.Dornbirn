@@ -1,0 +1,44 @@
+body {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3 {
+  color: #14c9e5;
+}
+
+.category {
+  margin-top: 2rem;
+}
+
+.question {
+  margin-bottom: 1.5rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.answer {
+  color: rgb(15, 29, 225);
+  display: none;
+  margin-top: 0.5rem;
+  background: #e0ffe0;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 0.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
