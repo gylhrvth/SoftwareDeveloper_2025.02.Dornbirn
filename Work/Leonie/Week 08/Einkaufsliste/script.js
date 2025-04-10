@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
         itemCheckbox.checked = item.checked; // Checkbox-Zustand wiederherstellen
         itemDiv.appendChild(itemCheckbox);
         itemCheckbox.addEventListener("change", function () {
-            if (itemCheckbox.checked) {
+            const checked = itemDiv.querySelector(".item-checkbox").checked; // Checkbox-Zustand speichern
+            item.checked = checked; // Update the item's checked state
+            if (item.checked === true) {
                 itemName.classList.add("checked");
                 itemQuantity.classList.add("checked");
             } else {
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 itemQuantity.classList.remove("checked");
             }
             saveItems();
-            }
+        }
         );
 
         const itemName = document.createElement("span");
@@ -44,26 +46,21 @@ document.addEventListener("DOMContentLoaded", function () {
             saveItems();
         });
         itemDiv.appendChild(deleteButton);
+
+        // Set checkbox state based on saved data
+        itemCheckbox.checked = item.checked;
+        if (item.checked) {
+            itemName.classList.add("checked");
+            itemQuantity.classList.add("checked");
+        }
     });
 
-    // Save items to localStorage
-    function saveItems() {
-        const items = [];
-        document.querySelectorAll(".item").forEach(itemDiv => {
-            const name = itemDiv.querySelector(".item-name").textContent;
-            const quantity = itemDiv.querySelector(".item-quantity").textContent;
-            const checked = itemDiv.querySelector(".item-checkbox").checked; // Checkbox-Zustand speichern
-            items.push({ name, quantity, checked });
-        });
-        localStorage.setItem("shoppingList", JSON.stringify(items));
-    }
-
     // Override createDiv to include saving
-    const originalCreateDiv = createDiv;
-    window.createDiv = function () {
-        originalCreateDiv();
-        saveItems();
-    };
+    // const originalCreateDiv = createDiv;
+    // window.createDiv = function () {
+    //     originalCreateDiv();
+    //     saveItems();
+    // };
 });
 
 
@@ -93,7 +90,7 @@ function createDiv() {
             itemName.classList.remove("checked");
             itemQuantity.classList.remove("checked");
         }
-        }
+    }
     );
 
 
@@ -115,8 +112,22 @@ function createDiv() {
     });
     itemDiv.appendChild(deleteButton);
 
+    saveItems(); // Speichern der Artikel in localStorage
 
     // Felder zurücksetzen
     document.getElementById("itemInput").value = "";
     document.getElementById("quantityInput").value = "";
+}
+
+// Save items to localStorage
+function saveItems() {
+    const items = [];
+    document.querySelectorAll(".item").forEach(itemDiv => {
+        const name = itemDiv.querySelector(".item-name").textContent;
+        const quantity = itemDiv.querySelector(".item-quantity").textContent;
+        const checked = itemDiv.querySelector(".item-checkbox").checked; // Checkbox-Zustand speichern
+        items.push({ name, quantity, checked });
+    });
+    localStorage.setItem("shoppingList", JSON.stringify(items));
+    console.log("Items saved to localStorage:", items);
 }
