@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+    <script src="../../../../Kurs/common.js" defer></script>
+    <title>JavaScript Async</title>
+</head>
+<body>
+
+    <h1>JavaScript</h1>
+    <h2>Mittwoch, 09. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript Async-Function</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Warum starten Funktionen parallel zueinander, anstatt nacheinander aufgerufen werden?</span>
+        <p>JavaScript ist <b>einzel-threaded, </b>, d.h. es führt immer nur eine Sache zur gleichen Zeit aus. Trotzdem können gewisse Aufgaben (z.B. API-Aufrufe oder setTimeout) asynchron gestartet werden, damit JavaScript <b>nicht hängen bleibt</b> und andere Dinge schon mal weiterbearbeiten kann.</p>
+        <p><strong>🕒asynchrone Funktion</strong></p>
+        <p>JavaScript:</p>
+        <div class="code-box">
+            <code>
+                function task1() {
+                    console.log("Start Task 1");
+                    setTimeout(() => {
+                      console.log("End Task 1");
+                    }, 2000);
+                  }
+                  
+                  function task2() {
+                    console.log("Start Task 2");
+                  }
+                  
+                  task1();
+                  task2();
+            </code>
+        </div>
+        <p>👉Ausgabe:</p>
+        <div class="code-box">
+            <code>
+                Start Task 1
+                Start Task 2
+                End Task 1
+            </code>
+        </div>
+        <p>→ <b>Hier wird setTimeout in den Hintergrund verschoben</b>, und Task 2 startet sofort danach.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Welche praktische Use Cases kennst du davon?</span>
+        <p>Asynchrone Funktionen sind <b>überall</b> in der modernen Webentwicklung zu finden - ohne sie würde kaum eine App wirklich „funktionieren“ oder reaktionsfähig bleiben. Hier sind ein paar <b>praxisnahe Use Cases</b>, die du bestimmt schon mal gesehen oder sogar verwendet hast:</p>
+        <p><strong>📡1. Daten von APIs laden</strong></p>
+        <p><b>Use Case:</b> Du baust eine Wetter-App und willst dieaktuelle Temperatur von einem Wetterdienst holen.</p>
+        <div class="code-box">
+            <code>
+                async function fetchWeather() {
+                    const response = await fetch("https://api.weatherapi.com/data");
+                    const data = await response.json();
+                    console.log("Wetterdaten:", data);
+                  }
+            </code>
+        </div>
+        <p><b>Warum async?</b> Weil der Netzwerk-Request 1-2 Sekunden dauern kann. In der Zeit soll die App nicht einfrieren</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist ein Callback (Funktion)?</span>
+        <p>Ein <b>Callback</b> ist einfach eine <b>Funktion</b>, die <b>als Argument</b> an eine andere Funktion übergeben wird - und <b>dann später</b> aufgerufen wird.</p>
+        <p><b>📌 Also: „Ich geb dir eine Funktion mit, die du aufrufen sollst, wenn du fertig bist.“</b></p>
+        <p>Einfaches Beispiel: JavaScript</p>
+        <div class="code-box">
+            <code>
+                function greeting(name) {
+                    console.log("Hallo, " + name + "!");
+                  }
+                  
+                  function processUserInput(callback) {
+                    const name = "Anna";
+                    callback(name);  // 👈 Hier wird der Callback aufgerufen
+                  }
+                  
+                  processUserInput(greeting);
+            </code>
+        </div>
+        <p>💡Erklärung:</p>
+        <ul>
+            <li>greeting ist die Callback-Funktion.</li>
+            <li>processUserInput ruft sie <b>später</b> auf - in diesem Fall mit dem Namen „Anna“.</li>
+        </ul>
+        <p><strong>Callback bei Asynchronität: Beispiel mit setTimeout</strong></p>
+        <div class="code-box">
+            <code>
+                setTimeout(() => {
+                    console.log("Nach 2 Sekunden!");
+                  }, 2000);
+            </code>
+        </div>
+        <p>👉 Die Funktion () => console.log(...) ist hier der Callback.
+            Sie wird nach 2 Sekunden ausgeführt - also nicht sofort.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist ein Promise?</span>
+        <p>Ein <b>Promise</b> ist ein JavaScript-Objekt, das dir <b>verspricht</b>, dass ein bestimmter Wert <b>jetzt noch nicht verfügbar ist, aber später kommen wird</b> - entweder erfolgreich oder mit Fehler.</p>
+        <p><strong>📦 Drei Zustände eines Promise:</strong></p>
+        <ol>
+            <li><b>pending</b> - Die Aufgabe läuft noch (z.B. Daten werden geladen)</li>
+            <li><b>fulfilled</b> - Hat erfolgreich ein Ergebnis geliefert (resolve)</li>
+            <li><b>rejected</b> - Ist mit einem Fehler fehlgeschlagen (reject)</li>
+        </ol>
+        <p><strong>Beispiel mit new Promise:</strong></p>
+        <div class="code-box">
+            <code>
+                const myPromise = new Promise((resolve, reject) => {
+                    const success = true;
+                  
+                    if (success) {
+                      resolve("🎉 Hat geklappt!");
+                    } else {
+                      reject("❌ Ein Fehler ist passiert!");
+                    }
+                  });
+                  
+                  myPromise
+                    .then(result => {
+                      console.log("Erfolg:", result);
+                    })
+                    .catch(error => {
+                      console.log("Fehler:", error);
+                    });
+            </code>
+        </div>
+        <p>💡Erklärung:</p>
+        <ul>
+            <li>resolve(...) → wird aufgerufen, wenn alles klappt ✅</li>
+            <li>reject(...) → wird aufgerufen, wenn ein Fehler passiert ❌</li>
+            <li>.then(...) → fängt das Erfolgsergebnis ab</li>
+            <li>.catch(...) → fängt den Fehler ab</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich ein Promise?</span>
+        <p><strong>Promise erstellen - Grundstruktur</strong></p>
+        <div class="code-box">
+            <code>
+                const myPromise = new Promise((resolve, reject) => {
+                    // async Aufgabe hier ausführen (z.B. laden, warten, prüfen)
+
+                    // Beispiel: Erfolg
+                    resolve("Alles hat geklappt!");
+
+                    // Oder: Fehler
+                    // reject("Es ist etwas schiefgelaufen.");
+                  });
+            </code>
+        </div>
+        <p>💡Erklärung:</p>
+        <ul>
+            <li>new Promise(...) erzeugt ein neues Promise-Objekt.</li>
+            <li>Die Funktion, die du übergibst, erhält zwei Funktionen:</li>
+            <li>resolve(value) → Aufruf bei Erfolg ✅</li>
+            <li>reject(error) → Aufruf bei Fehler ❌</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie bearbeite ich es, wenn ich irgendwo ein Promise bekomme?</span>
+        <p>Ein <b>Promise</b> ist ein Objekt, das <b>einen zukünftigen Wert verspricht</b> - z.B. das Ergebnis eines API-Calls, einer Dateioperation oder eines Timers.</p>
+        <p>Es hat 3 Zustände:</p>
+        <ul>
+            <li>pending → läuft noch</li>
+            <li>fulfilled → erfolgreich beendet</li>
+            <li>rejected → fehlgeschlagen</li>
+        </ul>
+        <p><strong>🚀 Wie bearbeite ich ein Promis:</strong></p>
+        <p>Es gibt zwei Hauptmethoden: mit <b>.then</b> und <b>.catch:/b></p>
+        <div class="code-box">
+            <code>
+                getData()
+                    .then(result => {
+                        console.log("Erfolg:", result);
+                })
+                    .catch(error => {
+                        console.error("Fehler:", error);
+                });
+            </code>
+        </div>
+        <p>➡️ .then() wird aufgerufen, wenn das Promise erfolgreich ist</p>
+        <p>➡️ .catch() fängt Fehler ab</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist eine final() Statement?</span>
+        <p>Die Methode .finally() wird <b>immer ausgeführt, egal ob das Promise erfüllt</b> (resolve) oder abgelehnt (reject) wurde.</p>
+        <p>Das ist nützlich, wenn du <b>aufräumen</b> oder etwas <b>abschließen willst</b> - z.B. einen Lade-Spinner ausblenden oder Logs schreiben.</p>
+        <p><strong>🔧Syntax & Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                fakeAPI()
+                    .then(data => {
+                        console.log("Erfolg:", data);
+                })
+                    .catch(err => {
+                        console.error("Fehler:", err);
+                })
+                    .finally(() => {
+                        console.log("Cleanup: Wird immer ausgeführt.");
+                });
+            </code>
+        </div>
+        <p><strong>Was macht finally()?</strong></p>
+        <ul>
+            <li>.then() - Promise erfolgreich (resolve)</li>
+            <li>.catch() - Promise fehlgeschlagen (reject)</li>
+            <li>.finally() - IMMER egal ob Erfolg oder Fehler</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist eine async Function?</span>
+        <p>Eine async Funktion ist <b>eine Funktion, die immer ein Promise zurückgibt</b> - selbst wenn du darin kein echtes Promise verwendest.</p>
+        <p>👉 Mit async kannst du await verwenden, um asynchrone Abläufe wie synchronen Code aussehen zu lassen.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                async function meineFunktion() {
+                    // hier drin kannst du 'await' benutzen
+                  }
+            </code>
+        </div>
+        <p><strong>Einfaches Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                async function hallo() {
+                    return "Hallo Welt!";
+                  }
+                  
+                  hallo().then(msg => console.log(msg));  // => "Hallo Welt!"
+            </code>
+        </div>
+        <p>➡️ Auch wenn du nur "Hallo Welt!" zurückgibst, wird das als Promise behandelt.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was kann man mit await machen?</span>
+        <p>Mit await kannst du den Code <b>anhalten</b>, bis ein Promise ein Ergebnis zurückgibt - <b>ohne</b> dass dein ganzer Code blockiert wird.</p>
+        <p>Du darfst await nur in async Funktionen benutzen.</p>
+        <p><strong>🔧Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                const result = await someAsyncFunction();
+            </code>
+        </div>
+        <p><strong> Was kannst du mit await machen?</strong></p>
+        <p>1. Auf ein Promis warten:</p>
+        <div class="code-box">
+            <code>
+                const data = await fetchData();  // fetchData gibt ein Promise zurück
+                console.log(data);  // wird erst ausgeführt, wenn das Promise resolved wurde
+            </code>
+        </div>
+        <p>2. Asynchrone Aufrufe sequentiell verarbeiten:</p>
+        <div class="code-box">
+            <code>
+                async function loadAll() {
+                    const user = await getUser();
+                    const profile = await getProfile(user.id);
+                    const posts = await getPosts(profile.id);
+                    console.log(posts);
+                  }
+            </code>
+        </div>
+        <p>➡️ Jeder Schritt wartet auf den vorherigen.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wann darf ich await schreiben? In welche Situation darf ich nicht?</span>
+        <p>Du darfst await <b>nur innerhalb einer</b> async <b>Funktion</b> schreiben.</p>
+        <p><strong>✅ Erlaubt:</strong></p>
+        <div class="code-box">
+            <code>
+                async function doStuff() {
+                    const data = await fetchData();  // ✔️ erlaubt
+                    console.log(data);
+                  }
+            </code>
+        </div>
+        <p><strong>❌ Nicht erlaubt:</strong></p>
+        <div class="code-box">
+            <code>
+                // ❌ SyntaxError: await is only valid in async functions
+                const data = await fetchData();  // ❌ NICHT erlaubt außerhalb von async
+            </code>
+        </div>
+    </li>
+</ul>
+</body>
+</html>
+     
+
+

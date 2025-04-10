@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Einkaufsliste</h1>
+        <form id="itemForm">
+            <input type="text" id="itemInput" placeholder="Artikel hinzufügen...">
+            <input type="text" id="quantityInput" placeholder="Menge">
+            <button type="button" onclick="createDiv()">Hinzufügen</button>
+        </form>
+        <div id="itemList"></div>
+    </div>
+</body>
+</html>

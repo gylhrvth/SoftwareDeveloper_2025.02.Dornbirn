@@ -1,0 +1,985 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Objects</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="29c33b68-0078-4b1d-ada4-63fa2b8f2844" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Objects</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@7. April 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Strings-57114583ca2944159fc5a6fc224a0258?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Strings</a>, <a href="https://www.notion.so/Array-1c3857bd249d80928c9eefa1a1a1ca97?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Array</a>, <a href="https://www.notion.so/Datentypen-1ba857bd249d8011a8d1ec2a95af9a31?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Datentypen</a>, <a href="https://www.notion.so/Funktionen-1ba857bd249d8022baaadf23b78a597d?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Funktionen</a>, <a href="https://www.notion.so/DOM-Document-Object-Model-1ce857bd249d8074a99ce4f4923e9892?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>DOM (Document Object Model</a>, <a href="https://www.notion.so/Classes-Objects-1cf857bd249d8066920df620521e61b3?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Classes Objects</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1ce857bd-249d-8142-95ab-c145b140c334" class="column-list"><div id="1ce857bd-249d-8143-bc1b-da0ba942f1c0" style="width:50%" class="column"><h1 id="85667ebd-1a34-4728-817c-3e9b6676285f" class=""><strong>Wichtige Konzepte zu Objekten in JavaScript</strong></h1><p id="f2326eef-6c9a-4cb8-ac52-689a206224e1" class="">Ein <strong>Objekt</strong> in JavaScript ist eine Sammlung von Schlüssel-Wert-Paaren. Es wird verwendet, um strukturierte Daten zu speichern und zu organisieren. Objekte können auch andere Objekte, Arrays und Funktionen enthalten, was sie sehr flexibel macht.</p><hr id="5aa47bb4-afba-4f44-9ed2-7b5d0dcfe071"/><h2 id="a13fc579-6a76-4ca5-9703-075bdf8089e9" class=""><strong>Grundlagen von Objekten</strong></h2><ol type="1" id="522e6392-3652-46ae-9409-ba56f5119b1d" class="numbered-list" start="1"><li><strong>Erstellen eines Objekts:</strong><ul id="1767a629-7603-4c72-8791-f6931ffa90f0" class="bulleted-list"><li style="list-style-type:disc">Objekte werden mit geschweiften Klammern <code>{}</code> definiert.</li></ul><ul id="6a6e7e43-897c-4983-9b30-337c36856311" class="bulleted-list"><li style="list-style-type:disc">Schlüssel (Properties) sind Strings oder Symbole, und Werte können beliebige Datentypen sein.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a661afe2-332c-40db-97b1-04b67a8099d2" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let person = {
+    firstName: &quot;John&quot;,
+    lastName: &quot;Doe&quot;,
+    age: 30,
+    isMarried: false,
+};
+</code></pre></li></ol><ol type="1" id="2b8b3cdf-3059-4894-a08f-095c663c8e5a" class="numbered-list" start="2"><li><strong>Zugriff auf Eigenschaften:</strong><ul id="ff486ba2-6418-4cf5-b3f5-ad17dd75a11f" class="bulleted-list"><li style="list-style-type:disc"><strong>Dot-Notation:</strong> <code>person.firstName</code></li></ul><ul id="79b7b789-d4ee-42ce-9aef-54bb3b908391" class="bulleted-list"><li style="list-style-type:disc"><strong>Bracket-Notation:</strong> <code>person[&quot;firstName&quot;]</code> (nützlich, wenn der Schlüssel dynamisch ist).</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="321bd010-2dac-44f6-a904-0fc082762093" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">console.log(person.firstName); // &quot;John&quot;
+console.log(person[&quot;age&quot;]); // 30
+</code></pre></li></ol><ol type="1" id="a90e6f2c-30fc-4efd-863f-35b15cc9d014" class="numbered-list" start="3"><li><strong>Hinzufügen/Ändern von Eigenschaften:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fb6e4205-642d-403c-a106-88cba162e901" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">person.job = &quot;Developer&quot;; // Hinzufügen
+person.age = 31; // Ändern
+</code></pre></li></ol><ol type="1" id="d2057dbe-96d7-4815-9fc0-137defc7c9b8" class="numbered-list" start="4"><li><strong>Löschen von Eigenschaften:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bee86fbe-2e38-40ef-bdf0-ea80a64aa874" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">delete person.isMarried;
+</code></pre></li></ol><hr id="77cfc9ea-b82b-42a6-a44c-7acec86348c5"/><h2 id="fdc4118c-4ae1-4d4b-b392-ade1dafc6262" class=""><strong>Objekte und Arrays</strong></h2><ol type="1" id="7d2ebde7-312d-4de9-b7e4-07932d72a679" class="numbered-list" start="1"><li><strong>Objekte in Arrays:</strong><ul id="cbf04b15-a88b-4851-85bd-2bd97d24e1dc" class="bulleted-list"><li style="list-style-type:disc">Arrays können Objekte enthalten, was nützlich ist, um Listen von Daten zu speichern.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18edd2cc-34f9-43ce-9d1e-515c1d7bd31e" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let cars = [
+    { brand: &quot;Opel&quot;, model: &quot;Astra&quot;, year: 2017 },
+    { brand: &quot;BMW&quot;, model: &quot;X5&quot;, year: 2020 },
+];
+console.log(cars[0].brand); // &quot;Opel&quot;
+</code></pre></li></ol><ol type="1" id="e44bded1-886b-49f3-ac64-2f4fdcca8f94" class="numbered-list" start="2"><li><strong>Arrays in Objekten:</strong><ul id="a36f0c7d-c834-4eb9-bf49-f47eb85882f9" class="bulleted-list"><li style="list-style-type:disc">Objekte können Arrays als Werte enthalten, um mehrere Werte für eine Eigenschaft zu speichern.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3663be71-dd32-466d-8918-6f1373f1b879" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let car = {
+    brand: &quot;Opel&quot;,
+    services: [&quot;oil change&quot;, &quot;brake pads replacement&quot;],
+};
+console.log(car.services[1]); // &quot;brake pads replacement&quot;
+</code></pre></li></ol><ol type="1" id="7fe2c393-8e76-4a48-a24f-056ec308c52d" class="numbered-list" start="3"><li><strong>Iterieren über Arrays in Objekten:</strong><ul id="ef605d6d-da4e-40c6-b7df-889124bcb6fd" class="bulleted-list"><li style="list-style-type:disc">Mit Schleifen wie <code>for</code> oder <code>forEach</code> kannst du über Arrays iterieren.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2eeadd2a-0b96-40ae-95e8-6c783408740c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">car.services.forEach(service =&gt; console.log(service));
+</code></pre></li></ol><hr id="793a177e-3ed5-4ecb-8dcd-01d56f1e9a9b"/><h3 id="a9441e30-cc78-48ba-94b2-7ceeb957ec22" class=""><strong>Wichtige Punkte zu beachten</strong></h3><ol type="1" id="a80e97dd-5bbd-4904-909e-431c0e0b91ec" class="numbered-list" start="1"><li><strong>Referenztypen:</strong><ul id="b9928539-00d3-434a-aa33-02b5c977cd57" class="bulleted-list"><li style="list-style-type:disc">Objekte und Arrays sind Referenztypen. Änderungen an einer Referenz wirken sich auf das Original aus.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a49ba503-8368-4921-aa1f-0d413ada3491" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let obj1 = { name: &quot;John&quot; };
+let obj2 = obj1;
+obj2.name = &quot;Jane&quot;;
+console.log(obj1.name); // &quot;Jane&quot;
+</code></pre></li></ol><ol type="1" id="38243635-f986-4542-9a46-aba44d4093aa" class="numbered-list" start="2"><li><strong>Deep Copy vs. Shallow Copy:</strong><ul id="41453e1d-6531-41c4-8c40-23a443049aac" class="bulleted-list"><li style="list-style-type:disc">Eine flache Kopie (<code>shallow copy</code>) kopiert nur die oberste Ebene eines Objekts.</li></ul><ul id="c6644185-818a-4532-a040-e6844cbfd76d" class="bulleted-list"><li style="list-style-type:disc">Eine tiefe Kopie (<code>deep copy</code>) kopiert auch verschachtelte Objekte.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0044e9d-3338-41a8-ae66-bef83977a642" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let shallowCopy = { ...obj1 }; // Shallow Copy
+let deepCopy = JSON.parse(JSON.stringify(obj1)); // Deep Copy
+</code></pre></li></ol><ol type="1" id="6f97f909-8741-4d18-85ec-b1d21817ae92" class="numbered-list" start="3"><li><strong>Iterieren über Objekte:</strong><ul id="c6286f65-5d1a-4765-a5ce-6bbe49195ada" class="bulleted-list"><li style="list-style-type:disc">Verwende <code>for...in</code>, um über die Schlüssel eines Objekts zu iterieren.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ee515ba-cf7d-460b-aff4-5b9a0e11394c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let key in person) {
+    console.log(key, person[key]);
+}
+</code></pre></li></ol><ol type="1" id="32ad2379-1de7-4e6b-8b5e-aae4c5b81c6e" class="numbered-list" start="4"><li><code><strong>this</strong></code><strong>Schlüsselwort:</strong><ul id="8c568f71-38ec-45f8-b8d2-906cafbb0475" class="bulleted-list"><li style="list-style-type:disc">In Objekten verweist <code>this</code> auf das aktuelle Objekt.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6f9195f9-bc4c-4dcf-85d0-eed15283469f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let car = {
+    brand: &quot;Opel&quot;,
+    getBrand: function () {
+        return this.brand;
+    },
+};
+console.log(car.getBrand()); // &quot;Opel&quot;
+</code></pre></li></ol><hr id="1228e44f-cd77-4427-941c-b8cc8e002a0f"/><h3 id="470ab6ee-a5f6-47a6-b39e-c01250f028a7" class=""><strong>Beispiele</strong></h3><h3 id="f457ed11-7613-4a6b-bdde-015a0013763e" class=""><strong>Objekte mit verschachtelten Arrays und Objekten</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5f28ba11-0543-45b4-b426-48c3ddfcfe87" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let myCar = {
+    brand: &quot;VW&quot;,
+    model: &quot;Golf&quot;,
+    owner: {
+        name: &quot;Leonie&quot;,
+        address: {
+            city: &quot;Dornbirn&quot;,
+            country: &quot;Austria&quot;,
+        },
+    },
+    services: [
+        { date: &quot;2018-05-15&quot;, type: &quot;oil change&quot;, cost: 150 },
+        { date: &quot;2019-05-15&quot;, type: &quot;brake pads replacement&quot;, cost: 300 },
+    ],
+};
+
+// Zugriff auf verschachtelte Eigenschaften
+console.log(myCar.owner.address.city); // &quot;Dornbirn&quot;
+
+// Iteration über das Service-Array
+myCar.services.forEach(service =&gt; {
+    console.log(`${service.type} am ${service.date} für ${service.cost}€`);
+});
+</code></pre><h3 id="516a71bf-1538-4856-8ee5-70d9dfc5f96b" class=""><strong>Funktion zur Ausgabe eines Objekts</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="151b4035-a25e-4db8-ba89-657e11f445b7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function printObject(obj, prefix = &quot;&quot;) {
+    for (let key in obj) {
+        if (typeof obj[key] === &quot;object&quot; &amp;&amp; obj[key] !== null) {
+            console.log(`${prefix}${key}:`);
+            printObject(obj[key], prefix + &quot;  &quot;);
+        } else {
+            console.log(`${prefix}${key}: ${obj[key]}`);
+        }
+    }
+}
+
+printObject(myCar);
+</code></pre><hr id="5e212acc-3955-4863-a824-8e0f1c6f2d52"/><h3 id="024ce1f2-33dc-49a4-9163-191b135c24c2" class=""><strong>Zusammenfassung</strong></h3><ul id="1f104880-8d7e-4ea7-9ff2-befa438b3d78" class="bulleted-list"><li style="list-style-type:disc"><strong>Objekte</strong> sind flexibel und können beliebige Datenstrukturen enthalten.</li></ul><ul id="93fd1ee5-59be-4844-b993-8d38dbcccfe2" class="bulleted-list"><li style="list-style-type:disc"><strong>Arrays und Objekte</strong> können ineinander verschachtelt werden, um komplexe Datenstrukturen zu modellieren.</li></ul><ul id="e2d9faca-70a5-4bf0-82e9-9584716ede42" class="bulleted-list"><li style="list-style-type:disc"><strong>Referenzen</strong> und <strong>Kopien</strong> sind wichtig, um ungewollte Änderungen zu vermeiden.</li></ul><ul id="58bfa0b1-8470-4e83-a64e-3654b3eab36c" class="bulleted-list"><li style="list-style-type:disc">Verwende Schleifen (<code>for...in</code>, <code>forEach</code>) und Rekursion, um über verschachtelte Strukturen zu iterieren.</li></ul><hr id="434073ab-c99c-4baa-8cd5-5d3f7cfbd8d0"/><h3 id="233741ff-6b75-491e-a360-93f1311af0b1" class="">Beispiel:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9def080e-2407-4cb4-947d-885587eda1a6" class="code"><code class="language-JavaScript">// Defining the object
+const person = {
+    firstName: &quot;Leonie&quot;,
+    lastName: &quot;Schmidt&quot;,
+    age: 25,
+    greet: function() {
+        console.log(&quot;Hello, my name is &quot; + this.firstName + &quot; &quot; + this.lastName);
+    }
+};
+
+// Accessing properties
+console.log(person.firstName); // Output: Leonie
+console.log(person[&quot;lastName&quot;]); // Output: Schmidt
+
+// Calling the method
+person.greet(); // Output: Hello, my name is Leonie Schmidt
+</code></pre><p id="29c06f86-b7aa-4607-b072-e09d1129c3f5" class="">Die Methode <code>greet</code> ist eine Funktion, die als Eigenschaft des Objekts <code>person</code> definiert wurde. Sie wird verwendet, um eine Begrüßung auszugeben, die den Vor- und Nachnamen der Person enthält. Hier ist eine detaillierte Erklärung:</p><hr id="8d2af282-6615-435f-b7f1-c26cf298501f"/><h3 id="b9a15102-191a-4002-8820-279f499fac1f" class=""><strong>1. Definition der Methode</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="160b6340-c857-4e67-969a-5354c152c235" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">greet: function() {
+    console.log(&quot;Hello, my name is &quot; + this.firstName + &quot; &quot; + this.lastName);
+}
+</code></pre><ul id="a1e224e4-04a9-4b23-ab7d-66357d4e4157" class="bulleted-list"><li style="list-style-type:disc"><code><strong>greet</strong></code>: Der Name der Methode (eine Eigenschaft des Objekts <code>person</code>).</li></ul><ul id="eb34d527-0ee2-4634-91f7-9dc2eb050ef5" class="bulleted-list"><li style="list-style-type:disc"><code><strong>function()</strong></code>: Die Methode ist eine normale JavaScript-Funktion, die innerhalb des Objekts definiert wurde.</li></ul><ul id="4f7b3367-9707-49f1-9926-e05c15dfec03" class="bulleted-list"><li style="list-style-type:disc"><code><strong>console.log(...)</strong></code>: Gibt eine Begrüßung in der Konsole aus, die den Vor- und Nachnamen der Person enthält.</li></ul><hr id="67b549d8-473e-487b-ae52-746a8df07897"/><h3 id="00f68274-0005-4fe6-901b-f4dc42c328dd" class=""><strong>2. Verwendung von </strong><code><strong>this</strong></code></h3><ul id="4fa133f5-363f-45fa-a827-b3bc92c15691" class="bulleted-list"><li style="list-style-type:disc"><code><strong>this</strong></code>: In einer Methode verweist <code>this</code> auf das Objekt, in dem die Methode aufgerufen wurde. In diesem Fall ist <code>this</code> das Objekt <code>person</code>.</li></ul><ul id="8c0f6f07-303e-48c0-9a53-e5f0b991a455" class="bulleted-list"><li style="list-style-type:disc"><code><strong>this.firstName</strong></code>: Greift auf die Eigenschaft <code>firstName</code> des Objekts <code>person</code> zu.</li></ul><ul id="c141d1f8-ce7e-424a-845b-eaa3390f11b7" class="bulleted-list"><li style="list-style-type:disc"><code><strong>this.lastName</strong></code>: Greift auf die Eigenschaft <code>lastName</code> des Objekts <code>person</code> zu.</li></ul><hr id="8ec1cf2c-ff8e-4a41-8032-a95576b5373b"/><h3 id="5bcdffb6-19cb-4257-a114-4498ee74a59f" class=""><strong>3. Funktionsweise</strong></h3><p id="e923a194-4d8c-4ca4-bd71-23f6b0063b0a" class="">Wenn die Methode <code>greet</code> aufgerufen wird, wird der Wert von <code>this</code> auf das Objekt <code>person</code> gesetzt. Dadurch kann die Methode auf die Eigenschaften <code>firstName</code> und <code>lastName</code> des Objekts zugreifen.</p><p id="e0af8825-67dd-41a3-9566-456b778367e5" class="">Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a137575e-497a-4760-b87f-42c24145ad4d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">person.greet(); // Ruft die Methode auf
+</code></pre><p id="596a3fbc-93b7-4b60-970d-ff0dd8cbc5d3" class=""><strong>Ablauf:</strong></p><ol type="1" id="356d861b-ddcb-4a52-b870-93a2b1aff00f" class="numbered-list" start="1"><li><code>this</code> verweist auf <code>person</code>.</li></ol><ol type="1" id="f2f668c7-31ca-464d-b054-60c2faf753d3" class="numbered-list" start="2"><li><code>this.firstName</code> wird zu <code>&quot;Leonie&quot;</code>.</li></ol><ol type="1" id="4f46c6e9-5af0-4b0f-a702-2c62244fface" class="numbered-list" start="3"><li><code>this.lastName</code> wird zu <code>&quot;Schmidt&quot;</code>.</li></ol><ol type="1" id="ba79b611-1d02-4173-9758-57e0afdc59d2" class="numbered-list" start="4"><li>Die Ausgabe ist:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3e417fa5-6564-4719-b542-00ac75f55448" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Hello, my name is Leonie Schmidt
+</code></pre></li></ol><hr id="e1472900-269d-4ba9-945b-47eb7e18b533"/><h3 id="8f22a3da-6c21-4758-875a-4907fd5c7477" class=""><strong>4. Warum ist </strong><code><strong>this</strong></code><strong> wichtig?</strong></h3><ul id="aaa8ab52-9796-4f4f-97c5-0e06cec49e66" class="bulleted-list"><li style="list-style-type:disc"><code>this</code> ermöglicht es, innerhalb einer Methode auf die Eigenschaften des Objekts zuzugreifen, ohne den Objektnamen explizit anzugeben.</li></ul><ul id="724558f2-78a6-4d16-9a15-98a9b8ef4160" class="bulleted-list"><li style="list-style-type:disc">Wenn das Objekt umbenannt wird oder die Methode in einem anderen Kontext verwendet wird, bleibt der Zugriff auf die Eigenschaften dynamisch.</li></ul><hr id="956d4ef7-2ebd-4a09-ab0f-e4dd6f1b41cf"/><h3 id="82beef47-17fe-44f0-80c2-1da8ba3f972c" class=""><strong>5. Beispiel mit einem anderen Objekt</strong></h3><p id="cf8ee50d-74a2-483c-ba97-ef7fe312d29f" class="">Wenn du ein anderes Objekt mit einer ähnlichen Methode hast, funktioniert <code>this</code> entsprechend für dieses Objekt:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="683166f8-c5d8-4743-a4aa-64880c2e7745" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const anotherPerson = {
+    firstName: &quot;Max&quot;,
+    lastName: &quot;Mustermann&quot;,
+    greet: function() {
+        console.log(&quot;Hello, my name is &quot; + this.firstName + &quot; &quot; + this.lastName);
+    }
+};
+
+anotherPerson.greet(); // Output: Hello, my name is Max Mustermann
+</code></pre><hr id="bc9b4b94-572c-4a70-9a1b-511de0cb1686"/><h3 id="23cc1f50-18bf-4940-b910-7fd973ecc585" class=""><strong>6. Zusammenfassung</strong></h3><ul id="10496b74-14c2-4d23-93fb-02930a15f81b" class="bulleted-list"><li style="list-style-type:disc"><code><strong>greet</strong></code> ist eine Methode, die innerhalb des Objekts <code>person</code> definiert wurde.</li></ul><ul id="01ada004-31be-4da5-b36d-1860d4969a0e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>this</strong></code> verweist auf das aktuelle Objekt (<code>person</code>), wodurch die Methode auf dessen Eigenschaften zugreifen kann.</li></ul><ul id="d5ea47c6-39af-4e2f-9e1b-a8a91cadd709" class="bulleted-list"><li style="list-style-type:disc">Die Methode gibt eine Begrüßung aus, die den Vor- und Nachnamen des Objekts enthält.</li></ul><hr id="cd77dfe6-eea6-4350-8bc2-6ed1965f850e"/><h3 id="72e2058e-9868-4af0-ac13-409b6334c878" class=""><code>Object.keys()</code>, <code>Object.values()</code> und <code>Object.entries()</code></h3><p id="6c30a562-7f47-4ccc-8cd8-a065cbd66e8f" class="">Die Methoden <code>Object.keys()</code>, <code>Object.values()</code> und <code>Object.entries()</code> sind JavaScript-Funktionen, die verwendet werden, um die Eigenschaften eines Objekts zu durchlaufen. Sie unterscheiden sich darin, welche Teile des Objekts sie zurückgeben.</p><hr id="d49b6a83-2d87-4a71-8097-6e1f67a158ed"/><h3 id="e2e2af2c-d0cb-47ec-b2ae-e45bb3ac83ab" class=""><strong>1. </strong><code><strong>Object.keys()</strong></code></h3><ul id="0227f878-13a9-4885-9557-61adfc49a5ca" class="bulleted-list"><li style="list-style-type:disc">Gibt ein <strong>Array</strong> mit den <strong>Schlüsseln (Keys)</strong> eines Objekts zurück.</li></ul><ul id="ea6807ef-2d7c-4f8a-8bc5-bac4d46ca01f" class="bulleted-list"><li style="list-style-type:disc">Die Schlüssel sind die Namen der Eigenschaften des Objekts.</li></ul><h3 id="100ca402-c618-4d49-bf47-a75cc5c8f58e" class=""><strong>Beispiel:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f110933f-caa4-4d33-8d43-6ce2fb1d3285" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let game = {
+    title: &quot;The Legend of Zelda&quot;,
+    genre: &quot;Action-adventure&quot;,
+    platform: &quot;Nintendo Switch&quot;,
+};
+
+console.log(Object.keys(game));
+</code></pre><p id="3a93b994-c4ac-47de-bbfa-65955e443c8c" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bb689682-6781-4b1d-af15-42412892524b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">[&quot;title&quot;, &quot;genre&quot;, &quot;platform&quot;]
+</code></pre><h3 id="f778faa3-0fc9-4bd5-b95f-9b0e409d4122" class=""><strong>Wann verwenden?</strong></h3><ul id="f570e7a7-0b12-4c46-8ef5-aa74951a0791" class="bulleted-list"><li style="list-style-type:disc">Wenn du nur die <strong>Schlüssel</strong> eines Objekts benötigst.</li></ul><ul id="9d6cb959-fe2e-4bf7-b733-bf8c5bc25717" class="bulleted-list"><li style="list-style-type:disc">Zum Beispiel, um die Namen der Eigenschaften zu durchlaufen.</li></ul><hr id="079143d5-cbfa-4071-9daa-92d5947cdc5b"/><h3 id="ad535e8c-bf36-4717-9c20-a5c159c46a85" class=""><strong>2. </strong><code><strong>Object.values()</strong></code></h3><ul id="542f4187-0994-4ba4-8baf-8b80c8dda10a" class="bulleted-list"><li style="list-style-type:disc">Gibt ein <strong>Array</strong> mit den <strong>Werten</strong> der Eigenschaften eines Objekts zurück.</li></ul><ul id="ffcf8688-29f4-4307-8409-6f732b093b42" class="bulleted-list"><li style="list-style-type:disc">Die Werte sind die Inhalte der Eigenschaften.</li></ul><h3 id="6580e3ff-6912-4068-a093-3354e958bdea" class=""><strong>Beispiel:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3c3f4942-51ee-42df-9f60-7ad233d653fa" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let game = {
+    title: &quot;The Legend of Zelda&quot;,
+    genre: &quot;Action-adventure&quot;,
+    platform: &quot;Nintendo Switch&quot;,
+};
+
+console.log(Object.values(game));
+</code></pre><p id="4d9a8b50-0d8f-48c7-90ef-929e09128469" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="61918ab9-d2cb-47da-9f9e-799fb39b139c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">[&quot;The Legend of Zelda&quot;, &quot;Action-adventure&quot;, &quot;Nintendo Switch&quot;]
+</code></pre><h3 id="9b7e9344-21c1-4728-8d0a-72f6d1b8fb71" class=""><strong>Wann verwenden?</strong></h3><ul id="0f042f2f-2f5a-4e10-96b4-255790305ad6" class="bulleted-list"><li style="list-style-type:disc">Wenn du nur die <strong>Werte</strong> eines Objekts benötigst.</li></ul><ul id="b06c786f-8f2f-4a76-ae87-655cb9f6b9d8" class="bulleted-list"><li style="list-style-type:disc">Zum Beispiel, um die Inhalte der Eigenschaften zu durchlaufen.</li></ul><hr id="7c83361d-2f9b-4a7b-8149-d6ceb9698724"/><h3 id="42582350-221e-49e5-8941-f436428bb0e0" class=""><strong>3. </strong><code><strong>Object.entries()</strong></code></h3><ul id="f38304ac-0373-47fb-8c58-15a1a51d2e52" class="bulleted-list"><li style="list-style-type:disc">Gibt ein <strong>Array von Arrays</strong> zurück, wobei jedes innere Array ein <strong>Schlüssel-Wert-Paar</strong> des Objekts enthält.</li></ul><ul id="a8742434-ffcd-41ea-9cfc-67dcf640ef53" class="bulleted-list"><li style="list-style-type:disc">Jedes Paar besteht aus <code>[key, value]</code>.</li></ul><h3 id="5de0a7cf-676b-4c2a-904e-c93318e3dbe9" class=""><strong>Beispiel:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ffc93b0d-8876-4054-8147-8dc97435448f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let game = {
+    title: &quot;The Legend of Zelda&quot;,
+    genre: &quot;Action-adventure&quot;,
+    platform: &quot;Nintendo Switch&quot;,
+};
+
+console.log(Object.entries(game));
+</code></pre><p id="8f31851f-3819-4b6b-a0cf-e7f3762e7631" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef0b6e12-aa8e-4ac4-8285-c79c5f390129" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">[
+    [&quot;title&quot;, &quot;The Legend of Zelda&quot;],
+    [&quot;genre&quot;, &quot;Action-adventure&quot;],
+    [&quot;platform&quot;, &quot;Nintendo Switch&quot;]
+]
+</code></pre><h3 id="471d338e-5435-4214-ab5e-08e74483d19c" class=""><strong>Wann verwenden?</strong></h3><ul id="5aac06f5-d09a-4b5b-8d77-9b4df3a4509d" class="bulleted-list"><li style="list-style-type:disc">Wenn du sowohl die <strong>Schlüssel</strong> als auch die <strong>Werte</strong> eines Objekts benötigst.</li></ul><ul id="a899e4f2-c11b-4aa8-b0ac-c396beca9098" class="bulleted-list"><li style="list-style-type:disc">Zum Beispiel, um Schlüssel-Wert-Paare zu durchlaufen.</li></ul><hr id="b5c00742-f71f-4325-af85-258732d6e24d"/><h3 id="f95dbcd0-92aa-4db3-99da-7319db1eee15" class=""><strong>Vergleich der Methoden</strong></h3><table id="e634a7be-da83-4984-be5c-06c6fc3e8595" class="simple-table"><tbody><tr id="76966e44-713f-4c17-aaf2-971cc09fef76"><td id="PQ&lt;&gt;" class=""><strong>Methode</strong></td><td id="e[@U" class=""><strong>Rückgabe</strong></td><td id="UIF;" class=""><strong>Beispiel</strong></td></tr><tr id="493c916b-957b-4a7e-8f61-335e27871d87"><td id="PQ&lt;&gt;" class=""><code>Object.keys()</code></td><td id="e[@U" class="">Array mit den Schlüsseln des Objekts</td><td id="UIF;" class=""><code>[&quot;title&quot;, &quot;genre&quot;, &quot;platform&quot;]</code></td></tr><tr id="9c332ca2-aaac-423f-9308-e54907b66f4f"><td id="PQ&lt;&gt;" class=""><code>Object.values()</code></td><td id="e[@U" class="">Array mit den Werten des Objekts</td><td id="UIF;" class=""><code>[&quot;The Legend of Zelda&quot;, &quot;Action-adventure&quot;, &quot;Nintendo Switch&quot;]</code></td></tr><tr id="dd87bd8c-3ebd-4ef5-9ba7-87f29ba576af"><td id="PQ&lt;&gt;" class=""><code>Object.entries()</code></td><td id="e[@U" class="">Array von Arrays, wobei jedes Array ein Schlüssel-Wert-Paar enthält</td><td id="UIF;" class=""><code>[[&quot;title&quot;, &quot;The Legend of Zelda&quot;], [&quot;genre&quot;, &quot;Action-adventure&quot;], [&quot;platform&quot;, &quot;Nintendo&quot;]]</code></td></tr></tbody></table><hr id="b371fb17-c712-4f68-9b10-9b171c64353b"/><h3 id="df7de8b4-6ed1-441c-bc9d-c5ea88fff49e" class=""><strong>Beispiele für die Verwendung</strong></h3><h3 id="017d8b1d-f271-419b-b3c4-a3328725f824" class=""><strong>1. Iteration mit </strong><code><strong>Object.keys()</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd10cea4-3aeb-490f-a8bd-57fc7c1b30fa" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Object.keys(game).forEach(key =&gt; {
+    console.log(key); // Gibt die Schlüssel aus
+});
+</code></pre><p id="483937e8-a44c-4e9c-86fd-58ea0d86eab5" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b078888-43f7-40db-9838-91d868503a20" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">title
+genre
+platform
+</code></pre><h3 id="6611a47d-df1f-45b9-a8b4-9c9834eecb95" class=""><strong>2. Iteration mit </strong><code><strong>Object.values()</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6efdf5e2-5427-43d2-99e9-cc2cb69cfd53" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Object.values(game).forEach(value =&gt; {
+    console.log(value); // Gibt die Werte aus
+});
+</code></pre><p id="16042f99-533c-4121-be8d-ad6c18d2a841" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9103288b-0182-41bc-aa0d-2cf292bf3c14" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">The Legend of Zelda
+Action-adventure
+Nintendo Switch
+</code></pre><h3 id="542e1b27-bbdd-4eb4-90c2-e1c95452c838" class=""><strong>3. Iteration mit </strong><code><strong>Object.entries()</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="039aa49a-1637-4cb9-9781-e4664db0621b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Object.entries(game).forEach(([key, value]) =&gt; {
+    console.log(`${key}: ${value}`); // Gibt Schlüssel und Werte aus
+});
+</code></pre><p id="a80fb083-92ab-468f-8086-8831e0d030f0" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c1215c4a-baf7-4e0a-bf14-ca0a47354f28" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">title: The Legend of Zelda
+genre: Action-adventure
+platform: Nintendo Switch
+</code></pre><hr id="1c2f90f3-47e9-4cd2-a0da-611c21b9cadb"/><h3 id="34982ad3-d2b6-4862-85cc-93b2eedd0641" class=""><strong>Zusammenfassung</strong></h3><ul id="ffc115ba-1d3b-4b00-bd3d-04bb1d90c603" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Object.keys()</strong></code>: Gibt die <strong>Schlüssel</strong> eines Objekts zurück.</li></ul><ul id="833a8e75-ff7c-4920-9ff3-6a6aa39f1b63" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Object.values()</strong></code>: Gibt die <strong>Werte</strong> eines Objekts zurück.</li></ul><ul id="2e60b9ae-a046-41ef-afbd-1b4040c1e16d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>Object.entries()</strong></code>: Gibt <strong>Schlüssel-Wert-Paare</strong> als Arrays zurück.</li></ul><p id="4b7f2bc1-1578-432f-8af0-b6e404246c73" class="">Verwende:</p><ul id="b0036896-2b76-4715-b98f-a007b6561e97" class="bulleted-list"><li style="list-style-type:disc"><code>Object.keys()</code> für die Schlüssel.</li></ul><ul id="e900f248-d9bc-4ba5-b2cf-0c2a28aaf5dd" class="bulleted-list"><li style="list-style-type:disc"><code>Object.values()</code> für die Werte.</li></ul><ul id="e7829cf5-6c15-4d81-9aef-c43fd7d76e1c" class="bulleted-list"><li style="list-style-type:disc"><code>Object.entries()</code> für beides zusammen.</li></ul></div><div id="1ce857bd-249d-81d2-b1c4-f5fcbdd865c1" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1ce857bd-249d-8160-8f4e-c95e1e266c77"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1ce857bd-249d-81a1-af5d-d896d93afe54"/><p id="1ce857bd-249d-8108-ae60-ddd3fdc54bd6" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1ce857bd-249d-818f-a319-f872b45f21c5"/><ul id="1ce857bd-249d-817f-ae69-da45811edaf3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ce857bd-249d-81ef-b440-e5d91cc22951" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ce857bd-249d-81b7-ba58-c1c8124b46a7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1ce857bd-249d-813c-bc71-d0e85d5ad700" class="image"><a href="Objects%2029c33b6800784b1dada463fa2b8f2844/33.png"><img style="width:425px" src="Objects%2029c33b6800784b1dada463fa2b8f2844/33.png"/></a></figure><h2 id="90fc673a-494c-452d-8190-584110780639" class=""><strong>Das </strong><code><strong>for...in</strong></code><strong>Schleifenprinzip in JavaScript</strong></h2><p id="623707d8-ae20-4c80-b1c8-d307092e50d3" class="">Die <code>for...in</code>-Schleife wird in JavaScript verwendet, um über die <strong>Eigenschaften</strong> eines Objekts zu iterieren. Sie gibt die <strong>Schlüssel</strong> (Property-Namen) eines Objekts zurück.</p><hr id="e53d1a32-bab9-4312-a517-b4b493097409"/><h3 id="2f40d98c-2d50-4203-a325-6a151a8c1566" class=""><strong>Syntax</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e8b037e-63c3-4358-aba0-0afdbf16f443" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let key in object) {
+    // Codeblock, der für jede Eigenschaft ausgeführt wird
+}
+</code></pre><ul id="fbe4dc4d-7298-453d-b004-77c750028dfd" class="bulleted-list"><li style="list-style-type:disc"><code><strong>key</strong></code>: Eine Variable, die den Namen der aktuellen Eigenschaft (Schlüssel) enthält.</li></ul><ul id="68e08420-0486-4b5b-b51e-14895f55a326" class="bulleted-list"><li style="list-style-type:disc"><code><strong>object</strong></code>: Das Objekt, dessen Eigenschaften durchlaufen werden.</li></ul><hr id="efe905c4-fcdc-4acf-874b-aba7f1377c04"/><h3 id="760f93d0-47b5-4a52-9f57-bcf967bec0ed" class=""><strong>Beispiel: Iteration über ein Objekt</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8463fca8-5435-459b-936a-6340eddd3278" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let person = {
+    firstName: &quot;John&quot;,
+    lastName: &quot;Doe&quot;,
+    age: 30,
+};
+
+for (let key in person) {
+    console.log(key + &quot;: &quot; + person[key]);
+}
+</code></pre><p id="94e8e668-e2f2-4836-ad18-211fd4059f1c" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6fb8c54-ee4c-418f-8f61-52c72a7a53f1" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">firstName: John
+lastName: Doe
+age: 30
+</code></pre><hr id="fc195479-beba-4d6a-85a7-54401342b011"/><h2 id="5d01da28-27c6-491e-9ca5-0c173685ee99" class=""><strong>Wichtige Punkte zu </strong><code><strong>for...in</strong></code></h2><ol type="1" id="242f24ae-88d4-472c-b883-e00dee6633bc" class="numbered-list" start="1"><li><strong>Iteriert nur über enumerable Eigenschaften:</strong><ul id="ad096fda-a5a2-4008-b69f-de9233d2e5f4" class="bulleted-list"><li style="list-style-type:disc">Die Schleife durchläuft nur Eigenschaften, die als <code>enumerable</code> markiert sind (standardmäßig sind alle Eigenschaften von Objekten <code>enumerable</code>).</li></ul></li></ol><ol type="1" id="dc74a53c-11c0-400d-91b1-08ac190082aa" class="numbered-list" start="2"><li><strong>Schlüssel sind Strings:</strong><ul id="dcb15bdc-044c-4ee0-822f-5372a4415570" class="bulleted-list"><li style="list-style-type:disc">Die zurückgegebenen Schlüssel sind immer Strings, auch wenn sie als Zahlen definiert wurden.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a831b19-849f-4144-a8b9-a3e6d92f8135" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let obj = { 1: &quot;one&quot;, 2: &quot;two&quot; };
+for (let key in obj) {
+    console.log(typeof key); // &quot;string&quot;
+}
+</code></pre></li></ol><ol type="1" id="f84a37b7-dd39-4c5f-bdf3-24f2afa46f3e" class="numbered-list" start="3"><li><strong>Vererbung:</strong><ul id="f4f2410f-8508-4cfc-a54a-82c95c8254dd" class="bulleted-list"><li style="list-style-type:disc">Die Schleife iteriert auch über Eigenschaften, die von der Prototypkette geerbt wurden. Um dies zu vermeiden, kannst du die Methode <code>hasOwnProperty()</code> verwenden.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd59e9a5-df61-4aea-9dc7-742bb05b9136" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+        console.log(key);
+    }
+}
+</code></pre></li></ol><ol type="1" id="790c1410-25f8-418c-9ffa-f9bc0b989781" class="numbered-list" start="4"><li><strong>Nicht für Arrays empfohlen:</strong><ul id="4422cc4e-97c8-4c68-9460-197d191871fb" class="bulleted-list"><li style="list-style-type:disc">Obwohl <code>for...in</code> auch über Arrays iterieren kann, ist es nicht ideal, da es auch über nicht-numerische Eigenschaften iteriert (z. B. Methoden oder Prototypen). Verwende stattdessen <code>for</code> oder <code>forEach</code> für Arrays.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7a430d5b-9991-46e0-8566-54878bf423c9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let arr = [10, 20, 30];
+for (let index in arr) {
+    console.log(index); // Gibt die Indizes als Strings zurück: &quot;0&quot;, &quot;1&quot;, &quot;2&quot;
+    console.log(arr[index]); // Gibt die Werte zurück: 10, 20, 30
+}
+</code></pre></li></ol><hr id="7f9cd07a-a368-45d9-8cda-6b12215d01b4"/><h3 id="df56ba68-910c-4886-b595-4764da588e87" class=""><strong>Anwendung in deinem Code</strong></h3><p id="3af4c13f-d551-4483-8052-37d019baa54b" class="">In deinem Code wird <code>for...in</code> verwendet, um die Eigenschaften des Objekts <code>myCar</code> zu durchlaufen:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e18594c2-ae65-4c9a-9daf-65446cec8015" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function printObject(obj, prefix = &#x27;&#x27;) {
+    for (let key in obj) {
+        if (typeof obj[key] === &#x27;object&#x27; &amp;&amp; obj[key] !== null) {
+            if (obj[key].constructor.name === &#x27;Date&#x27;) {
+                printLn(prefix + &#x27;  &#x27; + obj[key].toLocaleDateString(&#x27;de-AT&#x27;, { day: &#x27;2-digit&#x27;, month: &#x27;long&#x27;, year: &#x27;numeric&#x27; }) + &quot; (&quot; + obj[key].constructor.name + &quot;)&quot;);
+            } else {
+                printLn(prefix + key + &quot; (&quot; + obj[key].constructor.name + &quot;)&quot; + &quot;: &quot;);
+                printObject(obj[key], prefix + &#x27;  &#x27;);
+            }
+        } else {
+            printLn(prefix + key + &quot;: &quot; + obj[key] + &quot; (&quot; + typeof obj[key] + &quot;)&quot;);
+        }
+    }
+}
+</code></pre><h3 id="fdcba27c-cf50-453b-9e6f-62065df4cdf4" class=""><strong>Wie funktioniert das?</strong></h3><ol type="1" id="8945c872-3566-4f45-94aa-02c32d7644bc" class="numbered-list" start="1"><li><code><strong>for...in</strong></code><strong> iteriert über die Schlüssel von </strong><code><strong>obj</strong></code><strong>:</strong><ul id="e4847d4b-94eb-4a06-bbdf-3c390b4e0209" class="bulleted-list"><li style="list-style-type:disc">Für jedes Schlüssel-Wert-Paar im Objekt wird der Schlüssel in der Variablen <code>key</code> gespeichert.</li></ul></li></ol><ol type="1" id="09017585-ffe0-4aff-bce6-d857a94f4f3f" class="numbered-list" start="2"><li><strong>Prüfung des Werts:</strong><ul id="372be981-e849-4e5d-8b9c-71a5f685ba56" class="bulleted-list"><li style="list-style-type:disc">Wenn der Wert ein Objekt ist, wird rekursiv die Funktion <code>printObject</code> aufgerufen.</li></ul><ul id="0e441f7a-2cb4-45f7-a648-991651186e65" class="bulleted-list"><li style="list-style-type:disc">Wenn der Wert ein Datum ist, wird es formatiert und ausgegeben.</li></ul><ul id="7d398f31-2a22-4aa8-a737-8422c40f54b6" class="bulleted-list"><li style="list-style-type:disc">Andernfalls wird der Schlüssel und der Wert direkt ausgegeben.</li></ul></li></ol><hr id="71c757e7-18a3-4be7-9b05-e88271f1a6a2"/><h3 id="48ea1d07-1e5b-4f32-a31f-433b2f79fed1" class=""><strong>Zusammenfassung</strong></h3><ul id="6e9714b0-d087-4c9b-822c-de64826e0eb3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>for...in</strong></code> ist ideal, um die Schlüssel eines Objekts zu durchlaufen.</li></ul><ul id="ca4d4ea4-3e2c-4c69-a92b-e4a814c8cf65" class="bulleted-list"><li style="list-style-type:disc">Es iteriert auch über geerbte Eigenschaften, daher sollte <code>hasOwnProperty()</code> verwendet werden, wenn nur eigene Eigenschaften berücksichtigt werden sollen.</li></ul><ul id="995e9d1b-831a-4033-8f45-922a4f1a8f81" class="bulleted-list"><li style="list-style-type:disc">Für Arrays ist <code>for...in</code> nicht optimal; verwende stattdessen <code>for</code> oder <code>forEach</code>.</li></ul><hr id="c4531644-6703-4990-9d35-07476305e18e"/><h3 id="4340f1df-0b17-44ef-9997-8931ab6c5210" class="">Wird in einer for in schleife das key selber definiert? Kann es z.b. x heißen? Welchen Wert trägt dann die variable?</h3><p id="b9ca2351-fbf2-4290-98c9-f25f0b702ffa" class="">Ja, in einer <code>for...in</code>-Schleife kannst du die Variable, die die Schlüssel (Keys) des Objekts speichert, selbst benennen. Sie kann z. B. <code>x</code>, <code>key</code>, <code>property</code> oder einen beliebigen anderen gültigen Variablennamen haben.</p><hr id="7d3bbe31-dc0a-49f7-877d-e80893806ad7"/><h3 id="265b8435-0144-4b8e-87e4-7b5f1c78d207" class=""><strong>Beispiel: Variable </strong><code><strong>x</strong></code><strong> als Key</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="abadb534-1103-4f74-93ec-8ae42c5c0692" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let x in myCar) {
+    console.log(x); // Gibt die Schlüssel (Keys) des Objekts `myCar` aus
+}
+</code></pre><p id="418f9e67-7a9a-4b34-a64b-2fdc8d6ac4bd" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c769126d-0a6b-4df0-bea6-960a9e6f8b81" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">type
+model
+color
+year
+owner
+service
+fuel
+mileage
+built
+hasAutomatic
+</code></pre><hr id="20b14f52-a892-4282-9dcf-5809fef4e5bb"/><h3 id="ed2af9e3-e993-49cb-b699-c8fb88cb361f" class=""><strong>Was speichert die Variable </strong><code><strong>x</strong></code><strong>?</strong></h3><p id="666992d6-a48f-4ea7-9b5e-be389c7d1173" class="">Die Variable <code>x</code> enthält bei jedem Durchlauf der Schleife den <strong>aktuellen Schlüssel (Key)</strong> des Objekts. In deinem Beispiel <code>myCar</code> wären das die Namen der Eigenschaften wie <code>type</code>, <code>model</code>, <code>color</code>, usw.</p><hr id="61e4320f-8723-4365-8d05-607137204408"/><h3 id="2db55c23-44e5-468f-8f90-228face3791f" class=""><strong>Zugriff auf den Wert des Schlüssels</strong></h3><p id="fbabc00c-496d-4116-af2f-60bbba4e0fdd" class="">
+</p><p id="f99339e4-372d-46fa-bed8-76bcff5eaf49" class="">Um den Wert zu erhalten, der mit dem aktuellen Schlüssel verknüpft ist, kannst du die Bracket-Notation verwenden:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4ff303-5b40-43fd-9b10-30b04344e181" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let x in myCar) {
+    console.log(x + &quot;: &quot; + myCar[x]); // Gibt Schlüssel und zugehörigen Wert aus
+}
+</code></pre><p id="baf35761-c02f-4360-8b76-b177685e3c5c" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a86fdbae-bc6e-4439-b9e3-226ac3f9a569" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">type: Opel
+model: Astra
+color: black
+year: 2017
+owner: [object Object]
+service: [object Object],[object Object]
+fuel: diesel
+mileage: 120000
+built: Thu Jun 15 2017 00:00:00 GMT+0200 (Central European Summer Time)
+hasAutomatic: false
+</code></pre><hr id="d66574ef-4755-4c55-bc1c-f60dd48f3ac2"/><h3 id="44a4bd98-d142-4db7-b8bf-564a5e8c98f0" class=""><strong>Zusammenfassung</strong></h3><ul id="8a3a7d6a-806c-489b-948c-a5b0aed5fcf1" class="bulleted-list"><li style="list-style-type:disc">Die Variable in einer <code>for...in</code>Schleife (z. B. <code>x</code>) speichert den <strong>aktuellen Schlüssel (Key)</strong> des Objekts.</li></ul><ul id="e8468039-bc33-4631-b3ef-6f5011739249" class="bulleted-list"><li style="list-style-type:disc">Du kannst die Variable beliebig benennen, solange es ein gültiger Variablenname ist.</li></ul><ul id="77442064-e915-4ee9-bd8b-c10324400e63" class="bulleted-list"><li style="list-style-type:disc">Um den Wert des Schlüssels zu erhalten, verwende die Bracket-Notation: <code>obj[x]</code>.</li></ul><hr id="7bba029b-80da-4804-8dc7-ee575f3e9424"/><h3 id="7d98e6a7-951f-4f51-b11b-522174cc1b39" class=""><code><strong>for...in</strong></code> und <code><a href="https://www.notion.so/Array-1c3857bd249d80928c9eefa1a1a1ca97?pvs=21">forEach</a></code>:</h3><p id="deec54f3-61f6-415a-be12-7bd320bfe447" class="">In JavaScript gibt es Unterschiede zwischen <code>for...in</code> und <code>forEach</code>, und sie haben unterschiedliche Anwendungsfälle. Hier ist eine Erklärung, wann du welche verwenden solltest:</p><hr id="215be13e-621e-4151-8eae-556b3aef78d7"/><h3 id="0c3e467c-77ca-4368-816c-d0e908260af8" class=""><strong>1. </strong><code><strong>for...in</strong></code><strong> für Objekte</strong></h3><p id="beaf2db5-259d-4bdf-bb5e-884d6cc0922a" class="">Die <code>for...in</code>-Schleife wird verwendet, um über die <strong>Schlüssel (Properties)</strong> eines Objekts zu iterieren.</p><h3 id="f8546d0d-4f53-416f-b3ea-2405b3faa0a3" class=""><strong>Wann </strong><code><strong>for...in</strong></code><strong> verwenden?</strong></h3><ul id="cd9b63af-9116-458c-bf8d-017c7e305028" class="bulleted-list"><li style="list-style-type:disc">Wenn du die <strong>Schlüssel (Keys)</strong> eines Objekts durchlaufen möchtest.</li></ul><ul id="a91d79a8-d66b-4ad4-ba55-2b7ade9f7b6c" class="bulleted-list"><li style="list-style-type:disc">Wenn du sowohl die Schlüssel als auch die zugehörigen Werte benötigst.</li></ul><ul id="348276a6-9c7b-4f7c-a9fd-2341e050759c" class="bulleted-list"><li style="list-style-type:disc">Wenn du mit <strong>Objekten</strong> arbeitest, da <code>forEach</code> direkt nicht auf Objekte angewendet werden kann.</li></ul><h3 id="59c17a51-d2f7-4297-8097-d734fe70139e" class=""><strong>Beispiel: Iteration über ein Objekt</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="44606c5c-1a37-489a-8e4f-f2312f04d885" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let game = {
+    title: &quot;The Legend of Zelda&quot;,
+    genre: &quot;Action-adventure&quot;,
+    platform: &quot;Nintendo Switch&quot;,
+};
+
+for (let key in game) {
+    console.log(key + &quot;: &quot; + game[key]);
+}
+</code></pre><p id="33244718-25b5-4ca6-b58c-0cfb9d735d9c" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7f902f47-52a0-4ccf-915e-65e0a2cc1037" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">title: The Legend of Zelda
+genre: Action-adventure
+platform: Nintendo Switch
+</code></pre><h3 id="277b0e32-1319-4a04-b0bf-01375af85162" class=""><strong>Vorteile von </strong><code><strong>for...in</strong></code><strong>:</strong></h3><ul id="3cf14ece-d535-49ba-841b-1d880141c058" class="bulleted-list"><li style="list-style-type:disc">Einfach zu verwenden, wenn du die Schlüssel eines Objekts benötigst.</li></ul><ul id="59c41e47-2f4b-48da-a426-ec20d7153da7" class="bulleted-list"><li style="list-style-type:disc">Funktioniert direkt mit Objekten.</li></ul><h3 id="6d7e617e-30ea-47e9-aab2-091b79d82a8b" class=""><strong>Nachteile von </strong><code><strong>for...in</strong></code><strong>:</strong></h3><ul id="c5784c44-c88a-4993-80aa-8c6ed4618544" class="bulleted-list"><li style="list-style-type:disc">Es iteriert auch über geerbte Eigenschaften aus der Prototypkette. Um dies zu vermeiden, solltest du <code>hasOwnProperty()</code> verwenden:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19cbd340-c352-49df-bbe2-302a6ea88578" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (let key in game) {
+    if (game.hasOwnProperty(key)) {
+        console.log(key + &quot;: &quot; + game[key]);
+    }
+}
+</code></pre></li></ul><hr id="5da0075c-1090-4d95-9685-26042fa70720"/><h3 id="dc0567b6-1b71-4f39-876a-4a209bef9e1d" class=""><strong>2. </strong><code><strong>forEach</strong></code><strong> für Arrays</strong></h3><p id="ef37967f-619c-47f1-b427-1feea7ec5f69" class="">Die <code>forEach</code>-Methode wird verwendet, um über die <strong>Elemente eines Arrays</strong> zu iterieren. Sie ist speziell für Arrays gedacht und kann nicht direkt auf Objekte angewendet werden.</p><h3 id="dca7eb85-761c-4c80-aa28-3cf30a4f6add" class=""><strong>Wann </strong><code><strong>forEach</strong></code><strong> verwenden?</strong></h3><ul id="0e4c4020-ab4b-42e5-9499-81ef75ccc882" class="bulleted-list"><li style="list-style-type:disc">Wenn du mit <strong>Arrays</strong> arbeitest.</li></ul><ul id="cabe1f0b-90db-4b63-a6dd-e611d9b5657c" class="bulleted-list"><li style="list-style-type:disc">Wenn du nur die Werte eines Arrays durchlaufen möchtest.</li></ul><ul id="0bdf2f10-f307-40a1-925c-ee8a165c9626" class="bulleted-list"><li style="list-style-type:disc">Wenn du eine Callback-Funktion verwenden möchtest, um die Iteration zu steuern.</li></ul><h3 id="addd3eb0-48fa-43b7-9c83-81e2facdd101" class=""><strong>Beispiel: Iteration über ein Array</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2579cdd-e7a1-4ac9-871d-ed76e3164a01" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let services = [
+    { date: &quot;2018-05-15&quot;, type: &quot;oil change&quot;, cost: 150 },
+    { date: &quot;2019-05-15&quot;, type: &quot;brake pads replacement&quot;, cost: 300 },
+];
+
+services.forEach(service =&gt; {
+    console.log(`${service.type} on ${service.date} cost ${service.cost}€`);
+});
+</code></pre><p id="1385cc56-9091-4bcd-878f-1c24c69ec662" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d85b80d5-7840-4b66-a4be-2bbb84f4407e" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">oil change on 2018-05-15 cost 150€
+brake pads replacement on 2019-05-15 cost 300€
+</code></pre><h3 id="2a18a755-5a32-4b06-b724-ec8772c06f01" class=""><strong>Vorteile von </strong><code><strong>forEach</strong></code><strong>:</strong></h3><ul id="d1021cd5-8358-4f7a-9f0b-554d0997ed82" class="bulleted-list"><li style="list-style-type:disc">Einfach zu verwenden, wenn du nur mit Arrays arbeitest.</li></ul><ul id="8a514200-8a9a-483b-8d26-73a738e90dc3" class="bulleted-list"><li style="list-style-type:disc">Unterstützt Callback-Funktionen, was die Iteration flexibler macht.</li></ul><h3 id="b83b5d63-0865-468f-9e4b-c4b9a110bfbb" class=""><strong>Nachteile von </strong><code><strong>forEach</strong></code><strong>:</strong></h3><ul id="dde0b391-4b51-408f-a4c2-38bbe53b2ba9" class="bulleted-list"><li style="list-style-type:disc">Kann nicht direkt mit Objekten verwendet werden.</li></ul><ul id="4e54641b-a7d6-44c0-9ef2-b9cd1e8d8cf3" class="bulleted-list"><li style="list-style-type:disc">Du kannst die Iteration nicht abbrechen (dafür wäre eine <code>for</code>Schleife besser geeignet).</li></ul><hr id="5d780fae-ea92-4295-9a5d-f3c8cc026f02"/><h3 id="4f801e2c-0321-402f-9758-00367162ce52" class=""><strong>3. Objekte in Arrays umwandeln</strong></h3><p id="002522c8-5cdf-4693-b951-b9de82988bfc" class="">Wenn du <code>forEach</code> für ein Objekt verwenden möchtest, kannst du das Objekt in ein Array umwandeln, z. B. mit <code>Object.keys()</code>, <code>Object.values()</code> oder <code>Object.entries()</code>.</p><h3 id="f79aecb4-e07d-4307-9369-8a72a2f461a6" class=""><strong>Beispiel: </strong><code><strong>Object.keys()</strong></code><strong> mit </strong><code><strong>forEach</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79c33d90-df2c-4018-97fc-eca2beee13ed" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let game = {
+    title: &quot;The Legend of Zelda&quot;,
+    genre: &quot;Action-adventure&quot;,
+    platform: &quot;Nintendo Switch&quot;,
+};
+
+Object.keys(game).forEach(key =&gt; {
+    console.log(key + &quot;: &quot; + game[key]);
+});
+</code></pre><p id="48c9271f-ed20-4286-a9ce-edd908d2905f" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0cf5087-2224-495f-ae83-2b6e4dff72ba" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">title: The Legend of Zelda
+genre: Action-adventure
+platform: Nintendo Switch
+</code></pre><h3 id="10a38a3b-00e3-444d-9328-be12824eda33" class=""><strong>Beispiel: </strong><code><strong>Object.entries()</strong></code><strong> mit </strong><code><strong>forEach</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf1ab883-45b6-478a-9752-4ede54149bf6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Object.entries(game).forEach(([key, value]) =&gt; {
+    console.log(key + &quot;: &quot; + value);
+});
+</code></pre><p id="6d3183d7-ac36-4138-9c0b-2faf70278403" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e1e5c51c-b0e2-4dd4-981c-1fa13e719372" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">title: The Legend of Zelda
+genre: Action-adventure
+platform: Nintendo Switch
+</code></pre><hr id="c8ba9ad7-2c2d-437b-ab15-0be79e630b38"/><h3 id="88f0dcf4-01c9-4cbb-8b1a-51defd82139e" class=""><strong>Wann </strong><code><strong>for...in</strong></code><strong> und wann </strong><code><strong>forEach</strong></code><strong> verwenden?</strong></h3><table id="dad32515-218b-48d9-ab57-128f3cc7252f" class="simple-table"><tbody><tr id="310172c9-6120-4883-a2af-bc36dc72f17d"><td id="&gt;er`" class=""><strong>Kriterium</strong></td><td id="raAm" class=""><code><strong>for...in</strong></code></td><td id="@[Y{" class=""><code><strong>forEach</strong></code></td></tr><tr id="38c42829-3693-4ac6-8ca1-ea8586dfc23b"><td id="&gt;er`" class=""><strong>Datentyp</strong></td><td id="raAm" class="">Objekte</td><td id="@[Y{" class="">Arrays</td></tr><tr id="ebd1f43d-5ea6-464e-a7fc-95d74565e75c"><td id="&gt;er`" class=""><strong>Zugriff auf Schlüssel</strong></td><td id="raAm" class="">Ja</td><td id="@[Y{" class="">Nur mit <code>Object.keys()</code> oder <code>Object.entries()</code></td></tr><tr id="a7122b49-8fd0-4a40-be85-fce9b7ae1126"><td id="&gt;er`" class=""><strong>Zugriff auf Werte</strong></td><td id="raAm" class="">Ja</td><td id="@[Y{" class="">Ja</td></tr><tr id="22017520-4f93-4dbe-bd0d-e65c3db7b365"><td id="&gt;er`" class=""><strong>Iteration abbrechen</strong></td><td id="raAm" class="">Möglich mit <code>break</code></td><td id="@[Y{" class="">Nicht möglich</td></tr><tr id="b6f94538-ea14-4468-87e8-ff27d7c6ff0f"><td id="&gt;er`" class=""><strong>Prototyp-Eigenschaften</strong></td><td id="raAm" class="">Ja (ohne <code>hasOwnProperty()</code> vermeiden)</td><td id="@[Y{" class="">Nein</td></tr></tbody></table><hr id="1f74f3a2-11ce-4fe5-bf34-22a753ad0c25"/><h3 id="8413df81-c8e1-41fd-a8a1-e279307333ea" class=""><strong>Zusammenfassung</strong></h3><ul id="2c9f705d-4f62-4a4d-b038-f625b4b7c0b0" class="bulleted-list"><li style="list-style-type:disc">Verwende <code><strong>for...in</strong></code>, wenn du über die <strong>Schlüssel eines Objekts</strong> iterieren möchtest.</li></ul><ul id="d7221f72-44c4-422f-b792-dc2a3495390f" class="bulleted-list"><li style="list-style-type:disc">Verwende <code><strong>forEach</strong></code>, wenn du über die <strong>Elemente eines Arrays</strong> iterieren möchtest.</li></ul><ul id="aa486f86-f3a1-480b-902a-0902ad65ae7e" class="bulleted-list"><li style="list-style-type:disc">Wenn du <code>forEach</code> für ein Objekt verwenden möchtest, konvertiere das Objekt mit <code>Object.keys()</code>, <code>Object.values()</code> oder <code>Object.entries()</code> in ein Array.</li></ul><hr id="eca5f446-1993-4567-8f2a-69e76082463a"/><h3 id="748e656b-adef-42c6-ab25-af515943dbad" class=""><code>if (typeof obj[key])</code></h3><p id="48e997c9-0ad5-4f22-9068-0a810f1df1cc" class="">Die Bedingung <code>if (typeof obj[key])</code> wird verwendet, um den <strong>Datentyp</strong> des Werts zu überprüfen, der mit einem bestimmten Schlüssel (<code>key</code>) in einem Objekt (<code>obj</code>) verknüpft ist. Hier ist eine detaillierte Erklärung:</p><hr id="cbf964d6-8de2-4795-b30f-401b1eab7dfe"/><h3 id="2fb995c7-7010-4dd3-b80b-2ea714b7fa49" class=""><strong>1. Was macht </strong><code><strong>typeof</strong></code><strong>?</strong></h3><ul id="9f1dbfb3-442a-4bc5-9a64-fad4c01d7d2a" class="bulleted-list"><li style="list-style-type:disc">Der Operator <code>typeof</code> gibt den <strong>Datentyp</strong> eines Werts als String zurück.</li></ul><ul id="93d6ab0d-cdde-4466-80c6-fe0771471893" class="bulleted-list"><li style="list-style-type:disc">Beispiele:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ab0e5cc9-e052-4f3f-bae7-a19b5c943b9f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">console.log(typeof 42); // &quot;number&quot;
+console.log(typeof &quot;Hello&quot;); // &quot;string&quot;
+console.log(typeof true); // &quot;boolean&quot;
+console.log(typeof {}); // &quot;object&quot;
+console.log(typeof undefined); // &quot;undefined&quot;
+</code></pre></li></ul><hr id="fc2e0817-4102-4589-80e4-d52e2f48d7aa"/><h3 id="163c5786-e1ce-47e0-a8df-1548c24e96c3" class=""><strong>2. Was ist </strong><code><strong>obj[key]</strong></code><strong>?</strong></h3><ul id="5f78b477-26bd-4282-acda-3b4505464f4b" class="bulleted-list"><li style="list-style-type:disc"><code>obj[key]</code> greift auf den Wert zu, der mit dem Schlüssel <code>key</code> im Objekt <code>obj</code> verknüpft ist.</li></ul><ul id="952869b7-7330-4411-8f99-b6451753d7a6" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d29afb0-9967-4945-81cb-d08235fc892b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let person = { name: &quot;Leonie&quot;, age: 20 };
+console.log(person[&quot;name&quot;]); // &quot;Leonie&quot;
+console.log(person[&quot;age&quot;]); // 20
+</code></pre></li></ul><hr id="2f0e6ed2-1557-4d8e-8f99-f4b73821c5a0"/><h3 id="a77eaa5d-5d24-4ba9-9d17-1be72c1f4ca0" class=""><strong>3. Kombination: </strong><code><strong>typeof obj[key]</strong></code></h3><ul id="79e336e7-4165-4e2c-8f27-c2902c373e3e" class="bulleted-list"><li style="list-style-type:disc"><code>typeof obj[key]</code> gibt den Datentyp des Werts zurück, der mit dem Schlüssel <code>key</code> im Objekt <code>obj</code> verknüpft ist.</li></ul><ul id="ccd26089-aa86-4f1d-93f8-e427aefa7dc9" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19b0754f-107d-4b78-9cb9-aa8ee583ef0f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let person = { name: &quot;Leonie&quot;, age: 20, isStudent: true };
+console.log(typeof person[&quot;name&quot;]); // &quot;string&quot;
+console.log(typeof person[&quot;age&quot;]); // &quot;number&quot;
+console.log(typeof person[&quot;isStudent&quot;]); // &quot;boolean&quot;
+</code></pre></li></ul><hr id="34b2c90b-8bb1-462a-a60e-ebbb6233b521"/><h3 id="c8822673-95e8-447f-81fe-43ed710f6b17" class=""><strong>4. Verwendung in einer </strong><code><strong>if</strong></code><strong>Bedingung</strong></h3><p id="77726c19-afe1-4648-a259-7efd2747d98c" class="">Die Bedingung <code>if (typeof obj[key])</code> wird verwendet, um den Datentyp zu überprüfen und darauf basierend eine Aktion auszuführen.</p><h3 id="6e7af958-bb08-40a5-aa76-c57cd87c5137" class=""><strong>Beispiel: Überprüfung auf </strong><code><strong>object</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eca8378f-98e8-451f-a2f2-a3297532aae8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let person = {
+    name: &quot;Leonie&quot;,
+    age: 20,
+    address: { city: &quot;Dornbirn&quot;, country: &quot;Austria&quot; },
+};
+
+for (let key in person) {
+    if (typeof person[key] === &quot;object&quot;) {
+        console.log(`${key} ist ein Objekt.`);
+    } else {
+        console.log(`${key} ist kein Objekt.`);
+    }
+}
+</code></pre><p id="ea035c58-e16d-4f90-815f-bfd789775692" class=""><strong>Ausgabe:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="691ec589-c5d0-46a9-b6a2-635c5c517f4c" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">name ist kein Objekt.
+age ist kein Objekt.
+address ist ein Objekt.
+</code></pre><hr id="d911ca4c-a2e9-4a8d-898d-1be0b890d602"/><h3 id="589fd096-58a7-4ba5-9bdd-6ddeda706dbf" class=""><strong>5. Typische Anwendungsfälle</strong></h3><h3 id="6b70416d-15b5-43f3-adb6-5bc2bc7a8ce8" class=""><strong>a) Überprüfung auf </strong><code><strong>undefined</strong></code></h3><ul id="060994af-6f8c-46f8-b5d5-663b9fa927f0" class="bulleted-list"><li style="list-style-type:disc">Um zu prüfen, ob ein Schlüssel im Objekt existiert:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96df8ac1-d76d-4eec-8e31-4be65409821f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">if (typeof obj[key] === &quot;undefined&quot;) {
+    console.log(`${key} existiert nicht im Objekt.`);
+}
+</code></pre></li></ul><h3 id="3580057d-cfa9-48aa-a120-11869e80331a" class=""><strong>b) Überprüfung auf </strong><code><strong>function</strong></code></h3><ul id="deb22a67-08c2-4b6e-bb47-6d7f2d999612" class="bulleted-list"><li style="list-style-type:disc">Um zu prüfen, ob ein Schlüssel eine Funktion enthält:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="74f591e1-fdec-4024-aef9-13c1b5cb7ff0" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">if (typeof obj[key] === &quot;function&quot;) {
+    obj[key](); // Funktion ausführen
+}
+</code></pre></li></ul><h3 id="42ce38fb-1a84-47ae-90a7-1e7c747eb3b2" class=""><strong>c) Überprüfung auf </strong><code><strong>object</strong></code></h3><ul id="1f788f9d-8059-4e25-beb5-d8babbe2a729" class="bulleted-list"><li style="list-style-type:disc">Um zu prüfen, ob ein Schlüssel ein verschachteltes Objekt enthält:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2f888241-06f2-4ce8-ae7e-7175a6075ed6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">if (typeof obj[key] === &quot;object&quot; &amp;&amp; obj[key] !== null) {
+    console.log(`${key} ist ein verschachteltes Objekt.`);
+}
+</code></pre></li></ul><hr id="8fcba545-783f-4010-884d-f08b74d841dd"/><h3 id="bc428be6-4298-4108-a2a3-91c9bc9baba4" class=""><strong>Zusammenfassung</strong></h3><ul id="4c37310a-3929-4072-8961-17e1051eb87e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>typeof obj[key]</strong></code> prüft den Datentyp des Werts, der mit dem Schlüssel <code>key</code> im Objekt <code>obj</code> verknüpft ist.</li></ul><ul id="2a4e28d9-ae5d-405f-92a9-1d62a9c08f53" class="bulleted-list"><li style="list-style-type:disc">Es wird häufig verwendet, um sicherzustellen, dass der Wert den erwarteten Typ hat, bevor eine Aktion ausgeführt wird.</li></ul><ul id="9b17596f-2d86-4239-9fbe-35f99e857333" class="bulleted-list"><li style="list-style-type:disc">Typische Anwendungsfälle:<ul id="9d173c86-32bb-4bdf-98ac-c740fb9df410" class="bulleted-list"><li style="list-style-type:circle">Überprüfung auf <code>undefined</code>, <code>object</code>, <code>function</code> oder andere Datentypen.</li></ul></li></ul></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
