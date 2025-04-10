@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>JavaScript async Functions</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Lernerfolgsbuch: JavaScript async Functions</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day38">MI 09/04/25</a>: JavaScript (async Functions)</h3>
+
+
+    </div>
+
+    <br>
+
+    <h2 id="day38">Mittwoch, 09. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript async Functions</h3>
+
+    <ul>
+
+        <li class="textColor02"><strong>Was sind Synchrone Funktionen?</strong></li>
+        <p>Synchrone Funktionen sind Funktionen, die sofort ausgeführt werden, eine nach der anderen, in der Reihenfolge, in der sie im Code stehen.
+            Das heißt: Man wartet, bis eine Funktion fertig ist, bevor die nächste startet.</p>
+        <p>Nachteil: Wenn eine Funktion lange dauert, z. B. Daten laden oder auf einen Server warten, blockiert sie den Rest.</p>
+        
+        <li class="textColor02"><strong>Was sind Asynchrone Funktionen?</strong></li>
+        <p>Asynchrone Funktionen sind Funktionen, deren Ablauf nicht den Programmfluss blockiert.
+            Statt direkt ein Ergebnis zurückzugeben, melden sie sich später, wenn der Vorgang abgeschlossen ist.</p>
+        <p>Sie werden häufig mit Promises oder async/await verwendet.</p>
+
+        <li class="textColor02"><strong>Was ist eine Callback Funktion?</strong></li>
+        <p>Eine Callback-Funktion ist eine Funktion, die als Argument an eine andere Funktion übergeben wird und dann aufgerufen wird, wenn ein bestimmtes Ereignis eintritt oder eine bestimmte Bedingung erfüllt ist.</p>
+        <p>Sie wird oft verwendet, um asynchrone Operationen zu handhaben, z. B. beim Laden von Daten oder beim Warten auf Benutzerinteraktionen.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                function fetchData(callback) {
+                    setTimeout(() => {
+                        const data = "Daten geladen!";
+                        callback(data);
+                    }, 2000);
+                }
+
+                fetchData((result) => {
+                    console.log(result); // Ausgabe: Daten geladen!
+                });
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die Funktion fetchData aufgerufen, die eine Callback-Funktion als Argument erhält.
+            Nach 2 Sekunden wird die Callback-Funktion mit den geladenen Daten aufgerufen.</p>
+
+        <li class="textColor02"><strong>Was ist eine Promise?</strong></li>
+        <p>Eine Promise ist ein Objekt, das einen zukünftigen Wert repräsentiert, der möglicherweise noch nicht verfügbar ist.
+            Sie wird verwendet, um asynchrone Operationen zu handhaben und ermöglicht es, den Erfolg oder Misserfolg einer Operation zu behandeln.</p>
+        <p>Eine Promise kann drei Zustände haben: pending (ausstehend), fulfilled (erfüllt) oder rejected (abgelehnt).</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const fetchData = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const data = "Daten geladen!";
+                        resolve(data);
+                    }, 2000);
+                });
+
+                fetchData
+                    .then((result) => {
+                        console.log(result); // Ausgabe: Daten geladen!
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            </code>
+        </div>
+        <p>In diesem Beispiel wird eine Promise erstellt, die nach 2 Sekunden erfüllt wird.
+            Wenn die Promise erfolgreich ist, wird die then-Methode aufgerufen, andernfalls wird die catch-Methode aufgerufen.</p>
+        
+        <li class="textColor02"><strong>Was ist .then() in JavaScript?</strong></li>
+        <p>.then() ist eine Methode, die auf einem Promise-Objekt aufgerufen wird, um den Erfolg oder Misserfolg einer asynchronen Operation zu behandeln.
+            Sie ermöglicht es, eine Funktion anzugeben, die ausgeführt wird, wenn das Promise erfüllt wird.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const fetchData = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const data = "Daten geladen!";
+                        resolve(data);
+                    }, 2000);
+                });
+
+                fetchData
+                    .then((result) => {
+                        console.log(result); // Ausgabe: Daten geladen!
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die then-Methode auf dem Promise-Objekt aufgerufen, um die Funktion zu definieren, die ausgeführt wird, wenn das Promise erfüllt wird.</p>
+        
+        <li class="textColor02"><strong>Was ist .catch() in JavaScript?</strong></li>
+        <p>.catch() ist eine Methode, die auf einem Promise-Objekt aufgerufen wird, um Fehler zu behandeln, die während einer asynchronen Operation auftreten können.
+            Sie ermöglicht es, eine Funktion anzugeben, die ausgeführt wird, wenn das Promise abgelehnt wird.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const fetchData = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const error = "Fehler beim Laden der Daten!";
+                        reject(error);
+                    }, 2000);
+                });
+
+                fetchData
+                    .then((result) => {
+                        console.log(result);
+                    })
+                    .catch((error) => {
+                        console.error(error); // Ausgabe: Fehler beim Laden der Daten!
+                    });
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die catch-Methode auf dem Promise-Objekt aufgerufen, um die Funktion zu definieren, die ausgeführt wird, wenn das Promise abgelehnt wird.</p>
+        
+        <li class="textColor02"><strong>Was ist eine final() Statement?</strong></li>
+        <p>Ein finally-Statement ist eine Methode, die auf einem Promise-Objekt aufgerufen wird und eine Funktion angibt, die immer ausgeführt wird,
+            unabhängig davon, ob das Promise erfüllt oder abgelehnt wurde. Es wird häufig verwendet, um Aufräumarbeiten durchzuführen.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                const fetchData = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const data = "Daten geladen!";
+                        resolve(data);
+                    }, 2000);
+                });
+
+                fetchData
+                    .then((result) => {
+                        console.log(result); // Ausgabe: Daten geladen!
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                    .finally(() => {
+                        console.log("Aufräumarbeiten abgeschlossen!"); // Immer ausgeführt
+                    });
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die finally-Methode auf dem Promise-Objekt aufgerufen, um die Funktion zu definieren, die immer ausgeführt wird,
+            unabhängig davon, ob das Promise erfüllt oder abgelehnt wurde.</p>
+        
+        <li class="textColor02"><strong>Was ist async/await in JavaScript?</strong></li>
+        <p>async/await ist eine Syntax in JavaScript, die es ermöglicht, asynchrone Funktionen einfacher und lesbarer zu schreiben.
+            async wird vor einer Funktion verwendet, um anzugeben, dass sie eine Promise zurückgibt, und await wird verwendet, um auf das Ergebnis einer Promise zu warten.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            <code>
+                async function fetchData() {
+                    const data = await new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve("Daten geladen!");
+                        }, 2000);
+                    });
+                    console.log(data); // Ausgabe: Daten geladen!
+                }
+
+                fetchData();
+            </code>
+        </div>
+        <p>In diesem Beispiel wird die async-Funktion fetchData erstellt, die eine Promise zurückgibt.
+            Innerhalb der Funktion wird await verwendet, um auf das Ergebnis der Promise zu warten, bevor es in der Konsole ausgegeben wird.</p>
+        <li class="textColor02"><strong>Was ist der Unterschied zwischen async/await und Promises?</strong></li>
+        <p>async/await ist eine syntaktische Verbesserung von Promises, die es ermöglicht, asynchrone Funktionen einfacher und lesbarer zu schreiben.
+            async wird vor einer Funktion verwendet, um anzugeben, dass sie eine Promise zurückgibt, und await wird verwendet, um auf das Ergebnis einer Promise zu warten.</p>
+        <p>Promises sind Objekte, die einen zukünftigen Wert repräsentieren und es ermöglichen, den Erfolg oder Misserfolg einer asynchronen Operation zu behandeln.</p>
+        <p>async/await ist eine syntaktische Verbesserung von Promises, die es ermöglicht, asynchrone Funktionen einfacher und lesbarer zu schreiben.</p>
+       
+        <li class="textColor02"><strong>In welchen Situationen is await geeignet?</strong></li>
+        <p>Das await-Schlüsselwort in JavaScript ist geeignet, wenn du auf das Ergebnis einer asynchronen Operation warten möchtest, bevor der nächste Code ausgeführt wird. Es wird in einer async-Funktion verwendet und pausiert die Ausführung der Funktion, bis die Promise aufgelöst (fulfilled) oder abgelehnt (rejected) wird.</p>
+        <p>Beispiel:</p>
+        <div class="code-sample">  
+            
+            <code>
+                async function fetchData() {
+                    try {
+                        const response = await fetch("https://api.example.com/data");
+                        const data = await response.json();
+                        console.log(data); // Verarbeite die Daten
+                    } catch (error) {
+                        console.error("Fehler beim Abrufen der Daten:", error);
+                    }
+                }
+                
+                fetchData();
+            </code>
+        </div>
+        
+  
+    </ul>
+  
+
+
+</body>
+</html>
