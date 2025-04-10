@@ -12,9 +12,15 @@
     
     <div class="container">
         <form class="shopping-form">
-            <input type="text" id="item" placeholder="Enter item name"/>
+            <input type="text" id="item" placeholder="Name des Artikels eingeben"/>
             <button type="submit">&plus;</button>
         </form>
+
+        <div class="shopping-filter">
+            <button data-filter="all" class="active">Alle</button>
+            <button data-filter="incomplete">Offen</button>
+            <button data-filter="completed">Erledigt</button>
+        </div>
 
         <ul class="shopping-list">
             <li>
@@ -36,6 +42,11 @@
                 <span class="drag-icon">&equiv;</span>
             </li>
         </ul>
+        
+        <div class="shopping-action">
+            <button data-clear="all">Clear All</button>
+            <button data-clear="completed">Clear completed</button>
+        </div>
     </div>
 </body>
 <script src="logic.js" defer></script>

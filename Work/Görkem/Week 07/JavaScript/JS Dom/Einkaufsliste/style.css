@@ -14,6 +14,7 @@ button{
     cursor: pointer;
     border: none;
     padding: 5px 10px;
+    font-weight: 500;
 }
 
 .container{
@@ -22,6 +23,7 @@ button{
     margin: auto;
 }
 
+
 .shopping-form{
     padding: 1rem;
     background:  rgba(150, 150, 140, 0.3);
@@ -29,6 +31,7 @@ button{
     gap: 5px;
     align-items: stretch;
     border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
 .shopping-form input{
@@ -46,6 +49,16 @@ button{
     background: #000;;
     color: #fff;
     font-size: 1.5rem;
+}
+
+.shopping-filter button{
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.shopping-filter button:hover, .shopping-filter button.active{
+    background: #000;
+    color: #fff;
 }
 
 .shopping-list{
@@ -69,6 +82,15 @@ button{
 .shopping-list li .item-name{
     flex: 1;
     padding: 5px 10px;
+}
+
+.shopping-list li[data-completed] .item-name{
+    text-decoration: line-through;
+    color: #999;
+}
+
+.shopping-list li .item-name[contenteditable="true"]{
+    outline-color: rgba(150, 150, 140, 0.3);
 }
 
 .shopping-list li .delete-button{
@@ -96,6 +118,18 @@ button{
     color: #ccc;
     text-align: center;
     cursor: move;
+}
+
+.shopping-list li[draggable="false"].drag-icon{
+    cursor: not-allowed;
+}
+
+.shopping-action button{
+    color: #777;
+}
+
+.shopping-action button:hover{
+    color: #000;
 }
 
 
