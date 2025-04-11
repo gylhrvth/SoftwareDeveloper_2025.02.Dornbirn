@@ -51,7 +51,7 @@ button{
     border-radius: inherit;
     background: #000;;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .shopping-filter button{
@@ -233,6 +233,12 @@ button{
     color: #666; /* Farbe für die Platzhalteroption */
     font-style: italic; /* Kursiver Text */
 }
+
+
+
+
+
+
 
 
 

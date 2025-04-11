@@ -195,13 +195,15 @@ function handleFormSubmit(e){
     const itemName = document.getElementById("item").value;
     const quantity = document.getElementById("quantity").value.trim();
     const unit = document.getElementById("unit").value;
-    if (itemName === "" || quantity === "" || unit === "") {
+    if (itemName === "") {
         //console.log("Please enter a valid item name!");
         return;
     }
     //console.log(itemName);
 
-    addItem(itemName, quantity, unit);
+    const formattedItemName = itemName.charAt(0).toUpperCase() + itemName.slice(1);
+
+    addItem(formattedItemName, quantity, unit);
     e.target.reset();
 }
 
@@ -278,5 +280,3 @@ function updateFilteredItems(){
 function generateUniqueId(){
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
-
-
