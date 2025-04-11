@@ -23,19 +23,223 @@
 
   <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
 
+  <p>TicTacToe ist ein einfaches und beliebtes Strategiespiel für zwei Spieler. Ziel des Spiels ist es, drei eigene
+    Symbole (X oder O) in einer horizontalen, vertikalen oder diagonalen Linie auf einem 3x3-Spielbrett zu platzieren.
+  </p>
+
+
+  <ul>
+    <li><strong>Spielregeln:</strong> Zwei Spieler setzen abwechselnd ihre Symbole (X oder O) auf ein freies Feld des
+      3x3-Spielbretts.</li>
+    <li><strong>Spielbrett:</strong> Das Spielfeld besteht aus einem 3x3-Raster, also insgesamt 9 Feldern.</li>
+    <li><strong>Gewinnbedingung:</strong> Ein Spieler gewinnt, wenn er drei seiner Symbole in einer horizontalen,
+      vertikalen oder diagonalen Linie platziert.</li>
+    <li><strong>Unentschieden:</strong> Das Spiel endet unentschieden, wenn alle Felder belegt sind und kein Spieler
+      gewonnen hat.</li>
+    <li><strong>Maximale Züge:</strong> Es gibt maximal 9 Züge, da das Spielfeld aus 9 Feldern besteht.</li>
+    <li><strong>Minimale Züge:</strong> Ein Spieler kann frühestens nach 5 Zügen gewinnen (3 eigene Symbole und 2 des
+      Gegners).</li>
+    <li><strong>Strategie:</strong> Spieler sollten versuchen, sowohl ihre eigenen Gewinnmöglichkeiten zu maximieren als
+      auch die des Gegners zu blockieren.</li>
+  </ul>
+  <br>
+  <p>
+    Was man braucht um ein interaktives TicTacToe-Spiel im Browser zu implementieren, hier eine Liste aller benötigten
+    Elemente, Tools und Funktionen:
+  </p>
+  <ol>
+    <li>
+      <h3>**HTML-Struktur**</h3>
+      <p>- Ein Container-Element (z. B. `
+        div id="spielfeld">`), das das Spielfeld darstellt.</p>
+      <p>- Buttons für Start, Restart, Spielerauswahl</p>
+      <p>- Informations Display, wo mit dem Spieler kommuniziert wird.</p>
+    </li>
+    <li>
+      <h3>**CSS-Styling**</h3>
+      <p>- Verwende CSS Grid, um ein 3x3-Layout für das Spielfeld zu erstellen.</p>
+      <p>- Style die einzelnen Zellen mit Rahmen, Abmessungen und Textausrichtung.</p>
+    </li>
+    <li>
+      <h3>**JavaScript-Funktionen**</h3>
+      <p>- **`erstelleSpielfeld()`**: Dynamisch das 3x3-Raster generieren und Event-Listener an jede Zelle anhängen.</p>
+      <p>- **`zellenKlickHandler(event)`**: Klicks auf Zellen verarbeiten, den Spielzustand aktualisieren und die
+        Gewinnbedingungen prüfen.</p>
+      <p>- **`pruefeGewinnbedingung()`**: Überprüfen, ob der aktuelle Spieler gewonnen hat, indem Reihen, Spalten und
+        Diagonalen geprüft werden.</p>
+      <p>- **`istSpielfeldVoll()`**: Prüfen, ob alle Zellen belegt sind, um ein Unentschieden festzustellen. Oder zähle
+        die Züge und prüfe ob der maximale Wert erreicht ist</p>
+      <p>- **`spielZuruecksetzen()`**: Den Spielzustand und die Benutzeroberfläche für ein neues Spiel zurücksetzen.</p>
+    </li>
+    <li>
+      <h3>**Spielzustandsverwaltung**</h3>
+      <p>- Ein 2D-Array (`spielZustand`), um den aktuellen Zustand des Spielfelds zu speichern.
+      </p>
+      <p>- Eine Variable (`aktuellerSpieler`), um zu verfolgen, wer an der Reihe ist (z. B. 'X' oder 'O').</p>
+    </li>
+    <li>
+      <h3> **Event-Handling**</h3>
+      <p>- Verwende `addEventListener`, um Klicks auf Zellen zu erkennen und die entsprechende Logik auszuführen.</p>
+    </li>
+
+    <li>
+      <h3>**DOM-Manipulation**</h3>
+      <p>- Verwende `document.createElement`, um Zellen dynamisch zu erstellen.</p>
+      <p>- Aktualisiere den Textinhalt und das Styling der Zelle basierend auf dem Spielzustand.</p>
+    </li>
+    <li>
+      <h3>**Gewinn- und Unentschieden-Bedingungen**</h3>
+      <p>- Logik, um Reihen, Spalten und Diagonalen auf drei gleiche Symbole zu prüfen.</p>
+      <p>- Den Benutzer benachrichtigen, wenn ein Spieler gewinnt oder das Spiel unentschieden endet.</p>
+    </li>
+    <li>
+      <h3>**Zurücksetzen-Mechanismus**</h3>
+      <p>- Das Spielfeld leeren und das 2D-Array für ein neues Spiel zurücksetzen.</p>
+    </li>
+    <li>
+      <h3>**Initialisierung**</h3>
+      <p>- Die Funktion `erstelleSpielfeld()` beim Laden der Seite aufrufen, um das Spiel einzurichten.</p>
+    </li>
+    <li>
+      <h3>**Local Storage**</h3>
+      <p>- Verwende `localStorage`, um den Spielzustand zwischenzuspeichern, damit das Spiel nach einem Seiten-Reload
+        fortgesetzt werden kann.</p>
+      <p>- Speichere den aktuellen Spieler, das Spielfeld (`spielZustand`) und die Anzahl der Züge.</p>
+      <p>- Lade den gespeicherten Zustand beim Seitenaufruf und initialisiere das Spielfeld entsprechend.</p>
+      <p>- Erstelle ein Objekt das den Spielverlauf dokumentiert. Wins, Looses, Ties und speichere dieses seperat.</p>
+      <p>- Funktionen:</p>
+      <ul>
+        <li>**`speichereSpielzustand()`**: Speichert den aktuellen Zustand des Spiels in `localStorage`.</li>
+        <li>**`ladeSpielzustand()`**: Lädt den gespeicherten Zustand aus `localStorage` und aktualisiert das Spielfeld.
+        </li>
+        <li>**`loescheSpielzustand()`**: Entfernt den gespeicherten Zustand aus `localStorage`, z. B. beim Zurücksetzen
+          des Spiels.</li>
+      </ul>
+    </li>
+
+    <li>
+      <h3>**Bonus: AI**</h3>
+      <p>Implementiere eine TicTacToe-KI mit Hilfe des MinMax-Algorithmus, um einen optimalen Gegner zu erstellen.</p>
+      <p>Hier sind die Schritte:</p>
+      <ul>
+        <li>**MinMax-Algorithmus**: Entwickle eine Funktion, die alle möglichen Spielzüge simuliert und den besten Zug
+          für die KI auswählt.</li>
+        <li>**Bewertungsfunktion**: Implementiere eine Funktion, die den Spielzustand bewertet (z. B. +10 für einen
+          Gewinn, -10 für eine Niederlage, 0 für ein Unentschieden).</li>
+        <li>**Rekursive Suche**: Der MinMax-Algorithmus sollte rekursiv alle möglichen Spielzüge durchgehen und die
+          Bewertung zurückgeben.</li>
+      </ul>
+
+  </ol>
+  <br>
+  <p> Diese Elemente und Funktionen ermöglichen es dir, ein interaktives TicTacToe-Spiel zu erstellen, das im Browser
+    funktioniert und Benutzereingaben dynamisch verarbeitet.</p>
+
+
+
+
+
+
   <h1 id="Aufgabe2ID">Aufgabe 2: Entwurf</h1>
+
+  <h2> ## 🎯 **TicTacToe – Step-by-Step Plan </h2>
+
+  <h3>### **1. Projektstruktur vorbereiten**</h3>
+  <li>Lege drei Dateien an: `index.html`, `style.css`, `script.js`.</li>
+  <li>Sorge für eine klare Ordnerstruktur (optional: Ordner für Bilder, Icons etc.).</li>
+  <br>
+  <h3> ### **2. HTML-Grundgerüst erstellen**</h3>
+  <h4>Baue das Grundlayout mit:</h4>
+  <li>Eingabefelder für die Namen der Spieler.</li>
+  <li>Farbauswahl für X und O.</li>
+
+  <li>Startbutton, um das Spiel zu starten.</li>
+  <li>Einen versteckten Bereich für das Spielfeld, der erst sichtbar wird, wenn das Spiel beginnt.</li>
+  <li>Ein 3x3 Grid-Feld für das Spiel.</li>
+  <li>Einen Textbereich für Statusmeldungen (z. B. „Spieler X ist dran“).</li>
+  <li>Einen Button zum Zurücksetzen des Spiels.</li>
+
+
+  <h3>### **3. CSS-Layout definieren**</h3>
+  <li>Style das Grid mit CSS-Grid (3 Spalten, 3 Zeilen).</li>
+  <li>Sorge dafür, dass jede Zelle optisch hervorgehoben ist (z. B. mit Rahmen, Hover-Effekt).</li>
+  <li>Richte eine klare Darstellung der aktuellen Spielerfarben ein.</li>
+  <li>Verstecke das Spielfeld zunächst per CSS.</li>
+  <li>Gestalte den Statusbereich zentriert und gut lesbar.</li>
+
+
+  <h3>### **4. JavaScript: Grundvariablen definieren**</h3>
+  <h4>- Lege Variablen an für:</h4>
+  <li>Das Spielfeld als 2D-Array mit 3x3 anlegen.</li>
+  <li>Den aktuellen Spieler (X oder O).</li>
+  <li>Den Spielstatus (ob das Spiel aktiv ist oder nicht).</li>
+  <li>Spielerinfos (Namen und Farben).</li>
+
+  <h3>### **5. Spielfeld dynamisch generieren**</h3>
+  <li>Schreibe eine Funktion, die das Grid automatisch füllt.</li>
+  <li>Jede Zelle soll anklickbar sein und bei Klick die Spielzug-Funktion auslösen.</li>
+  <li>Setze das Grid bei jedem Spielstart zurück.</li>
+
+
+  <h3>6. Spielstart-Funktion erstellen</h3>
+  <h4>Wenn der Startbutton geklickt wird:</h4>
+  <li>Hole die eingegebenen Spielernamen und Farben.</li>
+  <li>Speichere die Infos in einer Spielerdaten-Struktur.</li>
+  <li>Setze das Spielfeld zurück.</li>
+  <li>Mache das Spielfeld sichtbar.</li>
+  <li>Zeige an, welcher Spieler beginnt.</li>
+
+  <h3>7. Klicks auf Spielfeldzellen verarbeiten</h3>
+  <h4>Prüfe bei Klick:</h4>
+
+  <li>Ob das Spiel noch aktiv ist.</li>
+  <li>Ob die angeklickte Zelle bereits belegt ist.</li>
+  <h4>Wenn der Zug erlaubt ist:</h4>
+  <ul>
+    <li>Trage das Symbol (X oder O) ins Spielfeld ein.</li>
+    <li>Zeige das Symbol in der Spielerfarbe.</li>
+    <li>Aktualisiere das Spielfeld im Array.</li>
+  </ul>
+
+
+  <h3>8. Siegbedingungen prüfen</h3>
+  <h4>Überprüfe nach jedem Zug:</h4>
+
+  <li>Ob eine der Gewinnkombinationen (Reihen, Spalten, Diagonalen) erfüllt ist.</li>
+  <li>Wenn ja: Beende das Spiel und gib eine Siegmeldung mit dem Namen des Spielers aus.</li>
+  <li>Wenn nein: Prüfe, ob alle Zellen belegt sind (Unentschieden).</li>
+  <li>Wenn weder Sieg noch Unentschieden: Wechsle zum nächsten Spieler und zeige das im Statusbereich an.</li>
+
+
+  <h3>9. Spiel zurücksetzen</h3>
+  <h4>Wenn der Reset-Button geklickt wird:</h4>
+
+  <li>Setze das Spielfeld zurück (Array und visuell).</li>
+  <li>Stelle den Startspieler wieder auf X.</li>
+  <li>Aktiviere das Spiel erneut.</li>
+  <li>Zeige die neue Statusmeldung.</li>
+
+
+  <h3>### **10. Optional – Erweiterungen**</h3>
+
+  <li>Anzeige der Gewinnkombination (z. B. mit Farbe oder Animation).</li>
+  <li>Ton beim Klick oder Gewinn.</li>
+  <li>Punktestand mitführen.</li>
+  <li>Mobile-First Design.</li>
+  <li>Zugverlauf als Liste anzeigen.</li>
+
 
   <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
 
 
   <div class="menu">
-    <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
-    <a href="../../Work/Carlos/main.html">Carlos</a>
-    <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
-    <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
-    <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
-    <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
-    <a href="../../Work/Sandro/Journal.html">Sandro</a>
+    <a href="../../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+    <a href="../../../Work/Carlos/main.html">Carlos</a>
+    <a href="../../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+    <a href="../../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+    <a href="../../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+    <a href="../../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+    <a href="../../../Work/Sandro/Journal.html">Sandro</a>
   </div>
   <button class="toTheTop">&#x1F51D;</button>
 </body>

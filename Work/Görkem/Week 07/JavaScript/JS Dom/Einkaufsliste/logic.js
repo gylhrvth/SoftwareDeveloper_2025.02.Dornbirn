@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadItems();
     handleDragDrop();
 
+
     shoppingForm.addEventListener("submit", handleFormSubmit);
 
     filterButtons.forEach(function (button){
@@ -21,12 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function saveItems(){
+    const listItems = shoppingList.querySelectorAll("li");
+
+    const shoppingItems = [];
+    listItems.forEach(function (listItem){
+        const id = listItem.getAttribute("data-id");
+        const name = listItem.querySelector(".item-name").textContent;
+        const completed = listItem.hasAttribute("data-completed");
+
+        shoppingItems.push({ id, name, completed });
+    });
+    localStorage.setItem("shoppingItems", JSON.stringify(shoppingItems));
+}
+
+
 // Funktion, um die Artikel zu laden
 function loadItems() {
     const shoppingItems = [
-        { id: 1, name: "eggs", completed: false },
-        { id: 2, name: "fish", completed: true },
-        { id: 3, name: "milk", completed: false },
+        { id: 2, name: "600 g Tomaten", completed: true },
+        { id: 3, name: "1 Stk. Milch", completed: false },
     ];
 
     // Liste leeren
@@ -89,18 +104,22 @@ function removeItem(e){
     const listItem = e.target.parentNode;
 
     shoppingList.removeChild(listItem);
+
+    saveItems();
+    
 }
 
-function addItem(itemName){
+function addItem(itemName, quantity = 1, unit = "") {
     const newListItem = createListItem({
         id: generateUniqueId(),
-        name: itemName,
+        name: `${quantity} ${unit} ${itemName}`.trim(),
         completed: false,
     });
 
     shoppingList.prepend(newListItem);
 
     updateFilteredItems();
+    saveItems();
 }
 
 function filterItems(filter){
@@ -128,7 +147,11 @@ function toggleCompleted(e){
 
     const activeFilter = document.querySelector("[data-filter].active").getAttribute("data-filter");
     filterItems(activeFilter);
+
+    updateFilteredItems();
+    saveItems();
 }
+
 
 function openEditMode(e){
     const itemName = e.target;
@@ -155,6 +178,8 @@ function closeEditMode(e){
 
     itemName.contentEditable = false;
         listItem.draggable = true;
+
+        saveItems();
 }
 
 function handleEnterKey(e){
@@ -168,14 +193,18 @@ function handleFormSubmit(e){
     e.preventDefault();
 
     const itemName = document.getElementById("item").value;
-    if (itemName.trim().length === 0){
+    const quantity = document.getElementById("quantity").value.trim();
+    const unit = document.getElementById("unit").value;
+    if (itemName === "") {
         //console.log("Please enter a valid item name!");
         return;
     }
     //console.log(itemName);
 
-    addItem(itemName);
-    this.reset();
+    const formattedItemName = itemName.charAt(0).toUpperCase() + itemName.slice(1);
+
+    addItem(formattedItemName, quantity, unit);
+    e.target.reset();
 }
 
 function handleDragDrop() {
@@ -202,7 +231,7 @@ function handleDragDrop() {
             } else {
                 shoppingList.appendChild(dragItem); 
             }
-                
+            saveItems();  
         }
     });
 }
@@ -239,6 +268,7 @@ function handleClearItem(e){
         .querySelectorAll("li[data-completed]")
         .forEach((listItem) => listItem.remove());
     }
+    saveItems();
 }
 
 function updateFilteredItems(){
@@ -250,5 +280,3 @@ function updateFilteredItems(){
 function generateUniqueId(){
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
-
-

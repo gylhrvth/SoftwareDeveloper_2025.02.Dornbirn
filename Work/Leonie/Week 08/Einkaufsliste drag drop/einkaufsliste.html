@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topcontent">
+            <img src="img/shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <h1>Einkaufsliste</h1>
+            <p id="counter"></p>
+        </div>
+
+        <form id="itemForm">
+            <input type="text" id="itemInput" placeholder="Artikel">
+            <input type="text" id="quantityInput" placeholder="Menge">
+            <select name="Art" id="selectionInput">
+                <option value="Stk">Stück</option>
+                <option value="kg">Kilogramm</option>
+                <option value="g">Gramm</option>
+                <option value="l">Liter</option>
+                <option value="ml">Milliliter</option>
+            </select>
+            <button type="button" onclick="createDiv()">Hinzufügen</button>
+        </form>
+        <div id="itemList"></div>
+    </div>
+</body>
+
+</html>
