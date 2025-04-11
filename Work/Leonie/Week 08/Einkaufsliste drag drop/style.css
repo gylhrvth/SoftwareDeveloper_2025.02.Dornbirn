@@ -9,15 +9,31 @@ body {
 }
 
 .topcontent{
-    display : flex;
-    flex-direction: row;
+    display : grid;
+    grid-template-columns: repeat(3, minmax(100px, 400px));
     align-items: baseline;
-    gap: 20px;
+    text-align: right;
+    width: clamp(370px, 35.5vw, 1000px);
+}
+
+.topcontent img{
+    justify-content: left;
+    width: 40px;
+    height: 35px;
+    margin-left: 0px;
 }
 
 .topcontent h1{
     font-family: Calibri, sans-serif;
     font-size: 2.5rem;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+#counter{
+    font-family: Calibri, sans-serif;
+    font-size: clamp(0.9rem, 1.0em, 1.3rem);
+    margin-left: 10px;
     margin-bottom: 0px;
 }
 
@@ -27,8 +43,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60vh;
-    width: clamp(420px, 50vw, 1100px);
+    height: 70vh;
+    width: clamp(420px, 47vw, 1060px);
     background-color: #FFD160;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -40,8 +56,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #FCA014;
-    width: clamp(370px, 30vw, 1000px);
-    min-width: 370px;
+    width: clamp(370px, 35vw, 1000px);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -77,12 +92,14 @@ body {
 }
 
 #itemList {
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
     padding: 0;
     margin: 0;
     margin-bottom: 60px;
     background-color: #FCBB14;
-    width: clamp(400px, 31vw, 1000px);
+    width: clamp(400px, 36vw, 1000px);
     height: 50vh;
     min-width: 400px;
     overflow-y: auto;
@@ -98,7 +115,6 @@ body {
     align-items: center;
     text-align: center;
     padding: 10px;
-    border-bottom: 1px solid black;
 }
 
 input[type="checkbox"]{
@@ -115,6 +131,12 @@ input[type="checkbox"]{
     text-align: left;
 }
 
+.item-name:hover {
+    overflow: visible; 
+    white-space: normal;
+    height: auto;  
+}
+
 .item-name.checked {
     text-decoration: line-through;
     color: rgb(121, 121, 121);
@@ -127,12 +149,23 @@ input[type="checkbox"]{
     text-overflow: ellipsis; /* Zeigt "..." an, wenn der Text abgeschnitten wird */
     text-align: right;
     position: relative;
-    left: 15px;
+    left: 14px;
+}
+
+.item-quantity:hover {
+    overflow: visible; 
+    white-space: normal;
+    height: auto;  
 }
 
 .item-quantity.checked {
     text-decoration: line-through;
     color: rgb(121, 121, 121);
+}
+
+.item-selection {
+    font-family: Calibri, sans-serif;
+    text-align: center;
 }
 
 .delete-button {
@@ -149,3 +182,47 @@ input[type="checkbox"]{
     background-color: #d32f2f;
 }
 
+@media screen and (max-width: 999px) and (min-width: 400px) {
+    .container {
+        height: 80vh;
+    }
+
+    .topcontent{
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .topcontent img{
+        margin-top: 20px;
+        justify-items: center;
+    }
+
+    .topcontent h1{
+        font-size: 2rem;
+    }
+
+    #itemList{
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+    .container {
+        height: 80vh;
+        width: 80vw;
+    }
+
+    .topcontent{
+        width: 90%;
+        grid-template-columns: repeat(3, minmax(260px, 300px));
+    }
+
+    #itemForm{
+        width: 90%;
+    }
+
+    #itemList{
+        width: 93%;
+    }
+}
