@@ -1,3 +1,5 @@
+
+
 //----------- main Function -----------------------
 
 let addItemButton = document.getElementById("addItem").addEventListener("click", function() {
@@ -60,7 +62,7 @@ let addItemButton = document.getElementById("addItem").addEventListener("click",
     let newArticle = document.createElement("div");
     newArticle.className = "rowArticle";
     // Limit the text content to 20 characters
-    newArticle.textContent = articleType.length > 30 ? articleType.substring(0, 30) + "..." : articleType;
+    newArticle.textContent = articleType.length > 20 ? articleType.substring(0, 20) + "..." : articleType;
     let newNumber = document.createElement("div");
     newNumber.className = "rowNumber";
     newNumber.textContent = articleNumber;
@@ -80,8 +82,9 @@ let addItemButton = document.getElementById("addItem").addEventListener("click",
     newDate.textContent = currentDate.toLocaleDateString("de-DE", {
         day: "2-digit",
         month: "2-digit",
-        year: "2-digit"
+        year: "2-digit",
     });
+    
 
 
     // Add event listener to delete button
@@ -106,7 +109,6 @@ let addItemButton = document.getElementById("addItem").addEventListener("click",
     newRow.appendChild(newDeleteButton);
     
     
-    
 
     // Append newRow to the rowsBox
     document.getElementById("rowsBox").appendChild(newRow);
@@ -121,7 +123,6 @@ let addItemButton = document.getElementById("addItem").addEventListener("click",
     document.getElementById("inputArtikel").focus();
 
     // Add event listener to checkbox
-
     newCheckBox.addEventListener("change", function(){
 
         if (newCheckBox.checked){
@@ -135,14 +136,10 @@ let addItemButton = document.getElementById("addItem").addEventListener("click",
             newUnit.classList.remove("unitChecked");
             newRow.classList.remove("rowChecked");
         }
-
     })
-
-
 });
 
 //--------------------------------------------------------------------
-
 
 // Function to reapply alternating row colors
 function updateRowColors() {
@@ -155,8 +152,8 @@ function updateRowColors() {
     }
 }
 
-// Function to reset the list
 
+// Function to reset the list
 function resetListe() {
     let feeedbackText = document.getElementById("feedbackText");
     feeedbackText.textContent = "Einkaufsliste zurückgesetzt!";
@@ -194,6 +191,38 @@ function deleteCheckedItems() {
 }
 
 let deleteChecked = document.getElementById("clearChecked").addEventListener("click", deleteCheckedItems);
+
+// ----------------------------------------------------------------------------------------
+
+// Data Storage Functions -------------------------------
+
+// Function to save rows to local storage
+function saveRowsToLocalStorage() {
+    const rows = [];
+    document.querySelectorAll("#rowsBox .newRow").forEach(currentRow => {
+        const checkBox = currentRow.querySelector(".rowCheckbox").checked;
+        const article = currentRow.querySelector(".rowArticle").textContent;
+        const number = currentRow.querySelector(".rowNumber").textContent;
+        const unit = currentRow.querySelector(".rowUnit").textContent;
+        const date = currentRow.querySelector(".rowDate").textContent;
+        rows.push({ checkBox, article, number, unit, date});
+    });
+    localStorage.setItem("rows", JSON.stringify(rows));
+}
+
+// Function to load rows from local storage
+function loadRowsFromLocalStorage() {
+    const rows = JSON.parse(localStorage.getItem("rows")) || []; // Retrieve and parse rows, or use an empty array if none exist
+    rows.forEach(rowData => {
+        // Create a new row
+        let newRow = document.createElement("div");
+    })
+
+    // TBC....................................
+
+
+}
+
 
 
 
