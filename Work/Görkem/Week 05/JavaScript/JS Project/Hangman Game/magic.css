@@ -174,7 +174,7 @@
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   
   position: absolute;
-  bottom: -25%; /* Abstand unterhalb des Bildes */
+  bottom: 10px; /* Abstand unterhalb des Bildes */
   left: 50%;
   transform: translateX(-50%) scale(0.8);
 }
@@ -190,4 +190,25 @@
 .visible {
   display: block;
 }
+
+.hangman-content {
+  display: flex;
+  flex-direction: column; /* Bilder und Text vertikal anordnen */
+  align-items: center; /* Horizontal zentrieren */
+  justify-content: center; /* Vertikal zentrieren */
+  width: 100%; /* Nimmt die gesamte Breite der Box ein */
+  height: 100%; /* Nimmt die gesamte Höhe der Box ein */
+  position: relative;
+}
+
+.hangman-images img {
+  position: absolute; /* Bilder übereinander stapeln */
+  top: 50%; /* Vertikal zentrieren */
+  left: 50%; /* Horizontal zentrieren */
+  transform: translate(-50%, -50%); /* Exakte Zentrierung */
+  display: none; /* Standardmäßig ausgeblendet */
+  max-width: 50%; /* Bilder passen sich der Breite an */
+  height: auto; /* Höhe proportional skalieren */
+}
+
 

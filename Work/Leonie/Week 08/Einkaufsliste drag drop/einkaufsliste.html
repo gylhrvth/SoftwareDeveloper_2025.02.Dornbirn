@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,17 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <div class="container">
-        <h1>Einkaufsliste</h1>
-        <p id="counter">Ware im Einkaufswagen:</p>
+        <div class="topcontent">
+            <img src="img/shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <h1>Einkaufsliste</h1>
+            <p id="counter"></p>
+        </div>
+
         <form id="itemForm">
-            <input type="text" id="itemInput" placeholder="Artikel hinzufügen...">
+            <input type="text" id="itemInput" placeholder="Artikel">
             <input type="text" id="quantityInput" placeholder="Menge">
             <select name="Art" id="selectionInput">
                 <option value="Stk">Stück</option>
@@ -26,4 +32,5 @@
         <div id="itemList"></div>
     </div>
 </body>
+
 </html>

@@ -9,32 +9,6 @@
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            height: 100vh;
-        }
-
-        #output-container {
-            margin-bottom: 20px;
-            white-space: pre; /* Preserve spacing for grid display */
-        }
-
-        #next-gen-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        #next-gen-btn:hover {
-            background-color: #45a049;
         }
     </style>
 </head>
@@ -43,7 +17,7 @@
 
     <h1>Game of Life</h1>
     <div id="output-container"></div>
-    <button id="next-gen-btn">Start Simulation</button>
+    <button id="next-gen-btn">Next Generation</button>
 
     <script>
 
@@ -68,17 +42,16 @@
         function print2Darray(arr) {
             clear(); // Clear the previous grid
 
-            const outputContainer = document.getElementById("output-container");
-            let gridHTML = ""; // Use a string to build the grid
-
             for (let i = 0; i < arr.length; ++i) {
                 for (let j = 0; j < arr[i].length; ++j) {
-                    gridHTML += arr[i][j] === 0 ? " ⬜️" : " 🦠";
+                    if (arr[i][j] === 0) {
+                        print(" ⬜️"); // Use your custom `print` function
+                    } else {
+                        print(" 🦠"); // Use your custom `print` function
+                    }
                 }
-                gridHTML += "\n"; // Add a newline after each row
+                printLn(); // Move to the next line after each row using your custom `printLn` function
             }
-
-            outputContainer.textContent = gridHTML; // Set the grid as text content
         }
 
         function nextGen(arr) {
@@ -121,26 +94,14 @@
 
         // Global Variables
         let grid = createRandomGrid(25, 25); // Initial grid
-        let simulationInterval = null; // Variable to store the interval ID
 
         // Initial Render
         print2Darray(grid);
 
         // Event Listener for Button
         document.getElementById("next-gen-btn").addEventListener("click", () => {
-            if (simulationInterval === null) {
-                // Start the simulation
-                simulationInterval = setInterval(() => {
-                    grid = nextGen(grid); // Generate the next generation
-                    print2Darray(grid); // Re-render the grid
-                }, 100); // Update every half second
-                document.getElementById("next-gen-btn").textContent = "Stop Simulation";
-            } else {
-                // Stop the simulation
-                clearInterval(simulationInterval);
-                simulationInterval = null;
-                document.getElementById("next-gen-btn").textContent = "Start Simulation";
-            }
+            grid = nextGen(grid); // Generate the next generation
+            print2Darray(grid); // Re-render the grid
         });
 
     </script>
