@@ -1,0 +1,122 @@
+.hidden {
+    display: none; /* Versteckt das Element */
+}
+
+/* Allgemeiner Seitenstil */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Moderne, gut lesbare Schriftart */
+    background-color: #f0f2f5; /* Sanftes Grau als Hintergrund */
+    display: flex; /* Zentriert den Inhalt horizontal */
+    flex-direction: column; /* Inhalt von oben nach unten anordnen */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    padding: 40px; /* Abstand zum Rand */
+}
+
+/* Hauptbutton */
+#create-list-btn {
+    background-color: #007bff; /* Modernes Blau */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px; /* Abgerundete Ecken */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Sanfte Hover-Animation */
+}
+
+#create-list-btn:hover {
+    background-color: #0056b3; /* Dunkler beim Hover für visuelles Feedback */
+}
+
+/* Container für Input + Liste */
+.content {
+    background-color: white; /* Weißer Container auf grauem Hintergrund */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sanfter Schatten */
+    width: 100%;
+    max-width: 500px; /* Maximale Breite des Containers */
+}
+
+/* Eingabefeld und Hinzufügen-Button nebeneinander */
+.input-row {
+    display: flex; /* Anordnung in einer Reihe */
+    margin-bottom: 16px; /* Abstand zur Liste */
+}
+
+/* Eingabefeld */
+#item-input {
+    width: calc(100% - 110px); /* Breite abzüglich Button-Breite */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px; /* Abstand zum Button */
+}
+
+/* Hinzufügen-Button */
+#add-item-btn {
+    padding: 10px 16px;
+    font-size: 1rem;
+    background-color: #28a745; /* Grüner Bestätigungsbutton */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-item-btn:hover {
+    background-color: #218838; /* Dunkler bei Hover */
+}
+
+/* Scrollbarer Bereich für die Einkaufsliste */
+#list-container {
+    max-height: 200px; /* Maximale Höhe */
+    overflow-y: auto; /* Scrollen bei Überfüllung */
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+/* Liste (ohne Bulletpoints) */
+#shopping-list {
+    list-style: none; /* Bulletpoints entfernen */
+    padding: 0;
+    margin: 0;
+}
+
+/* Einzelnes Listenelement */
+#shopping-list li {
+    background-color: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Checkbox + Text + X gleichmäßig verteilt */
+    margin-bottom: 8px;
+}
+
+/* Checkbox neben dem Produkt */
+#shopping-list li input[type="checkbox"] {
+    margin-right: 12px;
+}
+
+/* Durchgestrichener Text nach Anhaken */
+#shopping-list li.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Lösch-Icon */
+.delete-icon {
+    color: #dc3545; /* Modernes Rot */
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.delete-icon:hover {
+    color: #a71d2a; /* Dunkleres Rot bei Hover */
+}
