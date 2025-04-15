@@ -143,6 +143,30 @@ input[type="checkbox"]{
     display: none;
 }
 
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.button-style {
+    background-color: var(--accent-color); /* Grüne Hintergrundfarbe */
+    color: var(--background); /* Weiße Schriftfarbe */
+    border: none; /* Kein Rahmen */
+    padding: 10px 20px; /* Innenabstand */
+    text-align: center; /* Zentrierter Text */
+    text-decoration: none; /* Keine Unterstreichung */
+    display: inline-block; /* Inline-Block-Element */
+    font-size: 16px; /* Schriftgröße */
+    margin: 5px; /* Abstand zwischen Buttons */
+    cursor: pointer; /* Zeiger-Cursor */
+    border-radius: 5px; /* Abgerundete Ecken */
+    transition: background-color 0.3s ease; /* Sanfter Übergang */
+}
+
+.button-style:hover {
+    background-color: var(--secondary-color) /* Dunkleres Grün beim Hover */
+}
+
 @media(max-width: 500px){
     html{
         font-size: 12pt;

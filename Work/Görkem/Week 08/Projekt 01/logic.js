@@ -9,6 +9,7 @@ const todoListUL = document.getElementById('todo-list');
 let allTodos = getTodos();
 if (allTodos.length === 0) {
     allTodos.push({ text: "Gym Workout", completed: true }); // Standard-Todo
+    allTodos.push({ text: "Shopping", completed: false }); // Standard-Todo
     saveTodos(); // Speichere das Standard-Todo
 }
 updateTodoList();
@@ -92,4 +93,20 @@ function getTodos() {
         console.error("Fehler beim Parsen der Todos:", error);
         return []; // Gib ein leeres Array zurück, falls ein Fehler auftritt
     }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function clearCompletedTodos() {
+    allTodos = allTodos.filter(todo => !todo.completed);
+    saveTodos();
+    updateTodoList();
+}
+
+function clearAllTodos() {
+    allTodos = [];
+    saveTodos();
+    updateTodoList();
 }
