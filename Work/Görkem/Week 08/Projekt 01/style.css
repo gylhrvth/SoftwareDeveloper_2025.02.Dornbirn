@@ -143,11 +143,6 @@ input[type="checkbox"]{
     display: none;
 }
 
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
 .button-style {
     background-color: var(--accent-color); /* Grüne Hintergrundfarbe */
     color: var(--background); /* Weiße Schriftfarbe */
@@ -164,7 +159,7 @@ body.dark-mode {
 }
 
 .button-style:hover {
-    background-color: var(--secondary-color) /* Dunkleres Grün beim Hover */
+    background-color: var(--secondary-color); /* Dunkleres Grün beim Hover */
 }
 
 @media(max-width: 500px){
