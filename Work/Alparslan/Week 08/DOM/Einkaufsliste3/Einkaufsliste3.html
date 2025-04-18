@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufliste3 mit Darkmode</title>
+    <link rel="stylesheet" href="../../../../Alparslan/Week 08/DOM/Einkaufsliste3/Einkaufsliste3.css">
+    <script src="../../../../Alparslan/Week 08/DOM/Einkaufsliste3/Einkaufsliste3.js" defer></script>
+</head>
+<body>
+
+ <!-- Button zum Starten der Einkaufsliste -->
+ <button id="create-list-btn" class="primary-btn">Einkaufsliste erstellen</button>      <!-- ID zum Ansprechen im JS, Klasse für modernes Button-Styling --> 
+      
+ <!-- Button zum Umschalten auf Darkmode -->
+<button id="dark-mode-toggle">🌙 Dark Mode</button>
+
+<!-- Button zum Umschalten auf Lightmode -->
+<button id="light-mode-toggle" class="hidden">☀️ Light Mode</button>
+
+
+ <!-- Bereich, der anfangs unsichtbar ist -->
+     <div id="list-section" class="content hidden">                                <!-- Ein DIV-Container für Eingabefeld + Liste; Klasse "content"-->                              
+            
+
+        <!-- Eingabezeile mit Input und Hinzufügen-Button -->
+        <div class="input-row">                                                     <!-- Gruppiert Inputfeld und Button nebeneinander für sauberes Layout -->
+        <input type="text" id="item-input" placeholder="Neues Produkt eingeben">              <!-- Inputfeld für Produkteingabe; ID="item-input" , Platzhalter "Neues Produkt eingeben" -->
+            <button id="add-item-btn" class="add-btn">Hinzufügen</button>                     <!-- Button um input des Users zur Liste zuzufügen -->
+        </div>
+
+            <div id="list-container">                                             <!-- Container für Scrollbare Einkaufsliste, ID="list-container" -->
+                <ul id="shopping-list"></ul>                                        <!--Liste, hier werden inputeinträge hinzugefügt  -->
+            
+     </div>
+    </div>
+    
+</body>
+</htmlt

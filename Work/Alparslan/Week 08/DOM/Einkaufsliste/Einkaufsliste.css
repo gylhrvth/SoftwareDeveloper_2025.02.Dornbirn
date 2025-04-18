@@ -1,0 +1,37 @@
+.hidden{
+    display:none                    /* Element wird nicht angezeigt*/
+}
+
+.content{
+    background-color: aqua; 
+}
+
+#list-section{                      /* Style für Eingabefeld + Liste */
+    margin-top: 20px;               /* Abstand nach oben */
+}
+
+#list-container{                    /* Style für Liste */
+    max-height: 200px;              /* maximale Höhe */
+    overflow-y: auto;               /* Scrollbalken, wenn inhalt höher als 200px */
+    border: 1px solid #ccc;       /* Rahmen grau */
+    padding: 10px;                  /* Innenabstand */
+    display: flexbox;                  /* Gridbox */
+    gap: 10px;                      /* Innenabstand */
+}
+
+.list-item{                         /* Klasse für Listenelemente */
+    display:flex;                   /* Flexbox-Layout für horizontale Anordnung */
+   /* justify-content: space-between; /* Platzierung der Elemente mit Abstand dazwischen */
+    align-items: center;            /* Vertikale Zentrierung der Elemente */
+    width: 100%;
+}
+
+.list-item > .spacer {
+    flex-grow: 0;
+}
+
+.delete-icon{
+    cursor: pointer;                /* Maus ändern um Klickbares zu zeigen */
+    color: red;
+    /*margin-left: auto;              /* Abstand links vom Icon */
+}
