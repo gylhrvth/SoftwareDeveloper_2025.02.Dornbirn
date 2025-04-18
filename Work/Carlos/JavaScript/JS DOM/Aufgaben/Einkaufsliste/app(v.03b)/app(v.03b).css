@@ -2,8 +2,8 @@ body {
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
+    height: 100%; /* Full viewport height */
+    margin: 20px; 
     background-color: #ffffff; /* Background color */
 }
 
@@ -39,7 +39,7 @@ body {
 }
 
 #headerBox {
-  
+
     justify-content: center;
     align-items: center;
     margin: 20px;
@@ -199,5 +199,5 @@ body {
 }
 
 .rowChecked {
-    background-color: #f5fff1; /* Light gray background for checked rows */
+    background-color: #f5fff1; /* Light green background for checked rows */
 }
