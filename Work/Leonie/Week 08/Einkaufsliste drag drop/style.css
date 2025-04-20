@@ -94,14 +94,13 @@ body {
 #itemList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 50px));
     padding: 0;
     margin: 0;
     margin-bottom: 60px;
     background-color: #FCBB14;
     width: clamp(400px, 36vw, 1000px);
     height: 50vh;
-    min-width: 400px;
     overflow-y: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -203,6 +202,7 @@ input[type="checkbox"]{
 
     #itemList{
         grid-template-columns: 1fr;
+        margin-bottom: 20px;
     }
     
 }
