@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="pvp" onclick="startPVP()">
+            <img src="img/TicTacToe.svg" alt="Tic Tac Toe Bild">
+            <h1>Tic Tac Toe</h1>
+            <p>Player vs Player</p>
+        </div>
+        <div class="pva">
+            <img src="img/ai.svg" alt="AI-Bild">
+            <h1>Tic Tac Toe</h1>
+            <p>Player vs AI</p>
+        </div>
+    </header>
+    <main>
+        <div class="game-info">
+            <h2>Game Info</h2>
+            <p id="player1">Player 1: X</p>
+            <p id="player2">Player 2: O</p>
+            <p id="currentPlayer">Current Player:</p>
+            <p id="move">Moves Left: 0 / 9</p>
+        <div class="game-board">
+            <div class="cell" id="cell-0"></div>
+            <div class="cell" id="cell-1"></div>
+            <div class="cell" id="cell-2"></div>
+            <div class="cell" id="cell-3"></div>
+            <div class="cell" id="cell-4"></div>
+            <div class="cell" id="cell-5"></div>
+            <div class="cell" id="cell-6"></div>
+            <div class="cell" id="cell-7"></div>
+            <div class="cell" id="cell-8"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="overlay">
+            <div class="popup">
+                <h2 id="title">TEST</h2>
+                <p id="winner"></p>
+                <button id="restart" onclick="playAgain()">Restart</button>
+                <button id="exit" onclick="exit()">Exit</button>
+            </div>
+    
+        </div>
+    </footer>
+</body>
+</html>
