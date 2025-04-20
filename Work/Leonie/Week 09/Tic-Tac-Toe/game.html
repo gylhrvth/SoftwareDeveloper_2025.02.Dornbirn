@@ -10,10 +10,12 @@
 <body>
     <header>
         <div class="pvp" onclick="startPVP()">
+            <img src="img/TicTacToe.svg" alt="Tic Tac Toe Bild">
             <h1>Tic Tac Toe</h1>
             <p>Player vs Player</p>
         </div>
         <div class="pva">
+            <img src="img/ai.svg" alt="AI-Bild">
             <h1>Tic Tac Toe</h1>
             <p>Player vs AI</p>
         </div>
@@ -23,8 +25,8 @@
             <h2>Game Info</h2>
             <p id="player1">Player 1: X</p>
             <p id="player2">Player 2: O</p>
-            <p id="currentPlayer">Current Player: X</p>
-            <p id="move">Moves Left:0 / 9</p>
+            <p id="currentPlayer">Current Player:</p>
+            <p id="move">Moves Left: 0 / 9</p>
         <div class="game-board">
             <div class="cell" id="cell-0"></div>
             <div class="cell" id="cell-1"></div>
@@ -42,8 +44,8 @@
             <div class="popup">
                 <h2 id="title">TEST</h2>
                 <p id="winner"></p>
-                <button id="restart">Restart</button>
-                <button id="exit">Exit</button>
+                <button id="restart" onclick="playAgain()">Restart</button>
+                <button id="exit" onclick="exit()">Exit</button>
             </div>
     
         </div>

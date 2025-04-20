@@ -1,5 +1,5 @@
 body{
-    background-color: #f0f0f0;
+    background-color: black;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: row;
@@ -10,44 +10,69 @@ body{
 }
 
 header{
-    background-color: gray;
+    background-color: black;
     display: flex;
+    gap: 5%;
     color: white;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
+    width: 70vw;
+    height: 70vh;
     position: fixed;
     z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
 
 .pvp{
-    background-color: antiquewhite;
+    background-color: #6D74E3;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 10px;
+    width: 30%;
+    height: 70%;
+}
+
+.pvp img{
+    width: 200px;
+    height: 200px;
 }
 
 .pva{
-    background-color: lightblue;
+    background-color: #B36DE3;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 10px;
+    width: 30%;
+    height: 70%;
+}
+
+.pva img{
+    width: 200px;
+    height: 200px;
 }
 
 main{
+    color: white;
     display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    border: solid 1px #8C6DE3;
+    width: 70vw;
+    height: 70vh;
 }
 
 .game-info{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px;
 }
 
 .game-board{
@@ -62,7 +87,7 @@ main{
 .cell{
     width: 100px;
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,20 +95,19 @@ main{
     cursor: pointer;
 }
 .cell:hover{
-    background-color: lightgray;
+    border: 1px solid #8C6DE3;
 }
 .cell.taken{
     pointer-events: none;
 }
 .cell.x{
-    color: blue;
+    color: #6D99E3;
 }
 .cell.o{
-    color: red;
+    color: #DA6DE3;
 }
 
 footer{
-    background-color: gray;
     display: none;
     color: white;
     text-align: center;
@@ -101,4 +125,60 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+}
+
+.popup{
+    background-color: #8C6DE3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+#restart{
+    background-color: #6D74E3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#restart:hover{
+    background-color: #6D99E3;
+}
+
+#exit{
+    background-color: #DA6DE3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#exit:hover{
+    background-color: #db4ce8;
+}
+
+@media screen and (max-width: 768px) {
+    header{
+        width: 100%;
+    }
+
+    .pvp, .pva{
+        width: 40%;
+        height: 50%;
+    }
+    .pvp img, .pva img{
+        width: 100px;
+        height: 100px;
+    }
+
+    main{
+        width: 90%;
+    }
 }

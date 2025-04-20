@@ -38,6 +38,15 @@ function addCellClickListeners() {
                 winningCondition(currentPlayer); // Überprüfe die Gewinnbedingungen
                 // Wechsle den aktuellen Spieler
                 currentPlayerElement.textContent = `Current Player: ${currentPlayer === 'X' ? 'O' : 'X'}`;
+
+                if (currentPlayer === 'X') {
+                    const divX = document.getElementById(cellId);
+                    divX.classList.add('x');
+
+                }else{
+                    const divO = document.getElementById(cellId);
+                    divO.classList.add('o');
+                }
             }
         });
     });
@@ -64,17 +73,27 @@ function winningCondition(currentPlayer) {
     winningCombinations.forEach(combination => {
         if (arr[combination[0]] === currentPlayer && arr[combination[1]] === currentPlayer && arr[combination[2]] === currentPlayer) {
             // Wenn eine Gewinnkombination gefunden wurde
-            winnerElement.textContent = `Winner: ${currentPlayer}`;
-            popup.style.display = 'block'; // Zeige das Popup an
-            boxtransp.style.display = 'block'; // Zeige den transparenten Hintergrund an
+            const player1 = "Player 1 ( X )";
+            const player2 = "Player 2 ( O )";
+            const winner = currentPlayer === 'X' ? player1 : player2;
+
+            const footer = document.querySelector('footer');
+            footer.style.display = 'flex'; // Setze das Display auf 'none'
+            const title = document.getElementById('title');
+            title.textContent = `Herzlichen Glückwunsch!`;
+            const winnerElement = document.getElementById('winner');
+            winnerElement.textContent = `Gewinner: ${winner}`;
         }
     });
     // Überprüfe, ob das Spielfeld voll ist (Unentschieden)
     const isFull = arr.every(cell => cell !== '');
     if (isFull) {
-        winnerElement.textContent = 'Unentschieden!';
-        popup.style.display = 'block'; // Zeige das Popup an
-        boxtransp.style.display = 'block'; // Zeige den transparenten Hintergrund an
+        const footer = document.querySelector('footer');
+        footer.style.display = 'flex'; // Setze das Display auf 'none'
+        const title = document.getElementById('title');
+        title.textContent = `Unentschieden!`;
+        const winnerElement = document.getElementById('winner');
+        winnerElement.textContent = `Es gibt keinen Gewinner!`;
     }
 }
 
@@ -90,4 +109,33 @@ function countMoves() {
     const movesElement = document.getElementById('move');
     movesElement.textContent = `Moves: ${count} / 9`;
     console.log(`Moves: ${count} / 9`);
+}
+
+function resetGame() {
+    const cells = document.querySelectorAll('.cell'); // Selektiere alle Zellen mit der Klasse 'cell'
+    cells.forEach(cell => {
+        cell.textContent = ''; // Setze den Text jeder Zelle auf einen leeren String
+        cell.style.pointerEvents = 'auto'; // Aktiviere das Klicken auf diese Zelle
+        cell.classList.remove('x', 'o'); // Entferne die Klassen 'x' und 'o'
+    });
+    const footer = document.querySelector('footer');
+    footer.style.display = 'none'; // Setze das Display auf 'none'
+    const movesElement = document.getElementById('move');
+    movesElement.textContent = `Moves: 0 / 9`;
+}
+    
+function playAgain() {    
+    resetGame();
+    whoStarts();
+    addCellClickListeners();
+}
+
+function exit() {
+    resetGame();
+    const header = document.querySelector('header');
+    header.style.display = 'flex'; // Setze das Display auf 'none'
+    const main = document.querySelector('main');
+    main.style.display = 'none';
+    const footer = document.querySelector('footer');
+    footer.style.display = 'none'; // Setze das Display auf 'none'
 }
