@@ -44,9 +44,9 @@ restartMessage.addEventListener('click', startGame); // Add an event listener to
 
 function startGame() {
     circleTurn = false; // Set the initial turn to X (false)
+
     cellElements.forEach(cell => { // The forEach method is avaible on arrays and array-like objects, including NodeLists.
-        cell.classList.remove(X_CLASS); // Remove the X class from all cells
-        cell.classList.remove(CIRCLE_CLASS); // Remove the circle class from all cells
+        cell.classList.remove(HUMAN_PLAYER, AI_PLAYER, 'winning-x', 'winning-o'); // Remove all classes
         cell.removeEventListener('click', handleClick); // Remove the old click event listener from all cells // Prevents the duplication of event listeners when the game is restarted //
         cell.addEventListener('click', handleClick, { once: true}); // Add the click event listener to all cells
     })
@@ -137,8 +137,19 @@ function endGame(draw){
 
     } else {
         winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
+        highlightWinningCombination(circleTurn ? AI_PLAYER : HUMAN_PLAYER);
     } 
     winningMessageElement.classList.add('show'); // Show the winning message
+}
+
+function highlightWinningCombination(currentPlayer) {
+    WINNING_COMBINATIONS.forEach(combination => {
+        if (combination.every(index => cellElements[index].classList.contains(currentPlayer))) {
+            combination.forEach(index => {
+                cellElements[index].classList.add(currentPlayer === HUMAN_PLAYER ? 'winning-x' : 'winning-o'); // Highlight the winning combination
+            })
+        }
+    })
 }
     
 function isDraw() {
