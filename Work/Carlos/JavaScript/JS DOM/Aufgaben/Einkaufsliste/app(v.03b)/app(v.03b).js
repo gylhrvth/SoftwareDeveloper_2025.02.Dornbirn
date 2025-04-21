@@ -103,10 +103,10 @@ function validateInputValues(inputValues) {
         return false;
     }
 
-    if (isNaN(articleNumber) || articleNumber <= 0 || articleNumber > 99) {
+    if (isNaN(articleNumber) || articleNumber <= 0 || articleNumber > 999) {
         // Handle validation failure
         let feedbackText = document.getElementById("feedbackText");
-        feedbackText.textContent = "Bitte eine gültige Anzahl eingeben! (1-99)";
+        feedbackText.textContent = "Bitte eine gültige Anzahl eingeben! (1-999)";
         feedbackText.classList.add("error");
         setTimeout(() => {
             feedbackText.textContent = "Gib ein Produkt ein";
@@ -304,53 +304,10 @@ main();
 
 // ----------------------------------------------------------------------------------------
 
-// Data Storage Functions -------------------------------
 
-// Function to save rows to local storage
-function saveRowsToLocalStorage() {
-    const rows = [];
-    document.querySelectorAll("#rowsBox .newRow").forEach(currentRow => {
-        const checkBox = currentRow.querySelector(".rowCheckBox").checked;
-        const article = currentRow.querySelector(".rowArticle").textContent;
-        const number = currentRow.querySelector(".rowNumber").textContent;
-        const unit = currentRow.querySelector(".rowUnit").textContent;
-        const date = currentRow.querySelector(".rowDate").textContent;
-        rows.push({ checkBox, article, number, unit, date});
-    });
-    localStorage.setItem("rows", JSON.stringify(rows));
-}
-
-// Function to load rows from local storage
-function loadRowsFromLocalStorage() {
-    const rows = JSON.parse(localStorage.getItem("rows")) || []; // Retrieve and parse rows, or use an empty array if none exist
-    rows.forEach(rowData => {
-        const newRow = createNewRow(rowData); // Use the existing createNewRow function
-        appendRowToList(newRow); // Append the row to the list
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Below Old Code, without grouped Functions
+// This code is not used anymore, but kept for reference
+// --------------------------------------------------------
 
 /*
 //----------- main Function -----------------------

@@ -1,0 +1,203 @@
+body {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Full viewport height */
+    margin: 20px; 
+    background-color: #ffffff; /* Background color */
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; /* Take only as much width as needed */
+    padding: 20px; /* Add some padding for spacing */
+    background-color: #ffffff; /* Background color for the container */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 5px; /* Optional rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#selectBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    gap: 10px;
+
+}
+
+#headerBox {
+
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: #333;
+    background-color: #fff;
+}
+
+#rowsBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keep rows horizontally centered */
+    justify-content: flex-start; /* Align rows at the top */
+    width: 80%;
+    min-height: 600px;
+    max-height: 600px; /* Set a maximum height */
+    overflow-y: auto; /* Add vertical scrollbar when content overflows */
+    border: #c4c4c4 solid 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in height calculation */
+    margin-bottom: 20px;
+}
+
+#feedbackBox {
+    padding: 10px;
+    margin: 10px;
+    height: 40px; /* Set a fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent content overflow */
+    text-align: center; /* Center text horizontally */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.button {
+    border: none;
+    background-color: orange;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ff8c00; /* Darker shade on hover */
+}
+.button:active {
+    background-color: #ff7f00; /* Even darker shade on click */
+}
+
+#inputArtikel {
+    flex: 4;
+    width: 200px; /* Set a fixed width for the input field */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    padding: 5px; /* Adjust padding for better appearance */
+    box-sizing: border-box; /* Include padding in width calculation */      
+
+}
+
+#inputAnzahl {
+    flex: 1;
+    padding: 5px; /* Adjust padding for better appearance */
+    box-sizing: border-box; /* Include padding in width calculation */
+}   
+
+#inputEinheit {
+    flex: 2;
+    padding: 5px; /* Adjust padding for better appearance */
+    box-sizing: border-box; /* Include padding in width calculation */  
+
+}
+
+#footerButtonBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    gap: 30px;
+}
+
+.newRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    padding: 5px;
+    gap: 10px;
+    text-align: left; /* Align content inside the row to the left */
+}
+
+.rowArticle {
+    text-align: left; /* Ensure individual elements are aligned to the left */
+    flex: 4; /* Allow equal spacing for each column */
+    color: orange;
+
+} 
+
+.rowNumber {
+    text-align: right;
+    flex: 1;
+    color: brown;
+}
+
+.rowUnit {
+    text-align: left; /* Ensure individual elements are aligned to the left */
+    flex: 1.5; /* Allow equal spacing for each column */
+    color: rgb(87, 87, 87);
+}
+
+.rowDate {
+    text-align: left; /* Ensure individual elements are aligned to the left */
+    flex: 1; /* Allow equal spacing for each column */
+    color: rgb(87, 87, 87);
+}
+
+
+
+.articleChecked {
+    color: rgb(134, 134, 134);
+    text-decoration: line-through;
+    text-decoration-color: black;
+    text-decoration-thickness: 2px;
+}
+
+.numberChecked {
+    color: rgb(134, 134, 134);
+}
+
+.unitChecked {
+    color: rgb(134, 134, 134);
+}
+
+.odd {
+    background-color: #fafafa;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.rowChecked {
+    background-color: #f5fff1; /* Light green background for checked rows */
+}
