@@ -1,0 +1,50 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(255, 236, 251);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#randomPerson {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.name {
+    font-weight: bold;
+    color: rgb(255, 131, 30);
+}
+
+.info {
+    font-style: italic;
+    color: darkblue;
+}
+
+.picture {
+    width: 200px;
+    height: 200px;
+    border: solid rgb(34, 30, 87) 5px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4c5baf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}

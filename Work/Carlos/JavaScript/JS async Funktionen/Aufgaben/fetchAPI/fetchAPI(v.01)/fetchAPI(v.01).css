@@ -1,0 +1,17 @@
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#joke {
+    text-align: center;
+    font-size: 2em;
+}
+
+.delivery {
+    font-weight: bold;
+    color: darkred;
+}
