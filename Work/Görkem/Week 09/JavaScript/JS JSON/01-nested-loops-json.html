@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="styesheet" href="../../../../Sandro/style.css">
+    <title>JSON und Methoden</title>
+</head>
+<body>
+    <script>
+        let myBooks = [
+            {
+                title: 'The Hobbit',
+                author: 'J.R.R. Tolkien',
+                year: 1937,
+                genres: ['Fantasy', 'Adventure'],
+                available: true,
+                info: () => {
+                    console.log('The Hobbit by J.R.R. Tolkien');
+                }
+
+            },
+            {
+                title: '1984',
+                author: 'George Orwell',
+                year: 1949,
+                genres: ['Fantasy', 'Political Fiction'],
+                available: false,
+                info: () => {
+                    console.log('1984 by George Orwell');
+                }
+            }
+        ]
+
+     // JSON.stringify: Array in JSON-String umwandeln
+
+        let jsonString = JSON.stringify(myBooks)
+        console.log(jsonString);
+
+     // // JSON.parse: JSON-String zurück in ein JavaScript-Objekt umwandeln
+        
+        let parsedBooks = JSON.parse(jsonString);
+        console.log(parsedBooks);
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
