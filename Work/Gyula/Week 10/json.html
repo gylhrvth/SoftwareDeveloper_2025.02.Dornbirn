@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+<script>
+    let myCar = [
+        {
+            producer: 'Opel',
+            model: 'Astra',
+            year: 2017,
+            owners: [
+                {
+                    name: 'Company X',
+                    private: false
+                },
+                {
+                    name: 'Gyula',
+                    private: true
+                }
+            ],
+            print: () => {
+                console.log('Hello World!')
+            }
+        },
+        {
+            producer: 'Volkwagen',
+            model: 'Käfer',
+            year: 1976,
+            owners: [
+                {
+                    name: 'Gyula',
+                    private: true
+                }
+            ],
+            print: () => {
+                console.log('Hello World!')
+            }
+        },
+
+
+    ]
+
+    let text = JSON.stringify(myCar)
+    console.log(text)
+
+    let myCar2 = JSON.parse(text)
+    console.log(myCar2)
+
+//    myCar.print()
+//    myCar2.print()
+
+</script>
+</body>
+</html>
