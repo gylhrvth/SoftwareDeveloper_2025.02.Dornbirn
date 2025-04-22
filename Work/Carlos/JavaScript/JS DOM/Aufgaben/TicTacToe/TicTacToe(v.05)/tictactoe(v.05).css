@@ -202,3 +202,54 @@ body {
 .cell.winning-o::before {
     background-color: red;
 }
+
+#chooseAIDifficultyContainer {
+    position: relative; /* Set the container as the positioning context */
+    display: inline-block;
+}
+
+#aiDifficulty {
+    position: absolute; /* Position the dropdown relative to the container */
+    top: 100%; /* Place it directly below the button */
+    left: 0; /* Align it to the left of the container */
+    opacity: 0; /* Start with full transparency */
+    visibility: hidden; /* Hide the dropdown initially */
+    z-index: 10;
+    background-color: white; /* Add a background color for better visibility */
+    border: 1px solid #ccc; /* Add a border to match the style */
+    padding: 5px; /* Add padding for better spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    width: 150px; /* Set a fixed width for the dropdown */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transition for smooth effect */
+}
+
+#aiDifficulty.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make the dropdown visible */
+}
+
+#chooseAIDifficultyContainer:focus-within #aiDifficulty {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make the dropdown visible */
+}
+
+/* Ensure the dropdown remains visible when interacting with it */
+#aiDifficulty:focus {
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-mode-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

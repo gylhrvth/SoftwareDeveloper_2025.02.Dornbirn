@@ -1,4 +1,3 @@
-
 // ==============================
 // Constants and Variables
 // ==============================
@@ -13,21 +12,19 @@ const AI_PLAYER = CIRCLE_CLASS; // AI player is O
 
 // Winning combinations (indices of cells that form a win)
 const WINNING_COMBINATIONS = [
-    [0, 1, 2], // Horizontal
-    [3, 4, 5], // Horizontal
-    [6, 7, 8], // Horizontal
-    [0, 3, 6], // Vertical
-    [1, 4, 7], // Vertical
-    [2, 5, 8], // Vertical
-    [0, 4, 8], // Diagonal
-    [2, 4, 6]  // Diagonal
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Horizontal
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Vertical
+    [0, 4, 8], [2, 4, 6]             // Diagonal
 ];
 
 // DOM elements
 const cellElements = document.querySelectorAll('[data-cell]'); // All cells in the grid
 const board = document.getElementById('board'); // The game board
 const playerVsPlayerButton = document.getElementById('playerVsPlayer'); // Button for Player vs Player mode
+const chooseAIDifficultyButton = document.getElementById('chooseAIDifficulty');
 const playerVsAIButton = document.getElementById('playerVsAI'); // Button for Player vs AI mode
+const aiDifficultyDropdown = document.getElementById('aiDifficulty'); // Dropdown for AI difficulty
+let selectedDifficulty = null; // Track the selected difficulty
 const winningMessageElement = document.getElementById('winningMessage'); // Winning message container
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]'); // Winning message text
 const restartMessage = document.getElementById("restartMessage"); // Restart button
@@ -40,26 +37,87 @@ let circleTurn = false; // Tracks the current turn (true for O, false for X)
 // Initialization
 // ==============================
 
-// Disable the board on page load
-board.classList.add('disabled');
+/**
+ * Initialize the game on page load.
+ */
+function initializeGame() {
+    disableBoard(); // Disable the board initially
+    setupEventListeners(); // Set up all event listeners
+}
 
-// Add event listeners for game mode buttons
-playerVsPlayerButton.addEventListener('click', () => {
-    isAI = false; // Set mode to Player vs Player
-    startGameMode();
-});
+/**
+ * Disable the board.
+ */
+function disableBoard() {
+    board.classList.add('disabled'); // Add the 'disabled' class to the board
+}
 
-playerVsAIButton.addEventListener('click', () => {
+// Call the initialize function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeGame);
+
+/**
+ * Set up all event listeners for buttons and dropdowns.
+ */
+function setupEventListeners() {
+    // Dropdown-related event listeners
+    chooseAIDifficultyButton.addEventListener('click', toggleDropdownVisibility);
+    aiDifficultyDropdown.addEventListener('change', handleDifficultySelection);
+
+    // Game mode buttons
+    playerVsPlayerButton.addEventListener('click', () => {
+        isAI = false; // Set mode to Player vs Player
+        startGameMode();
+    });
+
+    playerVsAIButton.addEventListener('click', () => {
+        startPlayerVsAIMode();
+    });
+
+    // Restart button
+    restartMessage.addEventListener('click', resetGameState);
+}
+
+/**
+ * Toggle the visibility of the dropdown menu.
+ */
+function toggleDropdownVisibility() {
+    aiDifficultyDropdown.classList.toggle('show'); // Toggle the dropdown visibility
+}
+
+/**
+ * Handle difficulty selection from the dropdown.
+ */
+function handleDifficultySelection() {
+    selectedDifficulty = aiDifficultyDropdown.value; // Get the selected difficulty
+    console.log(`Selected difficulty: ${selectedDifficulty}`); // Log the selected difficulty
+    aiDifficultyDropdown.classList.remove('show'); // Hide the dropdown after selection
+}
+
+/**
+ * Start the game in Player vs AI mode.
+ */
+function startPlayerVsAIMode() {
+    if (!selectedDifficulty) {
+        selectedDifficulty = 'normal'; // Default to "Normal" if no difficulty is selected
+        console.log('No difficulty selected. Defaulting to Normal.');
+    }
+    console.log(`Starting game with difficulty: ${selectedDifficulty}`); // Log the selected difficulty
     isAI = true; // Set mode to Player vs AI
-    startGameMode();
-});
+    aiDifficultyDropdown.disabled = true; // Disable the dropdown to prevent changes during the game
+    startGameMode(); // Start the game
+}
 
-// Add event listener for the restart button
-restartMessage.addEventListener('click', () => {
+/**
+ * Reset the game state when the restart button is clicked.
+ */
+function resetGameState() {
     board.classList.add('disabled'); // Disable the board
     document.querySelector('.game-mode-buttons').classList.remove('hidden'); // Show game mode buttons
     winningMessageElement.classList.remove('show'); // Hide the winning message
-});
+    aiDifficultyDropdown.disabled = false; // Re-enable the dropdown
+    aiDifficultyDropdown.classList.add('hidden'); // Hide the dropdown
+    selectedDifficulty = null; // Reset the selected difficulty
+}
 
 // ==============================
 // Game Functions
@@ -69,6 +127,12 @@ restartMessage.addEventListener('click', () => {
 function startGameMode() {
     document.querySelector('.game-mode-buttons').classList.add('hidden'); // Hide the buttons
     board.classList.remove('disabled'); // Enable the board
+
+    const aiDifficultyDropdown = document.getElementById('aiDifficulty');
+    if (isAI) {
+        aiDifficultyDropdown.disabled = true; // Disable the dropdown after the game starts
+    }
+
     startGame(); // Start the game
 }
 
@@ -84,7 +148,6 @@ function startGame() {
     winningMessageElement.classList.remove('show'); // Hide the winning message
 }
 
-// Handle cell click
 function handleClick(e) {
     const cell = e.target; // The clicked cell
     const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS; // Determine the current class based on the turn
@@ -97,7 +160,11 @@ function handleClick(e) {
     } else {
         swapTurns(); // Switch turns
         if (isAI && circleTurn) {
-            makeBestMove(); // If it's AI's turn, make the best move
+            board.classList.add('disabled'); // Disable the board during the AI's turn
+            setTimeout(() => {
+                makeBestMove(); // If it's AI's turn, make the best move
+                board.classList.remove('disabled'); // Re-enable the board after the AI's move
+            }, 800); // Delay for AI's move
         }
     }
 }
@@ -134,6 +201,11 @@ function endGame(draw) {
     winningMessageElement.classList.add('show'); // Show the winning message
     board.classList.add('disabled'); // Disable the board
     document.querySelector('.game-mode-buttons').classList.remove('hidden'); // Show game mode buttons
+
+    if (isAI) {
+        aiDifficultyDropdown.disabled = false; // Re-enable the dropdown
+        selectedDifficulty = null; // Reset the selected difficulty
+    }
 }
 
 // Highlight the winning combination
@@ -171,20 +243,33 @@ function isDraw() {
 
 // Make the best move for the AI
 function makeBestMove() {
-    let bestScore = -Infinity;
+    const difficulty = document.getElementById('aiDifficulty').value; // Get selected difficulty
+    console.log(`Selected difficulty: ${difficulty}`); // Log the selected difficulty
     let bestMove;
 
-    cellElements.forEach(cell => {
-        if (!cell.classList.contains(HUMAN_PLAYER) && !cell.classList.contains(AI_PLAYER)) {
-            cell.classList.add(AI_PLAYER); // Simulate AI move
-            const score = minimax(cellElements, 0, false); // Evaluate the move
-            cell.classList.remove(AI_PLAYER); // Undo the move
-            if (score > bestScore) {
-                bestScore = score;
-                bestMove = cell;
+    if (difficulty === 'random') {
+        // Random move
+        const availableCells = Array.from(cellElements).filter(cell => 
+            !cell.classList.contains(HUMAN_PLAYER) && !cell.classList.contains(AI_PLAYER)
+        );
+        bestMove = availableCells[Math.floor(Math.random() * availableCells.length)];
+    } else {
+        // Minimax-based move
+        let bestScore = -Infinity;
+        const depth = difficulty === 'easy' ? 1 : difficulty === 'normal' ? 3 : Infinity; // Adjust depth
+
+        cellElements.forEach(cell => {
+            if (!cell.classList.contains(HUMAN_PLAYER) && !cell.classList.contains(AI_PLAYER)) {
+                cell.classList.add(AI_PLAYER); // Simulate AI move
+                const score = minimax(cellElements, 0, false, depth); // Evaluate the move
+                cell.classList.remove(AI_PLAYER); // Undo the move
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMove = cell;
+                }
             }
-        }
-    });
+        });
+    }
 
     if (bestMove) {
         bestMove.classList.add(AI_PLAYER); // Make the best move
@@ -200,17 +285,18 @@ function makeBestMove() {
 }
 
 // Minimax algorithm for AI
-function minimax(board, depth, isMaximizing) {
+function minimax(board, depth, isMaximizing, maxDepth = Infinity) {
     if (checkWin(AI_PLAYER)) return 10 - depth; // AI wins
     if (checkWin(HUMAN_PLAYER)) return depth - 10; // Human wins
     if (isDraw()) return 0; // Draw
+    if (depth >= maxDepth) return 0; // Stop recursion at max depth
 
     if (isMaximizing) {
         let bestScore = -Infinity;
         cellElements.forEach(cell => {
             if (!cell.classList.contains(HUMAN_PLAYER) && !cell.classList.contains(AI_PLAYER)) {
                 cell.classList.add(AI_PLAYER); // Simulate AI move
-                const score = minimax(board, depth + 1, false); // Evaluate the move
+                const score = minimax(board, depth + 1, false, maxDepth); // Evaluate the move
                 cell.classList.remove(AI_PLAYER); // Undo the move
                 bestScore = Math.max(score, bestScore);
             }
@@ -221,7 +307,7 @@ function minimax(board, depth, isMaximizing) {
         cellElements.forEach(cell => {
             if (!cell.classList.contains(HUMAN_PLAYER) && !cell.classList.contains(AI_PLAYER)) {
                 cell.classList.add(HUMAN_PLAYER); // Simulate human move
-                const score = minimax(board, depth + 1, true); // Evaluate the move
+                const score = minimax(board, depth + 1, true, maxDepth); // Evaluate the move
                 cell.classList.remove(HUMAN_PLAYER); // Undo the move
                 bestScore = Math.min(score, bestScore);
             }

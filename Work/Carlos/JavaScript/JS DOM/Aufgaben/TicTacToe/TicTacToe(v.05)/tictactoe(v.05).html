@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tictactoe(v.04).css">
-    <script src="tictactoe(v.04).js" defer></script>
-    <title>TicTacToe (v.04)</title>
+    <link rel="stylesheet" href="tictactoe(v.05).css">
+    <script src="tictactoe(v.05).js" defer></script>
+    <title>TicTacToe (v.05)</title>
 </head>
 <body>
     <div class="mainTitle">
         <h1>Tic Tac Toe</h1>
-        <h4>Version 4.0</h4> 
+        <h4>Version 5.0</h4> 
     </div>
 
     <div class="board" id="board">
@@ -25,10 +25,20 @@
         <div class="cell" data-cell></div> <!-- 9th cell (Index 8)-->
     </div>
 
-    <div class="game-mode-buttons">
-        <button id="playerVsPlayer">Play against another Player</button>
-        <button id="playerVsAI">Play against AI</button>
+<div class="game-mode-buttons">
+    <button id="playerVsPlayer">Play against another Player</button>
+    <div id="chooseAIDifficultyContainer">
+        <button id="chooseAIDifficulty">Choose AI Difficulty</button>
+        <select id="aiDifficulty" class="hidden">
+            <option value="random">Donald Trump</option>
+            <option value="easy">Katy Perry</option>
+            <option value="normal" selected>Max Mustermann</option>
+            <option value="hard">Garry Kasparov</option>
+        </select>
     </div>
+    <button id="playerVsAI">Play against AI</button>
+</div>
+
 
     <div class="winning-message" id="winningMessage">
         <div data-winning-message-text></div>
