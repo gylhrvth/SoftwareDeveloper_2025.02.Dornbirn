@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="TicTacToe.css">
+    <script src="TicTacToe.js"></script>
+</head>
+
+<body>
+    <section class="settings-section">
+
+        <div class="game-settings-box">
+
+            <label for="rounds-select">round per set:</label>
+            <select id="rounds-select" class="game-select">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+            </select>
+            <span id="rounds-adjustment">Rounds adjustment:</span>
+            <br>
+            <br>
+            <label for="sets-select">quantity if sets:</label>
+            <select id="sets-select" class="game-select">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+            <span id="sets-adjustment">Sets adjustment:</span>
+
+        </div>
+
+
+        <section class="player-section">
+            <div class="player1-box">
+
+                <label for="player1-select">Player_1:</label>
+                <select name="player1-emoji" id="player1-select" class="emoji-select">
+                    <option value="❌">❌</option>
+                    <option value="⭕️">⭕️</option>
+                    <option value="👻">👻</option>
+                    <option value="😸">😸</option>
+                    <option value="🐶">🐶</option>
+                    <option value="🍺">🍺</option>
+                    <option value="🍕">🍕</option>
+                    <option value="♠️">♠️</option>
+                    <option value="📎">📎</option>
+                    <option value="🖕">🖕</option>
+                    <option value="🔨">🔨</option>
+                </select>
+                <span id="player1-preview">Player_1 choose:</span>
+            </div>
+
+
+            <div class="player2-box">
+
+                <label for="player2-select">Player_2:</label>
+                <select name="player2-emoji" id="player2-select" class="emoji-select">
+                    <option value="❌">❌</option>
+                    <option value="⭕️">⭕️</option>
+                    <option value="👻">👻</option>
+                    <option value="😸">😸</option>
+                    <option value="🐶">🐶</option>
+                    <option value="🍺">🍺</option>
+                    <option value="🍕">🍕</option>
+                    <option value="♠️">♠️</option>
+                    <option value="📎">📎</option>
+                    <option value="🖕">🖕</option>
+                    <option value="🔨">🔨</option>
+                </select>
+                <span id="player2-preview">Player_2 choose:</span>
+            </div>
+        </section>
+
+        <button class="save-settings-button">start Game</button>
+
+    </section>
+
+
+    <main>
+       
+    </main>
+
+</body>
+
+</html>

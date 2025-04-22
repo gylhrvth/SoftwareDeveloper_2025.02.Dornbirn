@@ -36,7 +36,8 @@
             </ul><br>
 
             <li>Elemente hinzufügen oder löschen</li>
-            <p>Mit DOM-Methoden kannst du neue HTML-Elemente erstellen und sie irgendwo im Dokument einfügen oder löschen.</p>
+            <p>Mit DOM-Methoden kannst du neue HTML-Elemente erstellen und sie irgendwo im Dokument einfügen oder
+                löschen.</p>
             <img src="img2/Elemente hinzufügen oder löschen.png"><br>
             <li>Attribut bearbeiten</li>
             <p>Du kannst Attribute wie src, href, alt, id, usw. ändern oder abfragen.</p>
@@ -49,11 +50,13 @@
         <ol>
             <li>1. ❌ Daten vom Server holen oder speichern</li>
             <p>DOM ist nur für die Anzeige und Manipulation der Seite zuständig.<br>
-                <br>Für Serverzugriffe brauchst du:</p>
-                <img src="img2/fetch().png">
+                <br>Für Serverzugriffe brauchst du:
+            </p>
+            <img src="img2/fetch().png">
 
             <li>❌ Dateien auf dem Computer speichern</li>
-            <p>Du kannst keine Datei auf dem Rechner des Nutzers schreiben oder in seine Ordner schauen. Dafür brauchst du Node.js, Downloads, oder File API, aber nicht direkt das DOM.</p>
+            <p>Du kannst keine Datei auf dem Rechner des Nutzers schreiben oder in seine Ordner schauen. Dafür brauchst
+                du Node.js, Downloads, oder File API, aber nicht direkt das DOM.</p>
             <li>❌ CSS-Dateien direkt ändern</li>
             <p>Du kannst Klassen hinzufügen oder Styles setzen – aber nicht den Inhalt einer CSS-Datei bearbeiten</p>
             <li>❌ Browserfunktionen wie Lesezeichen, Tabs, Sicherheitseinstellungen ändern</li>
@@ -63,6 +66,69 @@
         <img src="img2/DOM-Änderungen-Texte und Attribute.png">
         <img src="img2/DOM-Klassen-übersicht.png">
         <img src="img2/DOM-Manipulation.png">
+
+        <h1>Event</h1>
+        <p>In JavaScript ist ein Event (Ereignis) eine Aktion, die im Browser passiert – oft durch den Benutzer
+            ausgelöst. Beispiele sind:</p>
+        <ul>
+            <li>ein Klick auf einen Button</li>
+            <li>das Laden einer Seite</li>
+            <li>das Drücken einer Taste</li>
+            <li>das Verändern eines Eingabefelds</li>
+            <li>das Bewegen der Maus</li>
+        </ul>
+        <p>Diese Events kannst du "abhören" und dann darauf reagieren, zum Beispiel mit einer Funktion.</p>
+
+        <p>Ein Event ist ein Auslöser, der eine Funktion starten kann.</p>
+        <img src="img2/Event-Liste.png">
+
+        <h3>Event-Handler</h3>
+        <p>Ein Event Handler (deutsch: Ereignis-Handler) ist eine Funktion, die ausgeführt wird, wenn ein bestimmtes
+            Event passiert.</p>
+        <p>Das Event ist z. B. ein Klick.<br>
+            Der Handler ist die Funktion, die dann etwas ausführt (z. B. ein Popup zeigen).</p>
+
+        <h3>Page Load Event</h3>
+        <p>Das Page Load Event (Deutsch: Seiten-Lade-Ereignis) ist ein spezielles Event, das ausgelöst wird, wenn die
+            komplette HTML-Seite mit allen Ressourcen geladen wurde.</p>
+        <h3>Mouse Event</h3>
+        <p>Ein Mouse Event in JavaScript ist ein Ereignis, das durch die Benutzung der Maus ausgelöst wird – also
+            Klicken, Bewegen, Loslassen, Scrollen, usw.</p>
+        <img src="img2/Mouse-Event-List.png">
+        <h3>Keyboard-Event</h3>
+        <p>Ein Keyboard Event wird ausgelöst, wenn der Benutzer eine Taste auf der Tastatur drückt oder loslässt.
+            JavaScript kann dann darauf reagieren – z. B. prüfen, welche Taste gedrückt wurde.</p>
+        <img src="img2/event.key-Haupttypen.png">
+        <img src="img2/häufige event.key .png">
+        <h3>event.key / event.code</h3>
+        <p>🧠 event.code = die Taste an einer bestimmten Stelle, egal was draufsteht</p>
+        <p>🧠 event.key = das Zeichen, das der Benutzer wirklich getippt hat</p>
+        <h3>Form Submmit</h3>
+        <p>Ein Form Submit ist ein Formularereignis in HTML und JavaScript, das ausgelöst wird, wenn der Benutzer ein
+            Formular absendet – sei es durch Drücken eines „Absenden“-Buttons oder durch die Eingabetaste.</p>
+        <p>Ein Formular besteht aus verschiedenen Eingabefeldern (z. B. Textfelder, Checkboxen, Radiobuttons), und wenn
+            der Benutzer auf den „Absenden“-Button klickt oder Enter drückt, wird das Formular an den Server geschickt
+            (oder auch an ein anderes Ziel, wie eine API).</p>
+        <h3>preventDefault()</h3>
+        <p>Die preventDefault() Funktion ist eine Methode, die du in JavaScript auf ein Event-Objekt anwenden kannst, um
+            das Standardverhalten eines Events zu verhindern.</p>
+        <p>🔧 Wofür wird preventDefault() verwendet?</p>
+        <p>Viele HTML-Elemente haben ein voreingestelltes Verhalten. Zum Beispiel:</p>
+        <ul>
+            <li>Ein Link (<a href="...">) leitet beim Klick auf eine neue Seite weiter.</li>
+            <li>Ein Formular (<form>) wird beim Absenden automatisch neu geladen.</li>
+            <li>Beim Ziehen und Ablegen wird eventuell etwas ungewollt bewegt.</li>
+        </ul>
+        <p>➡️ Mit preventDefault() kannst du genau dieses Verhalten unterdrücken, um eigene Logik zu verwenden.</p>
+        <h3>🎓 Side Fact: Unterschied zu stopPropagation()?</h3>
+        <ul>
+            <li>preventDefault() → Verhindert das Standardverhalten.</li>
+            <li>stopPropagation() → Verhindert, dass das Event weiter die DOM-Hierarchie hochwandert.</li>
+        </ul>
+
+
+
+
 
     </main>
 </body>
