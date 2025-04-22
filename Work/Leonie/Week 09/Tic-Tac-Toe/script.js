@@ -25,7 +25,7 @@ function addCellClickListeners() {
     cells.forEach(cell => {
         cell.addEventListener('click', () => {
             const cellId = cell.id; // Hole die ID des gedrückten Divs
-            console.log(`Cell clicked: ${cellId}`);
+            //console.log(`Cell clicked: ${cellId}`);
             // Hier kannst du weitere Logik hinzufügen, z.B. den Spielzug verarbeiten
             // Beispiel: Ändere den Text des Divs in "X" oder "O"
             if (cell.textContent === '') {
@@ -36,17 +36,16 @@ function addCellClickListeners() {
                 countMoves(); // Zähle die verbleibenden Züge
                 // Überprüfe die Gewinnbedingungen
                 winningCondition(currentPlayer); // Überprüfe die Gewinnbedingungen
-                // Wechsle den aktuellen Spieler
-                currentPlayerElement.textContent = `Current Player: ${currentPlayer === 'X' ? 'O' : 'X'}`;
-
                 if (currentPlayer === 'X') {
                     const divX = document.getElementById(cellId);
                     divX.classList.add('x');
 
-                }else{
+                } else {
                     const divO = document.getElementById(cellId);
                     divO.classList.add('o');
                 }
+                // Wechsle den aktuellen Spieler
+                currentPlayerElement.textContent = `Current Player: ${currentPlayer === 'X' ? 'O' : 'X'}`;
             }
         });
     });
@@ -54,11 +53,12 @@ function addCellClickListeners() {
 
 function winningCondition(currentPlayer) {
     let arr = [];
-    console.log(arr);
+    //console.log(arr);
     const cells = document.querySelectorAll('.cell'); // Selektiere alle Zellen mit der Klasse 'cell'
     cells.forEach(cell => {
         arr.push(cell.textContent); // Füge den Text jeder Zelle zum Array hinzu
     });
+
     const winningCombinations = [
         [0, 1, 2], // Erste Reihe
         [3, 4, 5], // Zweite Reihe
@@ -108,7 +108,7 @@ function countMoves() {
     });
     const movesElement = document.getElementById('move');
     movesElement.textContent = `Moves: ${count} / 9`;
-    console.log(`Moves: ${count} / 9`);
+    //console.log(`Moves: ${count} / 9`);
 }
 
 function resetGame() {
@@ -123,8 +123,8 @@ function resetGame() {
     const movesElement = document.getElementById('move');
     movesElement.textContent = `Moves: 0 / 9`;
 }
-    
-function playAgain() {    
+
+function playAgain() {
     resetGame();
     whoStarts();
     addCellClickListeners();
