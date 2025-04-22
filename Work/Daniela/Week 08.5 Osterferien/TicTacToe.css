@@ -1,0 +1,130 @@
+body{
+    
+}
+
+.settings-section{
+    display: flex;
+    flex-direction: row;
+    outline: solid gray;
+    background-color: rgba(134, 134, 135, 0.4);
+}
+
+.player-section{
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    background: burlywood;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.game-settings-box {
+    width: 20em;
+    height: 24em;
+    outline: solid green;
+    border-radius: 2em;
+    padding: 1em;
+    margin: 1em;
+    background-color: rgba(66, 160, 66, 0.31);
+}
+
+.game-select {
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    margin: 1em 0;
+    border-radius: 10px;
+    border: 2px solid #444;
+    cursor: pointer;
+}
+
+
+.player1-box{
+    display: block;
+    width: 15em;
+    height: 10em;
+    outline: solid red;
+    background-color: rgba(229, 130, 130, 0.216);
+    border-radius: 2em;
+    padding: 1em;
+    margin: 1em;
+    
+}
+
+.player2-box{
+    display: block;
+    width: 15em;
+    height: 10em;
+    outline: solid rgb(0, 0, 255);
+    background-color: rgba(114, 138, 235, 0.216);
+    border-radius: 2em;
+    padding: 1em;
+    margin: 1em;
+}
+
+.emoji-select{
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;     /* größere Schrift (Emoji) */
+    padding: 0.5rem 1rem; /* Innenabstand für bessere Klickbarkeit */
+    border-radius: 10px;  /* abgerundete Ecken */
+    border: 2px solid #333;
+    margin: 0.5em;       /* Abstand oben/unten */
+    cursor: pointer;
+}
+
+.save-settings-button{
+    width: 7em;
+    height: 5em;
+    background-color: rgb(53, 209, 249);
+    border-radius:0.5em;
+    margin: 1em;
+    cursor: pointer;
+}
+
+/*Game Board*/
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin-top: 2em;
+  }
+  
+  .cell {
+    background-color: #fff;
+    border: 2px solid #333;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0.5em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cell:hover {
+    background-color: #eee;
+  }
+  
+
+
+
+
+
+
+
+
+#turn-indicator {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1em 0;
+    color: #222;
+  }
+  

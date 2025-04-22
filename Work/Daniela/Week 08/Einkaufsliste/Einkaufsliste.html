@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einkaufsliste</title>
+    <link rel="stylesheet" href="Einkaufsliste.css">
+
+</head>
+
+
+<body>
+    <main>
+        <h1>Einkaufsliste</h1>
+        <form id="shoppingForm">
+            <label for="addAmount"></label>
+            <select id="addAmount" placeholder="amount" onchange="handleSelectChange()" required>
+                <option value="">-- Choose amount --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="custom">Andere...</option>
+            </select>
+
+            <div id="customInputContainer" class="dropdownStyle">
+                <lable for="customNumber" ></lable>
+                <input type="number" id="customNumber" class="dropdownStyle" placeholder="create amount">
+            </div>
+
+            <label for="addUnit"></label>
+            <select id="addUnit">
+                <option value="">none</option>
+                <option value="g">Gramm</option>
+                <option value="kg">Kilogramm</option>
+                <option value="l">Liter</option>
+                <option value="ml">Milliliter</option>
+                <option value="Stk.">Stück</option>
+                <option value="oz">Unze</option>
+            </select>
+
+            <label for="addProduct"></label>
+            <input id="addProduct" placeholder="product">
+
+                <button type="submit" class="addOnButton">Add On</button>
+        </form>
+
+        <div class="listStyle">
+            
+            <ul id="shoppingList" >
+                <li>
+                    <div class="listArrangement">
+                        <div id="checkbox"></div>
+                        <div id="amountDiv"></div>
+                        <div id="unitDiv"></div>
+                        <div id="productDiv"></div>
+                        <div id="deleteDiv"></div>
+                    </div>
+                </li>
+            </ul>
+            
+            <button type="button" onclick="clearList()">clear List</button>
+        </div>
+
+        <script src="Einkaufsliste.js" defer></script>
+    </main>
+</body>
+
+</html>
