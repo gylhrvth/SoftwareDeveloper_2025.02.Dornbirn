@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button{
+            margin: 5px;
+            padding: 0.5em 2em;
+            font-size: 2em;
+            font-weight: bold;
+            width: clamp(120px, 10vw, 300px);
+            color: white;
+            background-color: darkblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button" onclick="listAll()">List ALL</div>
+    <div class="button" onclick="getOne(7)">Get 1</div>
+    <div class="button" onclick="createNewObject({
+        'name': 'Sandro Book 19&amp;',
+        'data': {
+            'year': 2025,
+            'price': 9999.99,
+            'CPU model': 'IBM S360',
+            'Hard disk size': '128 Byte'
+        }
+    })">Create New Object</div>
+    <div class="button" onclick="updateNameWithPut(7, {
+        'name': 'Hello World',
+        'data': {
+            'year': 2025,
+        }
+    })">Replace Object</div>
+    <div class="button" onclick="updateCPUWithPatch(7, 'Mega Super CPU')">Change Object</div>
+    <div class="button" onclick="deleteObject(7)">Delete</div> 
+
+<script>
+const server = 'http://127.0.0.1:3000'
+
+
+async function listAll(){
+    let result = await fetch(server + "/objects")
+    if (!result.ok){
+        console.error('listAll(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)
+}
+
+async function getOne(id){
+    let result = await fetch(server + "/objects/" + id)
+    if (!result.ok){
+        console.error('getOne(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)
+    return data
+}
+
+async function createNewObject(object){
+    let result = await fetch(server + "/objects", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(object)
+    })
+    if (!result.ok){
+        console.error('createNewObject(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)   
+}
+
+async function updateNameWithPut(id, object){
+    let result = await fetch(server + "/objects/" + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(object)
+    })
+    if (!result.ok){
+        console.error('updateNameWithPut(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)
+}
+
+async function updateCPUWithPatch(id, cpuName){
+    let result = await fetch(server + "/objects/" + id, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            data: {
+                "CPU model": cpuName
+            }
+        })
+    })
+    if (!result.ok){
+        console.error('updateCPUWithPatch(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)    
+}
+
+async function deleteObject(id){
+    let result = await fetch(server + "/objects/" + id, {
+        method: 'DELETE'
+    })
+    if (!result.ok){
+        console.error('deleteObject(): Fetch ist schiefgegangen ...')
+        return
+    }
+    let data = await result.json()
+    console.log(data)    
+}
+
+</script>
+
+</body>
+</html>
