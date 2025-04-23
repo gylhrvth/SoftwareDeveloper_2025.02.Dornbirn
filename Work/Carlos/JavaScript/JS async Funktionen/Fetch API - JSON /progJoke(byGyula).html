@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke</title>
+
+    <style>
+        /* Zentriert den Inhalt horizontal und vertikal */
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Stil für den Witzbereich */
+        #joke {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Stil für die Punchline des Witzes */
+        .delivery {
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Bereich, in dem der Witz angezeigt wird -->
+    <section id="joke">
+        <p>Hello World!</p> <!-- Platzhaltertext, der initial angezeigt wird -->
+    </section>
+
+    <!-- Bereich mit einem Button, um einen neuen Witz zu laden -->
+    <section class="center">
+        <button onclick="fetchNextJoke()">Fetch next joke</button> <!-- Button ruft die Funktion fetchNextJoke() auf -->
+    </section>
+
+    <script>
+        /**
+         * Funktion, um einen neuen Witz von der API zu laden
+         */
+        async function fetchNextJoke() {
+            // Abrufen eines Witzes von der API
+            let result = await fetch('https://sv443.net/jokeapi/v2/joke/Programming?type=twopart');
+            
+            // Überprüfen, ob die Anfrage erfolgreich war
+            if (result.ok) {
+                let content = await result.json(); // Konvertieren der Antwort in ein JSON-Objekt
+                showJoke(content); // Witz anzeigen
+            } else {
+                console.log('Server is not ready to deliver a new joke'); // Fehlernachricht, falls die Anfrage fehlschlägt
+            }
+        }
+
+        /**
+         * Funktion, um den Witz im HTML anzuzeigen
+         * @param {Object} joke - Der Witz, der von der API abgerufen wurde
+         */
+        function showJoke(joke) {
+            const jokeElement = document.getElementById('joke'); // Wählt das Element mit der ID "joke" aus
+
+            // Erstellt ein <p>-Element für den Setup-Text des Witzes
+            const pSetup = document.createElement('p');
+            pSetup.classList.add('setup'); // Fügt die Klasse "setup" hinzu
+            pSetup.textContent = joke.setup; // Setzt den Textinhalt auf den Setup-Text des Witzes
+
+            // Erstellt ein <p>-Element für die Punchline des Witzes
+            const pDelivery = document.createElement('p');
+            pDelivery.classList.add('delivery'); // Fügt die Klasse "delivery" hinzu
+            pDelivery.textContent = joke.delivery; // Setzt den Textinhalt auf die Punchline des Witzes
+
+            // Löscht den aktuellen Inhalt des Witzbereichs
+            jokeElement.innerHTML = '';
+            // Fügt den Setup-Text und die Punchline zum Witzbereich hinzu
+            jokeElement.appendChild(pSetup);
+            jokeElement.appendChild(pDelivery);
+        }
+    </script>
+
+</body>
+
+</html>
