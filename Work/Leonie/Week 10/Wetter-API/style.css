@@ -2,7 +2,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-color: lightskyblue;
     color: white;
@@ -20,7 +20,8 @@ body{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
     width: 80vw;
-    height: 70vh;
+    min-height: 90vh;
+    gap: 20px;
 }
 
 form{
@@ -39,6 +40,7 @@ form{
 
 #weatherResult{
     display: flex;
+    flex-wrap: wrap;
     margin-top: 10px;
     height: 70%;
 }
@@ -52,6 +54,7 @@ form{
     color: white;
     padding: 20px;
     min-width: 220px;
+    height: 50%;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.845);
