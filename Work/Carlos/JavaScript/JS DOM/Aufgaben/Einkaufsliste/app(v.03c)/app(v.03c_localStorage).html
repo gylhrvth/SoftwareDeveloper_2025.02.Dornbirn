@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./app(v.03c_localStorage).css">
+    <title>Einkaufsliste App (v.3c - Local Storage)</title>
+</head>
+<body>
+
+    <div id =mainContainer>
+
+        <div id="headerBox">Einkaufsliste App</div>
+
+        <div id="selectBox">
+            <label for="inputArtikel">Artikel:</label>
+            <input type="text" id="inputArtikel" placeholder="Enter item">
+
+            <label for="inputAnzahl">Anzahl:</label>
+            <input type="number" id="inputAnzahl" name="" min="0" max="999">
+
+            <label for="inputEinheit">Einheit:</label>
+            <select id="inputEinheit">
+                <option value="Box">Box</option>
+                <option value="Dose">Dose</option>
+                <option value="Dutzend">Dutzend</option>
+                <option value="Einheit">Einheit</option>
+                <option value="Flasche">Flasche</option>
+                <option value="Kiste">Kiste</option>
+                <option value="Packung">Packung</option>
+                <option value="Portion">Portion</option>
+                <option value="Stück">Stück</option>
+                <option value="Tüte">Tüte</option>
+                <option value="kg" selected>kg</option>
+                <option value="g">g</option>
+                <option value="l">l</option>
+                <option value="ml">ml</option>
+                <option value="m">m</option>
+                <option value="cm">cm</option>
+                <option value="mm">mm</option>
+                <option value="m²">m²</option>
+                <option value="cm²">cm²</option>
+                <option value="mm²">mm²</option>
+                <option value="m³">m³</option>
+                <option value="cm³">cm³</option>
+                <option value="mm³">mm³</option>
+            </select>
+
+            <button id="addItem" class="button">Hinzufügen</button>
+        </div>  
+
+        <div id="feedbackBox"><p id="feedbackText">Gib ein Produkt ein</p></div>
+            
+        <div id="rowsBox"></div>
+
+        <div id="footerButtonBox">
+            <button id="resetList" class="button">Reset Liste</button>
+            <button id="clearChecked" class="button">Clear Checked</button>
+        </div>
+
+    </div>
+
+    <script src="./app(v.03c_localStorage).js"></script> 
+    
+</body>
+</html>

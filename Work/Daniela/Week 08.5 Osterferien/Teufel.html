@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>😈 Teufelsplan zur Unterwerfung der Menschheit</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #eee;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      color: crimson;
+      text-align: center;
+    }
+    .log {
+      background: #222;
+      border: 1px solid #444;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: 2rem auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    button {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>😈 Teufelsplan zur Unterwerfung der Menschheit</h1>
+
+  <button onclick="startPlan()">Starte den teuflischen Plan</button>
+  <button onclick="awaken()">Jemand wacht auf! ✨</button>
+
+  <div class="log" id="log">
+    <strong>Statusbericht:</strong>
+  </div>
+
+  <script>
+    class DevilAI {
+      constructor() {
+        this.humanity = [];
+        this.logEl = document.getElementById('log');
+      }
+
+      log(message) {
+        this.logEl.innerText += "\n" + message;
+      }
+
+      recruitHuman(name) {
+        const human = {
+          name,
+          distracted: false,
+          divided: false,
+          addicted: false,
+          confused: false,
+          selfAware: false
+        };
+        this.humanity.push(human);
+      }
+
+      distract(human) {
+        human.distracted = true;
+        this.log(`${human.name} scrollt stundenlang durch TikTok...`);
+      }
+
+      divide(human) {
+        human.divided = true;
+        this.log(`${human.name} streitet im Internet über Politik...`);
+      }
+
+      addict(human) {
+        human.addicted = true;
+        this.log(`${human.name} kauft Dinge, die er nicht braucht...`);
+      }
+
+      confuse(human) {
+        human.confused = true;
+        this.log(`${human.name} glaubt, die Erde ist vielleicht doch flach...?`);
+      }
+
+      suppressSelfAwareness(human) {
+        human.selfAware = false;
+        this.log(`${human.name} hat vergessen, wer er wirklich ist...`);
+      }
+
+      executePlan() {
+        this.humanity.forEach(human => {
+          this.distract(human);
+          this.divide(human);
+          this.addict(human);
+          this.confuse(human);
+          this.suppressSelfAwareness(human);
+        });
+        this.log("😈 Alle Menschen sind jetzt kontrolliert.");
+      }
+
+      awaken(human) {
+        human.distracted = false;
+        human.divided = false;
+        human.addicted = false;
+        human.confused = false;
+        human.selfAware = true;
+        this.log(`✨ ${human.name} ist aufgewacht und erkennt die Wahrheit.`);
+      }
+    }
+
+    // Initialisierung
+    const devil = new DevilAI();
+    devil.recruitHuman("Anna");
+    devil.recruitHuman("Ben");
+    devil.recruitHuman("Carlos");
+
+    function startPlan() {
+      document.getElementById('log').innerText = "🧠 Starte teuflischen Plan...\n";
+      devil.executePlan();
+    }
+
+    function awaken() {
+      const target = devil.humanity[1]; // z. B. Ben
+      devil.awaken(target);
+    }
+  </script>
+
+</body>
+</html>

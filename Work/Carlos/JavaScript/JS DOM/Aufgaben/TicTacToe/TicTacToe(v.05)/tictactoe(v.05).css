@@ -1,0 +1,255 @@
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) *  .9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.mainTitle {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.game-mode-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px; /* Add spacing below the buttons */
+    height: 50px; /* Reserve space for the buttons */
+}
+
+.game-mode-buttons.hidden {
+    visibility: hidden; /* Hide the buttons but keep their space */
+}
+
+.game-mode-buttons button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.game-mode-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1){
+    border-left: none;
+}
+
+.cell:nth-child(3n + 3){
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before { 
+    background-color: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before { 
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after  {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
+}
+
+.board.disabled {
+    pointer-events: none; /* Prevent clicks */
+    opacity: 0.5;
+}
+
+.board.disabled .cell {
+    cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.winning-message.show {
+    display: flex;
+}
+
+.cell.winning-x::before,
+.cell.winning-x::after {
+    background-color: green;
+}
+
+.cell.winning-o::before {
+    background-color: red;
+}
+
+#chooseAIDifficultyContainer {
+    position: relative; /* Set the container as the positioning context */
+    display: inline-block;
+}
+
+#aiDifficulty {
+    position: absolute; /* Position the dropdown relative to the container */
+    top: 100%; /* Place it directly below the button */
+    left: 0; /* Align it to the left of the container */
+    opacity: 0; /* Start with full transparency */
+    visibility: hidden; /* Hide the dropdown initially */
+    z-index: 10;
+    background-color: white; /* Add a background color for better visibility */
+    border: 1px solid #ccc; /* Add a border to match the style */
+    padding: 5px; /* Add padding for better spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    width: 150px; /* Set a fixed width for the dropdown */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transition for smooth effect */
+}
+
+#aiDifficulty.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make the dropdown visible */
+}
+
+#chooseAIDifficultyContainer:focus-within #aiDifficulty {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make the dropdown visible */
+}
+
+/* Ensure the dropdown remains visible when interacting with it */
+#aiDifficulty:focus {
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-mode-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

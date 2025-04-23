@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke</title>
+<style>
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #joke {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .delivery {
+        font-weight: bold;
+        color: darkred;
+    }
+</style>
+</head>
+<body>
+    <section id="joke">
+        <p>Hello World!</p>
+    </section>
+    <section class="center">
+        <button onclick="fetchNextJoke()">Fetch next joke</button>
+    </section>
+
+
+<script>
+
+async function fetchNextJoke(){
+    let result = await fetch('https://sv443.net/jokeapi/v2/joke/Programming?type=twopart')
+    if (result.ok) {
+        let content = await result.json()
+        showJoke(content)
+    } else {
+        console.log('Server is not ready to deliver a new joke')
+    }
+}
+
+function showJoke(joke){
+    const jokeElement = document.getElementById('joke')
+
+    const pSetup = document.createElement('p')
+    pSetup.classList.add('setup')
+    pSetup.textContent = joke.setup
+
+    const pDelivery = document.createElement('p')
+    pDelivery.classList.add('delivery')
+    pDelivery.textContent = joke.delivery
+
+    jokeElement.innerHTML = ''
+    jokeElement.appendChild(pSetup)
+    jokeElement.appendChild(pDelivery)
+}
+
+</script>
+</body>
+</html>

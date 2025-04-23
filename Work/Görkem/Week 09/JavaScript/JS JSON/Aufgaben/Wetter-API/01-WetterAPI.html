@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetter API</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Wettervorhersage für Dornbirn, Vorarlberg</h1>
+    <p>Klicke auf den Button, um das Wetter abzufragen:</p>
+    <button onclick="fetchWeather()">Wetter abrufen</button>
+    <select id="daySelector" onchange="updateWeather()">
+        <option value="" disabled selected>Lade Wetterdaten...</option>
+        <!-- Optionen werden dynamisch durch JavaScript hinzugefügt -->
+    </select>
+    <div id="weather">
+        <p>Wetterdaten werden hier angezeigt...</p>
+    </div>
+    
+</body>
+</html>
