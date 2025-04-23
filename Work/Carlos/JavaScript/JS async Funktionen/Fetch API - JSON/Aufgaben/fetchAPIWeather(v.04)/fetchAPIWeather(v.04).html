@@ -8,46 +8,30 @@
     <title>Fetch API Weather (v.04)</title>
 </head>
 <body>
-    <div id ="mainDiv">
+    <div id="mainDiv">
         <section id="header">
-            <h1>Fetch API Weather (v.04)</h1>
-            <p>Weather data fetched from Weather Forecast API</p>
+            <h1 id = "mainTitle">Fetch API Weather (v.04)</h1>
+            <p id = "infoText">Weather data fetched from Weather Forecast API</p>
         </section>
 
-        
+        <!-- Dropdown for selecting location -->
+        <div id="locationName">
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="47.4181880275474,9.73897217099881">Dornbirn</option>
+                <option value="47.2431,9.5981">Feldkirch</option>
+                <option value="47.1557,9.8007">Bludenz</option>
+                <option value="47.5031,9.7471">Bregenz</option>
+                <option value="41.3851,2.1734">Barcelona</option>
+                <option value="41.9831,2.8249">Girona</option>
+            </select>
+            <button id="fetchWeather" onclick="fetchWeatherData()">Fetch Weather</button>
+        </div>
 
         <section id="weather">
-            <button id="fetchWeather" onclick = "fetchWeatherData()">Fetch Weather</button>
+            
             <div id="weatherData"></div>
         </section>
     </div>  
-
-    <!--<div class="result" style="grid-template-columns: repeat(8, 1fr);">
-        <div class="cell headline"></div>
-        <div class="cell headline">datum 1</div>
-        <div class="cell headline">datum 2</div>
-        <div class="cell headline">datum 3</div>
-        <div class="cell headline">datum </div>
-        <div class="cell headline">datum </div>
-        <div class="cell headline">datum </div>
-        <div class="cell headline">datum 7</div>
-        <div class="cell title">min temp</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">7 °C</div>
-        <div class="cell title">max temp</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">5 °C</div>
-        <div class="cell">7 °C</div>
-    </div> -->
-
 </body>
 </html>

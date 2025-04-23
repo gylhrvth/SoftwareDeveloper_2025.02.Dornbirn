@@ -1,17 +1,80 @@
-
-
-.center{
+/* General body styling */
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc); /* Gradient background */
+    color: #ffffff;
 }
 
+/* Joke section styling */
 #joke {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    padding: 60px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
     text-align: center;
-    font-size: 2em;
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1.5em;
+    color: #ffffff;
+    line-height: 1.6;
 }
 
-.delivery {
-    font-weight: bold;
-    color: darkred;
+/* Centered button section */
+.center {
+    text-align: center;
+    margin-top: 20px;
 }
+
+/* Button styling */
+button {
+    background-color: #ff6f61; /* Vibrant coral color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+button:hover {
+    background-color: #e65c50; /* Slightly darker coral on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+button:active {
+    background-color: #cc4f45; /* Even darker coral on click */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+button:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(255, 111, 97, 0.5); /* Glow effect matching the button color */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #joke {
+        font-size: 1.2em; /* Adjust font size for smaller screens */
+        padding: 15px;
+    }
+    button {
+        font-size: 0.9em; /* Adjust button size for smaller screens */
+        padding: 10px 20px;
+    }
+}
+
+.setup {
+    font-size: 1.5em;
+    color: #ffa4a4;
+}
+
+
+

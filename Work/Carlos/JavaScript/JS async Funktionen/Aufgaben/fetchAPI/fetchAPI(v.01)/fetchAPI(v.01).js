@@ -3,6 +3,8 @@ async function fetchNextJoke(){
     if (result.ok) {
         let content = await result.json()
         showJoke(content)
+
+        
     } else {
         console.log('Server is not ready to deliver a new joke')
     }
@@ -19,7 +21,10 @@ function showJoke(joke){
     pDelivery.classList.add('delivery')
     pDelivery.textContent = joke.delivery
 
-    jokeElement.innerHTML = ''
+    jokeElement.innerHTML = '';
     jokeElement.appendChild(pSetup)
-    jokeElement.appendChild(pDelivery)
+     // Delay showing the delivery by 0.8 seconds
+    setTimeout(() => {
+        jokeElement.appendChild(pDelivery);
+    }, 800);
 }

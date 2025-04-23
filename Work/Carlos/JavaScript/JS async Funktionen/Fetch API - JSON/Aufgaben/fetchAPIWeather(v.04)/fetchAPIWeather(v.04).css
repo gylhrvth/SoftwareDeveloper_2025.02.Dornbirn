@@ -1,87 +1,189 @@
-
+/* General body styling */
 body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #87ceeb, #f0f8ff); /* Gradient background */
+    color: #333;
 }
+
+/* Header styling */
 header {
-    background-color: #f8f9fa;
-    padding: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 h1 {
-    font-size: 2em;
-    margin: 0;
-}
-h2 {
-    font-size: 1.5em;
+    font-size: 2.5em;
+    color: #ffffff;
+    
     margin: 0;
 }
 p {
-    font-size: 1em;
-    color: #6c757d;
+    font-size: 1.2em;
+    color: #ffffff;
+    
 }
+
+/* Button styling */
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: #ef795b; /* Same color as h1 */
+    color: white; /* White text */
     border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
+    border-radius: 25px;
+    padding: 12px 24px;
     font-size: 1em;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-left: 10px;
 }
 button:hover {
-    background-color: #0056b3;
+    background-color: #d96b50; /* Slightly darker shade for hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow */
 }
 button:active {
-    background-color: #004085;
+    background-color: #bf5e47; /* Even darker shade for active state */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 button:focus {
     outline: none;
+    box-shadow: 0 0 4px rgba(239, 121, 91, 0.5); /* Glow effect matching the button color */
 }
 
+.cell.headline:first-of-type {
+    visibility: hidden; /* Makes the element invisible but keeps its space */
+    /* Alternatively, use display: none; to remove it completely */
+}
+
+/* Main container styling */
 #mainDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100vh;
-    background-color: #e0f0ff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 80%;
-
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
 }
 
+#mainTitle {
+    font-size: 2em; /* Larger font size for emphasis */
+    color: #ef795b; /* White text color */
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Styling for the secondary text */
+#infoText {
+    font-size: 1.2em; /* Slightly larger font size */
+    color: #323232; /* Light blue text color */
+    margin: 0;
+    padding: 5px 5px;
+    text-align: center;
+    font-style: italic; /* Italic style for a softer look */
+    margin-bottom: 15px;
+}
+
+/* Dropdown styling */
+#locationName {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.2em;
+    color: #333;
+    margin-right: 10px;
+}
+select {
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+select:hover {
+    border-color: #007bff;
+}
+select:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 4px rgba(0, 91, 187, 0.5);
+}
+
+/* Weather grid styling */
 .result {
     display: grid;
-    margin-top: 1em;
-    gap: 0.1em;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive grid */
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
 }
 
+/* Cell styling */
 .cell {
-    display: flex; /* Use Flexbox for alignment */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    background-color: #f8f9fa;
-    text-align: center; /* Optional: Ensures text alignment for multiline content */
-    height: 50px; /* Ensure a consistent height for cells */
-    padding: 10px; /* Add padding for spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
-.cell.headline{
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
+.cell:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.cell.title{
+/* Headline and title cells */
+.cell.headline, .cell.title {
     background-color: #007bff;
     color: white;
     font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Weather icon styling */
+.cell img {
+    max-width: 60px;
+    max-height: 60px;
+    margin-bottom: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+    }
+    button {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+    .cell {
+        padding: 10px;
+    }
 }
