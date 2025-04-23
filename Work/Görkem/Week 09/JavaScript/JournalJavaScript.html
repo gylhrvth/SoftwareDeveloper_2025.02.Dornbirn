@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript JSON</title>
+    <link rel="stylesheet" href="../../Week 04/JavaScript/mainstyle.css">
+</head>
+<body>
+    <h1>JavaScript</h1>
+    <h2>Dienstag, 22. April 2025</h2>
+
+    <h3 class="textColor01">JavaScript fetch API / JSON</h3>
+
+<ul>
+    <li class="textColor02">
+        <span class="underline">Was bedeutet die Abkürzung JSON?</span>
+        <p>JSON steht für <b>JavaScript Object Notation</b>. Es ist ein leichtgewichtiges Datenformat, das verwendet wird, um Daten zwischen einem Server und einer Webanwendung zu übertragen.</p>
+        <p>💡Eigenschaften von JSON:</p>
+        <ol>
+            <li><b>Einfach und lesbar:</b> JSON ist menschen- und maschinenlesbar.</li>
+            <li><b>Schlüssel-Wert-Paare:</b> Daten werden in Form von Schlüssel-Wert-Paaren</li>
+            <li><b>Struktur:</b>  JSON unterstützt einfache Datentypen wie Strings, Zahlen, Arrays, Objekte, Booleans und null.</li>
+        </ol>
+        <p><strong>JSON-Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                {
+                    "name": "John Doe",
+                    "age": 30,
+                    "isStudent": false,
+                    "skills": ["JavaScript", "HTML", "CSS"],
+                    "address": {
+                        "city": "New York",
+                        "zip": "10001"
+                    }
+                }
+            </code>
+        </div>
+        <p><strong>💡Erklärung:</strong></p>
+        <ul>
+            <li><b>Objekte:</b> Werden in geschweiften Klammern {} definiert.</li>
+            <li><b>Arrays:</b> Werden in eckigen Klammern [] definiert.</li>
+            <li><b>Schlüssel:</b> Müssen Strings (in Anführungszeichen) sein.</li>
+            <li><b>Werte:</b> Können Strings, Zahlen, Arrays, Objekte, Booleans oder null sein.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich einen Text aus einem JS Object?</span>
+        <p>Um einen Text aus einem JavaScript-Objekt zu erstellen, kannst du die Methode <b>JSON.stringify()</b> verwenden. Diese Methode wandelt ein JavaScript-Objekt in einen JSON-String um, der als Text dargestellt werden kann.</p>
+        <p><b>💡Beispiel:</b> JSON-String aus einem JavaScript-Objekt erstellen</p>
+        <div class="code-box">
+            <code>
+                // JavaScript-Objekt
+                    const person = {
+                    name: "John Doe",
+                    age: 30,
+                    isStudent: false,
+                    skills: ["JavaScript", "HTML", "CSS"],
+                    address: {
+                    city: "New York",
+                    zip: "10001"
+                }
+            };
+
+                // Objekt in einen JSON-String umwandeln
+                const jsonString = JSON.stringify(person);
+
+                // JSON-String ausgeben
+                console.log(jsonString);
+            </code>
+        </div>
+        <p><b>👉Ausgabe:</b></p>
+        <div class="code-box">
+            <code>
+                {"name":"John Doe","age":30,"isStudent":false,"skills":["JavaScript","HTML","CSS"],"usw..."}
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wie erstelle ich ein JS Object aus einem Text?</span>
+        <p>Um ein JavaScript-Objekt aus einem Text (JSON-String) zu erstellen, kannst du die Methode <b>JSON.parse()</b> verwenden. Diese Methode wandelt einen JSON-String in ein JavaScript-Objekt um.</p>
+        <p><b>💡Beispiel:</b> JSON-String in ein JavaScript-Objekt umwandeln</p>
+        <div class="code-box">
+            <code>
+                / JSON-String
+                const jsonString = '{"name":"Alice","age":25}';
+                
+                // JSON-String in ein JavaScript-Objekt umwandeln
+                const person = JSON.parse(jsonString);
+                
+                // Zugriff auf die Eigenschaften
+                console.log(person.name); // Ausgabe: Alice
+                console.log(person.age);  // Ausgabe: 25
+            </code>
+        </div>
+        <p><strong>💡Erklärung:</strong></p>
+        <ul>
+            <li>Der JSON-String enthält nur zwei Eigenschaften: <b>name</b> und <b>age</b>.</li>
+            <li>Mit <b>JSON.parse()</b> wird der String in ein JavaScript-Objekt umgewandelt.</li>
+            <li>Anschließend kannst du auf die Eigenschaften des Objekts zugreifen.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was bedeutet die Abkürzung REST API?</span>
+        <p><b>REST API</b> steht für <b>Representational State Transfer Application Programming Interface.</b> Es ist eine Schnittstelle, die es ermöglicht, Daten zwischen einem Client (z. B. Browser) und einem Server über das HTTP-Protokoll auszutauschen.</p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Ressourcenbasiert:</b> Jede Ressource (z. B. Benutzer, Artikel) hat eine eindeutige URL.</li>
+            <li><b>HTTP-Methoden:</b></li>
+            <ul>
+                <li>GET: Daten abrufen.</li>
+                <li>POST: Neue Daten erstellen.</li>
+                <li>PUT: Daten aktualisieren.</li>
+                <li>DELETE: Daten löschen.</li>
+            </ul>
+            <li><b>Stateless:</b> Der Server speichert keine Informationen über frühere Anfragen.</li>
+            <li><b>JSON:</b> Daten werden oft im JSON-Format übertragen.</li>
+        </ol>
+        <br>
+        <p><strong>JavaScript-Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                async function fetchUser() {
+                    const response = await fetch('https://api.example.com/users/1');
+                    const user = await response.json();
+                    console.log(user); // Gibt die Benutzerdaten aus
+                }
+                fetchUser();
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Eine <b>REST API</b> ermöglicht die Kommunikation zwischen Systemen über HTTP, wobei Daten oft im JSON-Format übertragen werden. Sie ist ressourcenbasiert und verwendet HTTP-Methoden wie <b>GET, POST, PUT und DELETE.</b></p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was bedeutet, dass ein API public ist?</span>
+        <p>Eine <b>public API</b> (öffentliche API) ist eine Schnittstelle, die für jeden zugänglich ist, ohne dass spezielle Berechtigungen erforderlich sind. Sie kann von Entwicklern weltweit genutzt werden, um auf Funktionen oder Daten eines Systems zuzugreifen.</p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Öffentlicher Zugriff:</b> Jeder kann die API verwenden, oft ohne Authentifizierung.</li>
+            <li><b>Dokumentation:</b> Public APIs haben in der Regel eine Anleitung zur Nutzung.</li>
+            <li><b>Beispiele:</b></li>
+            <ul>
+                <li><b>Chuck Norris API</b> Liefert zufällige Witze.</li>
+                <li><b>OpenWeatherMap API:</b> Liefert Wetterdaten.</li>
+            </ul>
+        </ol>
+        <br>
+        <p><strong>💡Beispiel:</strong> Abrufen eines zufälligen Witzes von der Chuck Norris API:</p>
+        <div class="code-box">
+            <code>
+                async function fetchJoke() {
+                    const response = await fetch('https://api.chucknorris.io/jokes/random');
+                    const joke = await response.json();
+                    console.log(joke.value); // Gibt den Witz aus
+                }
+                fetchJoke();
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Eine <b>public API</b> ist eine frei zugängliche Schnittstelle, die es Entwicklern ermöglicht, Daten oder Funktionen eines Systems zu nutzen.</p>
+        <p>👉<a href="JS JSON/02-joke-api.html">Joke API</a></p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist ein fetch API und was hat es zu tun mit REST API?</span>
+        <p>Die <b>Fetch API</b> ist eine moderne JavaScript Schnittstelle, die es ermöglicht, HTTP-Anfragen (z. B. GET, POST, PUT, DELETE) an einen Server zu senden und Antworten zu verarbeiten. Sie wird häufig verwendet, um Daten von einer <b>REST API</b> abzurufen oder an diese zu senden.</p>
+        <p>Verbindung zwischen Fetch API und REST API:</p>
+        <ul>
+            <li><b>Fetch API</b>  Wird verwendet, um Anfragen an eine REST API zu senden.</li>
+            <li><b>REST API:</b> Stellt die Daten oder Funktionen bereit, die über die Fetch API abgerufen oder manipuliert werden können.</li>
+        </ul>
+        <p><strong>💡Beispiel:</strong>  Fetch API mit einer REST API</p>
+        <div class="code-box">
+            <code>
+                async function fetchData() {
+                    const response = await fetch('https://api.example.com/data'); // Anfrage an die REST API
+                    const data = await response.json(); // Antwort in JSON umwandeln
+                    console.log(data); // Daten ausgeben
+                }
+                fetchData();
+            </code>
+        </div>
+        <p><strong>💡Schritte:</strong></p>
+        <ol>
+            <li><b>Anfrage senden:</b> Die Fetch API sendet eine HTTP-Anfrage an die REST API.</li>
+            <li><b>Antwort empfangen:</b> Die REST API liefert eine Antwort (oft im JSON-Format).</li>
+            <li><b>Daten verarbeiten:</b> Die Antwort wird mit response.json() in ein JavaScript-Objekt umgewandelt.</li>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Was ist die minimale Parameterliste die eine fetch() Aufruf haben muss?</span>
+        <p>Die minimale Parameterliste für einen <b>fetch()</b>-Aufruf besteht aus <b>nur einem Parameter</b>, nämlich der <b>URL</b> der Ressource, die abgerufen werden soll.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                fetch(url);
+            </code>
+        </div>
+        <ul>
+            <li><b>url:</b> Die Url der Ressource, die abgerufen werden soll (z. B. eine API-Endpunkt-URL)</li>
+        </ul>
+        <br>
+        <p><strong>💡Beispiel:</strong> Abrufen von Daten mit der minimalen Parameterliste:</p>
+        <div class="code-box">
+            <code>
+            fetch('https://api.example.com/data')
+                .then(response => response.json()) // Antwort in JSON umwandeln
+                .then(data => console.log(data))  // Daten ausgeben
+                .catch(error => console.error('Fehler:', error)); // Fehler behandeln
+            </code>
+        </div>
+        <p><strong>💡Erklärung:</strong></p>
+        <ul>
+            <li><b>Nur URL erforderlich:</b> Wenn keine weiteren Optionen angegeben werden, wird standardmäßig eine GET-Anfrage gesendet.</li>
+            <li><b>Antwort verarbeiten</b> Die Antwort wird mit .then() verarbeitet, um die Daten zu lesen (z. B. als JSON).</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Welche Optionen sind möglich für einen fetch() Aufruf?</span>
+        <p>Der <b>fetch()</b>-Aufruf kann neben der URL auch <b>ein Options-Objekt</b> als zweiten Parameter enthalten. Dieses Objekt ermöglicht es, die Anfrage zu konfigurieren, z. B. die HTTP-Methode, Header oder den Body festzulegen.</p>
+        <p><strong>Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                fetch(url, options);
+            </code>
+        </div>
+        <ul>
+            <li><b>url:</b> Die URL der Ressource.</li>
+            <li><b>options:</b> Ein Objekt, das zusätzliche Einstellungen für die Anfrage enthält.</li>
+        </ul>
+        <br>
+        <p>Häufig verwendete Optionen:</p>
+        <ol>
+            <li><b>method:</b> Gibt die HTTP-Methode an (GET, POST, PUT, DELETE, etc.).</li>
+            <li>Standartwert: <b>GET</b></li>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wofür ist die Methode GET geeignet?</span>
+        <p>Die HTTP-Methode <b>GET</b> wird verwendet, um <b>Daten von einem Server abzurufen</b>, ohne diese zu verändern. Sie ist die am häufigsten verwendete Methode in Webanwendungen.</p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Nur lesend:</b>  GET-Anfragen verändern keine Daten auf dem Server.</li>
+            <li><b>Parameter in der URL:</b> Daten können über Query-Parameter übergeben werden (z. B. ?id=123).</li>
+            <li><b>Zwischenspeicherung:</b> GET-Anfragen können vom Browser oder Proxy zwischengespeichert werden.</li>
+        </ol>
+        <p><strong>💡Beispiel:</strong> Abrufen von Benutzerdaten:</p>
+        <div class="code-box">
+            <code>
+                fetch('https://api.example.com/users/1')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Fehler:', error));
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Die Methode <b>GET</b> ist ideal, um Daten sicher und effizient vom Server abzurufen, ohne diese zu verändern.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wofür ist die Methode POST geeignet?</span>
+        <p>Die HTTP-Methode <b>POST</b> wird verwendet, um neue Daten an einen Server zu senden oder <b>Ressourcen zu erstellen</b>.</p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Datenübertragung:</b> Daten werden im Body der Anfrage gesendet.</li>
+            <li><b>Erstellen von Ressourcen:</b> POST wird verwendet, um neue Einträge auf dem Server zu erstellen.</li>
+            <li><b>Nicht idempotent:</b> Mehrfache POST-Anfragen können unterschiedliche Ergebnisse erzeugen.</li>
+        </ol>
+        <p><strong>💡Beispiel:</strong> Senden von Benutzerdaten</p>
+        <div class="code-box">
+            <code>
+                fetch('https://api.example.com/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: 'Alice', age: 25 })
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Fehler:', error));
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Die Methode <b>POST</b> ist ideal, um neue Daten zu erstellen oder <b>Informationen an einen Server zu senden</b>.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wofür ist die Methode PUT geeignet?</span>
+        <p>Die HTTP-Methode <b>PUT</b> wird verwendet, um <b>Daten auf einem Server zu aktualisieren</b> oder <b>eine Ressource vollständig zu ersetzen</b>.</p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Idempotent:</b> Mehrfache PUT-Anfragen mit denselben Daten führen immer zum gleichen Ergebnis.</li>
+            <li><b>Datenübertragung:</b>  Daten werden im Body der Anfrage gesendet.</li>
+            <li><b>Erstellen oder Aktualisieren:</b> Wenn die Ressource nicht existiert, kann sie erstellt werden.</li>
+        </ol>
+        <p><strong>💡Beispiel:</strong> Aktualisieren von Benutzerdaten</p>
+        <div class="code-box">
+            <code>
+                fetch('https://api.example.com/users/1', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: 'Alice', age: 30 })
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Fehler:', error));
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Die Methode <b>PUT</b> wird verwendet, um <b>bestehende Daten zu aktualisieren</b> oder eine Ressource zu ersetzen./p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor02">
+        <span class="underline">Wofür ist die Methode DELETE geeignet?</span>
+        <p>Die HTTP-Methode <b>DELETE</b> wird verwendet, um <b>Daten oder Ressourcen auf einem Server zu löschen.</b></p>
+        <p><strong>💡Eigenschaften:</strong></p>
+        <ol>
+            <li><b>Löschen von Ressourcen:</b> DELETE entfernt eine Ressource anhand ihrer eindeutigen URL.</li>
+            <li><b>Idempotent:</b> Mehrfache DELETE-Anfragen führen immer zum gleichen Ergebnis (die Ressource bleibt gelöscht).</li>
+        </ol>
+        <p><strong>💡Beispiel:</strong> Löschen eines Benutzers</p>
+        <div class="code-box">
+            <code>
+                fetch('https://api.example.com/users/1', {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Benutzer erfolgreich gelöscht');
+                        } else {
+                            console.error('Fehler beim Löschen');
+                        }
+                    })
+                    .catch(error => console.error('Fehler:', error));
+            </code>
+        </div>
+        <p><strong>💡Zusammenfassung:</strong></p>
+        <p>Die Methode <b>DELETE</b> wird verwendet, um <b>Ressourcen sicher und effizient zu entfernen</b>. Sie ist idempotent und wird häufig in REST APIs eingesetzt.</p>
+    </li>
+
+
+
+</body>
+</html>
