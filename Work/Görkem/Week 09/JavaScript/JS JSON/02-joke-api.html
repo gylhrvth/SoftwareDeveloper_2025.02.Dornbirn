@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke API</title>
+    <style>
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #joke {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    #joke p {
+    font-size: 1em; 
+    color: darkred; 
+    }
+
+    button{
+    background-color: #333; 
+    color: white; 
+    font-size: 1em; 
+    padding: 10px 20px;
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    </style>
+</head>
+<body>
+    <section id="joke">
+        <p>What is Chuck Norris doing?</p>
+    </section>
+    <section class="center">
+        <button onclick="fetchNextJoke()">Fetch next joke</button>
+    </section>
+    <p id="loading" style="display: none;">Loading...</p>
+    <p id="error" style="display: none; color: red;"></p>
+
+
+<script>
+
+async function fetchNextJoke() {
+    let result = await fetch('https://api.chucknorris.io/jokes/random');
+    if (result.ok) {
+        let content = await result.json();
+        showJoke(content);
+    } else {
+        console.log('Fehler beim Abrufen des Witzes');
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Fehler beim Abrufen des Witzes.';
+    }
+}
+
+function showJoke(joke) {
+    const jokeElement = document.getElementById('joke');
+
+    
+    jokeElement.innerHTML = ''; 
+    const pJoke = document.createElement('p');
+    pJoke.textContent = joke.value; 
+    jokeElement.appendChild(pJoke);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+    
+</body>
+</html>
