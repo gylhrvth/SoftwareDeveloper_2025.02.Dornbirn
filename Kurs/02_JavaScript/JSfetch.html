@@ -61,12 +61,52 @@
   <h2>Ein public REST API selbst anfragen und das Ergebnis sinnvoll darstellen</h2>
   <p>Erstelle ein HTML mit dem man ein API abfragen kann. Mögliche API sind ... (und noch viel mehr)</p>
   <ul>
-    <ol>https://sv443.net/jokeapi/v2/joke/Programming?type=twopart (<a href="https://v2.jokeapi.dev/">Beschreibung</a>)</ol>
-    <ol>https://randomuser.me/api/ (<a href="https://randomuser.me/">Beschreibung</a>)</ol>
-    <ol>https://api.open-meteo.com/v1/forecast?latitude=47.4181880275474&longitude=9.73897217099881&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max&timezone=Europe%2FBerlin (<a href="https://open-meteo.com/en/docs?latitude=47.4181880275474&longitude=9.73897217099881&timezone=Europe%2FBerlin&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max">Beschreibung</a>)</ol>
-    <ol>https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-22&endtime=2025-04-23 <a href="https://earthquake.usgs.gov/earthquakes/map/?extent=20.63278,-127.5293&extent=52.69636,-62.49023"></a></ol>
+    <li>https://sv443.net/jokeapi/v2/joke/Programming?type=twopart (<a href="https://v2.jokeapi.dev/">Beschreibung</a>)</li>
+    <li>https://randomuser.me/api/ (<a href="https://randomuser.me/">Beschreibung</a>)</li>
+    <li>https://api.open-meteo.com/v1/forecast?latitude=47.4181880275474&longitude=9.73897217099881&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max&timezone=Europe%2FBerlin (<a href="https://open-meteo.com/en/docs?latitude=47.4181880275474&longitude=9.73897217099881&timezone=Europe%2FBerlin&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max">Beschreibung</a>)</li>
+    <li>https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-22&endtime=2025-04-23 <a href="https://earthquake.usgs.gov/earthquakes/map/?extent=20.63278,-127.5293&extent=52.69636,-62.49023"></a></li>
+    <li>https://nominatim.openstreetmap.org/search?city=new%20york&format=json</li>
   </ul>
 
+
+  <h2>C.R.U.D Applikation</h2>
+  <p>Erstelle eine Webseite, die beinhaltet die folgenden Funktionalitäten</p>
+  <ul>
+    <li><b>C</b>reate</li>
+    <li><b>R</b>ead</li>
+    <li><b>U</b>pdate</li>
+    <li><b>D</b>elete</li>
+  </ul>
+
+  <p>Als API musst du dieses <a href="https://restful-api.dev/">restful-api.dev</a> API verwenden.</p>
+  <p>Der Hintergrund ist eine Webseite, die Lagerobjekte verwalten kann.</p>
+
+  <h3>Teilaufgabe 1</h3>
+  <p>Besuche die Webseite und lese kurz durch, wie das API auschaut...</p>
+  <p>Lade in Webbrowser die Liste alle Objekten mit dem URL: <a href="https://api.restful-api.dev/objects">https://api.restful-api.dev/objects</a></p>
+
+  <h3>Teilaufgabe 2</h3>
+  <p>Erstelle ein neues GUI Element, die Daten aus dem Server holt und für die Benutzer <b>als Liste</b> anzeigt</p>
+  <p>Falls jmd. auf eine Element klickt, soll die Details geladen und angezeigt werden</p>
+  <p>Nach dem das Details angezeigt wurden, kann man sinnvolle weise zu der Liste zurück navigieren... In dem Fall wird die Liste aktualisiert.</p>
+
+  <h3>Teilaufgabe 3</h3>
+  <p>Erstelle ein neues GUI Element, mit dem man eine Element zufügen kann (POST Message).</p>
+  <p>Falls eine neue Element angelegt wurde, soll die Liste mit alle Objekte neu laden und aktualisiert darstellen</p>
+
+  <h3>Teilaufgabe 4</h3>
+  <p>Erweitere die Liste so, dass ein Delete Button in der Zeile dazu kommt.</p>
+  <p>Falls der Benutzer etwas löscht, soll es mit dem DELETE Methode durch API gelöscht werden.</p>
+  <p>Nach dem Löschen soll die Liste der Objekte aktualisiert werden.</p>
+
+  <h3>Teilaufgabe 5</h3>
+  <p>Auf dem Detail Seite kann man die Elementen bearbeiten. zB: der Name des Objektes.</p>
+  <p>Falls etwas geändert hat, gibt es zwei Optionen für der Anwendern:</p>
+  <ol>
+    <li><b>Speichern</b> - das Objekt wird mit PUT Message auf dem API überschrieben</li>
+    <li><b>Abbruch</b> - die Änderungen werden wegworfen, die Detailsseite wird neu geladen</li>
+  </ol>
+  <p>Nach speichern oder abbrechen soll die Liste der Objekte neu geladen und aktualisert werden.</p>
 
 
   <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>

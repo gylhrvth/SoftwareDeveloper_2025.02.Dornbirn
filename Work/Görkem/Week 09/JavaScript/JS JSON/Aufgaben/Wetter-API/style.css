@@ -1,0 +1,179 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #87CEEB, #f9f9f9);
+    color: #333;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.sunny {
+    background: linear-gradient(to bottom, #FFD700, #87CEEB);
+}
+
+body.cloudy {
+    background: linear-gradient(to bottom, #B0C4DE, #778899);
+}
+
+body.night {
+    background: linear-gradient(to bottom, #2C3E50, #34495E);
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.3em;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+#weather {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#weather:hover {
+    transform: translateY(-5px); /* Leichter Schwebeeffekt */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Intensiverer Schatten beim Hover */
+}
+
+#weather h2 {
+    font-size: 1.8em;
+    color: #007BFF;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#weather p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.6;
+}
+
+#weather p span {
+    font-weight: bold;
+    color: #007BFF; /* Akzentfarbe für wichtige Werte */
+}
+
+#weather .temperature {
+    font-size: 2em;
+    font-weight: bold;
+    color: #FF4500; /* Auffällige Farbe für Temperaturen */
+    text-align: center;
+    margin: 15px 0;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    background: linear-gradient(to right, #007BFF, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(to right, #0056b3, #004494);
+    transform: scale(1.05);
+}
+
+button:active {
+    background: linear-gradient(to right, #004494, #003366);
+    transform: scale(0.95);
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.weather-item {
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.weather-item h3 {
+    font-size: 1.5em;
+    color: #007BFF;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.weather-item p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.weather-item p span {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+#daySelector {
+    margin: 20px 0;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: 2px solid #007BFF;
+    border-radius: 25px;
+    background: linear-gradient(to right, #f9f9f9, #e6f7ff);
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#daySelector:hover {
+    border-color: #0056b3;
+    background: linear-gradient(to right, #e6f7ff, #d4e9ff);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#daySelector:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

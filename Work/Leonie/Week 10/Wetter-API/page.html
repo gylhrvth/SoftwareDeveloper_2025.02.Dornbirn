@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetter App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Wetter App</h1>
+            <form id="weatherForm">
+                <select name="Stadt" id="city" onchange="startSearch()">
+                    <option value="" disabled selected>Bitte eine Stadt wählen...</option>
+                    <option value="latitude=47.4181880275474&longitude=9.73897217099881">Dornbirn</option>
+                    <option value="latitude=41.895220990603185&longitude=12.48552752707153">Rom</option>
+                    <option value="latitude=52.51980654789124&longitude=13.393791144491365">Berlin</option>
+                    <option value="latitude=48.20807871478456&longitude=16.372087633913115">Wien</option>
+                    <option value="latitude=47.37650441538153&longitude=8.540168289235236">Zürich</option>
+                    <option value="latitude=48.85726639246922&longitude=2.3502952406625717">Paris</option>
+                    <option value="latitude=51.502033389454674&longitude=-0.1242642405804834">London</option>
+                    <option value="latitude=40.71368121248191&longitude=-74.01796598264603">New York</option>
+                    <option value="latitude=34.05906026419485&longitude=-118.2558727152588">Los Angeles</option>
+                    <option value="latitude=35.71287933398936&longitude=139.7724231438631">Tokio</option>
+                </select>
+            </form>
+            <div id="weatherResult"></div>
+        </div>
+    </main>
+</body>
+</html>
