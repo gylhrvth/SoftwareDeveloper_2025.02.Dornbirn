@@ -4,7 +4,7 @@ body{
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: black;
+    background-color: lightskyblue;
     color: white;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,28 +15,44 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background: linear-gradient(to bottom right, #4a90e2, #50e3c2);
     padding: 40px;
-    border: 2px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.477);
-    width: 20vw;
-    height: 20vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.76);
+    width: 80vw;
+    height: 70vh;
 }
 
 form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: 11%;
 }
 
-#query{
-    background-color: black;
-    color: white;
+#city{
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+}
+
+#weatherResult{
+    display: flex;
+    margin-top: 10px;
+    height: 70%;
+}
+
+.day{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(58, 187, 239);
+    color: white;
+    padding: 20px;
+    min-width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.845);
-    margin-bottom: 10px;
 }
