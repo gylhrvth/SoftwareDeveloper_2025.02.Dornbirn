@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./crud(v.02).css">
+    <title>Simple CRUD Application</title>
+</head>
+<body>
+    <h1>Simple CRUD Application</h1>
+
+    <!-- Section to display all objects -->
+    <section id="allObjects">
+        <h2>All Objects</h2>
+        <ul id="objectList"></ul>
+    </section>
+
+    <!-- Section to display details -->
+    <section id="detailsContainer" style="display: none;">
+        <h2>Object Details</h2>
+        <div id="detailsContent"></div>
+        <button id="backToListButton">Back to List</button>
+    </section>
+
+    <!-- Section to add a new object -->
+    <section id="addObject">
+        <h2>Add New Object</h2>
+        <form id="addObjectForm">
+            <label for="objectId">Object ID:</label>
+            <input type="text" id="objectId" placeholder="Enter Object ID" required>
+            <label for="objectName">Object Name:</label>
+            <input type="text" id="objectName" placeholder="Enter Object Name" required>
+            <button type="submit">Add Object</button>
+        </form>
+    </section>
+
+    <script src="./crud(v.02).js" defer></script>
+</body>
+</html>
