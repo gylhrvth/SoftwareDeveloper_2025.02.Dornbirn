@@ -4,15 +4,15 @@ const API_URL = 'https://api.restful-api.dev/objects';
 // Fetch and log all objects to the console
 async function consoleFetchObjects() {
     try {
-        const response = await fetch(API_URL);
-        if (response.ok) {
-            const objects = await response.json();
+        const response = await fetch(API_URL); //sends a GET request to the API to retrieve all objects
+        if (response.ok) { // Checks if the response status is OK (200-299)
+            const objects = await response.json(); // Converts the response data (in JSON format) into a JavaScript object.
             console.log('Fetched Objects:', objects); // Log the fetched objects
-        } else {
-            console.error(`Error fetching objects: ${response.status}`);
+        } else { //The else block handles API-specific errors (e.g., 404 or 500).
+            console.error(`Error fetching objects: ${response.status}`); //This block is executed if the HTTP response status is not in the range of 200–299 (i.e., the request was not successful).
         }
-    } catch (error) {
-        console.error('Error fetching objects:', error);
+    } catch (error) { // The catch block handles JavaScript or network-related errors (e.g., no internet).
+        console.error('Error fetching objects:', error); //This block catches any errors that occur during the execution of the try block.
     }
 }
 
@@ -20,9 +20,9 @@ async function consoleFetchObjects() {
 async function fetchObjects() {
     console.log('Fetching objects...');
     try {
-        const response = await fetch(`${API_URL}?timestamp=${Date.now()}`); // Prevent caching
+        const response = await fetch(`${API_URL}?timestamp=${Date.now()}`); // Sends a GET request to the API with a timestamp query parameter to prevent caching.
         if (response.ok) {
-            const data = await response.json();
+            const data = await response.json(); // Converts the response data into a JavaScript object.
             console.log('Fetched Objects:', data); // Log the fetched objects
             displayObjects(data); // Pass the data to a separate function for rendering
         } else {

@@ -3,37 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="./crud(v.02).css">
-    <title>Simple CRUD Application</title>
+    <title>C.R.U.D (V.01)</title>
 </head>
 <body>
-    <h1>Simple CRUD Application</h1>
 
-    <!-- Section to display all objects -->
+    <section id="mainTitle">
+        <h1>CRUD (V.01)</h1>
+    </section>
+
+    <section id="introContainer">
+        <h2>Einführung</h2>
+        <p>CRUD steht für Create, Read, Update und Delete. Es handelt sich um die vier grundlegenden Operationen, die auf Datenbanken angewendet werden.</p>
+        <p>In dieser Anwendung kann man Objekte erstellen, lesen, aktualisieren und löschen.</p>
+        <p>Die Anwendung verwendet die Fetch API, um mit einer JSON-Datenbank zu kommunizieren.</p>
+        <p>Die Datenbank ist eine einfache JSON-Datei, die auf dem Server gespeichert ist.</p>
+        <p>Die Anwendung verwendet auch die async/await-Syntax, um asynchrone Operationen zu handhaben.</p>
+    </section>
+
     <section id="allObjects">
-        <h2>All Objects</h2>
-        <ul id="objectList"></ul>
+        <h2>Alle Objekte</h2>
+        <p>Hier werden alle Objekte angezeigt, die in der Datenbank gespeichert sind.</p>
+        <button onclick="consoleFetchObjects()">Console Log All Objects</button>
+        <button onclick="fetchObjects()">Fetch All Objects</button>
+        <div id="objectListContainer">
+            <ul id="objectList">
+                <!-- Hier werden alle Objekte angezeigt -->
+            </ul>
+        </div>
     </section>
 
-    <!-- Section to display details -->
+
     <section id="detailsContainer" style="display: none;">
-        <h2>Object Details</h2>
-        <div id="detailsContent"></div>
-        <button id="backToListButton">Back to List</button>
+        <h2>Details</h2>
+        <div id="detailsContent">
+            <!-- Details of the selected object will be displayed here -->
+        </div>
+        <button id="backToListButton">Zurück zur Liste</button>
     </section>
 
-    <!-- Section to add a new object -->
-    <section id="addObject">
-        <h2>Add New Object</h2>
+    <section id="addObjectContainer">
+        <h2>Neuen Benutzer hinzufügen</h2>
         <form id="addObjectForm">
-            <label for="objectId">Object ID:</label>
-            <input type="text" id="objectId" placeholder="Enter Object ID" required>
-            <label for="objectName">Object Name:</label>
-            <input type="text" id="objectName" placeholder="Enter Object Name" required>
-            <button type="submit">Add Object</button>
+            <label for="firstName">Vorname:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Geben Sie den Vornamen ein" required>
+    
+            <label for="lastName">Nachname:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Geben Sie den Nachnamen ein" required>
+    
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" placeholder="Geben Sie die E-Mail-Adresse ein" required>
+    
+            <button type="submit">Benutzer hinzufügen</button>
         </form>
     </section>
 
     <script src="./crud(v.02).js" defer></script>
+    
 </body>
 </html>
