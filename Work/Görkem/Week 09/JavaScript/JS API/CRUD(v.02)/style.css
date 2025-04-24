@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Container oberhalb des oberen Rands positionieren */
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+div{
+    text-align: center;
+    background: #ffffff;
+    padding: 30px 50px; /* Mehr Padding für ein luftigeres Design */
+    border-radius: 16px; /* Stärker abgerundete Ecken */
+    border: 1px solid #e0e0e0; /* Dezente Border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    margin-top: 50px; /* Abstand vom oberen Rand */
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 30px; /* Mehr Abstand unter der Überschrift */
+    color: #333;
+    font-size: 2em; /* Größere Schriftgröße */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Leichter Textschatten */
+}
+
+p {
+    margin-bottom: 20px; /* Abstand unter dem Text */
+    color: #555; /* Dezente Textfarbe */
+    font-size: 1.1em; /* Etwas größere Schriftgröße */
+    line-height: 1.6; /* Angenehmer Zeilenabstand */
+    text-align: center; /* Zentrierter Text */
+}
+
+button {
+    padding: 12px 25px; /* Größere Buttons */
+    margin: 10px;
+    font-size: 1.1em; /* Größere Schriftgröße */
+    color: #fff;
+    background: #2196f3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #1976d2;
+    transform: translateY(-2px); /* Leichter Hover-Effekt */
+}
+
+#objectList {
+    margin-top: 20px;
+    text-align: left;
+    display: none; /* Versteckt die Liste standardmäßig */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+li:hover {
+    background: #f0f0f0;
+}
