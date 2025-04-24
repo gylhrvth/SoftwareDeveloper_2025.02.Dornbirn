@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="./crud(v.01).css">
+    <link rel="stylesheet" href="./crud(v.02).css">
     <title>C.R.U.D (V.01)</title>
 </head>
 <body>
@@ -44,19 +44,22 @@
     </section>
 
     <section id="addObjectContainer">
-        <h2>Neues Objekt hinzufügen</h2>
+        <h2>Neuen Benutzer hinzufügen</h2>
         <form id="addObjectForm">
-            <label for="objectId">Objekt-ID:</label>
-            <input type="text" id="objectId" name="objectId" placeholder="Geben Sie die Objekt-ID ein" required>
+            <label for="firstName">Vorname:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Geben Sie den Vornamen ein" required>
     
-            <label for="objectName">Objekt-Name:</label>
-            <input type="text" id="objectName" name="objectName" placeholder="Geben Sie den Objekt-Namen ein" required>
+            <label for="lastName">Nachname:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Geben Sie den Nachnamen ein" required>
     
-            <button type="submit">Objekt hinzufügen</button>
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" placeholder="Geben Sie die E-Mail-Adresse ein" required>
+    
+            <button type="submit">Benutzer hinzufügen</button>
         </form>
     </section>
 
-    <script src="./crud(v.01).js" defer></script>
+    <script src="./crud(v.02).js" defer></script>
     
 </body>
 </html>

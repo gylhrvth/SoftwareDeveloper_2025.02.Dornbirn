@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test my api</title>
+</head>
+<script>
+    async function getData() {
+        const result = await fetch('http://192.168.0.62:3000/api/objects');
+    const data = await result.json()
+    if (result.ok) {
+        console.log(data)
+        //createDOM(data)
+    } else {
+        alert("Error: " + result.status + " " + result.statusText);
+        return null
+    }
+}
+
+</script>
+<body>
+    <button onclick="getData()">Tst</button>
+</body>
+</html>

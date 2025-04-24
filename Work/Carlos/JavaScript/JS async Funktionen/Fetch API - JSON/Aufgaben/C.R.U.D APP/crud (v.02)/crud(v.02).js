@@ -1,30 +1,33 @@
 // Base URL for the API
-const API_URL = 'https://api.restful-api.dev/objects';
+const API_URL = 'https://reqres.in/api/users';
 
 // Fetch and log all objects to the console
 async function consoleFetchObjects() {
     try {
-        const response = await fetch(API_URL); //sends a GET request to the API to retrieve all objects
-        if (response.ok) { // Checks if the response status is OK (200-299)
-            const objects = await response.json(); // Converts the response data (in JSON format) into a JavaScript object.
-            console.log('Fetched Objects:', objects); // Log the fetched objects
-        } else { //The else block handles API-specific errors (e.g., 404 or 500).
-            console.error(`Error fetching objects: ${response.status}`); //This block is executed if the HTTP response status is not in the range of 200–299 (i.e., the request was not successful).
+        const response = await fetch(API_URL); // Sends a GET request to the API
+        if (response.ok) {
+            const objects = await response.json(); // Converts the response data into a JavaScript object
+            console.log('Fetched Objects:', objects.data); // Log the fetched objects (use `data` for reqres API)
+        } else {
+            console.error(`Error fetching objects: ${response.status}`);
         }
-    } catch (error) { // The catch block handles JavaScript or network-related errors (e.g., no internet).
-        console.error('Error fetching objects:', error); //This block catches any errors that occur during the execution of the try block.
+    } catch (error) {
+        console.error('Error fetching objects:', error);
     }
 }
 
-// Teilaufgabe 1: Fetch and display all objects
+// Fetch and display all objects
 async function fetchObjects() {
     console.log('Fetching objects...');
     try {
-        const response = await fetch(`${API_URL}?timestamp=${Date.now()}`); // Sends a GET request to the API with a timestamp query parameter to prevent caching.
+        const response = await fetch(`${API_URL}?timestamp=${Date.now()}`); // Prevent caching
         if (response.ok) {
-            const data = await response.json(); // Converts the response data into a JavaScript object.
-            console.log('Fetched Objects:', data); // Log the fetched objects
-            displayObjects(data); // Pass the data to a separate function for rendering
+            const data = await response.json(); // Parse the JSON response
+            console.log('Fetched Objects:', data.data); // Log the fetched objects (use `data` for reqres API)
+
+            // Merge fetched users with new users
+            const allUsers = [...data.data, ...newUsers];
+            displayObjects(allUsers); // Pass the merged data to the display function
         } else {
             console.error(`Error: ${response.status} ${response.statusText}`);
         }
@@ -35,7 +38,7 @@ async function fetchObjects() {
 
 // Display the fetched objects in the HTML
 function displayObjects(objects) {
-    console.log('Objects to display:', objects); // Log the objects to display
+    console.log('Objects to display:', objects);
 
     const objectList = document.getElementById('objectList');
     const allObjectsSection = document.getElementById('allObjects');
@@ -48,16 +51,10 @@ function displayObjects(objects) {
     objectList.innerHTML = ''; // Clear previous content
 
     objects.forEach(object => {
-        console.log('Displaying object:', object); // Log each object being displayed
+        console.log('Displaying object:', object);
         const listItem = createListItem(object); // Create a list item for each object
         objectList.appendChild(listItem); // Append the list item to the object list
     });
-
-    // Add hardcoded data for testing
-    const hardcodedObject = { id: '999', name: 'Test Object', data: {} };
-    console.log('Adding hardcoded object:', hardcodedObject);
-    const hardcodedListItem = createListItem(hardcodedObject);
-    objectList.appendChild(hardcodedListItem);
 }
 
 // Create a list item for a single object
@@ -66,12 +63,11 @@ function createListItem(object) {
     listItem.classList.add('object-item'); // Add a class for styling
 
     // Add top-level properties
-    for (const key in object) {
-        if (object[key] && typeof object[key] !== 'object') {
-            const propertyElement = createPropertyElement(key, object[key]);
-            listItem.appendChild(propertyElement);
-        }
-    }
+    const propertyElement = createPropertyElement('ID', object.id);
+    listItem.appendChild(propertyElement);
+
+    const nameElement = createPropertyElement('Name', `${object.first_name} ${object.last_name}`);
+    listItem.appendChild(nameElement);
 
     // Add a "Show Details" button
     const detailsButton = document.createElement('button');
@@ -108,7 +104,7 @@ async function fetchDetails(id) {
         const response = await fetch(`${API_URL}/${id}`);
         if (response.ok) {
             const object = await response.json();
-            showDetails(object); // Call the showDetails function to display the details
+            showDetails(object.data); // Call the showDetails function to display the details
         } else {
             console.error(`Error fetching details: ${response.status}`);
         }
@@ -123,19 +119,12 @@ function showDetails(object) {
     const detailsContent = document.getElementById('detailsContent');
     const allObjectsSection = document.getElementById('allObjects');
 
-    // Format the data object as key-value pairs
-    const formattedData = Object.entries(object.data || {})
-        .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
-        .join('');
-
     // Populate the details view
     detailsContent.innerHTML = `
         <p><strong>ID:</strong> ${object.id}</p>
-        <p><strong>Name:</strong> ${object.name}</p>
-        <div>
-            <h3>Additional Data:</h3>
-            ${formattedData || '<p>No additional data available.</p>'}
-        </div>
+        <p><strong>Name:</strong> ${object.first_name} ${object.last_name}</p>
+        <p><strong>Email:</strong> ${object.email}</p>
+        <img src="${object.avatar}" alt="Avatar of ${object.first_name}" />
     `;
 
     // Show the details section and hide the list
@@ -155,21 +144,22 @@ document.getElementById('backToListButton').addEventListener('click', () => {
     fetchObjects(); // Refresh the list
 });
 
-// Teilaufgabe 3: Add a new object
-const addObjectForm = document.getElementById('addObjectForm');
+// Array to store newly added users
+const newUsers = [];
+
 addObjectForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
 
     // Get form values
-    const id = document.getElementById('objectId').value;
-    const name = document.getElementById('objectName').value;
-    console.log('Form Values:', { id, name }); // Debugging log
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
 
-    // Create the new object
-    const newObject = {
-        id: id,
-        name: name,
-        data: {} // Placeholder for additional data
+    const newUser = {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        avatar: 'https://via.placeholder.com/150' // Placeholder avatar for new users
     };
 
     try {
@@ -178,14 +168,19 @@ addObjectForm.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newObject)
+            body: JSON.stringify(newUser)
         });
 
         if (response.ok) {
             const responseData = await response.json();
             console.log('API Response:', responseData); // Debugging log
             console.log('Object added successfully');
-            setTimeout(() => fetchObjects(), 1000); // Wait 1 second before refreshing
+
+            // Add the new user to the local array
+            newUsers.push({ ...newUser, id: responseData.id });
+
+            // Refresh the list
+            fetchObjects();
         } else {
             console.error(`Error: ${response.status} ${response.statusText}`);
         }
