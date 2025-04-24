@@ -24,7 +24,8 @@
   <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
   <a href="https://www.javascripttutorial.net/web-apis/javascript-fetch-api/">Javascript fetch API</a>
   <br>
-  <a href="https://www.youtube.com/watch?v=2JYT5f2isg4">REST API (fetch) mit einem längere Erklärung (siehe um ... 2:23:00)</a>
+  <a href="https://www.youtube.com/watch?v=2JYT5f2isg4">REST API (fetch) mit einem längere Erklärung (siehe um ...
+    2:23:00)</a>
   <br>
 
   <h2>JavaScript fetch API / JSON</h2>
@@ -57,14 +58,21 @@
   <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
   <h2>Joke API von mir durchlesen</h2>
   <p>Zeile zu Zeile erklären, was alles da passiert</p>
- 
+
   <h2>Ein public REST API selbst anfragen und das Ergebnis sinnvoll darstellen</h2>
   <p>Erstelle ein HTML mit dem man ein API abfragen kann. Mögliche API sind ... (und noch viel mehr)</p>
   <ul>
-    <li>https://sv443.net/jokeapi/v2/joke/Programming?type=twopart (<a href="https://v2.jokeapi.dev/">Beschreibung</a>)</li>
+    <li>https://sv443.net/jokeapi/v2/joke/Programming?type=twopart (<a href="https://v2.jokeapi.dev/">Beschreibung</a>)
+    </li>
     <li>https://randomuser.me/api/ (<a href="https://randomuser.me/">Beschreibung</a>)</li>
-    <li>https://api.open-meteo.com/v1/forecast?latitude=47.4181880275474&longitude=9.73897217099881&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max&timezone=Europe%2FBerlin (<a href="https://open-meteo.com/en/docs?latitude=47.4181880275474&longitude=9.73897217099881&timezone=Europe%2FBerlin&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max">Beschreibung</a>)</li>
-    <li>https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-22&endtime=2025-04-23 <a href="https://earthquake.usgs.gov/earthquakes/map/?extent=20.63278,-127.5293&extent=52.69636,-62.49023"></a></li>
+    <li>
+      https://api.open-meteo.com/v1/forecast?latitude=47.4181880275474&longitude=9.73897217099881&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max&timezone=Europe%2FBerlin
+      (<a
+        href="https://open-meteo.com/en/docs?latitude=47.4181880275474&longitude=9.73897217099881&timezone=Europe%2FBerlin&daily=sunrise,sunset,weather_code,precipitation_sum,precipitation_probability_max,uv_index_max,sunshine_duration,temperature_2m_max,temperature_2m_min,wind_direction_10m_dominant,wind_speed_10m_max">Beschreibung</a>)
+    </li>
+    <li>https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-22&endtime=2025-04-23 <a
+        href="https://earthquake.usgs.gov/earthquakes/map/?extent=20.63278,-127.5293&extent=52.69636,-62.49023"></a>
+    </li>
     <li>https://nominatim.openstreetmap.org/search?city=new%20york&format=json</li>
   </ul>
 
@@ -77,36 +85,75 @@
     <li><b>U</b>pdate</li>
     <li><b>D</b>elete</li>
   </ul>
+  <p>Auf dieser Webseite <a href="https://restful-api.dev/" target="_blank"
+      rel="noopener noreferrer">Restful-API</a>findest du
+    Informationen zu den Methoden und API.</p>
 
-  <p>Als API musst du dieses <a href="https://restful-api.dev/">restful-api.dev</a> API verwenden.</p>
-  <p>Der Hintergrund ist eine Webseite, die Lagerobjekte verwalten kann.</p>
+  <p>Als API musst du dieses Adresse für den Server verwenden <strong>http://192.168.0.71:3000</strong>.</p>
+
 
   <h3>Teilaufgabe 1</h3>
-  <p>Besuche die Webseite und lese kurz durch, wie das API auschaut...</p>
-  <p>Lade in Webbrowser die Liste alle Objekten mit dem URL: <a href="https://api.restful-api.dev/objects">https://api.restful-api.dev/objects</a></p>
-
+  <p>Überprüfe die verfügbarkeit des Servers.</p>
+  <code>await fetch(serverIp + "/objects")</code>
+  <p>fetch abfrage mit /objects und gib diese nur in der Console aus.</p>
+  <p>Versuche zudem auch die abfrage auf nur ein Objekt zu beschränken in dem du die ID angiebst.</p>
+  <code>await fetch(serverIP + "/objects/" + id)</code>
+  <br>
   <h3>Teilaufgabe 2</h3>
-  <p>Erstelle ein neues GUI Element, die Daten aus dem Server holt und für die Benutzer <b>als Liste</b> anzeigt</p>
-  <p>Falls jmd. auf eine Element klickt, soll die Details geladen und angezeigt werden</p>
-  <p>Nach dem das Details angezeigt wurden, kann man sinnvolle weise zu der Liste zurück navigieren... In dem Fall wird die Liste aktualisiert.</p>
-
+  <p>Erstelle ein neues GUI Element, die Daten aus dem Server holt und für die Benutzer <b>als Liste</b> anzeigt. In der
+    Liste soll nur der Name vom Objekt sichtbar sein.</p>
+  <p>Falls jmd. auf ein Element klickt, sollen die Details geladen und angezeigt werden</p>
+  <p>Nach dem die Details angezeigt wurden, sollte es auch eine Möglichkeit geben zu der Liste zurück navigieren... In
+    dem Fall wird die Liste aktualisiert.</p>
+  <br>
   <h3>Teilaufgabe 3</h3>
-  <p>Erstelle ein neues GUI Element, mit dem man eine Element zufügen kann (POST Message).</p>
-  <p>Falls eine neue Element angelegt wurde, soll die Liste mit alle Objekte neu laden und aktualisiert darstellen</p>
-
+  <p>Erstelle ein neues GUI Element, mit dem man ein Element zufügen kann (POST Message).</p>
+  <code>await fetch(server + "/objects", {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(object)
+})</code>
+  <p>Falls ein neues Element angelegt wurde, soll die Liste mit allen Objekten neu geladen und aktualisiert darstellen
+    werden.</p>
+  <br>
   <h3>Teilaufgabe 4</h3>
   <p>Erweitere die Liste so, dass ein Delete Button in der Zeile dazu kommt.</p>
-  <p>Falls der Benutzer etwas löscht, soll es mit dem DELETE Methode durch API gelöscht werden.</p>
+  <p>Falls der Benutzer etwas löscht, soll es mit der DELETE Methode durch API gelöscht werden.</p>
+  <code>await fetch(server + "/objects/" + id, {
+    method: 'DELETE'
+})</code>
   <p>Nach dem Löschen soll die Liste der Objekte aktualisiert werden.</p>
-
+  <br>
   <h3>Teilaufgabe 5</h3>
-  <p>Auf dem Detail Seite kann man die Elementen bearbeiten. zB: der Name des Objektes.</p>
-  <p>Falls etwas geändert hat, gibt es zwei Optionen für der Anwendern:</p>
+  <p>Auf der Detail Seite kann man die Elemente bearbeiten. zB: der Name des Objektes.</p>
+  <code>await fetch(server + "/objects/" + id, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(object)
+})</code>
+  <p>Falls etwas geändert wurde, gibt es zwei Optionen für der Anwendern:</p>
   <ol>
     <li><b>Speichern</b> - das Objekt wird mit PUT Message auf dem API überschrieben</li>
     <li><b>Abbruch</b> - die Änderungen werden wegworfen, die Detailsseite wird neu geladen</li>
   </ol>
   <p>Nach speichern oder abbrechen soll die Liste der Objekte neu geladen und aktualisert werden.</p>
+
+  <br>
+  <h3>Teilaufgabe 6</h3>
+  <p>Füge einem Objekt eine Attribute hinzu. Farbe, Preis, Kapazität etc.</p>
+  <p>Verwende hierfür die PATCH Methode der API.</p>
+  <code>await fetch(server + "/objects/" + id, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        data: {
+            "CPU model": cpuName
+        }
+    })
+})</code>
+  <p>Gib dem User wie in der vorherigen Aufgabe die Möglichkeit zu speichern oder abzubrechen, wie auch immer die
+    Entscheidung ist, dannach wird die Liste aktuallisiert und neu dargestellt.</p>
+
 
 
   <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
