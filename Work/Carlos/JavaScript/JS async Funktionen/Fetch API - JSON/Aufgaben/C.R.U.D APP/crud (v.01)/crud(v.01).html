@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <link rel="stylesheet" href="./crud(v.01).css">
+    <title>C.R.U.D (V.01)</title>
 </head>
 <body>
+
+    <section id="mainTitle">
+        <h1>CRUD (V.01)</h1>
+    </section>
+
+    <section id="introContainer">
+        <h2>Einführung</h2>
+        <p>CRUD steht für Create, Read, Update und Delete. Es handelt sich um die vier grundlegenden Operationen, die auf Datenbanken angewendet werden.</p>
+        <p>In dieser Anwendung kann man Objekte erstellen, lesen, aktualisieren und löschen.</p>
+        <p>Die Anwendung verwendet die Fetch API, um mit einer JSON-Datenbank zu kommunizieren.</p>
+        <p>Die Datenbank ist eine einfache JSON-Datei, die auf dem Server gespeichert ist.</p>
+        <p>Die Anwendung verwendet auch die async/await-Syntax, um asynchrone Operationen zu handhaben.</p>
+    </section>
+
+    <section id="allObjects">
+        <h2>Alle Objekte</h2>
+        <p>Hier werden alle Objekte angezeigt, die in der Datenbank gespeichert sind.</p>
+        <button onclick="consoleFetchObjects()">Console Log All Objects</button>
+        <button onclick="fetchObjects()">Fetch All Objects</button>
+        <div id="objectListContainer">
+            <ul id="objectList">
+                <!-- Hier werden alle Objekte angezeigt -->
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="detailsContainer" style="display: none;">
+        <h2>Details</h2>
+        <div id="detailsContent">
+            <!-- Details of the selected object will be displayed here -->
+        </div>
+        <button id="backToListButton">Zurück zur Liste</button>
+    </section>
+
+    <section id="addObjectContainer">
+        <h2>Neues Objekt hinzufügen</h2>
+        <form id="addObjectForm">
+            <label for="objectId">Objekt-ID:</label>
+            <input type="text" id="objectId" name="objectId" placeholder="Geben Sie die Objekt-ID ein" required>
+    
+            <label for="objectName">Objekt-Name:</label>
+            <input type="text" id="objectName" name="objectName" placeholder="Geben Sie den Objekt-Namen ein" required>
+    
+            <button type="submit">Objekt hinzufügen</button>
+        </form>
+    </section>
+
+    <script src="./crud(v.01).js" defer></script>
     
 </body>
 </html>
