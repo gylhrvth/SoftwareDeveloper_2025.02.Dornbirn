@@ -12,5 +12,23 @@
     <div id="objectList">
         <p>Die Objekte werden geladen...</p>
     </div>
+    <button id="openFormButton">Neues Objekt hinzufügen</button>
+
+    <!-- Modal für das Formular -->
+    <div id="createFormModal" class="modal">
+        <div class="modal-content">
+            <h2>Neues Objekt hinzufügen</h2>
+            <form id="createForm">
+                <input type="text" placeholder="Name des Objekts" required />
+                <input type="number" placeholder="Preis (€)" required />
+                <input type="text" placeholder="Farbe" required />
+                <input type="number" placeholder="Speicher (GB)" required />
+                <input type="number" placeholder="Baujahr" required />
+                <button type="submit">Hinzufügen</button>
+            </form>
+            <button id="closeModalButton">Schließen</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
