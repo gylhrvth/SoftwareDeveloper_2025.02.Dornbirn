@@ -116,7 +116,14 @@ let lastId = objects.reduce((max, obj) => Math.max(max, obj.id), 0)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const cors = require('cors')
-app.use(cors())
+app.use(cors({
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Specify allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
+}))
+
+
+
 
 app.get('/objects', (req, res) => {
   res.json(objects)
