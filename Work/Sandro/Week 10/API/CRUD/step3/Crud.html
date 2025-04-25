@@ -16,10 +16,11 @@
 
   <script>
     const content = document.getElementById('content');
+    const server = 'http://192.168.0.71:3000/objects'; // API URL
 
     async function fetchData() {
       try {
-        const response = await fetch('https://api.restful-api.dev/objects');
+        const response = await fetch(server);
         const data = await response.json();
         renderList(data);
       } catch (error) {
@@ -45,10 +46,14 @@
       content.innerHTML = ''; // Clear content
 
       const details = document.createElement('div');
-      details.innerHTML = `
-        <h2>${item.name}</h2>
-        <pre>${JSON.stringify(item, null, 2)}</pre>
-      `;
+      details.innerHTML = `<h2>${item.name}</h2>`;
+
+      // Iterate over the `data` object and create a div for each key-value pair
+      for (const [key, value] of Object.entries(item.data)) {
+        const detailDiv = document.createElement('div');
+        detailDiv.innerHTML = `<strong>${key}:</strong> ${value}`;
+        details.appendChild(detailDiv);
+      }
 
       const backButton = document.createElement('button');
       backButton.textContent = 'Back to List';
@@ -56,38 +61,111 @@
 
       content.appendChild(details);
       content.appendChild(backButton);
+
     }
 
     async function addNewItem() {
-      const newItem = {
-        name: "New Item", // Beispielname
-        data: {
-          description: "This is a new item added via the API.",
-          value: 123
-        }
-      };
+      // Create the popup container
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.backgroundColor = '#fff';
+      popup.style.padding = '20px';
+      popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      popup.style.zIndex = '1000';
 
-      try {
-        const response = await fetch('https://api.restful-api.dev/objects', {
-          method: 'POST', // HTTP-Methode POST
-          headers: {
-            'Content-Type': 'application/json' // JSON-Daten werden gesendet
+      // Create the form elements
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.placeholder = 'Name';
+      nameInput.style.display = 'block';
+      nameInput.style.marginBottom = '10px';
+
+      const colorInput = document.createElement('input');
+      colorInput.type = 'text';
+      colorInput.placeholder = 'Color';
+      colorInput.style.display = 'block';
+      colorInput.style.marginBottom = '10px';
+
+      const capacityInput = document.createElement('input');
+      capacityInput.type = 'number';
+      capacityInput.placeholder = 'Capacity';
+      capacityInput.style.display = 'block';
+      capacityInput.style.marginBottom = '10px';
+
+      const cpuInput = document.createElement('input');
+      cpuInput.type = 'text';
+      cpuInput.placeholder = 'CPU';
+      cpuInput.style.display = 'block';
+      cpuInput.style.marginBottom = '10px';
+
+      const priceInput = document.createElement('input');
+      priceInput.type = 'number';
+      priceInput.placeholder = 'Price';
+      priceInput.style.display = 'block';
+      priceInput.style.marginBottom = '10px';
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = 'Speichern';
+      saveButton.style.marginRight = '10px';
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Abbrechen';
+
+      // Append elements to the popup
+      popup.appendChild(nameInput);
+      popup.appendChild(colorInput);
+      popup.appendChild(capacityInput);
+      popup.appendChild(cpuInput);
+      popup.appendChild(priceInput);
+      popup.appendChild(saveButton);
+      popup.appendChild(cancelButton);
+
+      // Append the popup to the body
+      document.body.appendChild(popup);
+
+      // Handle save button click
+      saveButton.addEventListener('click', async () => {
+        const newItem = {
+          name: nameInput.value,
+          data: {
+            color: colorInput.value,
+            capacity: parseInt(capacityInput.value, 10),
+            cpu: cpuInput.value,
+            price: parseFloat(priceInput.value),
           },
-          body: JSON.stringify(newItem) // Das neue Item wird als JSON gesendet
-        });
+        };
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        try {
+          const response = await fetch(server, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newItem),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          console.log('Item added successfully:', data);
+
+          // Close the popup and refresh the list
+          document.body.removeChild(popup);
+          fetchData();
+        } catch (error) {
+          console.error('Error adding new item:', error);
         }
+      });
 
-        const data = await response.json();
-        console.log('Item added successfully:', data);
-
-        // Optional: Daten neu laden, um das neue Item anzuzeigen
-        // renderList([data]);
-      } catch (error) {
-        console.error('Error adding new item:', error);
-      }
+      // Handle cancel button click
+      cancelButton.addEventListener('click', () => {
+        document.body.removeChild(popup);
+      });
     }
 
     document.getElementById('addButton').addEventListener('click', addNewItem);

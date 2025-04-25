@@ -5,6 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    div {
+      pointer-events: auto;
+      /* Klicks erlauben */
+    }
+
+    h2 {
+      pointer-events: auto;
+      /* Klicks erlauben */
+    }
+  </style>
 </head>
 
 <body>
@@ -16,8 +27,8 @@
 
   <script>
     const content = document.getElementById('content');
-    const server = 'http://192.168.0.71:3000/objects'; // API URL
-
+    // const server = 'http://192.168.0.71:3000/objects'; // API URL
+    const server = 'http://85.215.164.164:3000/items'; // API URL
     async function fetchData() {
       try {
         const response = await fetch(server);
@@ -46,13 +57,28 @@
       content.innerHTML = ''; // Clear content
 
       const details = document.createElement('div');
-      details.innerHTML = `<h2>${item.name}</h2>`;
 
-      // Iterate over the `data` object and create a div for each key-value pair
-      for (const [key, value] of Object.entries(item.data)) {
-        const detailDiv = document.createElement('div');
-        detailDiv.innerHTML = `<strong>${key}:</strong> ${value}`;
-        details.appendChild(detailDiv);
+      // Erstelle die anklickbare Überschrift
+      const title = document.createElement('h2');
+      title.textContent = item.name;
+      title.style.cursor = 'pointer'; // Zeige an, dass es anklickbar ist
+      title.addEventListener('click', () => ChangeObject('name', item.name, item)); // Event-Listener hinzufügen
+      details.appendChild(title);
+
+      // Überprüfen, ob `item.data` existiert und ein Objekt ist
+      if (item.data && typeof item.data === 'object') {
+        // Iteriere über die `data`-Eigenschaft und erstelle anklickbare Elemente
+        for (const [key, value] of Object.entries(item.data)) {
+          const detailDiv = document.createElement('div');
+          detailDiv.innerHTML = `<strong>${key}:</strong> ${value}`;
+          detailDiv.style.cursor = 'pointer'; // Zeige an, dass es anklickbar ist
+          detailDiv.addEventListener('click', () => ChangeObject(key, value, item)); // Event-Listener hinzufügen
+          details.appendChild(detailDiv);
+        }
+      } else {
+        const noDataMessage = document.createElement('p');
+        noDataMessage.textContent = 'No additional data available.';
+        details.appendChild(noDataMessage);
       }
 
       const backButton = document.createElement('button');
@@ -64,9 +90,103 @@
       deleteButton.addEventListener('click', () => DeleteObjcet(item.id));
 
       details.appendChild(deleteButton);
+
       content.appendChild(details);
       content.appendChild(backButton);
+    }
 
+    function ChangeObject(key, value, item) {
+      console.log(`Change ${key}: ${value}`);
+
+      // Überprüfen, ob `item` existiert
+      if (!item) {
+        console.error('Invalid item:', item);
+        return;
+      }
+
+      // Create the popup container
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.backgroundColor = '#fff';
+      popup.style.padding = '20px';
+      popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      popup.style.zIndex = '1000';
+
+      // Create the form elements
+      const label = document.createElement('label');
+      label.textContent = `Change ${key}:`;
+      label.style.display = 'block';
+      label.style.marginBottom = '10px';
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = value;
+      input.style.display = 'block';
+      input.style.marginBottom = '10px';
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = 'Speichern';
+      saveButton.style.marginRight = '10px';
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Abbrechen';
+
+      // Append elements to the popup
+      popup.appendChild(label);
+      popup.appendChild(input);
+      popup.appendChild(saveButton);
+      popup.appendChild(cancelButton);
+
+      // Append the popup to the body
+      document.body.appendChild(popup);
+
+      // Handle save button click
+      saveButton.addEventListener('click', async () => {
+        const updatedValue = input.value;
+        console.log(`Updated ${key}: ${updatedValue}`);
+
+        try {
+          // Aktualisiere das Objekt
+          const updatedItem = { ...item };
+
+          if (key === 'name') {
+            // Aktualisiere das Attribut `name` direkt
+            updatedItem.name = updatedValue;
+          } else {
+            // Aktualisiere die `data`-Eigenschaft
+            updatedItem.data = {
+              ...item.data,
+              [key]: updatedValue,
+            };
+          }
+
+          const response = await fetch(`${server}/${item.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedItem),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          console.log(`${key} updated successfully.`);
+          document.body.removeChild(popup);
+          fetchData(); // Refresh the list after update
+        } catch (error) {
+          console.error('Error updating item:', error);
+        }
+      });
+
+      // Handle cancel button click
+      cancelButton.addEventListener('click', () => {
+        document.body.removeChild(popup);
+      });
     }
 
     async function DeleteObjcet(id) {

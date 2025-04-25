@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      pointer-events: auto;
+      /* Klicks erlauben */
+    }
+
+    h2 {
+      pointer-events: auto;
+      /* Klicks erlauben */
+    }
+  </style>
+</head>
+
+<body>
+  <button id="fetchButton">Fetch Data</button>
+  <button id="addButton">Add New Item</button>
+  <div id="content">
+
+  </div>
+
+  <script>
+    const content = document.getElementById('content');
+    const server = 'http://192.168.0.71:3000/objects'; // API URL
+
+    async function fetchData() {
+      try {
+        const response = await fetch(server);
+        const data = await response.json();
+        renderList(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    function renderList(data) {
+      content.innerHTML = ''; // Clear content
+      const list = document.createElement('ul');
+
+      data.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.name;
+        listItem.addEventListener('click', () => renderDetails(item));
+        list.appendChild(listItem);
+      });
+
+      content.appendChild(list);
+    }
+
+    function renderDetails(item) {
+      content.innerHTML = ''; // Clear content
+
+      const details = document.createElement('div');
+
+      // Erstelle die anklickbare Überschrift
+      const title = document.createElement('h2');
+      title.textContent = item.name;
+      title.style.cursor = 'pointer'; // Zeige an, dass es anklickbar ist
+      title.addEventListener('click', () => ChangeObject('name', item.name, item)); // Event-Listener hinzufügen
+      details.appendChild(title);
+
+      // Überprüfen, ob `item.data` existiert und ein Objekt ist
+      if (item.data && typeof item.data === 'object') {
+        // Iteriere über die `data`-Eigenschaft und erstelle anklickbare Elemente
+        for (const [key, value] of Object.entries(item.data)) {
+          const detailDiv = document.createElement('div');
+          detailDiv.innerHTML = `<strong>${key}:</strong> ${value}`;
+          detailDiv.style.cursor = 'pointer'; // Zeige an, dass es anklickbar ist
+          detailDiv.addEventListener('click', () => ChangeObject(key, value, item)); // Event-Listener hinzufügen
+          details.appendChild(detailDiv);
+        }
+      } else {
+        const noDataMessage = document.createElement('p');
+        noDataMessage.textContent = 'No additional data available.';
+        details.appendChild(noDataMessage);
+      }
+
+      const backButton = document.createElement('button');
+      backButton.textContent = 'Back to List';
+      backButton.addEventListener('click', fetchData);
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.style.marginLeft = '10px';
+      deleteButton.addEventListener('click', () => DeleteObjcet(item.id));
+      const newAttributeButton = document.createElement('button');
+      newAttributeButton.textContent = 'New Attribute';
+      newAttributeButton.style.marginLeft = '10px';
+      newAttributeButton.addEventListener('click', () => NewAttribute(item));
+
+      details.appendChild(newAttributeButton);
+      details.appendChild(deleteButton);
+      content.appendChild(details);
+      content.appendChild(backButton);
+    }
+
+    function NewAttribute(item) {
+      // Create the popup container
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.backgroundColor = '#fff';
+      popup.style.padding = '20px';
+      popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      popup.style.zIndex = '1000';
+
+      // Create the form elements
+      const keyInput = document.createElement('input');
+      keyInput.type = 'text';
+      keyInput.placeholder = 'Attribute Name';
+      keyInput.style.display = 'block';
+      keyInput.style.marginBottom = '10px';
+
+      const valueInput = document.createElement('input');
+      valueInput.type = 'text';
+      valueInput.placeholder = 'Attribute Value';
+      valueInput.style.display = 'block';
+      valueInput.style.marginBottom = '10px';
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = 'Speichern';
+      saveButton.style.marginRight = '10px';
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Abbrechen';
+
+      // Append elements to the popup
+      popup.appendChild(keyInput);
+      popup.appendChild(valueInput);
+      popup.appendChild(saveButton);
+      popup.appendChild(cancelButton);
+
+      // Append the popup to the body
+      document.body.appendChild(popup);
+
+      // Handle save button click
+      saveButton.addEventListener('click', async () => {
+        const key = keyInput.value.trim();
+        const value = valueInput.value.trim();
+
+        if (!key || !value) {
+          alert('Both fields are required.');
+          return;
+        }
+
+        try {
+          // Update the item's data
+          const updatedItem = {
+            ...item,
+            data: {
+              ...item.data,
+              [key]: value,
+            },
+          };
+
+          const response = await fetch(`${server}/${item.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: updatedItem.data }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          console.log(`Attribute ${key} added successfully.`);
+          document.body.removeChild(popup);
+          fetchData(); // Refresh the list after update
+        } catch (error) {
+          console.error('Error adding attribute:', error);
+        }
+      });
+
+      // Handle cancel button click
+      cancelButton.addEventListener('click', () => {
+        document.body.removeChild(popup);
+      });
+    }
+
+    function ChangeObject(key, value, item) {
+      console.log(`Change ${key}: ${value}`);
+
+      // Überprüfen, ob `item` existiert
+      if (!item) {
+        console.error('Invalid item:', item);
+        return;
+      }
+
+      // Create the popup container
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.backgroundColor = '#fff';
+      popup.style.padding = '20px';
+      popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      popup.style.zIndex = '1000';
+
+      // Create the form elements
+      const label = document.createElement('label');
+      label.textContent = `Change ${key}:`;
+      label.style.display = 'block';
+      label.style.marginBottom = '10px';
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = value;
+      input.style.display = 'block';
+      input.style.marginBottom = '10px';
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = 'Speichern';
+      saveButton.style.marginRight = '10px';
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Abbrechen';
+
+      // Append elements to the popup
+      popup.appendChild(label);
+      popup.appendChild(input);
+      popup.appendChild(saveButton);
+      popup.appendChild(cancelButton);
+
+      // Append the popup to the body
+      document.body.appendChild(popup);
+
+      // Handle save button click
+      saveButton.addEventListener('click', async () => {
+        const updatedValue = input.value;
+        console.log(`Updated ${key}: ${updatedValue}`);
+
+        try {
+          // Aktualisiere das Objekt
+          const updatedItem = { ...item };
+
+          if (key === 'name') {
+            // Aktualisiere das Attribut `name` direkt
+            updatedItem.name = updatedValue;
+          } else {
+            // Aktualisiere die `data`-Eigenschaft
+            updatedItem.data = {
+              ...item.data,
+              [key]: updatedValue,
+            };
+          }
+
+          const response = await fetch(`${server}/${item.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedItem),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          console.log(`${key} updated successfully.`);
+          document.body.removeChild(popup);
+          fetchData(); // Refresh the list after update
+        } catch (error) {
+          console.error('Error updating item:', error);
+        }
+      });
+
+      // Handle cancel button click
+      cancelButton.addEventListener('click', () => {
+        document.body.removeChild(popup);
+      });
+    }
+
+    async function DeleteObjcet(id) {
+      try {
+        const response = await fetch(`${server}/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+
+        console.log(`Item with ID ${id} deleted successfully.`);
+        fetchData(); // Refresh the list after deletion
+      } catch (error) {
+        console.error('Error deleting item:', error);
+      }
+    }
+
+    async function addNewItem() {
+      // Create the popup container
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.backgroundColor = '#fff';
+      popup.style.padding = '20px';
+      popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      popup.style.zIndex = '1000';
+
+      // Create the form elements
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.placeholder = 'Name';
+      nameInput.style.display = 'block';
+      nameInput.style.marginBottom = '10px';
+
+      const colorInput = document.createElement('input');
+      colorInput.type = 'text';
+      colorInput.placeholder = 'Color';
+      colorInput.style.display = 'block';
+      colorInput.style.marginBottom = '10px';
+
+      const capacityInput = document.createElement('input');
+      capacityInput.type = 'number';
+      capacityInput.placeholder = 'Capacity';
+      capacityInput.style.display = 'block';
+      capacityInput.style.marginBottom = '10px';
+
+      const cpuInput = document.createElement('input');
+      cpuInput.type = 'text';
+      cpuInput.placeholder = 'CPU';
+      cpuInput.style.display = 'block';
+      cpuInput.style.marginBottom = '10px';
+
+      const priceInput = document.createElement('input');
+      priceInput.type = 'number';
+      priceInput.placeholder = 'Price';
+      priceInput.style.display = 'block';
+      priceInput.style.marginBottom = '10px';
+
+      const saveButton = document.createElement('button');
+      saveButton.textContent = 'Speichern';
+      saveButton.style.marginRight = '10px';
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Abbrechen';
+
+      // Append elements to the popup
+      popup.appendChild(nameInput);
+      popup.appendChild(colorInput);
+      popup.appendChild(capacityInput);
+      popup.appendChild(cpuInput);
+      popup.appendChild(priceInput);
+      popup.appendChild(saveButton);
+      popup.appendChild(cancelButton);
+
+      // Append the popup to the body
+      document.body.appendChild(popup);
+
+      // Handle save button click
+      saveButton.addEventListener('click', async () => {
+        const newItem = {
+          name: nameInput.value,
+          data: {
+            color: colorInput.value,
+            capacity: parseInt(capacityInput.value, 10),
+            cpu: cpuInput.value,
+            price: parseFloat(priceInput.value),
+          },
+        };
+
+        try {
+          const response = await fetch(server, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newItem),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          console.log('Item added successfully:', data);
+
+          // Close the popup and refresh the list
+          document.body.removeChild(popup);
+          fetchData();
+        } catch (error) {
+          console.error('Error adding new item:', error);
+        }
+      });
+
+      // Handle cancel button click
+      cancelButton.addEventListener('click', () => {
+        document.body.removeChild(popup);
+      });
+    }
+
+    document.getElementById('addButton').addEventListener('click', addNewItem);
+    document.getElementById('fetchButton').addEventListener('click', fetchData);
+  </script>
+</body>
+
+
+</html>
