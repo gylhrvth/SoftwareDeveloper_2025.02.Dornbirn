@@ -1,0 +1,166 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', monospace; /* Retro pixel font */
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(135deg, #222, #444);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main Container (Pokédex Frame) */
+#mainContainer {
+    background: linear-gradient(135deg, #ff4d4d, #cc0000, #990000);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    border: 8px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pokédex Header */
+#headerContainer h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+}
+
+/* Input and Button Styling */
+#headerContainer input {
+    width: 70%;
+    padding: 10px;
+    border: 3px solid #000;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#headerContainer input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+#headerContainer button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: 3px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#headerContainer button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Result Container (Pokédex Screen) */
+#resultContainer {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #333, #222);
+    border: 8px solid #000;
+    border-radius: 8px;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+}
+
+/* Sprite Styling */
+.spriteClass {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    border: 3px solid  #ffffff;;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #bdbdbd;
+}
+
+/* Info Text Styling */
+.infoClass {
+    font-size: 0.9rem;
+    color: #fffaa2;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+}
+
+/* Pokédex Lights */
+#mainContainer::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #00f 30%, #007 70%);
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00f, inset 0 0 8px #007;
+}
+
+#mainContainer::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #f00 30%, #700 70%);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #f00, inset 0 0 8px #700;
+}
+
+/* Decorative Lines */
+#mainContainer .decorative-line {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 5px;
+    background: #000;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #headerContainer input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #headerContainer button {
+        width: 100%;
+    }
+}
