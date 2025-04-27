@@ -6,7 +6,9 @@ let API_URL = "";
 let fetchedData = []; // Define fetchedData globally
 
 //Linux Local API: http://192.168.8.137:3000/objects
-//http://192.168.8.137:3000/objects
+//https://api.restful-api.dev/objects
+
+//Macbook: 'http://192.168.8.145:3000/objects'
 
 //========================================
 // Teilaufgabe 1 & 2: GET
@@ -176,12 +178,13 @@ async function createNewElement() {
         return;
     }
 
+    // Generate the next ID as a string
     const nextId = fetchedData.length > 0
-        ? Math.max(...fetchedData.map(item => item.id)) + 1
-        : 1;
+        ? (Math.max(...fetchedData.map(item => parseInt(item.id))) + 1).toString()
+        : "1";
 
     const newElement = {
-        id: nextId,
+        id: nextId, // Ensure the ID is a string
         name: name,
         data: {}
     };
@@ -212,12 +215,6 @@ async function createNewElement() {
         console.error('Error creating new element:', error);
         alert('Failed to create new element. Please try again.');
     }
-}
-
-function clearSubmitForm() {
-    const form = document.getElementById('formular');
-    form.reset();
-    console.log('Form cleared.');
 }
 
 //========================================
@@ -273,33 +270,28 @@ async function addAttribute(id) {
         return;
     }
 
-    // Prompt the user for the attribute name
     let attributeKey = prompt('Enter the attribute name (e.g., "Color", "Price", "Capacity"):', '');
     if (!attributeKey) {
         alert('Attribute name is required.');
         return;
     }
 
-    // Normalize the attribute key to lowercase
     attributeKey = attributeKey.toLowerCase();
-
-    // Prompt the user for the attribute value
     const attributeValue = prompt(`Enter the value for "${attributeKey}":`, objectToUpdate.data[attributeKey] || '');
     if (attributeValue === null) {
         alert('Operation canceled.');
         return;
     }
 
-    // Merge the new or updated attribute into the existing data
     const updatedData = {
         ...objectToUpdate.data,
-        [attributeKey]: attributeValue // Add or update the specified attribute
+        [attributeKey]: attributeValue
     };
 
     const patchData = {
         data: updatedData
     };
-    
+
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PATCH',
@@ -308,21 +300,17 @@ async function addAttribute(id) {
             },
             body: JSON.stringify(patchData)
         });
-    
+
         if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
-    
+
         const updatedObject = await response.json();
-        console.log('Updated Object:', updatedObject);
-    
-        // Update the local `fetchedData` array
         const index = fetchedData.findIndex(item => item.id === id);
         if (index !== -1) {
             fetchedData[index] = updatedObject;
         }
-    
-        // Re-render the list
+
         displayAllObjects(fetchedData);
         alert(`Attribute "${attributeKey}" has been successfully added or updated!`);
     } catch (error) {
