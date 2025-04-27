@@ -5,6 +5,9 @@
 let API_URL = "";
 let fetchedData = []; // Define fetchedData globally
 
+//Linux Local API: http://192.168.8.137:3000/objects
+//http://192.168.8.137:3000/objects
+
 //========================================
 // Teilaufgabe 1 & 2: GET
 //========================================
@@ -270,27 +273,33 @@ async function addAttribute(id) {
         return;
     }
 
-    const attributeKey = prompt('Enter the attribute name (e.g., "Color", "Price", "Capacity"):', '');
+    // Prompt the user for the attribute name
+    let attributeKey = prompt('Enter the attribute name (e.g., "Color", "Price", "Capacity"):', '');
     if (!attributeKey) {
         alert('Attribute name is required.');
         return;
     }
 
-    const attributeValue = prompt(`Enter the value for "${attributeKey}":`, '');
+    // Normalize the attribute key to lowercase
+    attributeKey = attributeKey.toLowerCase();
+
+    // Prompt the user for the attribute value
+    const attributeValue = prompt(`Enter the value for "${attributeKey}":`, objectToUpdate.data[attributeKey] || '');
     if (attributeValue === null) {
         alert('Operation canceled.');
         return;
     }
 
+    // Merge the new or updated attribute into the existing data
     const updatedData = {
         ...objectToUpdate.data,
-        [attributeKey]: attributeValue
+        [attributeKey]: attributeValue // Add or update the specified attribute
     };
 
     const patchData = {
         data: updatedData
     };
-
+    
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PATCH',
@@ -299,22 +308,26 @@ async function addAttribute(id) {
             },
             body: JSON.stringify(patchData)
         });
-
+    
         if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
-
+    
         const updatedObject = await response.json();
+        console.log('Updated Object:', updatedObject);
+    
+        // Update the local `fetchedData` array
         const index = fetchedData.findIndex(item => item.id === id);
         if (index !== -1) {
             fetchedData[index] = updatedObject;
         }
-
+    
+        // Re-render the list
         displayAllObjects(fetchedData);
-        alert(`Attribute "${attributeKey}" added successfully!`);
+        alert(`Attribute "${attributeKey}" has been successfully added or updated!`);
     } catch (error) {
-        console.error('Error adding attribute:', error);
-        alert('Failed to add attribute. Please try again.');
+        console.error('Error adding or updating attribute:', error);
+        alert('Failed to add or update attribute. Please try again.');
     }
 }
 

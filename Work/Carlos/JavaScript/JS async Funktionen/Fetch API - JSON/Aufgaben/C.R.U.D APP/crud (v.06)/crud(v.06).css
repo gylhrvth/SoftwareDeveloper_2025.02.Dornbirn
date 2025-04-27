@@ -279,15 +279,18 @@ ul li:last-child {
 }
 
 /* Responsive Design */
+
 @media (max-width: 768px) {
     #urlInput {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    #urlButton, #clearButton {
-        width: 100%;
-        margin-bottom: 10px;
+    #urlButton, #clearButton, #clearFormButton, #submitButton {
+        width: 100%; /* Make buttons full width */
+        margin-bottom: 10px; /* Add spacing between buttons */
+        padding: 12px; /* Ensure consistent padding */
+        font-size: 1rem; /* Adjust font size for readability */
     }
 
     .listedMain {
@@ -295,11 +298,25 @@ ul li:last-child {
         align-items: flex-start;
     }
 
+    .detailsButton, .deleteButton, .editButton, .addAttributeButton {
+        width: 100%; /* Make action buttons full width */
+        margin-bottom: 10px; /* Add spacing between buttons */
+        padding: 10px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem; /* Adjust font size for readability */
+    }
+
     .detailsButton {
         margin-top: 10px;
         align-self: flex-end;
     }
+
+    .buttonContainer {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Add spacing between buttons */
+        width: 100%; /* Ensure the container takes full width */
+    }
 }
+
 
 .addAttributeButton {
     padding: 8px 15px;
