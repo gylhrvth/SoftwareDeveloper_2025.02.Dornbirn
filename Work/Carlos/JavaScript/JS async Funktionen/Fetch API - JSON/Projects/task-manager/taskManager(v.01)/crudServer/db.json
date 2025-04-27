@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Walk the dog",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Be nice to the world",
+      "completed": false
+    },
+    {
+      "id": "3",
+      "title": "Say hi to strangers",
+      "completed": false
+    },
+    {
+      "id": "4",
+      "title": "Contemplate the nature of existence",
+      "completed": false
+    },
+    {
+      "id": "5",
+      "title": "Seek the meaning of happiness",
+      "completed": false
+    },
+    {
+      "id": "6",
+      "title": "Reflect on the interconnectedness of all things",
+      "completed": true
+    },
+    {
+      "id": "7",
+      "title": "Ponder the concept of free will",
+      "completed": false
+    },
+    {
+      "id": "8",
+      "title": "Meditate on the passage of time",
+      "completed": false
+    },
+    {
+      "id": "9",
+      "title": "Explore the boundaries of human knowledge",
+      "completed": false
+    },
+    {
+      "id": "10",
+      "title": "Question the nature of reality",
+      "completed": false
+    },
+    {
+      "id": "11",
+      "title": "Consider the ethics of artificial intelligence",
+      "completed": false
+    },
+    {
+      "id": "12",
+      "title": "Examine the role of empathy in human relationships",
+      "completed": false
+    }
+  ]
+}

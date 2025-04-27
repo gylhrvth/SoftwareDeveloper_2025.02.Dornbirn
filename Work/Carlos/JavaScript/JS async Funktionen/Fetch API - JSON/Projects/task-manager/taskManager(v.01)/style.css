@@ -85,7 +85,11 @@ button:hover {
     background-color: #c0392b;
 }
 
-#task-list li.completed {
+#task-list li.completed span {
     text-decoration: line-through;
-    color: #999;
+    color: #666; /* Slightly faded text color */
+}
+
+#task-list li.completed {
+    background-color: #d4f8d4; /* Very light green */
 }

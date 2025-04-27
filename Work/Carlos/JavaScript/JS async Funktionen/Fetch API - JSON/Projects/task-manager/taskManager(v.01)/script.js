@@ -3,6 +3,10 @@ const API_URL = 'http://192.168.8.145:3000/tasks'; // Replace with your API URL
 //linux Mint: 'http://192.168.8.137:3000/tasks'
 //macbook pro: 'http://192.168.8.145:3000/tasks'
 //DB location on Macbook: (MacintoshHD -> Users -> carlosartiagamorales -> Programming -> crudServer -> db.json)
+//Local Server command inside Terminal: json-server --watch db.json --host 0.0.0.0 --port 3000
+
+//vercel links: https://crud-server-5ttzr7qdi-carlos-projects-481ff967.vercel.app/tasks (NOT WORKING!!!)
+
 // Fetch and display tasks
 async function fetchTasks() {
     try {
@@ -22,21 +26,33 @@ function displayTasks(tasks) {
 
     tasks.forEach(task => {
         const taskItem = document.createElement('li');
-        taskItem.textContent = task.title;
+
+        // Wrap the task title in a <span>
+        const taskText = document.createElement('span');
+        taskText.textContent = task.title;
 
         // Add a checkbox for task completion
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.checked = task.completed;
-        checkbox.onchange = () => toggleTaskCompletion(task.id, checkbox.checked);
+        checkbox.onchange = () => {
+            toggleTaskCompletion(task.id, checkbox.checked);
+            taskItem.classList.toggle('completed', checkbox.checked); // Add/remove 'completed' class
+        };
 
         // Add delete button
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.onclick = () => deleteTask(task.id);
 
+        // Apply 'completed' class if the task is already completed
+        if (task.completed) {
+            taskItem.classList.add('completed');
+        }
+
         taskItem.prepend(checkbox); // Add checkbox before the task title
-        taskItem.appendChild(deleteButton);
+        taskItem.appendChild(taskText); // Add the task text
+        taskItem.appendChild(deleteButton); // Add the delete button
         taskList.appendChild(taskItem);
     });
 }
