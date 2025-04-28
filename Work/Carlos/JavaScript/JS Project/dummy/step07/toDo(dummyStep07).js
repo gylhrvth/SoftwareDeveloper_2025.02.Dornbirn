@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     displayTasks(); // Initial load of tasks
 
     // Refresh tasks every 1 minute seconds
-    setInterval(() => {
+    /*setInterval(() => {
         displayTasks();
-    }, 60000);
+    }, 60000);*/
 
     // Add event listener to the "Refresh Content" button
     document.getElementById('refreshContent').addEventListener('click', () => {
@@ -57,7 +57,7 @@ function createTitleContainer(task) {
     const titleContainer = document.createElement('div');
     titleContainer.classList.add('titleContainer');
 
-    const checkbox = createCheckbox(task.complete);
+    const checkbox = createCheckbox(task.complete, task); // Pass the task object
     const titleSpan = createTitleSpan(task.title);
     const buttonContainer = createButtonContainer(task);
 
@@ -68,11 +68,35 @@ function createTitleContainer(task) {
     return titleContainer;
 }
 
-function createCheckbox(isComplete) {
+function createCheckbox(isComplete, task) {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.classList.add('task-checkbox');
     checkbox.checked = isComplete;
+
+    // Add event listener to update the complete status
+    checkbox.addEventListener('change', async () => {
+        try {
+            const updatedTask = { complete: checkbox.checked }; // Update the complete status
+            const response = await fetch(`http://192.168.0.53:3000/api/todo/${task.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedTask),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            console.log(`Task ${task.id} updated successfully.`);
+        } catch (error) {
+            console.error('Error updating task:', error);
+            alert('Failed to update the task. Please try again.');
+        }
+    });
+
     return checkbox;
 }
 
@@ -91,6 +115,7 @@ function createButtonContainer(task) {
     detailsButton.addEventListener('click', () => toggleDetailsContainer(detailsButton, task));
 
     const deleteButton = createButton('Delete', 'delete-button');
+    deleteButton.addEventListener('click', () => deleteTask(task, deleteButton)); // Use the deleteTask function
 
     buttonContainer.appendChild(detailsButton);
     buttonContainer.appendChild(deleteButton);
@@ -242,3 +267,30 @@ function showFormular() {
         taskForm.setAttribute('data-listener', 'true'); // Mark listener as added
     }
 }
+
+// DELETE
+
+async function deleteTask(task, deleteButton) {
+    const confirmDelete = confirm('Are you sure you want to delete this task?');
+    if (confirmDelete) {
+        try {
+            const response = await fetch(`http://192.168.0.53:3000/api/todo/${task.id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            console.log(`Task ${task.id} deleted successfully.`);
+
+            // Remove the itemContainer from the DOM
+            const itemContainer = deleteButton.closest('.itemContainer');
+            itemContainer.remove();
+        } catch (error) {
+            console.error('Error deleting task:', error);
+            alert('Failed to delete the task. Please try again.');
+        }
+    }
+}
+
