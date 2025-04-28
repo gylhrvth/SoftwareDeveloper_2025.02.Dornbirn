@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prüfung Javascript</title>
+    <link rel="stylesheet" href="../common.css">
+    <script src="../common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+</head>
+<body>
+    <h1>Prüfung Javascript</h1>
+    <h2>Prüfungsregeln</h2>
+    <ol>
+        <li>Dir Prüfung dauert 3 Tage</li>
+        <li>Alles, was in Regeln nicht verboten ist, ist erlaubt.</li>
+        <li>Die Aufgabe ist als Challenge konzipiert. In echten Leben, dauert es wirklich Monaten... Wir werden keine perfekte Lösung bekommen. Es ist wichtig die Zwischenergebnisse feiern.</li>
+    </ol>
+    <h2>Aufgabestellung</h2>
+    <p>Erstelle eine Frontend Applikation für ein Todo App, der den von mir gegebenen API nutzt. Die Kommunikation passier über eine REST API</p>
+    <p>Hinweis: Nicht alles, waas den API als Information liefert ist relevant für den User.</p>
+    <p>Das Endergbenis besteht aus:</p>
+    <ol>
+        <li>Eine Single Page Applikation (SPA). Es ist eine Webseite, die mit dem API kommuniziert und direkt in DOM die änderungen durchführt.</li>
+        <li>Am Anfang sollen alle ToDo's aufgelistet werden</li>
+        <li>Die Applikation soll regelmäßig die Liste der ToDo's aktualiseren (um neue ToDo's automatisch zu laden)</li>
+        <li>Fallst eine ToDo ausgewählt wird, soll alle Details dargestellt werden</li>
+        <li>Neue ToDo's kann zugefügt werden</li>
+        <li>Bestehenden ToDo's können überarbeitet werden</li>
+        <li>Bestehenden ToDo's können gelöscht werden.</li>
+    </ol>
+
+    <h2>Teilaufgaben</h2>
+    <h3>Recherche</h3>
+    <p>Prüfe die Daten, die du von dem API bekommst. Schaue an, welche Daten für welche schritte relevant sind... (0 Pts)</p>
+    
+    <h3>Erstelle eine Dummy Seite, in der 2-3 von dir ausgedachten ToDo's dargestellt worden</h3>
+    <p>Dieser Schritt ist nur HTML / CSS, die statisch angelgt sind</p>
+    <p>Achte auf dem Box Model, CSS</p>
+
+    <h3>Die Seite dynamisch durch DOM Bearbeitung erstellen...</h3>
+    <p>REGEL: HTML Dokument DARF NICHT zusammenkopiert und in innerHTML gespeichert werden...</p>
+    <p>REGEL: HTML Dokument MUSS ein eigenes HTML Element für jede Information haben</p>
+
+    <h3>Hole die Daten direkt aus dem API (GET)</h3>
+    <p>Ersetze die lokale Array mit dem dynamischen...</p>
+
+    <h3>Erstelle ein Konzept für den Details Seite</h3>
+    <p>Am Anfang mach einen Block statisch in dem HTML / CSS dokument</p>
+
+    <h3>Erstelle Details durch DOM Bearbeitung</h3>
+    <p>REGEL: HTML Dokument DARF NICHT zusammenkopiert und in innerHTML gespeichert werden...</p>
+    <p>REGEL: HTML Dokument MUSS ein eigenes HTML Element für jede Information haben</p>
+
+    <h3>Hole ToDo Details aus dem API (GET)</h3>
+
+    <h3>Erstelle einen Konzept für erstellen neue ToDo's</h3>
+    <p>Achte darauf, was Pflichtfelder sind und was sind optional</p>
+    <p>Gib die Möglichkeit für den Benutzer, die Änderungen abzubrechen</p>
+    <p>Falls der Benutzer die neue ToDo erstellt hat, soll in API (POST) mitgeteilt werden</p>
+    <p>Die Liste der ToDos ist zu aktualisieren....</p>
+
+    <h3>Erstelle einen Konzept für löschen...</h3>
+    <p>Erstelle ein HTML Eventhandler</p>
+    <p>Rufe API mit (DELETE) auf</p>
+    <p>Aktualisiere die ToDo Liste</p>
+
+    <h3>Erstelle einen Konzept für die Bearbeitung</h3>
+    <p>Ersetze Darstellungen mit Input Elementen</p>
+    <p>Gib die Möglichkeit Änderungen abzubrechen</p>
+    <p>Falls der Benutzer die ToDo speichert, rufe PATCH / PUT an.</p>
+
+    <h2>Konzept der API</h2>
+    <pre>
+        [<br>
+            {<br>
+                id: '1234-2356-32324455463242', // Read-Only<br>
+                title: 'Hunde ausführen',<br>
+                details: 'mindenstens 2x am Tag,\nmöglicherweise vor dem Sonnenuntergang', // optional<br>
+                complete: true,<br>
+                dueDate: '20/5/2025',   // optional<br>
+                responsible: 'Carlos',  // optional<br>
+                createdBy: 'Carlos',    // optional<br>
+                createdAt: '19/2/2025', // read-only, optional<br>
+                updatedAt: '22/2/2025'  // read-only, optional<br>
+            }<br>
+        ]<br>
+        </pre>
+
+
+    <h2>Bewertungen</h2>
+    <ol>
+        <li>HTML Struktur ist sauber? (2 Punkte)
+            <br>Gut lesbar, gut erweiterbar, keine unnötige Duplikate
+        </li>
+        <li>CSS Struktur ist sauber? (1 Punkt)
+            <br>Gut lesbar, gut erweiterbar, keine unnötige Duplikate
+        </li>
+        <li>JavaScript Grundstruktur (5 Punkte)
+            <br>Funktionen sind richt in Anwendung, Parameterübergaben sind korrekt, Namensgebung
+        </li>
+        <li>Funktion: Liste der ToDo's (1 Punkt)</li>
+        <li>Funktion: ToDo Details (1 Punkt)</li>
+        <li>Funktion: Neue ToDo erstellen (1 Punkt)</li>
+        <li>Funktion: ToDo löschen (1 Punkt)</li>
+        <li>Funktion: ToDo bearbeiten (1 Punkt)</li>
+    </ol>
+
+
+    <h2>Ergebnisse</h2>
+    <table>
+        <thead style="font-weight: bold;">
+                <td>Name</td>
+                <td>Ergebnis</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alp</td>
+                <td>? / 10</td>
+            </tr>
+            <tr>
+                <td>Carlos</td>
+                <td>? / 10</td>
+            </tr>
+            <tr>
+                <td>Daniela</td>
+                <td>? / 10</td>
+            </tr>
+            <tr>
+                <td>Görkem</td>
+                <td>? / 10</td>
+            </tr>
+            <tr>
+                <td>Leonie</td>
+                <td>? / 10</td>
+            </tr>    
+        </tbody>
+    </table>
+
+</body>
+</html>
