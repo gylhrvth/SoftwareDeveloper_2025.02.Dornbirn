@@ -1,15 +1,23 @@
-addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function () {
     getData();
 });
 
+
+
 async function getData() {
-    const result = await fetch('http://85.215.164.164:3000/items/');
-    const data = await result.json();
-    if (result.ok){
-        console.log(data);
-        createDOM(data);
-    } else {
-        alert("Error: " + result.status + " " + result.statusText);
+    try {
+        const result = await fetch('http://192.168.0.53:3000/api/todo'); // Überprüfe die URL
+        if (result.ok) {
+            const data = await result.json();
+            console.log(data);
+            createDOM(data);
+        } else {
+            console.error("Server Error:", result.status, result.statusText);
+            alert("Error: " + result.status + " " + result.statusText);
+        }
+    } catch (error) {
+        console.error("Network Error:", error);
+        alert("Network Error: " + error.message);
     }
 }
 
@@ -21,7 +29,14 @@ function createDOM(data) {
         divElement.classList.add('item');
         container.appendChild(divElement);
         divElement.addEventListener('click', async () => {
-            createDOMDetails(item);
+            const result = await fetch(`http://192.168.0.53:3000/api/todo/${item.id}`);
+            if (result.ok) {
+                const itemDetails = await result.json();
+                console.log(itemDetails);
+                createDOMDetails(itemDetails);
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
         });
         const name = document.createElement('h2');
         name.textContent = item.title;
@@ -55,23 +70,39 @@ function createDOMDetails(item) {
     detailsDiv.appendChild(complete);
 
     const toBeDone = document.createElement('p');
-    toBeDone.textContent = `Fertigstellung: ${item.dueDate}`;
+    toBeDone.textContent = "Fällig am: ";
+    const dueDate = document.createElement('span');
+    dueDate.textContent = item.dueDate;
+    toBeDone.appendChild(dueDate);
     detailsDiv.appendChild(toBeDone);
 
     const howResposible = document.createElement('p');
-    howResposible.textContent = `Verantwortlich: ${item.responsible}`;
+    howResposible.textContent = "Verantwortlich: ";
+
+    const responsible = document.createElement('span');
+    responsible.textContent = item.responsible;
+    howResposible.appendChild(responsible);
     detailsDiv.appendChild(howResposible);
 
     const creator = document.createElement('p');
-    creator.textContent = `Erstellt von: ${item.createdBy}`;
+    creator.textContent = "Ersteller: ";
+    const creatorName = document.createElement('span');
+    creatorName.textContent = item.createdBy;
+    creator.appendChild(creatorName);
     detailsDiv.appendChild(creator);
 
     const createdAt = document.createElement('p');
-    createdAt.textContent = `Erstellt am: ${item.createdAt}`;
+    createdAt.textContent = "Erstellt am: ";
+    const createdAtDate = document.createElement('span');
+    createdAtDate.textContent = item.createdAt;
+    createdAt.appendChild(createdAtDate);
     detailsDiv.appendChild(createdAt);
 
     const updatedAt = document.createElement('p');
-    updatedAt.textContent = `Aktualisiert am: ${item.updatedAt}`;
+    updatedAt.textContent = "Zuletzt aktualisiert am: ";
+    const updatedAtDate = document.createElement('span');
+    updatedAtDate.textContent = item.updatedAt;
+    updatedAt.appendChild(updatedAtDate);
     detailsDiv.appendChild(updatedAt);
 
     const backButton = document.createElement('button');
@@ -81,31 +112,45 @@ function createDOMDetails(item) {
         getData(); // Daten neu laden
     });
     detailsDiv.appendChild(backButton);
-}
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('deleteButton');
+    deleteButton.addEventListener('click', async () => {
+        deleteObject(item.id);
+});
 
 function createObject() {
-     loadForm()
+    const form = document.querySelector('.form');
+    const title = form.querySelector('input[name="title"]').value;
+    const description = form.querySelector('textarea[name="description"]').value;
+    const complete = form.querySelector('input[name="complete"]').checked;
+    const dueDate = form.querySelector('input[name="dueDate"]').value;
+    const responsible = form.querySelector('input[name="responsible"]').value;
     const newObject = {
-        title: data[0],
-        description: data[1],
-        dueDate: data[3],
-        complete: data[2],
-        responsible: data[4],
-        createdBy: 'Leonie'
+        title: title,
+        description: description,
+        dueDate: dueDate,
+        complete: complete,
+        responsible: responsible,
+        createdBy: "Leonie"
     };
+    console.log(newObject);
+    
     postData(newObject);
     
 }
 async function postData(data) {
-    const result = await fetch('http://85.215.164.164:3000/items/', {
+    console.log(data);
+    const result = await fetch('http://192.168.0.53:3000/api/todo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     });
-    const response = await result.json();
     if (result.ok) {
+        const response = await result.json();
         console.log(response);
         getData();
     } else {
@@ -172,18 +217,32 @@ function loadForm() {
     submitButton.type = 'submit';
     form.appendChild(submitButton);
 
-    result = [titleInput.value, descriptionInput.value, completeInput.checked, dueDateInput.value, responsibleInput.value];
     submitButton.addEventListener('click', (event) => {
         event.preventDefault();
-        createObject(result);
+        createObject();
     });
 
-    const backButton = document.createElement('button');
-    backButton.textContent = 'Back';
-    backButton.classList.add('backButton');
-    backButton.addEventListener('click', () => {
+    const backButtonForm = document.createElement('button');
+    backButtonForm.textContent = 'Back';
+    backButtonForm.classList.add('backButton');
+    backButtonForm.addEventListener('click', () => {
         getData(); // Daten neu laden
     });
-    form.appendChild(backButton);
+    form.appendChild(backButtonForm);
     
+}
+}
+
+
+async function deleteObject(id) {
+    const result = await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
+        method: 'DELETE'
+    });
+    if (result.ok) {
+        const response = await result.json();
+        console.log(response);
+        getData();
+    } else {
+        alert("Error: " + result.status + " " + result.statusText);
+    }
 }
