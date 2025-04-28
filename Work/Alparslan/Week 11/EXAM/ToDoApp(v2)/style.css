@@ -1,0 +1,265 @@
+/* Basis-Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+/* Todo Liste */
+#todo-list {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Einzelnes Todo */
+.todo {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Obere Zeile im Todo (Checkbox, Text, Icons) */
+.todo-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo-topline div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Checkbox */
+.todo input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Titel */
+.todo span {
+    font-size: 1rem;
+}
+
+/* Wenn Aufgabe erledigt (Checkbox abgehakt) */
+.completed span {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Details (aufklappbar) */
+.todo-details {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: #f9f9f9;
+    border-left: 3px solid #007bff;
+    border-radius: 5px;
+}
+
+.todo-details.hidden {
+    display: none;
+}
+
+/* Button allgemeines Design */
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Formular zum Neuen Todo */
+#new-todo-form {
+    display: none;
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Inputfelder */
+input[type="text"],
+input[type="date"],
+textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Buttons "Speichern" und "Abbrechen" */
+#save-todo-button,
+#cancel-todo-button {
+    width: 100%;
+}
+
+/* Erfolgsnachricht */
+#success-message {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    width: fit-content;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: opacity 0.5s ease;
+}
+
+/* Erfolgsnachricht verstecken */
+#success-message.hidden {
+    display: none;
+}
+
+/* Allgemeine "versteckt" Klasse */
+.hidden {
+    display: none;
+}
+
+/* Toggle Button oben rechts */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#toggle-theme-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+#toggle-theme-button:hover {
+    background-color: #0056b3;
+}
+
+/* DARK MODE */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+.dark-mode .todo {
+    border: 1px solid #ffffff; /* Weißer Rand um jedes Todo */
+}
+
+.dark-mode .todo-details {
+    border: 1px solid #ffffff; /* Weißer Rand um die Details */
+}
+
+.dark-mode .todo,
+.dark-mode #new-todo-form,
+.dark-mode #success-message,
+.dark-mode .todo-details {
+    background-color: #2a2a2a;
+    color: #f5f5f5;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode button {
+    background-color: #4a90e2;
+}
+
+.dark-mode button:hover {
+    background-color: #357ABD;
+}
+
+.dark-mode #toggle-theme-button {
+    background-color: #4a90e2;
+}
+
+.dark-mode #toggle-theme-button:hover {
+    background-color: #357ABD;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="date"],
+.dark-mode textarea {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+/* Dark Mode: Hover-Effekt für Todos */
+.dark-mode .todo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); /* Hellere, weiße Schattierung */
+    background-color: #333; /* Helleres Grau als Hover-Hintergrund */
+}
+
+/* Dark Mode: Erfolgsmeldung */
+.dark-mode #success-message {
+    background-color: #2ecc71; /* ein etwas helleres Grün im dunklen Modus */
+    color: #ffffff; /* weiße Schrift für bessere Lesbarkeit */
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.7); /* sanfter grüner Glow */
+}
+
+#loading-spinner {
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+#loading-spinner.hidden {
+    display: none;
+}
+
+/* Dark Mode für Spinner */
+.dark-mode #loading-spinner {
+    color: #4a90e2;
+}
+
+
+
