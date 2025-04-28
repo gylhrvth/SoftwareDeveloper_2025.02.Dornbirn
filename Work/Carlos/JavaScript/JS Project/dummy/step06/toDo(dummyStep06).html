@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./toDo(dummyStep06).css">
+    <script src="./toDo(dummyStep06).js" defer></script>
+    <title>ToDo App (Step 06)</title>
+</head>
+
+    <!--Erstelle einen Konzept für erstellen neue ToDo's
+    Achte darauf, was Pflichtfelder sind und was sind optional
+    Gib die Möglichkeit für den Benutzer, die Änderungen abzubrechen
+    Falls der Benutzer die neue ToDo erstellt hat, soll in API (POST) mitgeteilt werden
+    Die Liste der ToDos ist zu aktualisieren....-->
+
+<body>
+
+    <div id="mainContainer">
+        
+        <header id="headerBox">
+            <h1>ToDo App (Step 06)</h1>
+        </header>
+
+        <main id="responseContainer">
+            <!-- itemContainer will be dynamically added here -->
+        </main>
+
+        <section id="buttonContainer">
+            <button id="postElement" onclick="showFormular()">Add Task</button>
+            <button id="refreshContent">Refresh Content</button>
+        </section>
+
+        <!-- Popup Form -->
+    <div id="popupForm" class="popup hidden">
+        <div class="popup-content">
+            <h2>Add Task</h2>
+            <form id="taskForm">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="details">Details (Optional)</label>
+                <textarea id="details" name="details" rows="3"></textarea>
+
+                <label for="dueDate">Due Date (Optional)</label>
+                <input type="text" id="dueDate" name="dueDate" placeholder="20/05/2025">
+
+                <label for="responsible">Responsible (Optional)</label>
+                <input type="text" id="responsible" name="responsible">
+
+                <label for="createdBy">Created By (Optional)</label>
+                <input type="text" id="createdBy" name="createdBy">
+
+                <div class="popup-buttons">
+                    <button type="button" id="cancelButton">Cancel</button>
+                    <button type="submit" id="submitButton">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        
+    </div>
+</body>
+</html>

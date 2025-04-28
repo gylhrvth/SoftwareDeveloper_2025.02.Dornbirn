@@ -1,32 +1,7 @@
-function getTasks() {
-    return [
-        {
-            id: 1,
-            title: "Buy Chocolate",
-            details: "Milka or Lindt",
-            complete: false,
-            dueDate: "03/05/2025",
-            responsible: "Carlos",
-            createdBy: "Carlos",
-            createdAt: "28/04/2025",
-            updatedAt: "28/04/2025"
-        },
-        {
-            id: 2,
-            title: "Walk the Dog",
-            details: "Take Max to the park",
-            complete: true,
-            dueDate: "28/04/2025",
-            responsible: "Carlos",
-            createdBy: "Carlos",
-            createdAt: "27/04/2025",
-            updatedAt: "28/04/2025"
-        }
-    ];
-}
+// Achtung, funktioniert nur über Safari Browser!!!
 
-/*async function getTasks() {
-    const url = 'https://example.com/api/tasks'; // Replace with your actual API URL
+async function getTasks() {
+    const url = 'http://192.168.0.53:3000/api/todo'; // Replace with your actual API URL
 
     try {
         const response = await fetch(url); // Fetch data from the API
@@ -39,7 +14,7 @@ function getTasks() {
         console.error('Error fetching tasks:', error);
         return []; // Return an empty array if there's an error
     }
-}*/
+}
 
 async function displayTasks() {
     const responseContainer = document.getElementById('responseContainer');
