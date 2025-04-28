@@ -1,0 +1,225 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+/* Main Container */
+#mainContainer {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Item Container */
+.itemContainer {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itemContainer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Container */
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-checkbox {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.task-title {
+    font-weight: bold;
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.details-button,
+.delete-button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.details-button {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+.details-button:hover {
+    background-color: #357ab8;
+    transform: scale(1.05);
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Details Container */
+.detailsContainer {
+    display: none;
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    line-height: 1.8;
+}
+
+.detailsContainer .detailRow {
+    margin-bottom: 15px; /* Add spacing between rows */
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for rows */
+    border-radius: 8px; /* Rounded corners for rows */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for rows */
+    display: flex;
+    align-items: center;
+}
+
+.detailsContainer .detailRow strong {
+    font-weight: bold;
+    color: #555;
+    margin-right: 8px;
+    min-width: 120px; /* Ensures alignment for keys */
+    text-align: right;
+}
+
+.detailsContainer .detailRow span {
+    color: #333;
+    flex-grow: 1;
+}
+
+/* Toggle Visibility */
+.detailsOn {
+    display: block;
+    opacity: 1;
+    max-height: 1000px; /* Large enough to fit all content */
+}
+
+.detailsOff {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+}
+
+/* Add subtle hover effect for better interactivity */
+.detailsContainer:hover {
+    background-color: #f9f9f9;
+    border-color: #d0d0d0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .titleContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttonContainer {
+        margin-top: 10px;
+    }
+}
+
+.detailsContainer .detailRow .keyClass {
+    font-weight: bold;
+    color: #555;
+    margin-right: 15px;
+    min-width: 150px; /* Increased width for better alignment */
+    text-align: right;
+    display: inline-block;
+}
+
+.detailsContainer .detailRow .valueClass {
+    color: #333;
+    flex-grow: 1;
+    display: inline-block;
+    word-wrap: break-word; /* Ensures long text wraps properly */
+}
+
+/* Add subtle hover effect for rows */
+.detailsContainer .detailRow:hover {
+    background-color: #eaeaea; /* Slightly darker background on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* General Button Styles */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Post Element Button */
+#postElement {
+    background-color: #4caf50; /* Green */
+    color: #fff;
+}
+
+#postElement:hover {
+    background-color: #45a049; /* Darker Green */
+    transform: scale(1.05);
+}
+
+/* Refresh Content Button */
+#refreshContent {
+    background-color: #2196f3; /* Blue */
+    color: #fff;
+}
+
+#refreshContent:hover {
+    background-color: #1976d2; /* Darker Blue */
+    transform: scale(1.05);
+}
