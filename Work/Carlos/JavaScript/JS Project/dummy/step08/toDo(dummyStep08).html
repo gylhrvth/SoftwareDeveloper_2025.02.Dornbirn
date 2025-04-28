@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./toDo(dummyStep07).css">
+    <script src="./toDo(dummyStep07).js" defer></script>
+    <title>ToDo App (Step 07)</title>
+</head>
+
+    <!--Erstelle einen Konzept für die Bearbeitung
+        Ersetze Darstellungen mit Input Elementen
+        Gib die Möglichkeit Änderungen abzubrechen
+        Falls der Benutzer die ToDo speichert, rufe PATCH / PUT an.-->
+
+<body>
+
+    <div id="mainContainer">
+        
+        <header id="headerBox">
+            <h1>ToDo App (Step 07)</h1>
+        </header>
+
+        <main id="responseContainer">
+            <!-- itemContainer will be dynamically added here -->
+        </main>
+
+        <section id="buttonContainer">
+            <button id="postElement" onclick="showFormular()">Add Task</button>
+            <button id="refreshContent">Refresh Content</button>
+        </section>
+
+        <!-- Popup Form -->
+    <div id="popupForm" class="popup hidden">
+        <div class="popup-content">
+            <h2>Add Task</h2>
+            <form id="taskForm">
+                <label for="title">Task (Required)</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="details">Details</label>
+                <textarea id="details" name="details" rows="3"></textarea>
+
+                <label for="dueDate">Due Date</label>
+                <input type="text" id="dueDate" name="dueDate" placeholder="20/05/2025">
+
+                <label for="responsible">Responsible</label>
+                <input type="text" id="responsible" name="responsible">
+
+                <label for="createdBy">Created By</label>
+                <input type="text" id="createdBy" name="createdBy">
+
+                <div class="popup-buttons">
+                    <button type="button" id="cancelButton">Cancel</button>
+                    <button type="submit" id="submitButton">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        
+    </div>
+</body>
+</html>
