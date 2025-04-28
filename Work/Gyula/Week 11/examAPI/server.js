@@ -18,6 +18,28 @@ let todos = [
     createdBy: 'Gyula',
     createdAt: new Date(),
     updatedAt: new Date(),
+  },
+  {
+    id: '123-456-232312313123131314',
+    title: 'Test 2',
+    description: 'Test Description 2',
+    dueDate: '2023-10-02',
+    complete: true,
+    responsible: 'Leonie',
+    createdBy: 'Gyula',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '123-456-232312313123131315',
+    title: 'Test 3',
+    description: 'Test Description 3',
+    dueDate: '2023-10-03',
+    complete: false,
+    responsible: 'Carlos',
+    createdBy: 'Gyula',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }
 ]
 
