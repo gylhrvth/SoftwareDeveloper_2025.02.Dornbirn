@@ -8,6 +8,13 @@
     <script src="../common.js" defer></script>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="nosnippet">
+<style>
+    .apiContainer{
+        display: grid;
+        grid-template-columns: 20em 6em auto;
+        gap: 0.2em;
+    }
+</style>
 </head>
 <body>
     <h1>Prüfung Javascript</h1>
@@ -88,6 +95,27 @@
         ]<br>
         </pre>
 
+    <h3>Test API (im Kursraum...)</h3>
+    <div class="apiContainer">
+        <div>List all ToDo's</div>
+        <div>GET</div>
+        <div>http://192.168.0.53:3000/api/todo</div>
+        <div>Read ToDo Details</div>
+        <div>GET</div>
+        <div>http://192.168.0.53:3000/api/todo/:id</div>
+        <div>Insert new ToDo</div>
+        <div>POST</div>
+        <div>http://192.168.0.53:3000/api/todo</div>
+        <div>ToDo komplett ersetzen</div>
+        <div>PUT</div>
+        <div>http://192.168.0.53:3000/api/todo/:id</div>
+        <div>Einen Eigenschaft von ToDo ändern</div>
+        <div>PATCH</div>
+        <div>http://192.168.0.53:3000/api/todo/:id</div>
+        <div>ToDo löschen</div>
+        <div>DELETE</div>
+        <div>http://192.168.0.53:3000/api/todo/:id</div>
+    </div>
 
     <h2>Bewertungen</h2>
     <ol>
