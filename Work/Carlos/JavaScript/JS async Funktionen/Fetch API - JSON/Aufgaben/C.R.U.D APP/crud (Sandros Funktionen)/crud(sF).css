@@ -1,0 +1,318 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main Container */
+#mainContainer {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+}
+
+/* Title Section */
+#titleContainer h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* URL Input and Buttons Styling */
+#urlBox {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#urlInput {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+#urlInput:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#urlButton, #clearButton, #clearFormButton {
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#urlButton:hover, #clearButton:hover, #clearFormButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Response Container Styling */
+#responseContainer h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#responseBox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 50px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Response Items */
+.listedMain {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listedMain:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.listedMainSelected {
+    background-color: #f0fad9;
+    border-color: #007BFF;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* No Data Item Styling */
+.no-data-item {
+    padding: 15px;
+    font-size: 1rem;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Details Button Styling */
+.detailsButton {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.detailsButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Delete Button Styling */
+.deleteButton {
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.deleteButton:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Edit Button Styling */
+.editButton {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.editButton:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+/* Button Container Styling */
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+/* Details Container Styling */
+.listedDetailsOff {
+    display: none;
+}
+
+.listedDetailsOn {
+    display: block;
+    margin-bottom: 10px;
+    padding: 0 15px;
+    background-color: #fcfff5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+    animation: fadeIn 0.3s ease;
+}
+
+/* List Items Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* Formular Section */
+#formularContainer h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#formular {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#formular input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#formular input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#submitButton {
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+#submitButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #urlInput {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #urlButton, #clearButton {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .listedMain {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detailsButton {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+}
+
+.addAttributeButton {
+    padding: 8px 15px;
+    background-color: #17a2b8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.addAttributeButton:hover {
+    background-color: #138496;
+    transform: translateY(-2px);
+}

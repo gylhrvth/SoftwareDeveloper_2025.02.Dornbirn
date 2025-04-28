@@ -1,7 +1,6 @@
 // Base URL for the API
-const API_URL = 'https://api.restful-api.dev/objects'; // Sandros Server (Works ibly in Safari, not in Chrome)
+const API_URL = 'http://192.168.0.71:3000/objects'; // Sandros Server (Works ibly in Safari, not in Chrome)
 // Old API: https://api.restful-api.dev/objects
-//http://192.168.0.71:3000/objects
 
 // Fetch and log all objects to the console
 async function consoleFetchObjects() {
@@ -80,6 +79,17 @@ function createListItem(object) {
     detailsButton.classList.add('details-button'); // Add a class for styling
     detailsButton.addEventListener('click', () => fetchDetails(object.id)); // Adds an event listener to the button Show Details that calls the fetchDetails function with the object's ID when clicked. // The object's ID comes from the API. // This function fetches the details of the object and displays them in a separate section.
     listItem.appendChild(detailsButton);
+
+    // Add a "Delete" button
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button'); // Add a class for styling
+    deleteButton.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to delete the object with ID ${object.id}?`)) {
+            deleteObject(object.id); // Call the deleteObject function
+        }
+    });
+    listItem.appendChild(deleteButton);
 
     return listItem;
 }
@@ -211,3 +221,24 @@ addObjectForm.addEventListener('submit', async (event) => {
         console.error('Fetch error:', error);
     }
 });
+
+// Teilaufgabe 4: Delete an object
+
+async function deleteObject(id) {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE', // Use the DELETE HTTP method
+        });
+
+        if (response.ok) {
+            console.log(`Object with ID ${id} deleted successfully.`);
+            fetchObjects(); // Refresh the list after deletion
+        } else {
+            console.error(`Error deleting object: ${response.status} ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error('Fetch error while deleting object:', error);
+    }
+}
+
+// Teilaufgabe 5: Update an object

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./crud(sF).css">
+    <script src="./crud(sF).js"></script>
+    <title>C.R.U.D (Sandros Funktionen)</title>
+</head>
+<body>
+
+    <div id="mainContainer">
+
+        <section id="titleContainer">
+            <h1>C.R.U.D Exercise</h1>
+        </section>
+
+        <section id="urlBox">
+            <input type="text" id="urlInput" placeholder="http://example.com/api">
+            <button id="urlButton" onclick="inputURL()">GET</button> 
+            <button id="clearButton" onclick="clearURL()">Clear</button>
+        </section>
+
+        <section id ="responseContainer">
+            <h3>Response (GET)</h2>
+            <div id="responseBox">
+                    <!-- Listed Items will be shown here -->
+                    <p>No content fetched</p>
+            </div>
+        </section>
+
+        <section id="formularContainer">
+            <h3>Formular (POST)</h3>
+            <form id="formular">
+                
+                <input type="text" id="name" name="name" placeholder="Name">
+                <input type="text" id="color" name="color" placeholder="Color">
+                <input type="text" id="capacity" name="capacity" placeholder="Capacity">
+                <input type="text" id="cpu" name="cpu" placeholder="Cpu">
+                <input type="text" id="price" name="price" placeholder="Price">
+            </form>
+            <button id="submitButton" onclick="createNewElement()">Submit</button>
+            <button id="clearFormButton" onclick="clearSubmitForm()">Clear</button>
+        </section>
+
+    </div>
+    
+</body>
+</html>
+
+<!--
+
+        <section id="buttonsContainer">
+
+            <button class="button" onclick="listAll()" data-tooltip="Lists All Elements">GET (All)</button>
+            <button class="button" onclick="getOne('17') "data-tooltip="Lists Single Element">GET (Single) </button>
+            <button class="button" onclick="createNewObject({
+                'name': 'Carles Broken Nokia;',
+                'data': {
+                    'year': 1999,
+                    'price': 7500,
+                    'CPU model': 'TI MAD2PR1',
+                    'Sound': 'Monophonic Ringtones',
+                    'Weight': '151g'
+                }
+            })" data-tooltip="Creates a new Element">POST</button>
+            <button class="button" onclick="updateNameWithPut(17, {
+                'name': 'Carles flicked Nokia',
+                'data': {
+                    'year': 2025,
+                }
+            })" data-tooltip="Updates an existing Element">PUT</button>
+            <button class="button" onclick="updateCPUWithPatch(17, 'Mega Super CPU')" data-tooltip="Partially updates an Element">PATCH</button>
+
+            <button class="button" onclick="deleteObject(17)" data-tooltip="Deletes an Element">DELETE</button>
+
+        </section>-->

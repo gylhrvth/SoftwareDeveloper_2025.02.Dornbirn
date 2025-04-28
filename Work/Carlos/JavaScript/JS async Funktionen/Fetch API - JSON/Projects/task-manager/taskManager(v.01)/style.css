@@ -1,0 +1,95 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#task-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #357ab8;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#task-list li input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#task-list li button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#task-list li button:hover {
+    background-color: #c0392b;
+}
+
+#task-list li.completed span {
+    text-decoration: line-through;
+    color: #666; /* Slightly faded text color */
+}
+
+#task-list li.completed {
+    background-color: #d4f8d4; /* Very light green */
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./crud(v.06).css">
+    <script src="./crud(v.06).js"></script>
+    <title>C.R.U.D (v06)</title>
+</head>
+<body>
+
+    <div id="mainContainer">
+
+        <section id="titleContainer">
+            <h1>C.R.U.D Exercise (v.06)</h1>
+        </section>
+
+        <section id="urlBox">
+            <input type="text" id="urlInput" placeholder="https://api.restful-api.dev/objects">
+            <button id="urlButton" onclick="inputURL()">GET</button> 
+            <button id="clearButton" onclick="clearURL()">Clear</button>
+        </section>
+
+        <section id ="responseContainer">
+            <h3>Response (GET)</h2>
+            <div id="responseBox">
+                    <!-- Listed Items will be shown here -->
+                    <p>No content fetched</p>
+            </div>
+        </section>
+
+        <section id="formularContainer">
+            <h3>Formular (POST)</h3>
+            <form id="formular">
+                <input type="text" id="name" name="name" placeholder="Name">
+                <input type="text" id="color" name="color" placeholder="Color">
+                <input type="text" id="capacity" name="capacity" placeholder="Capacity">
+                <input type="text" id="cpu" name="cpu" placeholder="Cpu">
+                <input type="text" id="price" name="price" placeholder="Price">
+            </form>
+            <button id="submitButton" onclick="createNewElement()">Submit</button>
+            <button id="clearFormButton" onclick="clearSubmitForm()">Clear</button>
+        </section>
+
+    </div>
+    
+</body>
+</html>
+
