@@ -7,19 +7,129 @@
 </head>
 <script>
     async function getData() {
-        const result = await fetch('http://192.168.0.62:3000/api/objects');
-    const data = await result.json()
-    if (result.ok) {
-        console.log(data)
-        //createDOM(data)
-    } else {
-        alert("Error: " + result.status + " " + result.statusText);
-        return null
+        const result = await fetch('http://85.215.164.164:3000/items');
+        const data = await result.json();
+        if (result.ok) {
+            console.log(data);
+            //createDOM(data)
+        } else {
+            alert("Error: " + result.status + " " + result.statusText);
+            return null;
+        }
     }
-}
 
+    async function createObject() {
+        const newObject = {
+            name: "New Object",
+            data: { key: "value" }
+        };
+
+        try {
+            const result = await fetch('http://85.215.164.164:3000/items', {
+                method: 'POST', // HTTP-Methode POST
+                headers: {
+                    'Content-Type': 'application/json' // Header für JSON-Daten
+                },
+                body: JSON.stringify(newObject) // Daten als JSON-String senden
+            });
+
+            if (result.ok) {
+                const data = await result.json();
+                console.log("Object created:", data);
+                alert("Object created successfully!");
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
+        } catch (error) {
+            console.error("Error creating object:", error);
+            alert("Failed to create object.");
+        }
+    }
+
+    async function deleteObject(objectId) {
+        try {
+            const result = await fetch(`http://85.215.164.164:3000/items/${objectId}`, {
+                method: 'DELETE'
+            });
+            if (result.ok) {
+                console.log("Object deleted successfully");
+                alert("Object deleted successfully!");
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting object:", error);
+            alert("Failed to delete object.");
+        }
+    }
+
+    async function deleteALL() {
+        try {
+            const result = await fetch('http://85.215.164.164:3000/items', {
+                method: 'DELETE'
+            });
+            if (result.ok) {
+                console.log("All objects deleted successfully");
+                alert("All objects deleted successfully!");
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting all objects:", error);
+            alert("Failed to delete all objects.");
+        }
+        
+    }
+
+    async function changeObject(objectId) {
+        const updatedObject = {
+            name: "Updated Object",
+            data: { key: "new value", anotherKey: "another value" }
+        };
+
+        try {
+            const result = await fetch(`http://85.215.164.164:3000/items/${objectId}`, {
+                method: 'PUT', // HTTP-Methode PUT
+
+                headers: {
+                    'Content-Type': 'application/json' // Header für JSON-Daten
+                },
+                body: JSON.stringify(updatedObject) // Daten als JSON-String senden
+            });
+            if (result.ok) {
+                const data = await result.json();
+                console.log("Object updated:", data);
+                alert("Object updated successfully!");
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
+        } catch (error) {
+            console.error("Error updating object:", error);
+            alert("Failed to update object.");
+        }
+    }
+    async function getObject(objectId) {
+        try {
+            const result = await fetch(`http://85.215.164.164:3000/items/${objectId}`);
+            if (result.ok) {
+                const data = await result.json();
+                console.log("Object retrieved:", data);
+                alert("Object retrieved successfully!");
+            } else {
+                alert("Error: " + result.status + " " + result.statusText);
+            }
+        } catch (error) {
+            console.error("Error retrieving object:", error);
+            alert("Failed to retrieve object.");
+        }
+    }
 </script>
 <body>
     <button onclick="getData()">Tst</button>
+    <button onclick="createObject()">Create</button>
+    <button onclick="deleteObject(7)">Delete</button>
+    <button onclick="deleteALL()">Delete All</button>
+    <button onclick="changeObject(9)">Change</button>
+    <button onclick="getObject(9)">Get</button>
 </body>
 </html>
