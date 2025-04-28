@@ -4,7 +4,7 @@ addEventListener('DOMContentLoaded', () => {
 
 
 async function getData() {
-    const result = await fetch('https://api.restful-api.dev/objects')
+    const result = await fetch('http://85.215.164.164:3000/items/')
     const data = await result.json()
     if (result.ok) {
         console.log(data)
