@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 const ip = 'http://192.168.0.67:3000/api/todo/'; // IP-Adresse des Servers
 const itemsElement = document.querySelector('.items');
+let currentPage = 1; // Aktuelle Seite
+const itemsPerPage = 6; // Anzahl der Elemente pro Seite
 
 setInterval(() => {
     if (itemsElement.querySelector('item')) {
@@ -15,7 +17,7 @@ async function getData() {
         const result = await fetch(ip); // Überprüfe die URL
         if (result.ok) {
             const data = await result.json();
-            createDOM(data);
+            createPagination(data); // Pagination erstellen
         } else {
             loadingError(result.status, result.statusText);
         }
@@ -23,6 +25,55 @@ async function getData() {
         console.error("Network Error:", error);
         alert("Network Error: " + error.message);
     }
+}
+
+function createPagination(data) {
+    const totalPages = Math.ceil(data.length / itemsPerPage); // Gesamtanzahl der Seiten
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageData = data.slice(start, end); // Daten für die aktuelle Seite
+
+    createDOM(pageData); // DOM für die aktuelle Seite erstellen
+    createPaginationControls(totalPages); // Pagination-Steuerelemente erstellen
+}
+
+function createPaginationControls(totalPages) {
+    const paginationContainer = document.querySelector('.pagination');
+    paginationContainer.innerHTML = ''; // Vorherige Buttons entfernen
+
+    // "Vorherige Seite"-Button
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Vorherige';
+    prevButton.disabled = currentPage === 1; // Deaktivieren, wenn auf der ersten Seite
+    prevButton.addEventListener('click', () => {
+        currentPage--;
+        getData(); // Daten neu laden
+    });
+    paginationContainer.appendChild(prevButton);
+
+    // Seitenanzeige
+    const pageInfo = document.createElement('span');
+    pageInfo.textContent = "Seite ";
+    paginationContainer.appendChild(pageInfo);
+    const pageSpan = document.createElement('span');
+    pageSpan.textContent = currentPage;
+    pageInfo.appendChild(pageSpan);
+    const totalPagesSpan = document.createElement('span');
+    totalPagesSpan.textContent = " von ";
+    paginationContainer.appendChild(totalPagesSpan);
+    const totalPagesSpan2 = document.createElement('span');
+    totalPagesSpan2.textContent = totalPages;
+    totalPagesSpan.appendChild(totalPagesSpan2);
+
+    // "Nächste Seite"-Button
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Nächste';
+    nextButton.disabled = currentPage === totalPages; // Deaktivieren, wenn auf der letzten Seite
+    nextButton.addEventListener('click', () => {
+        currentPage++;
+        getData(); // Daten neu laden
+    });
+    paginationContainer.appendChild(nextButton);
 }
 
 function createDOM(data) {
@@ -50,6 +101,9 @@ function createDOM(data) {
 function createDOMDetails(item) {
     const container = document.querySelector('.items');
     container.innerHTML = '';
+    const paginationContainer = document.querySelector('.pagination');
+    paginationContainer.innerHTML = ''; // Vorherige Buttons entfernen
+
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('details');
     container.appendChild(detailsDiv);
