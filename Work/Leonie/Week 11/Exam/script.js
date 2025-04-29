@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     getData();
 });
 const ip = 'http://192.168.0.67:3000/api/todo/'; // IP-Adresse des Servers
+const itemsElement = document.querySelector('.items');
 
 setInterval(() => {
-    getData();
+    if (itemsElement.querySelector('item')) {
+        getData();
+    }
 }, 5000); // Alle 5 Sekunden die Daten neu laden
 
 async function getData() {
@@ -63,8 +66,7 @@ function createDOMDetails(item) {
     const complete = document.createElement('p');
     if (item.complete === true) {
         complete.textContent = `Abgeschlossen: Ja`;
-    }
-    else {
+    } else {
         complete.textContent = `Abgeschlossen: Nein`;
     }
     detailsDiv.appendChild(complete);
@@ -135,19 +137,20 @@ function createObject() {
     const title = form.querySelector('input[name="title"]').value;
     const description = form.querySelector('textarea[name="description"]').value;
     const complete = form.querySelector('input[name="complete"]').checked;
-    const dueDate = form.querySelector('input[name="dueDate"]').value;
     const responsible = form.querySelector('input[name="responsible"]').value;
+    const dueDate = form.querySelector('input[name="dueDate"]').value;
+
     const newObject = {
         title: title,
         description: description,
-        dueDate: dueDate,
+        dueDate: dueDate, // Bearbeitetes Datum verwenden
         complete: complete,
         responsible: responsible,
         createdBy: "Leonie"
     };
     postData(newObject);
-
 }
+
 async function postData(data) {
     const result = await fetch(ip, {
         method: 'POST',
@@ -215,11 +218,24 @@ function loadForm(direction, id, item = null) {
     form.appendChild(dueDateLabel);
 
     const dueDateInput = document.createElement('input');
-    dueDateInput.type = 'text';
+    dueDateInput.type = 'date';
     dueDateInput.name = 'dueDate';
+    dueDateInput.required = true; // Pflichtfeld
     if (direction === 'edit' && item) {
         dueDateInput.value = item.dueDate; // Vorhandenen Wert setzen
     }
+    dueDateInput.addEventListener('change', (event) => {
+        const selectedDate = event.target.value;
+        const currentDate = new Date();
+        const inputDate = new Date(selectedDate);
+        if (inputDate < currentDate) {
+            dueDateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
+            dueDateInput.reportValidity(); // Zeigt die Fehlermeldung an
+        } else {
+            dueDateInput.setCustomValidity(""); // Setzt die Fehlermeldung zurück
+            dueDateInput.reportValidity(); // Entfernt die Fehlermeldung
+        }
+    });
     form.appendChild(dueDateInput);
 
     const responsibleLabel = document.createElement('label');
@@ -275,7 +291,6 @@ function createCreateButton(form) {
     });
 }
 
-
 async function deleteObject(id) {
     const result = await fetch(`${ip}${id}`, {
         method: 'DELETE'
@@ -287,7 +302,6 @@ async function deleteObject(id) {
         loadingError(result.status, result.statusText);
     }
 }
-
 
 async function editObject(id) {
     const form = document.querySelector('.form');
@@ -316,7 +330,6 @@ async function putData(id, data) {
         body: JSON.stringify(data)
     });
     if (result.ok) {
-        const response = await result.json();
         getData();
     } else {
         loadingError(result.status, result.statusText);
@@ -348,4 +361,26 @@ function loadingError(status, statusText) {
         shadowDiv.remove();
         getData(); // Versuche erneut, die Daten zu laden
     }, 3000); // Warte 3 Sekunden, bevor du es erneut versuchst
+}
+
+function calcDate() {
+    console.log("calcDate() wurde aufgerufen");
+    //Prüfen, ob das Datum in der Vergangenheit liegt
+    const dateInput = document.querySelector('input[name="dueDate"]');
+    const dateValue = dateInput.value;
+    const currentDate = new Date();
+    const inputDate = new Date(dateValue);
+    if (inputDate < currentDate) {
+        console.log("Das Datum liegt in der Vergangenheit." + inputDate);
+        console.log("Das aktuelle Datum ist: " + currentDate);
+        dateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
+        dateInput.reportValidity(); // Zeigt die Fehlermeldung an
+        return null; // Abbrechen, wenn das Datum ungültig ist
+
+    } else {
+        dateInput.setCustomValidity(""); // Setzt die Fehlermeldung zurück
+        dateInput.reportValidity(); // Entfernt die Fehlermeldung
+    }
+
+    return dateValue; // Gültiges Datum zurückgeben
 }
