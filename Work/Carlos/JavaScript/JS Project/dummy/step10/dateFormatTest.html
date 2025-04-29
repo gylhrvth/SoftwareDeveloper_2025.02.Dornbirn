@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#invalidDate {
+    color: red;
+    display: none;
+}
+
+#invalidDate.visible {
+    display: inline;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <label for="dueDate">due date:</label>
+        <input type="text" id="dueDate" name="dueDate" placeholder="DD/MM/YYYY" onkeyup="testMyDate()">
+        <span id="invalidDate" class="visible">Invalid Date</span>    
+    </div>
+    <p id="test"></p>
+<script>
+    const text = '9/4/2025'
+
+    console.log(text)
+    let dateInput = convertTextToDateText(text)
+    console.log(dateInput)
+
+    let birthday = new Date(dateInput)
+    console.log(birthday)
+
+    let dueDate = Date.parse(dateInput)
+    console.log(dueDate)
+
+
+    function convertTextToDateText(text){
+        let arr = text.split('/')
+        if (arr.length !== 3) {
+            return 'Invalid date format'
+        }
+        return arr.reverse().join('-')
+    }
+    
+    function convertTextToDate(text){
+        let d = new Date(text.split('/').reverse().join('-'))
+        return d
+    }
+
+    function testMyDate(){
+        let dateInput = document.getElementById('dueDate').value
+
+        console.log('text', convertTextToDate(dateInput))
+
+        let dateText = convertTextToDateText(dateInput)
+        if (!isNaN(Date.parse(dateText))){
+            console.log('Valid date')
+            document.getElementById('test').innerText = new Date(dateText)
+            document.getElementById('invalidDate').classList.remove('visible')
+        } else {
+            console.log('Invalid date')
+            document.getElementById('test').innerText = ''
+            document.getElementById('invalidDate').classList.add('visible')
+        }
+    }
+</script>    
+</body>
+</html>
