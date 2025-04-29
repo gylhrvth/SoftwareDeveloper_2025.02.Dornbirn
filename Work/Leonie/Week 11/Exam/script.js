@@ -40,6 +40,7 @@ function createPagination(data) {
 function createPaginationControls(totalPages) {
     const paginationContainer = document.querySelector('.pagination');
     paginationContainer.innerHTML = ''; // Vorherige Buttons entfernen
+    paginationContainer.classList.remove('hidden'); // Sichtbar machen
 
     // "Vorherige Seite"-Button
     const prevButton = document.createElement('button');
@@ -102,7 +103,7 @@ function createDOMDetails(item) {
     const container = document.querySelector('.items');
     container.innerHTML = '';
     const paginationContainer = document.querySelector('.pagination');
-    paginationContainer.innerHTML = ''; // Vorherige Buttons entfernen
+    paginationContainer.classList.add('hidden');
 
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('details');
