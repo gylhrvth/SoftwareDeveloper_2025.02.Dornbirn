@@ -1,321 +1,107 @@
-/* General Styles */
+/* modern.css */
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
     margin: 0;
-    padding: 0;
+    padding: 2rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     min-height: 100vh;
-}
-
-h1 {
-    font-size: 2.5rem;
-    color: #4a90e2;
-    margin-bottom: 20px;
-}
-
-/* Main Container */
-#mainContainer {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
+  }
+  
+  #mainContainer {
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Item Container */
-.itemContainer {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.itemContainer:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Title Container */
-.titleContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.task-checkbox {
-    margin-right: 10px;
-    transform: scale(1.2);
-    cursor: pointer;
-}
-
-.task-title {
-    font-weight: bold;
-    flex-grow: 1;
-    font-size: 1rem;
-    color: #333;
-}
-
-.buttonContainer {
-    display: flex;
-    gap: 10px;
-}
-
-.details-button,
-.delete-button {
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.details-button {
-    background-color: #4a90e2;
-    color: #fff;
-}
-
-.details-button:hover {
-    background-color: #357ab8;
-    transform: scale(1.05);
-}
-
-.delete-button {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-.delete-button:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Details Container */
-.detailsContainer {
-    display: none;
-    margin-top: 15px;
-    padding: 20px;
-    background-color: #fefefe;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    color: #444;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    overflow: hidden;
-    line-height: 1.8;
-}
-
-.detailsContainer .detailRow {
-    margin-bottom: 15px; /* Add spacing between rows */
-    padding: 10px;
-    background-color: #f9f9f9; /* Light background for rows */
-    border-radius: 8px; /* Rounded corners for rows */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for rows */
-    display: flex;
-    align-items: center;
-}
-
-.detailsContainer .detailRow strong {
-    font-weight: bold;
-    color: #555;
-    margin-right: 8px;
-    min-width: 120px; /* Ensures alignment for keys */
-}
-
-.detailsContainer .detailRow span {
-    color: #333;
-    flex-grow: 1;
-}
-
-/* Toggle Visibility */
-.detailsOn {
-    display: block;
-    opacity: 1;
-    max-height: 1000px; /* Large enough to fit all content */
-}
-
-.detailsOff {
-    display: none;
-    opacity: 0;
-    max-height: 0;
-}
-
-/* Add subtle hover effect for better interactivity */
-.detailsContainer:hover {
-    background-color: #f9f9f9;
-    border-color: #d0d0d0;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .titleContainer {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .buttonContainer {
-        margin-top: 10px;
-    }
-}
-
-.detailsContainer .detailRow .keyClass {
-    font-weight: bold;
-    color: #555;
-    margin-right: 15px;
-    min-width: 150px; /* Increased width for better alignment */
-    display: inline-block;
-}
-
-.detailsContainer .detailRow .valueClass {
-    color: #333;
-    flex-grow: 1;
-    display: inline-block;
-    word-wrap: break-word; /* Ensures long text wraps properly */
-}
-
-/* Add subtle hover effect for rows */
-.detailsContainer .detailRow:hover {
-    background-color: #eaeaea; /* Slightly darker background on hover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-}
-
-/* General Button Styles */
-button {
-    padding: 10px 15px;
-    margin: 5px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Post Element Button */
-#postElement {
-    background-color: #4caf50; /* Green */
-    color: #fff;
-}
-
-#postElement:hover {
-    background-color: #45a049; /* Darker Green */
-    transform: scale(1.05);
-}
-
-/* Refresh Content Button */
-#refreshContent {
-    background-color: #2196f3; /* Blue */
-    color: #fff;
-}
-
-#refreshContent:hover {
-    background-color: #1976d2; /* Darker Blue */
-    transform: scale(1.05);
-}
-
-/* Popup Form */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.popup.hidden {
-    display: none; /* Hide the popup initially */
-}
-
-.popup-content {
-    background-color: #fff;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    max-width: 90%;
-}
-
-.popup-content h2 {
-    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  
+  #headerBox h1 {
     font-size: 1.5rem;
-    color: #333;
-}
-
-.popup-content label {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0f172a;
+  }
+  
+  #buttonContainer {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  #buttonContainer button {
+    padding: 0.75rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  #buttonContainer button:hover {
+    background-color: #2563eb;
+  }
+  
+  .popup-content {
+    background-color: #f1f5f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .popup-content h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .popup-content label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-transform: capitalize; /* Capitalize the first letter */
-    color: #555;
-}
-
-.popup-content input,
-.popup-content textarea {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  
+  .popup-content input,
+  .popup-content textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0.7rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
     font-size: 1rem;
-    box-sizing: border-box;
-}
-
-.popup-content input:focus,
-.popup-content textarea:focus {
-    border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
-}
-
-.popup-buttons {
+  }
+  
+  .popup-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-}
-
-.popup-buttons button {
-    padding: 10px 15px;
-    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .popup-buttons button {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#cancelButton {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-#cancelButton:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
-}
-
-#submitButton {
-    background-color: #4caf50;
-    color: #fff;
-}
-
-#submitButton:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-}
-
-.hidden {
+  }
+  
+  #submitButton {
+    background-color: #16a34a;
+    color: white;
+  }
+  
+  #cancelButton {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .hidden {
     display: none;
-}
+  }
+
+
+

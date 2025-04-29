@@ -1,16 +1,8 @@
 const express = require('express')
 const { v4: uuidv4 } = require('uuid');
-const Jabber = require("jabber");
 const app = express()
 const port = 3000
 
-const ipWithErrors = [
-  '192.168.0.62', 
-  //'192.168.0.59',  // Carlos
-  //'192.168.0.60', 
-  //'192.168.0.64'
-]
-const errorProbability = 0.2
 let users = [
   'Daniela', 'Leonie', 'Carlos', 'Görkem', 'Alp', 'Sandro', 'Gyula'
 ]
@@ -62,43 +54,11 @@ app.use(cors({
   credentials: true
 }))
 
-//console.log(Jabber)
-//const jabber = new Jabber();
-for (let i = 0; i < 5; i++) {
-  todos.push({
-    id: uuidv4(),
-    title: 'aaaa', //jabber.createParagraph(5 + Math.floor(Math.random() * 5)),
-    description: 'bbbb', //jabber.createParagraph(5 + Math.floor(Math.random() * 40)),
-    dueDate: '2023-10-01',
-    complete: Math.random() < 0.5 ? false : true,
-    responsible: users[Math.floor(Math.random() * users.length)],
-    createdBy: 'Gyula',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    magic: true,
-  })
-}
+
+
 
 app.get('/api/todo', (req, res) => {
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  console.log(`${ip}: GET /api/todo`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
-    res.status(408).send('Request Timeout')
-    return
-  }
-  const filteredTodos = todos.filter(todo => {
-    if (ipWithErrors.includes(ip)){
-      return true
-    } else if (todo.magic === undefined || todo.magic == false) {
-      return true
-    } else {
-      return false
-    }
-  })
-  console.log('filteredTodos: ', filteredTodos.length)
-
-  res.json(filteredTodos.map(todo => {
+  res.json(todos.map(todo => {
     return {
       id: todo.id,
       title: todo.title,
@@ -111,28 +71,17 @@ app.get('/api/todo', (req, res) => {
 app.get('/api/todo/:id', (req, res) => {
   const todo = todos.find(obj => obj.id === req.params.id)
   if (!todo) return res.status(404).send('The TODO with the given ID was not found.')
-  
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  console.log(`${ip}: GET /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
-    res.status(408).send('Request Timeout')
-    return
-  }  
-    
   res.json(todo)
 })
-
 
 app.post('/api/todo', (req, res) => {
   if (!req.body.title) {
     return res.status(400).send('Fehlende Angabe: title')
   }
-  if (req.body.dueDate && isNaN(Date.parse(req.body.dueDate))) {
+  if (req.body.dueDate && Date.parse(req.body.dueDate) === NaN) {
     return res.status(400).send('Ungültiges Datumformat: dueDate')
-
   }
-  if (req.body.complete && isNaN(Boolean(req.body.complete))) {
+  if (req.body.complete && Boolean(req.body.complete) === NaN) {
     return res.status(400).send('Ungültiges Format: complete')
   }
   if (req.body.responsible && users.includes(req.body.responsible) === false) {
@@ -144,14 +93,6 @@ app.post('/api/todo', (req, res) => {
   if (users.includes(req.body.createdBy) === false) {
     return res.status(400).send('Ungültige Angabe: createdBy')
   }
-
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  console.log(`${ip}: POST /api/todo`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
-    res.status(408).send('Request Timeout')
-    return
-  }  
 
   const todo = {
     id: uuidv4(),
@@ -174,10 +115,10 @@ app.put('/api/todo/:id', (req, res) => {
   if (!req.body.title) {
     return res.status(400).send('Fehlende Angabe: title')
   }
-  if (req.body.dueDate && isNaN(Date.parse(req.body.dueDate))) {
+  if (req.body.dueDate && Date.parse(req.body.dueDate) === NaN) {
     return res.status(400).send('Ungültiges Datumformat: dueDate')
   }
-  if (req.body.complete && isNaN(Boolean(req.body.complete))) {
+  if (req.body.complete && Boolean(req.body.complete) === NaN) {
     return res.status(400).send('Ungültiges Format: complete')
   }
   if (req.body.responsible && users.includes(req.body.responsible) === false) {
@@ -189,14 +130,6 @@ app.put('/api/todo/:id', (req, res) => {
   if (users.includes(req.body.createdBy) === false) {
     return res.status(400).send('Ungültige Angabe: createdBy')
   }
- 
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  console.log(`${ip}: PUT /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
-    res.status(408).send('Request Timeout')
-    return
-  }  
 
   todo.title = req.body.title
   todo.description = req.body.description
@@ -211,14 +144,6 @@ app.put('/api/todo/:id', (req, res) => {
 app.delete('/api/todo/:id', (req, res) => {
   const todoIndex = todos.findIndex(todo => todo.id === req.params.id)
   if (todoIndex === -1) return res.status(404).send('The object with the given ID was not found.')
-    
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-  console.log(`${ip}: DELETE /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
-    res.status(408).send('Request Timeout')
-    return
-  }  
 
   todos.splice(todoIndex, 1)
   res.json({
@@ -230,14 +155,6 @@ app.patch('/api/todo/:id', (req, res) => {
   const selectedTodo = todos.find(todo => todo.id === req.params.id)
   if (!selectedTodo) return res.status(404).send('The object with the given ID was not found.')
 
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-    console.log(`${ip}: PATCH /api/todo/${req.params.id}`)
-    if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-      console.log('Simulating error')
-      res.status(408).send('Request Timeout')
-      return
-    } 
-
   if (req.body.title) {
     selectedTodo.title = req.body.title
   }
@@ -245,27 +162,15 @@ app.patch('/api/todo/:id', (req, res) => {
     selectedTodo.description = req.body.description
   }
   if (req.body.dueDate) {
-    if (isNaN(Date.parse(req.body.dueDate))) {
-      return res.status(400).send('Ungültiges Datumformat: dueDate')
-    }
     selectedTodo.dueDate = req.body.dueDate
   }
   if (req.body.complete !== undefined) {
-    if (isNaN(Boolean(req.body.complete))) {
-      return res.status(400).send('Ungültiges Format: complete')
-    }
     selectedTodo.complete = req.body.complete
   }
   if (req.body.responsible) {
-    if (!users.includes(req.body.responsible)) {
-      return res.status(400).send('Ungültige Angabe: responsible')
-    }
     selectedTodo.responsible = req.body.responsible
   }
   if (req.body.createdBy) {
-    if (!users.includes(req.body.createdBy)) {
-      return res.status(400).send('Ungültige Angabe: createdBy')
-    }
     selectedTodo.createdBy = req.body.createdBy
   }
 

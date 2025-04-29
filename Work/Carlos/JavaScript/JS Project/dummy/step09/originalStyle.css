@@ -1,0 +1,413 @@
+/* ===========================
+   General Styles
+=========================== */
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; /* Default font size */
+    line-height: 1.5; /* Improve readability */
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-weight: 700; /* Bold for headings */
+    font-size: 2rem;
+    color: #4a90e2; /* Optional: Blue color for the header */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ===========================
+   Main Container
+=========================== */
+#mainContainer {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   Item Container
+=========================== */
+/* Default itemContainer background */
+.itemContainer {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff; /* Default background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* Smooth transition */
+}
+
+.itemContainer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9; /* Slightly darker background color on hover */
+}
+
+/* Change background color when detailsContainer is displayed */
+.itemContainer.details-visible {
+    background-color: #f9f9f9; /* Slightly darker background color */
+}
+
+/* ===========================
+   Title Container
+=========================== */
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    
+}
+
+.task-checkbox {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.task-title {
+    font-family: 'Caveat', cursive; /* Apply the Caveat font */
+    font-weight: 400; /* Normal weight for a handwritten look */
+    flex-grow: 1;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* ===========================
+   Button Styles
+=========================== */
+button {
+    font-family: 'Inter', sans-serif; /* Ensure buttons use the same font */
+    font-weight: 500; /* Medium weight for buttons */
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.edit-button {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.edit-button:hover {
+    background-color: #1976d2;
+    transform: scale(1.05);
+}
+
+#postElement {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+#postElement:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#refreshContent {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+#refreshContent:hover {
+    background-color: #1976d2;
+    transform: scale(1.05);
+}
+
+/* ===========================
+   Checkbox styles
+=========================== */
+
+/* Checkbox styles */
+.task-checkbox {
+    margin-right: 10px;
+    transform: scale(1.2); /* Default size */
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth transition for scaling */
+}
+
+/* Hover effect for checkbox */
+.task-checkbox:hover {
+    transform: scale(1.4); /* Slightly bigger on hover */
+}
+
+/* ===========================
+   Completed Task styles
+=========================== */
+
+/* Style for completed tasks */
+.itemContainer.completed {
+    background-color: #d4f8d4; /* Light green background */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.itemContainer.completed .task-title {
+    text-decoration: line-through; /* Add line-through to the text */
+    color: gray; /* Change text color to gray */
+}
+
+/* ===========================
+   Details Container
+=========================== */
+.detailsContainer {
+    display: none;
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    line-height: 1.8;
+}
+
+.detailsContainer .detailRow {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.detailsContainer .detailRow strong {
+    font-weight: bold;
+    color: #555;
+    margin-right: 8px;
+    min-width: 120px;
+}
+
+.detailsContainer .detailRow span {
+    color: #333;
+    flex-grow: 1;
+}
+
+.detailsContainer .detailRow:hover {
+    background-color: #eaeaea;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.detailsOn {
+    display: block;
+    opacity: 1;
+    max-height: 1000px;
+}
+
+.detailsOff {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+}
+
+/* ===========================
+   Popup Form
+=========================== */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #555;
+}
+
+.popup-content input,
+.popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.popup-content input:focus,
+.popup-content textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#cancelButton {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#cancelButton:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+#submitButton {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+#submitButton:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
+/* Replace buttons with SVG icons at max-width: 768px */
+@media (max-width: 768px) {
+    /* General button styles for icons */
+    button {
+        
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; /* Optional: Make buttons circular */
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 0; /* Hide button text */
+        color: transparent; /* Ensure text is not visible */
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Delete button */
+    .delete-button {
+        background-image: url('assets/icons/delete.svg');
+        background-color: #e74c3c;
+        font-size: 0; /* Hide button text */
+    }
+
+    .delete-button:hover {
+        background-color: #c0392b;
+    }
+
+    /* Edit button */
+    .edit-button {
+        background-image: url('assets/icons/edit.svg');
+        background-color: #2196f3;
+        font-size: 0; /* Hide button text */
+    }
+
+    .edit-button:hover {
+        background-color: #1976d2;
+    }
+
+    /* Add Task button */
+    #postElement {
+        background-image: url('assets/icons/add.svg');
+        background-color: #4caf50;
+    }
+
+    #postElement:hover {
+        background-color: #45a049;
+    }
+
+    /* Refresh Content button */
+    #refreshContent {
+        background-image: url('assets/icons/refresh.svg');
+        background-color: #2196f3;
+    }
+
+    #refreshContent:hover {
+        background-color: #1976d2;
+    }
+
+    #buttonContainer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #submitButton {
+        background-image: url('assets/icons/check.svg');
+        background-color: #4caf50;
+    }
+    #submitButton:hover {
+        background-color: #45a049;
+    }
+    #cancelButton {
+        background-image: url('assets/icons/cancel.svg');
+        background-color: #e74c3c;
+    }
+    #cancelButton:hover {
+        background-color: #c0392b;
+    }
+
+}
