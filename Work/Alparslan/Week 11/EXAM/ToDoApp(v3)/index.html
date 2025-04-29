@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-spinner" class="hidden">
+        🔄 Lade Todos...
+    </div>    
+
+    <div id="theme-toggle">
+        <button id="toggle-theme-button">🌙 Dark Mode</button>
+      </div>
+
+    <h1>Meine ToDo Liste</h1>
+
+    <input type="text" id="search-todo" placeholder="🔍 Todo suchen..." style="margin-bottom: 20px; padding: 10px; width: 300px; border-radius: 8px; border: 1px solid #ccc;">
+
+
+    <div id="todo-list"></div> <!-- Hier erscheinen später die Todos -->
+
+    <div id="success-message" class="hidden"></div>
+
+
+    <button id="new-todo-button">+ Neues Todo erstellen</button> <!-- Neues Todo erstellen -->
+
+    <!-- Formular zum Hinzufügen, das am Anfang versteckt ist -->
+    <div id="new-todo-form" class="hidden">
+        <input type="text" id="new-todo-title" placeholder="Titel">
+        <textarea id="new-todo-details" placeholder="Details"></textarea>
+        <input type="date" id="new-todo-dueDate">
+        <input type="text" id="new-todo-responsible" placeholder="Verantwortlich">
+        <button id="save-todo-button">Speichern</button>
+        <button id="cancel-todo-button">Abbrechen</button>
+    </div>
+
+    <script src="app.js"></script> <!-- Unser JavaScript -->
+</body>
+</html>
