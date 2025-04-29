@@ -67,7 +67,6 @@ main{
 .items{
     display: flex;
     flex-direction: column;
-    justify-content: top;
     align-items: center;
     width: 90%;
     height: 80%;
@@ -153,15 +152,18 @@ main{
     background-color: #3CD8F0;
 }
 
-
-.form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.form{
     width: 90%;
     height: 80%;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-top: 3em;
+    width: 100%;
+    height: 100%;
 }
 
 .form label {
@@ -178,9 +180,54 @@ main{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.664);
     width: 80%;
+    height: 20%;
 }
+
+.form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
 .form textarea {
     margin: 10px;
     font-size: 1em;
     text-align: center;
+    width: 80%;
+    height: 70%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.664);
+}
+
+.form button {
+    grid-column: span 2;
+    width: 20%;
+    height: 50%;
+    background-color: #3C99F0;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+}
+
+.shadow{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 1000;
+}
+
+.error{
+    color: red;
+    font-size: 1.4em;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

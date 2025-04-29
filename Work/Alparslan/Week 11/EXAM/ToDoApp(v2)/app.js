@@ -1,224 +1,219 @@
 // =======================
-// Variablen / HTML Elemente holen
+// DOM Elemente sammeln
 // =======================
-
-//let todos = []; // Todos aus API
-
-const todoList = document.getElementById('todo-list');
-const todoDetails = document.getElementById('todo-details');
-const newTodoButton = document.getElementById('new-todo-button');
-const newTodoForm = document.getElementById('new-todo-form');
-const saveTodoButton = document.getElementById('save-todo-button');
-const cancelTodoButton = document.getElementById('cancel-todo-button');
-const toggleThemeButton = document.getElementById('toggle-theme-button');
-
-
-// =======================
-// API Funktionen
-// =======================
-
-// Holt alle Todos vom Server
-async function loadTodosFromAPI() {
-    const spinner = document.getElementById('loading-spinner');
-    spinner.classList.remove('hidden'); // Spinner zeigen
-
+const elements = {
+    list: document.getElementById('todo-list'),
+    form: document.getElementById('new-todo-form'),
+    newBtn: document.getElementById('new-todo-button'),
+    saveBtn: document.getElementById('save-todo-button'),
+    cancelBtn: document.getElementById('cancel-todo-button'),
+    themeBtn: document.getElementById('toggle-theme-button'),
+    spinner: document.getElementById('loading-spinner'),
+    success: document.getElementById('success-message'),
+    inputs: {
+      title: document.getElementById('new-todo-title'),
+      details: document.getElementById('new-todo-details'),
+      dueDate: document.getElementById('new-todo-dueDate'),
+      responsible: document.getElementById('new-todo-responsible'),
+    }
+  };
+  
+  const API_URL = 'http://192.168.0.67:3000/api/todo';
+  
+  // =======================
+  // Hilfsfunktionen
+  // =======================
+  
+  /* Erzeugt das HTML für die Details-Ansicht eines Todos */
+  function renderDetails(todo) {
+    const div = document.createElement('div');
+    div.classList.add('todo-details', 'hidden');
+    div.innerHTML = `
+      <p><strong>Details:</strong> ${todo.details || 'Keine Details verfügbar'}</p>
+      <p><strong>Fällig am:</strong> ${todo.dueDate || 'Kein Datum gesetzt'}</p>
+      <p><strong>Verantwortlich:</strong> ${todo.responsible || 'Niemand zugewiesen'}</p>
+      <p><strong>Erstellt von:</strong> ${todo.createdBy || 'Unbekannt'}</p>
+    `;
+    return div;
+  }
+  
+  /* Zeigt eine temporäre Erfolgsmeldung an */
+  function showSuccess(message) {
+    elements.success.textContent = message;
+    elements.success.classList.remove('hidden');
+    setTimeout(() => elements.success.classList.add('hidden'), 2000);
+  }
+  
+  /* Leert alle Eingabefelder im neuen Todo-Formular */
+  function clearFormInputs() {
+    Object.values(elements.inputs).forEach(input => input.value = '');
+  }
+  
+  // =======================
+  // API Funktionen
+  // =======================
+  
+  /* Lädt alle Todos vom Server und zeigt sie an */
+  async function loadTodosFromAPI() {
+    elements.spinner.classList.remove('hidden');
     try {
-        const response = await fetch('http://192.168.0.53:3000/api/todo');
-        const data = await response.json();
-        renderTodoList(data);
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      renderTodoList(data);
     } catch (error) {
-        console.error('Fehler beim Laden der Todos:', error);
+      console.error('Fehler beim Laden der Todos:', error);
     } finally {
-        spinner.classList.add('hidden'); // Spinner ausblenden
+      elements.spinner.classList.add('hidden');
     }
-}
-
-// Erstellt ein neues Todo auf dem Server
-async function createTodoAPI(todo) {
+  }
+  
+  /* Erstellt ein neues Todo auf dem Server */
+  async function createTodoAPI(todo) {
     try {
-        await fetch('http://192.168.0.53:3000/api/todo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(todo)
-        });
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(todo)
+      });
     } catch (error) {
-        console.error('Fehler beim Erstellen eines Todos:', error);
+      console.error('Fehler beim Erstellen eines Todos:', error);
     }
-}
-
-// Aktualisiert ein bestehendes Todo auf dem Server
-async function updateTodoAPI(id, updates) {
+  }
+  
+  /* Aktualisiert ein bestehendes Todo auf dem Server (z.B. Status abgeschlossen) */
+  async function updateTodoAPI(id, updates) {
     try {
-        await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updates)
-        });
+      await fetch(`${API_URL}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates)
+      });
     } catch (error) {
-        console.error('Fehler beim Aktualisieren des Todos:', error);
+      console.error('Fehler beim Aktualisieren des Todos:', error);
     }
-}
-
-// Löscht ein Todo vom Server
-async function deleteTodoAPI(id) {
+  }
+  
+  /* Löscht ein Todo vom Server */
+  async function deleteTodoAPI(id) {
     try {
-        await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
-            method: 'DELETE'
-        });
+      await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+      });
     } catch (error) {
-        console.error('Fehler beim Löschen des Todos:', error);
+      console.error('Fehler beim Löschen des Todos:', error);
     }
-}
-
-
-// =======================
-// Rendering Funktionen
-// =======================
-
-// Zeichnet die Todo-Liste
-function renderTodoList(todos) {
-    todoList.innerHTML = ''; // Liste leeren
-
+  }
+  
+  // =======================
+  // Rendering Funktionen
+  // =======================
+  
+  /* Zeichnet die Todo-Liste im DOM basierend auf den geladenen Daten */
+  function renderTodoList(todos) {
+    elements.list.innerHTML = '';
+  
     todos.forEach(todo => {
-        const todoDiv = document.createElement('div');
-        todoDiv.classList.add('todo');
-
-        const topLine = document.createElement('div');
-        topLine.classList.add('todo-topline');
-        topLine.style.display = 'flex';                         //TODO: Style in CSS auslagern     
-        topLine.style.alignItems = 'center';
-        topLine.style.justifyContent = 'space-between';
-
-        const leftSection = document.createElement('div');
-        leftSection.style.display = 'flex';
-        leftSection.style.alignItems = 'center';
-        leftSection.style.gap = '10px';
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = todo.complete;
-        checkbox.addEventListener('change', async (e) => {
-            todo.complete = e.target.checked;
-            todoDiv.classList.toggle('completed', todo.complete);
-            await updateTodoAPI(todo.id, { complete: todo.complete });
-        });
-
-        const title = document.createElement('span');
-        title.textContent = todo.title;
-
-        leftSection.appendChild(checkbox);
-        leftSection.appendChild(title);
-        topLine.appendChild(leftSection);
-
-        const rightSection = document.createElement('div');
-        rightSection.style.display = 'flex';
-        rightSection.style.alignItems = 'center';
-        rightSection.style.gap = '10px';
-
-        const infoIcon = document.createElement('span');
-        infoIcon.textContent = 'ℹ️';
-        infoIcon.style.cursor = 'pointer';
-        infoIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            detailsDiv.classList.toggle('hidden');
-        });
-        rightSection.appendChild(infoIcon);
-
-        const deleteIcon = document.createElement('span');
-        deleteIcon.textContent = '🗑️';
-        deleteIcon.style.cursor = 'pointer';
-        deleteIcon.addEventListener('click', async (e) => {
-            e.stopPropagation();
-            await deleteTodoAPI(todo.id);
-            await loadTodosFromAPI();
-        });
-        rightSection.appendChild(deleteIcon);
-        topLine.appendChild(rightSection);
-
-        // TODO: Funktion daraus machen
-        const detailsDiv = document.createElement('div');
-        detailsDiv.classList.add('todo-details', 'hidden');
-        detailsDiv.innerHTML = `
-            <p><strong>Details:</strong> ${todo.details || 'Keine Details verfügbar'}</p>
-            <p><strong>Fällig am:</strong> ${todo.dueDate || 'Kein Datum gesetzt'}</p>
-            <p><strong>Verantwortlich:</strong> ${todo.responsible || 'Niemand zugewiesen'}</p>
-            <p><strong>Erstellt von:</strong> ${todo.createdBy || 'Unbekannt'}</p>
-        `;
-
-
-
-        todoDiv.appendChild(topLine);
-        todoDiv.appendChild(detailsDiv);
-        todoList.appendChild(todoDiv);
+      const todoDiv = document.createElement('div');
+      todoDiv.classList.add('todo');
+      if (todo.complete) todoDiv.classList.add('completed');
+  
+      const topLine = document.createElement('div');
+      topLine.classList.add('todo-topline');
+  
+      const left = document.createElement('div');
+      left.classList.add('left-section');
+  
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = todo.complete;
+      checkbox.addEventListener('change', async (e) => {
+        todo.complete = e.target.checked;
+        todoDiv.classList.toggle('completed', todo.complete);
+        await updateTodoAPI(todo.id, { complete: todo.complete });
+      });
+  
+      const title = document.createElement('span');
+      title.textContent = todo.title;
+  
+      left.append(checkbox, title);
+      topLine.appendChild(left);
+  
+      const right = document.createElement('div');
+      right.classList.add('right-section');
+  
+      const infoIcon = document.createElement('span');
+      infoIcon.textContent = 'ℹ️';
+      infoIcon.classList.add('icon-info');
+  
+      const detailsDiv = renderDetails(todo);
+  
+      infoIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        detailsDiv.classList.toggle('hidden');
+      });
+  
+      const deleteIcon = document.createElement('span');
+      deleteIcon.textContent = '🗑️';
+      deleteIcon.classList.add('icon-delete');
+      deleteIcon.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        await deleteTodoAPI(todo.id);
+        await loadTodosFromAPI();
+      });
+  
+      right.append(infoIcon, deleteIcon);
+      topLine.appendChild(right);
+  
+      todoDiv.append(topLine, detailsDiv);
+      elements.list.appendChild(todoDiv);
     });
-}
-
-
-// =======================
-// Event-Listener
-// =======================
-
-// Neues Todo-Formular öffnen
-newTodoButton.addEventListener('click', () => {
-    newTodoForm.style.display = 'block'; // Formular einblenden
-});
-
-// Formular schließen (Abbrechen)
-cancelTodoButton.addEventListener('click', () => {
-    newTodoForm.style.display = 'none'; // Formular ausblenden
-});
-
-// Neues Todo speichern
-saveTodoButton.addEventListener('click', async () => {
-    const title = document.getElementById('new-todo-title').value;
-    const details = document.getElementById('new-todo-details').value;
-    const dueDate = document.getElementById('new-todo-dueDate').value;
-    const responsible = document.getElementById('new-todo-responsible').value;
-
+  }
+  
+  // =======================
+  // Event-Listener
+  // =======================
+  
+  /* Öffnet das Formular zum Hinzufügen eines neuen Todos */
+  elements.newBtn.addEventListener('click', () => {
+    elements.form.style.display = 'block';
+  });
+  
+  /* Schließt das Formular ohne zu speichern */
+  elements.cancelBtn.addEventListener('click', () => {
+    elements.form.style.display = 'none';
+  });
+  
+  /* Speichert ein neues Todo über die API */
+  elements.saveBtn.addEventListener('click', async () => {
+    const { title, details, dueDate, responsible } = elements.inputs;
+  
     const newTodo = {
-        title,
-        details,
-        dueDate,
-        responsible,
-        complete: false,
-        createdBy: "Alp"
+      title: title.value,
+      details: details.value,
+      dueDate: dueDate.value,
+      responsible: responsible.value,
+      complete: false,
+      createdBy: "Alp"
     };
-
+  
     await createTodoAPI(newTodo);
     await loadTodosFromAPI();
-
-    // Formular ausblenden nach Speichern
-    newTodoForm.style.display = 'none';
-
-    // Eingabefelder leeren
-    document.getElementById('new-todo-title').value = '';
-    document.getElementById('new-todo-details').value = '';
-    document.getElementById('new-todo-dueDate').value = '';
-    document.getElementById('new-todo-responsible').value = '';
-
-    // TODO: Funktion daraus
-    // Erfolgsmeldung anzeigen
-    const successMessage = document.getElementById('success-message');
-    successMessage.textContent = 'Todo erfolgreich erstellt! ✅';
-    successMessage.classList.remove('hidden');
-
-    setTimeout(() => {
-        successMessage.classList.add('hidden');
-    }, 2000);
-});
-
-// Dark Mode Umschalten
-toggleThemeButton.addEventListener('click', () => {
+    elements.form.style.display = 'none';
+    clearFormInputs();
+    showSuccess('Todo erfolgreich erstellt! ✅');
+  });
+  
+  /* Schaltet zwischen Dark Mode und Light Mode um */
+  elements.themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-        toggleThemeButton.textContent = '☀️ Light Mode';
-    } else {
-        toggleThemeButton.textContent = '🌙 Dark Mode';
-    }
-});
-
-
-// =======================
-// Startpunkt
-// =======================
-loadTodosFromAPI();
+    elements.themeBtn.textContent = document.body.classList.contains('dark-mode')
+      ? '☀️ Light Mode'
+      : '🌙 Dark Mode';
+  });
+  
+  // =======================
+  // Startpunkt: Todos laden beim Seitenstart
+  // =======================
+  loadTodosFromAPI();
+  
+  
