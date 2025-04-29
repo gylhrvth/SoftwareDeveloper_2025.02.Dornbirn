@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", async function () {
     getData();
 });
+const ip = 'http://192.168.0.67:3000/api/todo/'; // IP-Adresse des Servers
 
 async function getData() {
     try {
-        const result = await fetch('http://192.168.0.67:3000/api/todo'); // Überprüfe die URL
+        const result = await fetch(ip); // Überprüfe die URL
         if (result.ok) {
             const data = await result.json();
-            console.log(data);
             createDOM(data);
         } else {
-            console.error("Server Error:", result.status, result.statusText);
-            alert("Error: " + result.status + " " + result.statusText);
+            loadingError(result.status, result.statusText);
         }
     } catch (error) {
         console.error("Network Error:", error);
@@ -27,13 +26,12 @@ function createDOM(data) {
         divElement.classList.add('item');
         container.appendChild(divElement);
         divElement.addEventListener('click', async () => {
-            const result = await fetch(`http://192.168.0.67:3000/api/todo/${item.id}`);
+            const result = await fetch(`${ip}${item.id}`);
             if (result.ok) {
                 const itemDetails = await result.json();
-                console.log(itemDetails);
                 createDOMDetails(itemDetails);
             } else {
-                alert("Error: " + result.status + " " + result.statusText);
+                loadingError(result.status, result.statusText);
             }
         });
         const name = document.createElement('h2');
@@ -123,7 +121,7 @@ function createDOMDetails(item) {
     editButton.textContent = 'Edit';
     editButton.classList.add('editButton');
     editButton.addEventListener('click', () => {
-        loadForm('edit', item.id);
+        loadForm('edit', item.id, item);
     });
     detailsDiv.appendChild(editButton);
 }
@@ -143,14 +141,11 @@ function createObject() {
         responsible: responsible,
         createdBy: "Leonie"
     };
-    console.log(newObject);
-
     postData(newObject);
 
 }
 async function postData(data) {
-    console.log(data);
-    const result = await fetch('http://192.168.0.67:3000/api/todo', {
+    const result = await fetch(ip, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -159,14 +154,13 @@ async function postData(data) {
     });
     if (result.ok) {
         const response = await result.json();
-        console.log(response);
         getData();
     } else {
-        alert("Error: " + result.status + " " + result.statusText);
+        loadingError(result.status, result.statusText);
     }
 }
 
-function loadForm(direction, id) {
+function loadForm(direction, id, item = null) {
     const container = document.querySelector('.items');
     container.innerHTML = '';
     const formDiv = document.createElement('div');
@@ -183,6 +177,10 @@ function loadForm(direction, id) {
     const titleInput = document.createElement('input');
     titleInput.type = 'text';
     titleInput.name = 'title';
+    titleInput.required = true; // Pflichtfeld
+    if (direction === 'edit' && item) {
+        titleInput.value = item.title; // Vorhandenen Wert setzen
+    }
     form.appendChild(titleInput);
 
     const descriptionLabel = document.createElement('label');
@@ -191,6 +189,9 @@ function loadForm(direction, id) {
 
     const descriptionInput = document.createElement('textarea');
     descriptionInput.name = 'description';
+    if (direction === 'edit' && item) {
+        descriptionInput.value = item.description; // Vorhandenen Wert setzen
+    }
     form.appendChild(descriptionInput);
 
     const completeLabel = document.createElement('label');
@@ -200,6 +201,9 @@ function loadForm(direction, id) {
     const completeInput = document.createElement('input');
     completeInput.type = 'checkbox';
     completeInput.name = 'complete';
+    if (direction === 'edit' && item) {
+        completeInput.checked = item.complete; // Vorhandenen Wert setzen
+    }
     form.appendChild(completeInput);
 
     const dueDateLabel = document.createElement('label');
@@ -209,6 +213,9 @@ function loadForm(direction, id) {
     const dueDateInput = document.createElement('input');
     dueDateInput.type = 'text';
     dueDateInput.name = 'dueDate';
+    if (direction === 'edit' && item) {
+        dueDateInput.value = item.dueDate; // Vorhandenen Wert setzen
+    }
     form.appendChild(dueDateInput);
 
     const responsibleLabel = document.createElement('label');
@@ -218,28 +225,26 @@ function loadForm(direction, id) {
     const responsibleInput = document.createElement('input');
     responsibleInput.type = 'text';
     responsibleInput.name = 'responsible';
+    if (direction === 'edit' && item) {
+        responsibleInput.value = item.responsible; // Vorhandenen Wert setzen
+    }
     form.appendChild(responsibleInput);
-
-    // const submitButton = document.createElement('button');
-    // submitButton.textContent = 'Submit';
-    // submitButton.type = 'submit';
-    // form.appendChild(submitButton);
 
     if (direction === 'edit') {
         createEditButton(form, id);
-    }
-    else {
+    } else {
         createCreateButton(form);
     }
 
     const backButtonForm = document.createElement('button');
     backButtonForm.textContent = 'Back';
     backButtonForm.classList.add('backButton');
-    backButtonForm.addEventListener('click', () => {
-        getData(); // Daten neu laden
+    backButtonForm.type = 'button'; // Verhindert, dass der Button das Formular absendet
+    backButtonForm.addEventListener('click', (event) => {
+        event.preventDefault(); // Verhindert das Standardverhalten
+        getData(); // Lädt die Daten neu
     });
     form.appendChild(backButtonForm);
-
 }
 
 function createEditButton(form, id) {
@@ -268,16 +273,14 @@ function createCreateButton(form) {
 
 
 async function deleteObject(id) {
-    console.log("Deleting object with ID:", id);
-    const result = await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
+    const result = await fetch(`${ip}${id}`, {
         method: 'DELETE'
     });
     if (result.ok) {
         const response = await result.json();
-        console.log(response);
         getData();
     } else {
-        alert("Error: " + result.status + " " + result.statusText);
+        loadingError(result.status, result.statusText);
     }
 }
 
@@ -297,13 +300,11 @@ async function editObject(id) {
         responsible: responsible,
         createdBy: "Leonie"
     };
-    console.log(updatedObject);
 
     putData(id, updatedObject);
 }
 async function putData(id, data) {
-    console.log(data);
-    const result = await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
+    const result = await fetch(`${ip}${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -312,9 +313,35 @@ async function putData(id, data) {
     });
     if (result.ok) {
         const response = await result.json();
-        console.log(response);
         getData();
     } else {
-        alert("Error: " + result.status + " " + result.statusText);
+        loadingError(result.status, result.statusText);
     }
+}
+
+function loadingError(status, statusText) {
+    const body = document.querySelector('body');
+    const shadowDiv = document.createElement('div');
+    shadowDiv.classList.add('shadow');
+    body.appendChild(shadowDiv);
+    const errorDiv = document.createElement('div');
+    errorDiv.classList.add('error');
+    shadowDiv.appendChild(errorDiv);
+
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = "Error: Verbindung verloren. Neue Verbindung wird hergestellt.";
+    errorDiv.appendChild(errorMessage);
+    const errorStatus = document.createElement('p');
+    errorStatus.textContent = "Status: ";
+    errorDiv.appendChild(errorStatus);
+    const statusSpan = document.createElement('span');
+    statusSpan.textContent = status;
+    errorStatus.appendChild(statusSpan);
+    const statusTextSpan = document.createElement('span');
+    statusTextSpan.textContent = statusText;
+    errorStatus.appendChild(statusTextSpan);
+    setTimeout(() => {
+        shadowDiv.remove();
+        getData(); // Versuche erneut, die Daten zu laden
+    }, 3000); // Warte 3 Sekunden, bevor du es erneut versuchst
 }
