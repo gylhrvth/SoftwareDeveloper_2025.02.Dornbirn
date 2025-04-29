@@ -126,6 +126,10 @@ main{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.664);
     width: 90%;
+    height: 50%;
+    overflow-wrap: break-word; /* Lange Wörter umbrechen */
+    word-wrap: break-word; /* Für ältere Browser */
+    white-space: normal; /* Zeilenumbruch bei Bedarf */
 }
 
 .details p:not(.description){
@@ -247,6 +251,7 @@ form {
 }
 
 .pagination button{
+    margin: 10px;
     width: 10%;
     height: 30%;
     background-color: #3C99F0;
@@ -265,7 +270,11 @@ form {
 }
 
 .pagination span{
-    gap: 10px;
+    margin: 5px;
     font-size: 1.1em;
     color: black;
 }
+
+.hidden{
+    display: none;
+} 
