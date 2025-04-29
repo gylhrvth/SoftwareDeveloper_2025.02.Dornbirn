@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 const ip = 'http://192.168.0.67:3000/api/todo/'; // IP-Adresse des Servers
 
+setInterval(() => {
+    getData();
+}, 5000); // Alle 5 Sekunden die Daten neu laden
+
 async function getData() {
     try {
         const result = await fetch(ip); // Überprüfe die URL
@@ -102,7 +106,7 @@ function createDOMDetails(item) {
     detailsDiv.appendChild(updatedAt);
 
     const backButton = document.createElement('button');
-    backButton.textContent = 'Back';
+    backButton.textContent = 'Zurück';
     backButton.classList.add('backButton');
     backButton.addEventListener('click', () => {
         getData(); // Daten neu laden
@@ -110,7 +114,7 @@ function createDOMDetails(item) {
     detailsDiv.appendChild(backButton);
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = 'Löschen';
     deleteButton.classList.add('deleteButton');
     deleteButton.addEventListener('click', async () => {
         deleteObject(item.id);
@@ -118,7 +122,7 @@ function createDOMDetails(item) {
     detailsDiv.appendChild(deleteButton);
 
     const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
+    editButton.textContent = 'Bearbeiten';
     editButton.classList.add('editButton');
     editButton.addEventListener('click', () => {
         loadForm('edit', item.id, item);
@@ -237,7 +241,7 @@ function loadForm(direction, id, item = null) {
     }
 
     const backButtonForm = document.createElement('button');
-    backButtonForm.textContent = 'Back';
+    backButtonForm.textContent = 'Zurück';
     backButtonForm.classList.add('backButton');
     backButtonForm.type = 'button'; // Verhindert, dass der Button das Formular absendet
     backButtonForm.addEventListener('click', (event) => {
@@ -249,7 +253,7 @@ function loadForm(direction, id, item = null) {
 
 function createEditButton(form, id) {
     const submitButton = document.createElement('button');
-    submitButton.textContent = 'Edit';
+    submitButton.textContent = 'Senden';
     submitButton.type = 'submit';
     form.appendChild(submitButton);
 
@@ -261,7 +265,7 @@ function createEditButton(form, id) {
 
 function createCreateButton(form) {
     const submitButton = document.createElement('button');
-    submitButton.textContent = 'Submit';
+    submitButton.textContent = 'Senden';
     submitButton.type = 'submit';
     form.appendChild(submitButton);
 
