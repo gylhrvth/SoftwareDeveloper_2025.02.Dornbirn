@@ -1,8 +1,12 @@
 // =======================
 // DOM Elemente sammeln
 // =======================
+let allTodos = [];
+
+
 const elements = {
     list: document.getElementById('todo-list'),
+    search: document.getElementById('search-todo'),
     form: document.getElementById('new-todo-form'),
     newBtn: document.getElementById('new-todo-button'),
     saveBtn: document.getElementById('save-todo-button'),
@@ -24,16 +28,23 @@ const elements = {
   // Hilfsfunktionen
   // =======================
   
+  function createPStrong(parent, title, text){
+    let pElement = document.createElement("p")
+    let strongElement = document.createElement("strong")
+    strongElement.textContent = title
+    pElement.appendChild(strongElement)
+    pElement.textContent = text
+    parent.appendChild(pElement)
+  }
+
   /* Erzeugt das HTML für die Details-Ansicht eines Todos */
   function renderDetails(todo) {
     const div = document.createElement('div');
     div.classList.add('todo-details', 'hidden');
-    div.innerHTML = `
-      <p><strong>Details:</strong> ${todo.details || 'Keine Details verfügbar'}</p>
-      <p><strong>Fällig am:</strong> ${todo.dueDate || 'Kein Datum gesetzt'}</p>
-      <p><strong>Verantwortlich:</strong> ${todo.responsible || 'Niemand zugewiesen'}</p>
-      <p><strong>Erstellt von:</strong> ${todo.createdBy || 'Unbekannt'}</p>
-    `;
+    createPStrong(div, "Details:", todo.details || 'Keine Details verfügbar')
+    createPStrong(div, "Fällig am:", todo.dueDate || 'Kein Datum gesetzt')
+    createPStrong(div, "Verantwortlich:", todo.responsible || 'Niemand zugewiesen')
+    createPStrong(div, "Erstellt von:", todo.createdBy || 'Unbekannt')
     return div;
   }
   
@@ -59,6 +70,7 @@ const elements = {
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
+      allTodos = data;
       renderTodoList(data);
     } catch (error) {
       console.error('Fehler beim Laden der Todos:', error);
@@ -211,6 +223,16 @@ const elements = {
       : '🌙 Dark Mode';
   });
   
+/* Filtert Todos live beim Tippen im Suchfeld */
+elements.search.addEventListener('input', (e) => {
+  const searchText = e.target.value.toLowerCase();
+  const filteredTodos = allTodos.filter(todo => 
+    todo.title.toLowerCase().includes(searchText)
+  );
+  renderTodoList(filteredTodos);
+});
+
+
   // =======================
   // Startpunkt: Todos laden beim Seitenstart
   // =======================

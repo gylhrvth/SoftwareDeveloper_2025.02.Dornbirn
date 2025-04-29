@@ -19,20 +19,20 @@
                 <input type="checkbox" class="todo-completed" checked>
                 <p class="todo-name">Catch Pokemon</p>
             </div>
-            <div class="todo-btn">
+            <form class="todo-btn">
                 <button class="todo-edit">Edit</button>
                 <button class="todo-delete">Delete</button>
-            </div>
+            </form>
         </div>
         <div class="todo">
             <div class="todo-info">
                 <input type="checkbox" class="todo-completed" checked>
                 <p class="todo-name">Catch Pikachu</p>
             </div>
-            <div class="todo-btn">
+            <form class="todo-btn">
                 <button class="todo-edit">Edit</button>
                 <button class="todo-delete">Delete</button>
-            </div>
+            </form>
         </div>
     </div>
     <div class="modal-background">
@@ -50,5 +50,15 @@
             </div>
         </div>
     </div>
+        
+    <div class="info-details hidden" id="info-details">
+            <h3>Todo Details</h3>
+            <p id="info-id"></p>
+            <p id="info-title"></p>
+            <p id="info-completed"></p>
+            <button id="close-info" class="close-info">Close</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
