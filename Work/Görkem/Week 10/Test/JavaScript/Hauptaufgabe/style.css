@@ -36,6 +36,10 @@ body{
     transition: background-color 0.3s, transform 0.2s;
 }
 
+#add-todo:hover{
+    background-color: deepskyblue;
+}
+
 .todo-container{
     display: flex;
     flex-direction: column;
@@ -49,21 +53,28 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    padding: 10px 15px;
     border-radius: 15px;
     font-size: 1.25rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s;
     animation: fadeIn 0.5s ease-in-out;
+    gap: 10px;
 }
 
 .todo:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stärkerer Schatten beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .todo-info{
     display: flex;
+    flex: 1; 
     margin-left: 5px;
     gap: 5px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .todo-btn{
@@ -82,14 +93,15 @@ body{
 }
 
 .todo-completed{
-    width: 15px;
+    width: auto;
+    height: auto;
     cursor: pointer;
     accent-color: #6b705c;
 }
 
 .todo-btn > button:hover {
-    transform: scale(1); /* Leichte Vergrößerung */
-    opacity: 0.9; /* Leichtes Verblassen */
+    transform: scale(1); 
+    opacity: 0.9; 
 }
 
 .todo-edit:hover {
@@ -109,6 +121,7 @@ body{
 }
 
 .modal-background{
+    display: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -174,6 +187,62 @@ body{
 #save-todo:hover {
     background-color: #555;
 }
+
+.todo-info-btn {
+    background-color: lightskyblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 5px;
+    transition: background-color 0.3s;
+}
+
+.todo-info-btn:hover {
+    background-color: deepskyblue;
+}
+
+.hidden {
+    display: none;
+}
+
+.info-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-details.hidden {
+    display: none;
+}
+
+.close-info {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.close-info:hover {
+    background-color: darkred;
+}
+
 
 @keyframes fadeIn {
     from {

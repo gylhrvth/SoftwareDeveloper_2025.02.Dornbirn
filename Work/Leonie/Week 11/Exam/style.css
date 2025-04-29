@@ -68,18 +68,20 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 90%;
     height: 80%;
     background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: scroll;
 }
 
 .item{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 50%;
     height: 10%;
     background-color: white;
     border-radius: 10px;
@@ -230,4 +232,40 @@ form {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 90%;
+    height: 8%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pagination button{
+    width: 10%;
+    height: 30%;
+    background-color: #3C99F0;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 0.9em;
+}
+
+.pagination button:hover{
+    background-color: #3CD8F0;
+}
+.pagination button:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.pagination span{
+    gap: 10px;
+    font-size: 1.1em;
+    color: black;
 }
