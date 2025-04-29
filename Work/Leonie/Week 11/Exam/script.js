@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     getData();
 });
 
-
-
 async function getData() {
     try {
-        const result = await fetch('http://192.168.0.53:3000/api/todo'); // Überprüfe die URL
+        const result = await fetch('http://192.168.0.67:3000/api/todo'); // Überprüfe die URL
         if (result.ok) {
             const data = await result.json();
             console.log(data);
@@ -29,7 +27,7 @@ function createDOM(data) {
         divElement.classList.add('item');
         container.appendChild(divElement);
         divElement.addEventListener('click', async () => {
-            const result = await fetch(`http://192.168.0.53:3000/api/todo/${item.id}`);
+            const result = await fetch(`http://192.168.0.67:3000/api/todo/${item.id}`);
             if (result.ok) {
                 const itemDetails = await result.json();
                 console.log(itemDetails);
@@ -118,7 +116,17 @@ function createDOMDetails(item) {
     deleteButton.classList.add('deleteButton');
     deleteButton.addEventListener('click', async () => {
         deleteObject(item.id);
-});
+    });
+    detailsDiv.appendChild(deleteButton);
+
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList.add('editButton');
+    editButton.addEventListener('click', () => {
+        loadForm('edit', item.id);
+    });
+    detailsDiv.appendChild(editButton);
+}
 
 function createObject() {
     const form = document.querySelector('.form');
@@ -136,13 +144,13 @@ function createObject() {
         createdBy: "Leonie"
     };
     console.log(newObject);
-    
+
     postData(newObject);
-    
+
 }
 async function postData(data) {
     console.log(data);
-    const result = await fetch('http://192.168.0.53:3000/api/todo', {
+    const result = await fetch('http://192.168.0.67:3000/api/todo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -158,7 +166,7 @@ async function postData(data) {
     }
 }
 
-function loadForm() {
+function loadForm(direction, id) {
     const container = document.querySelector('.items');
     container.innerHTML = '';
     const formDiv = document.createElement('div');
@@ -212,15 +220,17 @@ function loadForm() {
     responsibleInput.name = 'responsible';
     form.appendChild(responsibleInput);
 
-    const submitButton = document.createElement('button');
-    submitButton.textContent = 'Submit';
-    submitButton.type = 'submit';
-    form.appendChild(submitButton);
+    // const submitButton = document.createElement('button');
+    // submitButton.textContent = 'Submit';
+    // submitButton.type = 'submit';
+    // form.appendChild(submitButton);
 
-    submitButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        createObject();
-    });
+    if (direction === 'edit') {
+        createEditButton(form, id);
+    }
+    else {
+        createCreateButton(form);
+    }
 
     const backButtonForm = document.createElement('button');
     backButtonForm.textContent = 'Back';
@@ -229,14 +239,76 @@ function loadForm() {
         getData(); // Daten neu laden
     });
     form.appendChild(backButtonForm);
-    
+
 }
+
+function createEditButton(form, id) {
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Edit';
+    submitButton.type = 'submit';
+    form.appendChild(submitButton);
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        editObject(id);
+    });
+}
+
+function createCreateButton(form) {
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.type = 'submit';
+    form.appendChild(submitButton);
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        createObject();
+    });
 }
 
 
 async function deleteObject(id) {
-    const result = await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
+    console.log("Deleting object with ID:", id);
+    const result = await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
         method: 'DELETE'
+    });
+    if (result.ok) {
+        const response = await result.json();
+        console.log(response);
+        getData();
+    } else {
+        alert("Error: " + result.status + " " + result.statusText);
+    }
+}
+
+
+async function editObject(id) {
+    const form = document.querySelector('.form');
+    const title = form.querySelector('input[name="title"]').value;
+    const description = form.querySelector('textarea[name="description"]').value;
+    const complete = form.querySelector('input[name="complete"]').checked;
+    const dueDate = form.querySelector('input[name="dueDate"]').value;
+    const responsible = form.querySelector('input[name="responsible"]').value;
+    const updatedObject = {
+        title: title,
+        description: description,
+        dueDate: dueDate,
+        complete: complete,
+        responsible: responsible,
+        createdBy: "Leonie"
+    };
+    console.log(updatedObject);
+
+    putData(id, updatedObject);
+}
+async function putData(id, data) {
+    console.log(data);
+    const result = await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     });
     if (result.ok) {
         const response = await result.json();
