@@ -23,7 +23,7 @@ async function loadTodosFromAPI() {
     spinner.classList.remove('hidden'); // Spinner zeigen
 
     try {
-        const response = await fetch('http://192.168.0.53:3000/api/todo');
+        const response = await fetch('http://192.168.0.67:3000/api/todo');
         const data = await response.json();
         renderTodoList(data);
     } catch (error) {
@@ -36,7 +36,7 @@ async function loadTodosFromAPI() {
 // Erstellt ein neues Todo auf dem Server
 async function createTodoAPI(todo) {
     try {
-        await fetch('http://192.168.0.53:3000/api/todo', {
+        await fetch('http://192.168.0.67:3000/api/todo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(todo)
@@ -49,7 +49,7 @@ async function createTodoAPI(todo) {
 // Aktualisiert ein bestehendes Todo auf dem Server
 async function updateTodoAPI(id, updates) {
     try {
-        await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
+        await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updates)
@@ -62,13 +62,16 @@ async function updateTodoAPI(id, updates) {
 // Löscht ein Todo vom Server
 async function deleteTodoAPI(id) {
     try {
-        await fetch(`http://192.168.0.53:3000/api/todo/${id}`, {
+        await fetch(`http://192.168.0.67:3000/api/todo/${id}`, {
             method: 'DELETE'
         });
     } catch (error) {
         console.error('Fehler beim Löschen des Todos:', error);
     }
 }
+
+
+
 
 
 // =======================
@@ -85,14 +88,11 @@ function renderTodoList(todos) {
 
         const topLine = document.createElement('div');
         topLine.classList.add('todo-topline');
-        topLine.style.display = 'flex';                         //TODO: Style in CSS auslagern     
-        topLine.style.alignItems = 'center';
-        topLine.style.justifyContent = 'space-between';
+  
 
         const leftSection = document.createElement('div');
-        leftSection.style.display = 'flex';
-        leftSection.style.alignItems = 'center';
-        leftSection.style.gap = '10px';
+        leftSection.classList.add('left-section');
+
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -111,13 +111,12 @@ function renderTodoList(todos) {
         topLine.appendChild(leftSection);
 
         const rightSection = document.createElement('div');
-        rightSection.style.display = 'flex';
-        rightSection.style.alignItems = 'center';
-        rightSection.style.gap = '10px';
+        rightSection.classList.add('right-section');
+
 
         const infoIcon = document.createElement('span');
         infoIcon.textContent = 'ℹ️';
-        infoIcon.style.cursor = 'pointer';
+        infoIcon.classList.add('icon-info');                    
         infoIcon.addEventListener('click', (e) => {
             e.stopPropagation();
             detailsDiv.classList.toggle('hidden');
@@ -126,7 +125,7 @@ function renderTodoList(todos) {
 
         const deleteIcon = document.createElement('span');
         deleteIcon.textContent = '🗑️';
-        deleteIcon.style.cursor = 'pointer';
+        deleteIcon.classList.add('icon-delete');                
         deleteIcon.addEventListener('click', async (e) => {
             e.stopPropagation();
             await deleteTodoAPI(todo.id);
@@ -134,6 +133,7 @@ function renderTodoList(todos) {
         });
         rightSection.appendChild(deleteIcon);
         topLine.appendChild(rightSection);
+
 
         // TODO: Funktion daraus machen
         const detailsDiv = document.createElement('div');
@@ -152,6 +152,9 @@ function renderTodoList(todos) {
         todoList.appendChild(todoDiv);
     });
 }
+
+
+
 
 
 // =======================
@@ -216,6 +219,9 @@ toggleThemeButton.addEventListener('click', () => {
         toggleThemeButton.textContent = '🌙 Dark Mode';
     }
 });
+
+
+
 
 
 // =======================

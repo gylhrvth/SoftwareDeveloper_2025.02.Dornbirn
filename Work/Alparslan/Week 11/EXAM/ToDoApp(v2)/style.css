@@ -262,4 +262,46 @@ textarea {
 }
 
 
+/* Neue Klassen für aufgeräumten Code */
+
+/* Oberste Zeile eines Todos (Checkbox + Titel + Icons) */
+.todo-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Linke Seite (Checkbox + Text) */
+.todo-leftsection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Rechte Seite (Info-Icon + Mülleimer-Icon) */
+.todo-rightsection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Styling für die Icons */
+.icon-button {
+    cursor: pointer;
+}
+
+.icon-info,
+.icon-delete {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+/* Optional: Kleine Animation beim Hover */
+.icon-info:hover,
+.icon-delete:hover {
+    transform: scale(1.2); /* Vergrößern beim Drüberfahren */
+}
+
+
 
