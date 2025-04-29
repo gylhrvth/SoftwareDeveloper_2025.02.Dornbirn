@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./toDo(dummyStep03).css">
+    <script src="toDo(dummyStep03).js" defer></script>
+    <title>ToDo App (Step 03)</title>
+</head>
+<body>
+
+    <!--Erstelle ein Konzept für den Details Seite
+Am Anfang mach einen Block statisch in dem HTML / CSS dokument
+
+-->
+
+    <div id="mainContainer">
+
+        <header id="headerBox">
+            <h1>ToDo App</h1>
+        </header>
+
+        <main id="responseContainer">
+            <ul id="task-list">
+                <!-- Example Task -->
+                <li class="task-item">
+                        <div class="listedMain">
+                            <input type="checkbox" class="task-checkbox">
+                            <span class="task-title">Practice guitar</span>
+                            <div class="buttonContainer">
+                                <button class="details-button">Details</button>
+                                <button class="delete-button">Delete</button>
+                            </div>
+                        </div>
+            
+                        <div class="details detailsOn">
+                            <ul class="detailsList">
+                                <li><strong>Id:</strong> 1</li>
+                                <li><strong>Details:</strong> Practice scales and chords</li>
+                                <li><strong>Complete:</strong> false</li>
+                                <li><strong>Due Date:</strong> 03/05/2025</li>
+                                <li><strong>Responsible:</strong> Carlos</li>
+                                <li><strong>Created By:</strong> Carlos</li>
+                                <li><strong>Created At:</strong> 28/04/2025</li>
+                                <li><strong>Updated At:</strong> 28/04/2025</li>
+                            </ul>
+                        </div>
+                </li>
+                <!-- More tasks will be dynamically added here -->
+            </ul>
+        </main>
+
+    </div>
+    
+</body>
+</html>
+</body>
+</html>
