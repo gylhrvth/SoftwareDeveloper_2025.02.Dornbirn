@@ -1,4 +1,6 @@
-/* Basis-Styling */
+/* ========================================
+   1. Allgemeines Layout und Grundstruktur
+======================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f7fa;
@@ -10,13 +12,18 @@ body {
     min-height: 100vh;
 }
 
+/* Hauptüberschrift */
 h1 {
     margin-bottom: 30px;
     font-size: 2.5rem;
     color: #333;
 }
 
-/* Todo Liste */
+/* ========================================
+   2. Todo-Liste & Einzel-Todo-Darstellung
+======================================== */
+
+/* Container für die gesamte Todo-Liste */
 #todo-list {
     width: 100%;
     max-width: 600px;
@@ -25,7 +32,7 @@ h1 {
     gap: 15px;
 }
 
-/* Einzelnes Todo */
+/* Einzelnes Todo-Element */
 .todo {
     background: #ffffff;
     padding: 20px;
@@ -36,41 +43,43 @@ h1 {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* Hover-Effekt für Todos */
 .todo:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Obere Zeile im Todo (Checkbox, Text, Icons) */
+/* Obere Zeile mit Checkbox, Titel und Icons */
 .todo-topline {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+/* Linke und rechte Sektion innerhalb der Topline */
 .todo-topline div {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Checkbox */
+/* Checkbox-Styling */
 .todo input[type="checkbox"] {
     margin-right: 10px;
 }
 
-/* Titel */
+/* Todo-Titel */
 .todo span {
     font-size: 1rem;
 }
 
-/* Wenn Aufgabe erledigt (Checkbox abgehakt) */
+/* Stil für erledigte Todos */
 .completed span {
     text-decoration: line-through;
     color: #999;
 }
 
-/* Details (aufklappbar) */
+/* Detaillierter Bereich eines Todos */
 .todo-details {
     margin-top: 10px;
     padding: 10px;
@@ -80,11 +89,34 @@ h1 {
     border-radius: 5px;
 }
 
+/* Details ausblenden */
 .todo-details.hidden {
     display: none;
 }
 
-/* Button allgemeines Design */
+/* ========================================
+   3. Icons (Info & Löschen)
+======================================== */
+
+/* Basisstil für Icons */
+.icon-info,
+.icon-delete {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+/* Vergrößerung beim Hover */
+.icon-info:hover,
+.icon-delete:hover {
+    transform: scale(1.2);
+}
+
+/* ========================================
+   4. Allgemeine Buttons
+======================================== */
+
+/* Grundstil für alle Buttons */
 button {
     background-color: #007bff;
     color: #ffffff;
@@ -98,11 +130,44 @@ button {
     width: fit-content;
 }
 
+/* Hover-Farbe für allgemeine Buttons */
 button:hover {
     background-color: #0056b3;
 }
 
-/* Formular zum Neuen Todo */
+/* ========================================
+   5. Theme Toggle Button (oben rechts)
+======================================== */
+
+/* Positionierung des Theme-Toggles */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Stil für den Theme-Toggle-Button */
+#toggle-theme-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover-Farbe für den Theme-Toggle-Button */
+#toggle-theme-button:hover {
+    background-color: #0056b3;
+}
+
+/* ========================================
+   6. Neues Todo Formular & Eingabefelder
+======================================== */
+
+/* Formular-Container */
 #new-todo-form {
     display: none;
     margin-top: 20px;
@@ -112,7 +177,7 @@ button:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Inputfelder */
+/* Eingabefelder (Text, Datum, Textarea) */
 input[type="text"],
 input[type="date"],
 textarea {
@@ -124,18 +189,23 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Textarea-Größe und Verhalten */
 textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-/* Buttons "Speichern" und "Abbrechen" */
+/* Buttons im Formular */
 #save-todo-button,
 #cancel-todo-button {
     width: 100%;
 }
 
-/* Erfolgsnachricht */
+/* ========================================
+   7. Erfolgsmeldung bei Todo-Erstellung
+======================================== */
+
+/* Erfolgsmeldung sichtbar */
 #success-message {
     background-color: #28a745;
     color: white;
@@ -149,56 +219,37 @@ textarea {
     transition: opacity 0.5s ease;
 }
 
-/* Erfolgsnachricht verstecken */
+/* Erfolgsmeldung ausgeblendet */
 #success-message.hidden {
     display: none;
 }
 
-/* Allgemeine "versteckt" Klasse */
-.hidden {
-    display: none;
-}
+/* ========================================
+   8. Dark Mode Styles
+======================================== */
 
-/* Toggle Button oben rechts */
-#theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-#toggle-theme-button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-}
-
-#toggle-theme-button:hover {
-    background-color: #0056b3;
-}
-
-/* DARK MODE */
+/* Aktivierter Dark Mode */
 .dark-mode {
     background-color: #1e1e1e;
     color: #f5f5f5;
 }
 
+/* Überschrift im Dark Mode */
 .dark-mode h1 {
     color: white;
 }
 
+/* Todos im Dark Mode mit Rahmen */
 .dark-mode .todo {
-    border: 1px solid #ffffff; /* Weißer Rand um jedes Todo */
+    border: 1px solid #ffffff;
 }
 
+/* Details-Bereich im Dark Mode */
 .dark-mode .todo-details {
-    border: 1px solid #ffffff; /* Weißer Rand um die Details */
+    border: 1px solid #ffffff;
 }
 
+/* Hintergrundfarbe & Textfarbe für Elemente im Dark Mode */
 .dark-mode .todo,
 .dark-mode #new-todo-form,
 .dark-mode #success-message,
@@ -208,22 +259,27 @@ textarea {
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
 }
 
+/* Buttons im Dark Mode */
 .dark-mode button {
     background-color: #4a90e2;
 }
 
+/* Hover-Farbe für Buttons im Dark Mode */
 .dark-mode button:hover {
     background-color: #357ABD;
 }
 
+/* Theme-Toggle-Button im Dark Mode */
 .dark-mode #toggle-theme-button {
     background-color: #4a90e2;
 }
 
+/* Hover-Farbe für Theme-Toggle im Dark Mode */
 .dark-mode #toggle-theme-button:hover {
     background-color: #357ABD;
 }
 
+/* Eingabefelder im Dark Mode */
 .dark-mode input[type="text"],
 .dark-mode input[type="date"],
 .dark-mode textarea {
@@ -232,76 +288,46 @@ textarea {
     border: 1px solid #555;
 }
 
-/* Dark Mode: Hover-Effekt für Todos */
+/* Hover-Effekt für Todos im Dark Mode */
 .dark-mode .todo:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2); /* Hellere, weiße Schattierung */
-    background-color: #333; /* Helleres Grau als Hover-Hintergrund */
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+    background-color: #333;
 }
 
-/* Dark Mode: Erfolgsmeldung */
+/* Erfolgsmeldung im Dark Mode */
 .dark-mode #success-message {
-    background-color: #2ecc71; /* ein etwas helleres Grün im dunklen Modus */
-    color: #ffffff; /* weiße Schrift für bessere Lesbarkeit */
-    box-shadow: 0 0 10px rgba(46, 204, 113, 0.7); /* sanfter grüner Glow */
+    background-color: #2ecc71;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.7);
 }
 
+/* Spinner im Dark Mode */
+.dark-mode #loading-spinner {
+    color: #4a90e2;
+}
+
+/* ========================================
+   9. Hilfsklassen & Ladeanzeige
+======================================== */
+
+/* Klasse zum Ausblenden von Elementen */
+.hidden {
+    display: none;
+}
+
+/* Lade-Spinner sichtbar */
 #loading-spinner {
     font-size: 1.2rem;
     color: #007bff;
     margin-bottom: 20px;
 }
 
+/* Lade-Spinner ausgeblendet */
 #loading-spinner.hidden {
     display: none;
 }
 
-/* Dark Mode für Spinner */
-.dark-mode #loading-spinner {
-    color: #4a90e2;
-}
-
-
-/* Neue Klassen für aufgeräumten Code */
-
-/* Oberste Zeile eines Todos (Checkbox + Titel + Icons) */
-.todo-topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Linke Seite (Checkbox + Text) */
-.todo-leftsection {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Rechte Seite (Info-Icon + Mülleimer-Icon) */
-.todo-rightsection {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Styling für die Icons */
-.icon-button {
-    cursor: pointer;
-}
-
-.icon-info,
-.icon-delete {
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-}
-
-/* Optional: Kleine Animation beim Hover */
-.icon-info:hover,
-.icon-delete:hover {
-    transform: scale(1.2); /* Vergrößern beim Drüberfahren */
-}
 
 
 
