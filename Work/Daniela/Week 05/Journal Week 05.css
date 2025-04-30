@@ -35,6 +35,14 @@ header{
     /*color: rgb(88, 3, 109);*/
 }
 
+.link_container h2{
+    font-family: "Delius", cursive;
+    font-size: 2.2em;}
+
+    .link_container h3{
+        font-family: "Delius", cursive;
+        font-size: 2.0em;}
+
 .link_container li {
     font-family: "Delius", cursive;
     font-size: 2em;

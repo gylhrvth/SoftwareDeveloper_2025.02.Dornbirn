@@ -94,9 +94,9 @@ h1 {
     display: none;
 }
 
-/* ========================================
-   3. Icons (Info & Löschen)
-======================================== */
+/* ====================================================
+   3. Icons (Infoicon & Deleteicon & Bearbeitenicon)
+==================================================== */
 
 /* Basisstil für Icons */
 .icon-info,
@@ -109,6 +109,17 @@ h1 {
 /* Vergrößerung beim Hover */
 .icon-info:hover,
 .icon-delete:hover {
+    transform: scale(1.2);
+}
+
+/* Bearbeiten-Icon (✏️) – Styling */
+.icon-edit {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.icon-edit:hover {
     transform: scale(1.2);
 }
 
@@ -327,6 +338,43 @@ textarea {
 #loading-spinner.hidden {
     display: none;
 }
+
+/* ========================================
+   10. Prioritäts-Label für Todos
+   =======================================
+   Visualisiert die Dringlichkeit eines Todos.
+   Farbliche Hervorhebung für "low", "middle", "high".
+======================================== */
+
+/* Allgemeines Styling für das Prioritäts-Badge */
+.todo-priority {
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+/* =============================
+   11. Priorität: LOW – Grün/Grau
+============================= */
+.priority-low {
+    background-color: #d4edda;  /* hellgrün */
+    color: #155724;             /* dunkelgrün Text */
+}
+
+/* Priorität: MIDDLE – Gelb/Orange */
+.priority-middle {
+    background-color: #fff3cd;  /* hellgelb */
+    color: #856404;             /* dunkelgelb/orange Text */
+}
+
+/* Priorität: HIGH – Rot */
+.priority-high {
+    background-color: #f8d7da;  /* hellrot */
+    color: #721c24;             /* dunkelrot Text */
+}
+
 
 
 

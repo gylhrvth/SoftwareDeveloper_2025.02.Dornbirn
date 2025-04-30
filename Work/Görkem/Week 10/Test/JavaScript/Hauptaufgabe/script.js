@@ -10,8 +10,17 @@ if (!todoContainer){
 const inputTodo = document.getElementById("input-todo");
 const addTodo = document.getElementById("add-todo");
 
+const modalBG = document.querySelector(".modal-background");
+const closeModal = document.querySelector(".close-modal");
+const editTodoName = document.getElementById("edit-todo-name");
+const editTodoDescription = document.getElementById("edit-todo-description");
+const editTodoCompleted = document.getElementById("edit-todo-completed");
+const saveTodo = document.getElementById("save-todo");
+const editTodoCreatedBy = document.getElementById("edit-todo-created-by");
+const editTodoCreatedAt = document.getElementById("edit-todo-created-at");
+
 let todoArray = [];
-const URL = "http://192.168.0.67:3000/api/todo";
+const URL = "http://192.168.0.53:3000/api/todo";
 const URL1 = "http://192.168.0.53:3000/api/todo/:id";
 
 async function get_Todos() {
@@ -22,7 +31,6 @@ async function get_Todos() {
         }
 
         const data = await response.json(); 
-        console.log("API-Daten:", data); 
 
         todoArray.push(...data); 
     } catch (error) {
@@ -31,7 +39,6 @@ async function get_Todos() {
 }
 
 async function post_todos() {
-    // Erstelle das neue Todo-Objekt
     const newTodo = {
         title: inputTodo.value, // Korrekt: Wert aus dem Eingabefeld
         completed: false, // Standardwert
@@ -94,6 +101,74 @@ addTodo.addEventListener("click", async (e) => {
     }
 });
 
+async function edit_Todos(todoElem) {
+    const editTodoName = document.getElementById("edit-todo-name");
+    const editTodoCompleted = document.getElementById("edit-todo-completed");
+    const editTodoDescription = document.getElementById("edit-todo-description");
+
+    // Erstelle das aktualisierte Todo-Objekt
+    const updatedTodo = {
+        title: editTodoName.value,
+        description: editTodoDescription ? editTodoDescription.value : "No description",
+        completed: editTodoCompleted.checked,
+        createdBy: 'Görkem', // Behalte den ursprünglichen Ersteller
+        createdAt: todoElem.createdAt, // Behalte das ursprüngliche Erstellungsdatum
+        updatedAt: new Date().toISOString(), // Aktualisiere das Änderungsdatum
+    };
+
+    try {
+        console.log("PUT URL:", `${URL}/${todoElem.id}`);
+        console.log("PUT Body:", updatedTodo);
+
+        const response = await fetch(`${URL}/${todoElem.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedTodo),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`HTTP-Fehler! Status: ${response.status}, Nachricht: ${errorText}`);
+            throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Todo aktualisiert:", data);
+
+        // Aktualisiere das Todo im Array und die Anzeige
+        const index = todoArray.findIndex((todo) => todo.id === todoElem.id);
+        if (index !== -1) {
+            todoArray[index] = data;
+        }
+        display_Todos(todoArray);
+    } catch (error) {
+        console.error("Fehler beim Aktualisieren des Todos:", error);
+    }
+}
+
+function open_modal(todoElem){
+    console.log("Open Modal", todoElem);
+    editTodoName.value = todoElem.title || "";
+    editTodoDescription.value = todoElem.description || "";
+    editTodoCompleted.checked = todoElem.completed;
+    editTodoCreatedBy.value = todoElem.createdBy || "";
+    editTodoCreatedAt.value = todoElem.createdAt
+        ? new Date(todoElem.createdAt).toLocaleString()
+        : "";
+
+    modalBG.style.display = "block"; 
+    closeModal.addEventListener("click", () => {
+        modalBG.style.display = "none"; 
+        console.log("Modal geschlossen");
+    });
+    saveTodo.addEventListener("click", () => {
+        modalBG.style.display = "none";
+        console.log("Wurde gespeichert");
+        edit_Todos(todoElem);
+    });
+}
 
 function display_Todos(todoArr){
     todoContainer.innerHTML = ""; // Container leeren
@@ -119,6 +194,17 @@ function display_Todos(todoArr){
         todoName.classList.add("todo-name");
         todoName.innerHTML = todoElem.title || todoElem.name || "Unbenannt";
 
+        // Hier wird das "Created By"-Element erstellt
+        let todoCreatedBy = document.createElement("p");
+        todoCreatedBy.classList.add("todo-created-by");
+        todoCreatedBy.innerHTML = `Created By: ${todoElem.createdBy || "Unknown"}`;
+        let todoCreatedAt = document.createElement("p");
+        todoCreatedAt.classList.add("todo-created-at");
+        todoCreatedAt.innerHTML = `Created At: ${
+            todoElem.createdAt ? new Date(todoElem.createdAt).toLocaleString() : "Unknown"
+        }`;
+
+
         if(todoElem.completed){
             todoName.classList.add("line-through");
         }
@@ -139,6 +225,7 @@ function display_Todos(todoArr){
         todoEdit.addEventListener("click", (e) => {
             e.preventDefault();
             console.log("Open modal");
+            open_modal(todoElem);
         });
 
         // Delete Button
@@ -179,33 +266,55 @@ async function showInfoDetails(todoElem) {
     const infoDetails = document.getElementById("info-details");
     const infoId = document.getElementById("info-id");
     const infoTitle = document.getElementById("info-title");
+    const infoDescription = document.getElementById("info-description");
     const infoCompleted = document.getElementById("info-completed");
     const infoCreatedBy = document.getElementById("info-created-by");
     const infoCreatedAt = document.getElementById("info-created-at");
+    
+    
 
-    let result = await fetch(URL + "/" + todoElem.id)
-    if (result.ok){
-        let data = await result.json()
-        console.log('Details: ', data)
-    }
+    try {
+        // Abrufen der vollständigen Details des Todos von der API
+        const result = await fetch(`${URL}/${todoElem.id}`);
+        if (!result.ok) {
+            throw new Error(`HTTP-Fehler! Status: ${result.status}`);
+        }
 
+        const data = await result.json(); // Die vollständigen Details des Todos
+        console.log('Details:', data); // Debugging (kann entfernt werden)
+    
     // Fülle die Details
-    infoId.textContent = `ID: ${todoElem.id}`;
-    infoTitle.textContent = `Title: ${todoElem.title}`;
-    infoCompleted.textContent = `Completed: ${todoElem.completed ? "Yes" : "No"}`;
-    infoCreatedBy.textContent = `Created By: ${todoElem.createdBy || "Unknown"}`;
-    infoCreatedAt.textContent = `Created At: ${todoElem.createdAt ? new Date(todoElem.createdAt).toLocaleString() : "Unknown"}`;
+    infoTitle.textContent = `Title: ${data.title}`;
+    infoDescription.textContent = `Description: ${data.description || "No description available"}`;
+    infoCompleted.textContent = `Completed: ${data.completed ? "True" : "False"}`;
+    infoCreatedBy.textContent = `Created By: ${data.createdBy || "Unknown"}`;
+    infoCreatedAt.textContent = `Created At: ${data.createdAt ? new Date(data.createdAt).toLocaleString() : "Unknown"}`;
 
     // Zeige den Detailbereich an
     infoDetails.classList.remove("hidden");
+} catch (error) {
+    console.error("Fehler beim Abrufen der Todo-Details:", error);
+}
 
-    // Event-Listener für das Schließen des Detailbereichs
+    
     const closeInfo = document.getElementById("close-info");
     closeInfo.addEventListener("click", (e) => {
         infoDetails.classList.add("hidden");
     });
 }
 
+const refreshTodos = document.getElementById("refresh-todos");
+refreshTodos.addEventListener("click", async () => {
+    try {
+        console.log("Refreshing Todos...");
+        todoArray = [];
+        await get_Todos(); 
+        display_Todos(todoArray); 
+        console.log("Todos refreshed!");
+    } catch (error) {
+        console.error("Fehler beim Aktualisieren der Todos:", error);
+    }
+});
 
 
 
