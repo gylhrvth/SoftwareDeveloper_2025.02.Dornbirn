@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetter</title>
+    <link rel="stylesheet" href="Wetter.css">
+
+</head>
+
+<body>
+    <main>
+        <section id="SelectStyle">
+            <h1 class="citySelect">Wetter in Vorarlberg</h1>
+
+            <label for="citySelect">Stadt auswählen:</label>
+            <select id="citySelect">
+                <option value="Bregenz">Bregenz</option>
+                <option value="Dornbirn">Dornbirn</option>
+                <option value="Feldkirch">Feldkirch</option>
+                <option value="Bludenz">Bludenz</option>
+            </select>
+
+            <button class="button" id="getWeather">Wetter anzeigen</button>
+        </section>
+
+        <section>
+            <div id="output"></div>
+
+
+        </section>
+
+    </main>
+    <section id="weatherDailyTrend">
+       
+        <div id="container" class="container"></div> 
+    </section>
+
+
+    <script src="Wetter.js" defer></script>
+</body>
+
+</html>
