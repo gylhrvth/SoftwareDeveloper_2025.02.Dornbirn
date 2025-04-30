@@ -1,7 +1,3 @@
-
-
-
-
 /* ===========================
     General Styles
 =========================== */
@@ -100,30 +96,6 @@ h1 {
 .itemContainer.completed span{
     text-decoration: line-through; /* Add line-through to the text */
     color: gray; /* Change text color to gray */
-}
-
-/* Urgent Task Styles */
-.titleContainer.urgent {
-    background-color: red;
-    color: white; /* Ensure text is readable on a red background */
-}
-
-.urgent-container {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-}
-
-.urgent-container label {
-    margin-right: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.urgent-checkbox {
-    transform: scale(1.2); /* Make the checkbox slightly larger */
-    cursor: pointer;
 }
 
 /* ===========================

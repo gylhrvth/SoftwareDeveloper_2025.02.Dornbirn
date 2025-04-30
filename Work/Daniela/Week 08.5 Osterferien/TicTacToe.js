@@ -120,14 +120,14 @@ document.addEventListener("DOMContentLoaded", () => {
             board.appendChild(cell);
         }
     }
-    //winn-logic
-    const winCombos = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-    
     function checkWinner(cells, emoji) {
+        //winn-logic
+        const winCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+    
         return winCombos.some(combo =>
             combo.every(index => cells[index].textContent === emoji)
         );
@@ -142,15 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentRound < rounds) {
             currentRound++;
+            // start new game
+            startGame();
         } else if (currentSet < sets) {
             currentSet++;
             currentRound = 1;
-        } else {
-            return endGame();
-        }
 
-        // start new game
-        startGame();
+            // start new game
+            startGame();
+        } else {
+            endGame();
+        }
     }
 
     function endGame() {
