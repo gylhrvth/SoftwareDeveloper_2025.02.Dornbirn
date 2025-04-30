@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings for API</title>
+</head>
+<script>
+    // EventListener für den Range-Input
+    document.addEventListener("DOMContentLoaded", () => {
+        const ratioInput = document.getElementById("ratio");
+        const ratioValue = document.getElementById("ratioValue");
+
+        // Aktualisiere den Text bei Änderungen des Inputs
+        ratioInput.addEventListener("input", () => {
+            ratioValue.textContent = ratioInput.value + "%";
+        });
+    });
+
+    async function sendRation() {
+        const ratio = document.getElementById("ratio").value;
+        const longListValue = document.getElementById("longListValue").checked;
+
+        let ratioValue = ratio / 100;
+        const object = {
+            errorProbability: ratioValue,
+            longlist: longListValue
+        };
+        console.log(object);
+        // Sende die Daten an den Server
+        const response = await fetch('http://192.168.0.53:3000/api/error/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( object )
+        });
+        if (response.ok) {
+            console.log('Timeout ratio updated successfully');
+        } else {
+            console.error('Error updating timeout ratio');
+        }
+    }
+</script>
+<style>
+    .container{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+</style>
+<body>
+    <main>
+        <div class="container">
+            <h1>Warscheinlichkeit des Timeouts einstellen</h1>
+            <input type="range" name="pozentige" id="ratio" min="0" max="100" value="50">
+            <p id="ratioValue"></p>
+            <p>longlist</p>
+            <input type="checkbox" name="longlist" id="longListValue">
+            <button onclick="sendRation()">Senden</button>
+        </div>
+    </main>
+</body>
+</html>
