@@ -43,10 +43,10 @@ h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 2rem;
-    color: var(--header-color); /* Use variable */
+    color: var(--header-color);
     margin-bottom: 20px;
     text-align: center;
-    /*text-shadow: 1px 1px 2px var(--shadow-color); */
+   
 }
 
 /* ===========================
@@ -56,10 +56,10 @@ h1 {
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    background-color: var(--popup-bg-color); /* Use variable */
+    background-color: var(--popup-bg-color); 
     border-radius: 10px;
-    box-shadow: 0 8px 16px var(--shadow-color); /* Use variable */
-    border: 2px solid var(--border-color); /* Use variable */
+    box-shadow: 0 8px 16px var(--shadow-color); 
+    border: 2px solid var(--border-color); 
     margin: 20px;
 }
 
@@ -68,63 +68,37 @@ h1 {
 =========================== */
 /* Default itemContainer background */
 .itemContainer {
-    /*margin-bottom: 15px;*/
-    /*padding: 8px;*/
-    background-color: var(--popup-bg-color); /* Use variable */
-    /*box-shadow: 0 4px 10px var(--shadow-color); *//* Use variable */
+
+    background-color: var(--popup-bg-color); 
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .itemContainer:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px var(--shadow-color); /* Use variable */
-    background-color: var(--button--hover-color); /* Use variable */
+    box-shadow: 0 6px 12px var(--shadow-color); 
+    background-color: var(--button--hover-color); 
 }
 
 /* Change background color when detailsContainer is displayed */
 .itemContainer.details-visible {
-    background-color: #fffdf4; /* Use variable */
+    background-color: #fffdf4; 
     border-radius: 10px;
     margin-bottom: 5px;
-    /*padding: 15px 10px;*/ /* Add padding for better spacing */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Bottom shadow */
-                0 -2px 4px rgba(0, 0, 0, 0.05); /* Top shadow */
-    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 -2px 4px rgba(0, 0, 0, 0.05); 
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; 
 }
 
 .itemContainer.completed {
-    background-color: var(--completed-task-bg-color); /* Use variable */
+    background-color: var(--completed-task-bg-color); 
     color: gray;
 }
 
 .itemContainer.completed span{
-    text-decoration: line-through; /* Add line-through to the text */
-    color: gray; /* Change text color to gray */
+    text-decoration: line-through; 
+    color: gray; 
 }
 
-/* Urgent Task Styles */
-.titleContainer.urgent {
-    background-color: red;
-    color: white; /* Ensure text is readable on a red background */
-}
-
-.urgent-container {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-}
-
-.urgent-container label {
-    margin-right: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.urgent-checkbox {
-    transform: scale(1.2); /* Make the checkbox slightly larger */
-    cursor: pointer;
-}
 
 /* ===========================
    Title Container
@@ -136,7 +110,7 @@ h1 {
     justify-content: space-between;
     cursor: pointer;
     padding: 5px;
-    border-bottom: 1px dashed var(--border-color); /* Use variable */
+    border-bottom: 1px dashed var(--border-color); 
 }
 
 .task-checkbox {
@@ -146,16 +120,16 @@ h1 {
 }
 
 .task-title {
-    font-weight: 400; /* Normal weight for a handwritten look */
+    font-weight: 400; 
     flex-grow: 1;
     font-weight: 900;
     font-size: 1.5rem;
-    color: var(--text-color); /* Use variable */
+    color: var(--text-color); 
 }
 
 .task-date {
     font-size: 1.2rem;
-    color: var(--text-color); /* Use variable */
+    color: var(--text-color); 
     margin-right: 10px;
 }
 
@@ -163,23 +137,23 @@ h1 {
    Button Styles
 =========================== */
 button {
-    font-family: 'Inter', sans-serif; /* Ensure buttons use the same font */
-    font-weight: 500; /* Medium weight for buttons */
+    font-family: 'Inter', sans-serif; 
+    font-weight: 500; 
     padding: 5px 10px;
     margin: 5px;
     font-size: 1rem;
-    border: 2px solid var(--border-color); /* Use variable */
+    border: 2px solid var(--border-color); 
     border-radius: 5px;
-    background-color: var(--button-bg-color); /* Use variable */
+    background-color: var(--button-bg-color); 
     cursor: pointer;
-    box-shadow: 0 4px 6px var(--shadow-color); /* Use variable */
+    box-shadow: 0 4px 6px var(--shadow-color); 
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    background-color: var(--button-hover-bg-color); /* Use variable */
+    background-color: var(--button-hover-bg-color); 
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px var(--shadow-color); /* Use variable */
+    box-shadow: 0 6px 10px var(--shadow-color); 
 }
 
 .buttonContainer {
@@ -238,14 +212,13 @@ button:hover {
 /* Checkbox styles */
 .task-checkbox {
     margin-right: 10px;
-    transform: scale(1.2); /* Default size */
+    transform: scale(1.2); 
     cursor: pointer;
-    transition: transform 0.2s ease; /* Smooth transition for scaling */
+    transition: transform 0.2s ease; 
 }
 
-/* Hover effect for checkbox */
 .task-checkbox:hover {
-    transform: scale(1.6); /* Slightly bigger on hover */
+    transform: scale(1.6); 
 }
 
 /* ===========================
@@ -254,11 +227,11 @@ button:hover {
 .detailsContainer {
     display: none;
     padding: 20px;
-    background-color: var(--details-bg-color); /* Use variable */
-    border-bottom-left-radius: 10px; /* Set bottom-left radius */
-    border-bottom-right-radius: 10px; /* Set bottom-right radius */
+    background-color: var(--details-bg-color); 
+    border-bottom-left-radius: 10px; 
+    border-bottom-right-radius: 10px; 
     font-size: 0.95rem;
-    color: var(--text-color); /* Use variable */
+    color: var(--text-color); 
 
     transition: max-height 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
@@ -310,7 +283,7 @@ button:hover {
     display: block;
     opacity: 1;
     max-height: 1000px;
-    border-top: dashed var(--border-color); /* Use variable */
+    border-top: dashed var(--border-color); 
 }
 
 .detailsOff {
@@ -394,7 +367,7 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -411,7 +384,7 @@ button:hover {
     max-width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Add spacing between elements */
+    gap: 15px; 
 }
 
 /* Popup label */
@@ -425,21 +398,21 @@ button:hover {
 .popup-textarea {
     width: 100%;
     height: 100px;
-    resize: none; /* Prevent resizing */
-    overflow: auto; /* Add scrollbars if content exceeds height */
+    resize: none; 
+    overflow: auto; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
     font-family: Arial, sans-serif;
-    box-sizing: border-box; /* Include padding and border in width/height */
+    box-sizing: border-box; 
 }
 
 /* Button container */
 .popup-button-container {
     display: flex;
     justify-content: flex-end;
-    gap: 10px; /* Add spacing between buttons */
+    gap: 10px; 
 }
 
 /* Popup buttons */
@@ -512,8 +485,8 @@ button {
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: center;
-    font-size: 0; /* Hide button text */
-    color: transparent; /* Ensure text is not visible */
+    font-size: 0; 
+    color: transparent; 
     border: none;
     cursor: pointer;
 }
@@ -525,7 +498,7 @@ button {
 /* Delete button */
 .delete-button {
     background-image: url('assets/icons/delete.svg');
-    font-size: 0; /* Hide button text */
+    font-size: 0; 
 }
 
 .delete-button:hover {
@@ -534,14 +507,14 @@ button {
 
 /* Edit button */
 .edit-button {
-    width: 35px; /* Fixed width */
-    height: 35px; /* Fixed height */
+    width: 35px; 
+    height: 35px; 
     margin: 10px 5px 10px 20px;
     background-image: url('assets/icons/edit.svg');
-    font-size: 0; /* Hide button text */
-    flex-shrink: 0; /* Prevent resizing in a flex container */
-    display: inline-block; /* Ensure it behaves like a block element */
-    box-sizing: border-box; /* Include padding and border in the size */
+    font-size: 0; 
+    flex-shrink: 0; 
+    display: inline-block; 
+    box-sizing: border-box; 
 }
 
 .edit-button:hover {

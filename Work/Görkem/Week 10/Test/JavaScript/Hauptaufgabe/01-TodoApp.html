@@ -11,7 +11,10 @@
     <h1>Todo App</h1>
     <form class="input-container">
         <input id="input-todo" type="text" placeholder="Enter Todo">
+        <div class="button-container">
         <button id="add-todo" type="submit">+</button>
+        <button id="refresh-todos" type="button">&#x21bb;</button>
+    </div>
     </form>
     <div class="todo-container">
         <div class="todo">
@@ -43,6 +46,9 @@
             </div>
             <div class="modal-bottom">
                 <input type="text" id="edit-todo-name" placeholder="Enter todo">
+                <input type="text" id="edit-todo-description" placeholder="Enter description">
+                <input type="text" id="edit-todo-created-by" readonly placeholder="Created By">
+                <input type="text" id="edit-todo-created-at" readonly placeholder="Created At">
                 <div id="edit-todo-completed-wrapper">
                     <input type="checkbox" id="edit-todo-completed">Completed
                 </div>
@@ -50,11 +56,11 @@
             </div>
         </div>
     </div>
-        
     <div class="info-details hidden" id="info-details">
-            <h3>Todo Details</h3>
+            <h2>Todo Details</h2>
             <p id="info-id"></p>
             <p id="info-title"></p>
+            <p id="info-description"></p>
             <p id="info-completed"></p>
             <p id="info-created-by"></p>
             <p id="info-created-at"></p>

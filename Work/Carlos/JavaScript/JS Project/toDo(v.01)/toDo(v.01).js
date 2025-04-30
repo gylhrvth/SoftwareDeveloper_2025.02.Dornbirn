@@ -24,7 +24,7 @@ function initializeApp() {
         displayTasks(); // Initial load of tasks
 
         document.getElementById('refreshContent').addEventListener('click', () => {
-            displayTasks();
+            displayTasks(); // Refresh tasks
         });
     });
 }
