@@ -111,9 +111,9 @@ async function edit_Todos(todoElem) {
         title: editTodoName.value,
         description: editTodoDescription ? editTodoDescription.value : "No description",
         completed: editTodoCompleted.checked,
-        createdBy: 'Görkem', // Behalte den ursprünglichen Ersteller
-        createdAt: todoElem.createdAt, // Behalte das ursprüngliche Erstellungsdatum
-        updatedAt: new Date().toISOString(), // Aktualisiere das Änderungsdatum
+        createdBy: 'Görkem', 
+        createdAt: todoElem.createdAt, 
+        updatedAt: new Date().toISOString(), 
     };
 
     try {
