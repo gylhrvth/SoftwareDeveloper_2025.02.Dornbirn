@@ -28,9 +28,6 @@ main{
     width: 90%;
     height: 90%;
     gap: 20px;
-    /*background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);*/
 }
 
 .header{
@@ -51,7 +48,7 @@ main{
 }
 
 .header button{
-    width: 20%;
+    width: 15%;
     height: 30%;
     background-color: #3C99F0;
     color: white;
@@ -81,6 +78,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 50%;
     height: 10%;
     background-color: white;
@@ -90,6 +88,12 @@ main{
     margin: 5px 0;
 }
 
+.item h2{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .item:hover{
     background-color: #3CD1F0;
 }
@@ -97,7 +101,7 @@ main{
 .details{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    flex-direction: column;
+    grid-template-rows: 100px 1fr 80px 80px 80px 50px 50px 50px;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -113,6 +117,7 @@ main{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.664);
     width: 88%;
+    max-height: 20%;
     text-align: center;
 }
 
@@ -126,10 +131,8 @@ main{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.664);
     width: 90%;
-    height: 50%;
-    overflow-wrap: break-word; /* Lange Wörter umbrechen */
-    word-wrap: break-word; /* Für ältere Browser */
-    white-space: normal; /* Zeilenumbruch bei Bedarf */
+    height: 70%;
+    overflow: scroll;
 }
 
 .details p:not(.description){
@@ -145,8 +148,8 @@ main{
 
 .details button{
     grid-column: span 2;
-    width: 20%;
-    height: 50%;
+    width: 13%;
+    height: 60%;
     background-color: #3C99F0;
     color: white;
     border-radius: 10px;
@@ -207,7 +210,7 @@ form {
 
 .form button {
     grid-column: span 2;
-    width: 20%;
+    width: 15%;
     height: 50%;
     background-color: #3C99F0;
     color: white;
@@ -278,3 +281,88 @@ form {
 .hidden{
     display: none;
 } 
+
+@media (max-width: 768px) {
+
+    .container{
+        width: 98vw;
+        height: 98vh;
+    }
+    
+    main{
+        width: 98vw;
+        height: 98vh;
+    }
+    .header h1{
+        font-size: 1.5em;
+    }
+    .header button{
+        width: 30%;
+        height: 40%;
+        font-size: 0.8em;
+    }
+    .items{
+        width: 90%;
+        height: 70%;
+    }
+    .item h2{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .item{
+        width: 80%;
+        height: 10%;
+    }
+
+    .details{
+        width: 90%;
+        height: 100%;
+    }
+    .details h2{
+        font-size: 1.2em;
+        width: 83%;
+    }
+    .details p:not(.description){
+        font-size: 0.8em;
+        width: 70%;
+        margin: 0;
+    }
+
+    .details button{
+        width: 30%;
+        height: 50%;
+        font-size: 0.8em;
+    }
+
+    .description{
+        font-size: 0.8em;
+        width: 88%;
+        height: 50%;
+    }
+    .form label{
+        font-size: 1.2em;
+    }
+    .form input{
+        font-size: 0.8em;
+        width: 90%;
+        height: 20%;
+    }
+    .form textarea{
+        font-size: 0.8em;
+        width: 100%;
+        height: 70%;
+    }
+
+    .form button{
+        width: 30%;
+        height: 50%;
+        font-size: 0.8em;
+    }
+
+    .pagination button{
+        width: 20%;
+        height: 30%;
+        font-size: 0.8em;
+    }
+}
