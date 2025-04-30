@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+   
 }
 body>h1, p{
     font-family: "Matemasie", sans-serif;
@@ -24,6 +24,7 @@ body>h1, p{
     margin: 0.5em;
     padding: 0.2em;
 }
+
 .ToDo-Container {
     display: flex;
     flex-direction: row;
@@ -64,6 +65,7 @@ body>h1, p{
     right: 115px;
 }
 .editButton {
+
     right: 75px;
 }
 .deleteButton {
