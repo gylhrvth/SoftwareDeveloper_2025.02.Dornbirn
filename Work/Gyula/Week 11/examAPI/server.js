@@ -5,11 +5,13 @@ const app = express()
 const port = 3000
 
 const ipWithErrors = [
+  /*
   {
     ip: '192.168.0.62',
     errorProbability: 0.05,
     longlist: true
   },
+  */
 ]
 let users = [
   'Daniela', 'Leonie', 'Carlos', 'Görkem', 'Alp', 'Sandro', 'Gyula'
@@ -72,6 +74,7 @@ for (let i = 0; i < 555; i++) {
     dueDate: '2023-10-01',
     complete: Math.random() < 0.5 ? false : true,
     responsible: users[Math.floor(Math.random() * users.length)],
+    priority: 1 + Math.floor(Math.random() * 3),
     createdBy: 'Gyula',
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -162,6 +165,7 @@ app.post('/api/todo', (req, res) => {
     description: req.body.description,
     dueDate: req.body.dueDate,
     complete: req.body.compplete ? req.body.complete : false,
+    priority: req.body.priority ? req.body.priority : 3,
     responsible: req.body.responsible,
     createdBy: req.body.createdBy,
     createdAt: new Date(),
@@ -206,6 +210,7 @@ app.put('/api/todo/:id', (req, res) => {
   todo.description = req.body.description
   todo.dueDate = req.body.dueDate
   todo.complete = req.body.complete ? req.body.complete : false
+  todo.priority = req.body.priority ? req.body.priority : 3
   todo.responsible = req.body.responsible
   todo.createdBy = req.body.createdBy
   todo.updatedAt = new Date()
@@ -268,6 +273,12 @@ app.patch('/api/todo/:id', (req, res) => {
     }
     selectedTodo.responsible = req.body.responsible
   }
+  if (req.body.priority) {
+    if (isNaN(Number(req.body.priority))) {
+      return res.status(400).send('Ungültiges Format: priority')
+    }
+    selectedTodo.priority = Number(req.body.priority)
+  }
   if (req.body.createdBy) {
     if (!users.includes(req.body.createdBy)) {
       return res.status(400).send('Ungültige Angabe: createdBy')
@@ -283,6 +294,7 @@ app.patch('/api/todo/:id', (req, res) => {
 app.post('/api/error', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: POST /api/error`)
+  console.log('req.body: ', req.body)
 
   let config = ipWithErrors.find(obj => obj.ip === ip)
   if (config === undefined) {

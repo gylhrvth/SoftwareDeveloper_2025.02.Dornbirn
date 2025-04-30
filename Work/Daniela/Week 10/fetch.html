@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Übungen</title> 
+  
+</head>
+
+<style>
+    #map { height: 600px; width: 100%; }
+</style>
+
+<body>
+
+    <section>
+        <h1>Erdbeben übersicht</h1>
+        <button onclick="fetchEarthquakesList()">Daten laden</button>
+        <ul id="quake-list"></ul>
+    </section>
+
+    <section> 
+        <h1>Erdbeben auf der Weltkarte</h1>
+        <div id="map"></div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="fetch.js" defer></script>
+   
+</body>
+
+</html>
