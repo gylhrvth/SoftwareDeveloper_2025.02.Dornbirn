@@ -3,34 +3,48 @@
 // Configuration and Setup
 // ===========================
 
-// TO-DO Liste mit API
-
 // Achtung, APP funktioniert nur über Safari Browser!!!
 
-// TO-DO Liste mit API
+/* Possible API URLs: 
+http://192.168.0.67:3000/api/todo
+http://192.168.0.67:3000/api/todo/${task.id}
+http://192.168.0.53:3000/api/todo
+http://192.168.0.53:3000/api/todo/${task.id} */
 
-// ===========================
-// Global Variables
+/* Start URL from localhost:
+Start server on terminal inside API folder and write: node server.js
+Stop server: Ctrl + C
+Local URL: 
+http://localhost:3000/api/todo
+http://localhost:3000/api/todo/${task.id}*/
+
 // ===========================
 
 const url = 'http://192.168.0.53:3000/api/todo'; // Replace with your actual API URL
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayTasks(); // Initial load of tasks
+
+    // Refresh tasks every 1 minute seconds
+    /*setInterval(() => {
+        displayTasks();
+    }, 60000);*/
+
+    // Add event listener to the "Refresh Content" button
+    document.getElementById('refreshContent').addEventListener('click', () => {
+        displayTasks();
+    });
+});
 
 // ===========================
 // GET: Fetch and Display Tasks
 // ===========================
 
-function initializeApp() {
-    document.addEventListener('DOMContentLoaded', () => {
-        displayTasks(); // Initial load of tasks
-
-        document.getElementById('refreshContent').addEventListener('click', () => {
-            displayTasks();
-        });
-    });
-}
-
 // Fetch tasks from the API
 async function getTasks() {
+    //const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
+    //remote -> http://192.168.0.53:3000/api/todo
+    //local -> http://localhost:3000/api/todo
     try {
         const response = await fetch(url); // Fetch data from the API
         if (!response.ok) {
@@ -61,7 +75,7 @@ async function displayTasks() {
 // Task Creation
 // ===========================
 
-// Creates a new task container
+// Create a new task container
 function createItemContainer(task) {
     const itemContainer = document.createElement('div');
     itemContainer.classList.add('itemContainer');
@@ -589,6 +603,3 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('click', toggleDarkMode);
 });
-
-// Call the function to initialize the app
-initializeApp();
