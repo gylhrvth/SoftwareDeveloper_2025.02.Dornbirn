@@ -1,0 +1,744 @@
+/* ===========================
+    General Styles
+=========================== */
+
+/* Light mode (default) */
+:root {
+    --background-color: #e3f3fd;
+    --text-color: #333;
+    --header-color: #4a90e2;
+    --button-bg-color: #fef9e7;
+    --button-hover-bg-color: #f9e79f;
+    --popup-bg-color: #fff;
+    --details-bg-color: #fefefe;
+    --details-hover-bg-color: #eaeaea;
+    --completed-task-bg-color: #edf4fd;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --button--hover-color: #fffcef;
+}
+
+
+body {
+    font-family: 'Caveat', cursive; /* Handwritten font for a block-like look */
+    /* font-family: 'Inter', sans-serif; /* Modern sans-serif font for a clean look */
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: var(--background-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--header-color); /* Use variable */
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px var(--shadow-color); /* Use variable */
+}
+
+/* ===========================
+   Main Container
+=========================== */
+#mainContainer {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: var(--popup-bg-color); /* Use variable */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px var(--shadow-color); /* Use variable */
+    border: 2px solid var(--border-color); /* Use variable */
+    margin: 20px;
+}
+
+/* ===========================
+   Item Container
+=========================== */
+/* Default itemContainer background */
+.itemContainer {
+    /*margin-bottom: 15px;*/
+    /*padding: 8px;*/
+    background-color: var(--popup-bg-color); /* Use variable */
+    /*box-shadow: 0 4px 10px var(--shadow-color); *//* Use variable */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.itemContainer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow-color); /* Use variable */
+    background-color: var(--button--hover-color); /* Use variable */
+}
+
+/* Change background color when detailsContainer is displayed */
+.itemContainer.details-visible {
+    background-color: #fffdf4; /* Use variable */
+    border-radius: 10px;
+    margin-bottom: 5px;
+    /*padding: 15px 10px;*/ /* Add padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Bottom shadow */
+                0 -2px 4px rgba(0, 0, 0, 0.05); /* Top shadow */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+}
+
+.itemContainer.completed {
+    background-color: var(--completed-task-bg-color); /* Use variable */
+    color: gray;
+}
+
+.itemContainer.completed span{
+    text-decoration: line-through; /* Add line-through to the text */
+    color: gray; /* Change text color to gray */
+}
+
+/* ===========================
+   Title Container
+=========================== */
+
+/* White row */
+.white-row {
+    background-color: #ffffff; /* White */
+}
+
+/* Grey row */
+.grey-row {
+    background-color: #f9f9f9; /* Very light grey */
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px dashed var(--border-color); /* Use variable */
+}
+
+.task-checkbox {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.task-title {
+    font-weight: 400; /* Normal weight for a handwritten look */
+    flex-grow: 1;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--text-color); /* Use variable */
+}
+
+.task-date {
+    font-size: 1.2rem;
+    color: var(--text-color); /* Use variable */
+    margin-right: 10px;
+}
+
+/* ===========================
+   Button Styles
+=========================== */
+button {
+    font-family: 'Inter', sans-serif; /* Ensure buttons use the same font */
+    font-weight: 500; /* Medium weight for buttons */
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 1rem;
+    border: 2px solid var(--border-color); /* Use variable */
+    border-radius: 5px;
+    background-color: var(--button-bg-color); /* Use variable */
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--shadow-color); /* Use variable */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color); /* Use variable */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px var(--shadow-color); /* Use variable */
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-button {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.delete-button:hover {
+    background-color: #f5c6cb;
+    transform: scale(1.05);
+}
+
+.edit-button {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.edit-button:hover {
+    background-color: #c3e6cb;
+    transform: scale(1.05);
+}
+
+#postElement {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+#postElement:hover {
+    background-color: #ffeeba;
+    transform: scale(1.05);
+}
+
+#refreshContent {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+#refreshContent:hover {
+    background-color: #bee5eb;
+    transform: scale(1.05);
+}
+
+/* ===========================
+   Checkbox styles
+=========================== */
+
+/* Checkbox styles */
+.task-checkbox {
+    margin-right: 10px;
+    transform: scale(1.2); /* Default size */
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth transition for scaling */
+}
+
+/* Hover effect for checkbox */
+.task-checkbox:hover {
+    transform: scale(1.6); /* Slightly bigger on hover */
+}
+
+/* ===========================
+   Details Container
+=========================== */
+.detailsContainer {
+    display: none;
+    padding: 20px;
+    background-color: var(--details-bg-color); /* Use variable */
+    border-bottom-left-radius: 10px; /* Set bottom-left radius */
+    border-bottom-right-radius: 10px; /* Set bottom-right radius */
+    font-size: 0.95rem;
+    color: var(--text-color); /* Use variable */
+
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.detailsContainer .detailRow {
+    margin-bottom: 8px;
+    padding-inline: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.detailsContainer .detailRow strong {
+    font-size: 0.9em;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    color: #555;
+    margin-right: 8px;
+    min-width: 120px;
+}
+
+.detailsContainer .detailRow span {
+    font-size: 1.4em;
+    color: #333;
+    flex-grow: 1;
+}
+
+.valueClass {
+    display: inline-block; /* Ensure the span respects its container's boundaries */
+    max-width: 100%; /* Limit the width to the container */
+    overflow-wrap: break-word; /* Allow long words to break and wrap to the next line */
+    word-wrap: break-word; /* For compatibility with older browsers */
+    word-break: break-word; /* Break long words at arbitrary points */
+    white-space: normal; /* Allow text to wrap to the next line */
+}
+
+.detailsContainer .detailRow:hover {
+    background-color: #eaeaea;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.detailsOn {
+    margin-top: -2px;
+    margin-bottom: 5px;
+    display: block;
+    opacity: 1;
+    max-height: 1000px;
+    border-top: dashed var(--border-color); /* Use variable */
+}
+
+.detailsOff {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+}
+
+/* ===========================
+   Popup Form
+=========================== */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.popup-content label {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #555;
+}
+
+.popup-content input,
+.popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.popup-content input:focus,
+.popup-content textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#cancelButton {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#cancelButton:hover {
+    background-color: #f5c6cb;
+    transform: scale(1.05);
+}
+
+#submitButton {
+    background-color: #d4edda;
+    color: #155724;
+    background-image: url('assets/icons/check.svg');
+}
+
+#submitButton:hover {
+    background-color: #c3e6cb;
+    transform: scale(1.05);
+}
+
+#darkModeToggle{
+    background-color: #ffcab5;
+    color: #0c5460;
+}
+#darkModeToggle:hover {
+    background-color: #fab99f;
+    transform: scale(1.05);
+}
+
+button {
+        
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0; /* Hide button text */
+    color: transparent; /* Ensure text is not visible */
+    border: none;
+    cursor: pointer;
+}
+
+/* Delete button */
+.delete-button {
+    background-image: url('assets/icons/delete.svg');
+    font-size: 0; /* Hide button text */
+}
+
+.delete-button:hover {
+    background-color: #f5c6cb;
+}
+
+/* Edit button */
+.edit-button {
+    width: 35px; /* Fixed width */
+    height: 35px; /* Fixed height */
+    margin: 10px 5px 10px 20px;
+    background-image: url('assets/icons/edit.svg');
+    font-size: 0; /* Hide button text */
+    flex-shrink: 0; /* Prevent resizing in a flex container */
+    display: inline-block; /* Ensure it behaves like a block element */
+    box-sizing: border-box; /* Include padding and border in the size */
+}
+
+.edit-button:hover {
+    background-color: #c3e6cb;
+}
+
+/* Add Task button */
+#postElement {
+    background-image: url('assets/icons/add.svg');
+}
+
+#postElement:hover {
+    background-color: #ffeeba;
+}
+
+/* Refresh Content button */
+#refreshContent {
+    background-image: url('assets/icons/refresh.svg');
+}
+
+#buttonContainer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#submitButton {
+    background-image: url('assets/icons/check.svg');
+}
+
+#cancelButton {
+    background-image: url('assets/icons/cancel.svg');
+}
+
+#darkModeToggle {
+    background-image: url('assets/icons/contrast.svg');
+}
+
+/* Popup overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Popup content */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between elements */
+}
+
+/* Popup label */
+.popup-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Popup textarea */
+.popup-textarea {
+    width: 100%;
+    height: 100px;
+    resize: none; /* Prevent resizing */
+    overflow: auto; /* Add scrollbars if content exceeds height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+/* Button container */
+.popup-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Popup buttons */
+.popup-button {
+    padding: 8px 12px;
+    font-size: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cancel button */
+.popup-cancel-button {
+    background-color: #f8d7da;
+    color: #721c24;
+    background-image: url('assets/icons/cancel.svg');
+}
+
+.popup-cancel-button:hover {
+    background-color: #f5c6cb;
+}
+
+/* Save button */
+.popup-save-button {
+    background-color: #d4edda;
+    color: #155724;
+    background-image: url('assets/icons/check.svg');
+}
+
+.popup-save-button:hover {
+    background-color: #c3e6cb;
+}
+
+
+/* Dark mode */
+.dark-mode {
+    --background-color: #0d1b2a; /* Dark blue background */
+    --text-color: #e0e1dd; /* Light gray text */
+    --header-color: #1b263b; /* Slightly lighter dark blue for headers */
+    --button-bg-color: #1b4332; /* Dark green for buttons */
+    --button-hover-bg-color: #2d6a4f; /* Slightly lighter green for hover */
+    --popup-bg-color: #1b263b; /* Dark blue for popups */
+    --details-bg-color: #1b263b; /* Same as popup for consistency */
+    --details-hover-bg-color: #2d6a4f; /* Slightly lighter green for hover */
+    --completed-task-bg-color: #344e41; /* Muted green for completed tasks */
+    --border-color: #415a77; /* Muted blue for borders */
+    --details-bg-visible-color: #242e32; /* Dark blue-gray when details are visible */
+    --button-buttonDark-color: #cc7f43; /* Dark blue-gray for buttons */
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    --gradient-bg: linear-gradient(135deg, #0d1b2a, #1b4332); /* Gradient background */
+    
+
+    
+    
+    #mainContainer {
+        background-color: var(--background-color);
+        border: 2px solid var(--border-color); /* Orange border for contrast */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        color: var(--text-color); /* Light gray text */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+
+
+    .itemContainer:hover {
+        background-color: var(--details-hover-bg-color); /* Slightly lighter gray on hover */
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+    }
+
+    .itemContainer.details-visible {
+        background-color: var(--details-bg-visible-color); /* Dark gray when details are visible */
+    }
+
+    .itemContainer.completed {
+        background-color: var(--completed-task-bg-color); /* Dark blue-gray for completed tasks */
+        border: 1px solid var(--border-color); /* Orange border for completed tasks */
+        color: var(--text-color); /* Ensure text is light for readability */
+    }
+
+    .detailRow strong {
+        color: var(--header-color); /* Vibrant orange for detail labels */
+        font-weight: bold; /* Make text more prominent */
+    }
+
+    .detailRow span {
+        color: var(--text-color); /* Ensure text is light for readability */
+    }
+    
+
+    .popup-content {
+        background-color: var(--popup-bg-color);
+        color: var(--text-color);
+        border: 2px solid var(--border-color); /* Orange border for popups */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+    }
+
+    .popup-content h2 {
+        color: var(--header-color); /* Vibrant orange for headers */
+    }
+
+    .popup-content label {
+        color: var(--text-color); /* Light gray for labels */
+    }
+    
+
+    .detailsContainer {
+        background-color: var(--details-bg-color);
+        color: var(--text-color);
+        /*border: 1px solid var(--border-color);*/ /* Orange border for details */
+    }
+
+    .detailsContainer .detailRow {
+        background-color: var(--details-bg-visible-color); /* Dark gray for detail rows */
+        color: var(--text-color); /* Ensure text is light for readability */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    }
+
+    .detailsContainer .detailRow:hover {
+        background-color: var(--details-hover-bg-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow for hover */
+    }
+
+    .task-title {
+        color: var(--text-color); /* Ensure text is light for readability */
+        font-weight: bold; /* Make text more prominent */
+    }
+
+    .itemContainer.details-visible {
+        background-color: var(--details-bg-visible-color); /* Dark gray when details are visible */
+    }
+
+    .itemContainer.details-visible.completed {
+        background-color: var(--completed-task-bg-color); /* Dark blue-gray for completed tasks */
+        border: 1px solid var(--border-color); /* Orange border for completed tasks */
+        color: var(--text-color); /* Ensure text is light for readability */
+    }
+
+    .itemContainer.completed span{
+        text-decoration-color: rgb(169, 87, 87); /* Add line-through to the text */
+    }
+
+    strong.keyClass {
+        color: #e09b66;
+    }
+
+
+    button {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+        background-color: var(--button-buttonDark-color);
+        transform: translateY(-2px); /* Lift effect on hover */
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+
+    button#postElement {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        background-image: url('assets/icons/add.svg');
+    }
+
+    button#refreshContent {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        background-image: url('assets/icons/refresh.svg');
+    }
+
+    button#submitButton {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        background-image: url('assets/icons/check.svg');
+    }
+
+    button#cancelButton {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        background-image: url('assets/icons/cancel.svg');
+    }
+
+    button#darkModeToggle {
+        background-color: var(--button-buttonDark-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color); /* Orange border for buttons */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        background-image: url('assets/icons/contrast.svg');
+    }
+
+}
+
+

@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", async function () {
     getData();
 });
-const ip = 'http://192.168.0.67:3000/api/todo/'; // IP-Adresse des Servers
+const ip = 'http://192.168.0.53:3000/api/todo/'; // IP-Adresse des Servers
 const itemsElement = document.querySelector('.items');
 let currentPage = 1; // Aktuelle Seite
 const itemsPerPage = 6; // Anzahl der Elemente pro Seite
 
 setInterval(() => {
-    if (itemsElement.querySelector('item')) {
+    if (itemsElement.querySelector('.item')) {
         getData();
     }
 }, 5000); // Alle 5 Sekunden die Daten neu laden
@@ -164,7 +164,6 @@ function createDOMDetails(item) {
 
     const backButton = document.createElement('button');
     backButton.textContent = 'Zurück';
-    backButton.classList.add('backButton');
     backButton.addEventListener('click', () => {
         getData(); // Daten neu laden
     });
@@ -172,7 +171,6 @@ function createDOMDetails(item) {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Löschen';
-    deleteButton.classList.add('deleteButton');
     deleteButton.addEventListener('click', async () => {
         deleteObject(item.id);
     });
@@ -180,7 +178,6 @@ function createDOMDetails(item) {
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Bearbeiten';
-    editButton.classList.add('editButton');
     editButton.addEventListener('click', () => {
         loadForm('edit', item.id, item);
     });
@@ -283,6 +280,10 @@ function loadForm(direction, id, item = null) {
         const selectedDate = event.target.value;
         const currentDate = new Date();
         const inputDate = new Date(selectedDate);
+
+        // Setze die Zeit von currentDate auf 00:00:00
+        currentDate.setHours(0, 0, 0, 0);
+
         if (inputDate < currentDate) {
             dueDateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
             dueDateInput.reportValidity(); // Zeigt die Fehlermeldung an
@@ -313,7 +314,7 @@ function loadForm(direction, id, item = null) {
 
     const backButtonForm = document.createElement('button');
     backButtonForm.textContent = 'Zurück';
-    backButtonForm.classList.add('backButton');
+    //backButtonForm.classList.add('backButton');
     backButtonForm.type = 'button'; // Verhindert, dass der Button das Formular absendet
     backButtonForm.addEventListener('click', (event) => {
         event.preventDefault(); // Verhindert das Standardverhalten
@@ -416,26 +417,4 @@ function loadingError(status, statusText) {
         shadowDiv.remove();
         getData(); // Versuche erneut, die Daten zu laden
     }, 3000); // Warte 3 Sekunden, bevor du es erneut versuchst
-}
-
-function calcDate() {
-    console.log("calcDate() wurde aufgerufen");
-    //Prüfen, ob das Datum in der Vergangenheit liegt
-    const dateInput = document.querySelector('input[name="dueDate"]');
-    const dateValue = dateInput.value;
-    const currentDate = new Date();
-    const inputDate = new Date(dateValue);
-    if (inputDate < currentDate) {
-        console.log("Das Datum liegt in der Vergangenheit." + inputDate);
-        console.log("Das aktuelle Datum ist: " + currentDate);
-        dateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
-        dateInput.reportValidity(); // Zeigt die Fehlermeldung an
-        return null; // Abbrechen, wenn das Datum ungültig ist
-
-    } else {
-        dateInput.setCustomValidity(""); // Setzt die Fehlermeldung zurück
-        dateInput.reportValidity(); // Entfernt die Fehlermeldung
-    }
-
-    return dateValue; // Gültiges Datum zurückgeben
 }

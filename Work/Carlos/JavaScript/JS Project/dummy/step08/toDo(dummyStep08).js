@@ -1,4 +1,15 @@
+
+
 // Achtung, funktioniert nur über Safari Browser!!!
+//Start server: node server.js
+//Stop server: Ctrl + C
+//Access server: 
+// local: http://localhost:3000/api/todo
+// local: http://localhost:3000/api/todo/${task.id}
+// remote: http://192.168.0.53:3000/api/todo
+// remote: http://192.168.0.53:3000/api/todo/${task.id}
+
+const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
 
 document.addEventListener('DOMContentLoaded', () => {
     displayTasks(); // Initial load of tasks
@@ -15,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function getTasks() {
-    const url = 'http://192.168.0.53:3000/api/todo'; // Replace with your actual API URL
-
+    //const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
+    //remote -> http://192.168.0.53:3000/api/todo
+    //local -> http://localhost:3000/api/todo
     try {
         const response = await fetch(url); // Fetch data from the API
         if (!response.ok) {
@@ -47,6 +59,11 @@ function createItemContainer(task) {
     const itemContainer = document.createElement('div');
     itemContainer.classList.add('itemContainer');
 
+    // Add the completed class if the task is marked as complete
+    if (task.complete) {
+        itemContainer.classList.add('completed');
+    }
+
     const titleContainer = createTitleContainer(task);
     itemContainer.appendChild(titleContainer);
 
@@ -61,9 +78,25 @@ function createTitleContainer(task) {
     const titleSpan = createTitleSpan(task.title);
     const buttonContainer = createButtonContainer(task);
 
+    // Stop propagation for the checkbox
+    checkbox.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent triggering the titleContainer click event
+    });
+
+    // Stop propagation for the delete button
+    const deleteButton = buttonContainer.querySelector('.delete-button');
+    if (deleteButton) {
+        deleteButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent triggering the titleContainer click event
+        });
+    }
+
     titleContainer.appendChild(checkbox);
     titleContainer.appendChild(titleSpan);
     titleContainer.appendChild(buttonContainer);
+
+    // Add event listener to toggle details when clicking on the titleContainer
+    titleContainer.addEventListener('click', () => toggleDetailsContainer(titleContainer, task));
 
     return titleContainer;
 }
@@ -78,7 +111,7 @@ function createCheckbox(isComplete, task) {
     checkbox.addEventListener('change', async () => {
         try {
             const updatedTask = { complete: checkbox.checked }; // Update the complete status
-            const response = await fetch(`http://192.168.0.53:3000/api/todo/${task.id}`, {
+            const response = await fetch(`${url}/${task.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,6 +124,14 @@ function createCheckbox(isComplete, task) {
             }
 
             console.log(`Task ${task.id} updated successfully.`);
+
+            // Update the UI based on the checkbox state
+            const itemContainer = checkbox.closest('.itemContainer');
+            if (checkbox.checked) {
+                itemContainer.classList.add('completed'); // Add the completed class
+            } else {
+                itemContainer.classList.remove('completed'); // Remove the completed class
+            }
         } catch (error) {
             console.error('Error updating task:', error);
             alert('Failed to update the task. Please try again.');
@@ -111,13 +152,9 @@ function createButtonContainer(task) {
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('buttonContainer');
 
-    const detailsButton = createButton('Details', 'details-button');
-    detailsButton.addEventListener('click', () => toggleDetailsContainer(detailsButton, task));
-
     const deleteButton = createButton('Delete', 'delete-button');
     deleteButton.addEventListener('click', () => deleteTask(task, deleteButton)); // Use the deleteTask function
 
-    buttonContainer.appendChild(detailsButton);
     buttonContainer.appendChild(deleteButton);
 
     return buttonContainer;
@@ -130,8 +167,8 @@ function createButton(text, className) {
     return button;
 }
 
-async function toggleDetailsContainer(button, task) {
-    const itemContainer = button.closest('.itemContainer');
+async function toggleDetailsContainer(titleContainer, task) {
+    const itemContainer = titleContainer.closest('.itemContainer');
     let detailsContainer = itemContainer.querySelector('.detailsContainer');
 
     if (!detailsContainer) {
@@ -140,7 +177,7 @@ async function toggleDetailsContainer(button, task) {
 
         try {
             // Fetch task details dynamically using the task ID
-            const response = await fetch(`http://192.168.0.53:3000/api/todo/${task.id}`);
+            const response = await fetch(`${url}/${task.id}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -151,17 +188,33 @@ async function toggleDetailsContainer(button, task) {
             for (const [key, value] of Object.entries(taskDetails)) {
                 const detailRow = document.createElement('div');
                 detailRow.classList.add('detailRow');
-            
+
                 const keyElement = document.createElement('strong');
                 keyElement.classList.add('keyClass'); // Add keyClass
                 keyElement.textContent = `${splitCamelCase(capitalizeFirstLetter(key))}: `;
-            
+
                 const valueElement = document.createElement('span');
                 valueElement.classList.add('valueClass'); // Add valueClass
-                valueElement.textContent = value;
-            
+
+                // Format createdAt and updatedAt values
+                if (key === 'createdAt' || key === 'updatedAt') {
+                    valueElement.textContent = new Date(value).toLocaleString('en-GB'); // Format as Day/Month/Year Hours:Minutes:Seconds
+                } else {
+                    valueElement.textContent = value;
+                }
+
                 detailRow.appendChild(keyElement);
                 detailRow.appendChild(valueElement);
+
+                // Add the "Edit" button only for specific keys
+                if (!['id', 'complete', 'createdAt', 'updatedAt'].includes(key)) {
+                    const editButton = document.createElement('button');
+                    editButton.classList.add('edit-button');
+                    editButton.textContent = 'Edit';
+                    editButton.addEventListener('click', () => editDetail(task, key, valueElement));
+                    detailRow.appendChild(editButton); // Append the Edit button to the row
+                }
+
                 detailsContainer.appendChild(detailRow);
             }
 
@@ -172,7 +225,13 @@ async function toggleDetailsContainer(button, task) {
         }
     }
 
-    detailsContainer?.classList.toggle('detailsOn');
+    // Toggle the visibility of the detailsContainer
+    const isVisible = detailsContainer.classList.toggle('detailsOn');
+    if (isVisible) {
+        itemContainer.classList.add('details-visible'); // Add class to change background color
+    } else {
+        itemContainer.classList.remove('details-visible'); // Remove class when hidden
+    }
 }
 
 function capitalizeFirstLetter(string) {
@@ -188,7 +247,7 @@ function splitCamelCase(string) {
 
 async function postTask(newTask) {
     try {
-        const response = await fetch('http://192.168.0.53:3000/api/todo', {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +290,7 @@ function showFormular() {
 
             // Get form values
             const title = document.getElementById('title').value;
-            const details = document.getElementById('details').value;
+            const description = document.getElementById('description').value;
             const dueDate = document.getElementById('dueDate').value;
             const responsible = document.getElementById('responsible').value;
             const createdBy = document.getElementById('createdBy').value;
@@ -240,12 +299,12 @@ function showFormular() {
             const newTask = {
                 id: Date.now(), // Generate a unique ID
                 title,
-                details: details || 'N/A', // Default to 'N/A' if empty
+                description: description || 'N/A', // Default to 'N/A' if empty
                 complete: false,
                 dueDate: dueDate || 'N/A', // Default to 'N/A' if empty
                 responsible: responsible || 'N/A', // Default to 'N/A' if empty
                 createdBy: createdBy || 'N/A', // Default to 'N/A' if empty
-                createdAt: new Date().toLocaleDateString()
+                createdAt: new Date().toLocaleString('en-GB'), // Format as Day/Month/Year Hours:Minutes:Seconds
             };
 
             // Send the task to the server
@@ -274,7 +333,7 @@ async function deleteTask(task, deleteButton) {
     const confirmDelete = confirm('Are you sure you want to delete this task?');
     if (confirmDelete) {
         try {
-            const response = await fetch(`http://192.168.0.53:3000/api/todo/${task.id}`, {
+            const response = await fetch(`${url}/${task.id}`, {
                 method: 'DELETE',
             });
 
@@ -290,6 +349,35 @@ async function deleteTask(task, deleteButton) {
         } catch (error) {
             console.error('Error deleting task:', error);
             alert('Failed to delete the task. Please try again.');
+        }
+    }
+}
+
+//PATCH
+
+async function editDetail(task, key, valueElement) {
+    const newValue = prompt(`Edit ${splitCamelCase(capitalizeFirstLetter(key))}:`, valueElement.textContent);
+   
+    if (newValue !== null && newValue.trim() !== '') {
+        try {
+            const updatedTask = { [key]: newValue }; // Dynamically update the specific key
+            const response = await fetch(`${url}/${task.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedTask),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            console.log(`Task ${task.id} updated successfully.`);
+            valueElement.textContent = newValue; // Update the value in the UI
+        } catch (error) {
+            console.error('Error updating task detail:', error);
+            alert('Failed to update the task detail. Please try again.');
         }
     }
 }

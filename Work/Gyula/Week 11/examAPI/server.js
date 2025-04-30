@@ -1,16 +1,16 @@
 const express = require('express')
 const { v4: uuidv4 } = require('uuid');
-const Jabber = require("jabber");
+const Jabber = require("jabber").default;
 const app = express()
 const port = 3000
 
 const ipWithErrors = [
-  '192.168.0.62', 
-  //'192.168.0.59',  // Carlos
-  //'192.168.0.60', 
-  //'192.168.0.64'
+  {
+    ip: '192.168.0.62',
+    errorProbability: 0.05,
+    longlist: true
+  },
 ]
-const errorProbability = 0.2
 let users = [
   'Daniela', 'Leonie', 'Carlos', 'Görkem', 'Alp', 'Sandro', 'Gyula'
 ]
@@ -62,13 +62,13 @@ app.use(cors({
   credentials: true
 }))
 
-//console.log(Jabber)
-//const jabber = new Jabber();
-for (let i = 0; i < 5; i++) {
+console.log(Jabber)
+const jabber = new Jabber();
+for (let i = 0; i < 555; i++) {
   todos.push({
     id: uuidv4(),
-    title: 'aaaa', //jabber.createParagraph(5 + Math.floor(Math.random() * 5)),
-    description: 'bbbb', //jabber.createParagraph(5 + Math.floor(Math.random() * 40)),
+    title: jabber.createParagraph(5 + Math.floor(Math.random() * 5)),
+    description: jabber.createParagraph(5 + Math.floor(Math.random() * 40)),
     dueDate: '2023-10-01',
     complete: Math.random() < 0.5 ? false : true,
     responsible: users[Math.floor(Math.random() * users.length)],
@@ -82,13 +82,14 @@ for (let i = 0; i < 5; i++) {
 app.get('/api/todo', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: GET /api/todo`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
-    console.log('Simulating error')
+  const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+  if (Math.random() < errorProbability) {    console.log('Simulating error')
     res.status(408).send('Request Timeout')
     return
   }
+  const longList = ipWithErrors.find(obj => obj.ip === ip)?.longlist || false
   const filteredTodos = todos.filter(todo => {
-    if (ipWithErrors.includes(ip)){
+    if (longList){
       return true
     } else if (todo.magic === undefined || todo.magic == false) {
       return true
@@ -114,7 +115,8 @@ app.get('/api/todo/:id', (req, res) => {
   
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: GET /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
+  const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+  if (Math.random() < errorProbability) {
     console.log('Simulating error')
     res.status(408).send('Request Timeout')
     return
@@ -147,7 +149,8 @@ app.post('/api/todo', (req, res) => {
 
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: POST /api/todo`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
+  const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+  if (Math.random() < errorProbability) {
     console.log('Simulating error')
     res.status(408).send('Request Timeout')
     return
@@ -192,7 +195,8 @@ app.put('/api/todo/:id', (req, res) => {
  
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: PUT /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
+  const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+  if (Math.random() < errorProbability) {
     console.log('Simulating error')
     res.status(408).send('Request Timeout')
     return
@@ -214,7 +218,8 @@ app.delete('/api/todo/:id', (req, res) => {
     
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   console.log(`${ip}: DELETE /api/todo/${req.params.id}`)
-  if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
+  const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+  if (Math.random() < errorProbability) {
     console.log('Simulating error')
     res.status(408).send('Request Timeout')
     return
@@ -232,7 +237,8 @@ app.patch('/api/todo/:id', (req, res) => {
 
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
     console.log(`${ip}: PATCH /api/todo/${req.params.id}`)
-    if (ipWithErrors.includes(ip) && Math.random() < errorProbability) {
+    const errorProbability = ipWithErrors.find(obj => obj.ip === ip)?.errorProbability || 0
+    if (Math.random() < errorProbability) {
       console.log('Simulating error')
       res.status(408).send('Request Timeout')
       return
@@ -272,6 +278,29 @@ app.patch('/api/todo/:id', (req, res) => {
   selectedTodo.updatedAt = new Date()
   res.json(selectedTodo)
 })
+
+
+app.post('/api/error', (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+  console.log(`${ip}: POST /api/error`)
+
+  let config = ipWithErrors.find(obj => obj.ip === ip)
+  if (config === undefined) {
+    config = {
+      ip: ip,
+      errorProbability: req.body.errorProbability !== undefined ? req.body.errorProbability : 0.05,
+      longlist: req.body.longlist !== undefined ? req.body.longlist : true
+    }
+    ipWithErrors.push(config)
+  } else {
+    config.errorProbability = req.body.errorProbability !== undefined ? req.body.errorProbability : 0.05
+    config.longlist = req.body.longlist !== undefined ? req.body.longlist : config.longlist
+  }
+  console.log('ipWithErrors: ', ipWithErrors)
+
+  res.status(201).json(config)
+})
+
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening on port ${port}`)

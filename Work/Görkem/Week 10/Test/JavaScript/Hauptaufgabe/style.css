@@ -79,6 +79,7 @@ body{
 
 .todo-btn{
     margin-right: 10px;
+    display: flex;
 }
 
 .todo-btn > button{
@@ -241,6 +242,10 @@ body{
 
 .close-info:hover {
     background-color: darkred;
+}
+
+.line-through {
+    text-decoration: line-through;
 }
 
 
