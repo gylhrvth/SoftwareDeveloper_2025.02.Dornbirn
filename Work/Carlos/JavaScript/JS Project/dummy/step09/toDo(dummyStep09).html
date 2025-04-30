@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./toDo(dummyStep08).css">
-    <script src="./toDo(dummyStep08).js" defer></script>
-    <title>ToDo App (Step 08)</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 
-    <!--Erstelle einen Konzept für die Bearbeitung
-        Ersetze Darstellungen mit Input Elementen
-        Gib die Möglichkeit Änderungen abzubrechen
-        Falls der Benutzer die ToDo speichert, rufe PATCH / PUT an.-->
+        <link rel="stylesheet" href="./toDo(dummyStep09).css">
+        <script src="./toDo(dummyStep09).js" defer></script>
+        <title>ToDo App (Step 09)</title>
+    </head>
+
+    <!--Design and features-->
 
 <body>
 
     <div id="mainContainer">
         
         <header id="headerBox">
-            <h1>ToDo App (Step 08)</h1>
+            <h1>ToDo App (Step 09)</h1>
         </header>
 
         <main id="responseContainer">
@@ -28,6 +28,7 @@
         <section id="buttonContainer">
             <button id="postElement" onclick="showFormular()">Add Task</button>
             <button id="refreshContent">Refresh Content</button>
+            <button id="darkModeToggle">Toggle Dark Mode</button>
         </section>
 
         <!-- Popup Form -->
@@ -42,7 +43,7 @@
                 <textarea id="description" name="description" rows="3"></textarea>
 
                 <label for="dueDate">Due Date</label>
-                <input type="text" id="dueDate" name="dueDate" placeholder="20/05/2025">
+                <input type="text" id="dueDate" name="dueDate" placeholder="DD/MM/YYYY">
 
                 <label for="responsible">Responsible</label>
                 <input type="text" id="responsible" name="responsible">

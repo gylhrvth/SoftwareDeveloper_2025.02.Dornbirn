@@ -7,9 +7,10 @@
 // local: http://localhost:3000/api/todo
 // local: http://localhost:3000/api/todo/${task.id}
 // remote: http://192.168.0.53:3000/api/todo
+// remote: http://192.168.0.67:3000/api/todo
 // remote: http://192.168.0.53:3000/api/todo/${task.id}
 
-const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
+const url = 'http://192.168.0.67:3000/api/todo'; // Replace with your actual API URL
 
 document.addEventListener('DOMContentLoaded', () => {
     displayTasks(); // Initial load of tasks
@@ -247,7 +248,9 @@ function splitCamelCase(string) {
 
 async function postTask(newTask) {
     try {
+        console.log('Sending task to server:', newTask); // Log the task object
         const response = await fetch(url, {
+            
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -295,7 +298,7 @@ function showFormular() {
             const responsible = document.getElementById('responsible').value;
             const createdBy = document.getElementById('createdBy').value;
 
-            // Create a new task object with only filled fields
+            // Create a new task object
             const newTask = {
                 id: Date.now(), // Generate a unique ID
                 title,
@@ -357,7 +360,7 @@ async function deleteTask(task, deleteButton) {
 
 async function editDetail(task, key, valueElement) {
     const newValue = prompt(`Edit ${splitCamelCase(capitalizeFirstLetter(key))}:`, valueElement.textContent);
-   
+
     if (newValue !== null && newValue.trim() !== '') {
         try {
             const updatedTask = { [key]: newValue }; // Dynamically update the specific key
@@ -382,3 +385,41 @@ async function editDetail(task, key, valueElement) {
     }
 }
 
+
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Toggle the dark mode class
+    body.classList.toggle('dark-mode');
+
+    // Update the button text based on the current mode
+    if (body.classList.contains('dark-mode')) {
+        darkModeToggle.textContent = 'Toggle Light Mode';
+        localStorage.setItem('darkMode', 'enabled'); // Save preference
+    } else {
+        darkModeToggle.textContent = 'Toggle Dark Mode';
+        localStorage.setItem('darkMode', 'disabled'); // Save preference
+    }
+}
+
+// Initialize dark mode and button text based on saved preference
+function initializeDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark-mode');
+        darkModeToggle.textContent = 'Toggle Light Mode';
+    } else {
+        darkModeToggle.textContent = 'Toggle Dark Mode';
+    }
+}
+
+// Add event listener to the dark mode toggle button
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDarkMode();
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+});
