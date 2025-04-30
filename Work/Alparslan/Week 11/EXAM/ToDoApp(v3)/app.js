@@ -45,6 +45,7 @@ const API_URL = 'http://192.168.0.53:3000/api/todo';
 // Hilfsfunktionen
 // =======================
 
+// Erstellt ein P.Element mit einem fett formatierten Titel und einem darauffolgenden Text und fügt dieses Element in ein übergebenes Elternelement ein.
 function createPStrong(parent, title, text) {
   let pElement = document.createElement("p")
   let strongElement = document.createElement("strong")
@@ -170,91 +171,80 @@ async function fetchTodoById(id) {
 
 /* Zeichnet die Todo-Liste im DOM basierend auf den geladenen Daten */
 function renderTodoList(todos) {
-  elements.list.innerHTML = '';
+  elements.list.innerHTML = '';                                     // Leert vorherige Einträge aus der Todo-Liste im DOM
+  todos.forEach(todo => {                                           // Iteriert durch jedes Todo-Objekt
+    const todoDiv = document.createElement('div');                  // Erstellt ein neues div-Element für das einzelne Todo
+    todoDiv.classList.add('todo');                                  // Fügt die CSS-Klasse "todo" hinzu
+    if (todo.complete) todoDiv.classList.add('completed');          // Falls das Todo erledigt ist, fügt die Klasse "completed" hinzu
 
-  todos.forEach(todo => {
-    const todoDiv = document.createElement('div');
-    todoDiv.classList.add('todo');
-    if (todo.complete) todoDiv.classList.add('completed');
+    const topLine = document.createElement('div');                  // Erstellt ein div für die obere Zeile des Todos
+    topLine.classList.add('todo-topline');                          // Fügt Styling-Klasse für die Topline hinzu
 
-    const topLine = document.createElement('div');
-    topLine.classList.add('todo-topline');
+    const left = document.createElement('div');                     // Erstellt linken Bereich (Checkbox + Titel)
+    left.classList.add('left-section');                             // Fügt Styling-Klasse für die linke Sektion hinzu
 
-    const left = document.createElement('div');
-    left.classList.add('left-section');
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = todo.complete;
-    checkbox.addEventListener('change', async (e) => {
-      todo.complete = e.target.checked;
-      todoDiv.classList.toggle('completed', todo.complete);
-      await updateTodoAPI(todo.id, { complete: todo.complete });
+    const checkbox = document.createElement('input');               // Erstellt die Checkbox
+    checkbox.type = 'checkbox';                                     // Setzt den Typ auf "checkbox"
+    checkbox.checked = todo.complete;                               // Setzt den Status entsprechend dem Todo
+    checkbox.addEventListener('change', async (e) => {              // Fügt einen EventListener hinzu für Änderungen am Häkchen
+      todo.complete = e.target.checked;                             // Aktualisiert den Status im Todo-Objekt
+      todoDiv.classList.toggle('completed', todo.complete);         // Fügt/entfernt die Klasse "completed" je nach Zustand
+      await updateTodoAPI(todo.id, { complete: todo.complete });    // Aktualisiert den Status auf dem Server
     });
 
-    const title = document.createElement('span');
-    title.textContent = todo.title;
+    const title = document.createElement('span');                   // Erstellt ein span-Element für den Titel
+    title.textContent = todo.title;                                 // Setzt den Titeltext
 
-    left.append(checkbox, title);
+    left.append(checkbox, title);                                   // Fügt Checkbox und Titel in die linke Sektion ein
+    topLine.appendChild(left);                                      // Fügt die linke Sektion zur oberen Zeile hinzu
 
+    const right = document.createElement('div');                    // Erstellt den rechten Bereich (Icons)
+    right.classList.add('right-section');                           // Fügt Styling-Klasse für rechte Sektion hinzu
 
-    topLine.appendChild(left);
+    const infoIcon = document.createElement('span');                // Erstellt das Info-Icon (ℹ️)
+    infoIcon.textContent = 'ℹ️';                                   // Setzt das Icon-Zeichen
+    infoIcon.classList.add('icon-info');                            // Fügt Styling-Klasse für das Info-Icon hinzu
 
-    const right = document.createElement('div');
-    right.classList.add('right-section');
-
-    //Info Icon
-    const infoIcon = document.createElement('span');
-    infoIcon.textContent = 'ℹ️';
-    infoIcon.classList.add('icon-info');
-
-    let detailsDiv = renderDetails(todo);                         // ✅ jetzt veränderbar
-
-    infoIcon.addEventListener('click', async (e) => {
-      e.stopPropagation();
-    
-      if (detailsDiv.classList.contains('hidden')) {
-        const fullTodo = await fetchTodoById(todo.id);
-        console.log("info button: ", fullTodo)
-        if (fullTodo) {
-          const newDetails = renderDetails(fullTodo);
-          todoDiv.replaceChild(newDetails, detailsDiv);
-          detailsDiv = newDetails; // ✅ jetzt erlaubt
+    let detailsDiv = renderDetails(todo);                           // Erstellt die Detailansicht für das Todo
+    infoIcon.addEventListener('click', async (e) => {               // Fügt einen Klick-Handler für das Info-Icon hinzu
+      e.stopPropagation();                                          // Verhindert, dass der Klick andere Events auslöst
+      if (detailsDiv.classList.contains('hidden')) {                // Wenn Details aktuell ausgeblendet sind...
+        const fullTodo = await fetchTodoById(todo.id);              // ...hole die vollständigen Daten vom Server
+        console.log("info button: ", fullTodo);                     // Debug-Ausgabe in der Konsole
+        if (fullTodo) {                                             // Wenn erfolgreich geladen
+          const newDetails = renderDetails(fullTodo);               // Erzeuge neue Detailansicht
+          todoDiv.replaceChild(newDetails, detailsDiv);             // Ersetze alte durch neue Details
+          detailsDiv = newDetails;                                  // Aktualisiere Referenz
         }
       }
-    
-      detailsDiv.classList.toggle('hidden');
-    });
-    
-    
-
-    //Delete Icon
-    const deleteIcon = document.createElement('span');
-    deleteIcon.textContent = '🗑️';
-    deleteIcon.classList.add('icon-delete');
-    deleteIcon.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      await deleteTodoAPI(todo.id);
-      await loadTodosFromAPI();
+      detailsDiv.classList.toggle('hidden');                        // Zeigt oder versteckt den Detailbereich
     });
 
-    const editIcon = document.createElement('span');
-    editIcon.textContent = '✏️';
-    editIcon.classList.add('icon-edit');
-
-    // Klick auf das Icon: Bearbeiten starten
-    editIcon.addEventListener('click', () => {
-      startEditTodo(todo);
+    const deleteIcon = document.createElement('span');              // Erstellt das Papierkorb-Icon
+    deleteIcon.textContent = '🗑️';                                  // Setzt das Icon-Zeichen
+    deleteIcon.classList.add('icon-delete');                        // Fügt Styling-Klasse hinzu
+    deleteIcon.addEventListener('click', async (e) => {             // Klick-Handler für Löschen
+      e.stopPropagation();                                          // Verhindert Klickvererbung
+      await deleteTodoAPI(todo.id);                                 // Löscht das Todo vom Server
+      await loadTodosFromAPI();                                     // Lädt die Liste neu
     });
 
-    right.appendChild(editIcon);
-    right.append(infoIcon, deleteIcon);
-    topLine.appendChild(right);
+    const editIcon = document.createElement('span');                 // Erstellt Bearbeiten-Icon (falls genutzt)
+    editIcon.textContent = '✏️';                                    // Setzt Icon-Zeichen
+    editIcon.classList.add('icon-edit');                            // Fügt Styling hinzu
+    editIcon.addEventListener('click', () => {                      // Klick-Handler für Bearbeiten
+      startEditTodo(todo);                                          // Öffnet das Bearbeitungsformular mit dem Todo
+    });
 
-    todoDiv.append(topLine, detailsDiv);
-    elements.list.appendChild(todoDiv);
+    right.appendChild(editIcon);                                    // Fügt Bearbeiten-Icon zum rechten Bereich hinzu
+    right.append(infoIcon, deleteIcon);                             // Fügt Info- und Papierkorb-Icon ebenfalls hinzu
+    topLine.appendChild(right);                                     // Fügt die rechte Sektion zur oberen Zeile hinzu
+
+    todoDiv.append(topLine, detailsDiv);                            // Fügt Topline und Details dem Todo-Container hinzu
+    elements.list.appendChild(todoDiv);                             // Fügt das Todo in die Liste im DOM ein
   });
 }
+
 
 // =======================
 // Event-Listener
@@ -273,33 +263,32 @@ elements.cancelBtn.addEventListener('click', () => {
 });
 
 /* Speichert ein neues oder bearbeitetes Todo über die API */
-elements.saveBtn.addEventListener('click', async () => {
-  const { title, details, dueDate, responsible, priority } = elements.inputs;
+elements.saveBtn.addEventListener('click', async () => {                      // Event-Listener für Klick auf den "Speichern"-Button
+  const { title, details, dueDate, responsible, priority } = elements.inputs; // Destrukturiert die Eingabefelder aus dem Formular
 
-  const todoData = {
-    title: title.value,
-    details: details.value,
-    dueDate: dueDate.value,
-    responsible: responsible.value,
-    priority: priorityNameToNumber[priority.value],
-    complete: currentlyEditingId
-      ? allTodos.find(t => t.id === currentlyEditingId)?.complete || false
-      : false,
-    createdBy: "Alp"
+  const todoData = {                                                          // Erstellt ein Objekt mit den eingegebenen Daten
+    title: title.value,                                                       // Setzt den Titel aus dem Eingabefeld
+    details: details.value,                                                   // Setzt die Details aus dem Eingabefeld
+    dueDate: dueDate.value,                                                   // Setzt das Fälligkeitsdatum aus dem Eingabefeld
+    responsible: responsible.value,                                           // Setzt den Verantwortlichen aus dem Eingabefeld
+    priority: priorityNameToNumber[priority.value],                           // Wandelt die ausgewählte Priorität in eine Zahl um
+    complete: currentlyEditingId                                              // Überprüft, ob ein bestehendes Todo bearbeitet wird
+      ? allTodos.find(t => t.id === currentlyEditingId)?.complete || false    // Wenn ja, übernimmt den aktuellen Status (true/false)
+      : false,                                                                // Wenn nicht, ist das neue Todo standardmäßig nicht abgeschlossen
+    createdBy: "Alp"                                                          // Setzt einen festen Namen als Ersteller
   };
-
-  if (currentlyEditingId) {
-    await updateTodoAPI(currentlyEditingId, todoData);
-    currentlyEditingId = null;
+  if (currentlyEditingId) {                                                   // Wenn ein bestehendes Todo bearbeitet wird...
+    await updateTodoAPI(currentlyEditingId, todoData);                        // ...aktualisiere es über die API
+    currentlyEditingId = null;                                                // Setze die Bearbeitungs-ID zurück
   } else {
-    await createTodoAPI(todoData);
+    await createTodoAPI(todoData);                                            // Wenn kein bestehendes bearbeitet wird, erstelle ein neues Todo
   }
-
-  await loadTodosFromAPI();
-  elements.form.style.display = 'none';
-  clearFormInputs();
-  showSuccess('Todo erfolgreich gespeichert ✅');
+  await loadTodosFromAPI();                                                   // Lade danach die komplette Todo-Liste neu vom Server
+  elements.form.style.display = 'none';                                       // Verstecke das Formular
+  clearFormInputs();                                                          // Leere die Eingabefelder
+  showSuccess('Todo erfolgreich gespeichert ✅');                             // Zeige eine Erfolgsmeldung für den Nutzer
 });
+
 
 /* Schaltet zwischen Dark Mode und Light Mode um */
 elements.themeBtn.addEventListener('click', () => {

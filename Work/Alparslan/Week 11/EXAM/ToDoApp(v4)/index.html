@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meine ToDo App</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Ladeanzeige -->
+  <div id="loading-spinner" class="hidden">🔄 Lade Todos...</div>
+
+  <!-- Theme-Umschalter -->
+  <div id="theme-toggle">
+    <button id="toggle-theme-button">🌙 Dark Mode</button>
+  </div>
+
+  <!-- Überschrift -->
+  <h1>Meine ToDo Liste</h1>
+
+  <!-- Suchfeld -->
+  <input
+    type="text"
+    id="search-todo"
+    placeholder="🔍 Todo suchen..."
+    style="margin-bottom: 20px; padding: 10px; width: 300px; border-radius: 8px; border: 1px solid #ccc;"
+  />
+
+  <!-- Liste aller Todos -->
+  <div id="todo-list"></div>
+
+  <!-- Erfolgsmeldung -->
+  <div id="success-message" class="hidden"></div>
+
+  <!-- Button: Neues Todo -->
+  <button id="new-todo-button">+ Neues Todo erstellen</button>
+
+  <!-- Formular: Neues Todo -->
+  <div id="new-todo-form" class="hidden">
+    <input type="text" id="new-todo-title" placeholder="Titel eingeben..." />
+    <textarea id="new-todo-details" placeholder="Details zum Todo..."></textarea>
+    <input type="date" id="new-todo-dueDate" />
+    <input type="text" id="new-todo-responsible" placeholder="Verantwortlich..." />
+    <select id="new-todo-priority">
+      <option value="low">🟢 Low</option>
+      <option value="middle" selected>🟡 Middle</option>
+      <option value="high">🔴 High</option>
+    </select>
+    <button id="save-todo-button">✅ Speichern</button>
+    <button id="cancel-todo-button">❌ Abbrechen</button>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
+
