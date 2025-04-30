@@ -280,6 +280,10 @@ function loadForm(direction, id, item = null) {
         const selectedDate = event.target.value;
         const currentDate = new Date();
         const inputDate = new Date(selectedDate);
+
+        // Setze die Zeit von currentDate auf 00:00:00
+        currentDate.setHours(0, 0, 0, 0);
+
         if (inputDate < currentDate) {
             dueDateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
             dueDateInput.reportValidity(); // Zeigt die Fehlermeldung an
@@ -413,23 +417,4 @@ function loadingError(status, statusText) {
         shadowDiv.remove();
         getData(); // Versuche erneut, die Daten zu laden
     }, 3000); // Warte 3 Sekunden, bevor du es erneut versuchst
-}
-
-function calcDate() {
-    //Prüfen, ob das Datum in der Vergangenheit liegt
-    const dateInput = document.querySelector('input[name="dueDate"]');
-    const dateValue = dateInput.value;
-    const currentDate = new Date();
-    const inputDate = new Date(dateValue);
-    if (inputDate < currentDate) {
-        dateInput.setCustomValidity("Das Datum darf nicht in der Vergangenheit liegen.");
-        dateInput.reportValidity(); // Zeigt die Fehlermeldung an
-        return null; // Abbrechen, wenn das Datum ungültig ist
-
-    } else {
-        dateInput.setCustomValidity(""); // Setzt die Fehlermeldung zurück
-        dateInput.reportValidity(); // Entfernt die Fehlermeldung
-    }
-
-    return dateValue; // Gültiges Datum zurückgeben
 }

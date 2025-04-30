@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./toDo(dummyStep12).css">
+        <script src="./toDo(dummyStep12).js" defer></script>
+        <title>ToDo App (Step 12)</title>
+    </head>
+
+    <!--Responsivity-->
+
+<body>
+
+    <div id="mainContainer">
+        
+        <header id="headerBox">
+            <h1>ToDo App (Step 12)</h1>
+        </header>
+
+        <main id="responseContainer">
+            <!-- itemContainer will be dynamically added here -->
+        </main>
+
+        <section id="buttonContainer">
+            <button id="postElement" onclick="showFormular()">Add Task</button>
+            <button id="refreshContent">Refresh Content</button>
+            <button id="darkModeToggle">Toggle Dark Mode</button>
+        </section>
+
+    <!-- Popup Form -->
+     <!-- This is the popup form that appears when the "Add Task" button is clicked -->
+     <div id="popupForm" class="popup hidden">
+        <div class="popup-content">
+            <h2>Add Task</h2>
+            <form id="taskForm">
+                <label for="title">Task (Required)</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="details">Description</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" name="dueDate" placeholder="YYYY/MM/DD">
+
+                <label for="responsible">Responsible</label>
+                <input type="text" id="responsible" name="responsible">
+
+                <label for="createdBy">Created By</label>
+                <input type="text" id="createdBy" name="createdBy">
+                
+
+                <div class="popup-buttons">
+                    <button type="button" id="cancelButton">Cancel</button>
+                    <button type="submit" id="submitButton">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        
+    </div>
+</body>
+</html>

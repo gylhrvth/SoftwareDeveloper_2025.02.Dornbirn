@@ -82,7 +82,7 @@ h1 {
     background-color: #fffdf4; /* Use variable */
     border-radius: 10px;
     margin-bottom: 5px;
-    padding: 15px 10px; /* Add padding for better spacing */
+    /*padding: 15px 10px;*/ /* Add padding for better spacing */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* Bottom shadow */
                 0 -2px 4px rgba(0, 0, 0, 0.05); /* Top shadow */
     transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition */
@@ -101,6 +101,17 @@ h1 {
 /* ===========================
    Title Container
 =========================== */
+
+/* White row */
+.white-row {
+    background-color: #ffffff; /* White */
+}
+
+/* Grey row */
+.grey-row {
+    background-color: #f9f9f9; /* Very light grey */
+}
+
 .titleContainer {
     display: flex;
     align-items: center;
@@ -226,11 +237,11 @@ button:hover {
     display: none;
     padding: 20px;
     background-color: var(--details-bg-color); /* Use variable */
-    border: 1px solid var(--border-color); /* Use variable */
-    border-radius: 10px;
+    border-bottom-left-radius: 10px; /* Set bottom-left radius */
+    border-bottom-right-radius: 10px; /* Set bottom-right radius */
     font-size: 0.95rem;
     color: var(--text-color); /* Use variable */
-    box-shadow: 0 4px 6px var(--shadow-color); /* Use variable */
+
     transition: max-height 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
     line-height: 1.5;
@@ -281,6 +292,7 @@ button:hover {
     display: block;
     opacity: 1;
     max-height: 1000px;
+    border-top: dashed var(--border-color); /* Use variable */
 }
 
 .detailsOff {
@@ -368,12 +380,13 @@ button:hover {
 }
 
 #submitButton {
-    background-color: #fff3cd;
-    color: #856404;
+    background-color: #d4edda;
+    color: #155724;
+    background-image: url('assets/icons/check.svg');
 }
 
 #submitButton:hover {
-    background-color: #ffeeba;
+    background-color: #c3e6cb;
     transform: scale(1.05);
 }
 
@@ -459,6 +472,93 @@ button {
     background-image: url('assets/icons/contrast.svg');
 }
 
+/* Popup overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Popup content */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between elements */
+}
+
+/* Popup label */
+.popup-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Popup textarea */
+.popup-textarea {
+    width: 100%;
+    height: 100px;
+    resize: none; /* Prevent resizing */
+    overflow: auto; /* Add scrollbars if content exceeds height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+/* Button container */
+.popup-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Popup buttons */
+.popup-button {
+    padding: 8px 12px;
+    font-size: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cancel button */
+.popup-cancel-button {
+    background-color: #f8d7da;
+    color: #721c24;
+    background-image: url('assets/icons/cancel.svg');
+}
+
+.popup-cancel-button:hover {
+    background-color: #f5c6cb;
+}
+
+/* Save button */
+.popup-save-button {
+    background-color: #d4edda;
+    color: #155724;
+    background-image: url('assets/icons/check.svg');
+}
+
+.popup-save-button:hover {
+    background-color: #c3e6cb;
+}
+
 
 /* Dark mode */
 .dark-mode {
@@ -494,13 +594,7 @@ button {
         text-align: center;
     }
 
-    .itemContainer {
-        background-color: var(--details-bg-color); /* Dark gray for item containers */
-        border: 1px solid var(--border-color); /* Orange border for items */
-        border-radius: 10px;
-        color: var(--text-color); /* Ensure text is light for readability */
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    }
+
 
     .itemContainer:hover {
         background-color: var(--details-hover-bg-color); /* Slightly lighter gray on hover */
@@ -547,7 +641,7 @@ button {
     .detailsContainer {
         background-color: var(--details-bg-color);
         color: var(--text-color);
-        border: 1px solid var(--border-color); /* Orange border for details */
+        /*border: 1px solid var(--border-color);*/ /* Orange border for details */
     }
 
     .detailsContainer .detailRow {

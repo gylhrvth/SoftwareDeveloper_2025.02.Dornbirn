@@ -10,7 +10,7 @@
 // remote: http://192.168.0.67:3000/api/todo
 // remote: http://192.168.0.53:3000/api/todo/${task.id}
 
-const url = 'http://192.168.0.67:3000/api/todo'; // Replace with your actual API URL
+const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
 
 document.addEventListener('DOMContentLoaded', () => {
     displayTasks(); // Initial load of tasks
@@ -368,29 +368,150 @@ async function deleteTask(task, deleteButton) {
 //PATCH
 
 async function editDetail(task, key, valueElement) {
-    const newValue = prompt(`Edit ${splitCamelCase(capitalizeFirstLetter(key))}:`, valueElement.textContent);
+    if (key === 'description') {
+        // Use the existing popup with a textarea for description
+        const newValue = await showPopupWithTextArea(`Edit ${splitCamelCase(capitalizeFirstLetter(key))}:`, valueElement.textContent);
 
-    if (newValue !== null && newValue.trim() !== '') {
-        try {
-            const updatedTask = { [key]: newValue }; // Dynamically update the specific key
-            const response = await fetch(`${url}/${task.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedTask),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            console.log(`Task ${task.id} updated successfully.`);
-            valueElement.textContent = newValue; // Update the value in the UI
-        } catch (error) {
-            console.error('Error updating task detail:', error);
-            alert('Failed to update the task detail. Please try again.');
+        if (newValue !== null && newValue.trim() !== '') {
+            await updateTaskDetail(task, key, newValue, valueElement);
         }
+    } else {
+        // Use a popup with a line input for other keys
+        const newValue = await showPopupWithLineInput(`Edit ${splitCamelCase(capitalizeFirstLetter(key))}:`, valueElement.textContent);
+
+        if (newValue !== null && newValue.trim() !== '') {
+            await updateTaskDetail(task, key, newValue, valueElement);
+        }
+    }
+}
+
+// Helper function to show a popup with a line input
+function showPopupWithLineInput(label, currentValue) {
+    return new Promise((resolve) => {
+        // Create the modal overlay
+        const modal = document.createElement('div');
+        modal.classList.add('popup-overlay'); // Add CSS class for styling
+
+        // Create the modal content
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('popup-content'); // Add CSS class for styling
+
+        // Add the label
+        const labelElement = document.createElement('label');
+        labelElement.textContent = label;
+        labelElement.classList.add('popup-label'); // Add CSS class for styling
+
+        // Add the line input
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.classList.add('popup-input'); // Add CSS class for styling
+        input.value = currentValue;
+
+        // Add the buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('popup-button-container'); // Add CSS class for styling
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.classList.add('popup-button', 'popup-cancel-button'); // Add CSS classes for styling
+        cancelButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
+            resolve(null); // Resolve with null if canceled
+        });
+
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add('popup-button', 'popup-save-button'); // Add CSS classes for styling
+        saveButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
+            resolve(input.value); // Resolve with the input value
+        });
+
+        // Append elements
+        buttonContainer.appendChild(cancelButton);
+        buttonContainer.appendChild(saveButton);
+        modalContent.appendChild(labelElement);
+        modalContent.appendChild(input);
+        modalContent.appendChild(buttonContainer);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    });
+}
+
+
+
+function showPopupWithTextArea(label, currentValue) {
+    return new Promise((resolve) => {
+        // Create the modal overlay
+        const modal = document.createElement('div');
+        modal.classList.add('popup-overlay'); // Add CSS class for styling
+
+        // Create the modal content
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('popup-content'); // Add CSS class for styling
+
+        // Add the label
+        const labelElement = document.createElement('label');
+        labelElement.textContent = label;
+        labelElement.classList.add('popup-label'); // Add CSS class for styling
+
+        // Add the textarea
+        const textarea = document.createElement('textarea');
+        textarea.classList.add('popup-textarea'); // Add CSS class for styling
+        textarea.value = currentValue;
+
+        // Add the buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('popup-button-container'); // Add CSS class for styling
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.classList.add('popup-button', 'popup-cancel-button'); // Add CSS classes for styling
+        cancelButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
+            resolve(null); // Resolve with null if canceled
+        });
+
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add('popup-button', 'popup-save-button'); // Add CSS classes for styling
+        saveButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
+            resolve(textarea.value); // Resolve with the textarea value
+        });
+
+        // Append elements
+        buttonContainer.appendChild(cancelButton);
+        buttonContainer.appendChild(saveButton);
+        modalContent.appendChild(labelElement);
+        modalContent.appendChild(textarea);
+        modalContent.appendChild(buttonContainer);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    });
+}
+
+// Helper function to update the task detail
+async function updateTaskDetail(task, key, newValue, valueElement) {
+    try {
+        const updatedTask = { [key]: newValue }; // Dynamically update the specific key
+        const response = await fetch(`${url}/${task.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedTask),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        console.log(`Task ${task.id} updated successfully.`);
+        valueElement.textContent = newValue; // Update the value in the UI
+    } catch (error) {
+        console.error('Error updating task detail:', error);
+        alert('Failed to update the task detail. Please try again.');
     }
 }
 
