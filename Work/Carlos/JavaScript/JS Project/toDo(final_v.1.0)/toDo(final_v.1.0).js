@@ -1,19 +1,28 @@
-
 // ===========================
 // Configuration and Setup
 // ===========================
 
-// TO-DO Liste mit API
-
 // Achtung, APP funktioniert nur über Safari Browser!!!
 
-// TO-DO Liste mit API
+/* Possible API URLs: 
+http://192.168.0.67:3000/api/todo
+http://192.168.0.67:3000/api/todo/${task.id}
+http://192.168.0.53:3000/api/todo
+http://192.168.0.53:3000/api/todo/${task.id} */
+
+/* Start URL from localhost:
+Start server on terminal inside API folder and write: node server.js
+Stop server: Ctrl + C
+Local URL: 
+http://localhost:3000/api/todo
+http://localhost:3000/api/todo/${task.id}*/
+
 
 // ===========================
 // Global Variables
 // ===========================
 
-const url = 'http://192.168.0.53:3000/api/todo'; // Replace with your actual API URL
+const url = 'http://localhost:3000/api/todo'; // Replace with your actual API URL
 
 // ===========================
 // GET: Fetch and Display Tasks
