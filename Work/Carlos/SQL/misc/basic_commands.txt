@@ -1,0 +1,82 @@
+USE mondial;
+
+SELECT 'Hello World!';
+
+SELECT 'Hello World!' greeting;
+
+SELECT * FROM country;
+
+SELECT * FROM country limit 10;  // MSSQL: SELECT TOP 10 * FROM country
+
+SELECT * FROM country limit 20, 10;
+
+SELECT Name, Capital FROM country;
+
+SELECT Name Land, Capital Hauptstadt FROM country;
+
+SELECT Name AS Land, Capital AS Hauptstadt FROM country;
+
+SELECT 'Hello World!' AS greeting, 
+       Name AS Land, 
+       Capital AS Hauptstadt 
+FROM country;
+
+SELECT *, Name AS Land, 'Hello World!' AS greeting FROM country;
+
+SELECT *
+FROM country
+WHERE population > 100000000
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name = 'Brazil';
+
+SELECT *
+FROM country
+WHERE NOT Name = 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name <> 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil' AND Population > 100000000;
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil' OR Population > 100000000;
+
+SELECT *
+FROM country
+WHERE Population BETWEEN 10000 AND 20000;
+
+SELECT *
+FROM country
+WHERE Name LIKE 'Uni%';
+
+SELECT *
+FROM country
+WHERE Name LIKE '%m';
+
+SELECT *
+FROM country
+WHERE Name LIKE '%ca%';
+
+SELECT *
+FROM country
+WHERE length(NAME) < 5;
+
+SELECT *, SUBSTR(Name, 3, 1)
+FROM country
+
+SELECT *
+FROM country
+WHERE SUBSTR(Name, 3, 1) = 's'
+
+SELECT Count(*) AS anzahlLaender
+FROM country

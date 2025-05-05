@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>SQL Journal 01</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">SQL Journal 01</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day46">MO 05/05/25</a>: SQL (Basics)</h3>
+
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="day46">Montag 05. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL Setup</h3>
+
+    <ul>
+        <li>MySQL für Mac herunterladen:</li>
+        <li>Link: https://www.mysql.com/downloads/</li>
+        <li>Auf MySQL Community (GPL) Downloads » clicken</li>
+        <li>Auf MySQL Community Server clicken</li>
+        <li>macOS 15 (ARM, 64-bit), DMG Archive herunterladen</li>
+        <br>
+        <li>MySQL Setup:</li>
+        <ul>
+            <li>Defaultkonfiguration mit dem Port 3306</li>
+            <li>Root Passwort eingeben</li>
+        </ul>
+        <br>
+        <li>DBeaver für DB GUI herunterladen</li>
+        <li>Link: https://dbeaver.io</li>
+        <li>Auf DBeaver Community, Download clicken</li>
+        <li>MacOS for Apple Silicon (dmg) herunterladen</li>
+        <br>
+        <li>DBeaver Setup:</li>
+        <ul>
+            <li>Starte DBeaver</li>
+            <li>Neue Verbindung zu MYSQL Server einfügen</li>
+            <li>MySQL als Treiber wählen</li>
+            <li>Root Passwort eingeben</li>
+            <li>In Eigenschaften muss man AllowPublicKeyRetieval auf TRUE setzen</li>
+            <li>In Eigenschaften muss man UseSSL auf FALSE setzen</li>
+            <li>Verbindung testen</li>
+        </ul>
+        <br>
+        <li>Mondial Database files herunterladen</li>
+        <li>Link: https://www.dbis.informatik.uni-goettingen.de/Mondial/</li>
+        <li>Database schema for mysql "mondial-schema-mysql.sql" herunterladen</li>
+        <li>Input statements for mysql (all tablenames lowercase) "mondial-inputs-mysql.sql" herunterladen</li>
+    </ul>
+
+    <br>
+
+    <h3 class="textColor01">SQL (Select) Recherche:</h3>
+
+    <ul>
+
+        <li class="textColor02"><strong>Was ist eine Datenbank?</strong></li>
+        <p>Eine Datenbank ist eine strukturierte Sammlung von Daten, die auf einem Computer gespeichert und verwaltet wird. Sie ermöglicht es Benutzern, Daten effizient zu speichern, abzurufen und zu bearbeiten.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist eine relationale Datenbank?</strong></li>
+        <p>Eine relationale Datenbank ist eine Art von Datenbank, die Daten in Tabellen organisiert, die durch Beziehungen miteinander verbunden sind. Jede Tabelle besteht aus Zeilen (Datensätzen) und Spalten (Attributen), und die Beziehungen zwischen den Tabellen werden durch Schlüssel definiert.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist eine non-relationale Datenbank?</strong></li>
+        <p>Eine non-relationale Datenbank ist eine Art von Datenbank, die nicht auf dem relationalen Modell basiert. Sie speichert Daten in verschiedenen Formaten, wie z.B. Dokumenten, Schlüssel-Wert-Paaren oder Graphen. Non-relationale Datenbanken sind oft flexibler und skalierbarer als relationale Datenbanken.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist SQL?</strong></li>
+        <p>SQL (Structured Query Language) ist eine standardisierte Programmiersprache, die zur Verwaltung und Manipulation von relationalen Datenbanken verwendet wird. Sie ermöglicht es Benutzern, Daten abzufragen, zu aktualisieren, zu löschen und zu erstellen.</p>
+        <br>
+        <li class="textColor02"><strong>Was sind die Vorteile von SQL?</strong></li>
+        <p>Die Vorteile von SQL sind:
+            <ul>
+                <li>Standardisierte Sprache: SQL ist ein weit verbreiteter Standard, der in vielen Datenbankmanagementsystemen unterstützt wird.</li>
+                <li>Einfachheit: SQL ist relativ einfach zu erlernen und zu verwenden, was es Entwicklern erleichtert, mit Datenbanken zu arbeiten.</li>
+                <li>Flexibilität: SQL ermöglicht komplexe Abfragen und Datenmanipulationen, die auf verschiedene Anforderungen zugeschnitten werden können.</li>
+                <li>Transaktionen: SQL unterstützt Transaktionen, die sicherstellen, dass mehrere Operationen als atomare Einheit ausgeführt werden.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankkonzepte?</strong></li>
+        <p>Die wichtigsten SQL-Datenbankkonzepte sind:
+            <ul>
+                <li>Tabellen: Daten werden in Tabellen organisiert, die aus Zeilen und Spalten bestehen.</li>
+                <li>Primärschlüssel: Ein Primärschlüssel ist ein eindeutiger Bezeichner für jede Zeile in einer Tabelle.</li>
+                <li>Fremdschlüssel: Ein Fremdschlüssel ist ein Attribut, das auf den Primärschlüssel einer anderen Tabelle verweist und Beziehungen zwischen Tabellen definiert.</li>
+                <li>Indizes: Indizes sind Datenstrukturen, die den Zugriff auf Daten in einer Tabelle beschleunigen.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankmanagementsysteme (DBMS)?</strong></li>
+        <p>Die wichtigsten SQL-Datenbanktypen sind:
+            <ul>
+                <li>MySQL: Ein Open-Source-Datenbankmanagementsystem, das häufig für Webanwendungen verwendet wird.</li>
+                <li>PostgreSQL: Ein fortschrittliches Open-Source-Datenbankmanagementsystem mit umfangreichen Funktionen.</li>
+                <li>Oracle Database: Ein kommerzielles Datenbankmanagementsystem, das für große Unternehmen entwickelt wurde.</li>
+                <li>Microsoft SQL Server: Ein relationales Datenbankmanagementsystem von Microsoft, das häufig in Unternehmensumgebungen eingesetzt wird.</li>
+                <li>SQLite: Eine leichtgewichtige, serverlose SQL-Datenbank, die in vielen Anwendungen und mobilen Geräten verwendet wird.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Befehle?</strong></li>
+        <p>Die wichtigsten SQL-Befehle sind:
+            <ul>
+                <li>SELECT: Abfragen von Daten aus einer Tabelle</li>
+                <li>INSERT: Einfügen neuer Daten in eine Tabelle</li>
+                <li>UPDATE: Aktualisieren vorhandener Daten in einer Tabelle</li>
+                <li>DELETE: Löschen von Daten aus einer Tabelle</li>
+                <li>CREATE: Erstellen neuer Tabellen oder Datenbanken</li>
+                <li>DROP: Löschen von Tabellen oder Datenbanken</li>
+            </ul>
+        </p>
+        <br>
+
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankoperationen?</strong></li>
+        <p>Die wichtigsten SQL-Datenbankoperationen sind:
+            <ul>
+                <li>Datenabfrage: Abfragen von Daten aus einer oder mehreren Tabellen mit dem SELECT-Befehl.</li>
+                <li>Datenmanipulation: Einfügen, Aktualisieren und Löschen von Daten in Tabellen mit den Befehlen INSERT, UPDATE und DELETE.</li>
+                <li>Tabellenverwaltung: Erstellen und Löschen von Tabellen und Datenbanken mit den Befehlen CREATE und DROP.</li>
+                <li>Transaktionsmanagement: Sicherstellen, dass mehrere Datenbankoperationen als atomare Einheit ausgeführt werden, um Datenintegrität zu gewährleisten.</li>
+                <li>Indizierung: Erstellen von Indizes, um den Zugriff auf Daten zu beschleunigen und die Abfrageleistung zu verbessern.</li>
+                <li>Datensicherung und Wiederherstellung: Sichern von Datenbanken und Wiederherstellen von Daten im Falle eines Ausfalls oder Datenverlusts.</li>
+                <li>Benutzerverwaltung: Verwalten von Benutzern und Berechtigungen, um den Zugriff auf Datenbanken zu steuern.</li>
+                <li>Optimierung: Optimieren von Abfragen und Datenbankdesign, um die Leistung zu verbessern.</li>
+                <li>Normalisierung: Organisieren von Daten in Tabellen, um Redundanz zu minimieren und die Datenintegrität zu gewährleisten.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was ist die Grundstruktur eines SELECT Befehls?</strong></li>
+        <p>Die Grundstruktur eines SELECT-Befehls lautet:
+            <ul>
+                <li>SELECT: Gibt an, welche Spalten abgerufen werden sollen.</li>
+                <li>FROM: Gibt die Tabelle an, aus der die Daten abgerufen werden sollen.</li>
+                <li>WHERE: Filtert die Daten basierend auf bestimmten Bedingungen.</li>
+                <li>ORDER BY: Sortiert die Ergebnisse nach einer oder mehreren Spalten.</li>
+                <li>GROUP BY: Gruppiert die Ergebnisse basierend auf einer oder mehreren Spalten.</li>
+                <li>HAVING: Filtert die gruppierten Ergebnisse basierend auf bestimmten Bedingungen.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert das LIMIT Statement?</strong></li>
+        <p>Das LIMIT-Statement wird verwendet, um die Anzahl der zurückgegebenen Zeilen in einer SQL-Abfrage zu begrenzen. Es wird häufig in Kombination mit dem SELECT-Befehl verwendet, um eine bestimmte Anzahl von Ergebnissen zurückzugeben.</p>
+        <p>Zum Beispiel:</p>    
+        <div class="code-sample">  
+                <code>
+                    SELECT * FROM table_name LIMIT 10;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die ersten 10 Zeilen aus der Tabelle "table_name" zurückgegeben.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert das WHERE Statement?</strong></li>
+        <p>Das WHERE-Statement wird verwendet, um Bedingungen für die Auswahl von Daten in einer SQL-Abfrage festzulegen. Es filtert die Ergebnisse basierend auf den angegebenen Bedingungen.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * FROM table_name WHERE column_name = 'value';
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die Zeilen aus der Tabelle "table_name" zurückgegeben, bei denen der Wert in der Spalte "column_name" gleich 'value' ist.</p>
+        <br>
+        <li class="textColor02"><strong>Welche Funktionen kann man für die Bearbeitung von Zahlen verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene Funktionen zur Bearbeitung von Zahlen, darunter:</p>
+        <ul>
+            <li>ABS(): Gibt den absoluten Wert einer Zahl zurück.</li>
+            <li>CEIL() oder CEILING(): Rundet eine Zahl auf die nächste ganze Zahl auf.</li>
+            <li>FLOOR(): Rundet eine Zahl auf die nächste ganze Zahl ab.</li>
+            <li>ROUND(): Rundet eine Zahl auf eine bestimmte Anzahl von Dezimalstellen.</li>
+            <li>SUM(): Gibt die Summe der Werte in einer Spalte zurück.</li>
+            <li>AVG(): Gibt den Durchschnitt der Werte in einer Spalte zurück.</li>
+            <li>MIN(): Gibt den kleinsten Wert in einer Spalte zurück.</li>
+            <li>MAX(): Gibt den größten Wert in einer Spalte zurück.</li>
+            <li>COUNT(): Gibt die Anzahl der Zeilen in einer Abfrage zurück.</li>
+            <li>MOD(): Gibt den Rest einer Division zurück.</li>
+            <li>POWER(): Gibt eine Zahl hoch einer anderen Zahl zurück.</li>
+            <li>SQRT(): Gibt die Quadratwurzel einer Zahl zurück.</li>
+            <li>EXP(): Gibt die Exponentialfunktion einer Zahl zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um Berechnungen und Aggregationen auf numerischen Daten durchzuführen.</p>
+        <br>
+        <li class="textColor02"><strong>Welche Funktionen kann man für die Bearbeitung von Texten verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene Funktionen zur Bearbeitung von Texten, darunter:</p>
+        <ul>
+            <li>UPPER(): Wandelt einen Text in Großbuchstaben um.</li>
+            <li>LOWER(): Wandelt einen Text in Kleinbuchstaben um.</li>
+            <li>LENGTH(): Gibt die Länge eines Textes zurück.</li>
+            <li>SUBSTR() oder SUBSTRING(): Gibt einen Teilstring aus einem Text zurück.</li>
+            <li>TRIM(): Entfernt Leerzeichen am Anfang und Ende eines Textes.</li>
+            <li>CONCAT(): Verbindet mehrere Texte zu einem einzigen Text.</li>
+            <li>REPLACE(): Ersetzt Teile eines Textes durch einen anderen Text.</li>
+            <li>LEFT(): Gibt die linke Seite eines Textes zurück.</li>
+            <li>RIGHT(): Gibt die rechte Seite eines Textes zurück.</li>
+            <li>CHARINDEX(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+            <li>INSTR(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um Textdaten zu manipulieren und zu formatieren.</p>
+        <br>
+        <li class="textColor02"><strong>Welche logischen Operatoren kann man verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene logische Operatoren, die verwendet werden können, um Bedingungen in Abfragen zu kombinieren oder zu negieren. Die wichtigsten logischen Operatoren sind:</p>
+        <ul>
+            <li>AND: Verknüpft zwei oder mehr Bedingungen, die alle erfüllt sein müssen.</li>
+            <li>OR: Verknüpft zwei oder mehr Bedingungen, von denen mindestens eine erfüllt sein muss.</li>
+            <li>NOT: Negiert eine Bedingung, sodass nur die Zeilen zurückgegeben werden, die die Bedingung nicht erfüllen.</li>
+            <li>BETWEEN: Überprüft, ob ein Wert innerhalb eines bestimmten Bereichs liegt.</li>
+            <li>IN: Überprüft, ob ein Wert in einer Liste von Werten enthalten ist.</li>
+            <li>LIKE: Überprüft, ob ein Textmuster mit einem bestimmten Muster übereinstimmt.</li>
+            <li>IS NULL: Überprüft, ob ein Wert NULL ist.</li>
+            <li>IS NOT NULL: Überprüft, ob ein Wert nicht NULL ist.</li>
+            <li>EXISTS: Überprüft, ob eine Unterabfrage mindestens eine Zeile zurückgibt.</li>
+            <li>ANY: Überprüft, ob eine Bedingung für mindestens einen Wert in einer Liste erfüllt ist.</li>
+            <li>ALL: Überprüft, ob eine Bedingung für alle Werte in einer Liste erfüllt ist.</li>
+        </ul>
+        <p>Diese logischen Operatoren können in SQL-Abfragen verwendet werden, um komplexe Bedingungen zu erstellen und die Ergebnisse zu filtern.</p>
+        <br>
+
+    </ul>
+
+    <h3 class="textColor01">SQL (Basic Commands)</h3>
+
+    <h4 class="textColor02"><strong>Gyulas Beispiele mit Mondial DB:</strong></h4>
+
+    <p>USE mondial;
+
+        SELECT 'Hello World!'; <br>
+
+        <br>
+        
+        SELECT 'Hello World!' greeting;<br>
+
+        <br>
+        
+        SELECT * FROM country;<br>
+
+        <br>
+        
+        SELECT * FROM country limit 10;  // MSSQL: SELECT TOP 10 * FROM country<br>
+
+        <br>
+        
+        SELECT * FROM country limit 20, 10;<br>
+        
+        <br>
+
+        SELECT Name, Capital FROM country;<br>
+
+        <br>
+        
+        SELECT Name Land, Capital Hauptstadt FROM country;<br>
+
+        <br>
+        
+        SELECT Name AS Land, Capital AS Hauptstadt FROM country;<br>
+
+        <br>
+        
+        SELECT 'Hello World!' AS greeting, <br>
+               Name AS Land, <br>
+               Capital AS Hauptstadt <br>
+        FROM country;<br>
+
+        <br>
+        
+        SELECT *, Name AS Land, 'Hello World!' AS greeting FROM country;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE population > 100000000<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name = 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE NOT Name = 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <> 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil' AND Population > 100000000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil' OR Population > 100000000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Population BETWEEN 10000 AND 20000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE 'Uni%';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE '%m';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE '%ca%';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE length(NAME) < 5;<br>
+
+        <br>
+        
+        SELECT *, SUBSTR(Name, 3, 1)<br>
+        FROM country<br>
+        
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        WHERE SUBSTR(Name, 3, 1) = 's'<br>
+
+        <br>
+        
+        SELECT Count(*) AS anzahlLaender<br>
+        FROM country</p><br>
+
+
+
+</body>
+</html>
