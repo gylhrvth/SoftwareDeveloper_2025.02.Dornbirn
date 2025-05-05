@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
 </head>
+<script>
+    // Seite nach 3 Sekunden neu laden
+    setTimeout(function() {
+        location.reload(); // Korrekte Methode zum Neuladen der Seite
+    }, 3000); // Timeout in Millisekunden (3000 ms = 3 Sekunden)
+</script>
 <body>
   <h1><%= message %></h1>
+  <p>Die Startseite wurde <%= counter %> Mal aufgerufen.</p>
   <a href="/about">Über uns</a>
 </body>
 </html>
