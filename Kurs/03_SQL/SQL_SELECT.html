@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL SELECT</title>
+  <link rel="stylesheet" href="../common.css">
+  <script src="../common.js" defer></script>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="nosnippet">
+<style>
+  @keyframes task {
+    0%   { transform: translateX(0);}
+    50%  { transform: translateX(50%);}
+    100% { transform: translateX(0);}
+    
+  }
+  .specialTask{
+    color:hsl(300, 85%, 25%);
+    font-size: 1.8em;
+    animation: task 4s linear infinite;
+  }
+</style>
+</head>
+
+<body>
+  <div class="menu">
+    <a href="../../index.html">Home</a>
+    <a href="../Aufgaben.html">Aufgaben</a>
+    <a href="#Aufgabe0ID">Aufgabe 0: Installation des Tools und Sample Database</a>
+    <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+    <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+    <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+    <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+  </div>
+
+  <h1 id="Aufgabe0ID">Aufgabe 0: Installation des Tools und Sample Database</h1>
+  <h2>MySQL Community Edition</h2>
+  <p>Um MySQL Community Edition zu installieren, folge diesen Schritten:</p>
+  <ol>
+    <li>Besuche die <a href="https://dev.mysql.com/downloads/mysql/">MySQL Download-Seite</a>.</li>
+    <li>Wähle die passende Version für dein Betriebssystem aus.</li>
+    <li>Folge den Installationsanweisungen auf der Webseite.</li>
+    <li>Lass die Defaultkonfiguration mit dem Port 3306 stehen.</li>
+    <li>Gebe ein Root Passwort. Das Root Passwort muss auch gemerkt werden</li>
+  </ol>
+
+  <h2>DBeaver Community Edition</h2>
+  <p>DBeaver ist ein universelles Datenbank-Management-Tool, das eine Vielzahl von Datenbanken unterstützt.</p>
+  <p>Um DBeaver Community Edition zu installieren, folge diesen Schritten:</p>
+  <ol>
+    <li>Besuche die <a href="https://dbeaver.io/download/">DBeaver Download-Seite</a>.</li>
+    <li>Wähle die passende Version für dein Betriebssystem aus.</li>
+    <li>Folge den Installationsanweisungen auf der Webseite.</li>
+    <li>Starte DBeaver</li>
+    <li>Du brauchst kein "Sample Database"</li>
+    <li>Füge eine neue Verbindung zu MYSQL Server ein</li>
+    <li>Als Treiber wähle MySQL</li>
+    <li>Gebe das Root Passwort ein</li>
+    <li>In Eigenschaften musst du AllowPublicKeyRetieval auf TRUE setzen</li>    
+    <li>In Eigenschaften musst du UseSSL auf FALSE setzen</li>
+    <li>Teste die Verbindung</li>
+    <li>Wenn alles gut ist, dann klicke auf "Finish"</li>    
+  </ol>
+
+  <h2>Sample Database: MONDIAL</h2>
+  <p>Unterlade den Mondial Database aus dem Server der Uni Göttingen</p>
+  <p>Der Schema: <a href="https://www.dbis.informatik.uni-goettingen.de/Mondial/OtherDBMSs/mondial-schema-mysql.sql">download</a></p>
+  <p>Die Daten: <a href="https://www.dbis.informatik.uni-goettingen.de/Mondial/OtherDBMSs/mondial-inputs-mysql.sql">download</a></p>
+
+  <ol>
+    <li>Öffne das File mit dem Schema...</li>
+    <li>Commentiere oder lösche die erste Zeile (SET SESSION ...) aus.</li>
+    <li>Führe als Skipt aus</li>
+    <li>Öffne das File mit den Daten, führe als Skript aus</li>
+  </ol>
+
+  <p>Öffne ein neues SQL Scirpt... und schreibe <code>SELECT * FROM country;</code>. Führe den Befehl aus.</p>
+
+  <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+  <a href="https://dev.mysql.com/doc/refman/8.4/en/select.html">SELECT (MySQL Reference Manual)</a>
+  <br>
+  <a href="https://www.w3schools.com/sql/sql_select.asp">SELECT (W3School)</a>
+  <br>
+
+  <h2>SQL SELECT</h2>
+  <p>Fragen</p>
+  <ul>
+    <li>Was ist ein <b>Datenbank</b>? Was sind die Hauptfunktionen eines DB Servers?</li>
+    <li>Was ist ein <b>relationale Datenbank</b>? Welche konkrete Hersteller kennst du?</li>
+    <li>Was ist ein <b>non-relationale Datenbank</b>? Welche konkreten Beispiele kennst du?</li>
+    <li>Was bedeutet die Abkürzung <b>SQL</b>?</li>
+    <li>Was ist die Grundstruktur eines <b>SELECT</b> Befehls?</li>
+    <li>Wie funktioniert das <b>LIMIT</b> Statement?</li>
+    <li>Wie funktioniert das <b>WHERE</b> Statement?</li>
+    <li>Welche Funktionen kann ich für Bearbeitung von Zahlen verwenden?</li>
+    <li>Welche Funktionen kann ich für Bearbeitung von Texten verwenden?</li>
+    <li>Welche logischen Operatoren kann ich verwenden?</li>
+</ul>
+
+  <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+  <ol>
+    <li>Erfahrung in Journal Seite eintragen</li>
+    <li>mit Git Commit die Änderungen festlegen</li>
+    <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+  </ol>
+
+  <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+
+  <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+
+
+  <div class="menu">
+    <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+    <a href="../../Work/Carlos/main.html">Carlos</a>
+    <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+    <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+    <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+    <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+    <a href="../../Work/Sandro/Journal.html">Sandro</a>
+  </div>
+  <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>
