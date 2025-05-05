@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL -Basics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SQL - Datenbank</h1>
+    <h2>Montag, 05. Mai 2025</h2>
+    <h3>SQL Basics</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Was ist SQL?</span>
+        <p><b>SQL</b> steht für <b>Structured Query Language.</b> Das ist die standardisierte Sprache, um mit <b>relationalen Datenbank zu arbeiten.</b></p>
+        <p>Mit SQL kannst du:</p>
+        <ul>
+            <li>Daten <b>erstellen</b> (CREATE)</li>
+            <li>Daten <b>lesen</b> (SELECT)</li>
+            <li>Daten <b>ändern</b> (UPDATE)</li>
+            <li>Daten <b>löschen</b> (DELETE)</li>
+        </ul>
+        <p><strong>📘Wichtige SQL-Schlüsselwörter (Keywords)</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Schlüsselwort</th>
+                    <th>Bedeutung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SELECT</td>
+                    <td>Daten aus einer Tabelle abrufen</td>
+                </tr>
+                <tr>
+                    <td>FROM</td>
+                    <td>Gibt an, aus welcher Tabelle gelesen wird</td>
+                </tr>
+                <tr>
+                    <td>WHERE</td>
+                    <td>Bedingung für das Filtern von Daten</td>
+                </tr>
+                <tr>
+                    <td>INSERT</td>
+                    <td>Neue Daten in eine Tabelle einfügen</td>
+                </tr>
+                <tr>
+                    <td>UPDATE</td>
+                    <td>Bestehende Daten ändern</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>Daten löschen</td>
+                </tr>
+                <tr>
+                    <td>CREATE TABLE</td>
+                    <td>Neue Tabelle erstellen</td>
+                </tr>
+                <tr>
+                    <td>DROP TABLE</td>
+                    <td>Tabelle löschen</td>
+                </tr>
+                <tr>
+                    <td>ORDER BY</td>
+                    <td>Ergebnisse sortieren</td>
+                </tr>
+                <tr>
+                    <td>JOIN</td>
+                    <td>Tabellen miteinander verbinden</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Hauptfunktion eines DB-Servers:</strong></p>
+        <ol>
+            <li><b>Daten speichern und verwalten</b></li>
+            <p>→ Speichert strukturierte Daten in Tabellen und Datenbanken</p>
+            <li><b>SQL-Abfragen verarbeiten</b></li>
+            <p>→ Führt Befehle wie SELECT, INSERT, UPDATE, DELETE aus</p>
+            <li><b>Zugriffsrechte & Sicherheit</b></li>
+            <p>→ Schützt Daten mit Benutzerrechten und Authentifizierung</p>
+            <li>Mehrbenutzerzugriff & Transaktionen</li>
+            <p>→ Ermöglicht gleichzeitiges Arbeiten ohne Datenverlust</p>
+            <li><b>Backup & Wiederherstellung</b></li>
+            <p>→ Sichert Daten regelmäßig und stellt sie bei Bedarf wieder her</p>
+            <li><b>Schnittstellen für Programme</b></li>
+            <p>→ Verbindet sich mit Apps über APIs oder Datenbanktreiber</p>
+        </ol>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein relationale Datenbank? Welche konkrete Hersteller kennst du?</span>
+        <p>Eine <b>relationale Datenbank</b> speichert Daten in <b>Tabellen</b> (auch „Relationen“ genannt). Jede Tabelle besteht aus <b>Zeilen (Datensätze)</b> und <b>Spalten (Felder).</b></p>
+        <p><strong>🔑Merkmale:</strong></p>
+        <ul>
+            <li><b>Strukturierte Daten</b>  (z.B. Kunden, Bestellungen, Produkte)</li>
+            <li><b>Primärschlüssel</b> (eindeutige ID für jede Zeile)</li>
+            <li><b>Fremdschlüssel</b> (stellt Beziehungen zu anderen Tabellen her)</li>
+            <li><b>SQL</b> ist die Sprache zur Abfrage und Verwaltung</li>
+        </ul>
+        <br>
+        <p><strong>🏭Bekannte Hersteller (relationale Datenbanksysteme)</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Hersteller / Produkt</th>
+                    <th>Besonderheit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MySQL</td>
+                    <td>Open Source, weit verbreitet im Web (z.B. WordPress)</td>
+                </tr>
+                <tr>
+                    <td>PostgreSQL</td>
+                    <td>Open Source, sehr leistungsstark, unterstützt viele Features</td>
+                </tr>
+                <tr>
+                    <td>Microsoft SQL Server</td>
+                    <td>Starke Integration mit Windows/.NET, kommerziell</td>
+                </tr>
+                <tr>
+                    <td>Oracle Database</td>
+                    <td>Enterprise-Lösung, sehr mächtig, kostenpflichtig</td>
+                </tr>
+                <tr>
+                    <td>SQLite</td>
+                    <td>Leichtgewichtig, ideal für kleine lokale Anwendungen</td>
+                </tr>
+                <tr>
+                    <td>MariaDB</td>
+                    <td>Fork von MySQL, vollständig Open Source</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein non-relationale Datenbank? Welche konkreten Beispiele kennst du?</span>
+        <p>Eine <b>non-relationale Datenbank</b> speichert Daten <b>nicht in Tabellen,</b> sondern in <b>flexiblen Formaten</b> wie <b>JSON, Key-Value, Spalten</b> oder <b>Graphen</b></p>
+        <p>✅Wichtigiste Merkmale:</p>
+        <ul>
+            <li>Kein festes Schema (schemafrei)</li>
+            <li>Ideal für große, schnell wachsende Datenmengen</li>
+            <li>Gut für Cloud, Big Data und Echtzeit-Anwendungen</li>
+            <li>Keine SQL-Tabellen, sondern Dokumente, Schlüssel-Wert-Paare usw.</li>
+        </ul>
+        <br>
+        <p><strong>Konkrete Beispiele:</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Datenbank</th>
+                    <th>Typ</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MongoDB</td>
+                    <td>Dokumentenbasiert</td>
+                    <td>Speichert Daten als JSON-Dokumente</td>
+                </tr>
+                <tr>
+                    <td>Redis</td>
+                    <td>Key-Value Store</td>
+                    <td>Extrem schnell, ideal für Cache</td>
+                </tr>
+                <tr>
+                    <td>Cassandra</td>
+                    <td>Spaltenorientiert</td>
+                    <td>Für riesige Datenmengen optimiert</td>
+                </tr>
+                <tr>
+                    <td>Neo4j</td>
+                    <td>Graphdatenbank</td>
+                    <td>Ideal für Netzwerke und Beziehungen</td>
+                </tr>
+        </table>
+        <p><strong>MongoDB Syntax-Beispiel: (JSON-basiert)</strong></p>
+        <p>📥1. Dokument einfügen</p>
+        <div class="code-box">
+            <code>
+                db.kunden.insertOne({
+                    name: 'Max Mustermann',
+                    email: 'max@example.com'
+                    alter: 30
+                });
+            </code>
+        </div>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist die Grundstruktur eines SELECT Befehls?</span>
+        <p>Die Grundstruktur eines SELECT-Befehls lautet:</p>
+            <ul>
+                <li><b>SELECT:</b> Gibt an, welche Spalten abgerufen werden sollen.</li>
+                <li><b>FROM:</b> Gibt die Tabelle an, aus der die Daten abgerufen werden sollen.</li>
+                <li><b>WHERE:</b> Filtert die Daten basierend auf bestimmten Bedingungen.</li>
+                <li><b>ORDER BY:</b> Sortiert die Ergebnisse nach einer oder mehreren Spalten.</li>
+                <li><b>GROUP BY:</b> Gruppiert die Ergebnisse basierend auf einer oder mehreren Spalten.</li>
+                <li><b>HAVING:</b> Filtert die gruppierten Ergebnisse basierend auf bestimmten Bedingungen.</li>
+            </ul>
+        <br>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie funktioniert das LIMIT Statement?</span>
+        <p><b>,,Gibt nur eine Bestimmte Anzahl an Ergebnissen zurück".</b></p>
+        <p><strong>🧱 Syntax:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT spaltenname
+                FROM tabellenname
+                LIMIT anzahl;
+            </code>
+        </div>
+        <p><strong>📝 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT * FROM kunden
+                LIMIT 5;
+            </code>
+        </div>
+        <p>→ Gibt nur die ersten 5 Zeilen aus der Tabelle kunden zurück.</p>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie funktioniert das WHERE Statement?</span>
+        <p>Das <b>WHERE - Statement</b> wird verwendet, um Bedingungen für die Auswahl von Daten in einer SQL-Abfrage festzulegen. Es filtert die Ergebnisse basierend auf den angegebenen Bedingungen.</p>
+        <p><strong>📝 Beispiel:</strong></p>
+        <div class="code-box">  
+            <code>
+                SELECT * FROM table_name WHERE column_name = 'value';
+            </code>
+            </div>
+        <p>In diesem Beispiel werden nur die Zeilen aus der Tabelle "table_name" zurückgegeben, bei denen der Wert in der Spalte "column_name" gleich 'value' ist.</p>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche Funktionen kann ich für Bearbeitung von Zahlen verwenden?</span>
+        <p>In SQL gibt es verschiedene <b>Funktionen zur Bearbeitung</b> von <b>Zahlen</b>, darunter:</p>
+        <ul>
+            <li>ABS(): Gibt den absoluten Wert einer Zahl zurück.</li>
+            <li>CEIL() oder CEILING(): Rundet eine Zahl auf die nächste ganze Zahl auf.</li>
+            <li>FLOOR(): Rundet eine Zahl auf die nächste ganze Zahl ab.</li>
+            <li>ROUND(): Rundet eine Zahl auf eine bestimmte Anzahl von Dezimalstellen.</li>
+            <li>SUM(): Gibt die Summe der Werte in einer Spalte zurück.</li>
+            <li>AVG(): Gibt den Durchschnitt der Werte in einer Spalte zurück.</li>
+            <li>MIN(): Gibt den kleinsten Wert in einer Spalte zurück.</li>
+            <li>MAX(): Gibt den größten Wert in einer Spalte zurück.</li>
+            <li>COUNT(): Gibt die Anzahl der Zeilen in einer Abfrage zurück.</li>
+            <li>MOD(): Gibt den Rest einer Division zurück.</li>
+            <li>POWER(): Gibt eine Zahl hoch einer anderen Zahl zurück.</li>
+            <li>SQRT(): Gibt die Quadratwurzel einer Zahl zurück.</li>
+            <li>EXP(): Gibt die Exponentialfunktion einer Zahl zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um <b>Berechnungen</b> und <b>Aggregationen</b> auf numerischen Daten durchzuführen.</p>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche Funktionen kann ich für Bearbeitung von Texten verwenden?</span>
+        <p>In SQL gibt es verschiedene <b>Funktionen zur Bearbeitung</b> von <b>Texten</b>, darunter:</p>
+        <ul>
+            <li>UPPER(): Wandelt einen Text in Großbuchstaben um.</li>
+            <li>LOWER(): Wandelt einen Text in Kleinbuchstaben um.</li>
+            <li>LENGTH(): Gibt die Länge eines Textes zurück.</li>
+            <li>SUBSTR() oder SUBSTRING(): Gibt einen Teilstring aus einem Text zurück.</li>
+            <li>TRIM(): Entfernt Leerzeichen am Anfang und Ende eines Textes.</li>
+            <li>CONCAT(): Verbindet mehrere Texte zu einem einzigen Text.</li>
+            <li>REPLACE(): Ersetzt Teile eines Textes durch einen anderen Text.</li>
+            <li>LEFT(): Gibt die linke Seite eines Textes zurück.</li>
+            <li>RIGHT(): Gibt die rechte Seite eines Textes zurück.</li>
+            <li>CHARINDEX(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+            <li>INSTR(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um <b>Texdaten</b> zu <b>manipulieren</b> und zu <b>formatieren</b>.</p>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche logischen Operatoren kann ich verwenden?</span>
+        <p>In SQL gibt es verschiedene <b>logische Operatoren</b>, die verwendet werden können, um <b>Bedingungen in Abfragen</b> zu kombinieren oder zu negieren. Die <b>wichtigsten logischen</b> Operatoren sind:</p>
+        <ul>
+            <li>AND: Verknüpft zwei oder mehr Bedingungen, die alle erfüllt sein müssen.</li>
+            <li>OR: Verknüpft zwei oder mehr Bedingungen, von denen mindestens eine erfüllt sein muss.</li>
+            <li>NOT: Negiert eine Bedingung, sodass nur die Zeilen zurückgegeben werden, die die Bedingung nicht erfüllen.</li>
+            <li>BETWEEN: Überprüft, ob ein Wert innerhalb eines bestimmten Bereichs liegt.</li>
+            <li>IN: Überprüft, ob ein Wert in einer Liste von Werten enthalten ist.</li>
+            <li>LIKE: Überprüft, ob ein Textmuster mit einem bestimmten Muster übereinstimmt.</li>
+            <li>IS NULL: Überprüft, ob ein Wert NULL ist.</li>
+            <li>IS NOT NULL: Überprüft, ob ein Wert nicht NULL ist.</li>
+            <li>EXISTS: Überprüft, ob eine Unterabfrage mindestens eine Zeile zurückgibt.</li>
+            <li>ANY: Überprüft, ob eine Bedingung für mindestens einen Wert in einer Liste erfüllt ist.</li>
+            <li>ALL: Überprüft, ob eine Bedingung für alle Werte in einer Liste erfüllt ist.</li>
+        </ul>
+        <p>Diese logischen Operatoren können in SQL-Abfragen verwendet werden, um <b>komplexe Bedingungen zu erstellen und die Ergebnisse zu filtern</b>.</p>
+    </li>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</body>
+</html>
