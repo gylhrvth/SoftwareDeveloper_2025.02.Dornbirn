@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../carlosMainStyle.css">
     <link rel="stylesheet" href="../carlosMiscStyle.css">
     <script src="../../../Kurs/common.js" defer></script>
+    <style>table {border: medium solid #6495ed;border-collapse: collapse;width: 100%;} th{font-family: monospace;border: thin solid #6495ed;padding: 5px;background-color: #D0E3FA;}th{text-align: left;}td{font-family: sans-serif;border: thin solid #6495ed;padding: 5px;text-align: center;}.odd{background:#e8edff;}img{padding:5px; border:solid; border-color: #dddddd #aaaaaa #aaaaaa #dddddd; border-width: 1px 2px 2px 1px; background-color:white;}</style>
     <title>SQL Journal 01</title>
 
 </head>
@@ -18,11 +19,274 @@
     <h1 class="textColor01">SQL Journal 01</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day47">DI 06/05/25</a>: SQL (Select)</h3>
     <h3 class="textColor01">▷ <a href="#day46">MO 05/05/25</a>: SQL (Basics)</h3>
 
     </div>
 
     <br>
+    <br>
+
+    <h2 id="day47">Dienstag 06. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL (Select)</h3>
+
+    <h4>‼️➡️ Aufgaben:</h4>
+
+    <h4 class="textColor01">-> Kleine Wiederholung:</h4>
+
+    <ol>
+        
+
+        <li><h4 class="textColor02">Zeige die aktuelle Uhrzeit als Query-Result an.</h4></li>
+        <p>SELECT now()</p>
+
+        <li><h4 class="textColor02">Zeige "Hello World!" als Query-Result an.</h4></li>
+        <p>SELECT 'Hello World!'</p>
+        <li><h4 class="textColor02">Zeige alle Spalten, alle Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT * FROM country</p>
+        <li><h4 class="textColor02">Zeige alle Spalten, erste 5 Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT * FROM country<br>
+           LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital der ersten 5 Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT Name, Capital FROM country<br>
+           LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital der ersten 5 Zeilen aus der country Tabelle mit eigenen Namen.</h4></li>
+            <p>SELECT Name AS Land, Capital AS Hauptstadt FROM country,<br>
+                LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name 'Austria'.</h4></li>
+        <p>SELECT Name, Capital FROM country<br>
+           WHERE Name = 'Austria';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Population kleiner 1 Million.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Population < 1000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Population zwischen 1 Million und 2 Millionen.</h4></li>
+                <p>SELECT Name, Capital FROM country<br>
+                WHERE Population BETWEEN 1000000 AND 2000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A'.</h4></li>
+        <p>Alternative 01:</p>
+        <p>SELECT Name, Capital FROM country<br>
+           WHERE Name LIKE 'A%';</p><br>
+
+        <p>Alternative 02:</p>
+           <p>SELECT Name, Capital<br>
+            FROM country<br>
+            WHERE SUBSTR(Name, 1, 1) = 'a';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name am Ende mit 'A'.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Name LIKE '%a';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name nicht beginnend mit 'A'.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE NOT Name LIKE 'A%';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A' oder Population kleiner 1 Million.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Name LIKE 'A%' OR Population < 1000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A' und Population kleiner 1 Million.</h4></li>
+            <p>SELECT NAme, Capital FROM country<br>
+                WHERE Name LIKE 'A%' AND Population < 1000000;</p>
+    </ol>
+
+    <br>
+
+    <h4 class="textColor01">-> Challenge Aufgaben:</h4>
+
+    <p><strong>Database Schema:</strong><a href="https://www.dbis.informatik.uni-goettingen.de/Mondial/mondial-abh.pdf">Link</a></p>
+    
+    <ol>
+
+        <li><h4 class="textColor02">Wie viele Einwohner hat Österreich?</h4></li>
+        <p>SELECT Population FROM country<br>
+           WHERE Name = 'Austria';</p>
+
+        <p>Lösung: Österreich hat 8,023,244 Einwohner.</p>
+
+        <li><h4 class="textColor02">Wie viele Einwohner hat der Kontinent Europa?</h4></li>
+            <p>SELECT<br>
+                SUM(country.Population) AS TotalPopulation<br>
+               FROM country<br>
+               JOIN encompasses ON country.Code = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe';</p>
+
+        <p>Lösung: Europa hat 791,243,404 Einwohner.</p>
+
+        <li><h4 class="textColor02">Welche Flüsse fließen durch Österreich?</h4></li>
+            <p>SELECT<br>
+                 DISTINCT geo_river.River AS River<br>
+               FROM geo_river<br>
+               JOIN country ON geo_river.Country = country.Code<br>
+               WHERE country.Name = 'Austria';</p>
+        
+            <p>Lösung: Raab, Drau, Donau, March, Enns, Mur, Salzach, Inn, Isar, Lech, Iller, Rhein </p>
+
+        <li><h4 class="textColor02">Welche Flüsse fließen durch Europa (nur den Flussnamen)?</h4></li>
+            <p>SELECT<br>
+                DISTINCT geo_river.River AS River<br>
+               FROM geo_river<br>
+               JOIN country ON geo_river.Country = country.Code<br>
+               JOIN encompasses ON country.Code = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe'</p>
+
+            <p>Lösung: </p>
+            <p>Euphrat, Aare, Limmat, Reuss, Rhein, Murat, Glomma, Lagen, Black Drin, Drin, White Drin, Guadiana, Saar, Katun, Ob, Goetaaelv, Amur, Guadalquivir, Garonne, Ebro, Northern Dwina, Petschora, Volga, Loire, Douro, Donau, Breg, Brigach, Iller, Neckar, Drau, Tigris, Alz, Ammer, Inn, Isar, Lech, Main, Salzach, Wurm, Dnepr, Western Dwina, Thames, Weichsel, Theiss, Save, Pruth, Doubs, Saone, Seine, Elbe, Oder, Olt, Weser, Raab, Tajo, Maas, Marne, Ural, Dnjestr, Argun, Schilka, Mur, Dalaelv, Oesterdalaelv, Vaesterdalaelv, Po, Karasu, Narva, Paatsjoki, Rhone, Kymijoki, Klaraelv, Fulda, Werra, Joekulsa a Fjoellum, Thjorsa, Angara, Lena, Moldau, March, Oka, Kura, Southern Morava, Chatanga, Jenissej, Vuoksi, Tobol, Kemijoki, Ounasjoki, Tiber, Newa, Swir, Don, Adda, Ticino, Mosel, Kolyma, Aller, Leine, Irtysch, Ischim, Oulujoki, Isere, Enns, Morava, Western Morava, Waag, Arno, Etsch, Kokemaeenjoki, Umeaelv, Mincio, Suchona.
+            </p>
+            <br>
+
+            <p>-> Abfrage zu Flüssen in Ländern, deren Fläche zu mindestens 50 % in Europa liegt.</p>
+        
+            <p>SELECT<br>
+                DISTINCT geo_river.River AS River<br>
+                FROM geo_river<br>
+                JOIN country ON geo_river.Country = country.Code<br>
+                JOIN encompasses ON country.Code = encompasses.Country<br>
+                WHERE encompasses.Continent = 'Europe'<br>
+                    AND country.Area >= 0.5 * (
+                        SELECT SUM(encompasses.Percentage * country.Area)<br>
+                        FROM encompasses<br>
+                        WHERE encompasses.Country = country.Code<br>
+                            AND encompasses.Continent = 'Europe';
+                    );</p>
+
+
+                <p>Lösung:</p>
+
+                <p></p>
+
+        <li><h4 class="textColor02">Wie viel Prozent der Menschen leben im Kontinent Europa?</h4></li>
+
+        <p>SELECT<br>
+             (europe.Population / world.TotalPopulation) * 100 AS PercentageInEurope<br>
+           FROM 
+             (SELECT SUM(country.Population) AS Population<br>
+             FROM country<br>
+             JOIN encompasses ON country.Code = encompasses.Country<br>
+             WHERE encompasses.Continent = 'Europe') AS europe,<br>
+             (SELECT SUM(Population) AS TotalPopulation FROM country) AS world;</p>
+             
+        <p>Lösung: 13.7%</p>
+
+        <li><h4 class="textColor02">Alle Länder die mit einem A anfangen</h4></li>
+            <p>SELECT Name FROM country<br>
+                WHERE Name LIKE 'A%';</p>
+        <li><h4 class="textColor02">Alle Länder die mit einem A anfangen und deren Bundesländer mit Einwohnerzahl, sortiert nach Einwohnerzahl</h4></li>
+            <p>SELECT country.Name AS Land, province.Name AS Bundesland, province.Population<br>
+                FROM country<br>
+                JOIN province ON country.Code = province.Country<br>
+                WHERE country.Name LIKE 'A%'<br>
+                ORDER BY province.Population DESC;</p>
+
+            <p>Lösung:</p>
+            
+                <table>
+                <tr><td>Afghanistan</td><td>Afghanistan</td><td>22,664,136</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Buenos Aires</td><td>12,594,974</td></tr>
+                <tr><td>Azerbaijan</td><td>Azerbaijan</td><td>7,676,953</td></tr>
+                <tr class="odd"><td>Australia</td><td>New South Wales</td><td>6,115,100</td></tr>
+                <tr><td>Australia</td><td>Victoria</td><td>4,502,200</td></tr>
+                <tr class="odd"><td>Armenia</td><td>Armenia</td><td>3,463,574</td></tr>
+                <tr><td>Australia</td><td>Queensland</td><td>3,277,000</td></tr>
+                <tr class="odd"><td>Albania</td><td>Albania</td><td>3,249,136</td></tr>
+                <tr><td>Argentina</td><td>Distrito Federal</td><td>2,965,403</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Santa Fe</td><td>2,798,422</td></tr>
+                <tr><td>Argentina</td><td>Cordoba</td><td>2,766,683</td></tr>
+                <tr class="odd"><td>Australia</td><td>Western Australia</td><td>1,731,700</td></tr>
+                <tr><td>Angola</td><td>Luanda</td><td>1,629,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Vienna</td><td>1,583,000</td></tr>
+                <tr><td>Angola</td><td>Huambo</td><td>1,524,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Lower Austria</td><td>1,507,000</td></tr>
+                <tr><td>Australia</td><td>South Australia</td><td>1,474,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Mendoza</td><td>1,412,481</td></tr>
+                <tr><td>Austria</td><td>Upper Austria</td><td>1,373,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Styria</td><td>1,203,000</td></tr>
+                <tr><td>Argentina</td><td>Tucuman</td><td>1,142,105</td></tr>
+                <tr class="odd"><td>Angola</td><td>Bie</td><td>1,125,000</td></tr>
+                <tr><td>Argentina</td><td>Entre Rios</td><td>1,020,257</td></tr>
+                <tr class="odd"><td>Angola</td><td>Malanje</td><td>892,000</td></tr>
+                <tr><td>Angola</td><td>Huila</td><td>869,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Salta</td><td>866,153</td></tr>
+                <tr><td>Argentina</td><td>Chaco</td><td>839,677</td></tr>
+                <tr class="odd"><td>Angola</td><td>Uige</td><td>837,000</td></tr>
+                <tr><td>Argentina</td><td>Corrientes</td><td>795,594</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Misiones</td><td>788,915</td></tr>
+                <tr><td>Argentina</td><td>Santiago de Estero</td><td>671,988</td></tr>
+                <tr class="odd"><td>Angola</td><td>Cuanza Sul</td><td>651,000</td></tr>
+                <tr><td>Austria</td><td>Tyrol</td><td>649,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Benguela</td><td>644,000</td></tr>
+                <tr><td>Austria</td><td>Carinthia</td><td>559,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>San Juan</td><td>528,715</td></tr>
+                <tr><td>Argentina</td><td>Jujuy</td><td>512,329</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Rio Negro</td><td>506,772</td></tr>
+                <tr><td>Austria</td><td>Salzburg</td><td>501,000</td></tr>
+                <tr class="odd"><td>Australia</td><td>Tasmania</td><td>473,022</td></tr>
+                <tr><td>Argentina</td><td>Formosa</td><td>398,413</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Neuquen</td><td>388,833</td></tr>
+                <tr><td>Angola</td><td>Cuanza Norte</td><td>378,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Chubut</td><td>357,189</td></tr>
+                <tr><td>Austria</td><td>Vorarlberg</td><td>341,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Moxico</td><td>316,000</td></tr>
+                <tr><td>Australia</td><td>Australia Capital Territory</td><td>304,100</td></tr>
+                <tr class="odd"><td>Angola</td><td>Lunda Norte</td><td>292,000</td></tr>
+                <tr><td>Argentina</td><td>San Luis</td><td>286,458</td></tr>
+                <tr class="odd"><td>Austria</td><td>Burgenland</td><td>273,000</td></tr>
+                <tr><td>Argentina</td><td>Catamarca</td><td>264,324</td></tr>
+                <tr class="odd"><td>Argentina</td><td>La Pampa</td><td>259,996</td></tr>
+                <tr><td>Angola</td><td>Cunene</td><td>232,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>La Rioja</td><td>220,729</td></tr>
+                <tr><td>Angola</td><td>Zaire</td><td>192,000</td></tr>
+                <tr class="odd"><td>Australia</td><td>Northern Territory</td><td>173,878</td></tr>
+                <tr><td>Angola</td><td>Bengo</td><td>166,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Cabinda</td><td>163,000</td></tr>
+                <tr><td>Argentina</td><td>Santa Cruz</td><td>159,839</td></tr>
+                <tr class="odd"><td>Angola</td><td>Lunda Sul</td><td>155,000</td></tr>
+                <tr><td>Angola</td><td>Cuando Cubango</td><td>130,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Namibe</td><td>115,000</td></tr>
+                <tr><td>Aruba</td><td>Aruba</td><td>103,065</td></tr>
+                <tr class="odd"><td>Andorra</td><td>Andorra</td><td>72,766</td></tr>
+                <tr><td>Argentina</td><td>Tierra del Fuego</td><td>69,369</td></tr>
+                <tr class="odd"><td>Antigua and Barbuda</td><td>Antigua and Barbuda</td><td>65,647</td></tr>
+                <tr><td>American Samoa</td><td>American Samoa</td><td>65,628</td></tr>
+                <tr class="odd"><td>Anguilla</td><td>Anguilla</td><td>14,436</td></tr>
+                </table>
+
+        <li><h4 class="textColor02">Alle Flüsse die durch Europa fließen (nur Flüsse und deren Länge), sortiert nach Länge</h4></li>
+            <p>SELECT<br>
+                river.Name AS Flussname, river.Length AS Länge<br>
+               FROM river<br>
+               JOIN geo_river ON river.Name = geo_river.River<br>
+               JOIN country ON geo_river.Country = country.Code<br>
+               JOIN encompasses ON country.Code = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe'<br>
+               ORDER BY Length DESC;</p>
+        <li><h4 class="textColor02">Alle Inseln im Pazifik mit >50% islamischem Bekenntnis</h4></li>
+
+        <li><h4 class="textColor02">Alle 3000er, welche in einem Land sind, welches zu mindestens 60% römisch Katholisch ist</h4></li>
+
+        <li><h4 class="textColor02">Alle Länder mit mindestens einem See mit mindestens 100 Meter Tiefe und mindestens einem Berg mit mindestens 1500 Höhenmeter</h4></li>
+
+        <li><h4 class="textColor02">Einwohnerzahl pro Religion</h4></li>
+
+        <li><h4 class="textColor02">Alle Länder, nur die Namen und die Meere dazu (keine Null Werte)</h4></li>
+
+        <li><h4 class="textColor02">Alle Länder, nur die Namen, und wenn sie haben, das Meer dazu</h4></li>
+
+        <li><h4 class="textColor02">Das Unabhängigkeitsdatum von Ländern die eine Wüste haben und die ethnische Gruppe African</h4></li>
+        
+        <li><h4 class="textColor02">Welche Länder haben genau 3 Städte? Wie heißen diese Städte?</h4></li>
+
+        <li><h4 class="textColor02">Welches sind die 3 größten Städte von Amerika (Kontinent)?</h4></li>
+
+        <li><h4 class="textColor02">Was ist der größte Berg von Österreich? Wie hoch ist er?</h4></li>
+
+        <li><h4 class="textColor02">Was ist der größte Berg von Europa? Wie hoch ist er?</h4></li>
+
+        <li><h4 class="textColor02">Was ist der größte Berg pro Kontinent? Wie hoch sind diese?</h4></li>
+
+        <li><h4 class="textColor02">Welches Land hat am meisten anerkannte Religionen? Wie viel sind es?</h4></li>
+        
+        <li><h4 class="textColor02">Welche Organisationen haben deren Hauptsitz in Österreich? Wie viele Mitglieder haben diese Organisationen?</h4></li>
+        
+        <li><h4 class="textColor02">Was sind die Top 10 Sprachen? Wie viele native Speaker sprechen diese Sprache?</h4></li>
+    </ol>
+
     <br>
 
     <h2 id="day46">Montag 05. Mai 2025</h2>
@@ -229,9 +493,87 @@
         <p>Diese logischen Operatoren können in SQL-Abfragen verwendet werden, um komplexe Bedingungen zu erstellen und die Ergebnisse zu filtern.</p>
         <br>
 
+        <li class="textColor02"><strong>Wie funktioniert ORDER BY Statement?</strong></li>
+        <p>Das ORDER BY-Statement wird verwendet, um die Ergebnisse einer SQL-Abfrage nach einer oder mehreren Spalten zu sortieren. Es kann in aufsteigender (ASC) oder absteigender (DESC) Reihenfolge erfolgen.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * 
+                    FROM employees 
+                    ORDER BY last_name ASC;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus der Tabelle "employees" nach der Spalte "last_name" aufsteigend sortiert.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert GROUP BY Statement?</strong></li>
+        <p>Das GROUP BY-Statement wird verwendet, um die Ergebnisse einer SQL-Abfrage in Gruppen zu organisieren, basierend auf einer oder mehreren Spalten. Es wird häufig in Kombination mit Aggregatfunktionen wie COUNT(), SUM(), AVG(), MIN() und MAX() verwendet.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT department, SUM(salary) AS total_salary
+                    FROM employees
+                    GROUP BY department;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus der Tabelle "employees" nach der Spalte "department" je nach insgesammten "salary" gruppiert.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert JOIN Statement?</strong></li>
+        <p>Das JOIN-Statement wird verwendet, um Daten aus mehreren Tabellen zu kombinieren, basierend auf einer gemeinsamen Spalte. Es gibt verschiedene Arten von Joins, darunter INNER JOIN, LEFT JOIN, RIGHT JOIN und FULL OUTER JOIN.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT employees.first_name, employees.last_name, departments.department_name
+                    FROM employees
+                    INNER JOIN departments ON employees.department_id = departments.id;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus den Tabellen "employees" und "departments" kombiniert, basierend auf der gemeinsamen Spalte "department_id".</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert Left Join Statement?</strong></li>
+        <p>Das LEFT JOIN-Statement wird verwendet, um alle Zeilen aus der linken Tabelle und die übereinstimmenden Zeilen aus der rechten Tabelle zurückzugeben. Wenn keine Übereinstimmung gefunden wird, werden NULL-Werte für die Spalten der rechten Tabelle zurückgegeben.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT employees.first_name, employees.last_name, departments.department_name
+                    FROM employees
+                    LEFT JOIN departments ON employees.department_id = departments.id;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden alle Zeilen aus der Tabelle "employees" zurückgegeben, zusammen mit den übereinstimmenden Zeilen aus der Tabelle "departments". Wenn ein Mitarbeiter keinem Abteilung zugeordnet ist, werden NULL-Werte für die Spalten der Tabelle "departments" zurückgegeben.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktionieren IS NULL und IS NOT NULL Kriterien?</strong></li>
+        <p>Die Kriterien IS NULL und IS NOT NULL werden verwendet, um zu überprüfen, ob ein Wert NULL ist oder nicht. Sie werden häufig in WHERE-Klauseln verwendet, um Zeilen mit NULL-Werten oder ohne NULL-Werte zu filtern.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * 
+                    FROM employees 
+                    WHERE department_id IS NULL;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden alle Zeilen aus der Tabelle "employees" zurückgegeben, bei denen der Wert in der Spalte "department_id" NULL ist.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert DISTINCT Statement?</strong></li>
+        <p>Das DISTINCT-Statement wird verwendet, um doppelte Werte aus den Ergebnissen einer SQL-Abfrage zu entfernen. Es wird häufig in Kombination mit dem SELECT-Befehl verwendet.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT DISTINCT department 
+                    FROM employees;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die eindeutigen Werte aus der Spalte "department" in der Tabelle "employees" zurückgegeben.</p>
+        <br>
+
     </ul>
 
-    <h3 class="textColor01">SQL (Basic Commands)</h3>
+    <h3 class="textColor01">SQL (Basic Queries)</h3>
 
     <h4 class="textColor02"><strong>Gyulas Beispiele mit Mondial DB:</strong></h4>
 
@@ -364,7 +706,116 @@
         <br>
         
         SELECT Count(*) AS anzahlLaender<br>
-        FROM country</p><br>
+        FROM country</p>
+        
+        <br>
+
+    <h4 class="textColor02"><strong>Mehere Queries-Beispiele von Mondial DB:</strong></h4>
+
+    <p>
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital;<br>
+        <br>
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY substr(Capital, 1, 1), substr(Name, 1,1); -- Notlösung, als keine Kategorien da sind<br>
+        <br>
+
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital ASC;<br>
+        <br>
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital DESC;<br>
+        <br>
+
+
+        SELECT *<br>
+        FROM city<br>
+        ORDER BY Country;<br>
+        <br>
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        GROUP BY Country;<br>
+        <br>
+
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        GROUP BY Country<br>
+        ORDER BY pop DESC;<br>
+        <br>
+
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        WHERE Latitude > 0<br>
+        GROUP BY Country<br>
+        ORDER BY pop DESC<br>
+        LIMIT 10;<br>
+        <br>
+
+        SELECT Country, COUNT(*) AnzahlStaedte<br>
+        FROM city<br>
+        WHERE Latitude > 0<br>
+        GROUP BY Country<br>
+        <br>
+
+
+        SELECT * FROM city;<br>
+        SELECT * FROM country;<br>
+        <br>
+
+        SELECT * <br>
+        FROM city<br>
+        JOIN country ON city.Country = country.Code;<br>
+        <br>
+
+        SELECT Country.Name Land, City.Name Stadt, city.Population Pop<br>
+        FROM city<br>
+        JOIN country ON city.Country = country.Code;<br>
+        <br>
+
+
+        SELECT * FROM country;<br>
+        SELECT * FROM geo_desert;<br>
+        <br>
+
+
+        SELECT *<br>
+        FROM country<br>
+        JOIN geo_desert ON country.code = geo_desert.Country;<br>
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country;<br>
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country<br>
+        WHERE geo_desert.Desert IS NULL;<br>
+        <br>
+
+        SELECT country.Name<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country<br>
+        WHERE geo_desert.Desert IS NULL;<br>
+        <br>
+    </p>
+
+
 
 
 

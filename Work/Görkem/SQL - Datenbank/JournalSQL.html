@@ -306,29 +306,184 @@
         </ul>
         <p>Diese logischen Operatoren können in SQL-Abfragen verwendet werden, um <b>komplexe Bedingungen zu erstellen und die Ergebnisse zu filtern</b>.</p>
     </li>
+    <br>
 
-    
+    <li class="textColor">
+        <span class="underline">Wie funktioniert ORDER BY Statement?</span>
+        <p>Das <b>Order By - Statement</b> wird verwendet, um <b>Ergebnisse zu sortieren,</b> z.B. nach Namen, Zahlen oder Datum - aufsteigend oder absteigend.</p>
+        <p><strong>📝 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT name, alter
+                FROM kunden
+                ORDER BY alter ASC;
+            </code>
+        </div>
+        <p>→ Sortiert die Kunden <b>nach  Alter aufsteigend</b> (jung → alt)</p>
+        <p><strong>📝 2. Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT name, alter
+                FROM kunden
+                ORDER BY alter DESC;
+            </code>
+        </div>
+        <p>→ Sortiert die Kunden <b>nach  Alter absteigend</b> (alt → jung)</p>
+    </li>
+    <br>
 
+    <li class="textColor">
+        <span class="underline">Wie funktioniert GROUP BY Statement?</span>
+        <p>Das <b>GROUP BY - Statement</b> wird verwendet, um <b>Daten mit gemeinsamen Werten zu gruppieren,</b> z.B. nach Ländern, Kategorien oder Jahren - und <b>Aggregation</b> (wie COUNT(), SUM(), AVG()) darauf anzuwenden.</p>
+        <p><strong>📝 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT land, COUNT(*) AS anzahl_kunden
+                FROM kunden
+                GROUP BY land;
+            </code>
+        </div>
+        <p>→ Zeigt <b>wie viele Kunden</b> es <b>pro Land</b> gibt</p>
+        <br>
+        <p>🔑 Häufige Aggregatfunktionen:</p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Funktion</th>
+                    <th>Bedeutung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>COUNT()</td>
+                    <td>Zählt Zeilen</td>
+                </tr>
+                <tr>
+                    <td>SUM()</td>
+                    <td>Summiert Zahlenwerte</td>
+                </tr>
+                <tr>
+                    <td>AVG()</td>
+                    <td>Durchschnitt berechnen</td>
+                </tr>
+                <tr>
+                    <td>MAX()</td>
+                    <td>Höchster Wert</td>
+                </tr>
+                <tr>
+                    <td>MIN()</td>
+                    <td>Kleinster Wert</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <br>
 
+    <li class="textColor">
+        <span class="underline">Wie funktioniert JOIN Statement?</span>
+        <p>Das <b>JOIN - Statement</b> verbindet <b>zwei oder mehr Tabellen</b> in einer Abfrage, basierend auf einer gemeinsamen Spalte. Es ist <b>sehr wichtig</b> um Daten aus verschiedenen Tabellen sinnvoll zu kombinieren.</p>
+        <p><strong>📝 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                SELECT Kunden.name, Bestellungen.produkt
+                FROM Kunden
+                JOIN Bestellungen
+                ON Kunden.kunden_id = Bestellungen.kunden_id;
+            </code>
+        </div>
+        <p><strong>Ergebnis der Abfrage:</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>produkt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Anna</td>
+                    <td>Laptop</td>
+                </tr>
+                <tr>
+                    <td>Bernd</td>
+                    <td>Monitor</td>
+                </tr>
+                <tr>
+                    <td>Anna</td>
+                    <td>Maus</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <br>
 
+    <li class="textColor">
+        <span class="underline">Wie funktioniert LEFT JOIN Statement?</span>
+        <p>Ein <b>LEFT JOIN:</b></p>
+        <ul>
+            <li><b>zeigt alle Zeilen</b> aus der linken Tabelle (z.B. Kunden)</li>
+            <li><b>und ergänzt passende Daten</b> aus der rechten Tabelle (z.B. Bestellungen)</li>
+            <li>Wenn <b>kein passender Eintrag</b> in der rechten Tabelle vorhanden ist, wird dort NULL angezeigt</li>
+        </ul>
+    </li>
+    <br>
 
+    <li class="textColor">
+        <span class="underline">Wie funktioniert IS NULL oder IS NOT NULL Kriterien?</span>
+        <p>Die SQL-Kriterien IS NULL und IS NOT NULL werden verwendet, um <b>Null-Werte</b> (also fehlende oder nicht vorhandene Werte) in einer Datenbank zu prüfen.</p>
+        <p><strong>1. IS NULL</strong></p>
+        <ul>
+            <li>Wird verwendet, um Datensätze zu finden, bei denen ein bestimmtes Feld <b>keinen Wert</b> hat</li>
+            <li><b>Beispiel:</b></li>
+        </ul>
+        <div class="code-box">
+            <code>
+                SELECT * FROM kunden
+                WHERE telefonnumer IS NULL;
+            </code>
+        </div>
+        <p>→ Gibt alle Kunden aus, deren Telefonnummer <b>nicht eingetragen</b> wurde.</p>
+        <br>
+        <p><strong>2. IS NOT NULL</strong></p>
+        <ul>
+            <li>Wird verwendet, um Datensätze zu finden, bei denen ein bestimmtes Feld <b>einen Wert</b> enthält.</li>
+            <li><b>Beispiel:</b></li>
+        </ul>
+            <div class="code-box">
+                <code>
+                    SELECT * FROM kunden
+                    WHERE telefonnumer IS NOT NULL;
+                </code>
+            </div>
+            <p>→ Gibt alle Kunden aus, <b>die eine Telefonnummer</b> angegeben haben.</p>
+            <p>Hier die wichtigsten Punkte kurzgefasst:</p>
+            <ul>
+                <li><b>IS NULL:</b> Prüft, ob ein Feld <b>keinen Wert</b> hat (NULL)</li>
+                <li><b>IS NOT NULL:</b> Prüft, ob ein Feld <b>einen Wert</b> hat (nicht NULL)</li>
+                <li><b>Nicht verwenden:</b> = Null oder (<>) NULL → funktioniert nicht korrekt!</li>
+                <li>Wird genutzt, um <b>fehlende oder vorhandene Daten</b> zu filtern</li>
+            </ul>
+        </li>
+        <br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <li class="textColor">
+            <span class="underline">Wie funktioniert DISTINCT Statement?</span>
+            <p>Das <b>DISTINCT - STATEMENT</b> wird in SQL verwendet, um <b>doppelte Werte zu entfernen</b> und nur <b>eindeilige(verschiedene)</b> Werte auszugeben</p>
+            <p><strong>✅Wichtigiste Punkte kurzgefasst:</strong></p>
+            <ul>
+                <li>DISTINCT gibt nur einzigartige Werte zurück</li>
+                <li>Wird direkt nach SELECT verwendet.</li>
+            </ul>
+            <br>
+            <p><strong>📝 Beispiel:</strong></p>
+            <div class="code-box">
+                <code>
+                    SELECT DISTINCT stadt
+                    FROM kunden;
+                </code>
+            </div>
+            <p>→ Gibt jede Stadt <b>nur einmal</b> aus, auch wenn mehrere Kunden in derselben Stadt wohnen.</p>
+        </li>
 </ul>
 </body>
 </html>
