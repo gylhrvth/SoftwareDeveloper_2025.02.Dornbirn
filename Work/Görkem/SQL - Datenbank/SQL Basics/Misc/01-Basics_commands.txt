@@ -1,0 +1,165 @@
+USE mondial;
+
+SELECT 'Hello World!';
+
+SELECT 'Hello World!' greeting;
+
+SELECT * FROM country;
+
+SELECT * FROM country limit 10;  // MSSQL: SELECT TOP 10 * FROM country
+
+SELECT * FROM country limit 20, 10;
+
+SELECT Name, Capital FROM country;
+
+SELECT Name Land, Capital Hauptstadt FROM country;
+
+SELECT Name AS Land, Capital AS Hauptstadt FROM country;
+
+SELECT 'Hello World!' AS greeting, 
+       Name AS Land, 
+       Capital AS Hauptstadt 
+FROM country;
+
+SELECT *, Name AS Land, 'Hello World!' AS greeting FROM country;
+
+SELECT *
+FROM country
+WHERE population > 100000000
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name = 'Brazil';
+
+SELECT *
+FROM country
+WHERE NOT Name = 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name <> 'Brazil';
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil' AND Population > 100000000;
+
+SELECT *
+FROM country
+WHERE Name <= 'Brazil' OR Population > 100000000;
+
+SELECT *
+FROM country
+WHERE Population BETWEEN 10000 AND 20000;
+
+SELECT *
+FROM country
+WHERE Name LIKE 'Uni%';
+
+SELECT *
+FROM country
+WHERE Name LIKE '%m';
+
+SELECT *
+FROM country
+WHERE Name LIKE '%ca%';
+
+SELECT *
+FROM country
+WHERE length(NAME) < 5;
+
+SELECT *, SUBSTR(Name, 3, 1)
+FROM country
+
+SELECT *
+FROM country
+WHERE SUBSTR(Name, 3, 1) = 's'
+
+SELECT Count(*) AS anzahlLaender
+FROM country
+
+SELECT *
+FROM country
+WHERE Population > 1000000
+ORDER BY Capital;
+
+SELECT * 
+FROM country
+WHERE Population > 1000000
+ORDER BY substr(Capital, 1, 1), substr(Name, 1,1); -- Notlösung, als keine Kategorien da sind
+
+
+SELECT * 
+FROM country
+WHERE Population > 1000000
+ORDER BY Capital ASC;
+
+SELECT * 
+FROM country
+WHERE Population > 1000000
+ORDER BY Capital DESC;
+
+
+SELECT *
+FROM city
+ORDER BY Country;
+
+SELECT Country, MAX(Population) AS pop
+FROM city
+GROUP BY Country;
+
+
+SELECT Country, MAX(Population) AS pop
+FROM city
+GROUP BY Country
+ORDER BY pop DESC;
+
+
+SELECT Country, MAX(Population) AS pop
+FROM city
+WHERE Latitude > 0
+GROUP BY Country
+ORDER BY pop DESC
+LIMIT 10;
+
+SELECT Country, COUNT(*) AnzahlStaedte
+FROM city
+WHERE Latitude > 0
+GROUP BY Country
+
+SELECT * FROM city;
+SELECT * FROM country;
+
+SELECT * 
+FROM city
+JOIN country ON city.Country = country.Code;
+
+SELECT Country.Name Land, City.Name Stadt, city.Population Pop
+FROM city
+JOIN country ON city.Country = country.Code;
+
+
+SELECT * FROM country;
+SELECT * FROM geo_desert;
+
+
+SELECT *
+FROM country
+JOIN geo_desert ON country.code = geo_desert.Country;
+
+SELECT *
+FROM country
+LEFT JOIN geo_desert ON country.code = geo_desert.Country;
+
+SELECT *
+FROM country
+LEFT JOIN geo_desert ON country.code = geo_desert.Country
+WHERE geo_desert.Desert IS NULL;
+
+SELECT country.Name
+FROM country
+LEFT JOIN geo_desert ON country.code = geo_desert.Country
+WHERE geo_desert.Desert IS NULL;
