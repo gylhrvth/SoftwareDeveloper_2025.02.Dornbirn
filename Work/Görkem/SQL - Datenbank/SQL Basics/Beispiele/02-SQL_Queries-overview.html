@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Queries 2</title>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+</head>
+<body>
+    <h2>SQL - Abfragen 2 (Challenge Aufgabe)</h2>
+    <ol>
+        <li>Wie viele Einwohner hat Österreich?</li>
+        <p><code>SELECT Name, Population <br>FROM country <br>WHERE Name = 'Austria';</code></p>
+        <p><b>Lösung:</b> Die Abfrage liefert die Einwohnerzahl von <b>Austria</b> (Einwohnerzahl: 8.023.244)</p>
+
+        <li>Wie viele Einwohner hat der Kontinent Europa?</li>
+        <p><code>SELECT <br>SUM(country.Population) AS Total_population <br>FROM country <br>JOIN encompasses ON country.code = encompasses.Country <br>WHERE encompasses.Continent = 'Europe';</code></p>
+        <p><b>Lösung:</b> Das Ergebnis von <b>791.243.404</b> ist die Gesamtbevölkerung der Länder, die in <i>Europa</i> liegen.</p>
+        
+        <li>Welche Flüsse fließen durch Österreich?</li>
+        <p><code>SELECT <br>DISTINCT geo_river.River AS River <br>FROM geo_river <br>JOIN country ON geo_river.Country = country.Code <br>WHERE country.Name = 'Austria';</code></p>
+        <p><b>Lösung:</b> In Österreich fließen insgesamt <b>12 Flüsse</b></p>
+        <p><i>Raab, Drau, Donau, March, Enns, Mur, Salzach, Inn, Isar, Lech, Iller, Rhein</i></p>
+
+        <li>Welche Flüsse fließen durch Europa (nur den Flussnamen)?</li>
+        <p><code>SELECT <br>DISTINCT geo_river.River AS River <br>FROM geo_river <br>JOIN country ON geo_river.Country = country.Code <br>JOIN encompasses ON country.Code = encompasses.Country <br>WHERE encompasses.Continent = 'Europe';</code></p>
+        <p><b>Lösung:</b>Die Abfrage gibt alle Flüsse zurück, die durch europäische Länder fließen <b>114 Länder</b></p>
+        <p><i>Euphrat, Aare, Limmat, Reuss, Rhein, Murat, Glomma, Lagen, Black Drin, Drin, White Drin, Guadiana, Saar, Katun, Ob, Goetaaelv, Amur, Guadalquivir, Garonne, Ebro, Northern Dwina, Petschora, Volga, Loire, Douro, Donau, Breg, Brigach, Iller, Neckar, Drau, Tigris, Alz, Ammer, Inn, Isar, Lech, Main, Salzach, Wurm, Dnepr, Western Dwina, Thames, Weichsel, Theiss, Save, Pruth, Doubs, Saone, Seine, Elbe, Oder, Olt, Weser, Raab, Tajo, Maas, Marne, Ural, Dnjestr, Argun, Schilka, Mur, Dalaelv, Oesterdalaelv, Vaesterdalaelv, Po, Karasu, Narva, Paatsjoki, Rhone, Kymijoki, Klaraelv, Fulda, Werra, Joekulsa a Fjoellum, Thjorsa, Angara, Lena, Moldau, March, Oka, Kura, Southern Morava, Chatanga, Jenissej, Vuoksi, Tobol, Kemijoki, Ounasjoki, Tiber, Newa, Swir, Don, Adda, Ticino, Mosel, Kolyma, Aller, Leine, Irtysch, Ischim, Oulujoki, Isere, Enns, Morava, Western Morava, Waag, Arno, Etsch, Kokemaeenjoki, Umeaelv, Mincio, Suchona.</i></p>
+
+        <li>Wie viel Prozent der Menschen leben im Kontinent Europa?</li>
+        <p><code>SELECT <br>(europe.Population / world.TotalPopulation) * 100 AS PercentageInEurope <br>FROM (SELECT SUM(country.Population) <br>FROM country <br>JOIN encompasses ON country.Code = encompasses.Country <br>WHERE encompasses.Continent = 'Europe') AS europe, <br>(SELECT SUM(Population) AS TotalPopulation FROM country) AS world;</code></p>
+        <p><b>Lösung:</b> 13,70%</p>
+
+        <li>Alle Länder die mit einem A anfangen</li>
+
+        <li>Alle Länder die mit einem A anfangen und deren Bundesländer mit Einwohnerzahl, sortiert nach Einwohnerzahl</li>
+
+        <li>Alle Flüsse die durch Europa fließen (nur Flüsse und deren Länge), sortiert nach Länge</li>
+
+        <li>Alle Inseln im Pazifik mit >50% islamischem Bekenntnis</li>
+
+        <li>Alle 3000er, welche in einem Land sind, welches zu mindestens 60% römisch Katholisch ist</li>
+
+        <li>Alle Länder mit mindestens einem See mit mindestens 100 Meter Tiefe und mindestens einem Berg mit mindestens 1500 Höhenmeter</li>
+
+        <li>Einwohnerzahl pro Religion</li>
+
+        <li>Alle Länder, nur die Namen und die Meere dazu (keine Null Werte)</li>
+
+        <li>Alle Länder, nur die Namen, und wenn sie haben, das Meer dazu</li>
+
+        <li>Das Unabhängigkeitsdatum von Ländern die eine Wüste haben und die ethnische Gruppe African</li>
+
+        <li>Welche Länder haben genau 3 Städte? Wie heißen diese Städte?</li>
+
+        <li>Welches sind die 3 größten Städte von Amerika (Kontinent)?</li>
+
+        <li>Was ist der größte Berg von Österreich? Wie hoch ist er?</li>
+
+        <li>Was ist der größte Berg von Europa? Wie hoch ist er?</li>
+
+        <li>Was ist der größte Berg pro Kontinent? Wie hoch sind diese?</li>
+
+        <li>Welches Land hat am meisten anerkannte Religionen? Wie viel sind es?</li>
+
+        <li>Welche Organisationen haben deren Hauptsitz in Österreich? Wie viele Mitglieder haben diese Organisationen?</li>
+
+        <li>Was sind die Top 10 Sprachen? Wie viele native Speaker sprechen diese Sprache?</li>
+      </ol>
+</body>
+</html>

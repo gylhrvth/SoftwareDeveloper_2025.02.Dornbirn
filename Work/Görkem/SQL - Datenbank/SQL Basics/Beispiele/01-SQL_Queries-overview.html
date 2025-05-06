@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Queries</title>
+    <link rel="stylesheet" href="/Work/Sandro/style.css">
+</head>
+<body>
+    <h2>SQL Basics - Abfragen</h2>
+    <ol>
+        <li>Zeige die aktuelle Uhrzeit als Query-Result an.</li>
+        <p><code>SELECT now();</code></p>
+        <p><b>Lösung:</b> 2025-05-06 09:21:04</p>
+
+        <li>Zeige "Hello World!" als Query-Result an.</li>
+        <p><code>SELECT * 'Hello World' AS message;</code></p>
+        <p><b>Lösung:</b> Hello World</p>
+
+        <li>Zeige alle Spalten, alle Zeilen aus der <b>country</b> Tabelle.</li>
+        <p><code>SELECT * <br>FROM country;</code></p>
+        <p><b>Lösung:</b> 238 Länder mit 6 Spalten  (<i>Name, Code, Capital, Province, Area, Population</i>)</p>
+        
+
+        <li>Zeige alle Spalten, erste 5 Zeilen aus der <b>country</b> Tabelle.</li>
+        <p><code>SELECT * <br>FROM country <br>LIMIT 5;</code></p>
+        <p><b>Lösung:</b> Die ersten 5 Länder der Tabelle werden angezeigt</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> der ersten 5 Zeilen aus der <b>country</b> Tabelle.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>LIMIT 5;</code></p>
+        <p><b>Lösung:</b> Gibt die ersten 5 Länder mit deren Hauptstädte aus</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> der ersten 5 Zeilen aus der <b>country</b> Tabelle mit eigenen Namen.</li>
+        <p><code>SELECT Name AS 'Land', Capital AS 'Hauptstadt' <br>FROM country <br>LIMIT 5;</code></p>
+        <p><b>Lösung:</b> Gibt die ersten 5 Länder mit deren Hauptstädten aus - mit den Spaltennamen <i>Land</i> und <i>Hauptstadt</i>.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name 'Austria'.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name = 'Austria';</code></p>
+        <p><b>Lösung:</b>  Gibt den Datensatz für das Land <i>Austria</i> mit der Hauptstadt <i>Vienna</i> zurück.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Population kleiner 1 Million.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Population &lt; 1000000;</code></p>
+        <p><b>Lösung:</b> Es gibt insgesamt 83 Länder mit einer Bevölkerung <i>von weniger als 1 Million</i>. Die Namen der <b>Länder</b> und deren <b>Hauptstädte</b> werden angezeigt.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Population zwischen 1 Million und 2 Millionen.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Population BETWEEN 1000000 AND 2000000;</code></p>
+        <p><b>Lösung:</b> Gibt die <b>Länder</b> mit einer Bevölkerung zwischen <i>1 Million und 2 Millionen</i> zurück und zeigt deren <b>Hauptstadt</b> an.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name beginnend mit 'A'.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name LIKE 'A%';</code></p>
+        <p><b>Lösung:</b> Es gibt insgesamt <b>14 Länder</b>, deren Name mit dem Buchstaben <i>A</i> beginnt. Die Namen und Hauptstädte dieser Länder werden angezeigt.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name am Ende mit 'A'.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name LIKE '%A';</code></p>
+        <p><b>Lösung:</b> Es gibt insgesamt <b>83 Länder</b>, deren Name mit dem Buchstaben <i>A</i> endet. Die Abfrage gibt deren Namen und Hauptstädte aus.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name nicht beginnend mit 'A'.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name NOT LIKE 'A%';</code></p>
+        <p><b>Lösung:</b> Es gibt insgesamt <b>224 Länder</b>, deren Name <i>nicht</i> mit dem Buchstaben <b>A</b> beginnt. Die Abfrage liefert deren Namen und Hauptstädte.</p>
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name beginnend mit 'A' oder Population kleiner 1 Million.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name LIKE 'A%' OR Population &lt; 1000000</code></p>
+        <p><b>Lösung:</b> Die Abfrage gibt <b>92 Länder</b> zurück, deren Name mit dem Buchstaben <b>A</b> beginnt oder deren Bevölkerung unter 1 Million liegt. Angezeigt werden jeweils der Name des Landes und die Hauptstadt.</p>    
+
+        <li>Zeige die Spalten <b>Name</b> und <b>Capital</b> aus der <b>country</b> Tabelle mit Filter auf Name beginnend mit 'A' und Population kleiner 1 Million.</li>
+        <p><code>SELECT Name, Capital <br>FROM country <br>WHERE Name LIKE 'A%' AND Population &lt; 1000000</code></p>
+        <p><b>Lösung:</b> Es gibt insgesamt <b>5 Länder</b>, deren Name mit dem Buchstaben <b>A</b> beginnt und deren Bevölkerung unter <b>1 Million</b> liegt.</p>
+    </ol>
+</body>
+</html>
