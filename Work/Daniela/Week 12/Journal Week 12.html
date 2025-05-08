@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL: SELECT, INSERT, UPDATE, DELETE</title>
+    <link rel="stylesheet" href="../Week 05/Journal Week 05.css">
+</head>
+
+<body>
+    <div class="main_container">
+        <h1>SQL</h1>
+
+        <div class="link_container">
+            <h2>INSERT INTO-Statement</h2>
+            <p>Das INSERT INTO-Statement in SQL wird verwendet, um neue Datensätze (Zeilen) in eine Tabelle einzufügen.
+            </p>
+            <img src="img/INSERT INTO - Syntax.png">
+        </div>
+
+        <div class="link_container">
+            <h2>UPDATE-Statement</h2>
+            <p>Das UPDATE-Statement in SQL wird verwendet, um bestehende Daten in einer Tabelle zu ändern – also:
+                Datensätze aktualisieren.</p>
+            <img src="img/UPDATE-Syntax .png">
+            <p style=" color: rgb(22, 131, 33);">Hinweis: Sei vorsichtig beim Aktualisieren von Datensätzen in einer
+                Tabelle!
+                Achte auf die WHERE-Klausel im UPDATE-Statement.
+                Die WHERE-Klausel gibt an, welche Datensätze aktualisiert werden sollen.
+                Wenn du die WHERE-Klausel weglässt, werden alle Datensätze in der Tabelle aktualisiert!</p>
+        </div>
+
+        <div class="link_container">
+            <h2>DELETE-Statement</h2>
+            <p>Das DELETE-Statement wird in SQL verwendet, um Datensätze aus einer Tabelle zu löschen – also: Zeilen
+                vollständig entfernen.</p>
+            <img src="img/DELETE- Syntax.png">
+            <div class="link_container">
+                <h3>BEGINT und ROLLBACK</h3>
+                <p>BEGIN und ROLLBACK gehören zur Transaktionssteuerung in SQL – damit kannst du mehrere SQL-Befehle
+                    zusammenfassen und bei Bedarf zurückrollen, also „rückgängig machen“.</p>
+                <p>Was ist eine Transaktion?
+                    Eine Transaktion ist eine Gruppe von SQL-Befehlen, die als eine Einheit ausgeführt wird – entweder
+                    alle erfolgreich oder gar keiner.</p>
+                <img src="img/BEGINT und ROLLBACK.png"><br>
+                <img src="img/BEGINT und ROLLBACK Teil 2.png">
+            </div>
+
+            <div class="link_container">
+                <h2>Data defintiion Language (DDL)</h2>
+                <p>Data Definition Language (DDL) ist ein Teil von SQL, mit dem du die Struktur einer Datenbank
+                    definierst – also Tabellen anlegen, ändern oder löschen.</p>
+                <img src="img/DDL-Befehle.png">
+            </div>
+
+            <div class="link_container">
+                <h2>Table</h2>
+                <p>Eine Tabelle ist das zentrale Element in einer Datenbank – sie speichert Daten in Zeilen und Spalten,
+                    ganz ähnlich wie eine Excel-Tabelle. In SQL-basierenden Datenbanken
+                    ist jede Tabelle eine Sammlung von strukturierten Datensätzen, also: Daten mit festgelegten
+                    Spaltennamen und Datentypen.</p>
+                <img src="img/Aufbau Tabelle.png">
+            </div>
+
+            <div class="link_container">
+                <h2>Columns</h2>
+                <p>Eine Spalte in einer Tabelle ist eine vertikale Anordnung von Daten und stellt eine bestimmte Art von
+                    Information
+                    für alle Datensätze in dieser Tabelle dar. Jede Spalte hat einen Namen, der den Datentyp und die Art
+                    der gespeicherten
+                    Information angibt, wie zum Beispiel vorname, email oder geburtsdatum.</p>
+                <img src="img/Aufbau Spalten .png">
+                <p>Wenn du neue Daten hinzufügst oder änderst, geschieht dies immer in den Spalten:</p>
+                <ul>
+                    <li>Eine Spalte speichert eine Art von Information (z. B. alle Vornamen oder alle E-Mails).</li>
+                    <li>Eine Zeile (Record) repräsentiert einen Datenpunkt (z. B. ein Kunde).</li>
+                </ul>
+
+                <h2>🧠 Merksatz:</h2>
+                <p> Eine Spalte ist wie eine „Kategorie“ für deine Daten, während die Zeile einen „Eintrag“ in dieser
+                    Kategorie darstellt.</p>
+            </div>
+
+            <div class="link_container">
+                <p>In MySQL gibt es eine Vielzahl von Datentypen, die du verwenden kannst, um Daten in Tabellen zu
+                    speichern. Sie lassen sich in drei Hauptkategorien unterteilen:</p>
+                <ol>
+                    <li>Zahlen (Numeric Types)</li>
+                    <li>Zeichenketten (String Types)</li>
+                    <li>Datum und Zeit (Date and Time Types)</li>
+                </ol>
+                <p>Zusätzlich gibt es noch andere spezielle Datentypen für BLOBs (Binärdaten), JSON und boolesche Werte.</p>
+                <img src="img/Datentyp-Zahlen.png"><br>
+                <img src="img/Datentyp- String.png"><br>
+                <img src="img/Datentyp - Date&other.png">
+            </div>
+            <div class="link_container">
+                <h2>Häufig genutzte Datentypen</h2>
+                <ol>
+                    <li>INT (Ganzzahlen)</li>
+                    <ul>
+                    <li>Verwendung: Wird für IDs, Zähler und Numerische Werte ohne Dezimalstellen verwendet.</li>
+                    <li>Größe: INT ist in der Regel ausreichend für viele Anwendungen, da es einen Wertebereich von -2.147.483.648 bis 2.147.483.647 abdeckt.</li>
+                    
+                </ul>
+
+                    <li> VARCHAR(n) (Variable Länge von Zeichenketten)</li>
+                    <ul>
+                        <li>Verwendung: Wird für Texte, Namen, E-Mails oder Adressen verwendet, bei denen die Länge variiert.</li>
+                        <li>Vorteil: Speichert nur die tatsächlich benötigte Länge, was Speicherplatz spart.</li>
+                       
+                    </ul>
+                    <li>DATETIME (Datum und Zeit)</li>
+                    <ul>
+                        <li>Verwendung: Wird für Zeitstempel verwendet, z. B. für Erstellungsdaten, Bearbeitungsdaten oder Veranstaltungszeiten.</li>
+                        <li>Format: YYYY-MM-DD HH:MM:SS (Jahr-Monat-Tag Stunden:Minuten:Sekunden)</li>
+                    </ul>
+                    <li>DECIMAL (Dezimalzahlen mit fester Genauigkeit)</li>
+                    <ul>
+                        <li>Verwendung: Wird für Geldbeträge, Finanzdaten oder Werte mit fester Dezimalstellenanzahl verwendet.</li>
+                        <li>Vorteil: Im Gegensatz zu Fließkommazahlen (FLOAT oder DOUBLE) wird bei DECIMAL die Genauigkeit nicht durch die
+                            interne Repräsentation beeinflusst, was insbesondere für Finanzberechnungen wichtig ist.</li>
+                    </ul>
+                </ol>
+            </div>
+
+            <div class="link_container">
+                <h2>Primary Key</h2>
+                <p>Ein Primärschlüssel (engl. Primary Key) ist ein eindeutiges Merkmal einer Zeile in einer Tabelle. Er stellt sicher,
+                    dass jede Zeile eindeutig identifiziert werden kann – sozusagen die „Perso-Nummer“ deines Datenbankeintrags.</p>
+                
+                <h2>🔐 Eigenschaften eines Primärschlüssels</h2>
+                <ol>
+                    <li>Eindeutig: Jeder Wert darf nur einmal vorkommen.</li>
+                    <li>Nicht NULL: Es muss immer ein Wert vorhanden sein</li>
+                    <li>Nur eine pro Tabelle: Es kann nur einen Primärschlüssel pro Tabelle geben (dieser kann aber aus mehreren Spalten bestehen → kombinierter Schlüssel).</li>
+                </ol>
+                <p>Warum ist das wichtig?</p>
+                <ul>
+                    <li>Ermöglicht schnelles Finden von Daten</li>
+                    <li>Verhindert Dubletten</li>
+                    <li>Wird bei Beziehungen zwischen Tabellen als Referenz (Fremdschlüssel) genutzt</li>
+                </ul>
+                <h2>🧠 Merksatz:</h2>
+                <p>Der Primärschlüssel ist das "Erkennungsmerkmal" jeder Zeile – wie ein Ausweis: eindeutig, einmalig, Pflicht.</p>
+            </div>
+
+
+            <div class="link_container">
+                <h2>Beziehungen zwischen Tabellen</h2>
+                <p>Eine Beziehung zwischen Tabellen in MySQL (und allgemein in relationalen Datenbanken) wird über Fremdschlüssel (FOREIGN KEY) hergestellt. Damit sagst du:</p>
+
+                   <p  style=" font-style: oblique;">Diese Spalte in Tabelle A zeigt auf eine Zeile in Tabelle B.</p>
+                    
+                   <p>Das ist sehr nützlich für verbundene Daten, z. B. Kunden und Bestellungen:
+                    Jede Bestellung gehört zu einem Kunden.</p>
+                    <div class="link_container">
+                        <h2>1:1 Beziehung</h2>
+                        <img src="img/1zu1-Beziehung(Tabelle).png"><br>
+                        <img src="img/1zun-Beziehung.png"><br>
+                        <img src="img/mzun-Beziehung(teil1).png">
+                        <img src="img/mzun-Beziehung(teil2).png">
+                    </div>
+            </div>
+
+            <div class="link_container">
+                <h2>Fremdschlüssel/Foreign Key</h2>
+                <p>Ein Fremdschlüssel (engl. Foreign Key) ist ein Feld in einer Tabelle, das auf den Primärschlüssel einer anderen Tabelle verweist.
+                    Er ist das Bindeglied, das Beziehungen zwischen Tabellen in einer relationalen Datenbank herstellt.</p>
+                <h3>🔑 Was macht ein Fremdschlüssel?</h3>
+                <p>Ein Fremdschlüssel sagt im Grunde:</p>
+                <p  style=" font-style: oblique;">
+                    „Dieser Wert hier gehört zu einem Datensatz in einer anderen Tabelle.“ 
+                </p>
+                <p>Dadurch kannst du zusammenhängende Daten strukturieren – z. B. Bestellungen, die zu Kunden gehören.</p>
+                <h3>📌 Was bedeutet es, einen Fremdschlüssel zu haben?</h3>
+                <p>Wenn eine Spalte ein Fremdschlüssel ist, bedeutet das:</p>
+                <ol>
+                    <li>Der Wert muss in der verknüpften Tabelle existieren
+                        → z. B. Du kannst keine Bestellung für einen Kunden machen, der nicht existiert.</li>
+                    <li>Die Datenbank kann bei JOINs korrekt Daten verbinden</li>
+                    <li>Du kannst mit Fremdschlüsseln löschen oder ändern mit Regeln steuern:</li>
+                </ol>
+                <h2>🧠 Merksatz:</h2>
+                <p>Ein Fremdschlüssel zeigt mit dem Finger auf eine Zeile in einer anderen Tabelle.
+                    Er verknüpft Daten logisch und sichert ihre Gültigkeit.</p>
+            </div>
+
+            <div class="link_container">
+                <h2>Normalization</h2>
+                <p>Normalisierung (engl. Normalization) in SQL ist ein Konzept der Datenbankmodellierung, bei dem du Tabellen so aufbaust, dass sie effizient,
+                    logisch und fehlerfrei strukturiert sind. Ziel ist es, Redundanz (doppelte Daten) zu vermeiden und die Datenintegrität zu sichern.</p>
+            </div>
+
+            <div class="link_container">
+                <h2></h2>
+                <p></p>
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
