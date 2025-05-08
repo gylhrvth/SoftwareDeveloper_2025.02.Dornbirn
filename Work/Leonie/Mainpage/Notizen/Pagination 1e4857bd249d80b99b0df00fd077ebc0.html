@@ -1,0 +1,737 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Pagination</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1e4857bd-249d-80b9-9b0d-f00fd077ebc0" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Pagination</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@29. April 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/drafts_gray.svg" style="width:14px;height:14px;display:block"/></span>Exam</th><td><a href="https://www.notion.so/ToDo-App-1e5857bd249d80778276f1e0e7eefe5c?pvs=21"><img class="icon" src="https://www.notion.so/icons/circle-alternate_gray.svg"/>ToDo App</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1e4857bd-249d-80f1-bee9-fe96e7a93a81" class="column-list"><div id="1e4857bd-249d-80a1-a0b6-d574e3af7dca" style="width:50%" class="column"><h3 id="1e4857bd-249d-803c-a6a4-e5edf657dba0" class="">Pagination</h3><p id="1e4857bd-249d-80a9-929b-fece52f9f692" class="">Pagination ist die Technik, große Datenmengen in kleinere, übersichtliche Seiten aufzuteilen. In diesem Projekt wird Pagination verwendet, um die ToDo-Elemente in Seiten aufzuteilen und die Navigation zwischen diesen Seiten zu ermöglichen.</p><hr id="1e4857bd-249d-80f1-924b-d491691dd987"/><h3 id="1e4857bd-249d-8009-a85c-e372c4f2ca9c" class=""><strong>1. Wichtige Variablen</strong></h3><ul id="1e4857bd-249d-809b-a631-fbd1665f3953" class="bulleted-list"><li style="list-style-type:disc"><code><strong>currentPage</strong></code>: Die aktuelle Seite, die angezeigt wird. Standardwert ist <code>1</code>.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-8002-8e77-e8a965ae9a03" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let currentPage = 1;
+</code></pre></li></ul><ul id="1e4857bd-249d-8005-80ab-eef9a1abe682" class="bulleted-list"><li style="list-style-type:disc"><code><strong>itemsPerPage</strong></code>: Die Anzahl der Elemente, die pro Seite angezeigt werden sollen. Standardwert ist <code>6</code>.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-8061-8da1-eca2f21198e8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const itemsPerPage = 6;
+</code></pre></li></ul><hr id="1e4857bd-249d-801a-b461-e78a964ccf4b"/><h3 id="1e4857bd-249d-80ea-9747-fc5aa156b985" class=""><strong>2. Ablauf der Pagination</strong></h3><h3 id="1e4857bd-249d-80e3-ac80-c029d4b2b543" class=""><strong>a) Daten abrufen (</strong><code><strong>getData</strong></code><strong>)</strong></h3><p id="1e4857bd-249d-80e5-bb42-f81d06da9549" class="">Die Funktion <code>getData</code> ruft die Daten von der API ab und übergibt sie an die Funktion <code>createPagination</code>, die die Pagination-Logik implementiert.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-800d-825a-cc22e830459b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">async function getData() {
+    try {
+        const result = await fetch(ip); // API-Aufruf
+        if (result.ok) {
+            const data = await result.json();
+            createPagination(data); // Pagination erstellen
+        } else {
+            loadingError(result.status, result.statusText);
+        }
+    } catch (error) {
+        console.error(&quot;Network Error:&quot;, error);
+        alert(&quot;Network Error: &quot; + error.message);
+    }
+}
+</code></pre><hr id="1e4857bd-249d-80a4-96e3-ff694513f0f3"/><h3 id="1e4857bd-249d-80e9-bdfe-dc6dbf25f143" class=""><strong>b) Daten in Seiten aufteilen (</strong><code><strong>createPagination</strong></code><strong>)</strong></h3><p id="1e4857bd-249d-8007-87f1-f6360898be5b" class="">Die Funktion <code>createPagination</code> berechnet die Daten, die auf der aktuellen Seite angezeigt werden sollen, und erstellt die Pagination-Steuerelemente.</p><ol type="1" id="1e4857bd-249d-8066-a00a-e32fea8486f6" class="numbered-list" start="1"><li><strong>Berechnung der Gesamtseitenanzahl</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-808d-8090-d99ff42dcd38" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const totalPages = Math.ceil(data.length / itemsPerPage);
+</code></pre><ul id="1e4857bd-249d-807d-b02a-d1abcc63ba62" class="bulleted-list"><li style="list-style-type:disc"><code>data.length</code>: Anzahl der gesamten Daten.</li></ul><ul id="1e4857bd-249d-804f-85f1-c65ae8bcda49" class="bulleted-list"><li style="list-style-type:disc"><code>itemsPerPage</code>: Anzahl der Elemente pro Seite.</li></ul><ul id="1e4857bd-249d-809d-ab35-d1f820e2448f" class="bulleted-list"><li style="list-style-type:disc"><code>Math.ceil</code>: Rundet die Seitenanzahl nach oben.</li></ul></li></ol><ol type="1" id="1e4857bd-249d-8051-8b95-c70214a908ab" class="numbered-list" start="2"><li><strong>Berechnung der Daten für die aktuelle Seite</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-80c6-947a-d4d73399047f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const pageData = data.slice(start, end);
+</code></pre><ul id="1e4857bd-249d-8002-8daa-ec9e0708f866" class="bulleted-list"><li style="list-style-type:disc"><code>start</code>: Startindex der Daten für die aktuelle Seite.</li></ul><ul id="1e4857bd-249d-8036-b0b5-d987fe63c0d6" class="bulleted-list"><li style="list-style-type:disc"><code>end</code>: Endindex der Daten für die aktuelle Seite.</li></ul><ul id="1e4857bd-249d-8002-93ce-fdfdabf2518f" class="bulleted-list"><li style="list-style-type:disc"><code>data.slice(start, end)</code>: Extrahiert die Daten für die aktuelle Seite.</li></ul></li></ol><ol type="1" id="1e4857bd-249d-80bc-a802-f2a673c18789" class="numbered-list" start="3"><li><strong>DOM und Steuerelemente erstellen</strong>:<ul id="1e4857bd-249d-80ce-b3f6-fb6daa607966" class="bulleted-list"><li style="list-style-type:disc"><code>createDOM(pageData)</code>: Zeigt die Daten der aktuellen Seite an.</li></ul><ul id="1e4857bd-249d-805f-84c3-f71d5e2fd44c" class="bulleted-list"><li style="list-style-type:disc"><code>createPaginationControls(totalPages)</code>: Erstellt die Buttons für die Navigation.</li></ul></li></ol><hr id="1e4857bd-249d-806c-b9fd-f542064c9d2c"/><h3 id="1e4857bd-249d-80ed-a76b-ceda126bb4f6" class=""><strong>c) Pagination-Steuerelemente erstellen (</strong><code><strong>createPaginationControls</strong></code><strong>)</strong></h3><p id="1e4857bd-249d-803d-aa08-f0f0884458db" class="">Diese Funktion erstellt Buttons für die Navigation zwischen den Seiten und zeigt die aktuelle Seite an.</p><ol type="1" id="1e4857bd-249d-80e9-b864-ca1d5d5bc934" class="numbered-list" start="1"><li><strong>Pagination-Container leeren</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-802d-8e91-cdbe927ceb8b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const paginationContainer = document.querySelector(&#x27;.pagination&#x27;);
+paginationContainer.innerHTML = &#x27;&#x27;;
+</code></pre></li></ol><ol type="1" id="1e4857bd-249d-803e-aaf9-edfdc17c6af5" class="numbered-list" start="2"><li><strong>&quot;Vorherige Seite&quot;-Button</strong>:<ul id="1e4857bd-249d-8087-85bc-f9ced7fe047e" class="bulleted-list"><li style="list-style-type:disc">Deaktiviert, wenn die aktuelle Seite <code>1</code> ist.</li></ul><ul id="1e4857bd-249d-80a1-a33a-d73df0634658" class="bulleted-list"><li style="list-style-type:disc">Beim Klick wird <code>currentPage</code> um <code>1</code> verringert und die Daten neu geladen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-8006-ae4c-c37c2346f7d8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const prevButton = document.createElement(&#x27;button&#x27;);
+prevButton.textContent = &#x27;Vorherige&#x27;;
+prevButton.disabled = currentPage === 1;
+prevButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+    currentPage--;
+    getData();
+});
+paginationContainer.appendChild(prevButton);
+</code></pre></li></ol><ol type="1" id="1e4857bd-249d-8068-9536-faf23bf558b1" class="numbered-list" start="3"><li><strong>Seitenanzeige</strong>:<br/>Zeigt die aktuelle Seite und die Gesamtseitenanzahl an.<br/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-80c1-a742-cb30526a082c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const pageInfo = document.createElement(&#x27;span&#x27;);
+pageInfo.textContent = `Seite ${currentPage} von ${totalPages}`;
+paginationContainer.appendChild(pageInfo);
+</code></pre></li></ol><ol type="1" id="1e4857bd-249d-8089-9844-e97fd3f76dac" class="numbered-list" start="4"><li><strong>&quot;Nächste Seite&quot;-Button</strong>:<ul id="1e4857bd-249d-800c-977f-eeb59e8513a6" class="bulleted-list"><li style="list-style-type:disc">Deaktiviert, wenn die aktuelle Seite die letzte Seite ist.</li></ul><ul id="1e4857bd-249d-80a8-b8e3-cc1191f7ef95" class="bulleted-list"><li style="list-style-type:disc">Beim Klick wird <code>currentPage</code> um <code>1</code> erhöht und die Daten neu geladen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-800b-a628-cc7a2985b834" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const nextButton = document.createElement(&#x27;button&#x27;);
+nextButton.textContent = &#x27;Nächste&#x27;;
+nextButton.disabled = currentPage === totalPages;
+nextButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+    currentPage++;
+    getData();
+});
+paginationContainer.appendChild(nextButton);
+</code></pre></li></ol><hr id="1e4857bd-249d-80b7-a99a-e0823609fc31"/><h3 id="1e4857bd-249d-8097-91b0-ee6e5f874dbb" class=""><strong>d) Daten anzeigen (</strong><code><strong>createDOM</strong></code><strong>)</strong></h3><p id="1e4857bd-249d-80a7-a638-dd7489fc23db" class="">Die Funktion <code>createDOM</code> zeigt die Daten der aktuellen Seite im <code>.items</code>-Container an.</p><ol type="1" id="1e4857bd-249d-80df-a16b-d4026cf43886" class="numbered-list" start="1"><li><strong>Container leeren</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-80a6-881d-cdc16c002c08" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const container = document.querySelector(&#x27;.items&#x27;);
+container.innerHTML = &#x27;&#x27;;
+</code></pre></li></ol><ol type="1" id="1e4857bd-249d-80aa-be2b-c1058baf2b46" class="numbered-list" start="2"><li><strong>Daten der aktuellen Seite hinzufügen</strong>:<br/>Für jedes Element in <br/><code>data</code> wird ein neues DOM-Element erstellt und in den Container eingefügt.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e4857bd-249d-8007-b20e-feeec97da4e3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (const item of data) {
+    const divElement = document.createElement(&#x27;div&#x27;);
+    divElement.classList.add(&#x27;item&#x27;);
+    container.appendChild(divElement);
+
+    const name = document.createElement(&#x27;h2&#x27;);
+    name.textContent = item.title;
+    divElement.appendChild(name);
+}
+</code></pre></li></ol><hr id="1e4857bd-249d-80d9-8ef8-d0cfe9d8dbab"/><h3 id="1e4857bd-249d-8077-9547-d79288a0507f" class=""><strong>3. Beispiel für die Berechnung</strong></h3><p id="1e4857bd-249d-802c-b3b7-fb4fa875d574" class="">Angenommen, es gibt 20 Elemente und <code>itemsPerPage</code> ist <code>6</code>:</p><ul id="1e4857bd-249d-80ce-8ca4-dcf848bc2cc8" class="bulleted-list"><li style="list-style-type:disc"><strong>Seite 1</strong>:<ul id="1e4857bd-249d-8028-b129-f5bd39cc1bf4" class="bulleted-list"><li style="list-style-type:circle"><code>start = (1 - 1) * 6 = 0</code></li></ul><ul id="1e4857bd-249d-80ba-861b-d381615404ef" class="bulleted-list"><li style="list-style-type:circle"><code>end = 0 + 6 = 6</code></li></ul><ul id="1e4857bd-249d-8057-84b2-c57717ccec44" class="bulleted-list"><li style="list-style-type:circle"><code>data.slice(0, 6)</code> gibt die Elemente 0 bis 5 zurück.</li></ul></li></ul><ul id="1e4857bd-249d-8069-9e41-f81f5c373641" class="bulleted-list"><li style="list-style-type:disc"><strong>Seite 2</strong>:<ul id="1e4857bd-249d-80e8-82f7-d63ba48e3c77" class="bulleted-list"><li style="list-style-type:circle"><code>start = (2 - 1) * 6 = 6</code></li></ul><ul id="1e4857bd-249d-8027-bbcb-d253576fec3e" class="bulleted-list"><li style="list-style-type:circle"><code>end = 6 + 6 = 12</code></li></ul><ul id="1e4857bd-249d-80fb-b4e8-d64b99576690" class="bulleted-list"><li style="list-style-type:circle"><code>data.slice(6, 12)</code> gibt die Elemente 6 bis 11 zurück.</li></ul></li></ul><ul id="1e4857bd-249d-8003-9f1e-cbd9bb1c4e09" class="bulleted-list"><li style="list-style-type:disc"><strong>Seite 3</strong>:<ul id="1e4857bd-249d-8057-a260-f13f0c62711e" class="bulleted-list"><li style="list-style-type:circle"><code>start = (3 - 1) * 6 = 12</code></li></ul><ul id="1e4857bd-249d-80e9-ab41-cb00baa40360" class="bulleted-list"><li style="list-style-type:circle"><code>end = 12 + 6 = 18</code></li></ul><ul id="1e4857bd-249d-8047-86fd-e32dfcf753a7" class="bulleted-list"><li style="list-style-type:circle"><code>data.slice(12, 18)</code> gibt die Elemente 12 bis 17 zurück.</li></ul></li></ul><ul id="1e4857bd-249d-8088-9c4d-c8f057043176" class="bulleted-list"><li style="list-style-type:disc"><strong>Seite 4</strong>:<ul id="1e4857bd-249d-804f-a77e-fc725efa807f" class="bulleted-list"><li style="list-style-type:circle"><code>start = (4 - 1) * 6 = 18</code></li></ul><ul id="1e4857bd-249d-806a-8679-f4f043e2404e" class="bulleted-list"><li style="list-style-type:circle"><code>end = 18 + 6 = 24</code></li></ul><ul id="1e4857bd-249d-80be-9537-f52caea019aa" class="bulleted-list"><li style="list-style-type:circle"><code>data.slice(18, 24)</code> gibt die Elemente 18 bis 19 zurück (falls nur 20 Elemente vorhanden sind).</li></ul></li></ul><hr id="1e4857bd-249d-80a5-ab6b-e07a538e00fc"/><h3 id="1e4857bd-249d-80af-a533-d289413d0eb8" class=""><strong>4. Zusammenfassung</strong></h3><ul id="1e4857bd-249d-801c-89f1-fa3d97a84757" class="bulleted-list"><li style="list-style-type:disc"><code><strong>currentPage</strong></code>: Hält die aktuelle Seite.</li></ul><ul id="1e4857bd-249d-8056-9359-fca5b89ce006" class="bulleted-list"><li style="list-style-type:disc"><code><strong>itemsPerPage</strong></code>: Definiert die Anzahl der Elemente pro Seite.</li></ul><ul id="1e4857bd-249d-80ce-9453-f559fef5d802" class="bulleted-list"><li style="list-style-type:disc"><code><strong>createPagination</strong></code>: Teilt die Daten in Seiten auf und zeigt die aktuelle Seite an.</li></ul><ul id="1e4857bd-249d-80e8-86a6-f1764fb12936" class="bulleted-list"><li style="list-style-type:disc"><code><strong>createPaginationControls</strong></code>: Erstellt Buttons für die Navigation zwischen den Seiten.</li></ul><ul id="1e4857bd-249d-8051-9203-ff9a09c7f749" class="bulleted-list"><li style="list-style-type:disc"><code><strong>createDOM</strong></code>: Zeigt die Daten der aktuellen Seite im DOM an.</li></ul><p id="1e4857bd-249d-801a-ae25-de6c61a6248b" class="">Mit dieser Struktur kannst du die Anzahl der Elemente pro Seite einfach anpassen, indem du den Wert von <code>itemsPerPage</code> änderst.</p><p id="1e4857bd-249d-8034-983d-c60ac3c16b66" class="">
+</p></div><div id="1e4857bd-249d-804c-a485-deaccb77edff" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1e4857bd-249d-8090-a765-f087de9d6d94"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1e4857bd-249d-80bd-9df3-fbaf5e149491"/><p id="1e4857bd-249d-806c-b57e-dcab7e7a86ad" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1e4857bd-249d-8012-b34a-c88657493d52"/><ul id="1e4857bd-249d-8092-8072-dec426fdd234" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1e4857bd-249d-80a8-82f4-facb6cc6e7c1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1e4857bd-249d-808a-8514-f61d0251e6ea" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1e4857bd-249d-809b-b93c-f7476aee181d" class="image"><a href="Pagination%201e4857bd249d80b99b0df00fd077ebc0/33.png"><img style="width:425px" src="Pagination%201e4857bd249d80b99b0df00fd077ebc0/33.png"/></a></figure></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

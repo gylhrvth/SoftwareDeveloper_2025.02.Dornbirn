@@ -1,0 +1,779 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Grundlagen</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ea857bd-249d-8005-908c-c77998b8a02f" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Grundlagen</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@5. Mai 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/SQL-199857bd249d8029be83f943bf0fc878?pvs=21"><img class="icon" src="https://www.notion.so/icons/command-line_green.svg"/>SQL</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/verified_gray.svg" style="width:14px;height:14px;display:block"/></span>Assignment</th><td><a href="https://www.notion.so/SQL-SELECT-1eb857bd249d8057acdde4b9df76e547?pvs=21"><img class="icon" src="https://www.notion.so/icons/arrow-right-basic_gray.svg"/>SQL SELECT</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Unterfragen-Subqueries-1ec857bd249d802a862ee20f2449dba2?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Unterfragen (Subqueries)</a>, <a href="https://www.notion.so/DML-Data-Manipulation-Language-1ed857bd249d80cfa6b6f8302b9a1397?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>DML (Data Manipulation Language)</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1ea857bd-249d-80ca-b23a-f318fad3f045" class="column-list"><div id="1ea857bd-249d-803a-8a2a-f06ef22361bd" style="width:50%" class="column"><h3 id="1ea857bd-249d-800d-8997-f96977f9164f" class=""><strong>Was ist eine relationale Datenbank?</strong></h3><p id="1ea857bd-249d-809a-b942-cfc4aef6c9d1" class="">Eine relationale Datenbank (RDB) ist ein Datenbanksystem, das Daten in <strong>Tabellen</strong> organisiert, die miteinander in Beziehung stehen. Jede Tabelle besteht aus <strong>Zeilen</strong> (Datensätzen) und <strong>Spalten</strong> (Felder). Die Beziehungen zwischen den Tabellen werden durch <strong>Primärschlüssel</strong> und <strong>Fremdschlüssel</strong> definiert.</p><h3 id="1ea857bd-249d-808a-a3a5-f5f5c87dd571" class=""><strong>Merkmale:</strong></h3><ul id="1ea857bd-249d-80f9-b4fe-d35e471e2e9d" class="bulleted-list"><li style="list-style-type:disc">Daten werden in einer strukturierten Form gespeichert (Tabellen).</li></ul><ul id="1ea857bd-249d-8073-bfbb-e1af5d101fa6" class="bulleted-list"><li style="list-style-type:disc">Es wird die <strong>Structured Query Language (SQL)</strong> verwendet, um Daten zu verwalten und abzufragen.</li></ul><ul id="1ea857bd-249d-8085-afae-c4c2e9bf7f35" class="bulleted-list"><li style="list-style-type:disc">Beziehungen zwischen Tabellen werden durch Schlüssel (z. B. Primär- und Fremdschlüssel) definiert.</li></ul><ul id="1ea857bd-249d-8029-886e-d67536d5e87e" class="bulleted-list"><li style="list-style-type:disc">ACID-Eigenschaften (Atomicity, Consistency, Isolation, Durability) sorgen für Datenintegrität.</li></ul><h3 id="1ea857bd-249d-80e2-a2a3-f95726a2d9a6" class=""><strong>Konkrete Hersteller relationaler Datenbanken:</strong></h3><ol type="1" id="1ea857bd-249d-8056-87d4-d9b43bfd0240" class="numbered-list" start="1"><li><strong>MySQL</strong> (Oracle) – Open-Source, weit verbreitet.</li></ol><ol type="1" id="1ea857bd-249d-80ec-9543-d2d73609ffae" class="numbered-list" start="2"><li><strong>PostgreSQL</strong> – Open-Source, unterstützt erweiterte Funktionen.</li></ol><ol type="1" id="1ea857bd-249d-80b3-80ef-f88688c115af" class="numbered-list" start="3"><li><strong>Microsoft SQL Server</strong> – Kommerziell, von Microsoft.</li></ol><ol type="1" id="1ea857bd-249d-8079-aad3-fb77dc96d71d" class="numbered-list" start="4"><li><strong>Oracle Database</strong> – Kommerziell, leistungsstark und weit verbreitet.</li></ol><ol type="1" id="1ea857bd-249d-80d6-ad30-d810c207926e" class="numbered-list" start="5"><li><strong>SQLite</strong> – Leichtgewichtige, dateibasierte Datenbank.</li></ol><ol type="1" id="1ea857bd-249d-80db-b6dd-ecc4709c9ef7" class="numbered-list" start="6"><li><strong>MariaDB</strong> – Open-Source, ein Fork von MySQL.</li></ol><hr id="1ea857bd-249d-80c5-b1ae-daaa4fc76029"/><h3 id="1ea857bd-249d-80b2-935a-fc388888e655" class=""><strong>Was ist eine non-relationale Datenbank?</strong></h3><p id="1ea857bd-249d-805b-93fd-d6c7099be5c5" class="">Eine non-relationale Datenbank (auch <strong>NoSQL-Datenbank</strong>) ist ein Datenbanksystem, das Daten in einer flexibleren Struktur speichert, z. B. als <strong>Dokumente</strong>, <strong>Schlüssel-Wert-Paare</strong>, <strong>Graphen</strong> oder <strong>Spaltenfamilien</strong>. Sie ist nicht auf Tabellen und Beziehungen angewiesen.</p><h3 id="1ea857bd-249d-8088-9ca8-f7abeec35650" class=""><strong>Merkmale:</strong></h3><ul id="1ea857bd-249d-807a-bb89-eee822ed8ad7" class="bulleted-list"><li style="list-style-type:disc">Daten werden in unstrukturierten oder semi-strukturierten Formaten gespeichert.</li></ul><ul id="1ea857bd-249d-8034-bdbd-f4b170054778" class="bulleted-list"><li style="list-style-type:disc">Keine feste Schema-Definition erforderlich (Schema-frei).</li></ul><ul id="1ea857bd-249d-8091-a12a-da85ed89f270" class="bulleted-list"><li style="list-style-type:disc">Skalierbarkeit ist oft horizontal (mehrere Server).</li></ul><ul id="1ea857bd-249d-80d5-8694-f4f227261350" class="bulleted-list"><li style="list-style-type:disc">Geeignet für große Datenmengen und schnelle Abfragen.</li></ul><ul id="1ea857bd-249d-80f4-81cd-d7277d007a86" class="bulleted-list"><li style="list-style-type:disc">Unterstützt verschiedene Datenmodelle (z. B. Dokumente, Graphen, Schlüssel-Wert).</li></ul><h3 id="1ea857bd-249d-802a-b028-f0373d18f578" class=""><strong>Konkrete Beispiele non-relationaler Datenbanken:</strong></h3><ol type="1" id="1ea857bd-249d-8039-91a2-ed0136144964" class="numbered-list" start="1"><li><strong>MongoDB</strong> – Dokumentenorientiert, speichert Daten im JSON-ähnlichen Format.</li></ol><ol type="1" id="1ea857bd-249d-8010-9fd7-f73a9f8e3f52" class="numbered-list" start="2"><li><strong>Cassandra</strong> (Apache) – Spaltenorientiert, hoch skalierbar.</li></ol><ol type="1" id="1ea857bd-249d-80ac-a798-d02c5b73522a" class="numbered-list" start="3"><li><strong>Redis</strong> – Schlüssel-Wert-Datenbank, extrem schnell.</li></ol><ol type="1" id="1ea857bd-249d-8071-a5fa-d13e1b045c50" class="numbered-list" start="4"><li><strong>Neo4j</strong> – Graphdatenbank, ideal für vernetzte Daten.</li></ol><ol type="1" id="1ea857bd-249d-8043-b66c-dae338f09daa" class="numbered-list" start="5"><li><strong>Couchbase</strong> – Dokumentenorientiert, unterstützt auch Schlüssel-Wert.</li></ol><ol type="1" id="1ea857bd-249d-80f7-962f-c85013062590" class="numbered-list" start="6"><li><strong>Amazon DynamoDB</strong> – Schlüssel-Wert-Datenbank, von AWS.</li></ol><ol type="1" id="1ea857bd-249d-8002-8e78-e28fb9d4d5a2" class="numbered-list" start="7"><li><strong>Firebase Realtime Database</strong> – Echtzeit-Datenbank, von Google.</li></ol><hr id="1ea857bd-249d-80b9-b8b4-d1aa27188ed7"/><h3 id="1ea857bd-249d-809e-b927-f48833bee9c4" class=""><strong>Vergleich: Relationale vs. Non-Relationale Datenbanken</strong></h3><table id="1ea857bd-249d-80b7-8d4c-db2f78fe575c" class="simple-table"><tbody><tr id="1ea857bd-249d-8073-8a7f-f61f9763c21f"><td id="v:;}" class=""><strong>Merkmal</strong></td><td id="ntin" class=""><strong>Relationale DB</strong></td><td id="aiMw" class=""><strong>Non-Relationale DB</strong></td></tr><tr id="1ea857bd-249d-80da-8b8c-dfd89d57ed96"><td id="v:;}" class=""><strong>Datenstruktur</strong></td><td id="ntin" class="">Tabellen (Zeilen und Spalten)</td><td id="aiMw" class="">Dokumente, Schlüssel-Wert, Graphen</td></tr><tr id="1ea857bd-249d-8005-a8b3-fc35e1816b1b"><td id="v:;}" class=""><strong>Schema</strong></td><td id="ntin" class="">Festes Schema</td><td id="aiMw" class="">Schema-frei</td></tr><tr id="1ea857bd-249d-806d-8e9f-e76f41cae88e"><td id="v:;}" class=""><strong>Abfragesprache</strong></td><td id="ntin" class="">SQL</td><td id="aiMw" class="">Verschiedene APIs oder Abfragen</td></tr><tr id="1ea857bd-249d-802c-8709-f43d8307db00"><td id="v:;}" class=""><strong>Skalierbarkeit</strong></td><td id="ntin" class="">Vertikal (mehr Ressourcen)</td><td id="aiMw" class="">Horizontal (mehr Server)</td></tr><tr id="1ea857bd-249d-80d5-b149-ef94dd6c44ef"><td id="v:;}" class=""><strong>Beispiele</strong></td><td id="ntin" class="">MySQL, PostgreSQL, Oracle</td><td id="aiMw" class="">MongoDB, Redis, Cassandra</td></tr></tbody></table><hr id="1ea857bd-249d-803b-96c1-d7d4463414a2"/><h3 id="1ea857bd-249d-8036-bbe0-ce0814f2901a" class=""><strong>Wann verwendet man welche?</strong></h3><ul id="1ea857bd-249d-8052-9c37-e90c1fb3502e" class="bulleted-list"><li style="list-style-type:disc"><strong>Relationale Datenbanken</strong>:<ul id="1ea857bd-249d-80be-a65b-ce26fdd4ae63" class="bulleted-list"><li style="list-style-type:circle">Wenn die Daten stark strukturiert sind und Beziehungen zwischen den Daten wichtig sind (z. B. Buchhaltung, CRM-Systeme).</li></ul><ul id="1ea857bd-249d-803e-9a52-f243bb3b720c" class="bulleted-list"><li style="list-style-type:circle">Wenn ACID-Eigenschaften erforderlich sind.</li></ul></li></ul><ul id="1ea857bd-249d-80b9-9405-eb23321a8635" class="bulleted-list"><li style="list-style-type:disc"><strong>Non-Relationale Datenbanken</strong>:<ul id="1ea857bd-249d-80ac-8c93-d02f35c327f3" class="bulleted-list"><li style="list-style-type:circle">Wenn die Daten unstrukturiert oder semi-strukturiert sind (z. B. JSON-Daten).</li></ul><ul id="1ea857bd-249d-80df-bf04-fbda524ce094" class="bulleted-list"><li style="list-style-type:circle">Wenn hohe Skalierbarkeit und Geschwindigkeit erforderlich sind (z. B. Echtzeit-Anwendungen, Big Data).</li></ul></li></ul><hr id="1ea857bd-249d-80be-89ee-edb26a0ed72c"/><p id="1ea857bd-249d-8051-8929-d219cda1e032" class="">Hier ist eine Erklärung der wichtigsten MySQL-Konzepte und Schlüsselwörter, basierend auf deiner Referenz:</p><h3 id="1ea857bd-249d-80df-8a60-ea23f24c9a2c" class=""><strong>Grundlegende MySQL-Befehle</strong></h3><ol type="1" id="1ea857bd-249d-80c9-b531-d95c1a6e850a" class="numbered-list" start="1"><li><strong>USE</strong><ul id="1ea857bd-249d-80c4-a9a3-c85fbab92f51" class="bulleted-list"><li style="list-style-type:disc">Wählt eine Datenbank aus, mit der gearbeitet werden soll.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80a1-a9c6-e5a252a4445c" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">USE mondial;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-803e-9e99-eb51b2ba6f92" class="numbered-list" start="2"><li><strong>SELECT</strong><ul id="1ea857bd-249d-8036-8c44-fbfcdcfcbb5c" class="bulleted-list"><li style="list-style-type:disc">Dient zum Abrufen von Daten aus einer Tabelle.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8013-b23a-e965565a99b3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT &#x27;Hello World!&#x27;;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-809e-b8f7-c5986b68a400" class="numbered-list" start="3"><li><strong>Alias (AS)</strong><ul id="1ea857bd-249d-80f7-8c6e-c6de12bd5f03" class="bulleted-list"><li style="list-style-type:disc">Gibt einer Spalte oder einem Ausdruck einen Aliasnamen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-802a-90dc-df70cd2c107b" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT Name AS Land, Capital AS Hauptstadt FROM country;
+</code></pre></li></ol><hr id="1ea857bd-249d-80c0-aac7-f7d37e17187d"/><h3 id="1ea857bd-249d-8085-be6d-fbaee9de9074" class=""><strong>Abfragen von Daten</strong></h3><ol type="1" id="1ea857bd-249d-806c-8791-c33501ba6349" class="numbered-list" start="1"><li><strong>SELECT * FROM table</strong><ul id="1ea857bd-249d-803a-badb-fc33479fb1ba" class="bulleted-list"><li style="list-style-type:disc">Ruft alle Spalten einer Tabelle ab.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80aa-abdb-fa51bd499d2f" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-80e5-b7df-fa35fe4e2c88" class="numbered-list" start="2"><li><strong>LIMIT</strong><ul id="1ea857bd-249d-801e-bbd8-f9c8b77b6c7c" class="bulleted-list"><li style="list-style-type:disc">Begrenzung der Anzahl der zurückgegebenen Zeilen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80a1-8a25-db0f391276de" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country LIMIT 10;
+SELECT * FROM country LIMIT 20, 10; -- Überspringt 20 Zeilen, gibt die nächsten 10 zurück.
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-8024-9bf4-f67f15ff566e" class="numbered-list" start="3"><li><strong>Spaltenauswahl</strong><ul id="1ea857bd-249d-80fd-986e-f6ff7d2decb3" class="bulleted-list"><li style="list-style-type:disc">Wählt spezifische Spalten aus.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8090-9233-c02d2d9c0994" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT Name, Capital FROM country;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-803c-b0f0-dd833cfd70b2" class="numbered-list" start="4"><li><strong>Alias für Spaltennamen</strong><ul id="1ea857bd-249d-8046-96ac-f6603d92daa9" class="bulleted-list"><li style="list-style-type:disc">Gibt Spalten benutzerdefinierte Namen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80b3-be18-e99ee2c0f114" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT Name AS Land, Capital AS Hauptstadt FROM country;
+</code></pre></li></ol><hr id="1ea857bd-249d-80db-9360-cbc20d0d2ca5"/><h3 id="1ea857bd-249d-806c-baa3-c1f008f81201" class=""><strong>Filterung von Daten</strong></h3><ol type="1" id="1ea857bd-249d-8078-9a51-ef0b7e202157" class="numbered-list" start="1"><li><strong>WHERE</strong><ul id="1ea857bd-249d-8042-b169-fb0404decd52" class="bulleted-list"><li style="list-style-type:disc">Filtert Zeilen basierend auf Bedingungen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-802a-bc1a-ccb6cfb12e4c" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE population &gt; 100000000;
+SELECT * FROM country WHERE Name = &#x27;Brazil&#x27;;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-8037-bfa2-d390ebcf53b5" class="numbered-list" start="2"><li><strong>Vergleichsoperatoren</strong><ul id="1ea857bd-249d-8022-b50d-ee8694a9f0d5" class="bulleted-list"><li style="list-style-type:disc"><code>=</code>: Gleich</li></ul><ul id="1ea857bd-249d-80ef-a4b4-e009c95ecb19" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;&gt;</code> oder <code>!=</code>: Ungleich</li></ul><ul id="1ea857bd-249d-8090-a104-d470709c6c13" class="bulleted-list"><li style="list-style-type:disc"><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>: Kleiner, kleiner gleich, größer, größer gleich</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80e4-b5f7-e2593c10e8a3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE Name &lt;&gt; &#x27;Brazil&#x27;;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-808e-a6eb-c861d8ef92fb" class="numbered-list" start="3"><li><strong>Logische Operatoren</strong><ul id="1ea857bd-249d-8025-9481-e6a41cb3fca6" class="bulleted-list"><li style="list-style-type:disc"><code>AND</code>: Beide Bedingungen müssen wahr sein.</li></ul><ul id="1ea857bd-249d-8084-8a8e-f7e4ede08d9a" class="bulleted-list"><li style="list-style-type:disc"><code>OR</code>: Eine der Bedingungen muss wahr sein.</li></ul><ul id="1ea857bd-249d-80ce-9dde-e66273f0834d" class="bulleted-list"><li style="list-style-type:disc"><code>NOT</code>: Negiert eine Bedingung.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80a4-945b-eee1334b9d5e" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE Name &lt;= &#x27;Brazil&#x27; AND Population &gt; 100000000;
+SELECT * FROM country WHERE Name &lt;= &#x27;Brazil&#x27; OR Population &gt; 100000000;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-801b-9d88-ce59c249924a" class="numbered-list" start="4"><li><strong>BETWEEN</strong><ul id="1ea857bd-249d-807e-bbb0-d86622772f2c" class="bulleted-list"><li style="list-style-type:disc">Überprüft, ob ein Wert in einem Bereich liegt.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8019-a023-fd03c0263b88" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE Population BETWEEN 10000 AND 20000;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-8021-903c-f02f698d680e" class="numbered-list" start="5"><li><strong>LIKE</strong><ul id="1ea857bd-249d-80cf-b51c-e9b7fe87ff41" class="bulleted-list"><li style="list-style-type:disc">Sucht nach Mustern in Texten.</li></ul><ul id="1ea857bd-249d-8040-8b0d-e2640ad8b4b0" class="bulleted-list"><li style="list-style-type:disc"><code>%</code>: Beliebige Anzahl von Zeichen.</li></ul><ul id="1ea857bd-249d-800d-878f-cf582548c0a5" class="bulleted-list"><li style="list-style-type:disc"><code>_</code>: Genau ein Zeichen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-802a-935a-c1aabb3107aa" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE Name LIKE &#x27;Uni%&#x27;; -- Beginnt mit &quot;Uni&quot;
+SELECT * FROM country WHERE Name LIKE &#x27;%m&#x27;; -- Endet mit &quot;m&quot;
+SELECT * FROM country WHERE Name LIKE &#x27;%ca%&#x27;; -- Enthält &quot;ca&quot;
+</code></pre></li></ol><ol type="1" id="1ea857bd-249d-8053-852b-c4b3089b4db8" class="numbered-list" start="6"><li><strong>Längenprüfung</strong><ul id="1ea857bd-249d-80b7-9acc-ecfa995c13f4" class="bulleted-list"><li style="list-style-type:disc">Überprüft die Länge eines Strings.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8027-bb72-ebdc62b672d6" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM country WHERE LENGTH(Name) &lt; 5;
+</code></pre></li></ol><hr id="1ea857bd-249d-8003-a743-e8fb261e0f32"/><h3 id="1ea857bd-249d-8027-afa6-f9b69d202394" class=""><strong>String-Manipulation</strong></h3><ol type="1" id="1ea857bd-249d-8037-84b7-e77fda022d5a" class="numbered-list" start="1"><li><strong>SUBSTR</strong><ul id="1ea857bd-249d-8098-ac09-ed475d446fcd" class="bulleted-list"><li style="list-style-type:disc">Extrahiert einen Teilstring.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80cd-b73c-ca188372280f" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT *, SUBSTR(Name, 3, 1) FROM country;
+SELECT * FROM country WHERE SUBSTR(Name, 3, 1) = &#x27;s&#x27;;
+</code></pre></li></ol><hr id="1ea857bd-249d-80f2-8e6c-ccbc032429a5"/><h3 id="1ea857bd-249d-80d4-a2ed-d2f10e9a8fd4" class=""><strong>Aggregatfunktionen</strong></h3><ol type="1" id="1ea857bd-249d-80b4-8ecd-f64a94ec0f8b" class="numbered-list" start="1"><li><strong>COUNT</strong><ul id="1ea857bd-249d-8066-b582-fcfa6a7034d7" class="bulleted-list"><li style="list-style-type:disc">Zählt die Anzahl der Zeilen.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80df-979d-d7d123feea87" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT COUNT(*) AS anzahlLaender FROM country;
+</code></pre></li></ol><hr id="1ea857bd-249d-8001-95df-c2b94fe69f62"/><h3 id="1ea857bd-249d-8096-b215-da999b6074ca" class=""><strong>Zusammenfassung</strong></h3><ul id="1ea857bd-249d-80a6-8db1-ef3edc7cdbdf" class="bulleted-list"><li style="list-style-type:disc"><strong>USE</strong>: Datenbank auswählen.</li></ul><ul id="1ea857bd-249d-8097-b9f1-d3c2cb3877a3" class="bulleted-list"><li style="list-style-type:disc"><strong>SELECT</strong>: Daten abrufen.</li></ul><ul id="1ea857bd-249d-802f-b750-e3c36512da38" class="bulleted-list"><li style="list-style-type:disc"><strong>WHERE</strong>: Daten filtern.</li></ul><ul id="1ea857bd-249d-8085-bf8c-ed9486335b91" class="bulleted-list"><li style="list-style-type:disc"><strong>LIMIT</strong>: Ergebnisse begrenzen.</li></ul><ul id="1ea857bd-249d-801a-ac64-ccf75afbeb56" class="bulleted-list"><li style="list-style-type:disc"><strong>LIKE</strong>: Muster suchen.</li></ul><ul id="1ea857bd-249d-8095-9bb1-d72761a47021" class="bulleted-list"><li style="list-style-type:disc"><strong>BETWEEN</strong>: Bereichsprüfung.</li></ul><ul id="1ea857bd-249d-8092-a24a-ca5385218e13" class="bulleted-list"><li style="list-style-type:disc"><strong>COUNT</strong>: Zeilen zählen.</li></ul><ul id="1ea857bd-249d-80ce-905d-d90452c7c3c3" class="bulleted-list"><li style="list-style-type:disc"><strong>SUBSTR</strong>: Teilstrings extrahieren.</li></ul><ul id="1ea857bd-249d-80f8-a73e-f696a2f0bc02" class="bulleted-list"><li style="list-style-type:disc"><strong>Alias (AS)</strong>: Spalten umbenennen.</li></ul><p id="1ea857bd-249d-8010-a7dc-f20faab6c213" class="">Mit diesen Grundlagen kannst du viele Abfragen in MySQL erstellen und Daten effizient analysieren.</p><hr id="1ea857bd-249d-80ba-92c1-f08d9137cd2b"/><h3 id="1ea857bd-249d-8016-b132-f0857db86b79" class="">Wie kann ich in mysql im table city das name dornbirn mit province ausgeben</h3><p id="1ea857bd-249d-80c0-b71f-c6d85d7b964a" class="">Um in MySQL aus der Tabelle <code>city</code> den Namen <code>Dornbirn</code> zusammen mit der Spalte <code>province</code> auszugeben, kannst du eine <code>SELECT</code>-Abfrage mit einer <code>WHERE</code>-Bedingung verwenden. Hier ist die entsprechende SQL-Abfrage:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-800f-9b56-e690c014f1e8" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT name, province
+FROM city
+WHERE name = &#x27;Dornbirn&#x27;;
+</code></pre><h3 id="1ea857bd-249d-80dd-855d-ebd8e21f8314" class=""><strong>Erklärung:</strong></h3><ol type="1" id="1ea857bd-249d-8079-b478-cbdf41776c09" class="numbered-list" start="1"><li><code><strong>SELECT name, province</strong></code>: Wählt die Spalten <code>name</code> und <code>province</code> aus der Tabelle <code>city</code> aus.</li></ol><ol type="1" id="1ea857bd-249d-80cd-824d-ed0963c4f194" class="numbered-list" start="2"><li><code><strong>FROM city</strong></code>: Gibt an, dass die Daten aus der Tabelle <code>city</code> abgerufen werden.</li></ol><ol type="1" id="1ea857bd-249d-8058-b474-eab027e47d83" class="numbered-list" start="3"><li><code><strong>WHERE name = &#x27;Dornbirn&#x27;</strong></code>: Filtert die Zeilen, sodass nur die Zeile mit dem Namen <code>Dornbirn</code> zurückgegeben wird.</li></ol><h3 id="1ea857bd-249d-8080-bacc-f58f58d04223" class=""><strong>Beispielausgabe:</strong></h3><p id="1ea857bd-249d-80cb-8e69-ec684b0cbbab" class="">Angenommen, die Tabelle <code>city</code> enthält folgende Daten:</p><table id="1ea857bd-249d-8047-9aca-d65a64a93d86" class="simple-table"><tbody><tr id="1ea857bd-249d-8028-b9ff-cf976c33cb1c"><td id="`Bv&lt;" class="">id</td><td id="?vmN" class="">name</td><td id=":OBY" class="">province</td><td id="kRsC" class="">population</td></tr><tr id="1ea857bd-249d-8077-a10c-ff5862dae4de"><td id="`Bv&lt;" class="">1</td><td id="?vmN" class="">Dornbirn</td><td id=":OBY" class="">Vorarlberg</td><td id="kRsC" class="">50000</td></tr><tr id="1ea857bd-249d-8092-af7e-f639f81204c1"><td id="`Bv&lt;" class="">2</td><td id="?vmN" class="">Bregenz</td><td id=":OBY" class="">Vorarlberg</td><td id="kRsC" class="">30000</td></tr><tr id="1ea857bd-249d-80c6-8a57-e6b000235c85"><td id="`Bv&lt;" class="">3</td><td id="?vmN" class="">Wien</td><td id=":OBY" class="">Wien</td><td id="kRsC" class="">1900000</td></tr></tbody></table><p id="1ea857bd-249d-80e8-9278-d1cf08e65456" class="">Die Abfrage würde folgendes Ergebnis liefern:</p><table id="1ea857bd-249d-801d-97b4-f51b476338b3" class="simple-table"><tbody><tr id="1ea857bd-249d-801b-b5a7-f5ae89a82c9c"><td id="qY;S" class="">name</td><td id="brOp" class="">province</td></tr><tr id="1ea857bd-249d-80ac-aad5-f0be3f878df0"><td id="qY;S" class="">Dornbirn</td><td id="brOp" class="">Vorarlberg</td></tr></tbody></table><p id="1ea857bd-249d-80fc-8358-eefaa99dd02c" class="">Falls du weitere Fragen hast, lass es mich wissen!</p><hr id="1ea857bd-249d-8089-857a-ffc43e685b74"/><h3 id="1ea857bd-249d-802f-a071-edc497fa9cf5" class="">Joins</h3><figure id="1ea857bd-249d-802c-854d-f2b3902457cb" class="image"><a href="Grundlagen%201ea857bd249d8005908cc77998b8a02f/image.png"><img style="width:823.484375px" src="Grundlagen%201ea857bd249d8005908cc77998b8a02f/image.png"/></a></figure><hr id="1ea857bd-249d-80b8-b56b-e8fdef6dd65c"/><p id="1ea857bd-249d-8006-ba30-f9693fec029a" class="">Hier sind die Erklärungen zu den SQL-Statements und Kriterien:</p><h3 id="1ea857bd-249d-8098-883c-cb0547955d95" class="">1. <strong>ORDER BY Statement</strong></h3><p id="1ea857bd-249d-805e-97cb-c08fea545773" class="">Das <code>ORDER BY</code>-Statement wird verwendet, um die Ergebnisse einer Abfrage in aufsteigender (<code>ASC</code>) oder absteigender (<code>DESC</code>) Reihenfolge zu sortieren.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8041-b0e0-fde813d95d92" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM users
+ORDER BY last_name ASC; -- Sortiert nach Nachnamen in aufsteigender Reihenfolge
+</code></pre><h3 id="1ea857bd-249d-8022-9067-f75b60d11765" class="">2. <strong>GROUP BY Statement</strong></h3><p id="1ea857bd-249d-80f5-bfac-c8d3c65c4f35" class="">Das <code>GROUP BY</code>-Statement gruppiert Zeilen mit denselben Werten in einer oder mehreren Spalten. Es wird oft mit Aggregatfunktionen wie <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MAX</code>, <code>MIN</code> verwendet.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-809a-ab7b-d0a9c451910d" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department; -- Gruppiert nach Abteilungen und zählt die Mitarbeiter
+</code></pre><h3 id="1ea857bd-249d-8064-9c14-ee4c47eeb6c6" class="">3. <strong>JOIN Statement</strong></h3><p id="1ea857bd-249d-80aa-b6dd-dab6b641dbf7" class="">Das <code>JOIN</code>-Statement kombiniert Zeilen aus zwei oder mehr Tabellen basierend auf einer gemeinsamen Spalte.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8013-b683-d33cac8f6be3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT orders.id, customers.name
+FROM orders
+JOIN customers ON orders.customer_id = customers.id; -- Verknüpft Bestellungen mit Kunden
+</code></pre><h3 id="1ea857bd-249d-80d8-8789-f90ff28385d1" class="">4. <strong>LEFT JOIN Statement</strong></h3><p id="1ea857bd-249d-8091-acaa-fdd84e88c6ca" class="">Das <code>LEFT JOIN</code>-Statement gibt alle Zeilen aus der linken Tabelle zurück, auch wenn keine Übereinstimmung in der rechten Tabelle gefunden wird. Nicht übereinstimmende Werte in der rechten Tabelle werden als <code>NULL</code> angezeigt.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8093-8eee-cc78c0d8d44f" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT employees.name, departments.name AS department
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.id; -- Zeigt alle Mitarbeiter, auch ohne Abteilung
+</code></pre><h3 id="1ea857bd-249d-806d-a24f-d64c323c71cb" class="">5. <strong>IS NULL oder IS NOT NULL Kriterien</strong></h3><p id="1ea857bd-249d-803b-a7e6-fc4c3656656b" class="">Diese Kriterien werden verwendet, um nach <code>NULL</code>-Werten (fehlenden Daten) zu filtern.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80b9-8d8e-d8f7f904adf1" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM orders
+WHERE delivery_date IS NULL; -- Findet Bestellungen ohne Lieferdatum
+
+SELECT * FROM orders
+WHERE delivery_date IS NOT NULL; -- Findet Bestellungen mit Lieferdatum
+</code></pre><h3 id="1ea857bd-249d-806c-aeb0-dfe614357ff7" class="">6. <strong>DISTINCT Statement</strong></h3><p id="1ea857bd-249d-80c5-b996-d07b803ace32" class="">Das <code>DISTINCT</code>-Statement wird verwendet, um doppelte Werte in einer Spalte zu entfernen und nur eindeutige Werte zurückzugeben.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8035-a218-cc36c4dda1bd" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT DISTINCT country
+FROM customers; -- Gibt eine Liste eindeutiger Länder zurück
+</code></pre><hr id="1eb857bd-249d-8009-84ab-e5483d1f7d7d"/><h2 id="1eb857bd-249d-80e2-ab16-fcd390433134" class=""></h2></div><div id="1ea857bd-249d-80ce-87e8-ed56ed5253a0" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1ea857bd-249d-80ab-89fa-e2c0cc79feb6"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1ea857bd-249d-80e7-8acf-dbe76918e5a8"/><p id="1ea857bd-249d-804f-855f-d84b0b8f40ce" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1ea857bd-249d-8058-a7f7-e9108d8655b0"/><ul id="1ea857bd-249d-8027-8a5c-d7fc06443dbf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ea857bd-249d-80b4-9951-d227768f2819" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ea857bd-249d-8073-b36d-c0aad570610c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1ea857bd-249d-804f-b054-c9016da4b14e" class="image"><a href="Grundlagen%201ea857bd249d8005908cc77998b8a02f/33.png"><img style="width:425px" src="Grundlagen%201ea857bd249d8005908cc77998b8a02f/33.png"/></a></figure><p id="1ea857bd-249d-8094-82fd-c78099ae978f" class="">In MySQL gibt es eine Vielzahl von Funktionen, die in verschiedene Kategorien unterteilt sind. Hier ist eine Übersicht der wichtigsten Funktionen:</p><hr id="1ea857bd-249d-80ad-8ec5-cae61f2bb3c2"/><h3 id="1ea857bd-249d-807a-b0ce-e9f2d295ccd5" class=""><strong>1. String-Funktionen</strong></h3><p id="1ea857bd-249d-80da-898c-d6836062509a" class="">Diese Funktionen arbeiten mit Zeichenketten (Strings).</p><ul id="1ea857bd-249d-807a-bd2f-c5e3c62f1e88" class="bulleted-list"><li style="list-style-type:disc"><code>LENGTH(str)</code> – Gibt die Länge eines Strings zurück.</li></ul><ul id="1ea857bd-249d-80b1-9956-f795d7d41a99" class="bulleted-list"><li style="list-style-type:disc"><code>LOWER(str)</code> – Wandelt einen String in Kleinbuchstaben um.</li></ul><ul id="1ea857bd-249d-80f4-9092-c415c6635ed1" class="bulleted-list"><li style="list-style-type:disc"><code>UPPER(str)</code> – Wandelt einen String in Großbuchstaben um.</li></ul><ul id="1ea857bd-249d-80f8-a32d-d09e530f8d68" class="bulleted-list"><li style="list-style-type:disc"><code>CONCAT(str1, str2, ...)</code> – Verbindet mehrere Strings.</li></ul><ul id="1ea857bd-249d-808c-967b-fcba450f711d" class="bulleted-list"><li style="list-style-type:disc"><code>SUBSTR(str, pos, len)</code> oder <code>SUBSTRING(str, pos, len)</code> – Extrahiert einen Teilstring.</li></ul><ul id="1ea857bd-249d-804a-b379-c11f59b0a5d1" class="bulleted-list"><li style="list-style-type:disc"><code>TRIM(str)</code> – Entfernt Leerzeichen am Anfang und Ende eines Strings.</li></ul><ul id="1ea857bd-249d-8009-9f17-e294fba22341" class="bulleted-list"><li style="list-style-type:disc"><code>REPLACE(str, from_str, to_str)</code> – Ersetzt Teile eines Strings.</li></ul><ul id="1ea857bd-249d-80cf-b4a8-f475aefb784a" class="bulleted-list"><li style="list-style-type:disc"><code>LEFT(str, len)</code> – Gibt die ersten <code>len</code> Zeichen eines Strings zurück.</li></ul><ul id="1ea857bd-249d-802e-baf5-c2a2ac762d81" class="bulleted-list"><li style="list-style-type:disc"><code>RIGHT(str, len)</code> – Gibt die letzten <code>len</code> Zeichen eines Strings zurück.</li></ul><ul id="1ea857bd-249d-8083-b284-f8d0466c953e" class="bulleted-list"><li style="list-style-type:disc"><code>INSTR(str, substr)</code> – Gibt die Position eines Teilstrings zurück.</li></ul><ul id="1ea857bd-249d-80c4-8eb8-cc1c2057d284" class="bulleted-list"><li style="list-style-type:disc"><code>REVERSE(str)</code> – Kehrt einen String um.</li></ul><hr id="1ea857bd-249d-806c-b2cb-edea1c90f5e7"/><h3 id="1ea857bd-249d-80ff-8f15-f4ec0260f378" class=""><strong>2. Numerische Funktionen</strong></h3><p id="1ea857bd-249d-80ee-afa5-fa51bce1cf3a" class="">Diese Funktionen arbeiten mit Zahlen.</p><ul id="1ea857bd-249d-80d9-86f4-f552167f2f00" class="bulleted-list"><li style="list-style-type:disc"><code>ABS(x)</code> – Gibt den Absolutwert von <code>x</code> zurück.</li></ul><ul id="1ea857bd-249d-80e2-9720-fcd60291735f" class="bulleted-list"><li style="list-style-type:disc"><code>CEIL(x)</code> oder <code>CEILING(x)</code> – Rundet <code>x</code> auf die nächste ganze Zahl auf.</li></ul><ul id="1ea857bd-249d-80cd-8451-ebbeeabc7786" class="bulleted-list"><li style="list-style-type:disc"><code>FLOOR(x)</code> – Rundet <code>x</code> auf die nächste ganze Zahl ab.</li></ul><ul id="1ea857bd-249d-80ff-a4b5-cf7bea299cb6" class="bulleted-list"><li style="list-style-type:disc"><code>ROUND(x, d)</code> – Rundet <code>x</code> auf <code>d</code> Dezimalstellen.</li></ul><ul id="1ea857bd-249d-80bb-a835-d8a820026405" class="bulleted-list"><li style="list-style-type:disc"><code>MOD(x, y)</code> – Gibt den Rest von <code>x / y</code> zurück.</li></ul><ul id="1ea857bd-249d-8027-af70-c9996fa8e049" class="bulleted-list"><li style="list-style-type:disc"><code>POWER(x, y)</code> oder <code>POW(x, y)</code> – Berechnet <code>x</code> hoch <code>y</code>.</li></ul><ul id="1ea857bd-249d-802a-9d05-f591c4bdc120" class="bulleted-list"><li style="list-style-type:disc"><code>SQRT(x)</code> – Gibt die Quadratwurzel von <code>x</code> zurück.</li></ul><ul id="1ea857bd-249d-80d0-bb91-e8202896ebb8" class="bulleted-list"><li style="list-style-type:disc"><code>RAND()</code> – Gibt eine Zufallszahl zwischen 0 und 1 zurück.</li></ul><ul id="1ea857bd-249d-809a-87eb-ef56cfcbd9ef" class="bulleted-list"><li style="list-style-type:disc"><code>TRUNCATE(x, d)</code> – Schneidet <code>x</code> auf <code>d</code> Dezimalstellen ab.</li></ul><hr id="1ea857bd-249d-80af-9b9e-c89dcb8ffbcd"/><h3 id="1ea857bd-249d-80a4-827e-cdc8811d0154" class=""><strong>3. Datums- und Zeitfunktionen</strong></h3><p id="1ea857bd-249d-8067-b318-efbf1c9a0988" class="">Diese Funktionen arbeiten mit Datums- und Zeitwerten.</p><ul id="1ea857bd-249d-80c0-8a6b-dc58a66430d3" class="bulleted-list"><li style="list-style-type:disc"><code>NOW()</code> – Gibt das aktuelle Datum und die aktuelle Uhrzeit zurück.</li></ul><ul id="1ea857bd-249d-8079-b8e1-d96a91ee16c8" class="bulleted-list"><li style="list-style-type:disc"><code>CURDATE()</code> – Gibt das aktuelle Datum zurück.</li></ul><ul id="1ea857bd-249d-8026-8963-fdb437d599c0" class="bulleted-list"><li style="list-style-type:disc"><code>CURTIME()</code> – Gibt die aktuelle Uhrzeit zurück.</li></ul><ul id="1ea857bd-249d-80d6-9316-eb6cc91fc549" class="bulleted-list"><li style="list-style-type:disc"><code>DATE_ADD(date, INTERVAL expr unit)</code> – Fügt einem Datum einen Zeitraum hinzu.</li></ul><ul id="1ea857bd-249d-80eb-a4fe-f5adcdb095b9" class="bulleted-list"><li style="list-style-type:disc"><code>DATE_SUB(date, INTERVAL expr unit)</code> – Subtrahiert einen Zeitraum von einem Datum.</li></ul><ul id="1ea857bd-249d-808c-91c2-f3ef409f6ecb" class="bulleted-list"><li style="list-style-type:disc"><code>DATEDIFF(date1, date2)</code> – Gibt die Differenz zwischen zwei Daten in Tagen zurück.</li></ul><ul id="1ea857bd-249d-802b-bab4-e38cef62c0c5" class="bulleted-list"><li style="list-style-type:disc"><code>DAY(date)</code> – Gibt den Tag eines Datums zurück.</li></ul><ul id="1ea857bd-249d-804b-8a6d-d2d01c72b64b" class="bulleted-list"><li style="list-style-type:disc"><code>MONTH(date)</code> – Gibt den Monat eines Datums zurück.</li></ul><ul id="1ea857bd-249d-803e-9859-c069648ce303" class="bulleted-list"><li style="list-style-type:disc"><code>YEAR(date)</code> – Gibt das Jahr eines Datums zurück.</li></ul><ul id="1ea857bd-249d-80b8-abd2-e00ab42ad19c" class="bulleted-list"><li style="list-style-type:disc"><code>HOUR(time)</code> – Gibt die Stunde einer Zeit zurück.</li></ul><ul id="1ea857bd-249d-8016-b270-fddaee49d497" class="bulleted-list"><li style="list-style-type:disc"><code>MINUTE(time)</code> – Gibt die Minute einer Zeit zurück.</li></ul><ul id="1ea857bd-249d-80e6-b8b1-f0e17e92fe10" class="bulleted-list"><li style="list-style-type:disc"><code>SECOND(time)</code> – Gibt die Sekunde einer Zeit zurück.</li></ul><ul id="1ea857bd-249d-8017-aed1-e98e034652cc" class="bulleted-list"><li style="list-style-type:disc"><code>STR_TO_DATE(str, format)</code> – Konvertiert einen String in ein Datum.</li></ul><ul id="1ea857bd-249d-80a8-a9d8-e2c93ba7c735" class="bulleted-list"><li style="list-style-type:disc"><code>DATE_FORMAT(date, format)</code> – Formatiert ein Datum in einen bestimmten String.</li></ul><hr id="1ea857bd-249d-80e7-937c-c269555c2e68"/><h3 id="1ea857bd-249d-8015-b0cf-d889094814fd" class=""><strong>4. Aggregatfunktionen</strong></h3><p id="1ea857bd-249d-8012-8fb1-dfb9c02a40fb" class="">Diese Funktionen werden häufig in Kombination mit <code>GROUP BY</code> verwendet.</p><ul id="1ea857bd-249d-8007-91c5-daa63804fbcd" class="bulleted-list"><li style="list-style-type:disc"><code>COUNT(expr)</code> – Zählt die Anzahl der Zeilen.</li></ul><ul id="1ea857bd-249d-802a-9db7-e229ed06e0e0" class="bulleted-list"><li style="list-style-type:disc"><code>SUM(expr)</code> – Gibt die Summe einer Spalte zurück.</li></ul><ul id="1ea857bd-249d-8091-b298-ce11dc01e2ed" class="bulleted-list"><li style="list-style-type:disc"><code>AVG(expr)</code> – Gibt den Durchschnittswert einer Spalte zurück.</li></ul><ul id="1ea857bd-249d-807c-9a83-e7b46e8244ff" class="bulleted-list"><li style="list-style-type:disc"><code>MIN(expr)</code> – Gibt den kleinsten Wert einer Spalte zurück.</li></ul><ul id="1ea857bd-249d-80cc-9dd6-eaf2725f6dd9" class="bulleted-list"><li style="list-style-type:disc"><code>MAX(expr)</code> – Gibt den größten Wert einer Spalte zurück.</li></ul><hr id="1ea857bd-249d-8040-b8b5-fbd514043857"/><h3 id="1ea857bd-249d-802a-a632-c45779a66108" class=""><strong>5. Logische Funktionen</strong></h3><p id="1ea857bd-249d-80b4-aba3-d86247e40a85" class="">Diese Funktionen helfen bei der Bedingungsprüfung.</p><ul id="1ea857bd-249d-80f2-9c69-e7ad42ff1b4b" class="bulleted-list"><li style="list-style-type:disc"><code>IF(condition, true_value, false_value)</code> – Gibt <code>true_value</code> zurück, wenn die Bedingung wahr ist, sonst <code>false_value</code>.</li></ul><ul id="1ea857bd-249d-8084-928a-f8b2d1de6894" class="bulleted-list"><li style="list-style-type:disc"><code>CASE</code> – Führt eine bedingte Logik aus.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-807a-8934-e0d8db58b987" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CASE
+  WHEN condition1 THEN result1
+  WHEN condition2 THEN result2
+  ELSE resultN
+END
+</code></pre></li></ul><hr id="1ea857bd-249d-8006-bbdf-cbf724da8a81"/><h3 id="1ea857bd-249d-8065-90fd-c373b0ddd9fb" class=""><strong>6. JSON-Funktionen</strong></h3><p id="1ea857bd-249d-8020-aee2-e58e233521e6" class="">Diese Funktionen arbeiten mit JSON-Daten.</p><ul id="1ea857bd-249d-807f-8ea1-da6940fd46a4" class="bulleted-list"><li style="list-style-type:disc"><code>JSON_OBJECT(key, value, ...)</code> – Erstellt ein JSON-Objekt.</li></ul><ul id="1ea857bd-249d-80c0-a76a-c0652ccb8f51" class="bulleted-list"><li style="list-style-type:disc"><code>JSON_ARRAY(value, ...)</code> – Erstellt ein JSON-Array.</li></ul><ul id="1ea857bd-249d-805a-83ec-e13983993816" class="bulleted-list"><li style="list-style-type:disc"><code>JSON_EXTRACT(json_doc, path)</code> – Extrahiert Daten aus einem JSON-Dokument.</li></ul><ul id="1ea857bd-249d-805a-a0aa-c00c99604f7a" class="bulleted-list"><li style="list-style-type:disc"><code>JSON_CONTAINS(json_doc, value)</code> – Prüft, ob ein JSON-Dokument einen bestimmten Wert enthält.</li></ul><hr id="1ea857bd-249d-807d-b42c-de0cf3aee953"/><h3 id="1ea857bd-249d-805d-a9e2-f6b5e4c25c9b" class=""><strong>7. Systemfunktionen</strong></h3><p id="1ea857bd-249d-804f-a1d5-f72a8f0c7cc3" class="">Diese Funktionen liefern Informationen über die Datenbank oder den Server.</p><ul id="1ea857bd-249d-800e-9c75-dd6a70127534" class="bulleted-list"><li style="list-style-type:disc"><code>DATABASE()</code> – Gibt den Namen der aktuellen Datenbank zurück.</li></ul><ul id="1ea857bd-249d-80ad-8084-e83352b865ba" class="bulleted-list"><li style="list-style-type:disc"><code>USER()</code> – Gibt den aktuellen Benutzer zurück.</li></ul><ul id="1ea857bd-249d-8035-a6d6-e7a9030f90cf" class="bulleted-list"><li style="list-style-type:disc"><code>VERSION()</code> – Gibt die MySQL-Version zurück.</li></ul><hr id="1ea857bd-249d-8047-9f84-fb67854a1125"/><h3 id="1ea857bd-249d-8063-b00b-ef2af82db41e" class=""><strong>Beispielabfragen</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8035-881a-d62d3fce3545" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT UPPER(Name) AS Großbuchstaben FROM country;
+SELECT ROUND(Population / 1000000, 2) AS BevölkerungInMillionen FROM country;
+SELECT DATE_FORMAT(NOW(), &#x27;%Y-%m-%d&#x27;) AS HeutigesDatum;
+SELECT COUNT(*) AS AnzahlLänder FROM country;
+</code></pre><p id="1ea857bd-249d-8078-affb-d0c9d4b49f68" class="">Mit diesen Funktionen kannst du Daten in MySQL flexibel manipulieren und analysieren.</p><hr id="1ea857bd-249d-80fb-b945-f4e624db1845"/><h2 id="1ea857bd-249d-802d-b4cb-d2f6ba203f20" class="">Tabellen miteinander verbinden:</h2><h3 id="1ea857bd-249d-8019-9f36-fc91ca1def84" class=""><strong>Die Abfrage</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-805e-b0d4-ee8e73f76940" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.name AS city_name, c.province AS city_province
+FROM city c
+INNER JOIN province p ON c.province = p.name
+WHERE p.country LIKE &#x27;A&#x27;;
+</code></pre><hr id="1ea857bd-249d-80bb-b239-d054fcc9c198"/><h3 id="1ea857bd-249d-8015-8907-fbd2ed97a40c" class=""><strong>1. Was macht diese Abfrage?</strong></h3><p id="1ea857bd-249d-8019-beae-c1dddd3a97ea" class="">Diese Abfrage sucht nach Städten aus der Tabelle <code>city</code>, die in Provinzen liegen, die zu einem Land gehören, dessen Name mit dem Buchstaben <code>A</code> beginnt. Die Ergebnisse zeigen den Namen der Stadt und die zugehörige Provinz.</p><hr id="1ea857bd-249d-8072-9342-eb406aed7e80"/><h3 id="1ea857bd-249d-8044-9160-f9072e6afa74" class=""><strong>2. Zerlegung der Abfrage</strong></h3><h3 id="1ea857bd-249d-8017-bbac-e27acc709bee" class=""><strong>a) SELECT</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-80d9-9db1-f2f10f162375" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.name AS city_name, c.province AS city_province
+</code></pre><ul id="1ea857bd-249d-8058-93d7-ff919e4bd58e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>SELECT</strong></code>: Gibt an, welche Spalten oder Daten du aus der Datenbank abrufen möchtest.</li></ul><ul id="1ea857bd-249d-80e1-950e-f2c82b74fefd" class="bulleted-list"><li style="list-style-type:disc"><code><strong>c.name</strong></code>: Das ist die Spalte <code>name</code> aus der Tabelle <code>city</code>. Sie enthält den Namen der Stadt.</li></ul><ul id="1ea857bd-249d-803e-b2cc-fb70722e0a72" class="bulleted-list"><li style="list-style-type:disc"><code><strong>AS city_name</strong></code>: Gibt der Spalte <code>c.name</code> einen neuen Namen (Alias), nämlich <code>city_name</code>. Das macht die Ausgabe übersichtlicher.</li></ul><ul id="1ea857bd-249d-806d-a405-fdb5a8154726" class="bulleted-list"><li style="list-style-type:disc"><code><strong>c.province</strong></code>: Das ist die Spalte <code>province</code> aus der Tabelle <code>city</code>. Sie zeigt, zu welcher Provinz die Stadt gehört.</li></ul><ul id="1ea857bd-249d-803b-9bf2-d98d8b659838" class="bulleted-list"><li style="list-style-type:disc"><code><strong>AS city_province</strong></code>: Gibt der Spalte <code>c.province</code> einen neuen Namen (Alias), nämlich <code>city_province</code>.</li></ul><p id="1ea857bd-249d-80b7-a0d2-d6992b27b6ea" class=""><strong>Beispielausgabe:</strong></p><table id="1ea857bd-249d-807c-967f-ea6fc3da3b40" class="simple-table"><tbody><tr id="1ea857bd-249d-8066-adbb-f0fa5ebd9b08"><td id="O&gt;CT" class="">city_name</td><td id="v^lW" class="">city_province</td></tr><tr id="1ea857bd-249d-80ab-a125-e671b7410e65"><td id="O&gt;CT" class="">Dornbirn</td><td id="v^lW" class="">Vorarlberg</td></tr></tbody></table><hr id="1ea857bd-249d-80c5-9906-f6473c203b94"/><h3 id="1ea857bd-249d-8006-9de9-ed2f728187c6" class=""><strong>b) FROM</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-802a-af2c-ca45f1c80a83" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">FROM city c
+</code></pre><ul id="1ea857bd-249d-8012-b178-e559f67d0a46" class="bulleted-list"><li style="list-style-type:disc"><code><strong>FROM city</strong></code>: Gibt an, dass die Daten aus der Tabelle <code>city</code> stammen.</li></ul><ul id="1ea857bd-249d-80e0-a910-db33c0f1df8a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>c</strong></code>: Das ist ein Alias für die Tabelle <code>city</code>. Es ist eine Abkürzung, damit du später in der Abfrage einfach <code>c</code> statt <code>city</code> schreiben kannst.</li></ul><hr id="1ea857bd-249d-8094-b06f-e4026fa46a60"/><h3 id="1ea857bd-249d-80a7-a2b8-f4c3baf5cdac" class=""><strong>c) INNER JOIN</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-807e-b256-f8be254cb9f9" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">INNER JOIN province p ON c.province = p.name
+</code></pre><ul id="1ea857bd-249d-8029-bd74-d66d6f38d284" class="bulleted-list"><li style="list-style-type:disc"><code><strong>INNER JOIN</strong></code>: Verbindet zwei Tabellen miteinander. In diesem Fall werden die Tabellen <code>city</code> und <code>province</code> verbunden.</li></ul><ul id="1ea857bd-249d-805b-924b-f5b713db0df3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>province p</strong></code>: Das ist die Tabelle <code>province</code>, die ebenfalls einen Alias (<code>p</code>) bekommt.</li></ul><ul id="1ea857bd-249d-805b-b528-d70e705f4057" class="bulleted-list"><li style="list-style-type:disc"><code><strong>ON c.province = p.name</strong></code>: Das ist die Bedingung, wie die beiden Tabellen verbunden werden:<ul id="1ea857bd-249d-8017-845a-e4abf1de81f9" class="bulleted-list"><li style="list-style-type:circle">Die Spalte <code>province</code> aus der Tabelle <code>city</code> (alias <code>c.province</code>) wird mit der Spalte <code>name</code> aus der Tabelle <code>province</code> (alias <code>p.name</code>) verglichen.</li></ul><ul id="1ea857bd-249d-805a-98ce-ffbb5e93e83b" class="bulleted-list"><li style="list-style-type:circle">Das bedeutet: Eine Stadt wird nur dann in die Ergebnisse aufgenommen, wenn ihre Provinz (<code>c.province</code>) mit einer Provinz in der Tabelle <code>province</code> (<code>p.name</code>) übereinstimmt.</li></ul></li></ul><p id="1ea857bd-249d-80b4-8ddc-ee860c3898bf" class=""><strong>Beispiel:</strong></p><ul id="1ea857bd-249d-8012-9d9a-cb7a177c1dcf" class="bulleted-list"><li style="list-style-type:disc">In der Tabelle <code>city</code> steht:<table id="1ea857bd-249d-80ac-8988-f40148187eb4" class="simple-table"><tbody><tr id="1ea857bd-249d-80f0-83cb-f5eaa5fc1da8"><td id="?\CU" class="">name</td><td id="h|kA" class="">province</td></tr><tr id="1ea857bd-249d-806a-a145-d8ec09c490eb"><td id="?\CU" class="">Dornbirn</td><td id="h|kA" class="">Vorarlberg</td></tr><tr id="1ea857bd-249d-8012-a77d-d329d43c12b6"><td id="?\CU" class="">Innsbruck</td><td id="h|kA" class="">Tirol</td></tr></tbody></table></li></ul><ul id="1ea857bd-249d-808d-a86d-fbd31ea4df4a" class="bulleted-list"><li style="list-style-type:disc">In der Tabelle <code>province</code> steht:<table id="1ea857bd-249d-800a-8dee-c6878e39a2cc" class="simple-table"><tbody><tr id="1ea857bd-249d-80e7-bf31-c6b295edf2f8"><td id="AIGT" class="">name</td><td id="n^zS" class="">country</td></tr><tr id="1ea857bd-249d-80c7-8846-f3b2a3d860e5"><td id="AIGT" class="">Vorarlberg</td><td id="n^zS" class="">Austria</td></tr><tr id="1ea857bd-249d-800f-94fa-cc4ab0f012d9"><td id="AIGT" class="">Tirol</td><td id="n^zS" class="">Austria</td></tr></tbody></table></li></ul><ul id="1ea857bd-249d-8048-b6e9-c4fd89a7f206" class="bulleted-list"><li style="list-style-type:disc">Die Verbindung (JOIN) sorgt dafür, dass die Stadt <code>Dornbirn</code> mit der Provinz <code>Vorarlberg</code> und die Stadt <code>Innsbruck</code> mit der Provinz <code>Tirol</code> verknüpft werden.</li></ul><hr id="1ea857bd-249d-8098-bc82-fbb4a7c14aa6"/><h3 id="1ea857bd-249d-80d4-a93c-c002f3f169c8" class=""><strong>d) WHERE</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ea857bd-249d-8042-ba94-dc86d93735ea" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">WHERE p.country LIKE &#x27;A&#x27;;
+</code></pre><ul id="1ea857bd-249d-8067-ba93-cb264c1e9800" class="bulleted-list"><li style="list-style-type:disc"><code><strong>WHERE</strong></code>: Filtert die Ergebnisse basierend auf einer Bedingung.</li></ul><ul id="1ea857bd-249d-80ba-a81d-dd576292ee14" class="bulleted-list"><li style="list-style-type:disc"><code><strong>p.country</strong></code>: Das ist die Spalte <code>country</code> aus der Tabelle <code>province</code>.</li></ul><ul id="1ea857bd-249d-806a-9c50-f49e10bc000f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>LIKE &#x27;A&#x27;</strong></code>: Prüft, ob der Wert in der Spalte <code>country</code> mit <code>A</code> beginnt.<ul id="1ea857bd-249d-80a3-8140-ef430d8ae644" class="bulleted-list"><li style="list-style-type:circle"><code><strong>LIKE</strong></code>: Wird verwendet, um Muster zu suchen.</li></ul><ul id="1ea857bd-249d-80ca-bb02-dde44995b18f" class="bulleted-list"><li style="list-style-type:circle"><code><strong>A</strong></code>: Bedeutet, dass das Land genau mit dem Buchstaben <code>A</code> beginnt (z. B. &quot;Austria&quot;).</li></ul></li></ul><p id="1ea857bd-249d-807b-8c2e-fe745bf0da09" class=""><strong>Beispiel:</strong></p><ul id="1ea857bd-249d-8011-af5a-c225d04cc58b" class="bulleted-list"><li style="list-style-type:disc">Wenn in der Tabelle <code>province</code> steht:<table id="1ea857bd-249d-80a9-b9fc-ee62f19df2f1" class="simple-table"><tbody><tr id="1ea857bd-249d-8020-81da-d0a66de88922"><td id="nPmK" class="">name</td><td id="ZMpU" class="">country</td></tr><tr id="1ea857bd-249d-80b8-9835-d8ab1098ad33"><td id="nPmK" class="">Vorarlberg</td><td id="ZMpU" class="">Austria</td></tr><tr id="1ea857bd-249d-80f9-8250-f79a0814cd82"><td id="nPmK" class="">Tirol</td><td id="ZMpU" class="">Austria</td></tr><tr id="1ea857bd-249d-807f-be5d-cd4199f66594"><td id="nPmK" class="">Bavaria</td><td id="ZMpU" class="">Germany</td></tr></tbody></table><p id="1ea857bd-249d-80db-8c5e-db5f1378ec09" class="">Dann werden nur die Provinzen <code>Vorarlberg</code> und <code>Tirol</code> berücksichtigt, weil deren <code>country</code> mit <code>A</code> beginnt.</p></li></ul><hr id="1ea857bd-249d-802c-8319-d4710feb646e"/><h3 id="1ea857bd-249d-80f8-9d7f-cfbb07b4884a" class=""><strong>3. Zusammengefasst</strong></h3><p id="1ea857bd-249d-80a6-be4a-d97704f6d4a2" class="">Die Abfrage macht Folgendes:</p><ol type="1" id="1ea857bd-249d-807a-9769-fab53606ab3c" class="numbered-list" start="1"><li>Sie verbindet die Tabelle <code>city</code> mit der Tabelle <code>province</code>, indem sie die Spalte <code>province</code> in <code>city</code> mit der Spalte <code>name</code> in <code>province</code> abgleicht.</li></ol><ol type="1" id="1ea857bd-249d-8089-81d5-ebde38e000d5" class="numbered-list" start="2"><li>Sie filtert die Ergebnisse so, dass nur Provinzen berücksichtigt werden, deren Land (<code>country</code>) mit dem Buchstaben <code>A</code> beginnt.</li></ol><ol type="1" id="1ea857bd-249d-80ee-8ad3-df2d700d20c1" class="numbered-list" start="3"><li>Sie gibt den Namen der Stadt (<code>city_name</code>) und die zugehörige Provinz (<code>city_province</code>) aus.</li></ol><hr id="1ea857bd-249d-8071-bacb-e2954549aba7"/><h3 id="1ea857bd-249d-8066-a7c3-e7340416143f" class=""><strong>4. Beispielergebnis</strong></h3><p id="1ea857bd-249d-801a-9b4e-e5d637fe30a1" class="">Angenommen, die Tabellen enthalten folgende Daten:</p><h3 id="1ea857bd-249d-8013-89aa-f55d3203e533" class="">Tabelle <code>city</code>:</h3><table id="1ea857bd-249d-80c2-9d32-e990bfbc64e9" class="simple-table"><tbody><tr id="1ea857bd-249d-80c0-8412-d5c057ed417f"><td id="uXuY" class="">name</td><td id="FCrG" class="">province</td></tr><tr id="1ea857bd-249d-804b-bd64-da6ed56b4ff8"><td id="uXuY" class="">Dornbirn</td><td id="FCrG" class="">Vorarlberg</td></tr><tr id="1ea857bd-249d-8002-8a58-f4ee4a14e44b"><td id="uXuY" class="">Innsbruck</td><td id="FCrG" class="">Tirol</td></tr><tr id="1ea857bd-249d-80ed-b285-c6310c2318a9"><td id="uXuY" class="">Munich</td><td id="FCrG" class="">Bavaria</td></tr></tbody></table><h3 id="1ea857bd-249d-8019-9ad2-e724f2c39b6d" class="">Tabelle <code>province</code>:</h3><table id="1ea857bd-249d-8046-81d9-d4c9ab95e264" class="simple-table"><tbody><tr id="1ea857bd-249d-8062-9785-c30144a6b943"><td id="MdX`" class="">name</td><td id="e]@f" class="">country</td></tr><tr id="1ea857bd-249d-8057-a7a6-fe67f6c74d87"><td id="MdX`" class="">Vorarlberg</td><td id="e]@f" class="">Austria</td></tr><tr id="1ea857bd-249d-8016-af2f-d07de6c9a464"><td id="MdX`" class="">Tirol</td><td id="e]@f" class="">Austria</td></tr><tr id="1ea857bd-249d-80c5-84d4-d35d5fffd965"><td id="MdX`" class="">Bavaria</td><td id="e]@f" class="">Germany</td></tr></tbody></table><p id="1ea857bd-249d-80f3-be87-e79a04b84294" class="">Die Abfrage liefert folgendes Ergebnis:</p><table id="1ea857bd-249d-8081-9cd9-f10d70a11fa9" class="simple-table"><tbody><tr id="1ea857bd-249d-80eb-b987-f3b771cccbd8"><td id="OBG`" class="">city_name</td><td id="pkHu" class="">city_province</td></tr><tr id="1ea857bd-249d-805b-a914-f7e78a440e94"><td id="OBG`" class="">Dornbirn</td><td id="pkHu" class="">Vorarlberg</td></tr><tr id="1ea857bd-249d-8079-8503-d4a4305cb537"><td id="OBG`" class="">Innsbruck</td><td id="pkHu" class="">Tirol</td></tr></tbody></table><hr id="1ea857bd-249d-80f2-992d-cf26c7d86a89"/><h3 id="1ea857bd-249d-80ff-b1f9-ea653df3ca9c" class=""><strong>5. Warum ist das nützlich?</strong></h3><ul id="1ea857bd-249d-80f6-801a-e9c428c6f600" class="bulleted-list"><li style="list-style-type:disc">Du kannst Daten aus mehreren Tabellen kombinieren und filtern.</li></ul><ul id="1ea857bd-249d-801a-a062-eba981acb149" class="bulleted-list"><li style="list-style-type:disc">Es hilft, Beziehungen zwischen Tabellen zu analysieren (z. B. welche Städte in welchen Ländern liegen).</li></ul><ul id="1ea857bd-249d-8040-b5ec-cb85323a6228" class="bulleted-list"><li style="list-style-type:disc">Du kannst gezielt nur die Daten abrufen, die du benötigst.</li></ul><hr id="1ea857bd-249d-80a2-b288-d0792cae3c6e"/><h2 id="1ec857bd-249d-8065-9ce1-fcd3f78e4942" class="">Ist es besser bei komplexen Abfragen von Innen nach Außen zu bauen?</h2><p id="1ec857bd-249d-8066-80e0-fd5d903c5353" class="">Ja, genau! Bei komplexen SQL-Abfragen, insbesondere wenn Unterabfragen verwendet werden, ist es oft sinnvoll, <strong>von innen nach außen</strong> zu arbeiten. Das bedeutet, dass du zuerst die innerste Abfrage baust, testest und sicherstellst, dass sie korrekt funktioniert, bevor du sie in eine äußere Abfrage einfügst.</p><hr id="1ec857bd-249d-80d6-9924-c272ee2543c6"/><h3 id="1ec857bd-249d-8037-a029-dc7c307a6b30" class=""><strong>Warum von innen nach außen arbeiten?</strong></h3><ol type="1" id="1ec857bd-249d-802d-9ab6-c97a7ccc7613" class="numbered-list" start="1"><li><strong>Schrittweises Debugging:</strong><ul id="1ec857bd-249d-80d2-820b-e80cd883e636" class="bulleted-list"><li style="list-style-type:disc">Du kannst jede Unterabfrage einzeln testen und sicherstellen, dass sie die erwarteten Ergebnisse liefert.</li></ul><ul id="1ec857bd-249d-809f-96ce-e3aef534dd47" class="bulleted-list"><li style="list-style-type:disc">Das macht es einfacher, Fehler zu finden und zu beheben.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8010-bc9b-e468181988ba" class="numbered-list" start="2"><li><strong>Bessere Lesbarkeit:</strong><ul id="1ec857bd-249d-8020-9b4b-c65ef1aa485b" class="bulleted-list"><li style="list-style-type:disc">Wenn du die inneren Abfragen zuerst baust, kannst du die Logik klarer verstehen und die äußeren Abfragen darauf aufbauen.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-803e-976d-d4e577f7f298" class="numbered-list" start="3"><li><strong>Komplexität reduzieren:</strong><ul id="1ec857bd-249d-80fc-8174-fc1fb6a2c4ed" class="bulleted-list"><li style="list-style-type:disc">Indem du die Abfrage schrittweise aufbaust, vermeidest du, dass du dich in der Verschachtelung verlierst.</li></ul></li></ol><hr id="1ec857bd-249d-805e-aed4-c43edfd2635e"/><h3 id="1ec857bd-249d-8066-95eb-c2e546c80121" class=""><strong>Wie baust du eine Abfrage von innen nach außen?</strong></h3><h3 id="1ec857bd-249d-80ec-bdcf-d27b61e87369" class="">Beispiel: Finde das Land mit den meisten Religionen</h3><ol type="1" id="1ec857bd-249d-806f-bd2f-fb711209c3ce" class="numbered-list" start="1"><li><strong>Innerste Abfrage: Zähle die Religionen pro Land</strong><ul id="1ec857bd-249d-8020-b9c6-e0238949abfc" class="bulleted-list"><li style="list-style-type:disc">Beginne mit der Abfrage, die die Anzahl der Religionen pro Land berechnet:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8098-a390-f9d937090a82" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c2.Name, COUNT(r2.Name) AS religion_count
+FROM religion r2
+INNER JOIN country c2 ON r2.Country = c2.Code
+GROUP BY c2.Name;
+</code></pre><ul id="1ec857bd-249d-80dc-a05e-d5a435af1192" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Eine Liste aller Länder mit der Anzahl ihrer Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80b9-85f5-dbd091b08b53" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name           | religion_count
+-------------------------------
+Germany        | 2
+France         | 3
+United States  | 4
+</code></pre></li></ul></li></ol><ol type="1" id="1ec857bd-249d-80b3-b91a-c3cd8afcd367" class="numbered-list" start="2"><li><strong>Nächste Ebene: Finde die maximale Anzahl von Religionen</strong><ul id="1ec857bd-249d-80d8-86df-d899a9505337" class="bulleted-list"><li style="list-style-type:disc">Verwende die Ergebnisse der ersten Abfrage, um die maximale Anzahl von Religionen zu berechnen:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-808b-9c0e-dc8491bd5671" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(religion_count)
+FROM (
+    SELECT c2.Name, COUNT(r2.Name) AS religion_count
+    FROM religion r2
+    INNER JOIN country c2 ON r2.Country = c2.Code
+    GROUP BY c2.Name
+) AS countRel;
+</code></pre><ul id="1ec857bd-249d-805c-8381-e4ec3dbb4658" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Die maximale Anzahl von Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-806a-815e-efd904a36457" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">MAX(religion_count)
+-------------------
+4
+</code></pre></li></ul></li></ol><ol type="1" id="1ec857bd-249d-80ee-9b8f-ce506a41831d" class="numbered-list" start="3"><li><strong>Äußere Abfrage: Filtere Länder mit der maximalen Anzahl</strong><ul id="1ec857bd-249d-80a7-a11a-d1b32bd1b2a1" class="bulleted-list"><li style="list-style-type:disc">Verwende die maximale Anzahl aus der zweiten Abfrage, um die Länder zu filtern:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80c0-807e-dbafaf6f7dd6" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.Name, COUNT(r.Name) AS religion_count
+FROM religion r
+INNER JOIN country c ON r.Country = c.Code
+GROUP BY c.Name
+HAVING COUNT(r.Name) = (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT c2.Name, COUNT(r2.Name) AS religion_count
+        FROM religion r2
+        INNER JOIN country c2 ON r2.Country = c2.Code
+        GROUP BY c2.Name
+    ) AS countRel
+);
+</code></pre><ul id="1ec857bd-249d-80d4-b917-e8c604fb5ee7" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Das Land mit der höchsten Anzahl von Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-808a-a09f-f3e12d44c986" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name           | religion_count
+-------------------------------
+United States  | 4
+</code></pre></li></ul></li></ol><hr id="1ec857bd-249d-8015-b26b-fdb06ff7ed20"/><h3 id="1ec857bd-249d-80fe-9afd-c71b28650f05" class=""><strong>Vorteile dieser Methode:</strong></h3><ol type="1" id="1ec857bd-249d-804e-a3e7-d0a46ca0cb9b" class="numbered-list" start="1"><li><strong>Einfaches Testen:</strong><ul id="1ec857bd-249d-80cf-9a5f-d8d8659b9f83" class="bulleted-list"><li style="list-style-type:disc">Du kannst jede Abfrage einzeln ausführen und sicherstellen, dass sie korrekt funktioniert, bevor du sie in die nächste Ebene einfügst.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8056-b818-fc88b168f76d" class="numbered-list" start="2"><li><strong>Klarheit:</strong><ul id="1ec857bd-249d-8051-ae7e-c39f480f601c" class="bulleted-list"><li style="list-style-type:disc">Du verstehst genau, was jede Abfrage macht, und kannst die Logik Schritt für Schritt aufbauen.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80bc-b951-e5dd24511fee" class="numbered-list" start="3"><li><strong>Fehler vermeiden:</strong><ul id="1ec857bd-249d-80e0-96fb-ec62e8f31f21" class="bulleted-list"><li style="list-style-type:disc">Wenn ein Teil der Abfrage nicht funktioniert, kannst du den Fehler isolieren und beheben, ohne die gesamte Abfrage zu überarbeiten.</li></ul></li></ol><hr id="1ec857bd-249d-8081-bac5-c774a22ae5ad"/><h3 id="1ec857bd-249d-80dd-a0b0-fab4129c4495" class=""><strong>Zusammenfassung:</strong></h3><p id="1ec857bd-249d-808e-94d0-db9f39223844" class="">Ja, bei komplexen Abfragen mit Unterabfragen ist es eine <strong>sehr gute Praxis</strong>, von innen nach außen zu arbeiten. Es hilft dir, die Logik zu verstehen, Fehler zu vermeiden und die Abfrage schrittweise aufzubauen.</p></div></div><p id="1ea857bd-249d-809c-b5a8-e9d8d1a6b2cf" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
