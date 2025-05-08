@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Basics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SQL - Datenbank</h1>
+    <h2>Donnerstag, 08. Mai 2025</h2>
+    <h3>SQL Basics - Insert, Update & Delete</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Wie funktioniert INSERT INTO Statement?</span>
+        <p>Das <b>INSERT INTO -</b> Statement in SQL wird verwendet, um <b>neue Datenzeilen in eine Tabelle einzufügen</b></p>
+        <p><strong>🔹1. Einfache Einfügung (Standard)</strong></p>
+        <div class="code-box">
+            <code>
+                INSERT INTO kunden (name, ort)
+                VALUES ('Müller', 'Berlin');
+            </code>
+        </div>
+        <p><strong>🧠 Erklärung:</strong></p>
+        <ul>
+            <li><b>INSERT INTO:</b> Der SQL-Befehl, um <b>neue Daten</b> in eine Tablle einzufügen.</li>
+            <li><b>kunden:</b> Der Name der Ziel-Tabelle, in die die Daten geschrieben werden.</li>
+            <li><b>(name, ort)</b> Gibt an, <b>welche Spalten</b> befüllt werden sollen.</li>
+            <li><b>VALUES ('Müller', 'Berlin'):</b> Die <b>konkreten Werte,</b> die in die Spalten eingefügt werden.</li>
+        </ul>
+        <br>
+        <p><strong>🔑 Wichtige Punkte bei</strong> INSERT INTO:</p>
+        <ol>
+            <li><b>Spalte benennen -</b> sicherer und lesbarer als ohne.</li>
+            <li><b>Reihenfolge beachten -</b> Werte müssen zur Spaltenreihenfolge passen.</li>
+            <li><b>Text in einfachen Anführungszeichen -</b> '...'</li>
+            <li><b>AUTO_INCREMENT-Felder -</b> (z.B. id) nicht angeben, wenn sie automatisch erzeugt werden.</li>
+            <li><b>NULL-Werte -</b> entstehen, wenn Spalten nicht angegeben werden und keinen Standardwert haben.</li>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie funktioniert UPDATE Statement?</span>
+        <p>Das <b>UPDATE -</b> Statement in SQL wird verwendet, um <b>bestehende Daten</b> in einer Tabelle zu <b>ändern (aktualisiern).</b></p>
+        <p><strong>🔹Grundstruktur von</strong> UPDATE</p>
+        <div class="code-box">
+            <code>
+                UPDATE Tabelle
+                SET spalte1 = wert1, spalte2 = wert2, ...
+                WHERE bedingung;
+            </code>
+        </div>
+        <p><strong>✅ Beispiel:</strong></p>
+        <p>Tabelle kunden:</p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Müller</td>
+                    <td>Berlin</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Beispiel - Wohnort ändern:</p>
+        <div class="code-box">
+            <code>
+                UPDATE kunden
+                SET ort = 'Hamburg'
+                WHERE name = 'Müller';
+            </code>
+        </div>
+        <p>➡️ Ändert den Ort von „Müller“ von <b>Berlin</b> zu <b>Hamburg.</b></p>
+        <p><strong>⚠️ WICHTIG: WHERE NICHT VERGESSEN!</strong></p>
+        <p>Ohne <b>WHERE wird <b>jede Zeile</b> in der Tabelle geändert!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie funktioniert DELETE Statement?</span>
+        <p>Das <b>DELETE -</b> Statement in SQL wird verwendet, um <b>eine oder mehrere Zeilen</b> aus einer Tabelle zu <b>löschen.</b></p>
+        <p><strong>🔹Grundstruktur von</strong> DELETE</p>
+        <div class="code-box">
+            <code>
+                DELETE FROM Tabelle
+                WHERE bedingung;
+            </code>
+        </div>
+        <p><strong>✅ Beispiel:</strong></p>
+        <p>Angenommen, du hast eine Tabelle kunden:</p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Müller</td>
+                    <td>Berlin</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Meier</td>
+                    <td>Hamburg</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Beispiel - Eine Kunden löschen:</p>
+        <div class="code-box">
+            <code>
+                DELETE FROM kunden
+                WHERE name = 'Müller';
+            </code>
+        </div>
+        <p>➡️ Diese Anweisung löscht die Zeile, in der der Name „Müller“ ist.</b></p>
+        <p><strong>⚠️ ACHTUNG: KEIN WHERE = Alles wird gelöscht!</strong></p>
+    </li>
+</ul>
+</body>
+</html>

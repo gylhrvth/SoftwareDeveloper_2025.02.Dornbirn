@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Basics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SQL - Datenbank</h1>
+    <h2>Donnerstag, 08. Mai 2025</h2>
+    <h3>SQL Basics - Data Definition Language</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Was ist eine Tabelle</span>
+        <p>Eine <b>Tabelle</b> in einer Datenbank ist eine strukturierte Sammlung von Date, die in <b>Zeilen und spalten</b> organisiert ist.</p>
+        <p><strong>🧠 Einfach erklärt:</strong></p>
+        <p>Eine Tabelle ist wie eine <b>Excel-Tabelle:</b></p>
+        <ul>
+            <li><b>Spalten</b> (engl.columns) definieren die <b>Datenstruktur -</b> z.B. Name, Land, Höhe.</li>
+            <li><b>Zeilen</b> (engl.rows) enthalten die <b>konkreten Datensätze -</b> also z.B. ein bestimmter Berg mit Name, Land, Höhe.</li>
+        </ul>
+        <br>
+        <p><strong>🔑 Kurzedefinition:</strong></p>
+        <p>Eine Tabelle ist ein zentrales Element einer relationalen Datenbank und speichert Daten in einem strukturierten, zeilenbasierten Format.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist eine Spalte?</span>
+        <p>Eine <b>Spalte</b> (engl. column) in einer Datenbanktabelle beschreibt eine <b>bestimmte Eigenschaft oder ein Attribut</b> der gespeicherten Daten.</p>
+        <p><strong>🧠 Einfach erklärt:</strong></p>
+        <p>Eine Spalte ist wie eine<b> Überschrift</b> in einer EXCEL-Tabelle.</p>
+        <ul>
+            <li>Sie bestimmt <b>welche Art von Daten</b> in dieser Spalte stehen (z.B. Name, Land, Höhe)</li>
+        </ul>
+        <p>Jede Spalte hat:</p>
+        <ul>
+            <li><b>einen Namen</b> (z.B. name, country, height)</li>
+            <li><b>einen Datentyp</b>  (z.B. VARCHAR, INT, FLOAT), der bestimmt, welche Werte erlaubt sind.</li>
+        </ul>
+        <br>
+        <p><strong>🔑 Kurzedefinition:</strong></p>
+        <p>Eine Spalte ist ein einzelnes Datenfeld innerhalb einer Tabelle, das eine bestimmte Eigenschaft für alle Datensätze beschreibt.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche Datentypen existieren in MySQL?</span>
+        <p>In <b>MySQL</b> gibt es mehrere <b>Datentypen,</b> die je nach Art der Daten verwendet werden. Dieses lassen sich grob in <b>drei Hauptkategorien</b> einteilen:</p>
+        <p><strong>🧮 1. Numerische Datentypen</strong></p>
+        <p>Für Zahlen (ganzzahlig oder mit Dezimalstellen):</p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Datentyp</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TINYINT</td>
+                    <td>Sehr kleine Ganzzahlen (-128 bis 127)</td>
+                </tr>
+                <tr>
+                    <td>SMALLINT</td>
+                    <td>Kleine Ganzzahlen (-32.768 bis 32.767)</td>
+                </tr>
+                <tr>
+                    <td>INT / INTEGER</td>
+                    <td>Normale Ganzzahlen (-2,1 Mrd. bis +2,1 Mrd.)</td>
+                </tr>
+                <tr>
+                    <td>BIGINT</td>
+                    <td>Sehr große Ganzzahlen</td>
+                </tr>
+                <tr>
+                    <td>FLOAT</td>
+                    <td>Fließkommazahlen (mit Nachkommastellen, ungefähre Genauigkeit)</td>
+                </tr>
+                <tr>
+                    <td>DOUBLE</td>
+                    <td>Größere Fließkommazahlen</td>
+                </tr>
+                <tr>
+                    <td>DECIMAL(x,y)</td>
+                    <td>Feste Anzahl von Stellen, exakt (z.B. für Geldbeträge)</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <p><strong>📄 2. Zeichen- und Text-Datentypen</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Datentyp</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CHAR(n)</td>
+                    <td>Feste Zeichenlänge (z.B. CHAR(2) für Ländercodes wie DE, TR)</td>
+                </tr>
+                <tr>
+                    <td>VARCHAR(n)</td>
+                    <td>Variable Zeichenlänge (z.B. VARCHAR(100) für Namen)</td>
+                </tr>
+                <tr>
+                    <td>TEXT</td>
+                    <td>Längere Texte (z.B. Beschreibungen)</td>
+                </tr>
+                <tr>
+                    <td>ENUM</td>
+                    <td>Liste fester Werte (z.B. ENUM('ja', 'nein'))</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <p><strong>🕒 3. Datums- und Zeittypen</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Datentyp</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>DATE</td>
+                    <td>Datum (YYYY-MM-DD)</td>
+                </tr>
+                <tr>
+                    <td>DATETIME</td>
+                    <td>Datum und Zeit (YYYY-MM-DD HH:MM:SS)</td>
+                </tr>
+                <tr>
+                    <td>TIMESTAMP</td>
+                    <td>Datum/Zeit (oft für automatische Zeitstempel)</td>
+                </tr>
+                <tr>
+                    <td>TIME</td>
+                    <td>Zeit (HH:MM:SS)</td>
+                </tr>
+                <tr>
+                    <td>YEAR</td>
+                    <td>Jahr (YYYY)</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche sind die wichtigste 3-4 Datentypen?</span>
+        <p><strong>✅ 1. INT (Ganzzahlen)</strong></p>
+        <ul>
+            <li>Wird verwendet für <b>Zählwerte, IDs, Höhen, Mengen usw.</b></li>
+            <li>Beispiel: population, height, id</li>
+        </ul>
+        <br>
+        <p><strong>✅ 2. VARCHAR(n) (Texte mit variabler Länge)</strong></p>
+        <ul>
+            <li>Für <b>Namen, Ortsangaben, Beschreibungen.</b></li>
+            <li>Du gibst eine maximale Länge n an.</li>
+            <li>Beispiel: name, province, countryname</li>
+        </ul>
+        <br>
+        <p><strong>✅ 3. FLOAT oder DECIMAL (Zahlen mit Nachkommastellen)</strong></p>
+        <ul>
+            <li>Für <b>Koordinaten, Preise, Maßeinheiten.</b></li>
+            <li>FLOAT = schneller, ungefähre Werte</li>
+            <li>DECIMAL = exakte Werte (z.B. für Geld)</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein Primärschlüssel?</span>
+        <p>Ein <b>Primärschlüssel</b> (engl. Primary Key) ist ein <b>eindeutiges Merkmal</b> in einer Tabelle, das <b>jeden Datensatz eindeutig identifiziert</b></p>
+        <p><strong>🔑 Eigenschaften eines Primärschlüssels:</strong></p>
+        <ul>
+            <li><b>Eindeutig:</b> Kein anderer Datensatz darf denselben Wert haben.</li>
+            <li><b>Nicht NULL:</b> Jeder Eintrag muss einen gültigen Wert haben.</li>
+            <li><b>1 pro Tabelle:</b> Es kann <b>nur einen Primary Key</b> pro Tabelle geben (er kann aus mehreren Spalten bestehen - sog. kombinierter Schlüssel).</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie erstelle ich ein Beziehung zwischen die Tabellen?</span>
+        <p>Um eine <b>Beziehung zwischen Tabellen</b> in MySQL zu erstellen, nutzt man <b>Fremdschlüssel (Foreign Keys).</b> Diese verknüpfen eine Spalte in einer Tabelle mit dem <b>Primärschlüssel</b> einer anderen Tabelle.</p>
+        <p><strong>🔗 1. Was ist Fremdschlüssel?</strong></p>
+        <p>Ein <b>Fremdschlüssel (Foreign Key)</b> zeigt auf einen Primärschlüssel in einer <b>anderen Tabelle</b> und stellt sicher, dass die Verknüpfung gültig ist.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist die Normalization in SQL? Warum ist es wichtig?</span>
+        <p>Die <b>Normalisierung (engl. Normalization) in SQL ist ein Verfahren, um <b>Datenbanktabellen logisch zu strukturieren,</b> damit:</p>
+        <ul>
+            <li><b>Daten effizient gespeichert</b> werden,</li>
+            <li><b>Datenredundanz</b> (Doppelungen) vermieden wird,</li>
+            <li>und die <b>Datenintegrität</b> erhalten bleibt.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie kann ich entscheiden, was kommt in eine Tabelle oder was muss separat angelegt werden?</span>
+        <p>Die Entscheidung, welche Daten in einer Tabelle gespeichert werden und welche in einer separaten Tabelle, ist ein entscheidender Schritt bei der  Datenbankdesign. Hier sind einige wichtige Überlegungen, um zu entscheiden, ob Daten innerhalb einer Tabelle oder in einer separaten Tabelle gespeichert werden sollten.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein Index?</span>
+        <p>Ein Index in einer Datenbank ist eine spezielle Datenstruktur, die dazu dient, die Suche und den Zugriff auf Daten zu beschleunigen. Er wird verwendet, um die Abfrageleistung (Performance) zu verbessern, insbesondere bei großen Datenmengen. Ein Index funktioniert ähnlich wie das Stichwortverzeichnis in einem Buch: Er ermöglicht es, Daten schnell zu finden, ohne jede Zeile der Tabelle durchsuchen zu müssen.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wann soll ich ein Index verwenden / vermeiden?</span>
+        <p>Die Entscheidung, ob du einen Index in deiner Datenbank verwenden oder vermeiden solltest, hängt von verschiedenen Faktoren ab. Hier sind einige Richtlinien, wann es sinnvoll ist, einen Index zu verwenden oder zu vermeiden.</p>
+        <p><strong>✅ Wann solltest du einen Index verwenden?</strong></p>
+        <p>1. Häufige Abfragen auf einer Spalte:</p>
+        <ul>
+            <li>Wenn du eine Spalte hast, die häufig in WHERE, JOIN oder ORDER BY-Klauseln abgefragt wird, dann kann ein Index diese Abfragen erheblich beschleunigen.</li><br>
+            <li>Beispiel: Wenn du regelmäßig nach der Kundennummer suchst, ist ein Index auf dieser Spalte hilfreich.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein Soft-Delete? Wie funktioniert es?</span>
+        <p>Ein Soft-Delete ist ein Konzept, bei dem Datensätze in einer Datenbank nicht dauerhaft gelöscht werden, sondern stattdessen als „gelöscht“ markiert werden. Dies ermöglicht es, die Daten später wiederherzustellen, falls dies notwendig wird. Es handelt sich dabei um eine "logische Löschung", im Gegensatz zur „harten“ Löschung, bei der die Daten physisch aus der Datenbank entfernt werden.</p>
+        <p><strong>🧩 Wie funktioniert ein Soft-Delete?</strong></p>
+        <p>Anstatt den Datensatz vollständig aus der Tabelle zu löschen, wird in der Regel eine zusätzliche Spalte eingeführt, die den Status des Datensatzes angibt. Diese Spalte kann z.B. als deleted, is_deleted, status oder ähnlich bezeichnet werden und enthält entweder TRUE, 1 oder ein ähnliches Flag, um anzugeben, dass der Datensatz gelöscht wurde.</p>
+        <p>Die grundlegende Idee ist:</p>
+        <ul>
+            <li>Der Datensatz bleibt in der Datenbank, aber er wird durch eine spezielle Markierung als gelöscht gekennzeichnet.</li><br>
+            <li>Bei Abfragen wird überprüft, ob der Datensatz als gelöscht markiert wurde, und nur die Datensätze, die nicht als gelöscht markiert sind, werden angezeigt.</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wo sind die DB Benutzer gespeichert</span>
+        <p>In MySQL sind die Benutzer und deren Berechtigungen in einer speziellen Datenbank namens mysql gespeichert. Die Benutzerdaten befinden sich in verschiedenen Tabellen, die in dieser Systemdatenbank abgelegt sind. Insbesondere werden Benutzerinformationen und deren Berechtigungen in der Tabelle user innerhalb der mysql-Datenbank gespeichert.</p>
+        <p><strong>📂 Wo genau werden die Benutzer gespeichert?</strong></p>
+        <p>Die Benutzerinformationen befinden sich in der Tabelle user in der mysql-Datenbank. Diese Tabelle enthält Details zu den Benutzern, wie z.B. Benutzernamen, Host, Berechtigungen, Passwort-Hashes und viele andere sicherheitsrelevante Informationen.</p>
+    </li>
+    <br>
+    <br>
+    
+    <li class="textColor">
+        <span class="underline">Wie erstelle ich eine neue Benutzer?</span>
+        <p>Um einen neuen Benutzer in MySQL zu erstellen, folge diesen Schritten. Du musst die entsprechenden SQL-Befehle verwenden, um einen Benutzer zu erstellen und ihm die richtigen Berechtigungen zuzuweisen.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wo sind Server Rollen gespeichert?</span>
+        <p>In MySQL werden Serverrollen und Benutzerberechtigungen nicht in speziellen Tabellen für Rollen gespeichert, wie man es vielleicht aus anderen Datenbanksystemen wie PostgreSQL oder SQL Server kennt. Stattdessen werden in MySQL alle Benutzerberechtigungen und damit verbundene Privilegien direkt in den Systemtabellen der mysql-Datenbank gespeichert, insbesondere in der user-Tabelle und den Berechtigungstabellen wie db, tables_priv, columns_priv, und procs_priv.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wo sind Datenbank Berechtigungen gespeichert?</span>
+        <p>In MySQL werden Datenbankberechtigungen in mehreren Systemtabellen der mysql-Datenbank gespeichert. Diese Tabellen steuern den Zugriff und die Berechtigungen von Benutzern auf verschiedene Objekte in der MySQL-Datenbank, wie Datenbanken, Tabellen, Spalten und gespeicherte Prozeduren.</p>
+    </li>
+</ul>
+</body>
+</html>
