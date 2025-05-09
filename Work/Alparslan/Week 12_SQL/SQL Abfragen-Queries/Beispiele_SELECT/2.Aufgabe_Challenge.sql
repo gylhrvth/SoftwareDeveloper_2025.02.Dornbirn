@@ -1,3 +1,5 @@
+use mondial;
+
 /* FRAGE 1: */
 SELECT Name, Population
 FROM country
@@ -266,3 +268,4 @@ WHERE encompasses.continent = 'Asia'
   -- AND country.area > 0
 ORDER BY Bevoelkerungsdichte_km2 DESC
 LIMIT 10;
+

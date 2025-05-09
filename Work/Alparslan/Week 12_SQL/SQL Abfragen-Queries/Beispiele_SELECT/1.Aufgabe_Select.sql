@@ -1,3 +1,5 @@
+use mondial;
+
 /* FRAGE 1: */
 SELECT now();
 
@@ -62,3 +64,4 @@ WHERE Name LIKE 'A%' OR Population < 1000000;
 SELECT Name, Capital
 FROM country
 WHERE Name LIKE 'A%' AND Population < 1000000;
+
