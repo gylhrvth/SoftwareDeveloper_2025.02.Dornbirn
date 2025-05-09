@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>API</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1de857bd-249d-809d-bf78-f420f1f6d777" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">API</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@23. April 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/JSON-1dd857bd249d80b18842c3417b73819c?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>JSON</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1de857bd-249d-80bb-8f4e-fdbe2fac86cd" class="column-list"><div id="1de857bd-249d-80fb-b46d-c48ffa125756" style="width:50%" class="column"><h3 id="1de857bd-249d-80f3-bc45-f1c9fe5ebdeb" class="">Was ist eine API?</h3><p id="1de857bd-249d-80c9-bbbe-e7c61c8182e6" class="">Eine <strong>API</strong> (Application Programming Interface) ist eine Schnittstelle, die es verschiedenen Softwareanwendungen ermöglicht, miteinander zu kommunizieren. Sie definiert Regeln und Protokolle, wie Programme Daten austauschen oder Funktionen aufrufen können, ohne die interne Implementierung der anderen Anwendung zu kennen.</p><p id="1de857bd-249d-80d6-a0f9-f64c7c4c0a49" class="">APIs sind ein zentraler Bestandteil moderner Softwareentwicklung, da sie es ermöglichen, bestehende Dienste oder Funktionen wiederzuverwenden und Systeme miteinander zu integrieren.</p><hr id="1de857bd-249d-80f6-85ba-d888d08b1ea1"/><h3 id="1de857bd-249d-808b-b985-ef8d6f9df643" class="">Wichtige Konzepte einer API</h3><ol type="1" id="1de857bd-249d-800c-8f46-c629b224fdd3" class="numbered-list" start="1"><li><strong>Schnittstelle</strong><p id="1de857bd-249d-809e-9d45-fa5dc620c0ba" class="">Eine API stellt eine definierte Schnittstelle bereit, die beschreibt, wie man mit einer Software oder einem Dienst interagieren kann. Diese Schnittstelle ist oft in Form von Dokumentationen verfügbar.</p></li></ol><ol type="1" id="1de857bd-249d-80c0-a320-e649a562e96e" class="numbered-list" start="2"><li><strong>Abstraktion</strong><p id="1de857bd-249d-8088-a436-d0b289784d38" class="">APIs abstrahieren die Komplexität der internen Implementierung. Entwickler müssen nur wissen, wie sie die API verwenden können, nicht, wie sie intern funktioniert.</p></li></ol><ol type="1" id="1de857bd-249d-801a-91cb-e8181d997d5f" class="numbered-list" start="3"><li><strong>Protokolle</strong><p id="1de857bd-249d-80b6-a599-ff1b79957b5d" class="">APIs verwenden Protokolle wie HTTP, HTTPS, WebSocket oder gRPC, um Daten zwischen Anwendungen zu übertragen.</p></li></ol><ol type="1" id="1de857bd-249d-808e-8b22-fd840e6bb30c" class="numbered-list" start="4"><li><strong>Ressourcen und Endpunkte</strong><p id="1de857bd-249d-808a-a63b-feb733710525" class="">APIs arbeiten oft mit Ressourcen (z. B. Benutzer, Produkte, Bestellungen). Jede Ressource wird durch einen <strong>Endpunkt</strong> (eine URL) adressiert, z. B.:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1de857bd-249d-80e8-bad4-f627e921c879" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">GET &lt;https://api.example.com/users&gt;
+</code></pre></li></ol><ol type="1" id="1de857bd-249d-8041-937a-e43fff7cc7e0" class="numbered-list" start="5"><li><strong>HTTP-Methoden</strong><p id="1de857bd-249d-8032-a75d-ef5de60ada4c" class="">APIs, insbesondere Web-APIs, verwenden HTTP-Methoden, um Aktionen auf Ressourcen auszuführen:</p><ul id="1de857bd-249d-801e-9781-fe86579c2cf3" class="bulleted-list"><li style="list-style-type:disc"><strong>GET</strong>: Daten abrufen</li></ul><ul id="1de857bd-249d-8043-9f50-ed518e248d3b" class="bulleted-list"><li style="list-style-type:disc"><strong>POST</strong>: Neue Daten erstellen</li></ul><ul id="1de857bd-249d-8028-ad60-fab73800d6e6" class="bulleted-list"><li style="list-style-type:disc"><strong>PUT</strong>: Daten aktualisieren</li></ul><ul id="1de857bd-249d-80e5-84fa-efd48e426687" class="bulleted-list"><li style="list-style-type:disc"><strong>DELETE</strong>: Daten löschen</li></ul></li></ol><hr id="1de857bd-249d-80bc-bff1-eaaec93a36d9"/><h3 id="1de857bd-249d-8058-8dfa-e67aeeae4c4f" class="">Arten von APIs</h3><ol type="1" id="1de857bd-249d-80a9-bf9e-f00d8f3cfc46" class="numbered-list" start="1"><li><strong>Web-APIs</strong><p id="1de857bd-249d-80ac-87c3-c722f577cb1c" class="">Diese APIs sind über das Internet zugänglich und verwenden HTTP/HTTPS. Beispiele:</p><ul id="1de857bd-249d-8073-a129-cae7b8729e9c" class="bulleted-list"><li style="list-style-type:disc">REST APIs</li></ul><ul id="1de857bd-249d-8070-b852-d78eae74e3cd" class="bulleted-list"><li style="list-style-type:disc">GraphQL APIs</li></ul><ul id="1de857bd-249d-8074-b6c7-c36d3c54086e" class="bulleted-list"><li style="list-style-type:disc">SOAP APIs</li></ul></li></ol><ol type="1" id="1de857bd-249d-8087-ba96-d3cd7078f694" class="numbered-list" start="2"><li><strong>Bibliotheks-APIs</strong><p id="1de857bd-249d-800f-badb-d5c338408694" class="">APIs, die in Programmiersprachen eingebettet sind, um Funktionen bereitzustellen. Beispiel: Die <code>Math</code>-API in JavaScript.</p></li></ol><ol type="1" id="1de857bd-249d-80cf-880f-efa36d19c7b4" class="numbered-list" start="3"><li><strong>Betriebssystem-APIs</strong><p id="1de857bd-249d-800c-bb09-e35052b4d3a0" class="">APIs, die Betriebssystemfunktionen bereitstellen, z. B. Dateisystemzugriff oder Netzwerkkommunikation.</p></li></ol><ol type="1" id="1de857bd-249d-80c6-b87d-cd2083f01b1c" class="numbered-list" start="4"><li><strong>Hardware-APIs</strong><p id="1de857bd-249d-8061-b189-ea5e7958bd58" class="">APIs, die es Software ermöglichen, mit Hardware zu interagieren, z. B. Kamera- oder GPS-APIs auf Smartphones.</p></li></ol><hr id="1de857bd-249d-80cf-8b29-f44d31d71aac"/><h3 id="1de857bd-249d-8090-8cba-e8dabb09063b" class="">Beispiele für APIs</h3><ol type="1" id="1de857bd-249d-80fb-a926-d28013f0e3b3" class="numbered-list" start="1"><li><strong>Google Maps API</strong><p id="1de857bd-249d-8086-99f7-e8c139073b45" class="">Ermöglicht es Entwicklern, Karten, Routen und Standortdaten in ihre Anwendungen zu integrieren.</p><p id="1de857bd-249d-8001-a5a3-caab87e9c102" class="">Beispiel: Abrufen einer Karte für eine bestimmte Adresse.</p></li></ol><ol type="1" id="1de857bd-249d-8029-af87-eb8827c95a17" class="numbered-list" start="2"><li><strong>Twitter API</strong><p id="1de857bd-249d-804d-aadf-c67f923cd5e7" class="">Ermöglicht das Abrufen von Tweets, das Posten von Inhalten oder das Verwalten von Benutzerkonten.</p><p id="1de857bd-249d-80b6-9660-c112d0437c15" class="">Beispiel: Abrufen der letzten Tweets eines Benutzers.</p></li></ol><ol type="1" id="1de857bd-249d-807b-9a1f-c887216f91c6" class="numbered-list" start="3"><li><strong>OpenWeather API</strong><p id="1de857bd-249d-806f-a403-e16a588e9528" class="">Liefert Wetterdaten für eine bestimmte Stadt oder Region.</p><p id="1de857bd-249d-8089-94ec-cf65cce2d6ab" class="">Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1de857bd-249d-80ce-883e-ffc91a5ba425" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">fetch(&#x27;&lt;https://api.openweathermap.org/data/2.5/weather?q=Berlin&amp;appid=API_KEY&gt;&#x27;)
+  .then(response =&gt; response.json())
+  .then(data =&gt; console.log(data));
+</code></pre></li></ol><hr id="1de857bd-249d-8044-9a82-ce20edd529cd"/><h3 id="1de857bd-249d-80a2-9778-c375c44ff872" class="">Warum sind APIs wichtig?</h3><ol type="1" id="1de857bd-249d-806c-a35b-c8c99da3c73a" class="numbered-list" start="1"><li><strong>Wiederverwendbarkeit</strong><p id="1de857bd-249d-804b-af8b-d14092267f62" class="">APIs ermöglichen es, bestehende Funktionen oder Dienste in neuen Anwendungen zu nutzen, ohne sie neu zu entwickeln.</p></li></ol><ol type="1" id="1de857bd-249d-800d-b932-c38e2f7a425e" class="numbered-list" start="2"><li><strong>Interoperabilität</strong><p id="1de857bd-249d-80ae-bf11-e1b956275f11" class="">APIs verbinden verschiedene Systeme und ermöglichen die Zusammenarbeit zwischen ihnen.</p></li></ol><ol type="1" id="1de857bd-249d-8091-80be-f2e35586e2d4" class="numbered-list" start="3"><li><strong>Skalierbarkeit</strong><p id="1de857bd-249d-8055-957e-dcc8dc0aefa1" class="">APIs ermöglichen es, Funktionen modular zu gestalten, sodass sie leicht erweitert oder angepasst werden können.</p></li></ol><ol type="1" id="1de857bd-249d-8060-8de6-d6a0346c3091" class="numbered-list" start="4"><li><strong>Innovation</strong><p id="1de857bd-249d-8089-9105-e7db993b24b3" class="">Durch die Bereitstellung von APIs können Unternehmen Drittentwicklern ermöglichen, neue Anwendungen oder Dienste auf Basis ihrer Plattform zu erstellen.</p></li></ol><hr id="1de857bd-249d-80c6-9741-dd60dfc69457"/><h3 id="1de857bd-249d-8014-afcd-d6b5baa084fb" class="">Best Practices bei der Arbeit mit APIs</h3><ol type="1" id="1de857bd-249d-8007-a761-fd16ff4f6822" class="numbered-list" start="1"><li><strong>Dokumentation lesen</strong><p id="1de857bd-249d-8023-9699-fb92fb144218" class="">Jede API hat ihre eigene Dokumentation, die beschreibt, wie sie verwendet wird.</p></li></ol><ol type="1" id="1de857bd-249d-809b-875e-f8412971cab0" class="numbered-list" start="2"><li><strong>Authentifizierung</strong><p id="1de857bd-249d-800d-b785-ff263b5fb850" class="">Viele APIs erfordern eine Authentifizierung, z. B. durch API-Schlüssel oder OAuth.</p></li></ol><ol type="1" id="1de857bd-249d-8064-900a-eb1a8948cfba" class="numbered-list" start="3"><li><strong>Fehlerbehandlung</strong><p id="1de857bd-249d-80be-b09d-fb387137b22a" class="">APIs können Fehler zurückgeben (z. B. 404 Not Found, 500 Internal Server Error). Diese sollten korrekt behandelt werden.</p></li></ol><ol type="1" id="1de857bd-249d-80f8-85bf-d3c39f8e90e4" class="numbered-list" start="4"><li><strong>Rate Limits beachten</strong><p id="1de857bd-249d-806c-98e0-db89c8e737bb" class="">Viele APIs haben Einschränkungen, wie oft sie innerhalb eines bestimmten Zeitraums aufgerufen werden können.</p></li></ol><ol type="1" id="1de857bd-249d-80ad-ac80-ca03c14e833e" class="numbered-list" start="5"><li><strong>Sicherheit</strong><ul id="1de857bd-249d-80cc-93bc-cef630d54f45" class="bulleted-list"><li style="list-style-type:disc">Verwende HTTPS, um Daten sicher zu übertragen.</li></ul><ul id="1de857bd-249d-80c0-b998-ecf400fbb3ce" class="bulleted-list"><li style="list-style-type:disc">Schütze API-Schlüssel und sensible Daten.</li></ul></li></ol><hr id="1de857bd-249d-805a-8cc5-faa65e296ea5"/><h3 id="1de857bd-249d-80c9-8cde-c373aaf61f73" class="">Fazit</h3><p id="1de857bd-249d-80dc-9221-f55273069662" class="">APIs sind ein mächtiges Werkzeug, um Softwareanwendungen zu verbinden und Funktionen zu erweitern. Sie sind in fast allen Bereichen der Softwareentwicklung zu finden, von Web-Apps über mobile Apps bis hin zu IoT-Geräten. Ein gutes Verständnis von APIs und deren Nutzung ist essenziell für moderne Entwickler.</p></div><div id="1de857bd-249d-8036-a961-e1f729da206f" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1de857bd-249d-8083-967a-c4cc79b9416f"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1de857bd-249d-80bf-8beb-c090694c9575"/><p id="1de857bd-249d-8019-aff3-f9531dbfab0b" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1de857bd-249d-802f-9d96-eeadc712bbdb"/><ul id="1de857bd-249d-80c4-b53f-d1cac14fd5ec" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1de857bd-249d-806b-8aeb-dc2dd196b8d9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1de857bd-249d-8099-8bf8-e937f8e9bf4b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1de857bd-249d-809a-bd95-e05af94ff645" class="image"><a href="API%201de857bd249d809dbf78f420f1f6d777/33.png"><img style="width:425px" src="API%201de857bd249d809dbf78f420f1f6d777/33.png"/></a></figure><ol type="1" id="1de857bd-249d-805b-89be-d859e710eab0" class="numbered-list" start="1"><li><strong>Was bedeutet die Abkürzung REST API?</strong><p id="1de857bd-249d-8081-b8cd-fb1b7845cee7" class="">REST steht für &quot;Representational State Transfer&quot;. Eine REST API ist eine Programmierschnittstelle, die auf den Prinzipien von REST basiert und über HTTP-Protokolle kommuniziert. Sie ermöglicht den Zugriff auf Ressourcen (z. B. Daten) durch standardisierte HTTP-Methoden wie GET, POST, PUT und DELETE.</p></li></ol><ol type="1" id="1de857bd-249d-8056-b454-d80279039814" class="numbered-list" start="2"><li><strong>Was bedeutet, dass ein API public ist?</strong><p id="1de857bd-249d-80d1-85aa-d88fef9e74d9" class="">Eine <strong>public API</strong> (öffentliche API) ist eine Schnittstelle, die für jeden zugänglich ist, ohne dass spezielle Berechtigungen erforderlich sind. Sie wird oft verwendet, um Drittentwicklern den Zugriff auf bestimmte Funktionen oder Daten eines Systems zu ermöglichen.</p></li></ol><ol type="1" id="1de857bd-249d-8015-8657-fe72e09296bf" class="numbered-list" start="3"><li><strong>Was ist ein fetch API und was hat es zu tun mit REST API?</strong><p id="1de857bd-249d-8065-a040-db04aceef98f" class="">Die <strong>Fetch API</strong> ist eine moderne JavaScript-Schnittstelle, die verwendet wird, um HTTP-Anfragen zu senden und Antworten zu verarbeiten. Sie wird häufig genutzt, um mit REST APIs zu kommunizieren, da sie HTTP-Methoden wie GET, POST, PUT und DELETE unterstützt.</p></li></ol><ol type="1" id="1de857bd-249d-8090-af60-cdc947911b58" class="numbered-list" start="4"><li><strong>Was ist die minimale Parameterliste die ein fetch() Aufruf haben muss?</strong><p id="1de857bd-249d-8040-9bfa-c54a178eda2a" class="">Der minimale Parameter für einen <code>fetch()</code>-Aufruf ist die <strong>URL</strong> der Ressource, die angefragt werden soll:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1de857bd-249d-8062-8d58-edece939c4d7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">fetch(&#x27;&lt;https://example.com&gt;&#x27;);
+</code></pre></li></ol><ol type="1" id="1de857bd-249d-8018-a9da-d560e6f37cb0" class="numbered-list" start="5"><li><strong>Welche Optionen sind möglich für einen fetch() Aufruf?</strong><p id="1de857bd-249d-805c-9811-d8a771dd3878" class="">Zu den möglichen Optionen gehören:</p><ul id="1de857bd-249d-809d-86b1-fa4ae0a4ae36" class="bulleted-list"><li style="list-style-type:disc"><code>method</code>: Die HTTP-Methode (z. B. GET, POST, PUT, DELETE).</li></ul><ul id="1de857bd-249d-80e4-9e9c-cc1fb8a67a16" class="bulleted-list"><li style="list-style-type:disc"><code>headers</code>: Zusätzliche Header wie <code>Content-Type</code> oder <code>Authorization</code>.</li></ul><ul id="1de857bd-249d-80f3-bdd8-c2c95674e414" class="bulleted-list"><li style="list-style-type:disc"><code>body</code>: Der Anfragekörper (z. B. JSON-Daten für POST oder PUT).</li></ul><ul id="1de857bd-249d-80d1-939e-cc0c928a655a" class="bulleted-list"><li style="list-style-type:disc"><code>mode</code>: Der Modus der Anfrage (z. B. <code>cors</code>, <code>no-cors</code>, <code>same-origin</code>).</li></ul><ul id="1de857bd-249d-80d4-82fa-cfbe257be13a" class="bulleted-list"><li style="list-style-type:disc"><code>credentials</code>: Umgang mit Cookies (z. B. <code>include</code>, <code>same-origin</code>, <code>omit</code>).</li></ul></li></ol><ol type="1" id="1de857bd-249d-8044-8650-d6a019c655df" class="numbered-list" start="6"><li><strong>Wofür ist die Methode GET geeignet?</strong><p id="1de857bd-249d-800a-9612-fd00c0253c12" class="">Die Methode <strong>GET</strong> wird verwendet, um Daten von einem Server abzurufen. Sie ist <strong>lesend</strong> und verändert keine Daten auf dem Server.</p></li></ol><ol type="1" id="1de857bd-249d-8082-b60f-fda65826083b" class="numbered-list" start="7"><li><strong>Wofür ist die Methode POST geeignet?</strong><p id="1de857bd-249d-8009-a99c-e2b5268e3bd4" class="">Die Methode <strong>POST</strong> wird verwendet, um neue Daten an den Server zu senden, z. B. um eine neue Ressource zu erstellen.</p></li></ol><ol type="1" id="1de857bd-249d-805a-a89e-f68d13c9cd22" class="numbered-list" start="8"><li><strong>Wofür ist die Methode PUT geeignet?</strong><p id="1de857bd-249d-80a9-a75c-ebe59e6cee71" class="">Die Methode <strong>PUT</strong> wird verwendet, um eine Ressource vollständig zu aktualisieren oder zu ersetzen. Wenn die Ressource nicht existiert, kann sie erstellt werden.</p></li></ol><ol type="1" id="1de857bd-249d-80aa-b5bc-e198ed803eed" class="numbered-list" start="9"><li><strong>Wofür ist die Methode DELETE geeignet?</strong><p id="1de857bd-249d-8079-83c0-fd5599ea5212" class="">Die Methode <strong>DELETE</strong> wird verwendet, um eine Ressource vom Server zu löschen.</p></li></ol></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

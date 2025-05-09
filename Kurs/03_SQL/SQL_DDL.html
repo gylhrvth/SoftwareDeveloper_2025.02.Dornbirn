@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DDL</title>
+  <link rel="stylesheet" href="../common.css">
+  <script src="../common.js" defer></script>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="nosnippet">
+<style>
+  @keyframes task {
+    0%   { transform: translateX(0);}
+    50%  { transform: translateX(50%);}
+    100% { transform: translateX(0);}
+    
+  }
+  .specialTask{
+    color:hsl(300, 85%, 25%);
+    font-size: 1.8em;
+    animation: task 4s linear infinite;
+  }
+</style>
+</head>
+
+<body>
+  <div class="menu">
+    <a href="../../index.html">Home</a>
+    <a href="../Aufgaben.html">Aufgaben</a>
+    <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+    <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+    <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+    <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+  </div>
+
+  <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+  <a href="https://dbeaver.com/docs/dbeaver/New-Table-Creation/">Create Table in DBeaver</a>
+  <br>
+  <a href="https://www.datacamp.com/tutorial/normalization-in-sql">Normalization in SQL</a>
+  <br>
+
+  <h2><b>D</b>ata <b>D</b>efinition <b>L</b>anguage</h2>
+  <p>Fragen</p>
+  <ul>
+    <li>Was ist eine Tabelle?</li>
+    <li>Was ist eine Spalte?</li>
+    <li>Welche Datentypen existieren in MySQL?</li>
+    <li>Welche sind die wichtigste 3-4 Datentypen?</li>
+    <li>Was ist ein Primärschlüssel?</li>
+    <li>Wie erstelle ich ein Beziehung zwischen die Tabellen?</li>
+    <li>Was ist ein Fremdschlüssel? Was bedeutet ein Fremdschlüssel zu haben?</li>
+    <li>Was ist die Normalization in SQL? Warum ist es wichtig?</li>
+    <li>Wie kann ich entscheiden, was kommt in eine Tabelle oder was muss separat angelegt werden?</li>
+    <li>Was ist ein Index?</li>
+    <li>Wann soll ich ein Index verwenden / vermeiden?</li>
+    <li>Was ist ein Soft-Delete? Wie funktioniert es?</li>
+  </ul>
+
+  <p>Fragen zum Thema Datenbank Administration</p>
+  <ul>
+    <li>Wo sind die DB Benutzer gespeichert?</li>
+    <li>Wie erstelle ich eine neue Benutzer?</li>
+    <li>Wo sind Server Rollen gespeichert?</li>
+    <li>Wo sind Datenbank Berechtigungen gespeichert?</li>
+  </ul>
+
+  <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+  <ol>
+    <li>Erfahrung in Journal Seite eintragen</li>
+    <li>mit Git Commit die Änderungen festlegen</li>
+    <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+  </ol>
+
+  <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+  <ol>
+    <li>Erstelle einen neuen Datenbank mit dem Namen "Mitarbeiter"!</li>
+    <li>Erstelle einen neuen Benutzer mit deinem Namen!</li>
+    <li>Gebe an den neuen Benutzer Berechtigungen zu ALLE Tabellen in den Mondial und Mitarbeiter Datenbanken.</li>
+    <li>Melde dich mit dem neuen Benutzername in DBeaver an!</li>
+    <li>Erstelle eine neue Tabelle mit dem Namen "Beruf" mit den Spalten "Beruf_ID", "Beruf_Name", "Beruf_Beschreibung".</li>
+    <li>Konfiguriere deine Tabelle so, dass Beruf_ID automatisch generiert wird.</li>
+    <li>Erstelle eine neue Tabelle mit dem Namen "Person" mit den Spalten "Person_ID", "Person_Vorname", "Person_Nachname", "Person_Beruf_ID".</li>
+    <li>Konfiguriere deine Tabelle so, dass Person_ID automatisch generiert wird.</li>
+    <li>Verknüpfe die Beiden Tabellen mit einem Fremdschlüssel, der "Beruf_ID" in der Tabelle "Person" auf "Beruf_ID" in der Tabelle "Beruf" verweist.</li>
+    <li>Mit Hilfe von INSERT Statement, erstelle 2 Berufe und 5 Personen.</li>
+    <li>Exportiere dein Datenbank Schema aus dem DBeaver (dump).</li>
+  </ol>
+
+  <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+  <div class="menu">
+    <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+    <a href="../../Work/Carlos/main.html">Carlos</a>
+    <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+    <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+    <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+    <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+    <a href="../../Work/Sandro/Journal.html">Sandro</a>
+  </div>
+  <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>

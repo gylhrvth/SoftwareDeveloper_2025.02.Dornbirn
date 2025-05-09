@@ -1,0 +1,918 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unterfragen (Subqueries)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ec857bd-249d-802a-862e-e20f2449dba2" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Unterfragen (Subqueries)</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@7. Mai 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/SQL-199857bd249d8029be83f943bf0fc878?pvs=21"><img class="icon" src="https://www.notion.so/icons/command-line_green.svg"/>SQL</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/verified_gray.svg" style="width:14px;height:14px;display:block"/></span>Assignment</th><td><a href="https://www.notion.so/SQL-SELECT-1eb857bd249d8057acdde4b9df76e547?pvs=21"><img class="icon" src="https://www.notion.so/icons/arrow-right-basic_gray.svg"/>SQL SELECT</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Grundlagen-1ea857bd249d8005908cc77998b8a02f?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Grundlagen</a>, <a href="https://www.notion.so/DML-Data-Manipulation-Language-1ed857bd249d80cfa6b6f8302b9a1397?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>DML (Data Manipulation Language)</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1ec857bd-249d-805b-a8c6-ddbad89e4235" class="column-list"><div id="1ec857bd-249d-80f1-913a-f29f313c32b5" style="width:50%" class="column"><p id="1ec857bd-249d-8063-95ae-d88da6e08c32" class="">Unterabfragen (auch <strong>Subqueries</strong> genannt) sind ein grundlegendes Konzept in SQL, das dir erlaubt, eine Abfrage innerhalb einer anderen Abfrage auszuführen. Sie sind sehr nützlich, wenn du komplexe Datenabfragen durchführen möchtest, die in einem Schritt nicht möglich sind.</p><hr id="1ec857bd-249d-8047-a22a-d50dad6cd274"/><h3 id="1ec857bd-249d-80cb-b3c8-d087bfbc1cb4" class=""><strong>Was ist eine Unterabfrage?</strong></h3><p id="1ec857bd-249d-8037-bfae-c4762bb3e611" class="">Eine <strong>Unterabfrage</strong> ist eine SQL-Abfrage, die innerhalb einer anderen SQL-Abfrage eingebettet ist. Die Unterabfrage wird zuerst ausgeführt, und das Ergebnis wird von der äußeren Abfrage verwendet.</p><hr id="1ec857bd-249d-8056-9603-e48ecb9b6165"/><h3 id="1ec857bd-249d-8016-bed5-cf27a307f58d" class=""><strong>Arten von Unterabfragen</strong></h3><p id="1ec857bd-249d-805e-9df7-f5e1e479f934" class="">Es gibt verschiedene Arten von Unterabfragen, die je nach Anwendungsfall verwendet werden können:</p><h3 id="1ec857bd-249d-80c5-9ba0-e7db86e52247" class="">1. <strong>Skalare Unterabfrage</strong></h3><ul id="1ec857bd-249d-8066-9654-e9e060b4d6fb" class="bulleted-list"><li style="list-style-type:disc">Gibt <strong>einen einzigen Wert</strong> zurück (z. B. eine Zahl oder einen Text).</li></ul><ul id="1ec857bd-249d-8024-bc62-d25301ca5c77" class="bulleted-list"><li style="list-style-type:disc">Wird oft in der <code>WHERE</code>oder <code>SELECT</code>Klausel verwendet.</li></ul><p id="1ec857bd-249d-8038-84ec-c6c88a2eaa56" class=""><strong>Beispiel:</strong><br/>Finde alle Städte, deren Bevölkerung größer ist als die durchschnittliche Bevölkerung aller Städte:<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80e8-9ca7-cfab18ee8818" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT name
+FROM city
+WHERE population &gt; (
+    SELECT AVG(population)
+    FROM city
+);
+</code></pre><ul id="1ec857bd-249d-8079-b135-c51a9a30ee12" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfrage:</strong> Berechnet den Durchschnitt der Bevölkerung (<code>AVG(population)</code>).</li></ul><ul id="1ec857bd-249d-80bf-8d75-dd9226d9eb84" class="bulleted-list"><li style="list-style-type:disc"><strong>Hauptabfrage:</strong> Wählt Städte aus, deren Bevölkerung größer ist als dieser Durchschnitt.</li></ul><hr id="1ec857bd-249d-8040-9c73-ec9fb340bba7"/><h3 id="1ec857bd-249d-80f2-83eb-f3508cfbc775" class="">2. <strong>Mehrzeilige Unterabfrage</strong></h3><ul id="1ec857bd-249d-8092-9a86-cb18f64f8c65" class="bulleted-list"><li style="list-style-type:disc">Gibt <strong>mehrere Werte</strong> zurück (z. B. eine Liste von IDs oder Namen).</li></ul><ul id="1ec857bd-249d-80a9-8206-cd27176838b2" class="bulleted-list"><li style="list-style-type:disc">Wird oft mit Operatoren wie <code>IN</code>, <code>ANY</code>, oder <code>ALL</code> verwendet.</li></ul><p id="1ec857bd-249d-80a5-8397-f1f1a0781716" class=""><strong>Beispiel:</strong><br/>Finde alle Länder, die eine Stadt mit mehr als 1 Million Einwohnern haben:<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-807c-897c-cdb554940e30" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT name
+FROM country
+WHERE code IN (
+    SELECT country
+    FROM city
+    WHERE population &gt; 1000000
+);
+</code></pre><ul id="1ec857bd-249d-8062-b81e-dbd1e67f4fe3" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfrage:</strong> Gibt die <code>country</code>Codes aller Städte mit mehr als 1 Million Einwohnern zurück.</li></ul><ul id="1ec857bd-249d-80a3-a9ef-d1ffd22be72a" class="bulleted-list"><li style="list-style-type:disc"><strong>Hauptabfrage:</strong> Wählt Länder aus, deren <code>code</code> in der Liste der Ergebnisse der Unterabfrage enthalten ist.</li></ul><hr id="1ec857bd-249d-8045-9478-d3e899f08e04"/><h3 id="1ec857bd-249d-8088-9ed4-cda988bd952e" class="">3. <strong>Korrelierte Unterabfrage</strong></h3><ul id="1ec857bd-249d-808c-82d1-d223a611b21c" class="bulleted-list"><li style="list-style-type:disc">Eine <strong>korrelierte Unterabfrage</strong> bezieht sich auf eine Spalte aus der äußeren Abfrage.</li></ul><ul id="1ec857bd-249d-805f-b02e-e653fbf3227d" class="bulleted-list"><li style="list-style-type:disc">Sie wird für jede Zeile der äußeren Abfrage separat ausgeführt.</li></ul><p id="1ec857bd-249d-8045-a045-d0baef008b54" class=""><strong>Beispiel:</strong><br/>Finde alle Städte, die die größte Bevölkerung in ihrem Land haben:<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80de-bb5c-d9b476af0ed5" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT name, country, population
+FROM city c1
+WHERE population = (
+    SELECT MAX(c2.population)
+    FROM city c2
+    WHERE c2.country = c1.country
+);
+</code></pre><ul id="1ec857bd-249d-8081-9230-f9a21e8c598b" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfrage:</strong> Berechnet die maximale Bevölkerung (<code>MAX(c2.population)</code>) für das Land der aktuellen Stadt (<code>c1.country</code>).</li></ul><ul id="1ec857bd-249d-80cf-b56b-fdf8aaff1150" class="bulleted-list"><li style="list-style-type:disc"><strong>Hauptabfrage:</strong> Wählt Städte aus, deren Bevölkerung gleich der maximalen Bevölkerung ihres Landes ist.</li></ul><hr id="1ec857bd-249d-80bd-989e-e719265f1cd6"/><h3 id="1ec857bd-249d-80a3-b97d-ecc696d2aa1e" class="">4. <strong>Unterabfrage in der </strong><code><strong>FROM</strong></code><strong>Klausel</strong></h3><ul id="1ec857bd-249d-80e7-a0f5-d9b2d9b0a355" class="bulleted-list"><li style="list-style-type:disc">Wird verwendet, um eine temporäre Tabelle zu erstellen, die von der äußeren Abfrage verwendet wird.</li></ul><ul id="1ec857bd-249d-8039-8484-e77e3c38186e" class="bulleted-list"><li style="list-style-type:disc">Diese Art von Unterabfrage wird oft als <strong>Inline-View</strong> bezeichnet.</li></ul><p id="1ec857bd-249d-80c2-8665-efeb076857f0" class=""><strong>Beispiel:</strong><br/>Berechne die durchschnittliche Bevölkerung pro Kontinent und zeige nur Kontinente mit einer durchschnittlichen Bevölkerung über 100 Millionen:<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80e8-a2d1-df06da98c0a3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT continent, avg_population
+FROM (
+    SELECT continent, AVG(population) AS avg_population
+    FROM country
+    GROUP BY continent
+) AS subquery
+WHERE avg_population &gt; 100000000;
+</code></pre><ul id="1ec857bd-249d-8050-b66f-f2922c125b43" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfrage:</strong> Berechnet die durchschnittliche Bevölkerung pro Kontinent.</li></ul><ul id="1ec857bd-249d-8058-a2aa-e429b105cd08" class="bulleted-list"><li style="list-style-type:disc"><strong>Hauptabfrage:</strong> Wählt nur Kontinente aus, deren durchschnittliche Bevölkerung größer als 100 Millionen ist.</li></ul><hr id="1ec857bd-249d-80e4-8225-fd3f287f980a"/><h3 id="1ec857bd-249d-80ba-9e44-fee96380b922" class=""><strong>Wann solltest du Unterabfragen verwenden?</strong></h3><ul id="1ec857bd-249d-803f-be71-eed396cd1872" class="bulleted-list"><li style="list-style-type:disc">Wenn du <strong>Zwischenergebnisse</strong> benötigst, die von der Hauptabfrage verwendet werden.</li></ul><ul id="1ec857bd-249d-806c-b56f-da5245fad7f0" class="bulleted-list"><li style="list-style-type:disc">Wenn du <strong>komplexe Filterbedingungen</strong> hast, die nicht direkt in der Hauptabfrage formuliert werden können.</li></ul><ul id="1ec857bd-249d-809d-9db1-e4a97e6c82c3" class="bulleted-list"><li style="list-style-type:disc">Wenn du <strong>hierarchische Daten</strong> oder <strong>Abhängigkeiten</strong> zwischen Tabellen analysieren möchtest.</li></ul><hr id="1ec857bd-249d-801b-aeb8-cae4a7fc20bf"/><h3 id="1ec857bd-249d-8059-9eab-c51f0a6fc94e" class=""><strong>Alternativen zu Unterabfragen</strong></h3><p id="1ec857bd-249d-8076-8134-e53c4b0e9ef9" class="">In manchen Fällen können Unterabfragen durch <strong>Joins</strong> ersetzt werden, was oft effizienter ist. Zum Beispiel:</p><p id="1ec857bd-249d-80cc-b2a9-f79a677562f6" class=""><strong>Mit Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80c6-b03f-e90c0206cc63" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT name
+FROM country
+WHERE code IN (
+    SELECT country
+    FROM city
+    WHERE population &gt; 1000000
+);
+</code></pre><p id="1ec857bd-249d-80c1-ab57-f138dfc11150" class=""><strong>Mit Join:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80e6-844f-fe3a27f80e1a" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT DISTINCT c.name
+FROM country c
+INNER JOIN city ci ON c.code = ci.country
+WHERE ci.population &gt; 1000000;
+</code></pre><hr id="1ec857bd-249d-80ed-9341-fefcb43c645c"/><h3 id="1ec857bd-249d-80cd-9d16-fbc34da13284" class=""><strong>Zusammenfassun</strong></h3><ul id="1ec857bd-249d-801e-b3f0-c1712621cf36" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfragen</strong> sind Abfragen innerhalb von Abfragen, die Zwischenergebnisse liefern.</li></ul><ul id="1ec857bd-249d-80ad-a096-f6defe62a053" class="bulleted-list"><li style="list-style-type:disc">Sie können in verschiedenen SQL-Klauseln verwendet werden (<code>SELECT</code>, <code>WHERE</code>, <code>FROM</code>, etc.).</li></ul><ul id="1ec857bd-249d-80d7-a167-c04519ad87b9" class="bulleted-list"><li style="list-style-type:disc">Es gibt <strong>skalare</strong>, <strong>mehrzeilige</strong>, <strong>korrelierte</strong> und <strong>Inline-View</strong>Unterabfragen.</li></ul><ul id="1ec857bd-249d-80d7-be19-c82a931669ee" class="bulleted-list"><li style="list-style-type:disc">Unterabfragen sind mächtig, aber manchmal können sie durch Joins ersetzt werden, um die Leistung zu verbessern.</li></ul><hr id="1ec857bd-249d-80f2-b9bd-ebb5b4412f22"/><h2 id="1ec857bd-249d-800f-bce1-c47d2356d241" class="">Woher weiß ich, welche Unterabfrage zu wählen und diese anzuwenden</h2><p id="1ec857bd-249d-8099-82d6-f9aca9a50fd3" class="">Das ist eine sehr gute Frage! Die Wahl der richtigen Art von Unterabfrage hängt davon ab, <strong>was du erreichen möchtest</strong> und <strong>wie die Daten organisiert sind</strong>. Lass uns das anhand deines Beispiels – &quot;das Land mit den meisten anerkannten Religionen&quot; – Schritt für Schritt durchgehen.</p><hr id="1ec857bd-249d-801a-bb72-e774a8ac7e2f"/><h3 id="1ec857bd-249d-8098-ac82-eb771b614a25" class=""><strong>1. Verstehe die Aufgabe</strong></h3><p id="1ec857bd-249d-80d9-a073-d5500d475ab4" class="">Du möchtest:</p><ul id="1ec857bd-249d-8054-bccd-fa824cea5157" class="bulleted-list"><li style="list-style-type:disc">Das Land finden, das die meisten anerkannten Religionen hat.</li></ul><ul id="1ec857bd-249d-801b-927c-eda0708c70d3" class="bulleted-list"><li style="list-style-type:disc">Dazu musst du die Anzahl der Religionen pro Land berechnen und dann das Land mit der höchsten Anzahl auswählen.</li></ul><hr id="1ec857bd-249d-8065-b823-e954f7ac803e"/><h3 id="1ec857bd-249d-8070-b2a5-e2dc9c4c0688" class=""><strong>2. Analysiere die Datenstruktur</strong></h3><p id="1ec857bd-249d-801e-a490-c279a0fb53d4" class="">Angenommen, du hast eine Tabelle <code>religion</code>, die so aussieht:</p><table id="1ec857bd-249d-80ac-8712-d1379536ab40" class="simple-table"><tbody><tr id="1ec857bd-249d-80f6-9acc-eb1e00fd68af"><td id="[{Mp" class="">country</td><td id="&gt;llw" class="">religion_name</td></tr><tr id="1ec857bd-249d-80a7-9ce3-fc072275b54b"><td id="[{Mp" class="">Germany</td><td id="&gt;llw" class="">Christianity</td></tr><tr id="1ec857bd-249d-80ae-9b1e-ec97c283282b"><td id="[{Mp" class="">Germany</td><td id="&gt;llw" class="">Islam</td></tr><tr id="1ec857bd-249d-80bd-b798-c7730075bc94"><td id="[{Mp" class="">France</td><td id="&gt;llw" class="">Christianity</td></tr><tr id="1ec857bd-249d-802d-85e2-cc012b06e49b"><td id="[{Mp" class="">France</td><td id="&gt;llw" class="">Islam</td></tr><tr id="1ec857bd-249d-804a-b357-fb0e0546d0fd"><td id="[{Mp" class="">France</td><td id="&gt;llw" class="">Judaism</td></tr><tr id="1ec857bd-249d-80c3-a068-eb108e3ff8a9"><td id="[{Mp" class="">USA</td><td id="&gt;llw" class="">Christianity</td></tr><tr id="1ec857bd-249d-8044-b2e8-e86742f8d892"><td id="[{Mp" class="">USA</td><td id="&gt;llw" class="">Islam</td></tr><tr id="1ec857bd-249d-806e-8f69-fd9e6f59685c"><td id="[{Mp" class="">USA</td><td id="&gt;llw" class="">Judaism</td></tr><tr id="1ec857bd-249d-8029-a111-c1e6358254c7"><td id="[{Mp" class="">USA</td><td id="&gt;llw" class="">Buddhism</td></tr></tbody></table><ul id="1ec857bd-249d-8086-bc10-cb29be3c79c1" class="bulleted-list"><li style="list-style-type:disc">Jede Zeile repräsentiert eine Religion, die in einem Land anerkannt ist.</li></ul><ul id="1ec857bd-249d-8087-b0fa-fb4acd01b6d3" class="bulleted-list"><li style="list-style-type:disc">Du musst die Anzahl der Religionen pro Land zählen und dann das Land mit der höchsten Anzahl finden.</li></ul><hr id="1ec857bd-249d-8021-a757-fe3f680d77ec"/><h3 id="1ec857bd-249d-8058-9ae2-e03ad98e38d8" class=""><strong>3. Wähle die richtige Art von Unterabfrage</strong></h3><h3 id="1ec857bd-249d-803e-b3ea-fb23dc10ed7d" class=""><strong>Option 1: Skalare Unterabfrage</strong></h3><p id="1ec857bd-249d-80c5-bf2c-e281db504988" class="">Wenn du nur <strong>einen einzigen Wert</strong> (z. B. das Land mit der höchsten Anzahl von Religionen) benötigst, kannst du eine skalare Unterabfrage verwenden.</p><p id="1ec857bd-249d-8034-9830-e3d87a87280f" class=""><strong>Abfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-807d-8379-d89a19a6f346" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT country, COUNT(religion_name) AS religion_count
+FROM religion
+GROUP BY country
+HAVING COUNT(religion_name) = (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT country, COUNT(religion_name) AS religion_count
+        FROM religion
+        GROUP BY country
+    ) AS subquery
+);
+</code></pre><p id="1ec857bd-249d-80d9-85df-ddb573b35d9e" class=""><strong>Erklärung:</strong></p><ol type="1" id="1ec857bd-249d-80f9-9100-d85586762ff8" class="numbered-list" start="1"><li><strong>Innere Unterabfrage (</strong><code><strong>subquery</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-80b8-85f9-d9d56c062627" class="bulleted-list"><li style="list-style-type:disc">Zählt die Anzahl der Religionen pro Land (<code>COUNT(religion_name)</code>) und gruppiert die Ergebnisse nach Ländern.</li></ul><ul id="1ec857bd-249d-80ee-adc4-e516628b6326" class="bulleted-list"><li style="list-style-type:disc">Beispielergebnis:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-802d-86fc-e2eed42055d2" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">country   | religion_count
+--------------------------
+Germany   | 2
+France    | 3
+USA       | 4
+</code></pre></li></ul></li></ol><ol type="1" id="1ec857bd-249d-8026-870a-d9ea5418afc7" class="numbered-list" start="2"><li><strong>Skalare Unterabfrage (</strong><code><strong>SELECT MAX(religion_count)</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-806f-82a4-e6c14d638039" class="bulleted-list"><li style="list-style-type:disc">Findet die maximale Anzahl von Religionen (<code>MAX(religion_count)</code>) aus der inneren Unterabfrage.</li></ul><ul id="1ec857bd-249d-80d7-ae99-f52528c0e69d" class="bulleted-list"><li style="list-style-type:disc">Beispielergebnis: <code>4</code>.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-803f-861a-e8ff7e5d69bc" class="numbered-list" start="3"><li><strong>Hauptabfrage</strong>:<ul id="1ec857bd-249d-8082-947a-ce1aa78f3c7f" class="bulleted-list"><li style="list-style-type:disc">Wählt das Land aus, dessen Anzahl von Religionen gleich der maximalen Anzahl ist (<code>HAVING COUNT(religion_name) = 4</code>).</li></ul><ul id="1ec857bd-249d-80a0-b4aa-fe0ba8b1dc73" class="bulleted-list"><li style="list-style-type:disc">Beispielergebnis:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8050-b4f8-ec7bb766ece0" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">country   | religion_count
+--------------------------
+USA       | 4
+</code></pre></li></ul></li></ol><hr id="1ec857bd-249d-8011-ac77-dda8e1268a66"/><h3 id="1ec857bd-249d-8072-bfc6-ed7873de0b50" class=""><strong>Option 2: Mehrzeilige Unterabfrage</strong></h3><p id="1ec857bd-249d-8072-b835-da16a186fbb4" class="">Wenn du mehrere Länder mit derselben maximalen Anzahl von Religionen finden möchtest (z. B. bei einem Gleichstand), kannst du eine mehrzeilige Unterabfrage verwenden.</p><p id="1ec857bd-249d-80b5-9d11-da2872f6cce8" class=""><strong>Abfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8051-88c2-da5f98e14506" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT country, COUNT(religion_name) AS religion_count
+FROM religion
+GROUP BY country
+HAVING COUNT(religion_name) IN (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT country, COUNT(religion_name) AS religion_count
+        FROM religion
+        GROUP BY country
+    ) AS subquery
+);
+</code></pre><p id="1ec857bd-249d-80a8-bb35-cf37f4b4c60b" class=""><strong>Unterschied:</strong></p><ul id="1ec857bd-249d-80a5-9d71-f226a7da5d0f" class="bulleted-list"><li style="list-style-type:disc">Statt <code>=</code> wird <code>IN</code> verwendet, um mehrere Länder mit derselben maximalen Anzahl von Religionen zu berücksichtigen.</li></ul><hr id="1ec857bd-249d-8039-9eac-c0d2728b9e36"/><h3 id="1ec857bd-249d-80a5-82cc-f8e7b691a108" class=""><strong>Option 3: Unterabfrage in der </strong><code><strong>FROM</strong></code><strong>Klausel</strong></h3><p id="1ec857bd-249d-803c-a28e-f9aef13c62ef" class="">Wenn du die Daten zuerst berechnen und dann filtern möchtest, kannst du eine Unterabfrage in der <code>FROM</code>-Klausel verwenden.</p><p id="1ec857bd-249d-8065-8b03-f3aa09188792" class=""><strong>Abfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80bd-8939-edd451f5d33d" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT country, religion_count
+FROM (
+    SELECT country, COUNT(religion_name) AS religion_count
+    FROM religion
+    GROUP BY country
+) AS subquery
+WHERE religion_count = (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT country, COUNT(religion_name) AS religion_count
+        FROM religion
+        GROUP BY country
+    ) AS subquery2
+);
+</code></pre><p id="1ec857bd-249d-80e0-a018-e9bcdc78e2d0" class=""><strong>Erklärung:</strong></p><ol type="1" id="1ec857bd-249d-80fa-a95f-d26acc2c99f2" class="numbered-list" start="1"><li>Die erste Unterabfrage (<code>subquery</code>) berechnet die Anzahl der Religionen pro Land.</li></ol><ol type="1" id="1ec857bd-249d-80bc-8635-d531b9eb59fe" class="numbered-list" start="2"><li>Die zweite Unterabfrage (<code>subquery2</code>) berechnet die maximale Anzahl von Religionen.</li></ol><ol type="1" id="1ec857bd-249d-807c-b01d-e93a32ec7e79" class="numbered-list" start="3"><li>Die äußere Abfrage filtert das Land mit der maximalen Anzahl von Religionen.</li></ol><hr id="1ec857bd-249d-80e5-80c8-f989a90beaf3"/><h3 id="1ec857bd-249d-8042-8421-cb6ea13dc806" class=""><strong>4. Wie wählst du die richtige Methode?</strong></h3><h3 id="1ec857bd-249d-8042-9680-d40ba189a589" class=""><strong>Fragen, die du dir stellen solltest:</strong></h3><ol type="1" id="1ec857bd-249d-80ec-9f90-f17df0da3d70" class="numbered-list" start="1"><li><strong>Wie viele Ergebnisse benötigst du?</strong><ul id="1ec857bd-249d-80c1-9bf2-dc3b3fa04a94" class="bulleted-list"><li style="list-style-type:disc"><strong>Nur ein Land</strong>: Verwende eine skalare Unterabfrage (<code>=</code>).</li></ul><ul id="1ec857bd-249d-808d-b016-e3929263629f" class="bulleted-list"><li style="list-style-type:disc"><strong>Mehrere Länder bei Gleichstand</strong>: Verwende eine mehrzeilige Unterabfrage (<code>IN</code>).</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80a7-ac08-e2739605f6ef" class="numbered-list" start="2"><li><strong>Wie komplex sind die Daten?</strong><ul id="1ec857bd-249d-8046-8d64-d31d0a87f1d4" class="bulleted-list"><li style="list-style-type:disc">Wenn die Daten einfach sind, kannst du eine direkte Unterabfrage verwenden.</li></ul><ul id="1ec857bd-249d-8060-bfc3-f105956170e7" class="bulleted-list"><li style="list-style-type:disc">Wenn die Daten komplex sind (z. B. viele Berechnungen), ist eine Unterabfrage in der <code>FROM</code>Klausel oft übersichtlicher.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8068-bb3f-da3cdb3a99b9" class="numbered-list" start="3"><li><strong>Wie wichtig ist die Lesbarkeit?</strong><ul id="1ec857bd-249d-803e-b669-cf6277b151b0" class="bulleted-list"><li style="list-style-type:disc">Unterabfragen in der <code>FROM</code>Klausel sind oft leichter zu lesen und zu debuggen.</li></ul></li></ol><hr id="1ec857bd-249d-807c-bc28-fd469ab7cfcb"/><h3 id="1ec857bd-249d-8047-8a00-e589ab22c3cc" class=""><strong>5. Beispielergebnis</strong></h3><p id="1ec857bd-249d-80ae-8ab6-e02f68a33fac" class="">Angenommen, die Tabelle <code>religion</code> enthält die oben genannten Daten. Die Abfrage würde folgendes Ergebnis liefern:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8025-81d8-e8bdffc185d2" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">country   | religion_count
+--------------------------
+USA       | 4
+</code></pre><hr id="1ec857bd-249d-8090-b79a-c6be1dc6d798"/><h3 id="1ec857bd-249d-80b7-8e9d-c800a08d0c50" class=""><strong>Zusammenfassung</strong></h3><ul id="1ec857bd-249d-80cb-a486-c427a9e7c848" class="bulleted-list"><li style="list-style-type:disc"><strong>Skalare Unterabfragen</strong>: Gut für einfache Fälle, wenn du nur einen Wert benötigst.</li></ul><ul id="1ec857bd-249d-80ff-8032-d89e17b98d88" class="bulleted-list"><li style="list-style-type:disc"><strong>Mehrzeilige Unterabfragen</strong>: Gut, wenn du mehrere Ergebnisse (z. B. bei Gleichstand) benötigst.</li></ul><ul id="1ec857bd-249d-80cd-8bc4-f9203bc57002" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfragen in der </strong><code><strong>FROM</strong></code><strong>Klausel</strong>: Gut für komplexe Berechnungen oder wenn du die Daten zuerst berechnen und dann filtern möchtest.</li></ul><p id="1ec857bd-249d-8024-85bc-f612cd804dbe" class="">Falls du weitere Fragen hast oder ein anderes Beispiel möchtest, lass es mich wissen! 😊---</p><h3 id="1ec857bd-249d-8063-bb36-c946d84981bb" class=""><strong>Zusammenfassung</strong></h3><ul id="1ec857bd-249d-80ab-b6a1-e09e89b26878" class="bulleted-list"><li style="list-style-type:disc"><strong>Skalare Unterabfragen</strong>: Gut für einfache Fälle, wenn du nur einen Wert benötigst.</li></ul><ul id="1ec857bd-249d-8039-9111-f449c1c24ddd" class="bulleted-list"><li style="list-style-type:disc"><strong>Mehrzeilige Unterabfragen</strong>: Gut, wenn du mehrere Ergebnisse (z. B. bei Gleichstand) benötigst.</li></ul><ul id="1ec857bd-249d-8063-b2b3-e860c435cf7f" class="bulleted-list"><li style="list-style-type:disc"><strong>Unterabfragen in der </strong><code><strong>FROM</strong></code><strong>Klausel</strong>: Gut für komplexe Berechnungen oder wenn du die Daten zuerst berechnen und dann filtern möchtest.</li></ul><hr id="1ec857bd-249d-80ec-aa7b-fe13c6f2cf82"/><h2 id="1ec857bd-249d-8062-87ca-e3437654a8b9" class="">Ist es besser bei komplexen Abfragen von Innen nach Außen zu bauen?</h2><p id="1ec857bd-249d-80ff-aea3-d66f2c5d9961" class="">Ja, genau! Bei komplexen SQL-Abfragen, insbesondere wenn Unterabfragen verwendet werden, ist es oft sinnvoll, <strong>von innen nach außen</strong> zu arbeiten. Das bedeutet, dass du zuerst die innerste Abfrage baust, testest und sicherstellst, dass sie korrekt funktioniert, bevor du sie in eine äußere Abfrage einfügst.</p><hr id="1ec857bd-249d-80b2-b9ff-cce398dd636d"/><h3 id="1ec857bd-249d-80cd-8e2d-d8473cf5253f" class=""><strong>Warum von innen nach außen arbeiten?</strong></h3><ol type="1" id="1ec857bd-249d-80dd-a755-dde3abe75c95" class="numbered-list" start="1"><li><strong>Schrittweises Debugging:</strong><ul id="1ec857bd-249d-80ca-b6c8-fe8acd4e8827" class="bulleted-list"><li style="list-style-type:disc">Du kannst jede Unterabfrage einzeln testen und sicherstellen, dass sie die erwarteten Ergebnisse liefert.</li></ul><ul id="1ec857bd-249d-804f-a4fc-f9fedc5de524" class="bulleted-list"><li style="list-style-type:disc">Das macht es einfacher, Fehler zu finden und zu beheben.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80b8-bbfe-f815d48d816e" class="numbered-list" start="2"><li><strong>Bessere Lesbarkeit:</strong><ul id="1ec857bd-249d-80b8-a990-ccaaea43213f" class="bulleted-list"><li style="list-style-type:disc">Wenn du die inneren Abfragen zuerst baust, kannst du die Logik klarer verstehen und die äußeren Abfragen darauf aufbauen.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80f3-bc71-d158aa8552dc" class="numbered-list" start="3"><li><strong>Komplexität reduzieren:</strong><ul id="1ec857bd-249d-8066-bd85-cc95db482937" class="bulleted-list"><li style="list-style-type:disc">Indem du die Abfrage schrittweise aufbaust, vermeidest du, dass du dich in der Verschachtelung verlierst.</li></ul></li></ol><hr id="1ec857bd-249d-8033-9c6a-f1824c21fa9f"/><h3 id="1ec857bd-249d-8093-a320-eee7722e0112" class=""><strong>Wie baust du eine Abfrage von innen nach außen?</strong></h3><h3 id="1ec857bd-249d-8055-b56b-cbf28d70e48a" class="">Beispiel: Finde das Land mit den meisten Religionen</h3><ol type="1" id="1ec857bd-249d-802d-8765-d337359e37bf" class="numbered-list" start="1"><li><strong>Innerste Abfrage: Zähle die Religionen pro Land</strong><ul id="1ec857bd-249d-804b-ae13-e426dd97cf94" class="bulleted-list"><li style="list-style-type:disc">Beginne mit der Abfrage, die die Anzahl der Religionen pro Land berechnet:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-803e-ab5c-c6f8fd96bda7" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c2.Name, COUNT(r2.Name) AS religion_count
+FROM religion r2
+INNER JOIN country c2 ON r2.Country = c2.Code
+GROUP BY c2.Name;
+</code></pre><ul id="1ec857bd-249d-80eb-b598-f6e4590deaea" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Eine Liste aller Länder mit der Anzahl ihrer Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80de-ac54-cddd68a67474" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name           | religion_count
+-------------------------------
+Germany        | 2
+France         | 3
+United States  | 4
+</code></pre></li></ul></li></ol><ol type="1" id="1ec857bd-249d-80a6-a112-d25974db0cdc" class="numbered-list" start="2"><li><strong>Nächste Ebene: Finde die maximale Anzahl von Religionen</strong><ul id="1ec857bd-249d-8043-a201-ff6e8d001cf2" class="bulleted-list"><li style="list-style-type:disc">Verwende die Ergebnisse der ersten Abfrage, um die maximale Anzahl von Religionen zu berechnen:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8098-a11c-dc4a3ee972ea" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(religion_count)
+FROM (
+    SELECT c2.Name, COUNT(r2.Name) AS religion_count
+    FROM religion r2
+    INNER JOIN country c2 ON r2.Country = c2.Code
+    GROUP BY c2.Name
+) AS countRel;
+</code></pre><ul id="1ec857bd-249d-8041-a075-cc668c96502c" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Die maximale Anzahl von Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8028-819d-e257a80a18d4" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">MAX(religion_count)
+-------------------
+4
+</code></pre></li></ul></li></ol><ol type="1" id="1ec857bd-249d-804a-ae22-e47978b5d465" class="numbered-list" start="3"><li><strong>Äußere Abfrage: Filtere Länder mit der maximalen Anzahl</strong><ul id="1ec857bd-249d-8038-b896-ef1435aaa6e1" class="bulleted-list"><li style="list-style-type:disc">Verwende die maximale Anzahl aus der zweiten Abfrage, um die Länder zu filtern:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8023-a779-f00dad24618a" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.Name, COUNT(r.Name) AS religion_count
+FROM religion r
+INNER JOIN country c ON r.Country = c.Code
+GROUP BY c.Name
+HAVING COUNT(r.Name) = (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT c2.Name, COUNT(r2.Name) AS religion_count
+        FROM religion r2
+        INNER JOIN country c2 ON r2.Country = c2.Code
+        GROUP BY c2.Name
+    ) AS countRel
+);
+</code></pre><ul id="1ec857bd-249d-80b5-8a4f-f9a2f5814828" class="bulleted-list"><li style="list-style-type:disc"><strong>Ergebnis:</strong> Das Land mit der höchsten Anzahl von Religionen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80b3-ac1f-ef58910d6f25" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name           | religion_count
+-------------------------------
+United States  | 4
+</code></pre></li></ul></li></ol><hr id="1ec857bd-249d-801c-a955-db14dd09d83b"/><h3 id="1ec857bd-249d-8000-b4ee-ed713ac86069" class=""><strong>Vorteile dieser Methode:</strong></h3><ol type="1" id="1ec857bd-249d-8033-b0c9-cd6643625bca" class="numbered-list" start="1"><li><strong>Einfaches Testen:</strong><ul id="1ec857bd-249d-8002-b94d-eaa58c395e37" class="bulleted-list"><li style="list-style-type:disc">Du kannst jede Abfrage einzeln ausführen und sicherstellen, dass sie korrekt funktioniert, bevor du sie in die nächste Ebene einfügst.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-807a-a38d-e9938b66f8bc" class="numbered-list" start="2"><li><strong>Klarheit:</strong><ul id="1ec857bd-249d-8026-af6e-ddefec939a0f" class="bulleted-list"><li style="list-style-type:disc">Du verstehst genau, was jede Abfrage macht, und kannst die Logik Schritt für Schritt aufbauen.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-806c-97e5-ecf13bb08fe1" class="numbered-list" start="3"><li><strong>Fehler vermeiden:</strong><ul id="1ec857bd-249d-808f-8e58-dd9c65562c51" class="bulleted-list"><li style="list-style-type:disc">Wenn ein Teil der Abfrage nicht funktioniert, kannst du den Fehler isolieren und beheben, ohne die gesamte Abfrage zu überarbeiten.</li></ul></li></ol><hr id="1ec857bd-249d-80b7-84d3-d33bcbbf75df"/><h3 id="1ec857bd-249d-80a5-aa7e-c148d66229c2" class=""><strong>Zusammenfassung:</strong></h3><p id="1ec857bd-249d-804f-b1f9-ded4248a7037" class="">Ja, bei komplexen Abfragen mit Unterabfragen ist es eine <strong>sehr gute Praxis</strong>, von innen nach außen zu arbeiten. Es hilft dir, die Logik zu verstehen, Fehler zu vermeiden und die Abfrage schrittweise aufzubauen.</p><p id="1ec857bd-249d-8023-9c4e-c3ab313290aa" class="">
+</p></div><div id="1ec857bd-249d-809e-8391-dcaec08bbe1c" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1ec857bd-249d-80c9-b70c-d8cc9f29b5dd"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1ec857bd-249d-807c-bf2e-dfb496f9bfea"/><p id="1ec857bd-249d-8065-8ad3-cdd4c230957e" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1ec857bd-249d-8045-ae93-dbb2dfefc54d"/><ul id="1ec857bd-249d-80a0-980d-cdabf33357ef" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ec857bd-249d-8018-a6a0-d267d6be4eac" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ec857bd-249d-8067-8ade-e5e902f5c5a9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1ec857bd-249d-80bf-a8ea-eefc98241fc6" class="image"><a href="Unterfragen%20(Subqueries)%201ec857bd249d802a862ee20f2449dba2/33.png"><img style="width:425px" src="Unterfragen%20(Subqueries)%201ec857bd249d802a862ee20f2449dba2/33.png"/></a></figure><h2 id="1ec857bd-249d-8019-9df8-ed5a52ca57e7" class="">Unterabfragen Beispiel:</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8048-aa05-d1bf7d84b22a" class="code"><code class="language-SQL">SELECT DISTINCT e.Continent, m.Name, m.Height
+FROM encompasses e 
+INNER JOIN geo_mountain gm ON e.Country = gm.Country
+INNER JOIN mountain m ON gm.Mountain = m.Name
+WHERE m.Height = (
+    SELECT MAX(m2.Height)
+    FROM mountain m2
+    INNER JOIN geo_mountain gm2 ON m2.Name = gm2.Mountain
+    INNER JOIN encompasses e2 ON gm2.Country = e2.Country
+    WHERE e2.Continent = e.Continent
+) 
+ORDER BY m.Height DESC</code></pre><h3 id="1ec857bd-249d-800a-929c-de908a30ddb9" class="">Was macht dieser Code (Unterabfrage)?</h3><p id="1ec857bd-249d-80f1-90f1-e0d3d19f03cc" class="">Dieser Code ist ein <strong>Filter</strong> in der Hauptabfrage. Er sorgt dafür, dass nur die Berge ausgewählt werden, die die <strong>höchste Höhe</strong> (<code>MAX(m2.Height)</code>) in ihrem jeweiligen Kontinent haben.</p><hr id="1ec857bd-249d-8047-b5c3-e41a44238535"/><h3 id="1ec857bd-249d-80b1-a463-ccacd73a0205" class="">Schritt-für-Schritt-Erklärung:</h3><ol type="1" id="1ec857bd-249d-80c4-92b5-eed902f6e7a3" class="numbered-list" start="1"><li><code><strong>m.Height = (...)</strong></code>:<ul id="1ec857bd-249d-80cd-b78d-c8a54d3539f9" class="bulleted-list"><li style="list-style-type:disc">Hier wird geprüft, ob die Höhe eines Berges (<code>m.Height</code>) gleich der höchsten Höhe ist, die in der Unterabfrage berechnet wird.</li></ul><ul id="1ec857bd-249d-8000-84e7-e85a71bef01c" class="bulleted-list"><li style="list-style-type:disc">Das bedeutet: Wir wollen nur den Berg, der der höchste in seinem Kontinent ist.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8071-bd64-f57f7eec732e" class="numbered-list" start="2"><li><strong>Unterabfrage (</strong><code><strong>SELECT MAX(m2.Height) ...</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-8030-aaa9-cda9a80a7f79" class="bulleted-list"><li style="list-style-type:disc">Diese Unterabfrage berechnet die maximale Höhe (<code>MAX(m2.Height)</code>) aller Berge in einem bestimmten Kontinent.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80a1-a780-dbbd9edcef68" class="numbered-list" start="3"><li><code><strong>FROM mountain m2</strong></code>:<ul id="1ec857bd-249d-8096-8be8-f3ad3f6fdb8a" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage arbeitet mit einer zweiten Version der Tabelle <code>mountain</code>, die wir hier <code>m2</code> nennen.</li></ul><ul id="1ec857bd-249d-803b-b9c4-f2f0f78a0d13" class="bulleted-list"><li style="list-style-type:disc"><code>m2</code> enthält alle Berge mit ihren Namen und Höhen.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8093-a27f-f2ec9fa118e2" class="numbered-list" start="4"><li><code><strong>INNER JOIN geo_mountain gm2 ON m2.Name = gm2.Mountain</strong></code>:<ul id="1ec857bd-249d-80d0-aef0-ea9342190954" class="bulleted-list"><li style="list-style-type:disc">Hier wird die Tabelle <code>mountain</code> (<code>m2</code>) mit der Tabelle <code>geo_mountain</code> (<code>gm2</code>) verknüpft.</li></ul><ul id="1ec857bd-249d-8062-ab3e-ce2b955f5223" class="bulleted-list"><li style="list-style-type:disc">Diese Verknüpfung stellt sicher, dass wir wissen, in welchem Land jeder Berg liegt.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8071-b97e-f91ed85ed607" class="numbered-list" start="5"><li><code><strong>INNER JOIN encompasses e2 ON gm2.Country = e2.Country</strong></code>:<ul id="1ec857bd-249d-8006-877d-e09538c1b12a" class="bulleted-list"><li style="list-style-type:disc">Jetzt wird die Tabelle <code>geo_mountain</code> (<code>gm2</code>) mit der Tabelle <code>encompasses</code> (<code>e2</code>) verknüpft.</li></ul><ul id="1ec857bd-249d-80ba-bda7-d9183106b4da" class="bulleted-list"><li style="list-style-type:disc">Dadurch können wir herausfinden, zu welchem Kontinent das Land gehört, in dem der Berg liegt.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8087-8a6a-e5f63acdb563" class="numbered-list" start="6"><li><code><strong>WHERE e2.Continent = e.Continent</strong></code>:<ul id="1ec857bd-249d-805d-a676-edda5c08caa4" class="bulleted-list"><li style="list-style-type:disc">Hier wird gefiltert: Wir wollen nur die Berge betrachten, die im gleichen Kontinent liegen wie der aktuelle Kontinent in der Hauptabfrage (<code>e.Continent</code>).</li></ul><ul id="1ec857bd-249d-80e9-b7b0-fa8c77e6f9e4" class="bulleted-list"><li style="list-style-type:disc">Das bedeutet: Für jeden Kontinent wird separat die maximale Höhe berechnet.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80ef-9b7a-d06b7ac9b328" class="numbered-list" start="7"><li><strong>Ergebnis der Unterabfrage</strong>:<ul id="1ec857bd-249d-8067-9c72-ddd71c9659b6" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage gibt die maximale Höhe (<code>MAX(m2.Height)</code>) für den aktuellen Kontinent zurück.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8024-86d6-d541fe45dc82" class="numbered-list" start="8"><li><strong>Vergleich mit </strong><code><strong>m.Height</strong></code>:<ul id="1ec857bd-249d-802b-b0ea-e1ff73dc4584" class="bulleted-list"><li style="list-style-type:disc">In der Hauptabfrage wird geprüft, ob die Höhe des aktuellen Berges (<code>m.Height</code>) gleich der maximalen Höhe ist, die die Unterabfrage berechnet hat.</li></ul><ul id="1ec857bd-249d-8025-905c-fb763736055b" class="bulleted-list"><li style="list-style-type:disc">Wenn das der Fall ist, wird dieser Berg in das Ergebnis aufgenommen.</li></ul></li></ol><hr id="1ec857bd-249d-80ee-a2e0-e04791934c8a"/><h3 id="1ec857bd-249d-80a4-bb59-c63141c1c0d7" class="">Beispiel:</h3><p id="1ec857bd-249d-807e-8f0c-d18e0e8591af" class="">Angenommen, wir haben folgende Daten:</p><p id="1ec857bd-249d-802f-b10c-d8ecc09a3848" class=""><code><strong>mountain</strong></code></p><table id="1ec857bd-249d-80cd-90f7-e16ff6bf4bda" class="simple-table"><tbody><tr id="1ec857bd-249d-8029-9aac-e6e64b831a3f"><td id="Wn|@" class="">Name</td><td id=":SuB" class="">Height</td></tr><tr id="1ec857bd-249d-807a-afd6-f92a91145e12"><td id="Wn|@" class="">Mount Everest</td><td id=":SuB" class="">8848</td></tr><tr id="1ec857bd-249d-8000-8ec5-c9ab5d248f53"><td id="Wn|@" class="">Mont Blanc</td><td id=":SuB" class="">4807</td></tr><tr id="1ec857bd-249d-8035-a92e-d6ad7d3e8ba0"><td id="Wn|@" class="">Kilimanjaro</td><td id=":SuB" class="">5895</td></tr></tbody></table><p id="1ec857bd-249d-8055-906d-f89d33a07977" class=""><code><strong>geo_mountain</strong></code></p><table id="1ec857bd-249d-80c1-93d3-f2600e8aa1b7" class="simple-table"><tbody><tr id="1ec857bd-249d-805e-9e06-c28a0f5e1e92"><td id="kaV|" class="">Mountain</td><td id="CkxH" class="">Country</td></tr><tr id="1ec857bd-249d-8042-a43a-d6dbe06c55a9"><td id="kaV|" class="">Mount Everest</td><td id="CkxH" class="">Nepal</td></tr><tr id="1ec857bd-249d-8042-90dc-e40678a9d7e6"><td id="kaV|" class="">Mont Blanc</td><td id="CkxH" class="">France</td></tr><tr id="1ec857bd-249d-803c-aa11-f58b50ae1968"><td id="kaV|" class="">Kilimanjaro</td><td id="CkxH" class="">Tanzania</td></tr></tbody></table><p id="1ec857bd-249d-8027-bab7-e208c7e7ad59" class=""><code><strong>encompasses</strong></code></p><table id="1ec857bd-249d-80a9-a717-ed3c18ff6483" class="simple-table"><tbody><tr id="1ec857bd-249d-808b-be1e-c415bed6bfb0"><td id="}:[z" class="">Country</td><td id="u]~c" class="">Continent</td></tr><tr id="1ec857bd-249d-8018-a182-e7f97efa7a3d"><td id="}:[z" class="">Nepal</td><td id="u]~c" class="">Asia</td></tr><tr id="1ec857bd-249d-80d5-9c3f-e4ed27479706"><td id="}:[z" class="">France</td><td id="u]~c" class="">Europe</td></tr><tr id="1ec857bd-249d-80c1-84cf-cb5c3b908b50"><td id="}:[z" class="">Tanzania</td><td id="u]~c" class="">Africa</td></tr></tbody></table><hr id="1ec857bd-249d-80bb-a053-c834f7365729"/><h3 id="1ec857bd-249d-809a-9f8d-ea96d6eeb097" class="">Was passiert in der Abfrage?</h3><ol type="1" id="1ec857bd-249d-8097-b410-e1f8ff99786f" class="numbered-list" start="1"><li><strong>Für Asien (</strong><code><strong>e.Continent = &#x27;Asia&#x27;</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-8014-9fb7-ce4366eb743e" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage sucht den höchsten Berg in Asien:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-805f-8265-c98a57845d24" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(m2.Height)
+FROM mountain m2
+INNER JOIN geo_mountain gm2 ON m2.Name = gm2.Mountain
+INNER JOIN encompasses e2 ON gm2.Country = e2.Country
+WHERE e2.Continent = &#x27;Asia&#x27;;
+</code></pre></li></ul><ul id="1ec857bd-249d-8071-aed0-cb660d25de3f" class="bulleted-list"><li style="list-style-type:disc">Ergebnis: <code>8848</code> (Mount Everest).</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80ea-a696-d84aae4521a6" class="numbered-list" start="2"><li><strong>Für Europa (</strong><code><strong>e.Continent = &#x27;Europe&#x27;</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-8057-a53e-cc8106e4c334" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage sucht den höchsten Berg in Europa:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8066-9f18-c8fe13b10970" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(m2.Height)
+FROM mountain m2
+INNER JOIN geo_mountain gm2 ON m2.Name = gm2.Mountain
+INNER JOIN encompasses e2 ON gm2.Country = e2.Country
+WHERE e2.Continent = &#x27;Europe&#x27;;
+</code></pre></li></ul><ul id="1ec857bd-249d-809e-a3b1-e395320affa3" class="bulleted-list"><li style="list-style-type:disc">Ergebnis: <code>4807</code> (Mont Blanc).</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8051-a8b2-e081762061b0" class="numbered-list" start="3"><li><strong>Für Afrika (</strong><code><strong>e.Continent = &#x27;Africa&#x27;</strong></code><strong>)</strong>:<ul id="1ec857bd-249d-8089-8d6b-f9d706dbddfc" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage sucht den höchsten Berg in Afrika:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8070-a5d3-c62b6c168c0f" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(m2.Height)
+FROM mountain m2
+INNER JOIN geo_mountain gm2 ON m2.Name = gm2.Mountain
+INNER JOIN encompasses e2 ON gm2.Country = e2.Country
+WHERE e2.Continent = &#x27;Africa&#x27;;
+</code></pre></li></ul><ul id="1ec857bd-249d-80d6-be2a-db04f006a8fb" class="bulleted-list"><li style="list-style-type:disc">Ergebnis: <code>5895</code> (Kilimanjaro).</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8036-8292-d1874ae59bdd" class="numbered-list" start="4"><li><strong>Vergleich in der Hauptabfrage</strong>:<ul id="1ec857bd-249d-801c-a64a-c353107e3cd1" class="bulleted-list"><li style="list-style-type:disc">Die Hauptabfrage prüft, ob die Höhe des aktuellen Berges (<code>m.Height</code>) gleich der maximalen Höhe des jeweiligen Kontinents ist.</li></ul><ul id="1ec857bd-249d-80fb-b128-e0ff6a02d596" class="bulleted-list"><li style="list-style-type:disc">Nur diese Berge werden in das Ergebnis aufgenommen.</li></ul></li></ol><hr id="1ec857bd-249d-807b-ba36-d87d20d0e239"/><h3 id="1ec857bd-249d-80b2-a73e-f1750ad4646b" class="">Ergebnis:</h3><p id="1ec857bd-249d-80ac-b485-f2a5962542d2" class="">Die Abfrage gibt die höchsten Berge pro Kontinent zurück:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8030-90b8-d10ae8c6fc65" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Continent   | Name           | Height
+-------------------------------------
+Asia        | Mount Everest  | 8848
+Europe      | Mont Blanc     | 4807
+Africa      | Kilimanjaro    | 5895
+</code></pre><hr id="1ec857bd-249d-8051-b538-cf5c1153dd2b"/><h2 id="1ec857bd-249d-80d6-83de-e6a1e173c2b3" class="">Korrelierte Unterfrage Beispiel:</h2><p id="1ec857bd-249d-80c8-9107-dedef089eb6b" class="">Eine <strong>korrelierte Unterabfrage</strong> ist eine Unterabfrage, die für jede Zeile der äußeren Abfrage separat ausgeführt wird. Sie bezieht sich auf Werte aus der äußeren Abfrage, wodurch eine Abhängigkeit zwischen der äußeren und der inneren Abfrage entsteht.</p><hr id="1ec857bd-249d-8040-8d25-c7be6ae6b224"/><h3 id="1ec857bd-249d-800e-9a2a-ccdf0a92f84c" class=""><strong>Wie funktioniert eine korrelierte Unterabfrage?</strong></h3><ol type="1" id="1ec857bd-249d-8035-b213-dfa67d835fbf" class="numbered-list" start="1"><li>Die äußere Abfrage verarbeitet <strong>eine Zeile nach der anderen</strong>.</li></ol><ol type="1" id="1ec857bd-249d-8042-b32c-da27b297ca2d" class="numbered-list" start="2"><li>Für jede Zeile der äußeren Abfrage wird die <strong>Unterabfrage ausgeführt</strong>.</li></ol><ol type="1" id="1ec857bd-249d-807b-821b-f28c616e5745" class="numbered-list" start="3"><li>Die Unterabfrage verwendet Werte aus der aktuellen Zeile der äußeren Abfrage, um ihre Ergebnisse zu berechnen.</li></ol><ol type="1" id="1ec857bd-249d-80d6-924b-ca36cdf00578" class="numbered-list" start="4"><li>Das Ergebnis der Unterabfrage wird verwendet, um die aktuelle Zeile der äußeren Abfrage zu bewerten (z. B. in einer <code>WHERE</code>Klausel).</li></ol><hr id="1ec857bd-249d-800b-863c-f28dcc35de50"/><h3 id="1ec857bd-249d-8056-b7f6-df1afa240b31" class=""><strong>Beispiel:</strong></h3><p id="1ec857bd-249d-809f-9b54-d1daed16a0bd" class="">Finde alle Städte, die die größte Bevölkerung in ihrem Land haben.</p><h3 id="1ec857bd-249d-80e7-9f9a-ea958a129e17" class="">SQL-Abfrage:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80b1-831d-cdcd3aed6619" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c1.name, c1.country, c1.population
+FROM city c1
+WHERE c1.population = (
+    SELECT MAX(c2.population)
+    FROM city c2
+    WHERE c2.country = c1.country
+);
+</code></pre><hr id="1ec857bd-249d-809a-a027-d29f0024ba97"/><h3 id="1ec857bd-249d-804e-940f-c029ff177ed0" class=""><strong>Wie funktioniert diese Abfrage?</strong></h3><ol type="1" id="1ec857bd-249d-8027-b696-f5fa985dbbb3" class="numbered-list" start="1"><li><strong>Äußere Abfrage:</strong><ul id="1ec857bd-249d-802a-a817-d40308701344" class="bulleted-list"><li style="list-style-type:disc">Die äußere Abfrage iteriert über jede Zeile in der Tabelle <code>city</code> (jede Stadt).</li></ul><ul id="1ec857bd-249d-80e7-94b6-e0091f9d5d0b" class="bulleted-list"><li style="list-style-type:disc">Für jede Stadt wird die Unterabfrage ausgeführt.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80d5-b1a0-dca31ec364ba" class="numbered-list" start="2"><li><strong>Unterabfrage:</strong><ul id="1ec857bd-249d-800f-b004-dcb4a4e91891" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage berechnet die maximale Bevölkerung (<code>MAX(c2.population)</code>) für das Land (<code>c2.country</code>), das zur aktuellen Stadt (<code>c1.country</code>) gehört.</li></ul><ul id="1ec857bd-249d-8039-85ec-dcb5a6b66bb6" class="bulleted-list"><li style="list-style-type:disc">Die Unterabfrage verwendet den Wert <code>c1.country</code> aus der äußeren Abfrage.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8036-89cd-f0e318fddbfe" class="numbered-list" start="3"><li><strong>Vergleich:</strong><ul id="1ec857bd-249d-80d4-8896-d1f785a04231" class="bulleted-list"><li style="list-style-type:disc">Die äußere Abfrage prüft, ob die Bevölkerung der aktuellen Stadt (<code>c1.population</code>) gleich der maximalen Bevölkerung des Landes ist, die von der Unterabfrage zurückgegeben wurde.</li></ul></li></ol><hr id="1ec857bd-249d-8045-aa13-c8bf466d2d47"/><h3 id="1ec857bd-249d-8099-9b4b-c2d9c535810f" class=""><strong>Durchgänge (Schritt-für-Schritt):</strong></h3><h3 id="1ec857bd-249d-809a-832d-e20bd4159b55" class="">Beispiel-Daten:</h3><p id="1ec857bd-249d-804e-a9a5-edae93f224b3" class=""><code><strong>city</strong></code></p><table id="1ec857bd-249d-8064-982f-e0f808901e63" class="simple-table"><tbody><tr id="1ec857bd-249d-80c2-a5d5-dee2decb49e9"><td id=":XQ{" class="">name</td><td id="O=rf" class="">country</td><td id="L^Tm" class="">population</td></tr><tr id="1ec857bd-249d-804c-88f8-fe85b1dc66c1"><td id=":XQ{" class="">Berlin</td><td id="O=rf" class="">Germany</td><td id="L^Tm" class="">3500000</td></tr><tr id="1ec857bd-249d-80bb-9bd7-d0cca5fe6358"><td id=":XQ{" class="">Hamburg</td><td id="O=rf" class="">Germany</td><td id="L^Tm" class="">1800000</td></tr><tr id="1ec857bd-249d-80d6-98b8-d72b285a7099"><td id=":XQ{" class="">Munich</td><td id="O=rf" class="">Germany</td><td id="L^Tm" class="">1500000</td></tr><tr id="1ec857bd-249d-800a-b384-d22a1b947814"><td id=":XQ{" class="">Paris</td><td id="O=rf" class="">France</td><td id="L^Tm" class="">2200000</td></tr><tr id="1ec857bd-249d-80aa-aba2-d0ba7cbaeeb0"><td id=":XQ{" class="">Lyon</td><td id="O=rf" class="">France</td><td id="L^Tm" class="">500000</td></tr></tbody></table><hr id="1ec857bd-249d-803c-ab18-fde263531fb6"/><h3 id="1ec857bd-249d-80a8-aa51-fbba05adffd6" class="">Schritt 1: Erste Zeile der äußeren Abfrage</h3><ul id="1ec857bd-249d-80cf-9639-c7262508aa0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktuelle Stadt:</strong> Berlin</li></ul><ul id="1ec857bd-249d-8055-9310-fabd81f6de3b" class="bulleted-list"><li style="list-style-type:disc"><strong>Land:</strong> Germany</li></ul><ul id="1ec857bd-249d-8018-96ed-febc9adafb88" class="bulleted-list"><li style="list-style-type:disc"><strong>Bevölkerung:</strong> 3.500.000</li></ul><p id="1ec857bd-249d-80f9-addf-ec7311599fb2" class=""><strong>Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8092-93c1-d3c3a7e15d79" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(c2.population)
+FROM city c2
+WHERE c2.country = &#x27;Germany&#x27;;
+</code></pre><ul id="1ec857bd-249d-807f-aa6d-f5814cb5d2ad" class="bulleted-list"><li style="list-style-type:disc">Ergebnis der Unterabfrage: <code>3.500.000</code> (höchste Bevölkerung in Germany).</li></ul><p id="1ec857bd-249d-8091-970c-eb097d48e768" class=""><strong>Vergleich:</strong></p><ul id="1ec857bd-249d-8047-ae87-ef24aa596a33" class="bulleted-list"><li style="list-style-type:disc"><code>c1.population = 3.500.000</code> → <strong>Ja</strong>, Berlin wird in das Ergebnis aufgenommen.</li></ul><hr id="1ec857bd-249d-804f-9865-d6b021aace51"/><h3 id="1ec857bd-249d-808a-9c48-f59089090d06" class="">Schritt 2: Zweite Zeile der äußeren Abfrage</h3><ul id="1ec857bd-249d-8013-8c2e-ea5d290f127e" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktuelle Stadt:</strong> Hamburg</li></ul><ul id="1ec857bd-249d-80cf-b143-fe063a6acfb6" class="bulleted-list"><li style="list-style-type:disc"><strong>Land:</strong> Germany</li></ul><ul id="1ec857bd-249d-8029-92c7-c0b5134a727f" class="bulleted-list"><li style="list-style-type:disc"><strong>Bevölkerung:</strong> 1.800.000</li></ul><p id="1ec857bd-249d-80a3-bb4e-f2247ac7729f" class=""><strong>Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80a9-a4a0-eaa497ab1fde" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(c2.population)
+FROM city c2
+WHERE c2.country = &#x27;Germany&#x27;;
+</code></pre><ul id="1ec857bd-249d-806d-8ffe-e4d70163a6e6" class="bulleted-list"><li style="list-style-type:disc">Ergebnis der Unterabfrage: <code>3.500.000</code> (höchste Bevölkerung in Germany).</li></ul><p id="1ec857bd-249d-8072-9694-d12cb38d1d83" class=""><strong>Vergleich:</strong></p><ul id="1ec857bd-249d-8052-888a-fde16bff6a0f" class="bulleted-list"><li style="list-style-type:disc"><code>c1.population = 3.500.000</code> → <strong>Nein</strong>, Hamburg wird nicht in das Ergebnis aufgenommen.</li></ul><hr id="1ec857bd-249d-80e8-8e0a-c80a44969ea4"/><h3 id="1ec857bd-249d-80cf-aef6-f2012757708a" class="">Schritt 3: Dritte Zeile der äußeren Abfrage</h3><ul id="1ec857bd-249d-809c-ab02-ef3c2a37b0e3" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktuelle Stadt:</strong> Munich</li></ul><ul id="1ec857bd-249d-808e-9ba6-fcb667c64370" class="bulleted-list"><li style="list-style-type:disc"><strong>Land:</strong> Germany</li></ul><ul id="1ec857bd-249d-807c-bef7-c14dd32272ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Bevölkerung:</strong> 1.500.000</li></ul><p id="1ec857bd-249d-8032-b804-cbe4da7c8a88" class=""><strong>Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8049-98f3-fb77522aa5ae" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(c2.population)
+FROM city c2
+WHERE c2.country = &#x27;Germany&#x27;;
+</code></pre><ul id="1ec857bd-249d-80c8-a312-ce04843b6b5e" class="bulleted-list"><li style="list-style-type:disc">Ergebnis der Unterabfrage: <code>3.500.000</code> (höchste Bevölkerung in Germany).</li></ul><p id="1ec857bd-249d-808b-aff8-d346962bbc99" class=""><strong>Vergleich:</strong></p><ul id="1ec857bd-249d-80bc-b021-f80505b7e8a0" class="bulleted-list"><li style="list-style-type:disc"><code>c1.population = 3.500.000</code> → <strong>Nein</strong>, Munich wird nicht in das Ergebnis aufgenommen.</li></ul><hr id="1ec857bd-249d-803e-8fb9-c80326b6fb34"/><h3 id="1ec857bd-249d-8067-b9b6-c7e63879574f" class="">Schritt 4: Vierte Zeile der äußeren Abfrage</h3><ul id="1ec857bd-249d-80d5-87c0-dcc36ec46a04" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktuelle Stadt:</strong> Paris</li></ul><ul id="1ec857bd-249d-80f6-804f-d9c73cf1589e" class="bulleted-list"><li style="list-style-type:disc"><strong>Land:</strong> France</li></ul><ul id="1ec857bd-249d-80e9-8d1b-c29af161275b" class="bulleted-list"><li style="list-style-type:disc"><strong>Bevölkerung:</strong> 2.200.000</li></ul><p id="1ec857bd-249d-8011-9d18-cb108d7c248f" class=""><strong>Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-807a-a226-d93b8a7a4cb6" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(c2.population)
+FROM city c2
+WHERE c2.country = &#x27;France&#x27;;
+</code></pre><ul id="1ec857bd-249d-803f-beca-c903eb10f507" class="bulleted-list"><li style="list-style-type:disc">Ergebnis der Unterabfrage: <code>2.200.000</code> (höchste Bevölkerung in France).</li></ul><p id="1ec857bd-249d-807f-8d23-d989be02d461" class=""><strong>Vergleich:</strong></p><ul id="1ec857bd-249d-808f-945a-d73710b67a5d" class="bulleted-list"><li style="list-style-type:disc"><code>c1.population = 2.200.000</code> → <strong>Ja</strong>, Paris wird in das Ergebnis aufgenommen.</li></ul><hr id="1ec857bd-249d-804e-b8df-c79c9b0e9e10"/><h3 id="1ec857bd-249d-8073-9c21-fd63a75a18c8" class="">Schritt 5: Fünfte Zeile der äußeren Abfrage</h3><ul id="1ec857bd-249d-80d1-8bfb-f613944c1afc" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktuelle Stadt:</strong> Lyon</li></ul><ul id="1ec857bd-249d-8050-acac-fe7879c3c4b0" class="bulleted-list"><li style="list-style-type:disc"><strong>Land:</strong> France</li></ul><ul id="1ec857bd-249d-801b-8ab9-dc85566a8a96" class="bulleted-list"><li style="list-style-type:disc"><strong>Bevölkerung:</strong> 500.000</li></ul><p id="1ec857bd-249d-8036-bb7e-e0c7d71bb7ba" class=""><strong>Unterabfrage:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8019-b913-ea0e928d8a48" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(c2.population)
+FROM city c2
+WHERE c2.country = &#x27;France&#x27;;
+</code></pre><ul id="1ec857bd-249d-8017-9e08-d0aba6efd99b" class="bulleted-list"><li style="list-style-type:disc">Ergebnis der Unterabfrage: <code>2.200.000</code> (höchste Bevölkerung in France).</li></ul><p id="1ec857bd-249d-802a-8f16-c1f5ccaf3a62" class=""><strong>Vergleich:</strong></p><ul id="1ec857bd-249d-80c8-bfbe-fcc0f1e8a81f" class="bulleted-list"><li style="list-style-type:disc"><code>c1.population = 2.200.000</code> → <strong>Nein</strong>, Lyon wird nicht in das Ergebnis aufgenommen.</li></ul><hr id="1ec857bd-249d-8007-b8d4-c55ed142481f"/><h3 id="1ec857bd-249d-80a7-a030-ecb9d9bbaf12" class=""><strong>Endergebnis:</strong></h3><p id="1ec857bd-249d-8020-948e-f68102833ed8" class="">Nach allen Durchgängen gibt die Abfrage folgende Städte zurück:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80c6-a5ee-f3843e80b52d" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">name       | country   | population
+-----------------------------------
+Berlin     | Germany   | 3500000
+Paris      | France    | 2200000
+</code></pre><hr id="1ec857bd-249d-80ce-b851-e7fc76a420ae"/><h3 id="1ec857bd-249d-803e-9751-e9a40cc4fac1" class=""><strong>Zusammenfassung:</strong></h3><ol type="1" id="1ec857bd-249d-8032-9908-e9b546d4e74d" class="numbered-list" start="1"><li>Eine <strong>korrelierte Unterabfrage</strong> wird für jede Zeile der äußeren Abfrage separat ausgeführt.</li></ol><ol type="1" id="1ec857bd-249d-8039-9c3c-f1ff7be81e1c" class="numbered-list" start="2"><li>Sie verwendet Werte aus der aktuellen Zeile der äußeren Abfrage, um ihre Ergebnisse zu berechnen.</li></ol><ol type="1" id="1ec857bd-249d-803d-a459-e5fd30b5c35f" class="numbered-list" start="3"><li>Das Ergebnis der Unterabfrage wird verwendet, um die aktuelle Zeile der äußeren Abfrage zu bewerten.</li></ol><ol type="1" id="1ec857bd-249d-8009-9549-f21c54a63ff0" class="numbered-list" start="4"><li>Dies kann rechenintensiv sein, da die Unterabfrage für jede Zeile der äußeren Abfrage ausgeführt wird.</li></ol><hr id="1ec857bd-249d-80f2-8930-ea244dce2f45"/><h2 id="1ec857bd-249d-8012-8d68-fcec00b6ac71" class=""><strong>Mehrzeilige Unterabfrage Schritt für Schritt</strong></h2><h3 id="1ec857bd-249d-800c-a247-f66d9d9d0aaf" class=""><strong>Was macht diese Abfrage?</strong></h3><p id="1ec857bd-249d-800b-83d5-c9ffb6a735f8" class="">Die Abfrage sucht das Land (oder die Länder), das die <strong>höchste Anzahl an anerkannten Religionen</strong> hat. Sie verwendet dazu eine Kombination aus <strong>Gruppierung</strong>, <strong>Aggregatfunktionen</strong> und <strong>Unterabfragen</strong>.</p><hr id="1ec857bd-249d-8078-820c-fe8e84d4c056"/><h3 id="1ec857bd-249d-8020-8bed-d2d552794a50" class=""><strong>Die Abfrage im Überblick:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8079-a994-fd8e4a9b4e6d" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.Name, COUNT(r.Name) AS religion_count
+FROM religion r
+INNER JOIN country c ON r.Country = c.Code
+GROUP BY c.Name
+HAVING COUNT(r.Name) IN (
+    SELECT MAX(religion_count)
+    FROM (
+        SELECT c2.Name, COUNT(r2.Name) AS religion_count
+        FROM religion r2
+        INNER JOIN country c2 ON r2.Country = c2.Code
+        GROUP BY c2.Name
+    ) AS countRel
+)
+</code></pre><hr id="1ec857bd-249d-80c6-bee2-c3d576166ed1"/><h3 id="1ec857bd-249d-80dd-9eca-d92323f4c8b9" class=""><strong>Schritt-für-Schritt-Erklärung</strong></h3><h3 id="1ec857bd-249d-8043-a4aa-c1ee9442f6c5" class=""><strong>1. Hauptabfrage:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8076-80b7-e4a73baf280a" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.Name, COUNT(r.Name) AS religion_count
+FROM religion r
+INNER JOIN country c ON r.Country = c.Code
+GROUP BY c.Name
+HAVING COUNT(r.Name) IN (...)
+</code></pre><ul id="1ec857bd-249d-80f3-80d1-f675bbc4a685" class="bulleted-list"><li style="list-style-type:disc"><code><strong>SELECT c.Name, COUNT(r.Name) AS religion_count</strong></code><strong>:</strong><ul id="1ec857bd-249d-802a-865f-d8afd6dc4cd2" class="bulleted-list"><li style="list-style-type:circle">Wählt den Namen des Landes (<code>c.Name</code>) und die Anzahl der Religionen (<code>COUNT(r.Name)</code>) aus.</li></ul><ul id="1ec857bd-249d-8067-b056-fda6ca809e2d" class="bulleted-list"><li style="list-style-type:circle"><code>COUNT(r.Name)</code> zählt, wie viele Religionen in der Tabelle <code>religion</code> für jedes Land (<code>c.Name</code>) existieren.</li></ul></li></ul><ul id="1ec857bd-249d-80db-ad56-f28ae0e21ee8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>INNER JOIN country c ON r.Country = c.Code</strong></code><strong>:</strong><ul id="1ec857bd-249d-8018-920b-e931c0233a1e" class="bulleted-list"><li style="list-style-type:circle">Verknüpft die Tabelle <code>religion</code> mit der Tabelle <code>country</code>, sodass jede Religion einem Land zugeordnet wird.</li></ul><ul id="1ec857bd-249d-807e-8c53-e60506d00e94" class="bulleted-list"><li style="list-style-type:circle"><code>r.Country</code> ist der Ländercode in der Tabelle <code>religion</code>, und <code>c.Code</code> ist der Ländercode in der Tabelle <code>country</code>.</li></ul></li></ul><ul id="1ec857bd-249d-8098-8311-d8c1bfc1cd9a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>GROUP BY c.Name</strong></code><strong>:</strong><ul id="1ec857bd-249d-809d-bda8-c4be332dfbc7" class="bulleted-list"><li style="list-style-type:circle">Gruppiert die Daten nach Ländern (<code>c.Name</code>), sodass die Anzahl der Religionen (<code>COUNT(r.Name)</code>) für jedes Land berechnet werden kann.</li></ul></li></ul><ul id="1ec857bd-249d-8044-b0ef-e44a78d9ea2a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>HAVING COUNT(r.Name) IN (...)</strong></code><strong>:</strong><ul id="1ec857bd-249d-80e4-a47f-f32436f48c60" class="bulleted-list"><li style="list-style-type:circle">Filtert die Länder, deren Anzahl an Religionen (<code>COUNT(r.Name)</code>) in der Liste enthalten ist, die von der Unterabfrage zurückgegeben wird.</li></ul></li></ul><hr id="1ec857bd-249d-8090-a0cd-d540ca834ee8"/><h3 id="1ec857bd-249d-80ba-9067-cae07fabca00" class=""><strong>2. Erste Unterabfrage (im </strong><code><strong>HAVING</strong></code><strong>):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-805d-b0dd-dcacfb241373" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(religion_count)
+FROM (
+    SELECT c2.Name, COUNT(r2.Name) AS religion_count
+    FROM religion r2
+    INNER JOIN country c2 ON r2.Country = c2.Code
+    GROUP BY c2.Name
+) AS countRel
+</code></pre><ul id="1ec857bd-249d-8052-b7cf-ee6cd8f6323a" class="bulleted-list"><li style="list-style-type:disc"><strong>Was macht diese Unterabfrage?</strong><ul id="1ec857bd-249d-8049-bad1-e59e0d0c4446" class="bulleted-list"><li style="list-style-type:circle">Sie berechnet die maximale Anzahl von Religionen (<code>MAX(religion_count)</code>) über alle Länder.</li></ul></li></ul><hr id="1ec857bd-249d-808a-8b3b-e20404a0af62"/><h3 id="1ec857bd-249d-8085-bdf6-c8496440b205" class=""><strong>2.1. Innere Unterabfrage:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8029-97d5-fd4c735c483f" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c2.Name, COUNT(r2.Name) AS religion_count
+FROM religion r2
+INNER JOIN country c2 ON r2.Country = c2.Code
+GROUP BY c2.Name
+</code></pre><ul id="1ec857bd-249d-8083-ac08-da83009b81a4" class="bulleted-list"><li style="list-style-type:disc"><code><strong>SELECT c2.Name, COUNT(r2.Name) AS religion_count</strong></code><strong>:</strong><ul id="1ec857bd-249d-800e-bbdd-f397dffef3ec" class="bulleted-list"><li style="list-style-type:circle">Wählt den Namen jedes Landes (<code>c2.Name</code>) und die Anzahl der Religionen (<code>COUNT(r2.Name)</code>) aus.</li></ul></li></ul><ul id="1ec857bd-249d-800e-8fbf-c79433058231" class="bulleted-list"><li style="list-style-type:disc"><code><strong>INNER JOIN country c2 ON r2.Country = c2.Code</strong></code><strong>:</strong><ul id="1ec857bd-249d-808e-b983-e9f0c4300c01" class="bulleted-list"><li style="list-style-type:circle">Verknüpft die Tabelle <code>religion</code> mit der Tabelle <code>country</code>, sodass jede Religion einem Land zugeordnet wird.</li></ul></li></ul><ul id="1ec857bd-249d-8061-b283-c0b2f851c4c8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>GROUP BY c2.Name</strong></code><strong>:</strong><ul id="1ec857bd-249d-8030-93d3-ed8398a5ae72" class="bulleted-list"><li style="list-style-type:circle">Gruppiert die Daten nach Ländern (<code>c2.Name</code>), sodass die Anzahl der Religionen (<code>COUNT(r2.Name)</code>) für jedes Land berechnet werden kann.</li></ul></li></ul><ul id="1ec857bd-249d-8000-ab6c-ec433f48ddd6" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispielergebnis:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8094-b7df-ea4a196741f1" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">c2.Name       | religion_count
+------------------------------
+Germany       | 2
+France        | 3
+United States | 4
+</code></pre></li></ul><hr id="1ec857bd-249d-8053-9162-dcaab8a3a96c"/><h3 id="1ec857bd-249d-80b0-979d-fe7d2468e45e" class=""><strong>2.2. Äußere Unterabfrage:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8024-b716-e2a6d5e45e0a" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT MAX(religion_count)
+FROM (
+    SELECT c2.Name, COUNT(r2.Name) AS religion_count
+    FROM religion r2
+    INNER JOIN country c2 ON r2.Country = c2.Code
+    GROUP BY c2.Name
+) AS countRel
+</code></pre><ul id="1ec857bd-249d-80c1-b151-e78eda038b7f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>MAX(religion_count)</strong></code><strong>:</strong><ul id="1ec857bd-249d-80c6-b505-dbc8b9a063ad" class="bulleted-list"><li style="list-style-type:circle">Berechnet die maximale Anzahl von Religionen aus den Ergebnissen der inneren Unterabfrage.</li></ul><ul id="1ec857bd-249d-8012-aa9a-ea87a572c111" class="bulleted-list"><li style="list-style-type:circle">Beispielergebnis: <code>4</code> (United States hat die meisten Religionen).</li></ul></li></ul><hr id="1ec857bd-249d-8044-b6c2-dfe6296c871c"/><h3 id="1ec857bd-249d-8004-b8af-f404cca6ca24" class=""><strong>3. Rückkehr zur Hauptabfrage:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8017-8349-e8152f8dc594" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT c.Name, COUNT(r.Name) AS religion_count
+FROM religion r
+INNER JOIN country c ON r.Country = c.Code
+GROUP BY c.Name
+HAVING COUNT(r.Name) IN (...)
+</code></pre><ul id="1ec857bd-249d-80ee-9a42-d49b42df2a94" class="bulleted-list"><li style="list-style-type:disc"><code><strong>HAVING COUNT(r.Name) IN (...)</strong></code><strong>:</strong><ul id="1ec857bd-249d-801a-a130-ea3b67e0da79" class="bulleted-list"><li style="list-style-type:circle">Filtert die Länder, deren Anzahl an Religionen (<code>COUNT(r.Name)</code>) gleich der maximalen Anzahl ist, die von der Unterabfrage zurückgegeben wurde.</li></ul><ul id="1ec857bd-249d-8090-aeb3-d1efe0b9c629" class="bulleted-list"><li style="list-style-type:circle">Beispiel: Nur Länder mit <code>religion_count = 4</code> werden ausgewählt.</li></ul></li></ul><hr id="1ec857bd-249d-8083-ad1b-fb19ba5de160"/><h3 id="1ec857bd-249d-8026-a36d-f5c401176ba5" class=""><strong>Beispiel-Daten und Ergebnis</strong></h3><h3 id="1ec857bd-249d-80fd-a8f0-df96710c8f34" class=""><strong>Tabellen:</strong></h3><p id="1ec857bd-249d-8030-a396-e59ed0810dd7" class=""><code><strong>country</strong></code></p><table id="1ec857bd-249d-8052-a09e-ef95b8e8a3e8" class="simple-table"><tbody><tr id="1ec857bd-249d-80e3-b3ab-fee9fd13c23d"><td id=";=iQ" class="">Code</td><td id="\AL]" class="">Name</td></tr><tr id="1ec857bd-249d-806b-9454-e0d6d6a57f27"><td id=";=iQ" class="">DEU</td><td id="\AL]" class="">Germany</td></tr><tr id="1ec857bd-249d-8076-b21e-e35b8174c6b0"><td id=";=iQ" class="">FRA</td><td id="\AL]" class="">France</td></tr><tr id="1ec857bd-249d-80a1-9e9b-d4339f6c33d6"><td id=";=iQ" class="">USA</td><td id="\AL]" class="">United States</td></tr></tbody></table><p id="1ec857bd-249d-8052-baeb-e2ebae5fd336" class=""><code><strong>religion</strong></code></p><table id="1ec857bd-249d-80b8-9ce0-c07029bdd193" class="simple-table"><tbody><tr id="1ec857bd-249d-80fb-a079-fb1da91f3b9c"><td id="nV[n" class="">Country</td><td id="]&lt;Qf" class="">Name</td></tr><tr id="1ec857bd-249d-8095-aa59-c2661e97cf2b"><td id="nV[n" class="">DEU</td><td id="]&lt;Qf" class="">Christianity</td></tr><tr id="1ec857bd-249d-805c-b626-fad6b8502e4f"><td id="nV[n" class="">DEU</td><td id="]&lt;Qf" class="">Islam</td></tr><tr id="1ec857bd-249d-80e5-948e-fc0f7ce5bb7c"><td id="nV[n" class="">FRA</td><td id="]&lt;Qf" class="">Christianity</td></tr><tr id="1ec857bd-249d-80a3-8d79-e6fae34c5f96"><td id="nV[n" class="">FRA</td><td id="]&lt;Qf" class="">Islam</td></tr><tr id="1ec857bd-249d-80f8-a929-d580cd69a4ea"><td id="nV[n" class="">FRA</td><td id="]&lt;Qf" class="">Judaism</td></tr><tr id="1ec857bd-249d-8059-b2f6-e270192b587c"><td id="nV[n" class="">USA</td><td id="]&lt;Qf" class="">Christianity</td></tr><tr id="1ec857bd-249d-8011-a8aa-f8800f1808cc"><td id="nV[n" class="">USA</td><td id="]&lt;Qf" class="">Islam</td></tr><tr id="1ec857bd-249d-807a-b511-f56723c57b50"><td id="nV[n" class="">USA</td><td id="]&lt;Qf" class="">Judaism</td></tr><tr id="1ec857bd-249d-80ec-b0e9-c4b99427cde8"><td id="nV[n" class="">USA</td><td id="]&lt;Qf" class="">Buddhism</td></tr></tbody></table><hr id="1ec857bd-249d-8079-9357-c322d682bd18"/><h3 id="1ec857bd-249d-80c5-bd74-ff7d5247000f" class=""><strong>Ergebnisse der Abfrage:</strong></h3><ol type="1" id="1ec857bd-249d-8042-99a9-c2575a74456a" class="numbered-list" start="1"><li><strong>Innere Unterabfrage:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8082-8042-d5f6049fc70a" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">c2.Name       | religion_count
+------------------------------
+Germany       | 2
+France        | 3
+United States | 4
+</code></pre></li></ol><ol type="1" id="1ec857bd-249d-805f-b5de-eac201422db6" class="numbered-list" start="2"><li><strong>Äußere Unterabfrage:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-8041-a750-ca3c4b90ee42" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">MAX(religion_count) = 4
+</code></pre></li></ol><ol type="1" id="1ec857bd-249d-802a-9002-d90196e6ced7" class="numbered-list" start="3"><li><strong>Hauptabfrage:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ec857bd-249d-80fa-bdd1-eda8180f22b2" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Name           | religion_count
+-------------------------------
+United States  | 4
+</code></pre></li></ol><hr id="1ec857bd-249d-800a-96d8-ebc939fdf912"/><h3 id="1ec857bd-249d-806b-8517-de56bd7c625b" class=""><strong>Zusammenfassung:</strong></h3><ol type="1" id="1ec857bd-249d-80ad-a6f8-dadf310a8374" class="numbered-list" start="1"><li>Die Hauptabfrage zählt die Anzahl der Religionen pro Land.</li></ol><ol type="1" id="1ec857bd-249d-8024-963c-c38b7e839af1" class="numbered-list" start="2"><li>Die innere Unterabfrage berechnet die Anzahl der Religionen für jedes Land.</li></ol><ol type="1" id="1ec857bd-249d-80a3-b182-dd19eaa47b21" class="numbered-list" start="3"><li>Die äußere Unterabfrage findet die maximale Anzahl von Religionen.</li></ol><ol type="1" id="1ec857bd-249d-80af-8f69-d7f8a7eb154b" class="numbered-list" start="4"><li>Die Hauptabfrage filtert Länder, deren Anzahl an Religionen gleich der maximalen Anzahl ist.</li></ol><hr id="1ec857bd-249d-8070-b72e-cf2a6591dd76"/><h3 id="1ec857bd-249d-8090-baf9-c9aa8ed486b3" class="">Die Erklärung (leicht angepasst):</h3><ol type="1" id="1ec857bd-249d-807f-b52f-f79c2111d8fb" class="numbered-list" start="1"><li><strong>Das erste </strong><code><strong>SELECT</strong></code><strong>:</strong><ul id="1ec857bd-249d-804d-94ca-cabac0bf2f3e" class="bulleted-list"><li style="list-style-type:disc">&quot;Ich möchte alle Länder mit der zusammengezählten Anzahl an Religionen haben.&quot;</li></ul><ul id="1ec857bd-249d-807b-a4c7-f840513eccff" class="bulleted-list"><li style="list-style-type:disc">Das passiert durch <code>COUNT(r.Name)</code> in der Hauptabfrage, die die Religionen pro Land zählt.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-808e-ad45-e538d1681dc0" class="numbered-list" start="2"><li><strong>Das </strong><code><strong>HAVING</strong></code><strong>:</strong><ul id="1ec857bd-249d-8033-8a64-f35b3a9d36b7" class="bulleted-list"><li style="list-style-type:disc">&quot;Ich möchte nur die Länder, deren Anzahl an Religionen gleich der maximalen Anzahl an Religionen ist.&quot;</li></ul><ul id="1ec857bd-249d-80db-a321-faa5ceaaf4bf" class="bulleted-list"><li style="list-style-type:disc">Die Bedingung im <code>HAVING</code>Teil (<code>HAVING COUNT(r.Name) IN (...)</code>) sorgt dafür, dass nur Länder mit der höchsten Anzahl an Religionen ausgewählt werden.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-80dd-b0de-fc7001e2cee1" class="numbered-list" start="3"><li><strong>Die Tabelle </strong><code><strong>countRel</strong></code><strong>:</strong><ul id="1ec857bd-249d-8025-95d3-cfaeb56ab0c3" class="bulleted-list"><li style="list-style-type:disc">Diese Tabelle (aus der inneren Unterabfrage) enthält alle Länder mit der zusammengezählten Anzahl an Religionen.</li></ul><ul id="1ec857bd-249d-80fe-81cf-cbe0a8ea6c96" class="bulleted-list"><li style="list-style-type:disc">Beispiel: <code>Germany = 2</code>, <code>France = 3</code>, <code>United States = 4</code>.</li></ul></li></ol><ol type="1" id="1ec857bd-249d-8085-aac1-cde7e7a06854" class="numbered-list" start="4"><li><strong>Das zweite </strong><code><strong>SELECT</strong></code><strong>:</strong><ul id="1ec857bd-249d-8009-b1c3-c8134476f335" class="bulleted-list"><li style="list-style-type:disc">&quot;Finde die maximale Anzahl an Religionen aus der Tabelle <code>countRel</code>.&quot;</li></ul><ul id="1ec857bd-249d-80c0-ba8d-c21cfd4faece" class="bulleted-list"><li style="list-style-type:disc">Das passiert durch <code>MAX(religion_count)</code> in der äußeren Unterabfrage.</li></ul></li></ol><hr id="1ec857bd-249d-80d8-b731-c50bf38350bc"/><h3 id="1ec857bd-249d-803a-a626-cba5ac7c4e20" class=""><strong>Zusammenfassung:</strong></h3><p id="1ec857bd-249d-80ef-8f69-cb8ca57e931e" class="">Deine Erklärung ist fast korrekt, aber der Fokus liegt darauf, dass die innere Unterabfrage (<code>countRel</code>) zuerst die Anzahl der Religionen pro Land berechnet und die äußere Unterabfrage dann die maximale Anzahl dieser Religionen findet. Das <code>HAVING</code> filtert schließlich die Länder, die diese maximale Anzahl haben.</p><hr id="1ec857bd-249d-8068-b5eb-c941f52e49c4"/></div></div><p id="1ec857bd-249d-8062-a126-c54c618c791b" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

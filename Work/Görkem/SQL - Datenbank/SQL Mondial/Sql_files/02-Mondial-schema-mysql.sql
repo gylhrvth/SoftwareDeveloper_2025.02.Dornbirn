@@ -1,4 +1,4 @@
-/* SET SESSION sql_mode='ANSI,ORACLE'; */
+-- SET SESSION sql_mode='ANSI,ORACLE';
 
 DROP DATABASE IF EXISTS Mondial;
 
