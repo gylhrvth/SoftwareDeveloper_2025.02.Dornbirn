@@ -57,6 +57,8 @@
     <h1 class="textColor01">SQL Journal 01</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day50">FR 08/05/25</a>: SQL (Insert/Update/Delete)</h3>
+    <h3 class="textColor01">▷ <a href="#day49">DO 08/05/25</a>: SQL (Insert/Update/Delete)</h3>
     <h3 class="textColor01">▷ <a href="#day48">MI 07/05/25</a>: SQL (Select)</h3>
     <h3 class="textColor01">▷ <a href="#day47">DI 06/05/25</a>: SQL (Select)</h3>
     <h3 class="textColor01">▷ <a href="#day46">MO 05/05/25</a>: SQL (Basics)</h3>
@@ -66,9 +68,418 @@
     <br>
     <br>
 
+    <h2 id="day50">Freitag 09. Mai 2025</h2>
+
+    <p><em>Heute nicht anwesend im Kurs. Am Abend Übung mit Datenbank Erstellung.</em></p>
+
+    <h2 id="day49">Donnerstag 08. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL (CREATE TABLE)</h3>
+
+    <h4 class="textColor01">Recherche (Data Definition Language):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was ist eine Tabelle?</h4></li>
+        <p>Eine Tabelle ist eine strukturierte Sammlung von Daten, die in Zeilen und Spalten organisiert ist.
+        Jede Zeile repräsentiert einen Datensatz, während jede Spalte ein bestimmtes Attribut oder eine Eigenschaft des Datensatzes darstellt.</p>
+
+        <li><h4 class="textColor02">Was ist eine Spalte?</h4></li>
+        <p>Eine Spalte ist ein vertikales Element in einer Tabelle, das eine bestimmte Art von Daten speichert.
+        Jede Spalte hat einen Namen und einen Datentyp, der angibt, welche Art von Werten in dieser Spalte gespeichert werden können.</p>
+        
+        <li><h4 class="textColor02">Was ist eine Zeile?</h4></li>
+        <p>Eine Zeile ist ein horizontales Element in einer Tabelle, das einen einzelnen Datensatz darstellt.
+        Jede Zeile besteht aus Werten, die den Spalten der Tabelle entsprechen.</p>
+        
+        <li><h4 class="textColor02">Welche Datentypen existieren in MySQL?</h4></li>
+        <p>In MySQL gibt es verschiedene Datentypen, darunter:</p>
+        <ul>
+            <li><strong>INT</strong>: Ganzzahlige Werte</li>
+            <li><strong>FLOAT</strong>: Gleitkommazahlen</li>
+            <li><strong>DOUBLE</strong>: Doppelt präzise Gleitkommazahlen</li>
+            <li><strong>CHAR(n)</strong>: Feste Länge von n Zeichen</li>
+            <li><strong>VARCHAR(n)</strong>: Variable Länge von bis zu n Zeichen</li>
+            <li><strong>DATE</strong>: Datumswerte</li>
+            <li><strong>DATETIME</strong>: Datum und Uhrzeit</li>
+            <li><strong>BOOLEAN</strong>: Wahrheitswerte (true/false)</li>
+        </ul>
+        <p>Es gibt auch viele andere Datentypen, die für spezifische Anforderungen verwendet werden können.</p>
+        
+        <li><h4 class="textColor02">Welche sind die wichtigste 3-4 Datentypen?</h4></li>
+        <p>Die wichtigsten Datentypen in MySQL sind:</p>
+        <ul>
+            <li><strong>INT</strong>: Für ganze Zahlen, z.B. für IDs oder Zähler.</li>
+            <li><strong>VARCHAR(n)</strong>: Für variable Zeichenfolgen, z.B. für Namen oder Adressen.</li>
+            <li><strong>DATE</strong>: Für Datumswerte, z.B. für Geburtsdaten oder Transaktionsdaten.</li>
+            <li><strong>BOOLEAN</strong>: Für Wahrheitswerte, z.B. für Statusanzeigen (aktiv/inaktiv).</li>
+        
+        <li><h4 class="textColor02">Was ist ein Primärschlüssel?</h4></li>
+        <p>Ein Primärschlüssel ist eine spezielle Spalte (oder eine Kombination von Spalten), die jede Zeile in einer Tabelle eindeutig identifiziert.
+        Er stellt sicher, dass keine zwei Zeilen denselben Wert im Primärschlüssel haben und wird häufig verwendet, um Beziehungen zwischen Tabellen herzustellen.</p>
+        <p>Beispiel:</p>
+        <p>CREATE TABLE city (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Country VARCHAR(50),<br>
+            Province VARCHAR(50),<br>
+            Population INT,<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT<br>
+        );
+        </p>
+
+        <p>In diesem Beispiel ist die Spalte "ID" der Primärschlüssel der Tabelle "city".</p>
+        
+        <li><h4 class="textColor02">Wie erstellt man eine Beziehung zwischen die Tabellen?</h4></li>
+        <p>Eine Beziehung zwischen Tabellen wird in der Regel durch die Verwendung von Primär- und Fremdschlüsseln hergestellt.
+        Ein Primärschlüssel in einer Tabelle kann als Fremdschlüssel in einer anderen Tabelle verwendet werden, um eine Verbindung zwischen den beiden Tabellen herzustellen.</p>
+        <p>Beispiel:</p>
+        <p>CREATE TABLE country (<br>
+            Code VARCHAR(3) PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Population INT<br>
+        );<br><br>
+        CREATE TABLE city (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Country VARCHAR(3),<br>
+            Province VARCHAR(50),<br>
+            Population INT,<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT,<br>
+            FOREIGN KEY (Country) REFERENCES country(Code)<br>
+        );</p>
+        <p>In diesem Beispiel ist die Spalte "Country" in der Tabelle "city" ein Fremdschlüssel, der auf die Spalte "Code" in der Tabelle "country" verweist.</p>
+
+        <li><h4 class="textColor02">Was ist ein Fremdschlüssel? Was bedeutet ein Fremdschlüssel zu haben?</h4></li>
+        <p>Ein Fremdschlüssel ist eine Spalte (oder eine Kombination von Spalten) in einer Tabelle, die auf den Primärschlüssel einer anderen Tabelle verweist.
+        Er wird verwendet, um Beziehungen zwischen Tabellen herzustellen und sicherzustellen, dass die referenzierten Werte in der anderen Tabelle vorhanden sind.</p>
+        <p>Ein Fremdschlüssel stellt sicher, dass die referenzierten Daten konsistent und gültig sind.
+        Wenn ein Fremdschlüssel definiert ist, kann die Datenbank sicherstellen, dass keine Zeilen in der Tabelle mit einem Fremdschlüssel existieren, die auf nicht vorhandene Zeilen in der referenzierten Tabelle verweisen.</p>
+
+        <p>Beispiel:</p>
+        <p>CREATE TABLE mountain (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Height INT,<br>
+            Type VARCHAR(50),<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT<br>
+        );<br><br>
+        CREATE TABLE geo_mountain (<br>
+            ID INT PRIMARY KEY,<br>
+            Mountain VARCHAR(50),<br>
+            Country VARCHAR(3),<br>
+            Province VARCHAR(50),<br>
+            FOREIGN KEY (Mountain) REFERENCES mountain(Name)<br>
+        );</p>
+        <p>In diesem Beispiel ist die Spalte "Mountain" in der Tabelle "geo_mountain" ein Fremdschlüssel, der auf die Spalte "Name" in der Tabelle "mountain" verweist.</p>
+
+        <li><h4 class="textColor02">Was ist die Normalization in SQL? Warum ist es wichtig?</h4></li>
+        <p>Die Normalisierung in SQL ist der Prozess, bei dem Daten in einer Datenbank so organisiert werden, dass Redundanz minimiert und die Datenintegrität maximiert wird.
+        Dies geschieht durch die Aufteilung von Daten in mehrere Tabellen und die Definition von Beziehungen zwischen diesen Tabellen.</p>
+        <p>Die Normalisierung ist wichtig, weil sie hilft, Datenanomalien zu vermeiden, die Konsistenz der Daten zu gewährleisten und die Effizienz von Abfragen zu verbessern.
+        Durch die Normalisierung wird auch der Speicherplatz optimiert, da redundante Daten vermieden werden.</p>
+        <p>Es gibt mehrere Normalformen (1NF, 2NF, 3NF usw.), die jeweils spezifische Regeln und Anforderungen für die Organisation von Daten in einer Datenbank definieren.</p>
+
+        <li><h4 class="textColor02">Wie kann man entscheiden, was kommt in eine Tabelle oder was muss separat angelegt werden?</h4></li>
+        <p>Die Entscheidung, was in eine Tabelle aufgenommen werden soll und was separat angelegt werden sollte, hängt von mehreren Faktoren ab:</p>
+        <ul>
+            <li><strong>Redundanz vermeiden:</strong> Wenn Daten redundant sind und in mehreren Tabellen gespeichert werden könnten, sollten sie in separaten Tabellen organisiert werden.</li>
+            <li><strong>Beziehungen definieren:</strong> Wenn es eine Beziehung zwischen zwei Datensätzen gibt, sollten sie in separaten Tabellen organisiert werden, um die referenzielle Integrität zu gewährleisten.</li>
+            <li><strong>Datenintegrität:</strong> Wenn bestimmte Daten nur in einer bestimmten Tabelle gültig sind, sollten sie dort gespeichert werden.</li>
+            <li><strong>Abfrageeffizienz:</strong> Wenn häufige Abfragen auf bestimmte Daten erforderlich sind, sollten diese Daten in einer Tabelle organisiert werden, um die Abfrageeffizienz zu verbessern.</li>
+            <li><strong>Normalisierung:</strong> Die Normalisierung hilft, die Struktur der Datenbank zu bestimmen und zu entscheiden, welche Daten in separaten Tabellen organisiert werden sollten.</li>
+        </ul>
+
+        <p>Beispiel:</p>
+        <p>Wenn wir eine Tabelle für "Kunden" haben, die Informationen wie Name, Adresse und Telefonnummer enthält, sollten wir eine separate Tabelle für "Bestellungen" erstellen, die auf den Primärschlüssel der "Kunden"-Tabelle verweist.
+        Auf diese Weise können wir die Bestellungen eines Kunden verfolgen, ohne redundante Daten in der "Kunden"-Tabelle zu speichern.</p>
+        
+        <li><h4 class="textColor02">Was ist ein Index?</h4></li>
+        <p>Ein Index ist eine Datenstruktur, die verwendet wird, um den Zugriff auf Daten in einer Tabelle zu beschleunigen.
+        Er funktioniert ähnlich wie ein Inhaltsverzeichnis in einem Buch, das es ermöglicht, schnell zu bestimmten Informationen zu gelangen, ohne die gesamte Tabelle durchsuchen zu müssen.</p>
+        <p>Ein Index wird auf einer oder mehreren Spalten einer Tabelle erstellt und ermöglicht es der Datenbank, Abfragen schneller auszuführen, indem er die Suche nach bestimmten Werten optimiert.</p>
+        <p>Beispiel:</p>
+        <p>CREATE INDEX idx_city_name ON city(Name);<br>
+        In diesem Beispiel wird ein Index auf der Spalte "Name" der Tabelle "city" erstellt, um die Suche nach Städtenamen zu beschleunigen.</p>
+
+        <li><h4 class="textColor02">Wann soll ich ein Index verwenden / vermeiden?</h4></li>
+        <p>Ein Index sollte verwendet werden, wenn:</p>
+        <ul>
+            <li>Häufige Abfragen auf bestimmten Spalten durchgeführt werden.</li>
+            <li>Die Tabelle groß ist und die Suche nach bestimmten Werten optimiert werden muss.</li>
+            <li>Die Daten in der Tabelle häufig aktualisiert oder gelöscht werden.</li>
+        </ul>
+    
+    </ul>
+
+    <h4 class="textColor01">Recherche (Datenbank Administration):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was sind die DB Benutzer und wo sind sie gespeichert?</h4></li>
+        <p>DB-Benutzer sind Konten, die Zugriff auf eine Datenbank haben und Berechtigungen zum Ausführen von Abfragen, Einfügen, Aktualisieren oder Löschen von Daten haben.
+        Sie sind in der Regel in einer speziellen Systemtabelle gespeichert, die von der Datenbankverwaltung verwaltet wird.</p>
+        <p>In MySQL werden Benutzer in der Tabelle "mysql.user" gespeichert, die Informationen wie Benutzernamen, Host, Passwort und Berechtigungen enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host FROM mysql.user;</p>
+        <p>In diesem Beispiel werden alle Benutzer und ihre zugehörigen Hosts aus der Tabelle "mysql.user" abgerufen.</p>
+
+        <li><h4 class="textColor02">Wie erstellt man einen neuen Benutzer?</h4></li>
+        <p>Ein neuer Benutzer kann mit dem Befehl "CREATE USER" erstellt werden.</p>
+        <p>Beispiel:</p>
+        <p>CREATE USER 'newuser'@'localhost
+        IDENTIFIED BY 'password';</p>
+        <p>In diesem Beispiel wird ein neuer Benutzer "new
+        user" mit dem Passwort "password" erstellt, der nur von "localhost" aus auf die Datenbank zugreifen kann.</p>
+
+        <li><h4 class="textColor02">Wo sind Server Rollen gespeichert?</h4></li>
+        <p>Serverrollen sind Gruppen von Berechtigungen, die mehreren Benutzern zugewiesen werden können, um den Zugriff auf Datenbanken zu steuern.
+        Sie sind in der Regel in speziellen Systemtabellen gespeichert, die von der Datenbankverwaltung verwaltet werden.</p>
+        <p>In MySQL werden Serverrollen in der Tabelle "mysql.roles_mapping" gespeichert, die Informationen über die Zuordnung von Rollen zu Benutzern enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host, Role FROM mysql.roles_mapping;</p>
+        <p>In diesem Beispiel werden alle Benutzer, Hosts und zugehörigen Rollen aus der Tabelle "mysql.roles_mapping" abgerufen.</p>
+
+        <li><h4 class="textColor02">Wo sind Datenbank Berechtigungen gespeichert?</h4></li>
+        <p>Datenbankberechtigungen sind spezifische Berechtigungen, die Benutzern oder Rollen für den Zugriff auf bestimmte Datenbanken und deren Objekte zugewiesen werden.
+        Sie sind in der Regel in speziellen Systemtabellen gespeichert, die von der Datenbankverwaltung verwaltet werden.</p>
+        <p>In MySQL werden Datenbankberechtigungen in der Tabelle "mysql.db" gespeichert, die Informationen über die Berechtigungen für jede Datenbank enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host, Db, Select_priv, Insert_priv, Update_priv FROM mysql.db;</p>
+        <p>In diesem Beispiel werden alle Benutzer, Hosts, Datenbanken und deren Berechtigungen aus der Tabelle "mysql.db" abgerufen.</p>
+        
+    </ul>
+
+    <h3 class="textColor01">SQL (INSERT, UPDATE, DELETE)</h3>
+
+    <h4 class="textColor01">Recherche (INSERT/UPDATE/DELETE):</h4>
+
+    <ul>
+
+    <li><h4 class="textColor02">Wie funktioniert INSERT INTO Statement?</h4></li>
+    <p>Das INSERT INTO Statement wird verwendet, um neue Datensätze in eine Tabelle einzufügen. 
+        Es fügt eine oder mehrere Zeilen in eine Tabelle ein, indem es die Werte für die Spalten angibt.</p>
+    <p>INSERT INTO hat die folgende Struktur:</p>
+    <p>table_name (column1, column2, column3, ...)<br>
+       VALUES (value1, value2, value3, ...);</p>
+    <p>Beispiel:</p>
+    <p>INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+       VALUES ('Girona', 'E', 'El Gironès', 106476, 2.8249, 41.9831);</p>
+   
+       <li><h4 class="textColor02">Wie funktioniert UPDATE Statement?</h4></li>
+       <p>Das UPDATE Statement wird verwendet, um bestehende Datensätze in einer Tabelle zu ändern. 
+        Es aktualisiert die Werte in einer oder mehreren Spalten für alle Zeilen, die den angegebenen Bedingungen entsprechen.</p>  
+        <p>UPDATE hat die folgende Struktur:</p>
+        <p>UPDATE table_name<br>
+           SET column1 = value1, column2 = value2, ...<br>
+           WHERE condition;</p>
+
+        <p>Beispiel:</p>
+        <p>UPDATE city<br>
+           SET Population = 16<br>
+           WHERE name = 'Girona';</p>
+
+        <li><h4 class="textColor02">Wie funktioniert DELETE Statement?</h4></li>
+        <p>Das DELETE Statement wird verwendet, um Datensätze aus einer Tabelle zu löschen.
+        Es entfernt eine oder mehrere Zeilen aus einer Tabelle, die den angegebenen Bedingungen entsprechen.</p>
+        <p>DELETE hat die folgende Struktur:</p>
+        <p>DELETE FROM table_name<br>
+           WHERE condition;</p>
+        <p>Beispiel:</p>
+        <p>DELETE FROM city<br>
+           WHERE name = 'Girona' AND Province = 'El Gironès';</p>
+
+    </ul>
+    <br>
+    <h4 id="sqlAufgabe03">‼️➡️ Aufgaben:</h4>
+
+    <ul>
+        
+        <li><h4 class="textColor02">Erstelle eine neue Stadt in der Mondial Datenbank</h4></li>
+        <p>SELECT * FROM city WHERE country = 'A';<br>
+           INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+           VALUES ('Panchotown', 'A', 'Vorarlberg', 273, 24.62675, 40.56986);</p>
+
+        <li><h4 class="textColor02">Umbennene die Stadt</h4></li>
+        <p>UPDATE city<br>
+           SET Name = 'Panchoville'<br>
+           WHERE Name = 'Panchotown';</p>
+
+        <li><h4 class="textColor02">Lösche die von dir erstellten Stadt</h4></li>
+        <p>DELETE FROM city<br>
+           WHERE Name = 'Panchoville' AND Province = 'Vorarlberg';</p>
+
+        <li><h4 class="textColor02">Erstelle einen neuen Berg (mountain und geo_mountain Tabellen)</h4></li>
+        <p>SELECT * FROM mountain;<br>
+            INSERT INTO mountain (Name, Mountains, Height, Type, Longitude, Latitude)<br>
+            VALUES ('Panchitosspitze', 'Panchitos Alpen', '4123', 'karstik', '9.6', '47.5');</p>
+        <p>SELECT * FROM geo_mountain;<br>
+            INSERT INTO geo_mountain (Mountain, Country, Province)<br>
+            VALUES ('Panchitosspitze', 'A', 'Vorarlberg');</p>
+
+        <li><h4 class="textColor02">Mach dein Berg größer</h4></li>
+
+        <p>
+            UPDATE mountain<br>
+            SET Height = '4737'<br>
+            WHERE Name = 'Panchitosspitze';<br>
+        </p>
+
+        <li><h4 class="textColor02">Lösche die von dir erstellten Berg (mountain und geo_mountain Tabellen)</h4></li>
+
+            DELETE FROM mountain <br>
+            WHERE Name = 'Panchitosspitze';<br>
+            <br>
+            DELETE FROM geo_mountain <br>
+            WHERE Mountain = 'Panchitosspitze';<br>
+
+    </ul>
+    <br>
+
+
+    <h4 class="textColor01">-> Gyulas Erklärung:</h4>
+
+    <p>
+        SELECT * FROM city WHERE country = 'A';<br>
+
+        INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+        VALUES ('Loreville', 'A', 'Vorarlberg', 12, 14.12345, 40.56789);<br><br>
+
+        UPDATE city<br>
+        SET Population = 16<br>
+        WHERE name = 'Loreville'<br><br>
+
+        DELETE FROM city WHERE name = 'Loreville' AND Province = 'Wonderland'<br>
+    </p>
+    <br>
+    <h4 class="textColor01">-> Meine Beispiele:</h4>
+        <p>
+            <h4>Stadt 'Girona' INSERT/UPDATE:</h4>
+
+            SELECT * FROM city WHERE country = 'E';<br>
+            INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+            VALUES ('Girona', 'E', 'El Gironès','106476', '2.8249', '41.9831');<br><br>
+
+            SELECT * FROM city <br>
+            WHERE Name = 'Girona';<br><br>
+
+            UPDATE city <br>
+            SET Population = 106477<br>
+            WHERE Name = 'Girona'<br>
+
+            <h4>Stadt 'Groovyville' INSERT/UPDATE/DELETE:</h4>
+
+            SELECT * FROM city WHERE country = 'AND';<br>
+            INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+            VALUES ('Groovyville', 'AND', 'Andorra', '1649', '1.2', '42.4')<br><br>
+
+            SELECT * FROM city<br>
+            WHERE country = 'AND'<br><br>
+
+            UPDATE city <br>
+            SET Province = 'Dimension XY-Pi'<br>
+            WHERE Name = 'Groovyville';<br><br>
+
+            DELETE FROM city WHERE name = 'Groovyville' AND Province = 'Dimension XY-Pi';
+
+        </p>
+        <br>
+
+        <h4 id="sqlAufgabe04">‼️➡️ Aufgaben -> Datenbank 'Mitarbeiter' erstellen:</h4>
+    
+        <ul>
+            <li><strong>Step 01:</strong> Datenbank erstellen<br><br>
+                CREATE DATABASE Mitarbeiter;<br>
+                USE Mitarbeiter;<br><br></li>
+            <li><strong>Step 02:</strong> Benutzer erstellen und Berechtigungen zuweisen<br><br>
+                CREATE USER 'deinBenutzername'@'localhost' IDENTIFIED BY 'deinPasswort';<br>
+                GRANT ALL PRIVILEGES ON Mondial.* TO 'deinBenutzername'@'localhost';<br>
+                GRANT ALL PRIVILEGES ON Mitarbeiter.* TO 'deinBenutzername'@'localhost';<br>
+                FLUSH PRIVILEGES;<br><br></li>
+            </li>
+            <li><strong>Step 03:</strong> Anmeldung mit dem neuen Benutzername<br>
+            <p>In DBeaver, neue Verbindung erstellen:</p>
+            <ul>
+                <li>Auf 'New Database Connection' clicken (+ Symbol)</li>
+                <li>MySQL als Treiber aus der Datenbanken-Liste wählen </li>
+                <li>Hostname: localhost</li>
+                <li>Port: 3306</li>
+                <li>Username: deinBenutzername</li>
+                <li>Password: deinPasswort</li>
+                <li>Database: Mitarbeiter</li>
+                <li>Testen und speichern.</li>
+                <li>Verbinden.</li>
+            </ul>
+    
+            <p>Zusätzliche Hinweise: </p>
+            <ul>
+                <li>Falls 'Public Key Retrieval is not allowed' Fehler auftritt -><br>
+                <li>In DBeaver, beim Database Navigator (linkes Fenster), rechtsclick auf die aktuelle Verbindung (Mitarbeiter in dem Beispiel)</li>
+                <li>Edit Connection wählen</li>
+                <li>In dem neuen Fenster, auf 'Driver Properties' Tab klicken</li>
+                <li>Scrollen und 'allowPublicKeyRetrieval' auf 'true' setzen.</li>
+                <li>Auf 'OK' klicken und die Verbindung erneut testen.</li> 
+            
+            </ul>
+            
+            
+            </li>
+            <br>
+            <li><strong>Step 04:</strong> Tabelle Beruf erstellen<br><br>
+                CREATE TABLE Beruf (<br>
+                Beruf_ID INT AUTO_INCREMENT PRIMARY KEY,<br>
+                Beruf_Name VARCHAR(100) NOT NULL,<br>
+                Beruf_Beschreibung TEXT<br>
+                );<br><br></li>
+    
+            <li><strong>Step 05:</strong> Tabelle Person erstellen<br><br>
+                CREATE TABLE Person (<br>
+                Person_ID INT AUTO_INCREMENT PRIMARY KEY,<br>
+                Person_Vorname VARCHAR(100) NOT NULL,<br>
+                Person_Nachname VARCHAR(100) NOT NULL,<br>
+                Person_Beruf_ID INT,<br>
+                FOREIGN KEY (Person_Beruf_ID) REFERENCES Beruf(Beruf_ID)<br>
+                );<br><br></li>
+    
+            <li><strong>Step 06:</strong> Daten einfügen (Beruf)<br><br>
+                INSERT INTO <br>Beruf (Beruf_Name, Beruf_Beschreibung)<br><br>
+                VALUES <br>('Softwareentwickler', 'Entwicklung von Softwarelösungen'),<br>
+                ('Datenbankadministrator', 'Verwaltung von Datenbanken'),<br>
+                ('Systemanalytiker', 'Analyse und Design von Systemen');<br><br></li>
+    
+            <li><strong>Step 07:</strong> Daten einfügen (Person)<br><br>
+                INSERT INTO <br>Person (Person_Vorname, Person_Nachname, Person_Beruf_ID)<br><br>
+                VALUES <br>('Max', 'Mustermann', 1),<br>
+                ('Anna', 'Müller', 2),<br>
+                ('Peter', 'Schmidt', 3);<br><br></li>
+    
+            <li><strong>Step 08:</strong> Daten abfragen<br><br>
+                SELECT * FROM Person;<br>
+                SELECT * FROM Beruf;<br><br></li>
+    
+            <li><strong>Step 09:</strong>  Dump generieren<br>
+                <p>On DBeaver -> Right Click on the Database -> Tools -> Dump database</p>
+                <p>In der Dump-Datei sind alle Datenbank-Objekte (Tabellen, Views, Stored Procedures, etc.) und deren Daten enthalten.</p>
+                <p>Die Dump-Datei kann verwendet werden, um die Datenbank auf einem anderen Server oder in einer anderen Umgebung wiederherzustellen.</p>
+                <p>Die Dump-Datei enthält auch die Struktur der Datenbank, einschließlich der Definitionen der Tabellen, Spalten und Beziehungen.</p>
+                <p>Die Dump-Datei kann auch verwendet werden, um eine Sicherungskopie der Datenbank zu erstellen, die später wiederhergestellt werden kann.</p>
+    
+                <p>Falls Local Client Configuration notwendig, <em>follow this steps -> </em><a href="https://dbeaver.com/docs/dbeaver/Local-Client-Configuration/#local-client-configuration-for-windows">Link</a></p>
+                <p>In Mac Terminal: find / -name "mysqldump" 2>/dev/null</p>
+                <p>Ergebnis: /usr/local/mysql-9.3.0-macos15-arm64/bin/mysqldump</p>
+                <p>Omit /bin/mysql -> /usr/local/mysql-9.3.0-macos15-arm64/</p>
+                <p>Input path in Local Client Section</p>
+                <p>Dump-Data Setup: <a href="./mitarbeiterDB/Dump_Data_Setup.png">Link (Dump Data)</a></p>
+                <p>Dump-Schema Setup: <a href="./mitarbeiterDB/Dump_Schema_Setup.png">Link (Dump Schema)</a></p>
+            </li>
+            <br>
+    
+        </ul>
+
     <h2 id="day48">Mittwoch 07. Mai 2025</h2>
 
-    <h3 class="textColor01">SQL (Query in Query)</h3>
+    <h3 class="textColor01">SQL (SELECT / Subqueries)</h3>
 
     <p>Beispiel:</p>
 
@@ -111,13 +522,14 @@
 
     <br>
 
+
     <h2 id="day47">Dienstag 06. Mai 2025</h2>
 
-    <h3 class="textColor01">SQL (Select)</h3>
+    <h3 class="textColor01">SQL (SELECT)</h3>
 
     <h4>‼️➡️ Aufgaben:</h4>
 
-    <h4 class="textColor01">-> Kleine Wiederholung:</h4>
+    <h4 class="textColor01" id="sqlAufgabe01">-> Kleine Wiederholung:</h4>
 
     <ol>
         
@@ -172,7 +584,7 @@
 
     <br>
 
-    <h4 class="textColor01">-> Challenge Aufgaben:</h4>
+    <h4 class="textColor01" id="sqlAufgabe02">-> Challenge Aufgaben:</h4>
 
     <p><strong>Database Schema:</strong><a href="https://www.dbis.informatik.uni-goettingen.de/Mondial/mondial-abh.pdf">Link</a></p>
     
@@ -323,14 +735,14 @@
                 <p></p>
 
         <li><h4 class="textColor02">Wie viel Prozent der Menschen leben im Kontinent Europa?</h4></li>
-        <p>Step 01</p>
+        <p><strong>Step 01</strong></p>
         <p>SELECT sum(population) from country;<br>
         SELECT sum(population)<br>
         FROM country<br>
         JOIN encompasses on country.code = encompasses.Country<br>
         WHERE Continent = 'Europe' and Percentage > 50</p>
         
-        <p>Step 02</p>
+        <p><strong>Step 02</strong></p>
         <p>SELECT ROUND(100 * (SELECT sum(population)<br>
              FROM country JOIN encompasses ON country.code = encompasses.Country<br>
         WHERE Continent = 'Europe' AND Percentage > 50) / (SELECT sum(population) FROM country), 2) proc</p>
@@ -1375,9 +1787,9 @@
                     JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
                     JOIN encompasses e ON gm.Country = e.Country<br>
                     WHERE e.Continent = e.Continent AND e.Percentage > 50<br>
-                    group by e.Continent<br>	
+                    GROUP BY e.Continent<br>	
                 ) bigMountain ON e.Continent = bigMountain.Continent AND m.Height = bigMountain.Height<br>
-                WHERE e.Continent = e.Continent AND e.Percentage > 50<br>
+                WHERE e.Percentage > 50<br>
                 ORDER By e.Continent, m.Name<br>
             </p>
 
@@ -1607,7 +2019,7 @@
 
     <br>
 
-    <h3 class="textColor01">SQL (Select) Recherche:</h3>
+    <h3 class="textColor01">SQL (SELECT) Recherche:</h3>
 
     <ul>
 
