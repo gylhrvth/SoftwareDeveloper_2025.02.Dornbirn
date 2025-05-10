@@ -1,29 +1,84 @@
 const express = require('express');
 const app = express();
 require('dotenv').config(); // Lädt Umgebungsvariablen aus .env
+const mysql = require('mysql2')
+
+// MySQL-Datenbankverbindung
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+// Verbindung zur Datenbank herstellen
+db.connect((err) => {
+  if (err) {
+    console.error('Fehler bei der Verbindung zur Datenbank:', err);
+    return;
+  }
+  console.log('Erfolgreich mit der Datenbank verbunden.');
+});
 
 // EJS als Template-Engine setzen
 app.set('view engine', 'ejs');
 
-// Statische Dateien bereitstellen (z. B. CSS, Bilder)
-app.use(express.static('public'));
 
-// Zähler für die Startseite initialisieren
-let homePageCounter = 0;
 
-// Route für die Startseite
+
 app.get('/', (req, res) => {
-  homePageCounter++; // Zähler nur für die Startseite erhöhen
-  res.render('index', { title: 'Startseite', message: 'Willkommen bei EJS!', counter: homePageCounter });
+  res.json({message: 'Hello World!'})
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', { title: 'Über uns', description: 'Dies ist eine Beispielseite.' });
-});
+app.get('/', (req, res) => {
+    db.query('SELECT * from country', (err, rows, fields) => {
+        if (err) throw err
 
-app.use((req, res) => {
-    res.status(404).render('404', { title: 'Seite nicht gefunden' });
-  });
+        res.render('pages/index', {
+            title: 'SQL Example',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+
+app.get('/city', (req, res) => {
+    let name = "%" + req.query.name + "%"
+ 
+    let sqlQueryText = 'select * \
+    from city where name like ?'
+    db.query(sqlQueryText, [name], (err, rows, fields) => {
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'SQL Example',
+            header: fields,
+            content: rows,
+            searchAction: 'city',
+            searchField: 'name'
+        })
+      })
+})
+
+app.get('/country', (req, res) => {
+    let name = "%" + req.query.name + "%"
+ 
+    let sqlQueryText = 'select * \
+    from country where name like ?'
+    db.query(sqlQueryText, [name], (err, rows, fields) => {
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'SQL Example',
+            header: fields,
+            content: rows,
+            searchAction: 'country',
+            searchField: 'name'
+        })
+      })
+}
+)
+
 
 // Console Error für Port nicht gefunden
 if (!process.env.PORT) {
