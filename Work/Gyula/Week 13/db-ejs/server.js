@@ -20,7 +20,6 @@ const connection = mysql.createConnection({
 });
 
 const app = express()
-const port = 3000
 
 app.use(express.static('public')) // Middleware to serve static files
 app.use(express.urlencoded({ extended: true })); // Middleware to parse form data
