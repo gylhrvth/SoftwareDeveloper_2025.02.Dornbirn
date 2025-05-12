@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p><%= description %></p>
+  <form action="/city" method="POST">
+    <label for="cname">City name:</label><br>
+    <input type="text" id="cname" name="cname" value=""><br>
+    <label for="ccountry">Country:</label><br>
+    <input type="text" id="ccountry" name="ccountry" value=""><br><br>
+    <input type="submit" value="Submit">
+  </form> 
+  <a href="/">Zurück zur Startseite</a>
+  <div>
+    <% content.forEach(row => { %>
+      <div>
+        <h2><%= row.name %></h2>
+        <p><%= row.population %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
