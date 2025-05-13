@@ -8,7 +8,7 @@ SQL_SERVER=localhost\n\
 SQL_USER=********\n\
 SQL_PASSWORD=************\n\
 SQL_DATABASE=mondial\n\
-HTTP_PORT')
+HTTP_PORT=3000\n')
     process.exit(1)
   }
 
