@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1><%= title.repeat(5).toUpperCase() %></H1>
+    <h2>Welcome to my page</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, aliquid voluptates omnis dicta vitae perferendis quasi laudantium sequi molestiae ratione. Enim, mollitia. Obcaecati alias at quaerat dolore sapiente unde praesentium.</p>
+    <div>
+        <h2>Meine Freunde</h2>
+        <% names.forEach(person => { %>
+            <p>
+                <b><%= person.name %></b> (<%= person.age %>)
+            </p>
+        <% }) %>
+    </div>
+</body>
+</html>
