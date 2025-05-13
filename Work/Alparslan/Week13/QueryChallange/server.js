@@ -23,15 +23,125 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
-
-app.get('/aufgabe1', (req, res) => {
+// Aufgabe1 Einwohner Österreich 
+app.get('/aufgabe1-EinwohnerAT', (req, res) => {
     connection.query(" \
-SELECT Height FROM mountain where name = 'Ararat' \
+SELECT Name, Population \
+FROM country \
+WHERE Name = 'Austria'; \
 ", (err, rows, fields) => {
+        console.log(rows)
+
         if (err) throw err
 
         res.render('pages/index', {
-            title: 'Einwohner von Österreich',
+            title: 'Einwohner von Österreich (by Alp)',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+// Aufgabe2 Einwohner Europa 
+app.get('/aufgabe2-EinwohnerEU', (req, res) => {
+    connection.query(" \
+SELECT \
+SUM(country.Population) AS Total_population \
+FROM country \
+JOIN encompasses ON country.code = encompasses.Country \
+WHERE encompasses.Continent = 'Europe'; \
+", (err, rows, fields) => {
+        console.log(rows)
+
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'Einwohner von EU (by Alp)',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+// Aufgabe3 Flüsse in AT 
+app.get('/aufgabe3-FlüsseinAT', (req, res) => {
+    connection.query(" \
+SELECT \
+SUM(country.Population) AS Total_population \
+FROM country \
+JOIN encompasses ON country.code = encompasses.Country \
+WHERE encompasses.Continent = 'Europe'; \
+", (err, rows, fields) => {
+        console.log(rows)
+
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'Flüsse in AT (by Alp)',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+// Aufgabe4 Fluesse in EU 
+app.get('/aufgabe4-FluesseinEU', (req, res) => {
+    connection.query(" \
+SELECT gr.River \
+FROM geo_river gr \
+JOIN country c ON gr.Country = c.Code \
+JOIN encompasses e ON c.Code = e.Country \
+GROUP BY gr.River \
+HAVING COUNT(DISTINCT CASE WHEN e.Continent = 'Europe' THEN 1 END) = COUNT(DISTINCT gr.Country); \
+", (err, rows, fields) => {
+        console.log(rows)
+
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'Flüsse in EU (by Alp)',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+// Aufgabe5 People in EU 
+app.get('/aufgabe5-PeopleinEU', (req, res) => {
+    connection.query(" \
+SELECT \
+(europe.Population / world.TotalPopulation) * 100 AS PercentageInEurope \
+FROM (SELECT SUM(country.Population) AS Population \
+FROM country \
+JOIN encompasses ON country.Code = encompasses.Country \
+WHERE encompasses.Continent = 'Europe') AS europe, \
+(SELECT SUM(Population) AS TotalPopulation FROM country) AS world; \
+", (err, rows, fields) => {
+        console.log(rows)
+
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'Eu-Bevölkerung der EU in Prozent (by Alp)',
+            header: fields,
+            content: rows
+        })
+      })
+})
+
+// Aufgabe6 People in EU 
+app.get('/aufgabe6-LaendermitA', (req, res) => {
+    connection.query(" \
+SELECT Name \
+FROM country \
+WHERE Name LIKE 'A%'; \
+", (err, rows, fields) => {
+        console.log(rows)
+
+        if (err) throw err
+
+        res.render('pages/index', {
+            title: 'Alle Länder die mit A anfangen (by Alp)',
             header: fields,
             content: rows
         })
@@ -39,9 +149,10 @@ SELECT Height FROM mountain where name = 'Ararat' \
 })
 
 
+
+
+
 /*
-
-
 // Original examples 
 app.get('/', (req, res) => {
     connection.query(" \
