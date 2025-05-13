@@ -225,6 +225,7 @@ function renderSexRadioButtons(containerE, name, values) {
         // Create the label for the radio input
         let labelE = document.createElement('label');
         labelE.htmlFor = `${name}${index + 1}`;
+        
         labelE.textContent = value === '?' ? 'unbestimmt' : value; // Handle special case for '?'
         wrapperDiv.appendChild(labelE);
     });
