@@ -26,7 +26,7 @@ app.use(express.json());  // Middleware to parse JSON data
 app.get('/API/mitarbeiter', (req, res) => {
     console.log('/API/mitarbeiter')
     const SQL_QUERY = " \
-        SELECT person_vorname, person_nachname, beruf_name, beruf_beschreibung \
+        SELECT person_id, person_vorname, person_nachname, beruf_name, beruf_beschreibung \
         FROM person \
         JOIN beruf ON person_beruf_id = beruf_id \
     ";
@@ -40,10 +40,24 @@ app.get('/API/mitarbeiter', (req, res) => {
     });
 });
 
+app.get('/API/possiblejobs', (req, res) => {
+    console.log('/API/possiblejobs')
+    const SQL_QUERY = "SELECT beruf_id, beruf_name FROM beruf ORDER BY beruf_name";
+    connection.query(SQL_QUERY, (err, results) => {
+        if (err != null) {
+            console.error(err)
+            res.status(500).json({ error: err });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+
 // DELETE: Einen Mitarbeiter löschen
 app.delete('/API/mitarbeiter', (req, res) => {
     console.log('DELETE /API/mitarbeiter', req.body);
-    const SQL_DELETE = "DELETE FROM mitarbeiter WHERE person_id = ?";
+    const SQL_DELETE = "DELETE FROM person WHERE person_id = ?";
     connection.execute(SQL_DELETE, [req.body.person_id], (err, results) => {
         if (err != null) {
             res.status(500).json({ error: err });
@@ -56,9 +70,10 @@ app.delete('/API/mitarbeiter', (req, res) => {
 // POST: Einen neuen Mitarbeiter hinzufügen
 app.post('/API/mitarbeiter', (req, res) => {
     console.log('POST /API/mitarbeiter', req.body);
-    const SQL_INSERT = "INSERT INTO mitarbeiter (vorname, nachname, beruf_id) VALUES (?, ?, ?)";
+    const SQL_INSERT = "INSERT INTO person (person_vorname, person_nachname, person_beruf_id) VALUES (?, ?, ?)";
     connection.execute(SQL_INSERT, [req.body.vorname, req.body.nachname, req.body.beruf_id], (err, results) => {
         if (err != null) {
+            console.error(err)
             res.status(500).json({ error: err });
         } else {
             res.status(201).json({ message: 'Mitarbeiter erfolgreich hinzugefügt' });

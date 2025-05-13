@@ -73,8 +73,7 @@ WHERE islandIn.Sea = 'Pacific Ocean'
 --
 
 /* FRAGE 10: */
-SELECT 
-    country.Name AS Country,
+SELECT country.Name AS Country,
     COUNT(DISTINCT mountain.Name) AS NumberOfMountains
 FROM mountain
 JOIN geo_mountain ON mountain.Name = geo_mountain.Mountain 
