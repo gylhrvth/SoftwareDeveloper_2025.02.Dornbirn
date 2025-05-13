@@ -1,0 +1,82 @@
+:root{
+    --primary-color: hsl(204, 10%, 30%);
+    --secondary-color: hsl(204, 70%, 43%);
+    --background-color: hsl(204, 10%, 93%);
+    --shadow-color: hsla(0, 0%, 0%, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: hsl(204, 10%, 80%);
+        --secondary-color: hsl(204, 70%, 68%);
+        --background-color: hsl(204, 10%, 18%);
+        --shadow-color: hsla(0, 0%, 100%, 0.4);
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.hund {
+    width: 300px;
+    height: 200px;
+    color: var(--secondary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 5px var(--shadow-color);
+}
+.hund:hover {
+    box-shadow: 4px 4px 5px var(--shadow-color);
+    transition: box-shadow 0.3s ease;  
+}
+
+.hund > .data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+form.hundDELETE { 
+    text-align: right;
+    padding: 10px 20px;
+}
+
+form.hundDELETE > button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+form.hundCREATE{
+    display: flex;
+    flex-direction: column;
+}
+
+form.hundCREATE > span {
+    text-align: center;
+}
+
+form.hundCREATE > span > button {
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.hund > h3 {
+    margin: 0;
+}
