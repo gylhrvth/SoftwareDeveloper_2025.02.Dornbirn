@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
 </head>
 <body>
-    <h1><%= title %></h1>
-    <div class="container">
-        <% results.forEach(row => { %>
+    <h1>Cities in Austria (REST API)</h1>
+    <div id="cityContainer" class="container">
+        <!--
         <div class="city">
             <div class="data">
-                <h3><%= row.Name %></h3>
-                <div><%= row.Population == null ? 'n.n': row.Population.toLocaleString('de-AT') %></div>    
+                <h3>Name</h3>
+                <div>12345</div>    
             </div>
             <form class="cityDELETE" action="/cityDELETE" method="POST">
-                <input type="hidden" name="Name" value="<%= row.Name %>">
+                <input type="hidden" name="Name" value="12345">
                 <button type="submit">🗑️</button>
             </form>
         </div>
-        <% }) %>
+    
         <div class="city">
             <div class="data">
             <h3>Add new city</h3>
@@ -30,12 +31,8 @@
             </form>
             </div>
         </div>
+        -->
     </div>
 
-<script>
-function checkNewCityName(e){
-    document.getElementById('addNewCityButton').disabled = (e.target.value.length === 0)
-}
-</script>
 </body>
 </html>
