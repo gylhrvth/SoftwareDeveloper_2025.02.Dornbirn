@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Test Site</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <div class="containerDetails">
+        <% content.forEach(row => { %>        
+        <div id="personInfoDetails">
+            <p>Vorname: <%= row.Person_Vorname %></p>
+            <p>Nachname <%= row.Person_Nachname %></p>
+            <p>Beruf: <%= row.Beruf_Name %></p>
+        </div>
+        <form id="deleteForm" action="/personDELETE" method="post">
+            <input type="hidden" name="vorname" value="<%= row.Person_Vorname %>">
+            <input type="hidden" name="nachname" value="<%= row.Person_Nachname %>">
+            <button id="deleteButton" type="submit">🗑️</button>
+        </form>
+        <form id="updateForm" action="/personUPDATE" method="post">
+            <input type="hidden" name="vorname" value="<%= row.Person_Vorname %>">
+            <input type="hidden" name="nachname" value="<%= row.Person_Nachname %>">
+            <input type="text" name="Editvorname" value="<%= row.Person_Vorname %>">
+            <input type="text" name="Editnachname" value="<%= row.Person_Nachname %>">
+            <select name="beruf" id="beruf">
+                <option value="1">Softwareentwickler</option>
+                <option value="2">Kursleiter</option>
+            </select>
+            <button type="submit">Update</button>
+        </form>
+        <% }) %>
+        <a id="zurueckStartseite" href="/">Zurück zur Startseite</a>
+
+    </div>
+</body>
+</html>
