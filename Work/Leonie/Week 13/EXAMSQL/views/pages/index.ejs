@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="taskList">
+        <% content.forEach(task => { %>
+            <div id="task-<%= task.ToDo_ID %>" class="task" data-id="<%= task.ToDo_ID %>">
+                <h2><%= task.ToDo_Titel %></h2>
+                <p>Frist: <%= task.ToDo_Frist %></p>
+            </div>
+        <% }); %>
+    </div>
+
+    <div class="taskDetailsContainer">
+        <div id="taskDetails">
+            <h2>Task Details</h2>
+            <p id="taskTitle">Titel: -</p>
+            <p id="taskDescription">Beschreibung: -</p>
+            <p id="taskDueDate">Fälligkeitsdatum: -</p>
+            <p id="tastcreated">Erstellt: -</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.task').forEach(task => {
+            task.addEventListener('click', async (event) => {
+                const taskId = event.currentTarget.dataset.id;
+
+                try {
+                    // Anfrage an den Server senden, um die Details zu laden
+                    const response = await fetch(`/todo/${taskId}`);
+                    if (!response.ok) {
+                        throw new Error('Fehler beim Laden der Details');
+                    }
+
+                    const data = await response.json();
+                    console.log(data);
+
+                    // Details im Container anzeigen
+                    document.getElementById('taskTitle').textContent = `Titel: ${data.title}`;
+                    document.getElementById('taskDescription').textContent = `Beschreibung: ${data.description}`;
+                    document.getElementById('taskDueDate').textContent = `Fälligkeitsdatum: ${data.dueDate}`;
+                    document.getElementById('tastcreated').textContent = `Erstellt Am: ${data.created}`;
+                } catch (error) {
+                    console.error(error);
+                    alert('Fehler beim Laden der Task-Details.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
