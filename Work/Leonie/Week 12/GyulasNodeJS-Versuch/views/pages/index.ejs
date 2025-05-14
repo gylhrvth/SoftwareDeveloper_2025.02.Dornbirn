@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1><%= title %></h1>
+    <div class="searchbar">
+        <form action="/search" method="POST">
+            <input type="text" name="search" id="search" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
     <div>
     <% content.forEach(row => { %>
     <a href="/personDetails/<%= row.Person_Vorname %>/<%= row.Person_Nachname %>">
@@ -25,8 +31,9 @@
         <label for="nachname">Nachname:</label>
         <input type="text" id="nachname" name="nachname" value="">
         <select name="beruf" id="beruf">
-            <option value="1">Softwareentwickler</option>
-            <option value="2">Kursleiter</option>
+            <% berufe.forEach(b => { %>
+              <option value="<%= b.id %>"><%= b.name %></option>
+            <% }) %>
         </select>
         <input type="submit" value="Submit">
     </form>

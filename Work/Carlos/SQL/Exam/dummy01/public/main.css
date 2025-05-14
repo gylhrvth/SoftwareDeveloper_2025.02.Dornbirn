@@ -1,0 +1,296 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #007BFF;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Todo List Styles */
+.todo_main {
+    background: white;
+    margin: 5px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.todo_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo_task {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.todo_details {
+    display: none;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.todo_details.visible {
+    display: block;
+}
+
+.todo_actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todo_actions button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.todo_actions .edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.todo_actions .delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Form Styles */
+#todoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#todoForm input,
+#todoForm textarea,
+#todoForm select,
+#todoForm button {
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#todoForm input:focus,
+#todoForm textarea:focus,
+#todoForm select:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#todoForm button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#todoForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Left Content Header Styles */
+.left_content_header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo_checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+    transform: scale(1.2); /* Slightly enlarge the checkbox for better visibility */
+    vertical-align: middle;
+}
+
+.todo_task {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Main Buttons */
+#mainButtons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#mainButtons button {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+#mainButtons button:hover {
+    background-color: #0056b3;
+}
+
+/* Popup Form */
+#popupForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+#popupForm.visible {
+    display: block; /* Show when visible */
+}
+
+#popupForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#popupForm input,
+#popupForm textarea,
+#popupForm select,
+#popupForm button {
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#popupForm button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#popupForm button:hover {
+    background-color: #0056b3;
+}
+
+#popupForm #closeFormButton {
+    background-color: #dc3545;
+}
+
+#popupForm #closeFormButton:hover {
+    background-color: #a71d2a;
+}
+
+/* Overlay for Popup */
+body.popup-active {
+    overflow: hidden; /* Prevent scrolling when popup is active */
+}
+
+
+/* Edit Popup Form */
+#editPopupForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+#editPopupForm.visible {
+    display: block; /* Show when visible */
+}
+
+#editPopupForm.hidden {
+    display: none; /* Hide when not visible */
+}
+
+#editPopupForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#editPopupForm input,
+#editPopupForm textarea,
+#editPopupForm select,
+#editPopupForm button {
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#editPopupForm button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#editPopupForm button:hover {
+    background-color: #0056b3;
+}
+
+#editPopupForm #closeEditFormButton {
+    background-color: #dc3545;
+}
+
+#editPopupForm #closeEditFormButton:hover {
+    background-color: #a71d2a;
+}

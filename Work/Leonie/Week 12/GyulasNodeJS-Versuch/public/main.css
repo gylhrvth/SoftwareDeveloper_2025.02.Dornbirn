@@ -26,6 +26,12 @@ a {
     margin: 20px;
 }
 
+#personInfo:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.01);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 #personInfoDetails {
     display: flex;
     flex-direction: column;
@@ -70,6 +76,12 @@ a {
     cursor: pointer;
 }
 
+#deleteButton:hover {
+    background-color: #e74c3c;
+    transform: scale(1.01);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 #createPersonDiv{
     display: flex;
     justify-content: center;
@@ -96,4 +108,10 @@ a {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 20px;
+}
+
+#zurueckStartseite:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.01);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }

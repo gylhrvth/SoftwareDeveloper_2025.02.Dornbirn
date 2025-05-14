@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berufe</title>
-    <link rel="stylesheet" href="main.css">
-
+    <link rel="stylesheet" href="main02.css">
 </head>
 <body>
-    <h1>Beruf Liste (REST API)</h1>
-    <div>
-        <a href="index.html">Mitarbeiterliste</a>
+    <div class="header-container">
+        <h1>Berufe (REST API)</h1>
     </div>
-</body>
+    <div class="links-container">
+        <a href="index.html" class="mitarbeiter-link">Mitarbeiterliste</a>
+        <a href="information.html" class="information-link">Informationen</a>
+    </div>
+    <div id="berufeContainer" class="container">
+        <table id="berufeTable" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Berufsbezeichnung</th>
+                    <th>Beschreibung</th>
+                    <th>Mitarbeiter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamische Inhalte werden hier eingefügt -->
+            </tbody>
+        </table>
+    </div>
 </html>

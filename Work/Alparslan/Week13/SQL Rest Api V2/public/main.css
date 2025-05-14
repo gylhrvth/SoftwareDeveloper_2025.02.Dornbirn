@@ -1,0 +1,187 @@
+:root { 
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #8e44ad;
+    --background-color: #f4f6f8;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --text-color: #2d3436;
+    --highlight: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    padding: 3rem 1rem;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.2);
+    }
+    to {
+        text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    padding-bottom: 10rem; /* Platz für sticky form */
+}
+
+/* Personenkarte */
+.person {
+    background-color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    width: 280px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.person:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.person .data {
+    text-align: center;
+}
+
+.person h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.person .data div {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+/* Beschreibung */
+.person .beschreibung {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Delete Button */
+form.personDELETE {
+    margin-top: 1rem;
+}
+
+form.personDELETE button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #bdc3c7;
+    transition: color 0.2s ease;
+}
+
+form.personDELETE button:hover {
+    color: #e74c3c;
+    transform: scale(1.2);
+}
+
+/* Neue Person Eingabeformular (Sticky Footer) */
+.person.new-entry {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    z-index: 5;
+}
+
+.person.new-entry .data {
+    width: 100%;
+    text-align: center;
+}
+
+.person.new-entry h3 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+/* Eingabeformular */
+form.personCREATE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+form.personCREATE input,
+form.personCREATE select {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    flex: 1 1 120px;
+    min-width: 100px;
+}
+
+form.personCREATE button {
+    padding: 0.4rem 0.8rem;
+    font-size: 1.4rem;
+    background-color: #fff;
+    color: var(--accent-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+form.personCREATE button:disabled {
+    background-color: #eee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+form.personCREATE button:hover:enabled {
+    background-color: #ddd;
+    color: #8e44ad;
+}
+
