@@ -54,7 +54,7 @@ footer {
 
 .todo_details {
     display: none;
-    margin-top: 10px;
+    margin-top: 1.5em;
     font-size: 0.9rem;
     color: #555;
 }
@@ -84,50 +84,6 @@ footer {
 .todo_actions .delete {
     background-color: #dc3545;
     color: white;
-}
-
-/* Form Styles */
-#todoForm {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#todoForm input,
-#todoForm textarea,
-#todoForm select,
-#todoForm button {
-    font-size: 1rem;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#todoForm input:focus,
-#todoForm textarea:focus,
-#todoForm select:focus {
-    border-color: #007BFF;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-#todoForm button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#todoForm button:hover {
-    background-color: #0056b3;
 }
 
 /* Left Content Header Styles */
@@ -173,8 +129,10 @@ footer {
     background-color: #0056b3;
 }
 
-/* Popup Form */
-#popupForm {
+/* Form Styles */
+
+/* New ToDo Form */
+#popupForm, #editPopupForm {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -187,11 +145,11 @@ footer {
     display: none; /* Hidden by default */
 }
 
-#popupForm.visible {
+#popupForm.visible, #editPopupForm.visible {
     display: block; /* Show when visible */
 }
 
-#popupForm form {
+#popupForm form, #editPopupForm form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -200,69 +158,7 @@ footer {
 #popupForm input,
 #popupForm textarea,
 #popupForm select,
-#popupForm button {
-    font-size: 1rem;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#popupForm button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#popupForm button:hover {
-    background-color: #0056b3;
-}
-
-#popupForm #closeFormButton {
-    background-color: #dc3545;
-}
-
-#popupForm #closeFormButton:hover {
-    background-color: #a71d2a;
-}
-
-/* Overlay for Popup */
-body.popup-active {
-    overflow: hidden; /* Prevent scrolling when popup is active */
-}
-
-
-/* Edit Popup Form */
-#editPopupForm {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    display: none; /* Hidden by default */
-}
-
-#editPopupForm.visible {
-    display: block; /* Show when visible */
-}
-
-#editPopupForm.hidden {
-    display: none; /* Hide when not visible */
-}
-
-#editPopupForm form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+#popupForm button,
 #editPopupForm input,
 #editPopupForm textarea,
 #editPopupForm select,
@@ -275,6 +171,7 @@ body.popup-active {
     box-sizing: border-box;
 }
 
+#popupForm button, 
 #editPopupForm button {
     background-color: #007BFF;
     color: white;
@@ -283,14 +180,41 @@ body.popup-active {
     transition: background-color 0.3s ease;
 }
 
+#popupForm button:hover, 
 #editPopupForm button:hover {
     background-color: #0056b3;
 }
 
+#popupForm #closeFormButton, 
 #editPopupForm #closeEditFormButton {
     background-color: #dc3545;
 }
 
+#popupForm #closeFormButton:hover,
 #editPopupForm #closeEditFormButton:hover {
     background-color: #a71d2a;
 }
+
+/* Overlay for Popup */
+body.popup-active, 
+body.edit-popup-active {
+    overflow: hidden; /* Prevent scrolling when popup is active */
+}
+
+
+/* Priority Styles */
+.priority-high {
+    color: red;
+    font-weight: bold;
+}
+
+.priority-normal {
+    color: green;
+    font-weight: bold;
+}
+
+.priority-low {
+    color: blue;
+    font-weight: bold;
+}
+
