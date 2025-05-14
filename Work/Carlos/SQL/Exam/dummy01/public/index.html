@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="/main.css">
+    <script defer src="/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>To-Do App</h1>
+    </header>
+
+    <main>
+
+        <!-- Main Buttons -->
+        <div id="mainButtons">
+            <button id="addTodoButton">+</button>
+        </div>
+
+        <div id="editPopupForm" class="hidden">
+            <form id="editTodoForm">
+                <input type="text" id="editTodoTask" placeholder="Task Title" required>
+                <textarea id="editTodoDescription" placeholder="Task Description"></textarea>
+                <select id="editTodoStatus">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button type="submit">Save Changes</button>
+                <button type="button" id="closeEditFormButton">Cancel</button>
+            </form>
+        </div>
+
+       <!-- Popup Form -->
+        <div id="popupForm" class="hidden">
+            <form id="todoForm">
+                <input type="text" id="todoTask" placeholder="Task Title" required>
+                <textarea id="todoDescription" placeholder="Task Description"></textarea>
+                <select id="todoStatus">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button type="submit">Add Task</button>
+                <button type="button" id="closeFormButton">Cancel</button>
+            </form>
+        </div>
+
+        <!-- List of Todos -->
+        <section id="todoListSection">
+            <h2>Your Tasks</h2>
+            <ul id="todoList"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 To-Do App by Carlitos & Copilot</p>
+    </footer>
+</body>
+</html>
