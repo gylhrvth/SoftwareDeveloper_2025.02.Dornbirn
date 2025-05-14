@@ -24,7 +24,7 @@ db.connect(err => {
 
 // GET all todos
 app.get('/api/todo', (req, res) => {
-    const query = 'SELECT todo_ID, todo_Task, todo_Description, todo_Status, created_at, updated_at FROM todo';
+    const query = 'SELECT todo_ID, todo_Task, todo_Description, todo_Status, todo_Priority, created_at, updated_at FROM todo';
     db.query(query, (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);
@@ -33,9 +33,12 @@ app.get('/api/todo', (req, res) => {
 
 // POST a new todo
 app.post('/api/todo', (req, res) => {
-    const { todo_Task, todo_Description, todo_Status } = req.body;
-    const query = 'INSERT INTO todo (todo_Task, todo_Description, todo_Status) VALUES (?, ?, ?)';
-    db.query(query, [todo_Task, todo_Description, todo_Status || 'Pending'], (err, result) => {
+    const { todo_Task, todo_Description, todo_Status, todo_Priority } = req.body;
+    if (!todo_Task) {
+        return res.status(400).json({ error: 'Task is required' });
+    }
+    const query = 'INSERT INTO todo (todo_Task, todo_Description, todo_Status, todo_Priority) VALUES (?, ?, ?, ?)';
+    db.query(query, [todo_Task, todo_Description, todo_Status || 'Pending', todo_Priority  || 'Normal'], (err, result) => {
         if (err) return res.status(500).json({ error: err.message });
         res.status(201).json({ id: result.insertId });
     });
@@ -44,9 +47,12 @@ app.post('/api/todo', (req, res) => {
 // PUT (update) a todo
 app.put('/api/todo/:id', (req, res) => {
     const { id } = req.params;
-    const { todo_Task, todo_Description, todo_Status } = req.body;
-    const query = 'UPDATE todo SET todo_Task = ?, todo_Description = ?, todo_Status = ? WHERE todo_ID = ?';
-    db.query(query, [todo_Task, todo_Description, todo_Status, id], (err, result) => {
+    const { todo_Task, todo_Description, todo_Status, todo_Priority } = req.body;
+    if (!todo_Task) {
+        return res.status(400).json({ error: 'Task is required' });
+    }
+    const query = 'UPDATE todo SET todo_Task = ?, todo_Description = ?, todo_Status = ?, todo_Priority = ? WHERE todo_ID = ?';
+    db.query(query, [todo_Task, todo_Description, todo_Status, todo_Priority, id], (err, result) => {
         if (err) return res.status(500).json({ error: err.message });
         if (result.affectedRows === 0) return res.status(404).json({ error: 'Todo not found' });
         res.json({ message: 'Todo updated successfully' });

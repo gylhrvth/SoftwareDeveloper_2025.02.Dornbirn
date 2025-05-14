@@ -39,9 +39,22 @@ function createTodoMainDiv(todo) {
     const todoMainDiv = document.createElement('div');
     todoMainDiv.classList.add('todo_main');
 
+    // Apply styles based on the status
+    if (todo.todo_Status === 'Completed') {
+        todoMainDiv.classList.add('completed');
+    }
+
+    // Create the header and details divs
     const todoHeaderDiv = createTodoHeaderDiv(todo, todoMainDiv);
     const todoDetailsDiv = createTodoDetailsDiv(todo);
 
+    // Apply line-through to the task if status is "Completed"
+    const todoTaskDiv = todoHeaderDiv.querySelector('.todo_task');
+    if (todo.todo_Status === 'Completed') {
+        todoTaskDiv.classList.add('line-through');
+    }
+
+    // Append the header and details divs to the main div
     todoMainDiv.appendChild(todoHeaderDiv);
     todoMainDiv.appendChild(todoDetailsDiv);
 
@@ -51,10 +64,9 @@ function createTodoMainDiv(todo) {
 // Create the header container for a todo
 function createTodoHeaderDiv(todo, todoMainDiv) {
     const todoHeaderDiv = document.createElement('div');
-    todoHeaderDiv.classList.add('todo_header');
-
     const leftContentHeaderDiv = createLeftContentHeaderDiv(todo, todoMainDiv);
     const actionsDiv = createActionsDiv(todo);
+    todoHeaderDiv.classList.add('todo_header');
 
     todoHeaderDiv.appendChild(leftContentHeaderDiv);
     todoHeaderDiv.appendChild(actionsDiv);
@@ -125,8 +137,16 @@ function createActionsDiv(todo) {
 function createEditButton(todo) {
     const editButton = document.createElement('button');
     editButton.classList.add('edit');
-    editButton.textContent = 'Edit';
 
+    // Add the edit icon
+    const editIcon = document.createElement('img');
+    editIcon.src = 'assets/icons/edit.svg';
+    editIcon.alt = 'Edit';
+    editIcon.classList.add('icon'); // Optional: Add a class for styling
+
+    editButton.appendChild(editIcon);
+
+    // Attach the event listener to call editTodo
     editButton.addEventListener('click', () => {
         editTodo(todo.todo_ID, todo.todo_Task, todo.todo_Description, todo.todo_Status);
     });
@@ -134,12 +154,19 @@ function createEditButton(todo) {
     return editButton;
 }
 
-// Create the delete button
 function createDeleteButton(todo) {
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete');
-    deleteButton.textContent = 'Delete';
 
+    // Add the delete icon
+    const deleteIcon = document.createElement('img');
+    deleteIcon.src = 'assets/icons/delete.svg';
+    deleteIcon.alt = 'Delete';
+    deleteIcon.classList.add('icon'); // Optional: Add a class for styling
+
+    deleteButton.appendChild(deleteIcon);
+
+    // Attach the event listener to call deleteTodo
     deleteButton.addEventListener('click', async () => {
         await deleteTodo(todo.todo_ID);
     });
@@ -155,29 +182,66 @@ function createTodoDetailsDiv(todo) {
         todoDetailsDiv.classList.add('visible');
     }
 
+        // Format the dates
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    };
+    
+    // Apply red color only if priority is High
+    const priorityStyle = todo.todo_Priority === 'High' ? 'color: red; font-weight: bold;' : '';
+     // Determine the status class based on the value
+    const statusClass = todo.todo_Status === 'Completed' ? 'status-complete' : '';
+
     todoDetailsDiv.innerHTML = `
         <p><strong>Description:</strong> ${todo.todo_Description || 'No description provided'}</p>
-        <p><strong>Status:</strong> ${todo.todo_Status}</p>
-        <p><strong>Created At:</strong> ${new Date(todo.created_at).toLocaleString()}</p>
-        <p><strong>Updated At:</strong> ${new Date(todo.updated_at).toLocaleString()}</p>
+        <p><strong>Status:</strong> <span class="${statusClass}">${todo.todo_Status}</span></p>
+        <p><strong>Priority:</strong> <span style="${priorityStyle}">${todo.todo_Priority || 'Normal'}</span></p>
+        <p><strong>Created At:</strong> ${formatDate(todo.created_at)}</p>
+        <p><strong>Updated At:</strong> ${formatDate(todo.updated_at)}</p>
     `;
 
     return todoDetailsDiv;
 }
 
-// Update the status of a todo
 async function updateTodoStatus(todo, newStatus, todoMainDiv) {
     try {
         const response = await fetch(`${apiUrl}/${todo.todo_ID}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ todo_Task: todo.todo_Task, todo_Description: todo.todo_Description, todo_Status: newStatus })
+            body: JSON.stringify({ 
+                todo_Task: todo.todo_Task, 
+                todo_Description: todo.todo_Description, 
+                todo_Status: newStatus, 
+                todo_Priority: todo.todo_Priority
+            })
         });
+
         if (!response.ok) throw new Error('Failed to update todo status');
 
+        // Update the status in the DOM
         todo.todo_Status = newStatus;
-        const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2)');
-        statusElement.innerHTML = `<strong>Status:</strong> ${newStatus}`;
+        const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2) span');
+
+        // Update the status text and class
+        statusElement.textContent = newStatus;
+        if (newStatus === 'Completed') {
+            statusElement.classList.add('status-complete');
+            todoMainDiv.classList.add('completed');
+            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
+            todoTaskDiv.classList.add('line-through');
+        } else {
+            statusElement.classList.remove('status-complete');
+            todoMainDiv.classList.remove('completed');
+            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
+            todoTaskDiv.classList.remove('line-through');
+        }
     } catch (error) {
         console.error('Error updating todo status:', error);
     }
@@ -194,31 +258,74 @@ async function deleteTodo(id) {
     }
 }
 
-// Edit a todo
-async function editTodo(id, todo_Task, todo_Description, todo_Status) {
+// Add event listener to delete all completed todos
+function setupDeleteCompletedTodosButton() {
+    const deleteCompletedTodosButton = document.getElementById('deleteCompletedTodosButton');
+
+    deleteCompletedTodosButton.addEventListener('click', async () => {
+        try {
+            // Filter todos with status 'Completed'
+            const completedTodos = todosState.filter(todo => todo.todo_Status === 'Completed');
+
+            // Delete each completed todo
+            for (const todo of completedTodos) {
+                const response = await fetch(`${apiUrl}/${todo.todo_ID}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error(`Failed to delete todo with ID ${todo.todo_ID}`);
+            }
+
+            // Reload the todo list after deletion
+            loadTodos();
+        } catch (error) {
+            console.error('Error deleting completed todos:', error);
+        }
+    });
+}
+
+// Edit a todo functions
+
+// Show the edit popup form
+function showEditPopupForm() {
     const editPopupForm = document.getElementById('editPopupForm');
-    const editTodoTask = document.getElementById('editTodoTask');
-    const editTodoDescription = document.getElementById('editTodoDescription');
-    const editTodoStatus = document.getElementById('editTodoStatus');
-
-    // Populate the form with the current todo values
-    editTodoTask.value = todo_Task;
-    editTodoDescription.value = todo_Description;
-    editTodoStatus.value = todo_Status;
-
-    // Show the popup form
     editPopupForm.classList.remove('hidden');
     editPopupForm.classList.add('visible');
     document.body.classList.add('popup-active'); // Prevent scrolling
+}
 
-    // Handle form submission
+// Hide the edit popup form
+function hideEditPopupForm() {
+    const editPopupForm = document.getElementById('editPopupForm');
+    editPopupForm.classList.remove('visible');
+    document.body.classList.remove('popup-active'); // Restore scrolling
+}
+
+// Populate the edit popup form with the current todo values
+function populateEditPopupForm(todo_Task, todo_Description, todo_Status, todo_Priority) {
+    const editTodoTask = document.getElementById('editTodoTask');
+    const editTodoDescription = document.getElementById('editTodoDescription');
+    const editTodoStatus = document.getElementById('editTodoStatus');
+    const editTodoPriority = document.getElementById('editTodoPriority');
+
+    editTodoTask.value = todo_Task;
+    editTodoDescription.value = todo_Description;
+    editTodoStatus.value = todo_Status;
+    editTodoPriority.value = todo_Priority || 'Normal';
+}
+
+// Handle the form submission for editing a todo
+function handleEditFormSubmission(id) {
     const editTodoForm = document.getElementById('editTodoForm');
+    const editTodoTask = document.getElementById('editTodoTask');
+    const editTodoDescription = document.getElementById('editTodoDescription');
+    const editTodoStatus = document.getElementById('editTodoStatus');
+    const editTodoPriority = document.getElementById('editTodoPriority');
+
     editTodoForm.onsubmit = async (e) => {
         e.preventDefault();
 
         const updatedTask = editTodoTask.value.trim();
         const updatedDescription = editTodoDescription.value.trim();
         const updatedStatus = editTodoStatus.value;
+        const updatedPriority = editTodoPriority.value;
 
         try {
             const response = await fetch(`${apiUrl}/${id}`, {
@@ -227,15 +334,15 @@ async function editTodo(id, todo_Task, todo_Description, todo_Status) {
                 body: JSON.stringify({
                     todo_Task: updatedTask,
                     todo_Description: updatedDescription,
-                    todo_Status: updatedStatus
+                    todo_Status: updatedStatus,
+                    todo_Priority: updatedPriority
                 })
             });
 
             if (!response.ok) throw new Error('Failed to update todo');
 
             // Hide the popup form after submission
-            editPopupForm.classList.remove('visible');
-            document.body.classList.remove('popup-active');
+            hideEditPopupForm();
 
             // Reload the todo list
             loadTodos();
@@ -243,20 +350,22 @@ async function editTodo(id, todo_Task, todo_Description, todo_Status) {
             console.error('Error updating todo:', error);
         }
     };
+}
 
-    // Handle cancel button
+// Attach the cancel button functionality
+function setupCancelEditButton() {
     const closeEditFormButton = document.getElementById('closeEditFormButton');
     closeEditFormButton.addEventListener('click', () => {
-        editPopupForm.classList.remove('visible');
-        document.body.classList.remove('popup-active');
+        hideEditPopupForm();
     });
 }
 
-// Load todos and render them
-async function loadTodos() {
-    const todos = await fetchTodos();
-    updateTodosState(todos);
-    renderTodoList(todosState);
+// Main function to edit a todo
+function editTodo(id, todo_Task, todo_Description, todo_Status) {
+    populateEditPopupForm(todo_Task, todo_Description, todo_Status); // Populate the form
+    showEditPopupForm(); // Show the popup
+    handleEditFormSubmission(id); // Handle form submission
+    setupCancelEditButton(); // Set up the cancel button
 }
 
 // Set up the popup form behavior
@@ -281,12 +390,13 @@ function setupPopupForm() {
         const todo_Task = document.getElementById('todoTask').value;
         const todo_Description = document.getElementById('todoDescription').value;
         const todo_Status = document.getElementById('todoStatus').value;
+        const todo_Priority = document.getElementById('todoPriority').value;
 
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ todo_Task, todo_Description, todo_Status })
+                body: JSON.stringify({ todo_Task, todo_Description, todo_Status, todo_Priority })
             });
             if (!response.ok) throw new Error('Failed to add todo');
             popupForm.classList.remove('visible');
@@ -298,8 +408,16 @@ function setupPopupForm() {
     });
 }
 
+// Load todos and render them
+async function loadTodos() {
+    const todos = await fetchTodos();
+    updateTodosState(todos);
+    renderTodoList(todosState);
+}
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     setupPopupForm();
+    setupDeleteCompletedTodosButton(); // Set up the delete completed todos button
     loadTodos();
 });
