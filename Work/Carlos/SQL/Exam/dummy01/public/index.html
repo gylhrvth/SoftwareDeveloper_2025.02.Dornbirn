@@ -16,17 +16,25 @@
 
         <!-- Main Buttons -->
         <div id="mainButtons">
-            <button id="addTodoButton">+</button>
+            <button id="addTodoButton">
+                <img src="assets/icons/add.svg" alt="Add New Todo" class="icon">
+            </button>
+            <button id="deleteCompletedTodosButton">
+                <img src="assets/icons/remove.svg" alt="Delete Completed Todos" class="icon">
+            </button>
         </div>
 
         <div id="editPopupForm" class="hidden">
             <form id="editTodoForm">
+                <h3>Edit Task</h3>
                 <input type="text" id="editTodoTask" placeholder="Task Title" required>
                 <textarea id="editTodoDescription" placeholder="Task Description"></textarea>
+                <label for="editTodoPriority"><strong>Status:</strong></label>
                 <select id="editTodoStatus">
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
                 </select>
+                <label for="editTodoPriority"><strong>Priority:</strong></label>
                 <select id="editTodoPriority">
                     <option value="Low">Low</option>
                     <option value="Normal" selected>Normal</option>
@@ -40,12 +48,15 @@
        <!-- Popup Form -->
         <div id="popupForm" class="hidden">
             <form id="todoForm">
+                <h3>New Task</h3>
                 <input type="text" id="todoTask" placeholder="Task Title" required>
                 <textarea id="todoDescription" placeholder="Task Description"></textarea>
+                <label for="editTodoPriority"><strong>Status:</strong></label>
                 <select id="todoStatus">
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
                 </select>
+                <label for="editTodoPriority"><strong>Priority:</strong></label>
                 <select id="todoPriority">
                     <option value="Low">Low</option>
                     <option value="Normal" selected>Normal</option>

@@ -39,9 +39,22 @@ function createTodoMainDiv(todo) {
     const todoMainDiv = document.createElement('div');
     todoMainDiv.classList.add('todo_main');
 
+    // Apply styles based on the status
+    if (todo.todo_Status === 'Completed') {
+        todoMainDiv.classList.add('completed');
+    }
+
+    // Create the header and details divs
     const todoHeaderDiv = createTodoHeaderDiv(todo, todoMainDiv);
     const todoDetailsDiv = createTodoDetailsDiv(todo);
 
+    // Apply line-through to the task if status is "Completed"
+    const todoTaskDiv = todoHeaderDiv.querySelector('.todo_task');
+    if (todo.todo_Status === 'Completed') {
+        todoTaskDiv.classList.add('line-through');
+    }
+
+    // Append the header and details divs to the main div
     todoMainDiv.appendChild(todoHeaderDiv);
     todoMainDiv.appendChild(todoDetailsDiv);
 
@@ -51,10 +64,9 @@ function createTodoMainDiv(todo) {
 // Create the header container for a todo
 function createTodoHeaderDiv(todo, todoMainDiv) {
     const todoHeaderDiv = document.createElement('div');
-    todoHeaderDiv.classList.add('todo_header');
-
     const leftContentHeaderDiv = createLeftContentHeaderDiv(todo, todoMainDiv);
     const actionsDiv = createActionsDiv(todo);
+    todoHeaderDiv.classList.add('todo_header');
 
     todoHeaderDiv.appendChild(leftContentHeaderDiv);
     todoHeaderDiv.appendChild(actionsDiv);
@@ -169,36 +181,67 @@ function createTodoDetailsDiv(todo) {
     if (todo.detailsVisible) {
         todoDetailsDiv.classList.add('visible');
     }
+
+        // Format the dates
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    };
     
-    // Determine the priority class based on the value
-    const priorityClass = todo.todo_Priority === 'High' ? 'priority-high' :
-                          todo.todo_Priority === 'Normal' ? 'priority-normal' :
-                          'priority-low';
+    // Apply red color only if priority is High
+    const priorityStyle = todo.todo_Priority === 'High' ? 'color: red; font-weight: bold;' : '';
+     // Determine the status class based on the value
+    const statusClass = todo.todo_Status === 'Completed' ? 'status-complete' : '';
 
     todoDetailsDiv.innerHTML = `
         <p><strong>Description:</strong> ${todo.todo_Description || 'No description provided'}</p>
-        <p><strong>Status:</strong> ${todo.todo_Status}</p>
-       <p><strong>Priority:</strong> <span class="${priorityClass}">${todo.todo_Priority || 'Normal'}</span></p>
-        <p><strong>Created At:</strong> ${new Date(todo.created_at).toLocaleString()}</p>
-        <p><strong>Updated At:</strong> ${new Date(todo.updated_at).toLocaleString()}</p>
+        <p><strong>Status:</strong> <span class="${statusClass}">${todo.todo_Status}</span></p>
+        <p><strong>Priority:</strong> <span style="${priorityStyle}">${todo.todo_Priority || 'Normal'}</span></p>
+        <p><strong>Created At:</strong> ${formatDate(todo.created_at)}</p>
+        <p><strong>Updated At:</strong> ${formatDate(todo.updated_at)}</p>
     `;
 
     return todoDetailsDiv;
 }
 
-// Update the status of a todo
 async function updateTodoStatus(todo, newStatus, todoMainDiv) {
     try {
         const response = await fetch(`${apiUrl}/${todo.todo_ID}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ todo_Task: todo.todo_Task, todo_Description: todo.todo_Description, todo_Status: newStatus })
+            body: JSON.stringify({ 
+                todo_Task: todo.todo_Task, 
+                todo_Description: todo.todo_Description, 
+                todo_Status: newStatus, 
+                todo_Priority: todo.todo_Priority
+            })
         });
+
         if (!response.ok) throw new Error('Failed to update todo status');
 
+        // Update the status in the DOM
         todo.todo_Status = newStatus;
-        const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2)');
-        statusElement.innerHTML = `<strong>Status:</strong> ${newStatus}`;
+        const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2) span');
+
+        // Update the status text and class
+        statusElement.textContent = newStatus;
+        if (newStatus === 'Completed') {
+            statusElement.classList.add('status-complete');
+            todoMainDiv.classList.add('completed');
+            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
+            todoTaskDiv.classList.add('line-through');
+        } else {
+            statusElement.classList.remove('status-complete');
+            todoMainDiv.classList.remove('completed');
+            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
+            todoTaskDiv.classList.remove('line-through');
+        }
     } catch (error) {
         console.error('Error updating todo status:', error);
     }
@@ -213,6 +256,29 @@ async function deleteTodo(id) {
     } catch (error) {
         console.error('Error deleting todo:', error);
     }
+}
+
+// Add event listener to delete all completed todos
+function setupDeleteCompletedTodosButton() {
+    const deleteCompletedTodosButton = document.getElementById('deleteCompletedTodosButton');
+
+    deleteCompletedTodosButton.addEventListener('click', async () => {
+        try {
+            // Filter todos with status 'Completed'
+            const completedTodos = todosState.filter(todo => todo.todo_Status === 'Completed');
+
+            // Delete each completed todo
+            for (const todo of completedTodos) {
+                const response = await fetch(`${apiUrl}/${todo.todo_ID}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error(`Failed to delete todo with ID ${todo.todo_ID}`);
+            }
+
+            // Reload the todo list after deletion
+            loadTodos();
+        } catch (error) {
+            console.error('Error deleting completed todos:', error);
+        }
+    });
 }
 
 // Edit a todo functions
@@ -352,5 +418,6 @@ async function loadTodos() {
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     setupPopupForm();
+    setupDeleteCompletedTodosButton(); // Set up the delete completed todos button
     loadTodos();
 });

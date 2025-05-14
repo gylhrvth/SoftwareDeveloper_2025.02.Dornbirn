@@ -18,6 +18,7 @@ main {
     padding: 1rem;
     max-width: 800px;
     margin: 0 auto;
+    padding-bottom: 5rem;
 }
 
 footer {
@@ -108,11 +109,18 @@ footer {
 
 /* Main Buttons */
 #mainButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin: 20px 0;
+    gap: 10px;
 }
 
 #mainButtons button {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     font-size: 2rem;
     width: 50px;
     height: 50px;
@@ -123,6 +131,20 @@ footer {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    padding: 0; /* Remove any default padding */
+}
+
+#mainButtons > button img.icon {
+    width: 40px; /* Adjust the size of the icon */
+    height: 40px;
+    margin: 0; /* Remove any default margin */
+}
+
+#mainButtons > #deleteCompletedTodosButton {
+    background-color: #dc3545;
+}
+#mainButtons > #deleteCompletedTodosButton:hover {
+    background-color: #b3202f;
 }
 
 #mainButtons button:hover {
@@ -208,13 +230,24 @@ body.edit-popup-active {
     font-weight: bold;
 }
 
-.priority-normal {
-    color: green;
-    font-weight: bold;
+/* Completed Todo Styles */
+.todo_main.completed {
+    background-color: #d4edda; /* Light green background */
+    border: 1px solid #c3e6cb; /* Green border */
+    transition: background-color 0.3s ease, border 0.3s ease;
 }
 
-.priority-low {
+.todo_task.line-through {
+    text-decoration: line-through;
+    color: #6c757d; /* Muted text color */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Status Styles */
+.status-complete {
     color: blue;
     font-weight: bold;
 }
+
+
 
