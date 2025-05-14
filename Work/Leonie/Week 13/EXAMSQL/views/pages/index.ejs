@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
     <link rel="stylesheet" href="/index.css">
 </head>
+
 <body>
     <div class="taskList">
-        <% content.forEach(task => { %>
+        <div class="createToDo">
+            <form action="/createToDo" method="POST">
+                <label for="title">Titel:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="description">Beschreibung:</label>
+                <input type="text" id="description" name="description" required>
+                <label for="dueDate">Fälligkeitsdatum:</label>
+                <input type="date" id="dueDate" name="dueDate" required>
+                <input type="submit" value="Erstellen">
+            </form>
+        </div>
+        <% content.forEach(task=> { %>
             <div id="task-<%= task.ToDo_ID %>" class="task" data-id="<%= task.ToDo_ID %>">
-                <h2><%= task.ToDo_Titel %></h2>
-                <p>Frist: <%= task.ToDo_Frist %></p>
+                <h2>
+                    <%= task.ToDo_Titel %>
+                </h2>
+                <p>Frist: <%= task.ToDo_Frist %>
+                </p>
             </div>
-        <% }); %>
+            <% }); %>
     </div>
 
     <div class="taskDetailsContainer">
-        <div id="taskDetails">
+        <div class="searchbar">
+            <form action="/search" method="POST">
+                <input type="text" id="searchInput" name="search" placeholder="Suche nach Titel oder Beschreibung" value="">
+                <input type="submit" value="Suchen">
+            </form>
+        </div>
+        <div class="taskDetails">
             <h2>Task Details</h2>
-            <p id="taskTitle">Titel: -</p>
-            <p id="taskDescription">Beschreibung: -</p>
-            <p id="taskDueDate">Fälligkeitsdatum: -</p>
+            <form action="/updateToDo" method="post">
+                <input type="text" id="updateToDoId" name="updateToDoId" value="" hidden>
+                <label for="updateTitle">Titel:</label>
+                <input type="text" id="taskTitle" name="taskTitle" value="" required>
+                <label for="taskDescription">Beschreibung:</label>
+                <textarea id="taskDescription" name="taskDescription" rows="8" cols="50" required></textarea>
+                <label for="taskDueDate">Fälligkeitsdatum:</label>
+                <input type="date" id="taskDueDate" name="taskDueDate" value="" required>
+                <input type="submit" value="Update">
+            </form>
             <p id="tastcreated">Erstellt: -</p>
+            <form action="/deleteToDo" method="post">
+                <input type="hidden" id="deleteToDoId" name="deleteToDoId" value="">
+                <input id="deleteToDoButton" type="submit" value="🗑️">
+            </form>
         </div>
     </div>
 
@@ -42,10 +75,19 @@
                     console.log(data);
 
                     // Details im Container anzeigen
-                    document.getElementById('taskTitle').textContent = `Titel: ${data.title}`;
-                    document.getElementById('taskDescription').textContent = `Beschreibung: ${data.description}`;
-                    document.getElementById('taskDueDate').textContent = `Fälligkeitsdatum: ${data.dueDate}`;
-                    document.getElementById('tastcreated').textContent = `Erstellt Am: ${data.created}`;
+                    document.getElementById('taskTitle').value = data.title;
+                    document.getElementById('taskDescription').value = data.description;
+
+                    // Datum ins ISO-Format (YYYY-MM-DD) umwandeln
+                    const [day, month, year] = data.dueDate.split('.');
+                    const isoDate = `${year}-${month}-${day}`;
+                    document.getElementById('taskDueDate').value = isoDate;
+
+                    document.getElementById('tastcreated').textContent = `Erstellt: ${data.created}`;
+                    // ID des zu löschenden Tasks setzen
+                    document.getElementById('deleteToDoId').value = data.id;
+                    // ID des zu aktualisierenden Tasks setzen
+                    document.getElementById('updateToDoId').value = data.id;
                 } catch (error) {
                     console.error(error);
                     alert('Fehler beim Laden der Task-Details.');
@@ -54,4 +96,5 @@
         });
     </script>
 </body>
+
 </html>
