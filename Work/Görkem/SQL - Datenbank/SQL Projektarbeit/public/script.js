@@ -1,6 +1,5 @@
 
 async function loadAPI_Data(){
-    console.log('loadAPI_Data')
     let result = await fetch('/API/todoapp');
     if (result.ok){
         let data = await result.json();
@@ -46,7 +45,7 @@ function renderTodos(todos) {
         // Priorität anzeigen
         const prioritySpan = document.createElement('span');
         prioritySpan.className = `priority-icon ${todo.todo_priority.toLowerCase()}`;
-        prioritySpan.textContent = 'priority_high';
+        prioritySpan.textContent = 'notification_important';
         prioritySpan.classList.add('material-symbols-outlined');
 
         // Tooltip hinzufügen
@@ -99,10 +98,12 @@ function renderTodos(todos) {
     });
 }
 
+// Todo Details
 function showTodoInfo(todo){
     const modal = document.getElementById('todo-info-modal');
     document.getElementById('todo-info-id').textContent = todo.todo_id;
     document.getElementById('todo-info-title').textContent = todo.todo_title;
+    document.getElementById('todo-info-description').textContent = todo.todo_description || "--";
     document.getElementById('todo-info-created').textContent = new Date(todo.todo_created).toLocaleString();
 
     modal.style.display = 'flex';
@@ -125,7 +126,29 @@ async function deleteTodoItem(todoId){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('HTML vollständig geladen');
-    loadAPI_Data();
+// Todo hinzufügen
+async function addTodoItem() {
+    const input = document.getElementById('todo-input');
+    const title = input.value.trim();
+    if (!title) return;
+
+    let result = await fetch('/API/todoapp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: title }) 
+    });
+    if (result.ok) {
+        input.value = '';
+        loadAPI_Data(); // Liste neu laden
+    }
+}
+    document.getElementById('add-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        addTodoItem();
+});
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('todo-info-modal');
+        if (modal) modal.style.display = 'none';
+        loadAPI_Data();
 });

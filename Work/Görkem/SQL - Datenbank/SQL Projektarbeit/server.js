@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 app.get('/API/todoapp', (req, res) => {
     console.log('/API/todoapp', req.body);
     const SQL_QUERY = " \
-        SELECT todo_id, todo_title, todo_completed, todo_priority, todo_created \
+        SELECT todo_id, todo_title, todo_completed, todo_priority, todo_created, todo_description\
         FROM todos \
     ";
     connection.query(SQL_QUERY, (err, results) => {
@@ -49,8 +49,9 @@ app.get('/API/todoapp', (req, res) => {
 // DELETE: Todos löschen
 app.delete('/API/todoapp', (req, res) => {
     console.log('Delete /API/todoapp', req.body);
+    const todoId = req.body.todo_id;
     const SQL_DELETE = "DELETE FROM todos WHERE todo_id = ?";
-    connection.execute(SQL_DELETE, [req.body.todo_id], (err, results) => {
+    connection.execute(SQL_DELETE, [todoId], (err, results) => {
         if (err != null) {
             res.status(500).json({ error: err });
         } else {
@@ -62,8 +63,13 @@ app.delete('/API/todoapp', (req, res) => {
 // POST: Eine neue Todo hinzufügen
 app.post('/API/todoapp', (req, res) => {
     console.log('POST /API/todoapp', req.body);
-    const SQL_INSERT = "INSERT INTO todos (todo_title, todo_completed, todo_priority, todo_created) VALUES (?, ?, ?, ?)";
-    connection.execute(SQL_INSERT, [req.body.title, req.body.completed, req.body.priority, req.body.created], (err, results) => {
+    const SQL_INSERT = "INSERT INTO todos (todo_title, todo_completed, todo_priority, todo_created, todo_description) VALUES (?, ?, ?, ?, ?)";
+    const title = req.body.title;
+    const completed = 0;
+    const priority = "medium"
+    const created = new Date();
+    const description = req.body.description && req.body.description.trim() !== "" ? req.body.description : "--";
+    connection.execute(SQL_INSERT, [title, completed, priority, created, description], (err, results) => {
         if (err != null) {
             console.error(err)
             res.status(500).json({ error: err });

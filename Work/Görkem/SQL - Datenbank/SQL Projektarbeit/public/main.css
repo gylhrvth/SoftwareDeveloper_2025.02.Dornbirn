@@ -96,6 +96,16 @@ form{
     transition: 200ms ease;
 }
 
+#todo-info-id,
+#todo-info-title,
+#todo-info-description,
+#todo-info-created {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding: 2px 8px;
+}
+
 .delete-button{
     padding: 3px;
     background: none;
@@ -108,10 +118,10 @@ form{
 }
 
 .info-button {
-  background: none;
+    background: none;
     border: none;
     cursor: pointer;
-    color: var(--text-color); /* Akzentfarbe für das Icon */
+    color: var(--secondary-color); /* Akzentfarbe für das Icon */
     font-size: 24px; /* Größe des Icons */
     display: flex;
     align-items: center;
@@ -142,7 +152,8 @@ form{
     color: var(--text-color);
     padding: 8px 12px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
@@ -205,7 +216,8 @@ form{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 300px;
+    width: 400px;
+    max-width: 95vw;
     color: var(--text-color);
     font-size: 1rem;
 }
@@ -213,13 +225,34 @@ form{
 .modal-content h2 {
     margin-bottom: 15px;
     font-size: 1.5rem;
-    color: var(--accent-color); /* Akzentfarbe für den Titel */
+    color: var(--text-color);
 }
 
 .modal-content p {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
     margin: 10px 0;
     font-size: 1rem;
-    color: var(--text-color); 
+    color: var(--text-color);
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.modal-content p strong {
+    min-width: 90px;
+    font-weight: 600;
+    color: var(--accent-color);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.modal-content p span {
+    flex: 1 1 0;
+    word-break: break-word;
+    white-space: pre-line;
+    color: var(--text-color);
+    text-align: left;
 }
 
 button.button-style {
