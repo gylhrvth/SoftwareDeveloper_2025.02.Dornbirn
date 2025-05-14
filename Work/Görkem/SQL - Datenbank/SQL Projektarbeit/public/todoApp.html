@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete+priority" />
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <h1>Todo App</h1>
+    <div class="wrapper">
+        <form>
+            <input id="todo-input" type="text"
+            placeholder="write anything and hit enter to add" autocomplete="off">
+            <button id="add-button">ADD</button>
+        </form>
+        <ul id="todo-list">
+            <!-- Dynamische Todos werden hier eingefügt -->
+        </ul>
+        <button id="clear-completed-button" class="button-style" onclick="clearCompletedTodos()">Clear Completed Todos</button>
+        <button id="clear-all-button" class="button-style" onclick="clearAllTodos()">Clear All Todos</button>
+    </div> 
+
+    <!-- Modal for Todo Info -->
+    <div id="todo-info-modal" class="modal">
+        <div class="modal-content">
+            <h2>Todo Details</h2>
+            <p><strong>ID:</strong> <span id="todo-info-id"></span></p>
+            <p><strong>Title:</strong> <span id="todo-info-title"></span></p>
+            <p><strong>Created:</strong> <span id="todo-info-created"></span></p>
+            <button id="close-modal-button" class="button-style">Close</button>
+        </div>
+    </div>
+</body>
 </body>
 </html>
+    
