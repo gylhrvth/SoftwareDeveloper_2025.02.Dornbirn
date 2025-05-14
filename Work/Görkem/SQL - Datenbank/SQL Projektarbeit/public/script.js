@@ -1,0 +1,128 @@
+
+async function loadAPI_Data(){
+    console.log('loadAPI_Data')
+    let result = await fetch('/API/todoapp');
+    if (result.ok){
+        let data = await result.json();
+        console.log('Liste geladen', data);
+        renderTodos(data)
+    } else {
+        console.error('Cannot load /API/todoapp');
+    }
+}
+
+// Todos darstellen
+function renderTodos(todos) {
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = ''; // Liste leeren
+
+    todos.forEach(todo => {
+        // Listenelement erstellen
+        const todoItem = document.createElement('li');
+        todoItem.className = 'todo';
+
+        // Checkbox erstellen
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `todo-${todo.todo_id}`;
+        checkbox.checked = todo.todo_completed;
+
+        // Label für Checkbox erstellen
+        const customCheckboxLabel = document.createElement('label');
+        customCheckboxLabel.className = 'custom-checkbox';
+        customCheckboxLabel.htmlFor = `todo-${todo.todo_id}`;
+
+        const checkboxIcon = document.createElement('span');
+        checkboxIcon.className = 'material-icons';
+        checkboxIcon.textContent = 'done';
+        customCheckboxLabel.appendChild(checkboxIcon);
+
+        // Label für den Todo-Text erstellen
+        const todoTextLabel = document.createElement('label');
+        todoTextLabel.htmlFor = `todo-${todo.todo_id}`;
+        todoTextLabel.className = 'todo-text';
+        todoTextLabel.textContent = todo.todo_title;
+
+        // Priorität anzeigen
+        const prioritySpan = document.createElement('span');
+        prioritySpan.className = `priority-icon ${todo.todo_priority.toLowerCase()}`;
+        prioritySpan.textContent = 'priority';
+        prioritySpan.classList.add('material-symbols-outlined');
+
+        // Erstellungsdatum anzeigen
+        const createdSpan = document.createElement('span');
+        createdSpan.className = 'created';
+        createdSpan.textContent = `Created: ${new Date(todo.todo_created).toLocaleString()}`;
+
+        // Delete-Button erstellen
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-button';
+        deleteButton.setAttribute('aria-label', 'Delete');
+
+        const deleteIcon = document.createElement('span');
+        deleteIcon.className = 'material-symbols-outlined';
+        deleteIcon.textContent = 'delete';
+        deleteButton.appendChild(deleteIcon);
+
+        // Info-Button erstellen
+        const infoButton = document.createElement('button');
+        infoButton.className = 'info-button';
+        infoButton.setAttribute('aria-label', 'Info');
+
+        const infoIcon = document.createElement('span');
+        infoIcon.className = 'material-symbols-outlined';
+        infoIcon.textContent = 'info';
+        infoButton.appendChild(infoIcon);
+
+        // Event-Listener für den Info-Button
+        infoButton.addEventListener('click', () => {
+            showTodoInfo(todo); // Funktion aufrufen, um die Todo-Details anzuzeigen
+        });
+
+        // Event-Listener für den Delete-Button
+        deleteButton.addEventListener('click', () => {
+            deleteTodoItem(todo.todo_id);
+        });
+
+        // Elemente zum Listenelement hinzufügen
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(customCheckboxLabel);
+        todoItem.appendChild(todoTextLabel);
+        todoItem.appendChild(prioritySpan);
+        todoItem.appendChild(deleteButton);
+        todoItem.appendChild(infoButton);
+        
+        todoList.appendChild(todoItem);
+    });
+}
+
+function showTodoInfo(todo){
+    const modal = document.getElementById('todo-info-modal');
+    document.getElementById('todo-info-id').textContent = todo.todo_id;
+    document.getElementById('todo-info-title').textContent = todo.todo_title;
+    document.getElementById('todo-info-created').textContent = new Date(todo.todo_created).toLocaleString();
+
+    modal.style.display = 'flex';
+}
+    document.getElementById('close-modal-button').addEventListener('click', () => {
+    const modal = document.getElementById('todo-info-modal');
+    modal.style.display = 'none'; // Modal ausblenden
+});
+
+
+// Todo löschen
+async function deleteTodoItem(todoId){
+    let result = await fetch('/API/todoapp', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ todo_id: todoId })
+    });
+    if (result.ok) {
+        loadAPI_Data(); // Liste neu laden
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('HTML vollständig geladen');
+    loadAPI_Data();
+});
