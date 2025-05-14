@@ -126,9 +126,37 @@ form{
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
+.priority-icon {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.priority-icon::after {
+    content: attr(title); /* Tooltip-Text aus dem Attribut `title` */
+    position: absolute;
+    bottom: 125%; /* Tooltip über dem Icon anzeigen */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.priority-icon:hover::after {
+    opacity: 1; /* Tooltip anzeigen, wenn der Benutzer über das Icon fährt */
+}
+
 .delete-button:hover{
     color: #ff0033;
-    transition: 200ms ease;
+    transform: scale(1.2);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .priority-icon.low{
@@ -140,7 +168,7 @@ form{
 }
 
 .priority-icon.high{
-    color: red;
+    color: #ff0033;
 }
 
 .custom-checkbox {

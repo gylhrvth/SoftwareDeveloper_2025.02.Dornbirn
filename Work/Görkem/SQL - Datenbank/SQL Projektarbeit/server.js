@@ -50,7 +50,7 @@ app.get('/API/todoapp', (req, res) => {
 app.delete('/API/todoapp', (req, res) => {
     console.log('Delete /API/todoapp', req.body);
     const SQL_DELETE = "DELETE FROM todos WHERE todo_id = ?";
-     connection.execute(SQL_DELETE, [req.body.todo_id], (err, results) => {
+    connection.execute(SQL_DELETE, [req.body.todo_id], (err, results) => {
         if (err != null) {
             res.status(500).json({ error: err });
         } else {

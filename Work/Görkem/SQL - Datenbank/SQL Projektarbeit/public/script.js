@@ -46,8 +46,11 @@ function renderTodos(todos) {
         // Priorität anzeigen
         const prioritySpan = document.createElement('span');
         prioritySpan.className = `priority-icon ${todo.todo_priority.toLowerCase()}`;
-        prioritySpan.textContent = 'priority';
+        prioritySpan.textContent = 'priority_high';
         prioritySpan.classList.add('material-symbols-outlined');
+
+        // Tooltip hinzufügen
+        prioritySpan.setAttribute('title', todo.todo_priority);
 
         // Erstellungsdatum anzeigen
         const createdSpan = document.createElement('span');
