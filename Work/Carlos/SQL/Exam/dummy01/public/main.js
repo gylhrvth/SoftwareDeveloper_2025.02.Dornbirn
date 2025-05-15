@@ -82,10 +82,20 @@ function createLeftContentHeaderDiv(todo, todoMainDiv) {
     const checkbox = createCheckbox(todo, todoMainDiv);
     const todoTaskDiv = createTodoTaskDiv(todo, todoMainDiv);
 
+    addPriorityEmoji(todoTaskDiv, todo); // Call the function to add the emoji
+
     leftContentHeaderDiv.appendChild(checkbox);
     leftContentHeaderDiv.appendChild(todoTaskDiv);
 
     return leftContentHeaderDiv;
+}
+
+function addPriorityEmoji(todoTaskDiv, todo) {
+    if (todo.todo_Priority === 'High') {
+        const priorityEmoji = document.createElement('span');
+        priorityEmoji.textContent = ' ‼️';
+        todoTaskDiv.appendChild(priorityEmoji);
+    }
 }
 
 // Create the checkbox for a todo
@@ -148,7 +158,7 @@ function createEditButton(todo) {
 
     // Attach the event listener to call editTodo
     editButton.addEventListener('click', () => {
-        editTodo(todo.todo_ID, todo.todo_Task, todo.todo_Description, todo.todo_Status);
+        editTodo(todo.todo_ID, todo.todo_Task, todo.todo_Description, todo.todo_Status, todo.todo_Priority);
     });
 
     return editButton;
@@ -194,15 +204,15 @@ function createTodoDetailsDiv(todo) {
         return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     };
     
-    // Apply red color only if priority is High
-    const priorityStyle = todo.todo_Priority === 'High' ? 'color: red; font-weight: bold;' : '';
+    // Determine the priority class based on the value
+    const priorityClass = todo.todo_Priority === 'High' ? 'priority-high' : '';
      // Determine the status class based on the value
     const statusClass = todo.todo_Status === 'Completed' ? 'status-complete' : '';
 
     todoDetailsDiv.innerHTML = `
         <p><strong>Description:</strong> ${todo.todo_Description || 'No description provided'}</p>
         <p><strong>Status:</strong> <span class="${statusClass}">${todo.todo_Status}</span></p>
-        <p><strong>Priority:</strong> <span style="${priorityStyle}">${todo.todo_Priority || 'Normal'}</span></p>
+        <p><strong>Priority:</strong> <span class="${priorityClass}">${todo.todo_Priority || 'Normal'}</span></p>
         <p><strong>Created At:</strong> ${formatDate(todo.created_at)}</p>
         <p><strong>Updated At:</strong> ${formatDate(todo.updated_at)}</p>
     `;
@@ -306,9 +316,9 @@ function populateEditPopupForm(todo_Task, todo_Description, todo_Status, todo_Pr
     const editTodoPriority = document.getElementById('editTodoPriority');
 
     editTodoTask.value = todo_Task;
-    editTodoDescription.value = todo_Description;
-    editTodoStatus.value = todo_Status;
-    editTodoPriority.value = todo_Priority || 'Normal';
+    editTodoDescription.value = todo_Description || ''; // Default to empty if no description
+    editTodoStatus.value = todo_Status || 'Pending'; // Default to 'Pending' if no status is set
+    editTodoPriority.value = todo_Priority || 'Normal'; // Default to 'Normal' if no priority is set
 }
 
 // Handle the form submission for editing a todo
@@ -361,8 +371,8 @@ function setupCancelEditButton() {
 }
 
 // Main function to edit a todo
-function editTodo(id, todo_Task, todo_Description, todo_Status) {
-    populateEditPopupForm(todo_Task, todo_Description, todo_Status); // Populate the form
+function editTodo(id, todo_Task, todo_Description, todo_Status, todo_Priority) {
+    populateEditPopupForm(todo_Task, todo_Description, todo_Status, todo_Priority); // Populate the form
     showEditPopupForm(); // Show the popup
     handleEditFormSubmission(id); // Handle form submission
     setupCancelEditButton(); // Set up the cancel button
@@ -415,8 +425,36 @@ async function loadTodos() {
     renderTodoList(todosState);
 }
 
+// Function to toggle dark mode
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    saveDarkModePreference();
+}
+
+// Function to save the user's dark mode preference in localStorage
+function saveDarkModePreference() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+}
+
+// Function to apply the saved dark mode preference on page load
+function applySavedDarkModePreference() {
+    const savedTheme = localStorage.getItem('darkMode');
+    if (savedTheme === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+}
+
+// Initialize dark mode toggle button
+function setupDarkModeToggle() {
+    const toggleDarkModeButton = document.getElementById('toggleDarkModeButton');
+    toggleDarkModeButton.addEventListener('click', toggleDarkMode);
+}
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
+    applySavedDarkModePreference();
+    setupDarkModeToggle();
     setupPopupForm();
     setupDeleteCompletedTodosButton(); // Set up the delete completed todos button
     loadTodos();
