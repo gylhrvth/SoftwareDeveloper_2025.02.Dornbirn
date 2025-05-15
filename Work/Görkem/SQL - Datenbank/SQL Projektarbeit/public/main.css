@@ -107,17 +107,16 @@ form{
 
 #todo-info-title,
 #todo-info-description{
-    /*border-bottom: solid 2px var(--secondary-color);*/
     display: inline-block;
     vertical-align: middle;
     background: var(--secondary-color);
     border: none;
-    border-radius: 8px; /* Kein runder Rand mehr */
+    border-radius: 8px; 
     color: var(--text-color);
     font-size: 1rem;
     padding: 2px 8px 2px 8px;
     margin: 0;
-    width: 220px;
+    width: 280px;
     min-width: 60px;
     max-width: 70%;
     outline: none;
