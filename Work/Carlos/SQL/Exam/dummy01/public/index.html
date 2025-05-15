@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <title>To-Do App</title>
     <link rel="stylesheet" href="/main.css">
     <script defer src="/main.js"></script>
@@ -13,43 +14,70 @@
     </header>
 
     <main>
-
-        <!-- Main Buttons -->
-        <div id="mainButtons">
-            <button id="addTodoButton">+</button>
-        </div>
-
+        <!-- Form for Editing ToDos (hidden)-->
         <div id="editPopupForm" class="hidden">
             <form id="editTodoForm">
+                <h3>Edit Task</h3>
                 <input type="text" id="editTodoTask" placeholder="Task Title" required>
                 <textarea id="editTodoDescription" placeholder="Task Description"></textarea>
+                <label for="editTodoPriority"><strong>Status:</strong></label>
                 <select id="editTodoStatus">
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
+                </select>
+                <label for="editTodoPriority"><strong>Priority:</strong></label>
+                <select id="editTodoPriority">
+                    <option value="Low">Low</option>
+                    <option value="Normal">Normal</option>
+                    <option value="High">High</option>
                 </select>
                 <button type="submit">Save Changes</button>
                 <button type="button" id="closeEditFormButton">Cancel</button>
             </form>
         </div>
 
-       <!-- Popup Form -->
+        <!-- Form for Creating new Todos (hidden) -->
         <div id="popupForm" class="hidden">
             <form id="todoForm">
+                <h3>New Task</h3>
                 <input type="text" id="todoTask" placeholder="Task Title" required>
                 <textarea id="todoDescription" placeholder="Task Description"></textarea>
+                <label for="editTodoPriority"><strong>Status:</strong></label>
                 <select id="todoStatus">
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
+                </select>
+                <label for="editTodoPriority"><strong>Priority:</strong></label>
+                <select id="todoPriority">
+                    <option value="Low">Low</option>
+                    <option value="Normal" selected>Normal</option>
+                    <option value="High">High</option>
                 </select>
                 <button type="submit">Add Task</button>
                 <button type="button" id="closeFormButton">Cancel</button>
             </form>
         </div>
 
-        <!-- List of Todos -->
+        <!-- ToDos Main Section -->
         <section id="todoListSection">
-            <h2>Your Tasks</h2>
-            <ul id="todoList"></ul>
+            <!-- Main Section 'Header'-->
+            <div class="upperContent">
+                <h2>My Tasks</h2>
+                <!-- Main Buttons (Dark Mode, Add New Task, Remove All Complete) -->
+                <div id="mainButtons">
+                    <button id="toggleDarkModeButton">
+                        <img src="assets/icons/dark.svg" alt="Dark Mode" class="icon">
+                    </button>
+                    <button id="addTodoButton">
+                        <img src="assets/icons/add.svg" alt="Add New Todo" class="icon">
+                    </button>
+                    <button id="deleteCompletedTodosButton">
+                        <img src="assets/icons/remove.svg" alt="Delete Completed Todos" class="icon">
+                    </button>
+                </div>
+            </div>
+            <!-- Main Section 'Content' (Fetched Tasks will be shown here)-->
+            <div id="todoList"></div>
         </section>
     </main>
 
