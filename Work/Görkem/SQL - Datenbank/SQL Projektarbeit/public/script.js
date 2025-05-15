@@ -61,6 +61,21 @@ function renderTodos(todos) {
         // Tooltip hinzufügen
         prioritySpan.setAttribute('title', todo.todo_priority);
 
+         // --- PRIORITY-ICON CLICK: Priorität ändern ---
+        const priorities = ['low', 'medium', 'high'];
+        let currentPriorityIndex = priorities.indexOf(todo.todo_priority);
+
+        prioritySpan.addEventListener('click', async () => {
+            currentPriorityIndex = (currentPriorityIndex + 1) % priorities.length;
+            const newPriority = priorities[currentPriorityIndex];
+            await fetch(`/API/todoapp/${todo.todo_id}/priority`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ priority: newPriority })
+            });
+            loadAPI_Data();
+        });
+
         // Erstellungsdatum anzeigen
         const createdSpan = document.createElement('span');
         createdSpan.className = 'created';
@@ -112,9 +127,26 @@ function renderTodos(todos) {
 function showTodoInfo(todo){
     const modal = document.getElementById('todo-info-modal');
     document.getElementById('todo-info-id').textContent = todo.todo_id;
-    document.getElementById('todo-info-title').textContent = todo.todo_title;
-    document.getElementById('todo-info-description').textContent = todo.todo_description || "--";
+    document.getElementById('todo-info-title').value = todo.todo_title;
+    document.getElementById('todo-info-description').value = todo.todo_description || "";
     document.getElementById('todo-info-created').textContent = new Date(todo.todo_created).toLocaleString();
+
+    const saveBtn = document.getElementById('save-todo-edit');
+    if (saveBtn) {
+        saveBtn.onclick = async function() {
+            const newTitle = document.getElementById('todo-info-title').value.trim();
+            const newDesc = document.getElementById('todo-info-description').value.trim();
+            if (!newTitle) return alert("Titel darf nicht leer sein!");
+
+            await fetch(`/API/todoapp/${todo.todo_id}/edit`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: newTitle, description: newDesc })
+            });
+            modal.style.display = 'none';
+            loadAPI_Data();
+        };
+    }
 
     modal.style.display = 'flex';
 }
@@ -122,7 +154,6 @@ function showTodoInfo(todo){
     const modal = document.getElementById('todo-info-modal');
     modal.style.display = 'none'; // Modal ausblenden
 });
-
 
 // Todo löschen
 async function deleteTodoItem(todoId){
@@ -146,6 +177,19 @@ async function clearCompletedTodos() {
 }
 document.getElementById('clear-completed-button').addEventListener('click', clearCompletedTodos);
 
+async function clearAllTodos(){
+    let result = await fetch('/API/todoapp/all', {
+        method: 'DELETE'
+    });
+    if (result.ok) {
+        loadAPI_Data(); // Liste neu laden
+    }
+}
+document.getElementById('clear-all-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    clearAllTodos();
+});
+
 // Todo hinzufügen
 async function addTodoItem() {
     const input = document.getElementById('todo-input');
@@ -162,12 +206,12 @@ async function addTodoItem() {
         loadAPI_Data(); // Liste neu laden
     }
 }
-    document.getElementById('add-button').addEventListener('click', function(e) {
+document.getElementById('add-button').addEventListener('click', function(e) {
         e.preventDefault();
         addTodoItem();
 });
 
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('todo-info-modal');
         if (modal) modal.style.display = 'none';
         loadAPI_Data();
