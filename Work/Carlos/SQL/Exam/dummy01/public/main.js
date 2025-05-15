@@ -1,8 +1,15 @@
+/**************************************
+ * Global Variables
+ **************************************/
+
 const apiUrl = '/api/todo';
 
 let todosState = []; // Array to track the visibility state of todos
 
-// Fetch all todos from the API
+/**************************************
+ * Fetch (GET)
+ **************************************/
+// This function fetches the todos from the API and returns them as a JSON object
 async function fetchTodos() {
     try {
         const response = await fetch(apiUrl);
@@ -14,7 +21,8 @@ async function fetchTodos() {
     }
 }
 
-// Update the visibility state of todos
+// Update the todos state with the fetched data
+// This function updates the todosState array with the fetched todos and their visibility state
 function updateTodosState(todos) {
     todos.forEach(todo => {
         const existingTodo = todosState.find(t => t.todo_ID === todo.todo_ID);
@@ -24,6 +32,7 @@ function updateTodosState(todos) {
 }
 
 // Render the list of todos
+// This function clears the existing todo list and renders the new todos
 function renderTodoList(todos) {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = ''; // Clear the list before rendering
@@ -34,26 +43,26 @@ function renderTodoList(todos) {
     });
 }
 
+/**************************************
+ * Task Container Creation
+ **************************************/
+
 // Create the main container for a todo
 function createTodoMainDiv(todo) {
     const todoMainDiv = document.createElement('div');
     todoMainDiv.classList.add('todo_main');
-
+    // Create the header and details divs
+    const todoHeaderDiv = createTodoHeaderDiv(todo, todoMainDiv);
+    const todoDetailsDiv = createTodoDetailsDiv(todo);
     // Apply styles based on the status
     if (todo.todo_Status === 'Completed') {
         todoMainDiv.classList.add('completed');
     }
-
-    // Create the header and details divs
-    const todoHeaderDiv = createTodoHeaderDiv(todo, todoMainDiv);
-    const todoDetailsDiv = createTodoDetailsDiv(todo);
-
     // Apply line-through to the task if status is "Completed"
     const todoTaskDiv = todoHeaderDiv.querySelector('.todo_task');
     if (todo.todo_Status === 'Completed') {
         todoTaskDiv.classList.add('line-through');
     }
-
     // Append the header and details divs to the main div
     todoMainDiv.appendChild(todoHeaderDiv);
     todoMainDiv.appendChild(todoDetailsDiv);
@@ -220,6 +229,10 @@ function createTodoDetailsDiv(todo) {
     return todoDetailsDiv;
 }
 
+/**************************************
+ * Update ToDo Status (PUT)
+ **************************************/
+
 async function updateTodoStatus(todo, newStatus, todoMainDiv) {
     try {
         const response = await fetch(`${apiUrl}/${todo.todo_ID}`, {
@@ -257,7 +270,9 @@ async function updateTodoStatus(todo, newStatus, todoMainDiv) {
     }
 }
 
-// Delete a todo
+/**************************************
+ * Delete Task (DELETE)
+ **************************************/
 async function deleteTodo(id) {
     try {
         const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
@@ -267,6 +282,10 @@ async function deleteTodo(id) {
         console.error('Error deleting todo:', error);
     }
 }
+
+/**************************************
+ * Delete All Completed Tasks (DELETE)
+ **************************************/
 
 // Add event listener to delete all completed todos
 function setupDeleteCompletedTodosButton() {
@@ -291,7 +310,9 @@ function setupDeleteCompletedTodosButton() {
     });
 }
 
-// Edit a todo functions
+/**************************************
+ * Edit and existing Task (PUT)
+ **************************************/
 
 // Show the edit popup form
 function showEditPopupForm() {
@@ -321,7 +342,8 @@ function populateEditPopupForm(todo_Task, todo_Description, todo_Status, todo_Pr
     editTodoPriority.value = todo_Priority || 'Normal'; // Default to 'Normal' if no priority is set
 }
 
-// Handle the form submission for editing a todo
+// Handle the edit form submission
+// This function is called when the form is submitted
 function handleEditFormSubmission(id) {
     const editTodoForm = document.getElementById('editTodoForm');
     const editTodoTask = document.getElementById('editTodoTask');
@@ -338,18 +360,8 @@ function handleEditFormSubmission(id) {
         const updatedPriority = editTodoPriority.value;
 
         try {
-            const response = await fetch(`${apiUrl}/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    todo_Task: updatedTask,
-                    todo_Description: updatedDescription,
-                    todo_Status: updatedStatus,
-                    todo_Priority: updatedPriority
-                })
-            });
-
-            if (!response.ok) throw new Error('Failed to update todo');
+            // Call the refactored updateTodo function
+            await updateTodo(id, updatedTask, updatedDescription, updatedStatus, updatedPriority);
 
             // Hide the popup form after submission
             hideEditPopupForm();
@@ -357,9 +369,30 @@ function handleEditFormSubmission(id) {
             // Reload the todo list
             loadTodos();
         } catch (error) {
-            console.error('Error updating todo:', error);
+            console.error('Error handling edit form submission:', error);
         }
     };
+}
+
+// Update an existing todo with PUT request
+async function updateTodo(id, updatedTask, updatedDescription, updatedStatus, updatedPriority) {
+    try {
+        const response = await fetch(`${apiUrl}/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                todo_Task: updatedTask,
+                todo_Description: updatedDescription,
+                todo_Status: updatedStatus,
+                todo_Priority: updatedPriority
+            })
+        });
+
+        if (!response.ok) throw new Error('Failed to update todo');
+    } catch (error) {
+        console.error('Error updating todo:', error);
+        throw error; // Re-throw the error to handle it in the caller
+    }
 }
 
 // Attach the cancel button functionality
@@ -378,52 +411,74 @@ function editTodo(id, todo_Task, todo_Description, todo_Status, todo_Priority) {
     setupCancelEditButton(); // Set up the cancel button
 }
 
-// Set up the popup form behavior
+// Set up the popup form for adding a new todo
+
 function setupPopupForm() {
     const addTodoButton = document.getElementById('addTodoButton');
     const popupForm = document.getElementById('popupForm');
     const closeFormButton = document.getElementById('closeFormButton');
     const todoForm = document.getElementById('todoForm');
 
+    // Open the popup form
     addTodoButton.addEventListener('click', () => {
         popupForm.classList.add('visible');
         document.body.classList.add('popup-active');
     });
 
+    // Close the popup form
     closeFormButton.addEventListener('click', () => {
         popupForm.classList.remove('visible');
         document.body.classList.remove('popup-active');
     });
 
-    todoForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const todo_Task = document.getElementById('todoTask').value;
-        const todo_Description = document.getElementById('todoDescription').value;
-        const todo_Status = document.getElementById('todoStatus').value;
-        const todo_Priority = document.getElementById('todoPriority').value;
-
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ todo_Task, todo_Description, todo_Status, todo_Priority })
-            });
-            if (!response.ok) throw new Error('Failed to add todo');
-            popupForm.classList.remove('visible');
-            document.body.classList.remove('popup-active');
-            loadTodos();
-        } catch (error) {
-            console.error('Error adding todo:', error);
-        }
-    });
+    // Handle form submission
+    todoForm.addEventListener('submit', (e) => handleFormSubmission(e, popupForm, loadTodos));
 }
 
-// Load todos and render them
-async function loadTodos() {
-    const todos = await fetchTodos();
-    updateTodosState(todos);
-    renderTodoList(todosState);
+// Handle the form submission for adding a new todo
+
+async function handleFormSubmission(e, popupForm, loadTodos) {
+    e.preventDefault();
+
+    const todo_Task = document.getElementById('todoTask').value;
+    const todo_Description = document.getElementById('todoDescription').value;
+    const todo_Status = document.getElementById('todoStatus').value;
+    const todo_Priority = document.getElementById('todoPriority').value;
+
+    try {
+        // Call the refactored addTodo function
+        await addTodo(todo_Task, todo_Description, todo_Status, todo_Priority);
+
+        // Close the popup form and reload todos
+        popupForm.classList.remove('visible');
+        document.body.classList.remove('popup-active');
+        loadTodos();
+    } catch (error) {
+        console.error('Error handling form submission:', error);
+    }
 }
+
+/**************************************
+ * Create New Task (POST)
+ **************************************/
+async function addTodo(todo_Task, todo_Description, todo_Status, todo_Priority) {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ todo_Task, todo_Description, todo_Status, todo_Priority })
+        });
+
+        if (!response.ok) throw new Error('Failed to add todo');
+    } catch (error) {
+        console.error('Error adding todo:', error);
+        throw error; // Re-throw the error to handle it in the caller
+    }
+}
+
+/**************************************
+ * Dark Mode Functions
+ **************************************/
 
 // Function to toggle dark mode
 function toggleDarkMode() {
@@ -449,6 +504,17 @@ function applySavedDarkModePreference() {
 function setupDarkModeToggle() {
     const toggleDarkModeButton = document.getElementById('toggleDarkModeButton');
     toggleDarkModeButton.addEventListener('click', toggleDarkMode);
+}
+
+/**************************************
+ * Initialising Functions
+ **************************************/
+
+// Load todos and render them
+async function loadTodos() {
+    const todos = await fetchTodos();
+    updateTodosState(todos);
+    renderTodoList(todosState);
 }
 
 // Initialize the app
