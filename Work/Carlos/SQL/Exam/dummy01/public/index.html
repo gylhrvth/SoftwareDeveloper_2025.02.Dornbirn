@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <title>To-Do App</title>
     <link rel="stylesheet" href="/main.css">
@@ -15,9 +14,7 @@
     </header>
 
     <main>
-
-
-
+        <!-- Form for Editing ToDos (hidden)-->
         <div id="editPopupForm" class="hidden">
             <form id="editTodoForm">
                 <h3>Edit Task</h3>
@@ -39,7 +36,7 @@
             </form>
         </div>
 
-       <!-- Popup Form -->
+        <!-- Form for Creating new Todos (hidden) -->
         <div id="popupForm" class="hidden">
             <form id="todoForm">
                 <h3>New Task</h3>
@@ -61,11 +58,12 @@
             </form>
         </div>
 
-        <!-- List of Todos -->
+        <!-- ToDos Main Section -->
         <section id="todoListSection">
+            <!-- Main Section 'Header'-->
             <div class="upperContent">
                 <h2>My Tasks</h2>
-                        <!-- Main Buttons -->
+                <!-- Main Buttons (Dark Mode, Add New Task, Remove All Complete) -->
                 <div id="mainButtons">
                     <button id="toggleDarkModeButton">
                         <img src="assets/icons/dark.svg" alt="Dark Mode" class="icon">
@@ -78,6 +76,7 @@
                     </button>
                 </div>
             </div>
+            <!-- Main Section 'Content' (Fetched Tasks will be shown here)-->
             <div id="todoList"></div>
         </section>
     </main>

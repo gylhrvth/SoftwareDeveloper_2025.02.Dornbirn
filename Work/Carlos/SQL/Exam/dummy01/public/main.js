@@ -7,7 +7,7 @@ const apiUrl = '/api/todo';
 let todosState = []; // Array to track the visibility state of todos
 
 /**************************************
- * Fetch (GET)
+ * Fetch (GET) and Render ToDos
  **************************************/
 // This function fetches the todos from the API and returns them as a JSON object
 async function fetchTodos() {
@@ -201,18 +201,6 @@ function createTodoDetailsDiv(todo) {
         todoDetailsDiv.classList.add('visible');
     }
 
-        // Format the dates
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-        const year = date.getFullYear();
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-    };
-    
     // Determine the priority class based on the value
     const priorityClass = todo.todo_Priority === 'High' ? 'priority-high' : '';
      // Determine the status class based on the value
@@ -229,50 +217,74 @@ function createTodoDetailsDiv(todo) {
     return todoDetailsDiv;
 }
 
+// Format the dates
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
 /**************************************
  * Update ToDo Status (PUT)
  **************************************/
 
 async function updateTodoStatus(todo, newStatus, todoMainDiv) {
     try {
-        const response = await fetch(`${apiUrl}/${todo.todo_ID}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                todo_Task: todo.todo_Task, 
-                todo_Description: todo.todo_Description, 
-                todo_Status: newStatus, 
-                todo_Priority: todo.todo_Priority
-            })
-        });
+        // Update the todo status via API
+        await updateTodoStatusAPI(todo, newStatus);
 
-        if (!response.ok) throw new Error('Failed to update todo status');
-
-        // Update the status in the DOM
-        todo.todo_Status = newStatus;
-        const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2) span');
-
-        // Update the status text and class
-        statusElement.textContent = newStatus;
-        if (newStatus === 'Completed') {
-            statusElement.classList.add('status-complete');
-            todoMainDiv.classList.add('completed');
-            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
-            todoTaskDiv.classList.add('line-through');
-        } else {
-            statusElement.classList.remove('status-complete');
-            todoMainDiv.classList.remove('completed');
-            const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
-            todoTaskDiv.classList.remove('line-through');
-        }
+        // Update the todo object and DOM
+        updateTodoStatusInDOM(todo, newStatus, todoMainDiv);
     } catch (error) {
         console.error('Error updating todo status:', error);
+    }
+}
+
+async function updateTodoStatusAPI(todo, newStatus) {
+    const response = await fetch(`${apiUrl}/${todo.todo_ID}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            todo_Task: todo.todo_Task,
+            todo_Description: todo.todo_Description,
+            todo_Status: newStatus,
+            todo_Priority: todo.todo_Priority
+        })
+    });
+
+    if (!response.ok) throw new Error('Failed to update todo status');
+}
+
+function updateTodoStatusInDOM(todo, newStatus, todoMainDiv) {
+    // Update the todo object
+    todo.todo_Status = newStatus;
+
+    // Update the status text and class in the DOM
+    const statusElement = todoMainDiv.querySelector('.todo_details p:nth-child(2) span');
+    statusElement.textContent = newStatus;
+
+    const todoTaskDiv = todoMainDiv.querySelector('.todo_task');
+
+    if (newStatus === 'Completed') {
+        statusElement.classList.add('status-complete');
+        todoMainDiv.classList.add('completed');
+        todoTaskDiv.classList.add('line-through');
+    } else {
+        statusElement.classList.remove('status-complete');
+        todoMainDiv.classList.remove('completed');
+        todoTaskDiv.classList.remove('line-through');
     }
 }
 
 /**************************************
  * Delete Task (DELETE)
  **************************************/
+
 async function deleteTodo(id) {
     try {
         const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
@@ -461,6 +473,7 @@ async function handleFormSubmission(e, popupForm, loadTodos) {
 /**************************************
  * Create New Task (POST)
  **************************************/
+
 async function addTodo(todo_Task, todo_Description, todo_Status, todo_Priority) {
     try {
         const response = await fetch(apiUrl, {
