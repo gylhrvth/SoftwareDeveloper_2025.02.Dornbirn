@@ -24,7 +24,17 @@ function renderTodos(todos) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = `todo-${todo.todo_id}`;
-        checkbox.checked = todo.todo_completed;
+        checkbox.checked = todo.todo_completed === 1;
+
+        // Checkbox-Event-Listener HIER einfügen!
+        checkbox.addEventListener('change', async function() {
+            await fetch(`/API/todoapp/${todo.todo_id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ completed: this.checked })
+            });
+            loadAPI_Data();
+        });
 
         // Label für Checkbox erstellen
         const customCheckboxLabel = document.createElement('label');
@@ -125,6 +135,16 @@ async function deleteTodoItem(todoId){
         loadAPI_Data(); // Liste neu laden
     }
 }
+
+async function clearCompletedTodos() {
+    let result = await fetch('/API/todoapp/completed', {
+        method: 'DELETE'
+    });
+    if (result.ok) {
+        loadAPI_Data(); // Liste neu laden
+    }
+}
+document.getElementById('clear-completed-button').addEventListener('click', clearCompletedTodos);
 
 // Todo hinzufügen
 async function addTodoItem() {

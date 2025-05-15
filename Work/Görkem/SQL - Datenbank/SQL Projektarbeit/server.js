@@ -60,6 +60,18 @@ app.delete('/API/todoapp', (req, res) => {
     });
 });
 
+// DELETE: Alle erledigten Todos löschen
+app.delete('/API/todoapp/completed', (req, res) => {
+    const SQL_DELETE_COMPLETED = "DELETE FROM todos WHERE todo_completed = 1";
+    connection.execute(SQL_DELETE_COMPLETED, [], (err, results) => {
+        if (err != null) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: 'Alle erledigten Todos wurden gelöscht' });
+        }
+    });
+});
+
 // POST: Eine neue Todo hinzufügen
 app.post('/API/todoapp', (req, res) => {
     console.log('POST /API/todoapp', req.body);
@@ -79,6 +91,21 @@ app.post('/API/todoapp', (req, res) => {
     });
 });
 
+// PATCH: Todo erledigt/Unerledigt umschalten
+app.patch('/API/todoapp/:id', (req, res) => {
+    const todoId = req.params.id;
+    const completed = req.body.completed ? 1 : 0;
+    const SQL_UPDATE = "UPDATE todos SET todo_completed = ? WHERE todo_id = ?";
+    connection.execute(SQL_UPDATE, [completed, todoId], (err, results) => {
+        if (err != null) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: 'Todo-Status aktualisiert' });
+        }
+    });
+});
+
 app.listen(process.env.HTTP_PORT, () => {
     console.log(`Server läuft auf Port ${process.env.HTTP_PORT}`);
 });
+
