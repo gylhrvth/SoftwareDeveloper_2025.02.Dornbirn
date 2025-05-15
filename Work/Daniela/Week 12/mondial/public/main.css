@@ -1,0 +1,39 @@
+h1 {
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.myCountry {
+    background: rgb(171, 171, 224);
+    border-radius: 0.5em;
+    width: 7em;
+}
+
+.allCountrys {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1em;
+    background: rgb(250, 195, 195);
+    border-radius: 0.5em;
+    
+}
+
+.Vorarlberg_rivers{
+    background: rgb(182, 236, 182);
+    border-radius: 0.5em;
+}
+
+.Vorarlberg_lake{
+background: rgb(252, 162, 244);
+}
+
+.bigestCity{
+    background: rgb(245, 238, 141);
+}
+
+
+
