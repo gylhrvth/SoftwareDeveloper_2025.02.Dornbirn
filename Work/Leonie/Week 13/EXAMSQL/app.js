@@ -53,7 +53,6 @@ app.get('/', (req, res) => {
             });
         });
         res.render('pages/index', {
-            title: 'SQL Example',
             header: fields,
             content: rows,
         });
@@ -101,7 +100,7 @@ app.post('/createToDo', (req, res) => {
     // Setze die Zeit von currentDate auf 00:00:00
         currentDate.setHours(0, 0, 0, 0);
     // Überprüfen, ob das Fälligkeitsdatum in der Zukunft liegt
-    if (new Date(taskDueDate) <= currentDate) {
+    if (new Date(dueDate) <= currentDate) {
         return res.status(400).json({ error: 'Das Fälligkeitsdatum muss in der Zukunft liegen.' });
     }
 
@@ -124,7 +123,6 @@ app.post('/createToDo', (req, res) => {
 // Route zum Löschen eines ToDo-Elements
 app.post('/deleteToDo', (req, res) => {
     const todoId = req.body.deleteToDoId; // ID des ToDo-Elements, das gelöscht werden soll
-    console.log('ToDo-ID zum Löschen:', todoId);
 
     // SQL-Abfrage, um das ToDo-Element zu löschen
     const sqlSoftDelete = 'UPDATE ToDo SET ToDo_isDeleted = TRUE WHERE ToDo_ID = ?';
@@ -198,7 +196,35 @@ app.post('/search', (req, res) => {
         });
 
         res.render('pages/index', {
-            title: 'SQL Example',
+            content: rows,
+        });
+    });
+}
+);
+
+// Route für Anzeige der gelöschten ToDo-Elemente
+app.get('/showDelete', (req, res) => {
+    db.query('SELECT * FROM ToDo td WHERE td.ToDo_isDeleted = TRUE', (err, rows, fields) => {
+        if (err) {
+            console.error('Fehler bei der SQL-Abfrage:', err);
+            return res.status(500).send('Interner Serverfehler');
+        }
+        if (rows.length === 0) {
+            return res.status(404).render('pages/error', { title: 'Keine Daten gefunden' });
+        }
+
+        // Daten formatieren
+        rows.forEach(row => {
+            row.ToDo_Frist = new Date(row.ToDo_Frist);
+            // Formatieren des Datums in das gewünschte Format
+            row.ToDo_Frist = row.ToDo_Frist.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        });
+
+        res.render('pages/index', {
             content: rows,
         });
     });
