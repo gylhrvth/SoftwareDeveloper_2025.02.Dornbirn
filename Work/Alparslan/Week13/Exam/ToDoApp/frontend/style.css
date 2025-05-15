@@ -343,20 +343,20 @@
 /* Gemeinsames Styling für Warntexte */
 .due-soon {
   color: #6b7280;
-  font-size: 0.8rem !important;
+  font-size: 0.85rem !important;
   font-weight:400;
 }
 
 .overdue-warning {
   color: #b91c1c;
-  font-size: 0.85rem;
+  font-size: 0.85rem !important;
   font-weight: bold;
 }
 
 
 .todo-title {
-  font-weight: 600;
-  font-size: 1.3rem !important; 
+  font-weight: 700;
+  font-size: 1.4rem !important; 
   margin-right: 0.75rem;
 }
 
