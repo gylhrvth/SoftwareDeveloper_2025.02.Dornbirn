@@ -34,7 +34,7 @@ app.use(express.json());
 // GET /api/todo – Alle Todos abrufen
 app.get('/api/todo', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM todos ORDER BY id DESC');
+    const [rows] = await pool.query('SELECT * FROM todos ORDER BY complete ASC, due_date ASC');
     res.json(rows);
   } catch (err) {
     console.error('Fehler beim Abrufen der Todos:', err);

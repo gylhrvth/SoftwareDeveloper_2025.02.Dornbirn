@@ -57,17 +57,43 @@ function renderDetails(todo) {
   const div = document.createElement('div');
   div.classList.add('todo-details', 'hidden');
 
+  // Beschreibung
+  createPStrong(div, 'Beschreibung:', '');
   const descriptionInput = document.createElement('textarea');
   descriptionInput.value = todo.description || '';
+  div.appendChild(descriptionInput);
 
-  const dueDateInput = document.createElement('input');
-  dueDateInput.type = 'date';
-  dueDateInput.value = todo.dueDate || '';
+// Fällig am
+createPStrong(div, 'Fällig am:', '');
 
+const dueDateInput = document.createElement('input');
+dueDateInput.type = 'date';
+
+// Wenn Datum vorhanden → anzeigen
+if (todo.due_date) {
+  dueDateInput.value = new Date(todo.due_date).toISOString().split('T')[0];
+} else {
+  dueDateInput.classList.add('missing-date');
+
+  // Hinweis-Text, wenn kein Datum vorhanden ist
+  const hint = document.createElement('div');
+  hint.textContent = '📌 Bitte Fälligkeitsdatum angegeben';
+  hint.classList.add('no-date-hint');
+  div.appendChild(hint);
+}
+
+div.appendChild(dueDateInput);
+
+
+  // Verantwortlicher
+  createPStrong(div, 'Verantwortlicher:', '');
   const responsibleInput = document.createElement('input');
   responsibleInput.type = 'text';
   responsibleInput.value = todo.responsible || '';
+  div.appendChild(responsibleInput);
 
+  // Priorität
+  createPStrong(div, 'Priorität:', '');
   const prioritySelect = document.createElement('select');
   ['low', 'middle', 'high'].forEach(p => {
     const option = document.createElement('option');
@@ -76,29 +102,29 @@ function renderDetails(todo) {
     if (p === priorityMap[todo.priority]) option.selected = true;
     prioritySelect.appendChild(option);
   });
+  div.appendChild(prioritySelect);
 
+  // Speichern-Button
   const saveBtn = document.createElement('button');
   saveBtn.textContent = '💾 Änderungen speichern';
   saveBtn.addEventListener('click', async () => {
     const updatedTodo = {
       description: descriptionInput.value,
-      dueDate: dueDateInput.value,
+      dueDate: dueDateInput.value || null,
       responsible: responsibleInput.value,
-      priority: priorityNameToNumber[prioritySelect.value]
+      priority: priorityNameToNumber[prioritySelect.value],
+      createdBy: "Alp"
     };
     await updateTodoAPI(todo.id, updatedTodo);
     showSuccess('Todo aktualisiert ✅');
     await loadTodosFromAPI();
   });
 
-  div.appendChild(descriptionInput);
-  div.appendChild(dueDateInput);
-  div.appendChild(responsibleInput);
-  div.appendChild(prioritySelect);
   div.appendChild(saveBtn);
 
   return div;
 }
+
 
 function showSuccess(message) {
   elements.success.textContent = message;
@@ -177,37 +203,92 @@ async function fetchTodoById(id) {
 // =======================
 // Rendering Funktionen
 // =======================
-
+/**
+ * Rendert die komplette ToDo-Liste im DOM basierend auf den übergebenen Todos.
+ * Jedes Todo wird als eigenes <div> dargestellt mit Checkbox, Titel, Prioritätsanzeige,
+ * Info-Icon (für Details), Lösch-Icon und (falls nötig) Überfälligkeitswarnung.
+ */
 function renderTodoList(todos) {
-  elements.list.innerHTML = '';
+  elements.list.innerHTML = ''; // Bestehende Liste leeren
+
   todos.forEach(todo => {
+    // Hauptcontainer für ein einzelnes Todo
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
     if (todo.complete) todoDiv.classList.add('completed');
 
+    // Obere Zeile mit Checkbox, Titel und Icons
     const topLine = document.createElement('div');
     topLine.classList.add('todo-topline');
 
+    // Linker Bereich: Checkbox + Titel + evtl. Warnung
     const left = document.createElement('div');
     left.classList.add('left-section');
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.complete;
+
     checkbox.addEventListener('change', async (e) => {
       todo.complete = e.target.checked;
       todoDiv.classList.toggle('completed', todo.complete);
       await updateTodoAPI(todo.id, { complete: todo.complete });
     });
 
-    const title = document.createElement('span');
-    title.textContent = todo.title;
+// Wrapper für Titel + Fälligkeitshinweis
+const titleWrapper = document.createElement('div');
+titleWrapper.classList.add('title-warning-container');
 
-    left.append(checkbox, title);
-    topLine.appendChild(left);
+// Titel
+const title = document.createElement('span');
+title.textContent = todo.title;
+title.classList.add('todo-title'); // 🆕 Schrift fett machen
+titleWrapper.appendChild(title);
 
+// Fälligkeitshinweis
+if (todo.due_date) {
+  const dueDate = new Date(todo.due_date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const daysDiff = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+  let message = '';
+  let className = 'due-soon';
+
+  if (daysDiff < 0) {
+    message = '⚠️ Überfällig';
+    className = 'overdue-warning';
+  } else if (daysDiff === 0) {
+    message = '📅 Heute fällig';
+  } else if (daysDiff === 1) {
+    message = '📅 Morgen fällig';
+  } else if (daysDiff < 7) {
+    message = `📅 In ${daysDiff} Tagen`;
+  } else {
+    const weeks = Math.floor(daysDiff / 7);
+    message = `📅 In ${weeks} Woche${weeks > 1 ? 'n' : ''}`;
+  }
+
+  const dueInfo = document.createElement('span');
+  dueInfo.textContent = message;
+  dueInfo.classList.add(className);
+  titleWrapper.appendChild(dueInfo);
+}
+
+// Zusammenbauen
+left.appendChild(checkbox);
+left.appendChild(titleWrapper);
+topLine.appendChild(left);
+
+
+
+
+    // Rechter Bereich: Prioritätsanzeige + Info + Löschen
     const right = document.createElement('div');
     right.classList.add('right-section');
+
+    const priorityDot = document.createElement('span');
+    priorityDot.classList.add('priority-dot', priorityMap[todo.priority]); // Farbe über CSS
 
     const infoIcon = document.createElement('span');
     infoIcon.textContent = 'ℹ️';
@@ -230,18 +311,22 @@ function renderTodoList(todos) {
     const deleteIcon = document.createElement('span');
     deleteIcon.textContent = '🗑️';
     deleteIcon.classList.add('icon-delete');
+
     deleteIcon.addEventListener('click', async (e) => {
       e.stopPropagation();
       await deleteTodoAPI(todo.id);
       await loadTodosFromAPI();
     });
 
-    right.append(infoIcon, deleteIcon);
+    right.append(priorityDot, infoIcon, deleteIcon);
     topLine.appendChild(right);
+
+    // Todo zusammensetzen und anhängen
     todoDiv.append(topLine, detailsDiv);
     elements.list.appendChild(todoDiv);
   });
 }
+
 
 // =======================
 // Event-Listener
