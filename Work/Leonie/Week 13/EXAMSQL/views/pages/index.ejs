@@ -15,10 +15,10 @@
                 <label for="title">Titel:</label>
                 <input type="text" id="title" name="title" required>
                 <label for="description">Beschreibung:</label>
-                <input type="text" id="description" name="description" required>
+                <textarea type="text" id="description" name="description" rows="5" cols="30" required></textarea>
                 <label for="dueDate">Fälligkeitsdatum:</label>
                 <input type="date" id="dueDate" name="dueDate" required>
-                <input type="submit" value="Erstellen">
+                <input id="erstellenToDoButton" type="submit" value="Erstellen">
             </form>
         </div>
         <% content.forEach(task=> { %>
@@ -36,7 +36,12 @@
         <div class="searchbar">
             <form action="/search" method="POST">
                 <input type="text" id="searchInput" name="search" placeholder="Suche nach Titel oder Beschreibung" value="">
-                <input type="submit" value="Suchen">
+            </form>
+            <form action="/showDelete">
+                <input type="submit" id="showDeleteButton" value="Gelöschte anzeigen">
+            </form>
+            <form action="/">
+                <input type="submit" id="showAllButton" value="Alle offenen ToDo's anzeigen">
             </form>
         </div>
         <div class="taskDetails">
@@ -49,9 +54,9 @@
                 <textarea id="taskDescription" name="taskDescription" rows="8" cols="50" required></textarea>
                 <label for="taskDueDate">Fälligkeitsdatum:</label>
                 <input type="date" id="taskDueDate" name="taskDueDate" value="" required>
-                <input type="submit" value="Update">
+                <p id="tastcreated">Erstellt: -</p>
+                <input id="updateToDoButton" type="submit" value="Update">
             </form>
-            <p id="tastcreated">Erstellt: -</p>
             <form action="/deleteToDo" method="post">
                 <input type="hidden" id="deleteToDoId" name="deleteToDoId" value="">
                 <input id="deleteToDoButton" type="submit" value="🗑️">
@@ -60,6 +65,7 @@
     </div>
 
     <script>
+        // Event-Listener für die Task-Elemente hinzufügen
         document.querySelectorAll('.task').forEach(task => {
             task.addEventListener('click', async (event) => {
                 const taskId = event.currentTarget.dataset.id;
@@ -72,7 +78,6 @@
                     }
 
                     const data = await response.json();
-                    console.log(data);
 
                     // Details im Container anzeigen
                     document.getElementById('taskTitle').value = data.title;
@@ -92,6 +97,9 @@
                     console.error(error);
                     alert('Fehler beim Laden der Task-Details.');
                 }
+                // Animation starten
+                const taskDetails = document.getElementsByClassName('taskDetails')[0];
+                taskDetails.id = 'taskDetailsAnimation';
             });
         });
     </script>

@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Document fully loaded');
+    //Funktions aufrufe
+    loadToDosFromAPI()
+
+});
+
+
+
+
 // ---------------------------------------------------Exam JS---------------------------------------------------------------------------------
 const SERVER = "http://localhost:3000"
 //Elemente 
@@ -27,22 +37,22 @@ function buildToDos(data) {
         //Checkbox 
         const checkBox = createHTMLElement(todoDiv, "input", "checkbox", "")
         checkBox.type = "checkbox";
-        checkBox.checked = todo.complete; // Status setzen (complete oder nicht)
+        checkBox.checked = todo.todo_complete; // Status setzen (complete oder nicht)
         //Status ändern bei checkbox klick
         checkBox.addEventListener("change", async () => {
             try {
                 const updatedStatus = checkBox.checked;
 
-                const response = await fetch(`${SERVER}/api/todo/${todo.id}`, {
+                const response = await fetch(`${SERVER}/api/todo/status/${todo.todo_ID}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ complete: updatedStatus })
+                    body: JSON.stringify({ todo_complete: updatedStatus })
                 });
 
                 if (!response.ok) throw new Error("Status konnte nicht aktualisiert werden");
 
                 const statusDiv = todoDiv.querySelector(".complete");
-                statusDiv.textContent = updatedStatus ? "Completed" : "Not Completed ";
+                statusDiv.textContent = updatedStatus ? "Completed" : "🐛Not Completed";
 
             } catch (error) {
                 console.error("Fehler beim Aktualisieren des Status", error);
@@ -50,9 +60,9 @@ function buildToDos(data) {
             }
         });
         //Titel erstellen
-        createHTMLElement(todoDiv, "div", "title", todo.title);
+        createHTMLElement(todoDiv, "div", "title", todo.todo_titel);
         //Status 
-        createHTMLElement(todoDiv, "div", "complete", todo.complete ? "Completed" : "Not Completed🐛");
+        createHTMLElement(todoDiv, "div", "complete", todo.todo_complete ? "Completed" : "🐛Not Completed");
         //Detail-Button erstellen 
         const detailButton = createHTMLElement(todoDiv, "button", "detailButton", "📋");
         //Edit-Button
@@ -63,7 +73,7 @@ function buildToDos(data) {
         //Detail-Event-Listener
         detailButton.addEventListener("click", function () {
             //Details des ToDos laden und anzeigen
-            loadToDoDetailsFromAPI(todo.id, todoWrapper); // TODO: Hier ToDo-Id übergeben
+            loadToDoDetailsFromAPI(todo.todo_ID, todoWrapper); // TODO: Hier ToDo-Id übergeben
         });
         //---------------------
         //Delete-Button erstellen
@@ -71,7 +81,7 @@ function buildToDos(data) {
         // Eventlistener zum Löschen
         deleteButton.addEventListener("click", async () => {
             try {
-                const response = await fetch(`${SERVER}/api/todo/${todo.id}`, {
+                const response = await fetch(`${SERVER}/api/TODOS/${todo.todo_ID}`, {
                     method: "DELETE"
                 });
 
@@ -94,7 +104,7 @@ function buildToDos(data) {
 async function loadToDosFromAPI() {
     try {
         //alle ToDos hollen von API
-        const response = await fetch(SERVER + "/api/todo");
+        const response = await fetch(SERVER + "/api/TODOS");
         const data = await response.json();
         console.log(data);
 
@@ -109,12 +119,13 @@ loadToDosFromAPI();
 setInterval(() => {
     loadToDosFromAPI();
 }, 30000);
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //API Details hollen
 async function loadToDoDetailsFromAPI(todoId, parentDiv) {
     try {
         //Details hollen von API
-        const response = await fetch(`${SERVER}/api/todo/${todoId}`);
+        const response = await fetch(`${SERVER}/api/todo_ID/${todoId}`);
         if (!response.ok) {
             throw new Error("Fehler vom Server: " + (await response.text()));
         }
@@ -143,13 +154,13 @@ function buildDetails(todo, parentDiv) {
     detailsDiv.className = "ToDo-Details";
 
     //parent, elementName, className, textContent -- createHTMLElement
-    createHTMLElement(detailsDiv, "div", "detailTitle", `Title: ${todo.title}`);
-    createHTMLElement(detailsDiv, "div", "detailDescription", `Description: ${todo.description || "Keine Beschreibung vorhanden"}`);
-    createHTMLElement(detailsDiv, "div", "detailDueDate", `DueDate: ${todo.dueDate}`);
-    createHTMLElement(detailsDiv, "div", "detailResponsible", `responsible: ${todo.responsible}`);
-    createHTMLElement(detailsDiv, "div", "detailCreatetBy", `CreatedBy: ${todo.createdBy}`);
-    createHTMLElement(detailsDiv, "div", "detailCreatetAt", `CreatetAt: ${new Date(todo.createdAt).toLocaleDateString()}`);
-    createHTMLElement(detailsDiv, "div", "detailUpdatedAt", `UpdatetAt: ${new Date(todo.updatedAt).toLocaleDateString()}`);
+    createHTMLElement(detailsDiv, "div", "detailTitle", `Title: ${todo.todo_titel}`);
+    createHTMLElement(detailsDiv, "div", "detailDescription", `Description: ${todo.todo_description || "Keine Beschreibung vorhanden"}`);
+    createHTMLElement(detailsDiv, "div", "detailDueDate", `DueDate: ${todo.todo_dueDate}`);
+    createHTMLElement(detailsDiv, "div", "detailResponsible", `responsible: ${todo.todo_responsible}`);
+    createHTMLElement(detailsDiv, "div", "detailCreatetBy", `CreatedBy: ${todo.todo_createdBy}`);
+    createHTMLElement(detailsDiv, "div", "detailCreatetAt", `CreatetAt: ${new Date(todo.todo_createdAt).toLocaleDateString()}`);
+    createHTMLElement(detailsDiv, "div", "detailUpdatedAt", `UpdatetAt: ${new Date(todo.todo_updatedAt).toLocaleDateString()}`);
 
     parentDiv.appendChild(detailsDiv);
 }
@@ -216,48 +227,48 @@ document.getElementById("saveForm").addEventListener("click", async () => {
         return;
     }
     const newTodo = {
-        title,
-        description,
-        dueDate: dueDate || null,
-        responsible,
-        complete: complete,  // Optional: in boolean umwandeln
-        createdBy
+        todo_titel: title,
+        todo_description: description,
+        todo_dueDate: dueDate || null,
+        todo_responsible: responsible,
+        todo_complete: complete,
+        todo_createdBy: createdBy
     };
     try {
-        const response = await fetch(SERVER + "/api/todo", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newTodo)
-        });
+            const response = await fetch(SERVER + "/api/todo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newTodo)
+            });
 
-        if (!response.ok) throw new Error("Fehler beim Erstellen");
+            if(!response.ok) throw new Error("Fehler beim Erstellen");
 
-        // Formular ausblenden und ToDos neu laden
-        document.getElementById("new-todo-form").style.display = "none";
-        await loadToDosFromAPI();
+            // Formular ausblenden und ToDos neu laden
+            document.getElementById("new-todo-form").style.display = "none";
+            await loadToDosFromAPI();
 
-        // Felder leeren:
-        document.getElementById("form-title").value = "";
-        document.getElementById("form-description").value = "";
-        document.getElementById("form-dueDate").value = "";
-        document.getElementById("form-responsible").value = "";
-        document.getElementById("form-complete").value = "";
-        document.getElementById("form-createdBy").value = "";
+            // Felder leeren:
+            document.getElementById("form-title").value = "";
+            document.getElementById("form-description").value = "";
+            document.getElementById("form-dueDate").value = "";
+            document.getElementById("form-responsible").value = "";
+            document.getElementById("form-complete").value = "";
+            document.getElementById("form-createdBy").value = "";
 
-    } catch (error) {
+        } catch (error) {
         console.error("Fehler:", error);
     }
 });
-// AbbrechencreateTodoForm habe ist es dann sinnvoller das:
+// Abbrechen createTodoForm 
 document.getElementById("cancelForm").addEventListener("click", () => {
     document.getElementById("new-todo-form").style.display = "none";
 });
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 function enableEditMode(todo, containerDiv, wrapperDiv) {
     // Aktuelle Infos holen (optional für Reset)
-    const originalTitle = todo.title;
-    const originalResponsible = todo.responsible;
-    const originalComplete = todo.complete;
+    const originalTitle = todo.todo_titel;
+    const originalResponsible = todo.todo_responsible;
+    const originalComplete = todo.todo_complete;
 
     // Vorherige Kinder löschen
     containerDiv.innerHTML = "";
@@ -265,54 +276,66 @@ function enableEditMode(todo, containerDiv, wrapperDiv) {
     // Eingabefelder einfügen
     const completeCheckbox = createHTMLForm(containerDiv, "input", "editCheckbox", "", {
         type: "checkbox",
-        id: `edit-complete-${todo.id}`,
-        checked: todo.complete
+        id: `edit-complete-${todo.todo_ID}`,
+        checked: todo.todo_complete
     });
     const titleInput = createHTMLForm(containerDiv, "input", "editInput", "Titel", {
-        id: `edit-title-${todo.id}`,
-        value: todo.title,
+        id: `edit-title-${todo.todo_ID}`,
+        value: todo.todo_titel,
     });
     const responsibleInput = createHTMLForm(containerDiv, "input", "editInput", "Ersteller", {
-        id: `edit-responsible-${todo.id}`,
-        value: todo.responsible || "",
+        id: `edit-responsible-${todo.todo_ID}`,
+        value: todo.todo_responsible || "",
     });
     const descriptionInput = createHTMLForm(containerDiv, "input", "editInput", "Beschreibung", {
-        id: `edit-description-${todo.id}`,
-        value: todo.description || "",
+        id: `edit-description-${todo.todo_ID}`,
+        value: todo.todo_description || "",
     });
     const updatedAtInput = createHTMLForm(containerDiv, "input", "editInput", "updatedAt", {
-        id: `edit-update-${todo.id}`,
-        value: todo.updatedAt || "",
+        id: `edit-update-${todo.todo_ID}`,
+        value: todo.todo_updatedAt ? new Date(todo.todo_updatedAt).toISOString().split("T")[0] : "",
         type: "date",
     });
+   
     // Button: Speichern
-    const saveBtn = createHTMLElement(containerDiv, "button", "saveEditButton", "💾");
+const saveBtn = createHTMLElement(containerDiv, "button", "saveEditButton", "💾");
 
-    saveBtn.addEventListener("click", async () => {
-        const updatedTodo = {
-            complete: completeCheckbox.checked,
-            title: titleInput.value.trim(),
-            responsible: responsibleInput.value.trim(),
-            dueDate: todo.dueDate,
-            createdBy: todo.createdBy,
-            description: todo.description || "" // Nullwert für Description vermeiden
-        };
-        try {
-            const response = await fetch(`${SERVER}/api/todo/${todo.id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updatedTodo)
-            });
-            if (!response.ok && response.status !== 202) {
-                throw new Error(`Fehler beim Speichern: ${response.status}`);
-            }
-            // Nach erfolgreichem Speichern neu laden
-            await loadToDosFromAPI();
-        } catch (error) {
-            console.error("Fehler beim Aktualisieren", error);
-            alert("Es gab ein Problem beim Speichern der Aufgabe. Bitte versuche es erneut.");
+saveBtn.addEventListener("click", async () => {
+
+      const formatDateForMySQL = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = `${date.getMonth() + 1}`.padStart(2, "0");
+        const day = `${date.getDate()}`.padStart(2, "0");
+        return `${year}-${month}-${day}`; // → ergibt z. B. "2025-05-15"
+    };
+
+    const updatedTodo = {
+        todo_complete: completeCheckbox.checked,
+        todo_titel: titleInput.value.trim(),               
+        todo_responsible: responsibleInput.value.trim(),   
+        todo_dueDate: formatDateForMySQL(todo.todo_dueDate), 
+        todo_createdBy: todo.todo_createdBy,
+        todo_description: descriptionInput.value.trim() || "" 
+    };
+
+    try {
+        const response = await fetch(`${SERVER}/api/todo/${todo.todo_ID}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedTodo)
+        });
+        if (!response.ok && response.status !== 202) {
+            throw new Error(`Fehler beim Speichern: ${response.status}`);
         }
-    });
+        // Nach erfolgreichem Speichern neu laden
+        await loadToDosFromAPI();
+    } catch (error) {
+        console.error("Fehler beim Aktualisieren", error);
+        alert("Es gab ein Problem beim Speichern der Aufgabe. Bitte versuche es erneut.");
+    }
+});
+
     // Button: Abbrechen
     const cancelBtn = createHTMLElement(containerDiv, "button", "cancelEditButton", "❌");
     cancelBtn.addEventListener("click", () => {

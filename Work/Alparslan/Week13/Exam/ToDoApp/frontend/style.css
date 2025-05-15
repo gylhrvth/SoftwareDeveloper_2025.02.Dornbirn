@@ -310,8 +310,60 @@
     color: #991b1b;
   }
   
-  
-  
+  /* Farbpunkte für Priorität */
+.priority-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.priority-dot.low {
+  background-color: green;
+}
+
+.priority-dot.middle {
+  background-color: orange;
+}
+
+.priority-dot.high {
+  background-color: red;
+}
+
+/* Warnhinweise rechts neben dem Titel */
+.warning-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+
+/* Gemeinsames Styling für Warntexte */
+.due-soon {
+  color: #6b7280;
+  font-size: 0.85rem !important;
+  font-weight:400;
+}
+
+.overdue-warning {
+  color: #b91c1c;
+  font-size: 0.85rem !important;
+  font-weight: bold;
+}
+
+
+.todo-title {
+  font-weight: 700;
+  font-size: 1.4rem !important; 
+  margin-right: 0.75rem;
+}
+
+
+
+
+
 
 
 

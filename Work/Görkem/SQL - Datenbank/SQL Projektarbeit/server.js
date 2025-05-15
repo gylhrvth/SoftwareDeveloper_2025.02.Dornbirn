@@ -72,6 +72,18 @@ app.delete('/API/todoapp/completed', (req, res) => {
     });
 });
 
+// DELETE: Alle Todos löschen
+app.delete('/API/todoapp/all', (req, res) => {
+    const SQL_DELETE_ALL = "DELETE FROM todos";
+    connection.execute(SQL_DELETE_ALL, [], (err, results) => {
+        if (err != null) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: 'Alle Todos wurden gelöscht' });
+        }
+    });
+});
+
 // POST: Eine neue Todo hinzufügen
 app.post('/API/todoapp', (req, res) => {
     console.log('POST /API/todoapp', req.body);
@@ -101,6 +113,36 @@ app.patch('/API/todoapp/:id', (req, res) => {
             res.status(500).json({ error: err });
         } else {
             res.status(200).json({ message: 'Todo-Status aktualisiert' });
+        }
+    });
+});
+
+// PATCH: Priorität eines Todos ändern
+app.patch('/API/todoapp/:id/priority', (req, res) => {
+    const todoId = req.params.id;
+    const priority = req.body.priority; // "low", "medium", "high"
+    const SQL_UPDATE = "UPDATE todos SET todo_priority = ? WHERE todo_id = ?";
+    connection.execute(SQL_UPDATE, [priority, todoId], (err, results) => {
+        if (err != null) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: 'Priorität aktualisiert' });
+        }
+    });
+    
+});
+
+// PATCH: Edit ändern
+app.patch('/API/todoapp/:id/edit', (req, res) => {
+    const todoId = req.params.id;
+    const { title, description } = req.body;
+    const created = new Date();
+    const SQL_UPDATE = "UPDATE todos SET todo_title = ?, todo_description = ?, todo_created = ? WHERE todo_id = ?";
+    connection.execute(SQL_UPDATE, [title, description, created, todoId], (err, results) => {
+        if (err != null) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: 'Todo aktualisiert' });
         }
     });
 });
