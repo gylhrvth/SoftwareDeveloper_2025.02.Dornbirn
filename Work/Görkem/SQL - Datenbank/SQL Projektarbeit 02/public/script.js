@@ -8,6 +8,7 @@ async function loadAPI_Data(){
     } else {
         console.error('Cannot load /API/todoapp');
     }
+    updateStats();
 }
 
 // Todos darstellen
@@ -183,6 +184,7 @@ async function clearAllTodos(){
     });
     if (result.ok) {
         loadAPI_Data(); // Liste neu laden
+        updateStats();
     }
 }
 document.getElementById('clear-all-button').addEventListener('click', function(e) {
@@ -204,8 +206,25 @@ async function addTodoItem() {
     if (result.ok) {
         input.value = '';
         loadAPI_Data(); // Liste neu laden
+        updateStats();
     }
 }
+
+function updateStats() {
+    fetch('/API/todoapp/stats')
+        .then(res => res.json())
+        .then(stats => {
+            document.getElementById('stat-total').textContent = stats.total ?? 0;
+            document.getElementById('stat-completed').textContent = stats.completed ?? 0;
+            document.getElementById('stat-open').textContent = stats.open ?? 0;
+        });
+}
+document.getElementById('todo-list').addEventListener('change', function(e) {
+    if (e.target && e.target.type === 'checkbox') {
+        updateStats();
+    }
+});
+
 document.getElementById('add-button').addEventListener('click', function(e) {
         e.preventDefault();
         addTodoItem();
@@ -215,4 +234,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('todo-info-modal');
         if (modal) modal.style.display = 'none';
         loadAPI_Data();
+        updateStats();
 });

@@ -17,6 +17,13 @@
             placeholder="write anything and hit enter to add" autocomplete="off">
             <button id="add-button">ADD</button>
         </form>
+        <!-- Statistik-Anzeige -->
+    <div id="stats" class="stats-bar">
+        <span><span class="material-icons">list</span> Alle Todos: <span id="stat-total">0</span></span>
+        <span><span class="material-icons">check_circle</span> Erledigt: <span id="stat-completed">0</span></span>
+        <span><span class="material-icons">radio_button_unchecked</span> Offen: <span id="stat-open">0</span></span>
+    </div>
+
         <ul id="todo-list">
             <!-- Dynamische Todos werden hier eingefügt -->
         </ul>

@@ -80,6 +80,27 @@ form{
     cursor: pointer;
 }
 
+.stats-bar {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+.stats-bar span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-color);
+}
+.stats-bar .material-icons {
+    font-size: 1.2em;
+    color: var(--accent-color);
+}
+
 .todo{
     margin-bottom: 10px;
     padding: 0 16px;

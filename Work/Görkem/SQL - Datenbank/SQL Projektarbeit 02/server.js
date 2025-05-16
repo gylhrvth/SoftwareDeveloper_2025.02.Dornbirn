@@ -46,6 +46,23 @@ app.get('/API/todoapp', (req, res) => {
     });
 });
 
+app.get('/API/todoapp/stats', (req, res) => {
+    const SQL = `
+        SELECT
+            COUNT(*) AS total,
+            SUM(todo_completed = 1) AS completed,
+            SUM(todo_completed = 0) AS open
+        FROM todos
+    `;
+    connection.query(SQL, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: err });
+        } else {
+            res.json(results[0]);
+        }
+    });
+});
+
 // DELETE: Todos löschen
 app.delete('/API/todoapp', (req, res) => {
     console.log('Delete /API/todoapp', req.body);
