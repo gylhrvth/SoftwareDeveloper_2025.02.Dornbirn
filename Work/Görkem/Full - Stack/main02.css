@@ -40,7 +40,7 @@ h3 {
 
 .code-box {
     background-color: #f4f4f4; /* Heller Hintergrund */
-    border: 2px solid #ff69b4; /* Violett */
+    border: 2px solid #2D6A4F; /* Dunkelgrüner Rahmen */
     border-radius: 5px; /* Abgerundete Ecken */
     padding: 10px;
     margin: 10px 0;
@@ -63,12 +63,12 @@ p, li {
 }
 
 .sql-table th, .sql-table td {
-    border: 1px solid #800080; /* Violetter Rahmen */
+    border: 2px solid #2D6A4F; /* Dunkelgrüner Rahmen */
     padding: 10px; /* Innenabstand */
 }
 
 .sql-table th {
-    background-color: #ff69b4; /* Pinker Hintergrund für die Kopfzeile */
+    background-color: #2D6A4F; /* Dunkelgrüner Hintergrund für die Kopfzeile */
     color: white; /* Weiße Schrift */
     font-weight: bold; /* Fettschrift */
 }
@@ -79,4 +79,29 @@ p, li {
 
 .sql-table tr:nth-child(odd) {
     background-color: #ffffff; /* Weißer Hintergrund für ungerade Zeilen */
+}
+
+code {
+    font-family: var(--secondary-font);
+    background-color: var(--secondary-color);
+    color: var(--secondary-background-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.code-sample>code {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    border: none;
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-sample {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
 }
