@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../Kurs/common.css">
+</head>
+<style>
+    ul li{
+        display: flex;
+        width: max-content;
+        justify-content: start;
+        background-color: rgba(0, 255, 255, 0.6);
+        color: white;
+        font-weight: bolder;
+    }
+  
+    a{
+        color: azure;
+    }
+
+    code{
+        background-color: rgba(0, 255, 255, 0.6);
+        color: white;
+        font-weight: bolder;
+       
+    }
+    body{
+        background-color: rgb(46, 45, 45);
+        margin-left: 5%;
+    }
+</style>
+<body>
+    
+    <h1>Node JS Notizen</h1>
+    
+    <ol>
+<li>Was ist ein JS Engine?</li>
+<li>Was ist der Unterschied zwischen JS Engine in einem Webbrowser und Node.JS?</li>
+<li>Was funktioniert NICHT in Node.JS?</li>
+<li>Wofür steht npm?</li>
+<li>Was bedeutet die Abkürzung CLI?</li>
+<li>Was ist ein Node.JS Project?</li>
+<li>Wie sieht die Grundstruktur von package.json aus?</li>
+<li>Wie erstelle ich ein neues Projekt?</li>
+<li>Wie starte ich mein Projekt?</li>
+<li>Was sind Node Packeges (dependency)?</li>
+<li>Was sind Kriterien für den Auswahl der Node Packages?</li>
+<li>Wie installiere ich neue Packages?</li>
+<li>Wie aktualisiere ich bestehende Packages?</li>
+<li>Wie entferne ich Packages, den ich nicht mehr brauche?</li>
+<li>Was muss in .gitignore file stehen?</li>
+<li>Wie importiere eine Funktion / Variable aus einem anderen Skript?</li>
+    
+    </ol>
+
+    <section>
+        <h2>1. Was ist ein JS Engine?</h2>
+            <p>Eine JavaScript Engine ist ein Software, das JavaScript-Code liest, interpretiert und ausführt.</p>
+            <p> Sie übersetzt den Code in Maschienensprache, damit der Computer es vertehen kann</p>
+            
+            <ul>
+                <li>V8 ist ein bekannter Enigne der von Google entwickelt wurde und wird in Chrome sowohl in Node.js verwendet</li>
+                <li></li>
+            </ul>
+        
+        <h2>2. Was ist der Unterschied zwischen JS Engine in einem Webbrowser und Node.JS?</h2>
+            <p>Wie bereits erwhn ist es das Selbe also V8, aber das Umfeld ist anders</p>
+
+            <table border="1">
+  <thead>
+    <tr>
+      <th>Bereich</th>
+      <th>Browser (z. B. Chrome)</th>
+      <th>Node.js</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ziel</td>
+      <td>Webseiten anzeigen und manipulieren</td>
+      <td>Serverseitige Logik und Tools ausführen</td>
+    </tr>
+    <tr>
+      <td>Zugriff auf DOM</td>
+      <td>✅ Ja (z. B. <code>document.getElementById</code>)</td>
+      <td>❌ Nein (kein HTML/DOM verfügbar)</td>
+    </tr>
+    <tr>
+      <td>Umgebung</td>
+      <td>Fenster (Browser-Fenster)</td>
+      <td>Betriebssystem (Dateien, Netzwerk)</td>
+    </tr>
+    <tr>
+      <td>Module-System</td>
+      <td>ES Modules (<code>import</code>)</td>
+      <td>CommonJS (<code>require</code>) oder ES Modules</td>
+    </tr>
+    <tr>
+      <td>Eingebaute APIs</td>
+      <td><code>alert()</code>, <code>fetch()</code>, <code>localStorage</code></td>
+      <td><code>fs</code>, <code>http</code>, <code>path</code>, <code>os</code></td>
+    </tr>
+  </tbody>
+</table>
+            <p>Die JS Engine ist gleich, aber im Browser läuft JS für Webseiten – in Node.js läuft JS für Server, Tools und Dateien.</p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+       
+        <h2>3. Was funktioniert NICHT in Node.js?</h2>
+            <p>Also alles was mit Dom zu tun hat weil es gibt kein Document nur.js dateien somit auch keine:</p>
+            <p></p>
+            <ul>
+                <li>document.querySelector/idSelector() etc</li>
+                <li>window.alert()</li>
+                <li>localStorage, sessionStorage</li>
+                <li>Direkte Manuplationen vom HMTL oder CSS. kein Document = keine Manuplation </li>
+
+            </ul>
+            <p>Somit werden die Datein bei Node.js als JSON-file oder wenn mehrere Benutzer angelegt werden müssen iin Datenbanken</p>
+       <table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Funktion</th>
+      <th>Browser</th>
+      <th>Node.js Alternative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dauerhafte Speicherung</td>
+      <td><code>localStorage</code> (bleibt auch nach Browser-Neustart)</td>
+      <td>Datei speichern (z. B. <code>fs</code>), Datenbank (MongoDB, MySQL)</td>
+    </tr>
+    <tr>
+      <td>Temporäre Speicherung (nur für Tab)</td>
+      <td><code>sessionStorage</code> (bleibt nur für aktuellen Tab offen)</td>
+      <td><code>express-session</code> (Session-Management), temporärer RAM-Speicher (z. B. <code>Map</code>)</td>
+    </tr>
+    <tr>
+      <td>Kleine Daten im Browser</td>
+      <td>Cookies</td>
+      <td><code>cookie-parser</code> + <code>express-session</code></td>
+    </tr>
+  </tbody>
+</table>
+
+        <h2>4. Wofür steht npm?</h2>
+            <p>npm = Node Package Manager</p>
+            <p>Es ist das offizielle Tool, mit dem du in Node.js Bibliotheken (Packages) suchst, installierst, verwaltest und aktualisierst.</p>
+            <ul>
+                <li>du kannst damit Fertige Codes von Entwicklern in dein projekt einbinden</li>
+                <li>Wieso du das machen solttest</li>
+                <p>Typische Befehle:</p>
+                <li> Paket Installieren <code> npm install express</code></li>
+                <li> aktuallisiert alle Pakete <code> npm update</code></li>
+            </ul>
+       <table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Vorteil</th>
+      <th>Erklärung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pakete nutzen</td>
+      <td>Fertige Bibliotheken installieren statt alles selbst programmieren Bsp: Express benutzen und staat 15 lines of Code nur 5 Zeilen Code Schreiben </td>
+    </tr>
+    <tr>
+      <td>Abhängigkeiten verwalten</td>
+      <td>Automatische Verwaltung der richtigen Paketversionen</td>
+    </tr>
+    <tr>
+      <td>Updates &amp; Sicherheit</td>
+      <td>Pakete leicht aktualisieren, um Bugs und Sicherheitslücken zu schließen</td>
+    </tr>
+    <tr>
+      <td>Projekt teilen</td>
+      <td><code>package.json</code> zeigt anderen Entwicklern, welche Pakete dein Projekt braucht</td>
+    </tr>
+  </tbody>
+</table>
+
+        <h2>5. Was beduetet die abkürzung CLI?</h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Befehl</th>
+      <th>Bedeutung / Zweck</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>npm init</code></td>
+      <td>Erstellt eine neue <code>package.json</code> für dein Projekt</td>
+    </tr>
+    <tr>
+      <td><code>npm install paket</code></td>
+      <td>Installiert ein Paket und fügt es als Dependency hinzu</td>
+    </tr>
+    <tr>
+      <td><code>npm start</code></td>
+      <td>Startet dein Projekt (definiert in <code>package.json</code>)</td>
+    </tr>
+    <tr>
+      <td><code>node app.js</code></td>
+      <td>Führt deine Node.js Datei aus</td>
+    </tr>
+    <tr>
+      <td><code>npm update</code></td>
+      <td>Aktualisiert alle installierten Pakete</td>
+    </tr>
+    <tr>
+      <td><code>npm uninstall paket</code></td>
+      <td>Entfernt ein installiertes Paket</td>
+    </tr>
+  </tbody>
+</table>
+
+           <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+       
+
+    </section>
+</body>
+</html>
