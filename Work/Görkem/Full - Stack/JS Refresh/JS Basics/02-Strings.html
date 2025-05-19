@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh</title>
+    <link rel="stylesheet" href="../../main.css">
+    <script src="../../lib.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Full-Stack");
+        printH(3, "JS Strings (Mini-Übungen)");
+        printHr();
+
+        printH(4, "1. Länge eines Strings");
+        let word = "JavaScript";
+
+        printLn("Anzahl Buchstaben (JavaScript): " + word.length);
+
+        printH(4, "2. String in Großbuchstaben");
+        let city = "berlin";
+        
+        printLn("Berlin: " + city.toUpperCase());
+
+        printH(4, "3. Enthält String ein bestimmtes Wort?")
+        let sentence = "Das ist ein schöner Tag.";
+
+        printLn(sentence);
+        printLn("" + sentence.includes("schön"));
+
+        printH(4, "4. Teil eines strings ausschneiden");
+        let length = "JavaScript";
+
+        printLn("JavaScript: " + length.slice(0, 4));
+
+        printH(4, "5. Letzter Buchstabe eines Strings");
+        let word2 = "Casablanca";
+
+        printLn("Letzter Buchstabe von Casablanca: " + word2[word2.length - 1]);
+    </script>
+</body>
+</html>
