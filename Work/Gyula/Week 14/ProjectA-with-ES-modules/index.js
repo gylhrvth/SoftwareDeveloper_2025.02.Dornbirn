@@ -1,7 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-//const { v4: uuidv4 } = require('uuid');
-import { countTo10 } from './tools.mjs';
-//const { countTo10 } = require('./tools.mjs');
+import { countTo10 } from './tools.js';
 
 countTo10();
 setTimeout(() => {

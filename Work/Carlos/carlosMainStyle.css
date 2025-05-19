@@ -63,6 +63,14 @@ body {
 
 }
 
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    background-color: rgb(46, 131, 177);
+    padding: 1px;
+    border-radius: 5px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

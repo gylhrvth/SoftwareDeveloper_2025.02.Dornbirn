@@ -5,5 +5,5 @@ function countTo10() {
 }
 
 
-export {countTo10 }
+exports.countTo10 = countTo10;
 
