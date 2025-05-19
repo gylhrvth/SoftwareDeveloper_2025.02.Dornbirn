@@ -12,4 +12,4 @@ async function fetchJoke() {
 
 fetchJoke();
 
-// Im Terminal: node fetchJokes.js
+// Im Terminal: npm run dev
