@@ -1,0 +1,64 @@
+:root {
+    --primary-color: #3dcf91;
+    --secondary-color: #11141d;
+    --text-color: #909090;
+    --basic-color: #292c34;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: var(--primary-color);
+}
+
+.container{
+    background-color: var(--secondary-color);
+    position: absolute;
+    width: min(90%, 31.25em);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5em;
+    padding: 3em;
+}
+
+.container h1{
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.container p{
+    color: var(--text-color);
+    text-align: center;
+    margin: 2em 0 0.5em 0;
+}
+
+.container textarea{
+    background-color: var(--basic-color);
+    resize: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    color: var(--text-color);
+}
+
+.container button{
+    display: block;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    outline: none;
+    padding: 1em 2em;
+    margin: 1em auto 2em auto;
+    cursor: pointer;
+}
+
+p#result{
+    text-align: center;
+}
