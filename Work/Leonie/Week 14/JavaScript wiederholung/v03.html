@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript wiederholung v03 Fullstack</title>
+</head>
+<body>
+
+    <script>
+        // Wiederholung Javascript zum Thema Fullstack (S Data Types, JS Arrays, JS Objects, JS Functions (parameters, return values), JS Arrow Functions, JS Callbacks, Promises & async functions)
+
+        // 1. Erstelle eine Funktion, die ein object mit verschiedenen Eigenschaften entgegennimmt und die Werte dieser Eigenschaften in einem Array zurückgibt.
+        function objectValuesToArray(obj) {
+            return Object.values(obj);
+        }
+        console.log(objectValuesToArray({ name: "John", age: 30, city: "New York" })); // ["John", 30, "New York"]
+
+        // 2. Erstelle eine Funktion, die ein Array von Objekten entgegennimmt und die Objekte mit dem höchsten Wert einer bestimmten Eigenschaft zurückgibt.
+        function getMaxValueObjects(arr, key) {
+            const maxValue = Math.max(...arr.map(obj => obj[key]));
+            return arr.filter(obj => obj[key] === maxValue);
+        }
+        console.log(getMaxValueObjects([{ name: "John", age: 30 }, { name: "Jane", age: 25 }, { name: "Jim", age: 30 }], "age")); // [{ name: "John", age: 30 }, { name: "Jim", age: 30 }]
+    </script>
+    
+</body>
+</html>
