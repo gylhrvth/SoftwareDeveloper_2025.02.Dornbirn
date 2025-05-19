@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh 01</title>
+
+</head>
+
+<body>
+
+    <!-- JS Exercises-->
+
+    <script>
+
+        //Basic operators
+
+        let value = divide(12,4);
+
+        console.log(value);
+        
+
+        function add(a,b){
+            return (a+b);
+        }
+
+        function subtract(a,b){
+            return(a-b);
+        }
+
+        function multiply(a,b){
+            return(a*b);
+        }
+
+        function divide(a,b){
+            return(a/b);
+        }
+
+        //Reverse a string
+
+        let text = "hola";
+
+        function reverse(string){
+            return string.split("").reverse().join("");
+        }
+
+        console.log("The reversed string of " + text + " is " +  "'" + reverse("hola") + "'");
+
+        // Reverse array
+
+        let textArr = ["a","d","i","ó","s"];
+
+        function invert(array){
+            return array.slice().reverse();
+        }
+
+        console.log(invert(textArr));
+
+        // Print numbers from 1 to 10 using a for loop.
+
+        for(let i=1; i <=10; i++){
+            console.log(i)
+        } 
+
+        // Write a function that prints all even numbers from 1 to n
+
+        let limit = 13;
+        evenPrint(limit);
+
+        function evenPrint(limit){
+            for(let i=0; i <=limit; i++){
+                if(i%2 === 0){
+                    console.log(i)
+                }
+            }
+        }
+
+        // Write a function that takes an array of numbers and returns the largest number.
+
+        let serie = [3, 14, 7, 4, 23, 13, 12, 5, 34, 24];
+
+        function findMax(arr){
+            let maxValue = arr[0];
+
+            for(let i=0; i < arr.length; i++){
+                if (maxValue < arr[i]){
+                    maxValue = arr[i]
+                }
+            }
+            return maxValue;
+        }
+
+        console.log("The max value is " + findMax(serie));
+
+        // Write a function that takes an array and returns a new array with each element doubled.
+
+        let numbers = [1, 7, 12, 6, 5, 2]
+        
+        function doubleArray(arr) {
+            return arr.map(x => x * 2);
+        }
+
+        console.log("Original array = " + numbers);
+        console.log("New array = " + doubleArray(numbers));
+
+        //Objects
+
+        // Create an object representing a person with properties: name, age, and city. Print each property.
+
+        const person01 = {
+            name: "Ernesto",
+            age: 35,
+            city: "Arkansas"
+        }
+
+        console.log(person01);
+
+        function greeter(object){
+            return 'Hello, my name is ' + object.name + ', I\'m ' + object.age + ' years old and I live in ' + object.city;
+        }
+
+        console.log(greeter(person01));
+
+        const person02 = {
+            name: "Emília",
+            age: 29,
+            city: "Zacatecas"
+        }
+
+        console.log(person02);
+
+        function greeter02(object){
+            return `Hello, my name is ${object.name}, I'm ${object.age} years old and I live in ${object.city}`;
+        }
+
+        console.log(greeter02(person02));
+
+    </script>
+    
+</body>
+</html>

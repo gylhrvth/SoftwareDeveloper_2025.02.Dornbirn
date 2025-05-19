@@ -1,0 +1,13 @@
+{
+  "name": "fetchjokes",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "fetchJokes.js",
+  "scripts": {
+    "dev": "node fetchJokes.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

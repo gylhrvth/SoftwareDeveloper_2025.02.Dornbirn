@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript wiederholung v01</title>
+</head>
+<body>
+
+
+    <script>
+        // 1. Erstelle eine Funktion, die einen String als Parameter entgegennimmt und die Anzahl der Vokale in diesem String zählt.
+        function countVowels(str) {
+            const vowels = 'aeiouAEIOU';
+            let count = 0;
+            for (let char of str) {
+                if (vowels.includes(char)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        console.log(countVowels("Hallo Welt")); // 3
+        // 2. Erstelle eine Funktion, die ein Array von Zahlen als Parameter entgegennimmt und die Summe der Zahlen zurückgibt.
+
+        function summOfArray(arr){
+            let sum = 0;
+            for (let num of arr){
+                sum = sum + num;
+            }
+            return sum;
+        }
+
+        console.log(summOfArray([1, 2, 3, 4, 5])); // 15
+        // 3. Erstelle eine Funktion, die ein Array von Strings als Parameter entgegennimmt und die längste Zeichenkette zurückgibt.
+
+        function longestString(arr) {
+            let longest = '';
+            for (let str of arr) {
+                if (str.length > longest.length) {
+                    longest = str;
+                }
+            }
+            return longest;
+        }
+        console.log(longestString(["apple", "banana", "cherry", "date",])); // banana
+        // 4. Erstelle eine Funktion, die ein Array von Zahlen als Parameter entgegennimmt und die größte Zahl zurückgibt.
+
+        function largestNumber(arr) {
+            let largest = arr[0];
+            for (let num of arr) {
+                if (num > largest) {
+                    largest = num;
+                }
+            }
+            return largest;
+        }
+        console.log(largestNumber([1, 2, 3, 4, 5])); // 5
+    </script>
+</body>
+</html>

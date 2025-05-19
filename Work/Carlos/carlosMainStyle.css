@@ -16,6 +16,7 @@ body {
     font-family:'Courier New', Courier, monospace;
     text-align: justify;
     margin: 50px 100px 25px 50px;
+    line-height: 1.5;
 }
 
 #mainContainerStyle {
@@ -61,6 +62,14 @@ body {
     height: auto;
     text-align: left;
 
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    background-color: rgb(46, 131, 177);
+    padding: 1px;
+    border-radius: 5px;
 }
 
 table {

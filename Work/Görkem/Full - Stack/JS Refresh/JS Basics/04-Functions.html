@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh</title>
+    <link rel="stylesheet" href="../../main.css">
+    <script src="../../lib.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Full-Stack");
+        printH(3, "JS Functions");
+        printHr();
+
+        printH(4, "1. Funktion deklarieren");
+
+        function greet(e){
+            console.log("Hallo Welt");
+            printLn("Hallo Welt");
+        }
+        greet();
+
+        // Funktion mit Parameter
+        printH(4, "2. Funktion mit Parameter");
+
+        function sayHello(name){
+            console.log("Hallo, " + name + "!");
+            printLn("Hallo, " + name + "!")
+        }
+        sayHello("Sofia");
+
+        // Funktion mit Rückgabewert
+        printH(4, "3. Funktion mit Rückgabewert");
+
+        function add(a, b){
+            return a + b
+        }
+        let result = add(5, 3);
+        console.log("Ergebnis: " + result);
+        printLn("Ergebnis: " + result);
+    
+        // Funktion mit if-Abfrage
+        printH(4, "4. Funktion mit if-Abfrage");
+
+        function checkAge(age){
+            if (age >= 18){
+                return "Volljährig";
+            } else {
+                return "Minderjährig";
+            }
+        }
+        console.log(checkAge(20));
+        console.log(checkAge(17));
+        printLn("Sofia ist " + checkAge(17));
+        printLn("Görkem ist " + checkAge(21));
+    </script>
+</body>
+</html>

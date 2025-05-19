@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>Full-Stack Journal 01</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Full-Stack Journal 01</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day56">DI 20/05/25</a>: NodeJS Basics</h3>
+    <h3 class="textColor01">▷ <a href="#day55">MO 19/05/25</a>: JavaScript Refresh / NodeJS Basics</h3>
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="day56">Dienstag 20. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (Node JS Basics)</h3>
+
+    <h4 class="textColor01">Node JS Projeckt erstellen:</h4>
+    <ul>
+    <li><p>Um ein neues Node.js-Projekt zu erstellen, öffne das Terminal und navigiere zu dem Verzeichnis, in dem du das Projekt erstellen möchtest. Verwende dann den Befehl <code>npm init</code>, um eine neue <code>package.json</code>-Datei zu erstellen. Folge den Anweisungen im Terminal, um die erforderlichen Informationen einzugeben.</p></li>
+    <li><p>Alternativ kannst du den Befehl <code>npm init -y</code> verwenden, um die Standardwerte automatisch zu übernehmen und eine <code>package.json</code>-Datei mit den Standardeinstellungen zu erstellen.</p></li>
+    <li><p>Beim 'type' darauf achten, ob 'commonjs' oder 'module' gewünscht ist.</p></li>
+    <li><p>Wenn der package.json File erstellt ist, beim 'scripts' hinzufügen -> "dev": "projectName.js" </p></li>
+    <li><p>Um das Projekt zu starten, verwende den Befehl <code>npm run dev</code> im Terminal. Dadurch wird das Skript mit dem Namen "dev" ausgeführt, das in der <code>package.json</code>-Datei definiert ist.</p></li>
+    <li><p>Um ein neues Paket zu installieren, verwende den Befehl <code>npm install &lt;paketname&gt;</code>. Dadurch wird das gewünschte Paket heruntergeladen und als Abhängigkeit im Projekt gespeichert. Die Information über das installierte Paket wird automatisch in der <code>package.json</code> und <code>package-lock.json</code> aktualisiert.</p></li>
+    <li><p>Um ein Paket zu entfernen, das du nicht mehr benötigst, verwende den Befehl <code>npm uninstall &lt;paketname&gt;</code>. Dadurch wird das Paket aus dem Projekt entfernt und die <code>package.json</code> sowie <code>package-lock.json</code> werden entsprechend aktualisiert.</p></li>
+    <li><p>Um alle installierten Pakete auf die in der <code>package.json</code> erlaubten Versionen zu aktualisieren, verwende den Befehl <code>npm update</code>.</p></li>
+
+
+    </ul>
+
+    <br>
+
+
+    <h2 id="day55">Montag 19. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (JavaScript Refresh)</h3>
+
+    <p>Verschiedene Übungen gemacht (For Loops, Arrays, Objects)</p>
+
+    <h3 class="textColor01">Full-Stack (Node JS Basics)</h3>
+
+    <h4 class="textColor01">Recherche (Node JS):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was ist ein JS Engine?</h4></li>
+        <p>Eine JS Engine ist ein Programm, das JavaScript-Code interpretiert und ausführt. Sie wandelt den Quellcode in Maschinencode um, den der Computer verstehen kann.</p>
+        <li><h4 class="textColor02">Was ist Node JS?</h4></li>
+        <p>Node.js ist eine JavaScript-Laufzeitumgebung, die auf der V8-Engine von Google Chrome basiert. Sie ermöglicht es, JavaScript außerhalb des Browsers auszuführen, was bedeutet, dass      
+        JavaScript auch auf Servern verwendet werden kann.</p>
+        <li><h4 class="textColor02">Was ist der Unterschied zwischen JS Engine in einem Webbrowser und Node.JS?</h4></li>
+        <p>Die JS Engine in einem Webbrowser ist darauf ausgelegt, JavaScript-Code auszuführen, der in Webseiten eingebettet ist. Node.js hingegen ist eine serverseitige Umgebung, die es ermöglicht, JavaScript-Code auf dem Server auszuführen und auf Systemressourcen zuzugreifen.</p>
+        <li><h4 class="textColor02">Was funktioniert NICHT in Node.JS?</h4></li>
+        <p>Node.js unterstützt keine DOM-Operationen, da es keine grafische Benutzeroberfläche hat. Funktionen, die auf den Browser angewiesen sind, wie z.B. das Manipulieren von HTML-Elementen oder das Verwenden von Web APIs, funktionieren nicht in Node.js.</p>
+        <li><h4 class="textColor02">Wofür steht npm?</h4></li>
+        <p>npm steht für Node Package Manager. Es ist ein Paketmanager für JavaScript, der es Entwicklern ermöglicht, Pakete und Bibliotheken zu installieren, zu verwalten und zu teilen.</p>
+        <li><h4 class="textColor02">Was bedeutet die Abkürzung CLI?</h4></li>
+        <p>CLI steht für Command Line Interface. Es ist eine textbasierte Benutzeroberfläche, die es Benutzern ermöglicht, mit dem Computer über Befehle zu interagieren, anstatt über grafische Benutzeroberflächen.</p>
+        <li><h4 class="textColor02">Was ist ein Node.JS Project?</h4></li>
+        <p>Ein Node.js-Projekt ist eine Sammlung von Dateien und Ordnern, die zusammenarbeiten, um eine Anwendung oder ein Skript zu erstellen, das mit Node.js ausgeführt werden kann. Es enthält in der Regel eine package.json-Datei, die Informationen über das Projekt und seine Abhängigkeiten enthält.</p>
+        <li><h4 class="textColor02">Was ist eine package.json?</h4></li>
+        <p>Die package.json-Datei ist eine JSON-Datei, die Informationen über ein Node.js-Projekt enthält, einschließlich des Projektnamens, der Version, der Abhängigkeiten und der Skripte. Sie wird verwendet, um das Projekt zu konfigurieren und Abhängigkeiten zu verwalten.</p>
+        <li><h4 class="textColor02">Wie erstellt man ein neues Projekt in Node JS?</h4></li>
+        <p>Um ein neues Projekt in Node.js zu erstellen, verwendet man den Befehl <code>npm init</code> im Terminal. Dadurch wird eine <code>package.json</code>-Datei erstellt, in der die wichtigsten Informationen zum Projekt gespeichert werden. Optional kann man auch <code>npm init -y</code> verwenden, um die Standardwerte automatisch zu übernehmen.</p>
+        <li><h4 class="textColor02">Wie startet man ein Node JS Projekt?</h4></li>
+        <p>Um ein Node.js-Projekt zu starten, verwendet man in der Regel den Befehl <code>node &lt;dateiname&gt;.js</code> im Terminal, wobei <code>&lt;dateiname&gt;.js</code> die Hauptdatei des Projekts ist (z.B. <code>index.js</code>). Alternativ kann man, wenn in der <code>package.json</code> ein Startskript definiert ist, auch <code>npm start</code> verwenden.</p>
+        <li><h4 class="textColor02">Was macht der Befehl npm run dev?</h4></li>
+        <p>Der Befehl <code>npm run dev</code> führt das Skript mit dem Namen "dev" aus, das in der <code>package.json</code>-Datei definiert ist. Dies wird häufig verwendet, um Entwicklungsserver zu starten oder Entwicklungsumgebungen einzurichten.</p>
+        <li><h4 class="textColor02">Was sind Node Packeges (dependency)?</h4></li>
+        <p>Node-Pakete sind Sammlungen von Code, die in Node.js-Projekten verwendet werden können. Sie werden in der Regel über npm installiert und können Bibliotheken, Frameworks oder andere nützliche Funktionen enthalten, die die Entwicklung erleichtern.</p>
+        <li><h4 class="textColor02">Was sind Kriterien für den Auswahl der Node Packages?</h4></li>
+        <p>Bei der Auswahl von Node Packages sollte man auf folgende Kriterien achten:</p>
+        <ul>
+            <li>Aktualität und Wartung des Pakets (letztes Update, aktive Community)</li>
+            <li>Beliebtheit und Anzahl der Downloads</li>
+            <li>Dokumentation und Benutzerfreundlichkeit</li>
+            <li>Kompatibilität mit dem eigenen Projekt (Versionen, Abhängigkeiten)</li>
+            <li>Sicherheitsaspekte (bekannte Schwachstellen, Vertrauenswürdigkeit)</li>
+            <li>Lizenz des Pakets</li>
+        </ul>
+        <li><h4 class="textColor02">Wie installiert man neue Packages?</h4></li>
+        <p>Um neue Pakete in einem Node.js-Projekt zu installieren, verwendet man den Befehl <code>npm install &lt;paketname&gt;</code> im Terminal. Dadurch wird das gewünschte Paket heruntergeladen und als Abhängigkeit im Projekt gespeichert. Die Information über das installierte Paket wird automatisch in der <code>package.json</code> und <code>package-lock.json</code> aktualisiert.</p>
+        <li><h4 class="textColor02">Wie aktualisiert man bestehende Packages?</h4></li>
+        <p>Um bestehende Pakete zu aktualisieren, verwendet man den Befehl <code>npm update</code> im Terminal. Dadurch werden alle installierten Pakete auf die in der <code>package.json</code> erlaubten Versionen aktualisiert. Möchte man ein bestimmtes Paket aktualisieren, kann man <code>npm install &lt;paketname&gt;@latest</code> verwenden, um die neueste Version dieses Pakets zu installieren.</p>
+        <li><h4 class="textColor02">Wie entfernt man Packages, den man nicht mehr braucht?</h4></li>
+        <p>Um Pakete zu entfernen, die man nicht mehr benötigt, verwendet man den Befehl <code>npm uninstall &lt;paketname&gt;</code> im Terminal. Dadurch wird das Paket aus dem Projekt entfernt und die <code>package.json</code> sowie <code>package-lock.json</code> werden entsprechend aktualisiert.</p>
+        <li><h4 class="textColor02">Was muss in .gitignore file stehen?</h4></li>
+        <p>In der <code>.gitignore</code>-Datei sollte man Dateien und Ordner auflisten, die nicht ins Git-Repository aufgenommen werden sollen. Typische Beispiele in Node.js-Projekten sind:</p>
+        <ul>
+            <li><code>node_modules/</code> – enthält installierte Abhängigkeiten, die jederzeit neu installiert werden können</li>
+            <li><code>.env</code> – enthält sensible Umgebungsvariablen wie Passwörter oder API-Keys</li>
+            <li><code>dist/</code> oder <code>build/</code> – generierte Build-Ordner</li>
+            <li><code>*.log</code> – Logdateien</li>
+        </ul>
+        <li><h4 class="textColor02">Wie importiert man eine Funktion / Variable aus einem anderen Skript?</h4></li>
+        <p>Um eine Funktion oder Variable aus einem anderen Skript zu importieren, verwendet man in Node.js das <code>require</code>-Statement (CommonJS) oder das <code>import</code>-Statement (ES Module):</p>
+        <ul>
+            <li><strong>CommonJS (älter, Standard in Node.js):</strong><br>
+            <code>// In math.js<br>
+            module.exports = { add: (a, b) =&gt; a + b };</code><br>
+            <code>// In main.js<br>
+            const math = require('./math');<br>
+            console.log(math.add(2, 3));</code>
+            </li>
+            <li><strong>ES Module (moderner, mit <code>type": "module"</code> in package.json):</strong><br>
+            <code>// In math.js<br>
+            export function add(a, b) { return a + b; }</code><br>
+            <code>// In main.js<br>
+            import { add } from './math.js';<br>
+            console.log(add(2, 3));</code>
+            </li>
+        </ul>
+    
+    
+    </ul>
+
+    <!--npm initial
+    npm install
+    npm run dev-->
+
+</body>
+</html>
