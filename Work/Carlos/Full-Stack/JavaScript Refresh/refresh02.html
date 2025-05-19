@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh 02</title>
+
+</head>
+
+<body>
+
+    <!-- JS Exercises-->
+
+    <script>
+
+    // Print multiplication table 
+
+    /*
+    let value = 7;
+    
+    function multiplicationTable(number){
+        for(let i = 0; i <= number; i++){
+        let result = number*i;
+        console.log(i + "*" + number + "=" + result)
+        }
+        
+    }
+    multiplicationTable(value);
+
+    let multLimit = 10;
+
+    function multiplicationTables(number){
+        for(let i = 1; i <= number; i++){
+            for(let j = 1; j <= number; j++){
+                let result = i*j;
+                console.log(i + "*" + j + "=" + result);
+            }
+        }
+    }
+
+    multiplicationTables(multLimit);
+
+    */
+
+    // Write a function that takes a 2D array and returns the sum of all its elements
+
+    let array2D = [[2,9],[5,3],[6,7]];
+    
+    function sum2Darray(arr) {
+        let sumValue = 0;
+        for(let i = 0; i < arr.length; i++){
+            for(let j = 0; j < arr[i].length; j++){
+                console.log(arr[i][j]);
+                sumValue += arr[i][j];
+            }
+        }
+        console.log(`The sum of the values is ${sumValue}`);
+
+    }
+
+    sum2Darray(array2D);
+
+    </script>
+    
+</body>
+</html>
