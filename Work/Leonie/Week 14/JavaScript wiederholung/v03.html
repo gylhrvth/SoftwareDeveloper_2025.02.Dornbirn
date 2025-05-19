@@ -22,6 +22,24 @@
             return arr.filter(obj => obj[key] === maxValue);
         }
         console.log(getMaxValueObjects([{ name: "John", age: 30 }, { name: "Jane", age: 25 }, { name: "Jim", age: 30 }], "age")); // [{ name: "John", age: 30 }, { name: "Jim", age: 30 }]
+
+        // 3. Erstelle eine Funktion, die ein Array von Zahlen entgegennimmt und die Zahlen in aufsteigender Reihenfolge sortiert zurückgibt.
+        function sortArray(arr) {
+            return arr.sort((a, b) => a - b);
+        }
+        console.log(sortArray([5, 3, 8, 1, 2])); // [1, 2, 3, 5, 8]
+
+        // 4. Arrow Function: Erstelle eine Funktion, die zwei Zahlen entgegennimmt und deren Summe zurückgibt.
+        const sum = (a, b) => a + b;
+        console.log(sum(5, 3)); // 8
+
+        // 5. Callback: Erstelle eine Funktion, die ein Array von Zahlen und eine Callback-Funktion entgegennimmt. Die Callback-Funktion soll auf jede Zahl im Array angewendet werden.
+        function applyCallback(arr, callback) {
+            return arr.map(callback);
+        }
+        const double = num => num * 2;
+        console.log(applyCallback([1, 2, 3, 4], double)); // [2, 4, 6, 8]
+
     </script>
     
 </body>
