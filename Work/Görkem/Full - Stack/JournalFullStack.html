@@ -314,9 +314,45 @@
         </ul>
         <br>
         <p><strong>📝 Kurzgefasst:</strong></p>
-        <p>Um ein nicht mehr benötigtes Paket zu entfernen, verwende ich npm uninstall <paketname>. Dadurch wird es aus dem Projektordner sowie aus der package.json gelöscht.</p>
+        <p>Um ein nicht mehr benötigtes Paket zu entfernen, verwende ich npm uninstall<paketname>. Dadurch wird es aus dem Projektordner sowie aus der package.json gelöscht.</p>
     </li>
+    <br>
+    <br>
 
+    <li class="textColor">
+        <span class="underline">Was muss in .gitignore file stehen?</span>
+        <p>In der <b>.gitignore-Datei</b> sollte man Dateien und Ordner auflisten, die nicht ins Git-Repository aufgenommen werden sollen.</p>
+        <p>Typische Beispiele in Node.js - Projekten sind:</p>
+        <ul>
+            <li><b>node_modules/</b> - enthält installierte Abhängigkeiten, die jederzeit neu installiert werden können</li>
+            <li><b>.env</b> - enthält sensible Umgebungsvariablen wie Passwörter oder API-Keys</li>
+            <li><b>dist/ oder build/</b> - generierte Build-Ordner</li>
+            <li><b>*.log</b> - Logdateien</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie importiert man eine Funktion / Variable aus einem anderen Skript?</span>
+        <p>Um eine Funktion oder Variable aus einem anderen Skript zu importieren, verwendet man in Node.js das <b>require-Statement</b> (CommonJS) oder das <b>import-Statement</b> (ES Module): CommonJS (älter, Standard in Node.js):</p>
+        <ul>
+            <li><strong>CommonJS (älter, Standard in Node.js):</strong><br>
+            <code>// In math.js<br>
+            module.exports = { add: (a, b) =&gt; a + b };</code><br>
+            <code>// In main.js<br>
+            const math = require('./math');<br>
+            console.log(math.add(2, 3));</code>
+            </li><br>
+            <li><strong>ES Module (moderner, mit <code>type": "module"</code> in package.json):</strong><br>
+            <code>// In math.js<br>
+            export function add(a, b) { return a + b; }</code><br>
+            <code>// In main.js<br>
+            import { add } from './math.js';<br>
+            console.log(add(2, 3));</code>
+            </li>
+        </ul>
+    </li>
 </ul>
 </body>
 </html>
