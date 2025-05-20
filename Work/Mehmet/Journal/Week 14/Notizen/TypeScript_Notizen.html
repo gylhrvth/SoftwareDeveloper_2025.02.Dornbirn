@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript Notes</title>
+   
+    <style>
+/* General Layout */
+body {
+  background-color: #2e2d2d;
+  color: #d0d0d0;
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2 {
+  color: #04ffff;
+}
+h3 {
+  color: rgba(4, 255, 255, 0.765);
+}
+
+/* Links */
+a {
+  color: azure;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+}
+ul li, ol li {
+  display: flex;
+  justify-content: flex-start;
+  width: max-content;
+  background-color: rgba(0, 255, 255, 0.15);
+  color: greenyellow;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+/* Special Section List */
+#Inhalt li {
+  color: rgb(0, 255, 21);
+  font-weight: bolder;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Code & Pre Blocks */
+code {
+  background-color: rgba(52, 240, 49, 0.2);
+  color: rgb(16, 11, 4);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+pre {
+  background-color: #afafaf;
+  color: rgb(73, 174, 29);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(69, 101, 130, 0.6);
+  color: white;
+}
+th, td {
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  padding: 8px;
+  text-align: left;
+}
+
+/* Utility Classes */
+.highlight {
+  background-color: rgba(255, 255, 0, 0.1);
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.date-highlight {
+  background-color: rgba(255, 255, 0, 0.1);
+  color: #ffff00;
+  font-weight: bold;
+  width: max-content;
+}
+.note {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-left: 5px solid cyan;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  color: #00ffee;
+}
+/* .code-block {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: monospace;
+  color: #ffa500;
+} */
+
+
+table code {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: monospace;
+  color: #ffa500;
+}
+.box {
+  border: 1px solid rgba(0,255,255,0.3);
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+/* Spacing Helpers */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+
+    </style>
+</head>
+<body>
+    <h1>Typescript</h1>
+    <p class="date-highlight">Date 20.05.2025 </p>
+<ol id="Inhalt">
+  <li>Was ist TypeScript? Woher kommt es?</li>
+  <li>Was sind die Vorteile / Nachteile von TypeScript gegenüber JavaScript?</li>
+  <li>Wie erstelle ich ein Projekt mit TypeScript?</li>
+  <li>Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</li>
+  <li>Wie beschreibe ich Arrays in TypeScript?</li>
+  <li>Wie beschreibe ich Objekte in TypeScript?</li>
+  <li>Wie verwende ich Interfaces in TypeScript?</li>
+  <li>Wie verwende ich Type in TypeScript?</li>
+  <li>Was ist der Unterschied zwischen Interface und Type in TypeScript?</li>
+  <li>Wie verwende ich Union Types?</li>
+  <li>Wie verwende ich Intersection Types?</li>
+  <li>Was sind Generics? Wie verwende ich sie?</li>
+  <li>Was sind enum in TypeScript? Wie verwende ich sie?</li>
+</ol>
+<h2>1. Was ist TypeScript? Woher kommt es?</h2>
+<p>TypeScript ist eine von Microsoft entwickelte Programmiersprache, die auf JavaScript basiert und es erweitert. Es ist eine <strong>Supersprache</strong> von JavaScript, was bedeutet, dass jeder gültige JavaScript-Code auch TypeScript-Code ist. TypeScript fügt eine <strong>statische Typisierung</strong> hinzu, mit der Fehler schon beim Kompilieren erkannt werden können, statt erst zur Laufzeit.</p>
+<ul>
+  <li><strong>Entstehung:</strong> TypeScript wurde 2012 veröffentlicht, um große JavaScript-Projekte besser wartbar zu machen.</li>
+  <li><strong>Ziel:</strong> Entwickler erhalten Werkzeuge zur Fehlervermeidung und bessere Entwicklungsunterstützung (Autovervollständigung, Refactoring).</li>
+</ul>
+
+<h2>2. Vorteile und Nachteile von TypeScript gegenüber JavaScript</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Vorteile</th>
+      <th>Nachteile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Früherkennung von Fehlern durch Typprüfung</td>
+      <td>Zusätzlicher Kompilierungsschritt nötig</td>
+    </tr>
+    <tr>
+      <td>Bessere Code-Dokumentation durch Typen</td>
+      <td>Lernkurve für Entwickler ohne Typ-Erfahrung</td>
+    </tr>
+    <tr>
+      <td>Autovervollständigung & bessere IDE-Unterstützung</td>
+      <td>Projektsetup etwas komplexer</td>
+    </tr>
+    <tr>
+      <td>Bessere Wartbarkeit großer Projekte</td>
+      <td>Manchmal mehr Boilerplate-Code</td>
+    </tr>
+    <tr>
+      <td>Unterstützt moderne JavaScript-Features vorzeitig</td>
+      <td>Manchmal Probleme bei Integration mit JS-Bibliotheken</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Wie erstelle ich ein Projekt mit TypeScript?</h2>
+<p>Hier ist eine Schritt-für-Schritt Anleitung mit den nötigen Befehlen:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Schritt</th>
+      <th>Befehl / Aktion</th>
+      <th>Erklärung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Ordner anlegen</td>
+      <td><code>mkdir mein-ts-projekt</code></td>
+      <td>Neuen Projektordner erstellen</td>
+    </tr>
+    <tr>
+      <td>2. Ordner wechseln</td>
+      <td><code>cd mein-ts-projekt</code></td>
+      <td>In den Projektordner wechseln</td>
+    </tr>
+    <tr>
+      <td>3. npm initialisieren</td>
+      <td><code>npm init -y</code></td>
+      <td>package.json erstellen (Standardkonfiguration)</td>
+    </tr>
+    <tr>
+      <td>4. TypeScript installieren</td>
+      <td><code>npm install typescript --save-dev</code></td>
+      <td>TypeScript als Entwicklungsabhängigkeit installieren</td>
+    </tr>
+    <tr>
+      <td>5. tsconfig erstellen</td>
+      <td><code>npx tsc --init</code></td>
+      <td>TypeScript-Konfigurationsdatei (tsconfig.json) generieren</td>
+    </tr>
+    <tr>
+      <td>6. Ordnerstruktur anlegen</td>
+      <td><code>/src</code> und <code>/dist</code></td>
+      <td>Quellcode (src) und Ausgabe (dist) strukturieren</td>
+    </tr>
+    <tr>
+      <td>7. Beispielcode schreiben</td>
+      <td>Datei <code>src/index.ts</code> anlegen</td>
+      <td>TypeScript-Code schreiben, z.B. Funktion <code>greet()</code></td>
+    </tr>
+    <tr>
+      <td>8. Kompilieren</td>
+      <td><code>npx tsc</code></td>
+      <td>TypeScript in JavaScript übersetzen</td>
+    </tr>
+    <tr>
+      <td>9. Ausführen</td>
+      <td><code>node dist/index.js</code></td>
+      <td>JavaScript-Code mit Node.js ausführen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</h2>
+<pre><code>let zahl: number = 5;          // Variable vom Typ number
+function addiere(a: number, b: number): number { // Parameter und Rückgabewert typisiert
+  return a + b;
+}
+</code></pre>
+
+<h2>5. Wie beschreibe ich Arrays in TypeScript?</h2>
+<pre><code>let zahlen: number[] = [1, 2, 3];
+let namen: Array&lt;string&gt; = ["Anna", "Bob"];
+</code></pre>
+
+<h2>6. Wie beschreibe ich Objekte in TypeScript?</h2>
+<pre><code>let person: { name: string; alter: number } = {
+  name: "Max",
+  alter: 30
+};
+</code></pre>
+
+<h2>7. Wie verwende ich Interfaces in TypeScript?</h2>
+<pre><code>interface Person {
+  name: string;
+  alter: number;
+}
+
+let user: Person = {
+  name: "Lisa",
+  alter: 25
+};
+</code></pre>
+
+<h2>8. Wie verwende ich Type in TypeScript?</h2>
+<pre><code>type ID = string | number;
+
+let benutzerId: ID = "abc123";
+benutzerId = 456;
+</code></pre>
+
+<h2>9. Was ist der Unterschied zwischen Interface und Type in TypeScript?</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wird meist für Objektformen verwendet</td>
+      <td>Kann auch primitive Typen, Unions, Tupel usw. beschreiben</td>
+    </tr>
+    <tr>
+      <td>Kann erweitert (extends) werden</td>
+      <td>Kann mit anderen Types kombiniert werden (Intersection)</td>
+    </tr>
+    <tr>
+      <td>Kann mehrfach deklariert werden (zusammengeführt)</td>
+      <td>Kann nicht mehrfach mit gleichem Namen deklariert werden</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>10. Wie verwende ich Union Types?</h2>
+<pre><code>function printId(id: number | string) {
+  console.log(`ID: ${id}`);
+}
+</code></pre>
+
+<h2>11. Wie verwende ich Intersection Types?</h2>
+<pre><code>interface A { a: string; }
+interface B { b: number; }
+
+type C = A & B;
+
+const obj: C = { a: "Hallo", b: 123 };
+</code></pre>
+
+<h2>12. Was sind Generics? Wie verwende ich sie?</h2>
+<pre><code>function identity&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+let output = identity&lt;string&gt;("Hallo");
+</code></pre>
+
+<h2>13. Was sind Enums in TypeScript? Wie verwende ich sie?</h2>
+<pre><code>enum Status {
+  Offen,
+  InBearbeitung,
+  Abgeschlossen
+}
+
+let aktuellerStatus: Status = Status.Offen;
+</code></pre>
+</body>
+</html>
