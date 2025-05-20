@@ -1,10 +1,19 @@
 const rows = 100;
 const cols = 100;
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
 const cellSize = canvas.width / rows;
 
 const img = new Image();
 img.src = "img/Skuls.png"
-img.onload = drawGrid; // Warten, bis das Bild geladen ist
+img.onload = () => {
+
+    initializeGrid()
+    drawGrid(); // Warten, bis das Bild geladen ist
+
+}
 
 /*---------------------------------------------------------------------*/
 
@@ -39,13 +48,13 @@ function drawGrid() {
             if (grid[row][col]) {
                 ctx.fillStyle = "#fff"; //wenn Zelle lebt weiss!
                 ctx.fill();
+                ctx.stroke();
             } else {
 
                 ctx.drawImage(img, col * cellSize, row * cellSize, cellSize, cellSize);
                 ctx.fill();
             }
 
-            ctx.stroke();
         }
     }
 }

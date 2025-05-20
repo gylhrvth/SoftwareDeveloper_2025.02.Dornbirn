@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 14</title>
+    <link rel="stylesheet" href="Journal Week 14.css">
+</head>
+
+<body>
+    <div class="main_container">
+        <h2>Node.js</h2>
+        <div class="link_container">
+            <h3>JS Engine</h3>
+            <p>Stell dir vor, du schreibst einen Text auf Deutsch (dein JavaScript-Code). <br>
+                Aber der Computer versteht nur "Maschinensprache" .<br>
+
+                👉 Die JavaScript Engine ist der Übersetzer.<br>
+                Sie nimmt deinen Code und übersetzt ihn in eine Sprache, die der Computer versteht, und führt ihn dann
+                aus.</p>
+
+        </div>
+
+        <div class="link_container">
+            <h3> Unterschied zwischen JS-Engine im Browser und Node.js</h3>
+            <p>💻 im Browser:</p>
+            <ul>
+                <li>Wird verwendet, um Webseiten interaktiv zu machen.</li>
+                <li>Läuft im Browser</li>
+                <li>Hat Zugriff auf HTML & CSS über document, window, usw.</li>
+                <li>Typische Dinge: Buttons klicken, Inhalte anzeigen, Animationen.</li>
+            </ul><br>
+            <p>📜 in Node.js</p>
+            <ul>
+                <li>Wird verwendet, um außerhalb vom Browser zu programmieren.</li>
+                <li>Läuft auf deinem Computer oder Server.</li>
+                <li>Kein Zugriff auf document oder window, dafür aber auf Dateien, Netzwerk, Server usw.</li>
+                <li>Typische Dinge: Server bauen, Dateien lesen/schreiben, Befehle ausführen.</li>
+            </ul>
+            <div class="note_container">
+                <p>🧠 Merksatz:</p>
+                <p>Im Browser: JavaScript spricht mit der Webseite.<br>
+                    In Node.js: JavaScript spricht mit dem Computer.</p>
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>Dinge die in Node.js NICHT funktionieren</h3>
+            <p>Wenn du JavaScript in Node.js verwendest, hast du keine Webseite – also funktioniert alles nicht, was
+                direkt mit HTML, CSS oder dem Browser zu tun hat.</p>
+            <ul>
+                <li>Kein DOM (Document Object Model)</li>
+                <li>Kein window-Objekt</li>
+                <li>Kein Zugriff auf HTML oder CSS</li>
+                <li>Keine direkten Animationen, kein Canvas, kein WebGL</li>
+            </ul>
+            <div class="note_container">
+                <p>🧠 Merksatz:</p>
+                <p>Node.js kann kein HTML anzeigen, keine Webseiten manipulieren und keine Fenster öffnen.</p>
+                <p>Es arbeitet ohne Browser – also auch ohne DOM, ohne CSS, ohne visuelle Dinge.</p>
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>npm - Node Package Manager</h3>
+            <ul>
+                <li>„Package“ = ein Stück fertiger Code (z. B. ein Modul oder eine Bibliothek)</li>
+                <li>„Manager“ = ein Programm, das dir hilft, diesen Code zu installieren und zu verwalten</li>
+            </ul>
+            <p>npm hilft dir, fertige Bausteine (Pakete) für deine Projekte zu benutzen.</p>
+            <h3>Was macht npm</h3>
+            <ol>
+                <li>Pakete initialisieren</li>
+                <p>➡️ npm lädt den Code aus dem Internet runter</p>
+                <p>➡️ und speichert ihn in deinem Projekt im Ordner node_modules.</p><br>
+
+                <li>Pakete verwalten:</li>
+                <p>Alle installierten Pakete werden in der Datei package.json gespeichert.</p>
+                <p>Diese Datei merkt sich:</p>
+                <ul>
+                    <li>welche Pakete du nutzt</li>
+                    <li>in welcher Version</li>
+                    <li>und ob andere sie mitinstallieren können</li>
+                </ul><br>
+
+
+                <li>Eigene Projekte starten</li>
+                <p>Du kannst mit npm init dein eigenes Projekt registrieren – dann bekommst du automatisch eine
+                    package.json.</p>
+                <li>Skripte ausführen</li>
+            </ol>
+
+            <div class="note_container">
+                <p>🧠 Merksatz:</p>
+                <p>npm ist dein Werkzeugkasten für Node.js – es holt dir fertige Bausteine, damit du nicht alles selbst
+                    bauen musst.</p>
+            </div>
+
+            <div class="link_container">
+                <h3>CLI - Command Line Interface</h3>
+                <p>Eine CLI ist ein Text-basiertes Interface, über das du Befehle direkt eingeben kannst, um Programme
+                    auszuführen oder mit dem Betriebssystem zu arbeiten.</p>
+                <img src="img/CLI-Liste.png">
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>Node.js-Project</h3>
+            <p>Ein Node.js-Projekt ist ein JavaScript-Projekt, das nicht im Browser läuft, sondern direkt auf deinem
+                Computer oder Server – mit Hilfe von Node.js.</p>
+            <img src="img/Node.js-Project Parts.png">
+        </div>
+
+        <div class="link_container">
+            <h3>package.jason</h3>
+            <p>Die package.json ist das Herzstück eines Node.js-Projekts. Sie beschreibt dein Projekt und listet alle
+                Abhängigkeiten (Pakete/Module) auf.</p>
+            <img src="img/package.json-Erklärung.png"><br>
+            <div class="note_container">
+                <h3>🔍 Side Fact:</h3>
+                <p>Die Datei package.json wird automatisch erstellt, wenn du npm init im Terminal
+                    aufrufst.</p>
+            </div>
+        </div>
+
+
+        <div class="link_container">
+            <h3>neues Projekt erstellen:</h3>
+            <ol>
+                <li>Terminal öffnen</li>
+                <p>Windows: Drücke die Windows-Taste, tippe cmd oder PowerShell und öffne das Programm.</p><br>
+
+                <li>Ordner für dein Projekt erstellen</li>
+                <p>Gib im Terminal ein (das ist der Befehl, um einen neuen Ordner zu machen):</p>
+                <img src="img/Projekt erstellen Part 1.png">
+                <p>*Das macht einen neuen Ordner mit dem Namen „mein-projekt“. *</p><br>
+
+                <li> In den neuen Ordner wechseln</li>
+                <p>Jetzt gib ein:</p>
+                <img src="img/Projekt erstellen Part 3.png">
+                <p>Das heißt: "Geh in den Ordner 'mein-projekt' rein".</p><br>
+
+                <li>Node.js-Projekt starten</li>
+                <p>Jetzt gib ein:</p>
+                <img src="img/Projekt erstellen Part 4.png">
+                <p>*Das erzeugt eine Datei package.json mit Standard-Einstellungen – dein Projekt ist jetzt
+                    „initialisiert“. *</p><br>
+
+                <li>Eine neue Datei anlegen</li>
+                <p>Jetzt musst du eine neue Datei anlegen, in der dein Code steht.</p>
+                <img src="img/Projekt erstellen Part 5.png"><br>
+
+
+                <li>Datei mit Code füllen</li>
+                <p>Öffne jetzt die Datei index.js in deinem Editor (z. B. Visual Studio Code, Notepad oder andere) und
+                    schreibe diese Zeile rein:</p>
+                <img src="img/Projekt erstellen Part 6.png">
+                <p>Speichere die Datei.</p>
+
+                <li>Projekt starten</li>
+                <p>Zurück im Terminal gib ein:</p>
+                <img src="img/Projekt erstellen Part 7.1.png">
+                <p>Du solltest jetzt sehen:</p>
+                <img src="img/Projekt erstellen Part 7.2.png">
+            </ol>
+        </div>
+
+        <div class="link_container">
+            <h3>Projekt starten</h3>
+            <img src="img/Projekt sart Part1.png">
+            <img src="img/Projekt sart Part2.png">
+            <img src="img/Projekt sart Part3.png">
+            <img src="img/Projekt sart Part4.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Node Packages (Dependencies)</h3>
+            <p>Node Packages (oder Dependencies) sind fertige Code-Bausteine, die andere Entwickler geschrieben haben
+                und die du in deinem Projekt benutzen kannst, damit du nicht alles selbst programmieren musst.</p>
+            <img src="img/Bsp packages.png" alt="Bsp-Liste"><br>
+            <h4>wichtige kriterien zur auswahl von packages:</h4>
+            <img src="img/package auswahl.png" alt="package auswahl beachte"><br>
+            <div class="note_container">
+                <p>Wenn du einen Webserver bauen willst, ist express sehr beliebt, wird oft gepflegt und hat eine super
+                    Dokumentation. Daher ist es meistens eine gute Wahl.</p>
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>Package initialisieren</h3>
+            <img src="img/package initialisieren.png">
+        </div>
+
+        <div class="link_container">
+            <h3>packages aktuallisieren</h3>
+            <img src="img/packages aktualisieren Part1.png">
+            <img src="img/packages aktualisieren Part2.png">
+            <img src="img/packages aktualisieren Part3.png">
+        </div>
+
+        <div class="link_container">
+            <img src="img/package entfernen Part1.png">
+            <img src="img/package entfernen Part2.png">
+        </div>
+
+        <div class="link_container">
+            <h3>.gitignore</h3>
+            <p>Warum brauche ich .gitignore</p>
+            <ul>
+                <p>Weil es Dateien gibt, die:</p>
+                <li>nur lokal wichtig sind (z. B. node_modules)</li>
+                <li>sensible Daten enthalten (z. B. .env)</li>
+                <li>automatisch erzeugt werden (z. B. dist/, .log-Dateien)</li>
+            </ul>
+        
+
+       
+            <p>Inhalt .gitignore:</p>
+            <img src="img/gitignore inhalt.png">
+            <div class="note_container">
+                <h3>🧠 Merksatz:</h3>
+                <p>🔒 .gitignore schützt dich davor, versehentlich große, geheime oder unnötige Dateien ins Git
+                    hochzuladen.</p>
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>Funktionen und Variablen importieren</h3>
+            <img src="img/Funkt&Var import part1.png">
+            <img src="img/Funkt&Var import part2.png">
+            <br>
+            <div class="note_container">
+                <h3>🧠 Merksatz:</h3>
+                <p>module.exports + require = klassische Node.js<br>
+                    export + import = moderne Variante (mit "type": "module")</p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+</html>

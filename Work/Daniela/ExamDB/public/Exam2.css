@@ -128,17 +128,20 @@ h1::before {
     border-radius: 0.5em;
     background-color: #fff;
     outline: 2px solid var(--col1);
+    padding-bottom: 4em;
 }
 
 .ToDo-Details {
-    grid-column: 2 / 4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3em;
-    color: var(--text-dark);
-    text-align: center;
+  grid-column: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--text-dark);
+  text-align: center;
+  width: 100%;
+
 }
 
 /*---------------------------------lower-DIV's--------------------------------------*/
@@ -151,6 +154,10 @@ h1::before {
     justify-self: center;
     align-self: center;
     font-size: 1em;
+}
+
+.titel{
+    
 }
 
 /*---------------------------------Button's-----------------------------------------*/
@@ -207,4 +214,11 @@ h1::before {
 
 .deleteButton {
     right: 1em;
+}
+
+/*------------*/
+
+.editInput{
+    display: flex;
+    flex-direction: column;
 }

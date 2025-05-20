@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1> JS refresh</h1>
+
+    <h2>Arrays</h2>
+    <p>cars = [Audi, BMW, VW, Skoda, Mazda, Mercedes] </p>
+
+    <h3>Methods:</h3>
+    <ul>
+        <li>.lenght </li>
+        <p>gibt die länge des Array zurück</p>
+        <p id="length"></p>
+        <br>
+        <li>cars.toString</li>
+        <p>wandelt in String um</p>
+        <p id="toString"></p>
+        <br>
+        <li>cars.at(2)</li>
+        <p id="at"></p>
+        <br>
+        <li>.join</li>
+        <p id="join"></p>
+        <br>
+        <li>.pop</li>
+        <p id="pop"></p>
+    </ul>
+
+    <h2>Objects</h2>
+    <p>
+        person = {
+        name: "Max",
+        lastName: "Mustermann",
+        age: "35"
+        };
+    </p>
+
+
+
+    <script>
+
+        //-------Arrasy--------
+        console.log("------------Arrays--------------")
+        const cars = ["Audi", "BMW", "VW", "Skoda", "Mazda", "Mercedes"];
+
+        //Methods:
+
+        // .length
+        let size = cars.length;
+        document.getElementById("length").innerHTML = size;
+
+        // .toString
+        document.getElementById("toString").innerHTML = cars.toString();
+
+        // .at
+        let car = cars.at(2);
+        document.getElementById("at").innerHTML = car;
+
+        // .join 
+        document.getElementById("join").innerHTML = cars.join(" *-* ");
+
+        // .pop
+        document.getElementById("pop").innerHTML = cars.pop();
+
+        //-------------------------------------------------------
+        //--------Objects-----------
+        console.log("------------Objects-------------")
+        const personen = [{
+            name: "Max",
+            lastName: "Mustermann",
+            age: "35"
+        },
+        {
+            name: "Lisa",
+            lastName: "Musterfrau",
+            age: "25",
+            job: "Friseurin"
+        }
+        ];
+
+        //add new properties 
+
+        personen[0].job = "Software-Entwickler";
+        //console.log(person);
+
+        // for..in 
+
+       /* for (let person in personen) {
+            console.log("----------");
+            for (let key in person) {
+                console.log(key + ":" + person[key]);
+            }
+        }
+        */
+
+        // alle Werte ausgeben 
+
+        personen.forEach(person =>{
+            console.log(Object.values(person));
+        });
+        //-------------------------------------------------------------------------
+
+        //----------functions----------------
+        console.log("------------Function------------");
+        function additor(a,b){
+            return(a*b);
+        };
+        console.log(additor(5,10));
+        //--------------------------------------
+        function calculator(a, b, operator){
+            if (operator === "+"){
+                return a + b; 
+            }
+            else if (operator === "-"){
+                return a - b; 
+            }
+            else if (operator === "*"){
+                return a*b;
+            }
+            else if(operator === "/"){
+                return a/b;
+            }
+            else{
+                return "Ungültige Eingabe!"
+            }
+        };
+        console.log("---------Calculator-Function-----------");
+        console.log(calculator(5,3, "+"));
+        console.log(calculator(5,3,"-"));
+        console.log(calculator(5,5,"*"));
+        console.log(calculator(15,5,"/")); 
+
+
+
+
+
+    </script>
+</body>
+
+Instandhalten und warten der Heiztechnik, gewährleisten eines Reibungslosen Betriebs der Heizanlagen und Peripherie, Verwalten und Steuern des Fernwärmenetzes mit 8 Heizwerken im Bereitschaftsdienst, 
+
+</html>
