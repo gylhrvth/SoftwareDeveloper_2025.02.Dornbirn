@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript</title>
+    <link rel="stylesheet" href="../Full - Stack/main02.css">
+</head>
+<body>
+    <h1>Full - Stack</h1>
+    <h2>Dienstag, 20. Mai 2025</h2>
+    <h3>Typescript</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Was ist Typescript? Woher kommt es?</span>
+        <p><b>Typescript</b> ist eine von Microsoft entwickelte Programmiersprache, die auf JavaScript basiert, aber <b>statische Typisierung</b> und moderne Features wie Interfaces, Enums und Klassen bietet.</p>
+        <p><strong>📝 Kurz gesagt:</strong></p>
+        <ul>
+            <li><b>Typescript =</b> JavaScript + Typen</li>
+            <li>Wird zu <b>plain JavaScript</b> kompiliert (für Browser oder Node.js)</li>
+            <li><b>Entwickelt von Microsoft,</b> erstes Release: 2012</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind die Vorteile / Nachteile von Typescript gegenüber JavaScript?</span>
+        <p><strong>✅ Vorteile von TypeScript gegenüber JavaScript:</strong></p>
+        <ol>
+            <li><b>Statische Typen →</b> Fehler früher erkennen</li>
+            <li><b>Bessere IDE-Unterstützung →</b> Autovervollständigung, Refactoring</li>
+            <li><b>Klarere Struktur durch Interfaces & Klassen</b></li>
+            <li><b>Große Projekte wartbarer und skalierbarer</b></li>
+            <li><b>Modernes JavaScript + Extras</b> (z.B. Enums, Zugriffskontrolle)</li>
+        </ol><br>
+        <p><strong>❌ Nachteile von TypeScript:</strong></p>
+        <ol>
+            <li><b>Build-Schritt nötig →</b> TypeScript muss nach JavaScript kompiliert werden</li>
+            <li><b>Mehr Schreibarbeit →</b> Vor allem bei kleinen Projekten</li>
+            <li><b>Einarbeitung → </b> Besonders für Anfänger</li>
+            <li><b>Konfiguration (tsconfig.json)</b> kann komplex sein</li>
+        </ol><br>
+        <p><strong>Fazit:</strong></p>
+        <ul>
+            <li>Für <b>große Projekte:</b> Sehr empfehlenswert</li>
+            <li>Für <b>kleine Skripte oder Prototypen:</b> JavaScript reicht oft aus</li>
+        </ul>
+    </li>
+    <br>
+
+    <li class="textColor">
+        <p><span class="underline">Wie erstelle ich ein Projekt mit Typescript?</span></p>
+        <ol>
+            <li><b>Neues Projektverzeichnis erstellen</b></li>
+            <div class="code-box">
+                <code>
+                    mkdir mein-ts-projekt
+                    cd mein-ts-projekt
+                </code>
+            </div><br>
+            <li><b>npm initialisieren</b></li>
+            <div class="code-box">
+                <code>
+                    npm init -y
+                </code>
+            </div><br>
+            <li><b>Typescript installieren</b></li>
+            <div class="code-box">
+                <code>
+                    npm install typescript --save-dev
+                </code>
+            </div><br>
+            <li><b>TypeScript - Konfiguration erstellen</b></li>
+            <div class="code-box">
+                <code>
+                    npx tsc --init
+                </code>
+            </div>
+            <p>→ Dadurch entsteht eine <b>tsconfig.json</b>, in der du Einstellungen wie Ziel-JS-Version oder Ordnerstrukturen anpassen kannst.</p>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</span>
+        <p>In TypeScript kannst du <b>Typen (Type Annotations)</b> an Variabeln, Funktionsparametern und Rückgabewerten angeben.</p>
+        <ol>
+            <li><b>🟦 Variabeln:</b></li>
+            <div class="code-box">
+                <code>
+                    let age: number = 25;
+                    let username: string = "Anna";
+                    let isOnline: boolean = true;
+                </code>
+            </div><br>
+            <li><b>🟨 Parameter:</b></li>
+            <div class="code-box">
+                <code>
+                    function greet(name: string){
+                        console.log("Hello " + name);
+                    }
+                </code>
+            </div><br>
+            <li><b>🟩 Rückgabewert:</b></li>
+            <div class="code-box">
+                <code>
+                    function getAge(): number{
+                        return 30;
+                    }
+                </code>
+            </div>
+            <p><strong>💡 Kombiniert:</strong></p>
+            <div class="code-box">
+                <code>
+                    function add(x: number, y: number): number{
+                        return x + y;
+                    }
+                </code>
+            </div>
+            <p>TypeScript erkennt oft die Typen automatisch - aber Annotationen helfen beim Verständnis und bei Fehlern.</p>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie beschreibe ich Arrays in Typescript?</span>
+        <p>In TypeScript gibt es zwei Hauptmethoden, um <b>Arrays zu typisieren:</b></p>
+        <ol>
+            <li><b>Mit eckigen Klammern type[ ]:</b></li>
+            <div class="code-box">
+                <code>
+                    let zahlen: number[] = [1, 2, 3];
+                    let namen: string[] = ["Anna", "Ben"];
+                </code>
+            </div><br>
+            <li><b>Mit Generics Array:</b></li>
+            <div class="code-box">
+                <code>
+                    let zahlen: Array&lt;number&gt; = [1, 2, 3];
+                    let aktiv: Array&lt;boolean&gt; = [true, false];
+                </code>
+            </div><br>
+            <li><b>💡 Beispiel mit Funktionen:</b></li>
+            <div class="code-box">
+                <code>
+                    function printNames(namen: string[]): void {
+                    namen.forEach(n => console.log(n));
+                    }
+                </code>
+            </div>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie beschreibe ich Objekte in Typescript?</span>
+        <p>In TypeScript beschreibst du Objekte mit <b>Typeannotationen</b> für die Eigenschaften - entweder inline oder mit type oder interface.</p>
+        <ol>
+            <li><b>🟦 Inline-Typdefinition:</b></li>
+            <div class="code-box">
+                <code>
+                    let user: { name: string; age: number } = {
+                    name: "Anna",
+                    age: 30
+                    };
+                </code>
+            </div><br>
+            <li><b>🟨 Mit type:</b></li>
+            <div class="code-box">
+                <code>
+                    type User = {
+                    name: string;
+                    age: number;
+                    };
+
+                    let u: User = { name: "Tom", age: 25 };
+                </code>
+            </div><br>
+            <li><b>🟩 Mit interface:</b></li>
+            <div class="code-box">
+                <code>
+                    interface Product {
+                    id: number;
+                    title: string;
+                    price: number;
+                    }
+
+                    let item: Product = { id: 1, title: "Buch", price: 12.99 };
+                </code>
+            </div>
+            <p><b>type</b> und <b>interface</b> sind sehr ähnlich - interface ist besser für Klassen und Erweiterung geeignet, type flexibler für komplexe Typkombinationen.</p>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie verwende ich Type in Typescript?</span>
+        <p><strong>In TypeScript kannst du mit dem type-Schlüsselwort eigene Typdefinitionen erstellen - ähnlich wie mit interface, aber mit mehr Flexibilität.</strong></p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist der Unterschied zwischen Interface und Type in Typescript?</span>
+        <p>Sowohl interface als auch type können verwendet werden, um die <b>Struktur von Objekten</b> zu definieren:</p>
+        <div class="code-box">
+            <code>
+                interface User {
+                name: string;
+                age: number;
+                }
+
+                type UserType = {
+                name: string;
+                age: number;
+                };
+            </code>
+        </div>
+        <p>📝 Beides funktioniert gleich, wenn es nur um einfache Objektformen geht.</p><br>
+        <p><strong>🔍 Unterschiede:</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Aspekt</th>
+                    <th>interface</th>
+                    <th>type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Erweiterbarkeit</td>
+                    <td>✅ kann erweitert/zusammengeführt werden</td>
+                    <td>❌ kann nicht zusammengeführt werden</td>
+                </tr>
+                <tr>
+                    <td>Verwendung mit Union</td>
+                    <td>❌ nicht möglich</td>
+                    <td>✅ möglich (z. B. <code>type Role = "admin" | "user"</code>)</td>
+                </tr>
+                <tr>
+                    <td>Komplexe Typen</td>
+                    <td>❌ nur Objekte</td>
+                    <td>✅ auch für union, tuple, primitive</td>
+                </tr>
+                <tr>
+                    <td>Mehrfach-Implementierung</td>
+                    <td>✅ in Klassen erlaubt</td>
+                    <td>✅ auch möglich (mit Einschränkungen)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Verwende interface, wenn du Objekte oder Klassen beschreibst und Erweiterung brauchst.</p>
+        <p>Verwende type, wenn du mehr Flexibilität brauchst - z.B. für Union Types, Primitive, Tuples.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie verwende ich Union Types?</span>
+        <p><b>Union Types</b> erlauben es, dass eine Variable oder ein Parameter mehrere Typen annehmen kann. Du verwendest das <b>|</b>-Zeichen, um die erlaubten Typen zu kombinieren.</p>
+        <div class="code-box">
+            <code>
+                let id: number | string;
+                id = 123;      // gültig
+                id = "abc";    // auch gültig
+
+                function printStatus(status: "success" | "error") {
+                    console.log("Status:", status);
+                }
+                printStatus("success");
+                printStatus("error");
+            </code>
+        </div>
+        <p><b>📝 Fazit:</b> Union Types machen deinen Code flexibler, weil mehrere Typen erlaubt sind.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie verwende ich Intersection Types?</span>
+        <p><b>Intersection Types</b> erlauben es, mehrere Typen zu einem neuen Typ zu kombinieren. Du verwendest das <b>&</b>-Zeichen, um die Typen zu "verschneiden". Das Ergebnis muss alle Eigenschaften aller Typen enthalten.</p>
+        <div class="code-box">
+            <code>
+                type Person = { name: string };
+                type Worker = { company: string };
+
+                type Employee = Person & Worker;
+
+                let mitarbeiter: Employee = {
+                    name: "Anna",
+                    company: "Tech AG"
+                };
+            </code>
+        </div>
+        <p><b>📝 Fazit:</b> Intersection Types sind praktisch, wenn ein Objekt die Eigenschaften mehrerer Typen gleichzeitig haben soll.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind Generic? Wie verwende ich sie?</span>
+        <p><b>Generics</b> sind ein TypeScript-Feature, mit dem du Funktionen, Klassen oder Typen so definieren kannst, dass sie mit verschiedenen Typen arbeiten können. Sie machen deinen Code wiederverwendbar und typsicher.</p>
+        <div class="code-box">
+            <code>
+                function identity<T>(value: T): T {
+                    return value;
+                }
+
+                let zahl = identity<number>(42);      // Typ: number
+                let text = identity<string>("Hallo"); // Typ: string
+            </code>
+        </div>
+        <p><b>📝 Fazit:</b> Mit Generics kannst du flexibel und sicher mit beliebigen Typen arbeiten, ohne auf Typüberprüfung zu verzichten.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind enum in Typescript? Wie verwende ich sie?</span>
+        <p><b>Enums</b> (Aufzählungstypen) sind ein Feature in TypeScript, mit dem du eine Gruppe von benannten Konstanten definieren kannst. Sie machen den Code lesbarer und helfen, feste Werte übersichtlich zu verwalten.</p>
+        <div class="code-box">
+            <code>
+                enum Color {
+                    Red,
+                    Green,
+                    Blue
+                }
+
+                let c: Color = Color.Green;
+                console.log(c); // Ausgabe: 1
+            </code>
+        </div>
+        <p><b>📝 Fazit:</b> Enums sind praktisch, wenn du mit festen Wertemengen (z.B. Farben, Status, Wochentage) arbeiten möchtest.</p>
+    </li>
+</ul>
+</body>
+</html>

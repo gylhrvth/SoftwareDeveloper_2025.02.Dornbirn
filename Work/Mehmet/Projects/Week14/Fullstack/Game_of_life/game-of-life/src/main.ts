@@ -28,158 +28,147 @@
 import './style.css'
 
 
-
-// this is just the for appending the heading to the id= heading div in index.html
-const head = document.createElement('h1');
-head.innerText = "Game of Life";
-document.getElementById("heading")!.appendChild(head);
-
-const restartBtn = document.createElement('button');
-restartBtn.innerText = "Restart";
-restartBtn.style.marginLeft = "12px";
-document.getElementById("heading")!.appendChild(restartBtn);
-
-const startStopBtn = document.createElement('button');
-startStopBtn.innerText = "Stop";
-document.getElementById("heading")!.appendChild(startStopBtn);
-
-
+const headingDiv = document.getElementById("heading")!;
 const app = document.querySelector<HTMLDivElement>('#app')!;
-const gridSize = 30; // Größe des Gitters (30x30)
-
-// Spielfeld-Daten: Array von booleans (true = lebendig, false = tot)
+const gridSize = 30;
 let grid = new Array(gridSize * gridSize).fill(false);
-
-// Array für DOM-Zellen, damit wir sie schnell updaten können
 const cells: HTMLDivElement[] = [];
 
-// --- Zellen erzeugen und ins DOM einfügen ---
+// Initialize heading and controls
+headingDiv.innerHTML = `<h1>Game of Life</h1>`;
+const controlsDiv = document.createElement('div');
+controlsDiv.id = "controls";
+headingDiv.appendChild(controlsDiv);
+
+// Create buttons utility
+function createButton(text: string): HTMLButtonElement {
+  const btn = document.createElement('button');
+  btn.textContent = text;
+  return btn;
+}
+
+// Create controls
+const restartBtn = createButton("Restart");
+const startStopBtn = createButton("Stop");
+const darkModeBtn = createButton("Dark Mode");
+
+const seedLabel = document.createElement('label');
+seedLabel.htmlFor = 'seedInput';
+seedLabel.textContent = 'Seeds: ';
+
+const seedInput = document.createElement('input');
+seedInput.type = 'number';
+seedInput.id = 'seedInput';
+seedInput.min = '1';
+seedInput.max = '300';
+seedInput.value = '20';
+
+controlsDiv.append(restartBtn, startStopBtn, darkModeBtn, seedLabel, seedInput);
+
+// Build grid cells and event listeners once
 for (let i = 0; i < grid.length; i++) {
   const cell = document.createElement('div');
   cell.classList.add('cell');
-
-  // Klick auf Zelle schaltet Status alive/tot um
   cell.addEventListener('click', () => {
-    grid[i] = !grid[i]; // Zustand im Array toggeln
-    updateDOM();        // DOM anpassen, um Farbe zu aktualisieren
+    grid[i] = !grid[i];
+    updateDOMCell(i);
   });
-
   app.appendChild(cell);
   cells.push(cell);
 }
 
-// --- Start-Muster setzen ---
-// --- Zufällige Startmuster setzen ---
-const numSeeds = 25; // Anzahl der Startmuster (hier 5, beliebig änderbar)
-for (let s = 0; s < numSeeds; s++) {
-  // Zufällige Position im Grid (nicht am Rand)
-  const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
-  const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
-  // Einfaches Muster: "Blinker" (drei Zellen in einer Reihe)
-  grid[row * gridSize + col - 1] = true;
-  grid[row * gridSize + col] = true;
-  grid[row * gridSize + col + 1] = true;
+// Efficiently update only the changed cell in DOM
+function updateDOMCell(i: number) {
+  cells[i].classList.toggle('alive', grid[i]);
 }
 
-
-// DOM einmal initial updaten
-updateDOM();
-
-
-// --- Funktion: DOM an den Zustand im Array anpassen --- 
+// Update all cells DOM (for batch updates)
 function updateDOM() {
-  for (let i = 0; i < grid.length; i++) {
-    if (grid[i]) {
-      cells[i].classList.add('alive');
-    } else {
-      cells[i].classList.remove('alive');
-    }
-  }
+  grid.forEach((alive, i) => updateDOMCell(i));
 }
 
-
-// --- Funktion: Anzahl lebender Nachbarn für eine Zelle berechnen --- 
-function countAliveNeighbors(index: number): number {
-  // Relative Positionen der 8 Nachbarn um die Zelle herum
-  const neighbors = [
-    -gridSize - 1, -gridSize, -gridSize + 1,
-    -1,            /* index */  +1,
-    gridSize - 1,  gridSize,  gridSize + 1
-  ];
-
+// Calculate alive neighbors of a cell at index i
+function countAliveNeighbors(i: number): number {
+  const row = Math.floor(i / gridSize);
+  const col = i % gridSize;
   let count = 0;
-  const row = Math.floor(index / gridSize);
-  const col = index % gridSize;
 
-  for (const offset of neighbors) {
-    const neighborIndex = index + offset;
-    const nRow = Math.floor(neighborIndex / gridSize);
-    const nCol = neighborIndex % gridSize;
-
-    // Prüfen, ob Nachbar im gültigen Bereich ist
-    // und nicht über den linken oder rechten Rand hinausgeht
-    if (
-      neighborIndex >= 0 && neighborIndex < grid.length &&
-      Math.abs(nRow - row) <= 1 &&
-      Math.abs(nCol - col) <= 1
-    ) {
-      if (grid[neighborIndex]) count++;
+  // Iterate neighbors offsets without the center (0,0)
+  for (let r = -1; r <= 1; r++) {
+    for (let c = -1; c <= 1; c++) {
+      if (r === 0 && c === 0) continue;
+      const nr = row + r;
+      const nc = col + c;
+      if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
+        if (grid[nr * gridSize + nc]) count++;
+      }
     }
   }
-
   return count;
 }
 
-
-// --- Funktion: nächste Generation berechnen --- 
+// Compute next generation grid efficiently in one pass
 function nextGeneration() {
-  const newGrid = new Array(grid.length).fill(false);
-
+  const newGrid = new Array(gridSize * gridSize);
   for (let i = 0; i < grid.length; i++) {
-    const aliveNeighbors = countAliveNeighbors(i);
-
-    if (grid[i]) {
-      // Regeln für lebende Zellen: bleiben nur bei 2 oder 3 Nachbarn leben
-      newGrid[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
-    } else {
-      // Regeln für tote Zellen: werden lebendig, wenn genau 3 Nachbarn leben
-      newGrid[i] = aliveNeighbors === 3;
-    }
+    const neighbors = countAliveNeighbors(i);
+    newGrid[i] = grid[i] ? neighbors === 2 || neighbors === 3 : neighbors === 3;
   }
-
-  // Spielfeld aktualisieren
   grid = newGrid;
   updateDOM();
 }
 
-
-// --- Animation: Steuerung der automatischen Updates mit requestAnimationFrame --- 
-
-let lastUpdate = 0;          // Zeit des letzten Updates (in ms)
-const interval = 600;        // Zeitintervall zwischen Updates (500ms = 0.5s)
-
-
+// Animation loop with throttling by interval
+let lastUpdate = 0;
+const interval = 600;
 let running = true;
-startStopBtn.addEventListener('click', () => {
-  running = !running;
-  startStopBtn.innerText = running ? "Stop" : "Start";
-  if (running) requestAnimationFrame(animate);
-});
 
-// Animation anpassen:
 function animate(time = 0) {
-  if (!running) return; // <--- Animation pausieren, wenn nicht running
-  if (time - lastUpdate > interval) {
+  if (!running) return;
+  if (time - lastUpdate >= interval) {
     nextGeneration();
     lastUpdate = time;
   }
   requestAnimationFrame(animate);
 }
 
-
-// Animation starten
 requestAnimationFrame(animate);
 
+// Button event handlers
+startStopBtn.addEventListener('click', () => {
+  running = !running;
+  startStopBtn.textContent = running ? "Stop" : "Start";
+  if (running) requestAnimationFrame(animate);
+});
+
+restartBtn.addEventListener('click', () => {
+  grid.fill(false);
+  const seeds = Math.min(Math.max(parseInt(seedInput.value) || 20, 1), 300);
+
+  for (let i = 0; i < seeds; i++) {
+    // Random row and col excluding edges
+    const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
+    const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
+
+    // Seed a horizontal line of 3 cells, carefully avoiding index errors
+    const centerIndex = row * gridSize + col;
+    [centerIndex - 1, centerIndex, centerIndex + 1].forEach(idx => grid[idx] = true);
+  }
+
+  updateDOM();
+
+  if (!running) {
+    running = true;
+    startStopBtn.textContent = "Stop";
+    requestAnimationFrame(animate);
+  }
+});
+
+darkModeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  html.classList.toggle('dark-mode');
+  darkModeBtn.textContent = html.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+});
 
 
 

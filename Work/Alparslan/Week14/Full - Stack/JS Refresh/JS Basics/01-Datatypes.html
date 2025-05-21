@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh</title>
+    <link rel="stylesheet" href="../../main.css">
+    <script src="../../lib.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Full-Stack");
+        printH(3, "JS Basics & Datatypes");
+        printHr();
+
+        printH(4, "A. Variabeln - let, const, var")
+
+        let name = "Anna";          // veränderbar
+        const age = 30;            // nicht veränderbar
+        
+        console.log("My name is " + name);
+        console.log("I am " + age, "old");
+
+        printLn("My name is " + name + " and I am " + age + " years old");
+
+        // Beispiel: Zahlen
+        printH(4, "B. Zahlen (number with let)");
+        let x = 5;
+        let y = 3.14;
+        
+        printLn("x = " + x + ", y = " + y);
+
+        // Beispiel: Zahlen 02
+        printH(4, "Zahlen (number with const)")
+        const price = 4.99;
+        const quantity = 3;
+        const total = price + quantity;
+
+        printLn("Gesamtpreis: " +total);
+
+        // Beispiel: Boolean
+        printH(4, "C. Boolean (true/false)");
+        let isStudent = true;
+        let isAdmin = false;
+        
+        printLn("isStudent: " + isStudent + ", isAdmin: " + isAdmin);
+
+        // Beispiel: Array
+        printH(4, "D. Array");
+        let fruits = ["Apple", "Banana", "Cherry"];
+       
+        printLn("Fruits: " + fruits.join(", "));
+
+        // Beispiel: Objekt
+        printH(4, "E. Objekt");
+        let person = { firstName: "Anna", lastName: "Smith", age: 30};
+        
+        printLn("Person: " + person.firstName + " " + person.lastName + ", Alter: " + person.age);
+
+        // Beispiel: undefined & null
+        printH(4, "F. undefined & null");
+        let notDefined;
+        let empty = null;
+        printLn("notDefined: " + notDefined + ", empty: " + empty);
+    </script>
+</body>
+</html>

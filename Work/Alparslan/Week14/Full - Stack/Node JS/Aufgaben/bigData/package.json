@@ -1,0 +1,13 @@
+{
+  "name": "bigdata",
+  "version": "1.0.0",
+  "description": "Tool zum Finden der größten Datei im Home-Verzeichnis",
+  "type": "module",
+  "main": "bigData.js",
+  "scripts": {
+    "dev": "node bigData.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
