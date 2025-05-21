@@ -1,0 +1,16 @@
+
+
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "basic exercise",
+  "author": "",
+  "license": "ISC",
+  "main": "HelloWorld.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node HelloWorld.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
+

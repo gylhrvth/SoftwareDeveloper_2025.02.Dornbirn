@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Refresh</title>
+    <link rel="stylesheet" href="../../main.css">
+    <script src="../../lib.js"></script>
+</head>
+<body>
+    <script>
+        printH(2, "Full-Stack");
+        printH(3, "JS Arrays");
+        printHr();
+
+        printH(4, "1. Array erstellen");
+        let fruits = ["Apfel", "Banana", "Cherry"];
+        
+        printLn("[" + fruits + "]");
+        console.log(fruits);
+
+        // Zugriff auf Elemente
+        printH(4, "2. Zugriff auf Elemente");
+        
+        printLn("Element: " + fruits[1]);
+        console.log(fruits[0]);
+        console.log(fruits[1]);
+        console.log(fruits[2]);
+
+        // Länge des Arrays
+        printH(4, "3. Länge des Arrays");
+
+        printLn("Anzahl: " + fruits.length);
+        console.log("Anzahl: " + fruits.length);
+
+        // Element hinzufügen (Ende)
+        printH(4, "4. Element hinzufügen (Ende)");
+
+        fruits.push("Orange");
+        printLn("[" + fruits + "]");
+
+        // Element hinzufüngen (Anfang)
+        printH(4, "5. Element hinzufüngen (Anfang)");
+
+        fruits.unshift("Erdbeere");
+        printLn("[" + fruits + "]");
+
+        // Element entfernen (Anfang)
+        printH(4, "6. Element entfernen (Anfang)");
+
+        fruits.shift();
+        printLn("[" + fruits + "]");
+        
+        // Schleife durch das Array
+        printH(4, "7. Alle Elemente mit Schleife ausgeben");
+
+        for(let i = 0; i < fruits.length; i++){
+            printLn("index " + i + ": " + fruits[i]);
+        }
+
+        printHr();
+
+        // Alternative mit forEach:
+        fruits.forEach(function(fruit, index){
+            printLn("forEach" + index + ": " + fruit);
+        });
+    </script>
+</body>
+</html>

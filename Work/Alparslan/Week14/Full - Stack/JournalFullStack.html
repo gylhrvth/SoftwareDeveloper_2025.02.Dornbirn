@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node JS</title>
+    <link rel="stylesheet" href="../Full - Stack/main02.css">
+</head>
+<body>
+    <h1>Full - Stack</h1>
+    <h2>Montag, 19. Mai 2025</h2>
+    <h3>Node JS</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Was ist ein JS Engine?</span>
+        <p>Eine <b>JavaScript-Engine</b> ist ein Programm, das <b>JavaScript-Code ausführt.</b> Sie <b>interpretiert</b> oder <b>kompiliert</b> den Code um wandelt ihn in Maschinencode um, den der Computer versteht und ausführen kann.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist der Unterschied zwischen JS Engine in einem Webbrowser und Node.JS?</span>
+        <p>Der Hauptunterschied zwischen der JavaScript-Engine im Browser und in Node.js liegt nicht in der Engine selbst, sondern im Kontext, in dem sie läuft. Beide können z.B. die V8-Engine verwenden, aber:</p>
+        <ol>
+            <li>Im <b>Node.js</b> wird JavaScript für die Interaktion mit Webseiten genutzt und hat Zugriff auf den Dom, bietet dafür aber viele systemnahe Funktionen wie Dateizugriff <b>(fs),</b> Netzwerkmodule <b>(http)</b> oder Prozesssteuerung <b>(process).</b></li><br>
+            <li>Im <b>Browser</b> wird JavaScript für die Interaktion mit Webseiten genutzt und hat Zugriff auf DOM-Elemente wie <b></b> und <b>window</b>.</li>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was funktioniert NICHT in Node.JS?</span>
+        <p>In Node.js fehlt der <b>Browser-Kontext,</b> daher funktionieren <b>alle browserspezifischen Objekte und APIs</b> nicht.</p>
+        <p><strong>🚫 Dinge, die NICHT in Node.js funktionieren:</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Funktion / Objekt</th>
+                    <th>Warum funktioniert es nicht?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>document</td>
+                    <td>Node hat keinen DOM (kein HTML-Dokument)</td>
+                </tr>
+                <tr>
+                    <td>window</td>
+                    <td>Es gibt kein Fenster oder Browser-Umgebung</td>
+                </tr>
+                <tr>
+                    <td>alert(), prompt()</td>
+                    <td>Keine Benutzeroberfläche im Terminal</td>
+                </tr>
+                <tr>
+                    <td>localStorage, sessionStorage</td>
+                    <td>Nur im Browser verfügbar</td>
+                </tr>
+                <tr>
+                    <td>fetch() (nur in alten Node-Versionen)</td>
+                    <td>War bis Node 18 nicht eingebaut, nur über Module</td>
+                </tr>
+                <tr>
+                    <td>navigator, location</td>
+                    <td>Diese Infos gibt es in Node nicht</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>📝 Kurzgefasst:</strong></p>
+        <p>Node.js ist für serverseitige Anwendungen gedacht und bietet stattdessen eigene Module wie <b>fs (Dateisystem), http, path oder process,</b> um mit dem System zu arbeiten.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wofür steht npm?</span>
+        <p><b>npm</b> steht für: <b>Node Package Manager</b></p>
+        <p>mit <b>npm</b> kannst du Pakete (Libraries, Module):</p>
+        <ul>
+            <li><b>installieren</b></li>
+            <li><b>verwalten</b></li>
+            <li><b>aktualisieren</b></li>
+            <li><b>veröffentlichen</b></li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was bedeutet die Abkürzung CLI?</span>
+        <p>Ein <b>CLI</b> ist eine <b>Benutzeroberfläche,</b> bei der man <b>Befehle über die Tastatur</b> in eine <b>Textzeile (Konsole, Terminal)</b> eingibt – im Gegensatz zu grafischen Benutzeroberflächen (GUI), bei denen man mit Maus und Fenstern arbeitet.</p>
+        <p><strong>💡 Beispiele für CLI - Anwendungen:</strong></p>
+         <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>CLI-Tool</th>
+                    <th>Zweck</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>git</td>
+                    <td>Versionskontrolle</td>
+                </tr>
+                <tr>
+                    <td>node</td>
+                    <td>JavaScript-Interpreter</td>
+                </tr>
+                <tr>
+                    <td>npm / yarn</td>
+                    <td>Paketverwaltung für Js</td>
+                </tr>
+                <tr>
+                    <td>mysql</td>
+                    <td>Datenbank-Verwaltung</td>
+                </tr>
+                <tr>
+                    <td>npx</td>
+                    <td>Einmalige CLI-Ausführung von Paketen</td>
+                </tr>
+                <tr>
+                    <td>cmd, PowerShell</td>
+                    <td>CLI unter Windows</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Vorteile eines CLI:</strong></p>
+        <ul>
+            <li>Schnell und ressourcenschonend</li>
+            <li>Gut automatisierbar (z.B. mit Scripts)</li>
+            <li>Ideal für Entwickler und Admins</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein Node.JS Project?</span>
+        <p>Ein <b>Node.js-Projekt</b> ist ein <b>Ordner mit JavaScript-Code,</b> der Node.js verwendet, um eine Anwendung zu erstellen - zum Beispiel:</p>
+        <ul>
+            <li>eine Webanwendung (z.B. mit Express)</li>
+            <li>ein Tool oder Script</li>
+            <li>eine API</li>
+            <li>ein Server</li>
+        </ul>
+        <p>Das Projekt wird durch eine zentrale Datei namens package.json verwaltet.</p><br>
+        <p>✅ 1. package.json (Enthält alle Infos über das Projekt):</p>
+        <ul>
+            <li>Name, Version, Beschreibung</li>
+            <li>verwendete Pakete (Dependencies)</li>
+            <li>Startbefehle (Scripts)</li>
+        </ul>
+        <p>✅ 2. Abhängigkeiten (Dependencies), mit npm install hinzugefügte Pakete, z.B.:</p>
+        <div class="code-box">
+            <code>
+                npm install express
+            </code>
+        </div>
+        <p>✅ 3. JavaScript-Dateien (Enthalten den eigentlichen Code):</p>
+        <div class="code-box">
+            <code>
+                const express = require('express');
+                const app = express();
+            </code>
+        </div>
+         <p><strong>📝 Kurzgefasst:</strong></p>
+         <p>Ein Node.js-Projekt ist ein Verzeichnis, das Node.js-Code enthält, um z.B. eine Webanwendung oder API zu erstellen. Es wird durch eine <b>package.json</b> verwaltet, in der alle Informationen über das Projekt und dessen Abhängigkeiten gespeichert sind. Mit <b>npm install</b> können externe Pakete eingebunden werden. Die Projektdateien enthalten den eigentlichen JavaScript-Code, der über die Node.js-Laufzeitumgebung ausgeführt wird.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie sieht die Grundstruktur von package.json aus?</span>
+        <p>Die Datei package.json ist das <b>Herzstück eines Node.js-Projekts.</b> Sie enthält <b> alle wichtigen Metadaten,</b> z.B. Name, Version, Skripte, Abhängigkeiten usw. Sie wird automatisch erstellt, wenn du <b>npm init oder npm init -y</b> ausführst.</p>
+        <p><strong>💡 Beispiel: Grundstruktur einer package.json</strong></p>
+        <div class="code-box">
+            <code>
+        {
+            "name": "mein-projekt",
+            "version": "1.0.0",
+            "description": "Ein einfaches Node.js-Projekt",
+            "main": "index.js",
+            "scripts": {
+                "start": "node index.js",
+                "test": "echo \"Kein Test definiert\" && exit 0"
+            },
+            "keywords": ["node", "example"],
+            "author": "Dein Name",
+            "license": "MIT",
+            "dependencies": {},
+            "devDependencies": {}
+        }
+            </code>
+        </div>
+        <p><strong>💡 Häufige CLI - Befehle dazu</strong></p>
+        <table class="sql-table">
+            <thead>
+                <tr>
+                    <th>Befehl</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>npm init</td>
+                    <td>Erstellt die package.json interaktiv</td>
+                </tr>
+                <tr>
+                    <td>npm init -y</td>
+                    <td>Erstellt sie automatisch mit Defaultwerten</td>
+                </tr>
+                <tr>
+                    <td>npm install</td>
+                    <td>Fügt ein Paket zu dependencies hinzu</td>
+                </tr>
+                <tr>
+                    <td>npm run dev</td>
+                    <td>Führt das Skript dev aus der package.json aus</td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie erstelle ich ein neues Projekt, starte sie?</span>
+        <p><strong>Schritt 1. Ordner für dein Projekt anlegen</strong> (Im Terminal oder der Eingabeaufforderung):</p>
+        <div class="code-box">
+            <code>
+                mkdir my-node-project
+                cd my-node-projekt
+            </code>
+        </div>
+        <p><strong>Schritt 2: package.json anlegen </strong> (Projekt-Konfiguration):</p>
+        <div class="code-box">
+            <code>
+                npm init
+            </code>
+        </div>
+        <p>Das führt dich Schritt für Schritt durch die Erstellung der package.json (Name, Version, Beschreibung, Einstiegspunkt etc.).</p>
+        <p><strong>Schritt 3: Hauptdatei erstellen </strong> Lege eine Datei an, z.B. index.js:</p>
+        <div class="code-box">
+            <code>
+                echo. > index.js
+            </code>
+        </div>
+        <p><strong>Schritt 4: Beispielcode in index.js schreiben</strong></p>
+        <div class="code-box">
+            <code>
+                console.log("Hello Node.js!");
+            </code>
+        </div>
+        <p><strong>Schritt 5: Programm ausführen</strong> Im Terminal:</p>
+        <div class="code-box">
+            <code>
+                node index.js
+            </code>
+        </div>
+        <p>Du solltest dann im Terminal sehen: <b>Hello</b> Node.js</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind Kriterien für den Auswahl der Node Packages?</span>
+        <p><strong>✅ Wichtige Kriterien zur Auswahl von Node.js-Paketen:</strong></p>
+        <ol>
+            <li><b>Beliebtheit:</b> → Viele Downloads = weit verbreitet und oft genutzt</li>
+            <li><b>Aktualität:</b> → Letztes Update darf nicht zu alt sein</li>
+            <li><b>Gute Dokumentation:</b> → Leicht verständlich, mit Beispielen</li>
+            <li><b>Aktive Wartung:</b> → Wird regelmäßig gepflegt (GitHub aktiv)</li>
+            <li><b>Sicherheit:</b> → Keine bekannten Sicherheitslücken</li>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie aktualisiere ich bestehende Packages?</span>
+        <p>✅ 1. <strong>Alle Pakete auf einmal aktualisieren</strong></p>
+        <div class="code-box">
+            <code>
+                npm update
+            </code>
+        </div>
+        <p>→ Aktualisiert <b>alle installierten Pakete</b> auf die in package.json erlaubten Versionen.</p><br>
+        <p>✅ 2. <strong>Einzelnes Paket aktualisieren</strong></p>
+        <div class="code-box">
+            <code>
+                npm install express@latest
+            </code>
+        </div>
+        <p>→ Installiert die <b>neuste Version</b> des Pakets.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie entferne ich Packages, den ich nicht mehr brauche?</span>
+        <div class="code-box">
+            <code>
+                npm uninstall express
+            </code>
+        </div>
+        <p><strong>💡 Was passiert beim Entfernen?</strong></p>
+        <ul>
+            <li>Das Paket wird aus dem Ordner node_modules/ gelöscht</li>
+            <li>Es wird auch aus der package.json entfernt</li>
+            <li>Und aus der package-lock.json entfernt</li>
+        </ul>
+        <br>
+        <p><strong>📝 Kurzgefasst:</strong></p>
+        <p>Um ein nicht mehr benötigtes Paket zu entfernen, verwende ich npm uninstall<paketname>. Dadurch wird es aus dem Projektordner sowie aus der package.json gelöscht.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was muss in .gitignore file stehen?</span>
+        <p>In der <b>.gitignore-Datei</b> sollte man Dateien und Ordner auflisten, die nicht ins Git-Repository aufgenommen werden sollen.</p>
+        <p>Typische Beispiele in Node.js - Projekten sind:</p>
+        <ul>
+            <li><b>node_modules/</b> - enthält installierte Abhängigkeiten, die jederzeit neu installiert werden können</li>
+            <li><b>.env</b> - enthält sensible Umgebungsvariablen wie Passwörter oder API-Keys</li>
+            <li><b>dist/ oder build/</b> - generierte Build-Ordner</li>
+            <li><b>*.log</b> - Logdateien</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie importiert man eine Funktion / Variable aus einem anderen Skript?</span>
+        <p>Um eine Funktion oder Variable aus einem anderen Skript zu importieren, verwendet man in Node.js das <b>require-Statement</b> (CommonJS) oder das <b>import-Statement</b> (ES Module): CommonJS (älter, Standard in Node.js):</p>
+        <ul>
+            <li><strong>CommonJS (älter, Standard in Node.js):</strong><br>
+            <code>// In math.js<br>
+            module.exports = { add: (a, b) =&gt; a + b };</code><br>
+            <code>// In main.js<br>
+            const math = require('./math');<br>
+            console.log(math.add(2, 3));</code>
+            </li><br>
+            <li><strong>ES Module (moderner, mit <code>type": "module"</code> in package.json):</strong><br>
+            <code>// In math.js<br>
+            export function add(a, b) { return a + b; }</code><br>
+            <code>// In main.js<br>
+            import { add } from './math.js';<br>
+            console.log(add(2, 3));</code>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

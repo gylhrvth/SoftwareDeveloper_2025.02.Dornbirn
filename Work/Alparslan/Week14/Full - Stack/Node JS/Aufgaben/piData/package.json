@@ -1,0 +1,19 @@
+{
+  "name": "aufgaben",
+  "version": "1.0.0",
+  "main": "piData.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon piData.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "generate-pi": "^1.23.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
