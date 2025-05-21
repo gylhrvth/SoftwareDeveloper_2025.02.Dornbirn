@@ -97,19 +97,16 @@ button:focus-visible {
 
 
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f6f8fa;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f6f8fa; /* sehr helles Grau */
-  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 #container {
@@ -117,49 +114,28 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 10px 10px 30px 10px; /* Unten 30px Platz lassen */
 }
 
 #heading {
-  color: #2d7ff9; /* freundliches Blau */
+  color: #2d7ff9;
   text-align: center;
   margin-bottom: 24px;
   text-shadow: 0 2px 8px #e0e7ef;
+  user-select: none;
 }
 
-#game {
+#controls {
   display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-}
-
-#app {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 90vmin;
-  height: 90vmin;
-  border: 2px solid #b0c4de;
-  gap: 1px;
-  background-color: #e0e7ef; /* helles Blau-Grau */
-  grid-template-columns: repeat(30, 1fr);
-  grid-template-rows: repeat(30, 1fr);
-  box-shadow: 0 4px 24px #b0c4de55;
-}
-
-.cell {
-  width: 100%;
-  height: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #fafdff; /* fast weiß */
-  border: 1px solid #dbeafe;
-  transition: background 0.2s;
-}
-
-.cell.alive {
-  background-color: #4ade80; /* freundliches Grün */
-  border-color: #22c55e;
-  box-shadow: 0 0 4px #22c55e55;
 }
 
 button {
@@ -168,13 +144,12 @@ button {
   padding: 0.7em 2em;
   font-size: 1.1em;
   font-weight: 600;
-  font-family: inherit;
   background: linear-gradient(90deg, #2d7ff9 0%, #4ade80 100%);
   color: #fff;
   cursor: pointer;
   box-shadow: 0 2px 8px #b0c4de55;
-  margin-top: 12px;
   transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  user-select: none;
 }
 
 button:hover {
@@ -187,4 +162,64 @@ button:focus,
 button:focus-visible {
   outline: 3px solid #2d7ff9;
   outline-offset: 2px;
+}
+
+#game {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 180px - 30px); /* 30px Platz unten lassen */
+  box-sizing: border-box;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: repeat(30, 1fr);
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 100%;
+  max-height: 100%;
+  border: 2px solid #b0c4de;
+  gap: 1px;
+  background-color: #e0e7ef;
+  box-shadow: 0 4px 24px #b0c4de55;
+  touch-action: manipulation;
+  border-radius: 6px; /* Optional, schönere Ecken */
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #fafdff;
+  border: 1px solid #dbeafe;
+  transition: background 0.2s;
+}
+
+.cell.alive {
+  background-color: #4ade80;
+  border-color: #22c55e;
+  box-shadow: 0 0 4px #22c55e55;
+}
+
+/* Responsive für kleine Bildschirme */
+@media (max-width: 480px) {
+  #app {
+    width: 95vmin;
+    height: 95vmin;
+  }
+
+  button {
+    padding: 0.5em 1.2em;
+    font-size: 1em;
+  }
+
+  #controls {
+    gap: 10px;
+  }
 }
