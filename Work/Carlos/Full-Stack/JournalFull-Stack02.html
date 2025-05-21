@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>Full-Stack Journal 02</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Full-Stack Journal 02</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day57">MI 21/05/25</a>: Typescript</h3>
+    
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="day57">Mittwoch 21. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (Typescript)</h3>
+
+    <h4 class="textColor01">Typescript (Recherche):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was ist Typescript? Woher kommt es?</h4></li>
+        <p>Typescript ist eine von Microsoft entwickelte Programmiersprache, die eine statische Typisierung für JavaScript bietet. Sie wurde 2012 veröffentlicht und ist eine Obermenge von JavaScript, was bedeutet, dass jeder gültige JavaScript-Code auch gültiger Typescript-Code ist.</p>
+        <li><h4 class="textColor02">Was sind die Vorteile von Typescript?</h4></li>
+        <p>Die Vorteile von Typescript sind unter anderem:</p>
+        <ul>
+            <li>Statische Typisierung: Fehler werden bereits zur Entwicklungszeit erkannt.</li>
+            <li>Bessere IDE-Unterstützung: Autovervollständigung und IntelliSense sind verfügbar.</li>
+            <li>Modularität: Typescript unterstützt Module, was die Strukturierung von Code erleichtert.</li>
+            <li>Verbesserte Lesbarkeit: Der Code ist oft klarer und verständlicher.</li>
+            <li>Kompatibilität: Typescript kann in bestehende JavaScript-Projekte integriert werden.</li>
+            <li>Erweiterte Features: Typescript bietet viele moderne Sprachfeatures, die in JavaScript noch nicht verfügbar sind.</li>
+        </ul>
+        <li><h4 class="textColor02">Wie funktioniert Typescript?</h4></li>
+        <p>Typescript wird in JavaScript transpiliert, was bedeutet, dass der Typescript-Code in regulären JavaScript-Code umgewandelt wird, der dann in jedem Browser oder auf jedem JavaScript-Server ausgeführt werden kann. Der Transpilierungsprozess überprüft den Code auf Typfehler und wandelt ihn in eine Version um, die von JavaScript verstanden wird.</p>
+        <li><h4 class="textColor02">Wie wird Typescript installiert?</h4></li>
+        <p>Typescript kann über den Node Package Manager (npm) installiert werden:</p>
+        <ul>
+        <li><p><strong>Globale</strong> Installierung:</p></li>
+        <pre><code>npm install -g typescript</code></pre>
+        <p>Dies installiert Typescript global auf dem System. </p>
+        <li><p><strong>Lokale</strong> Installierung (z.B in einem Projekt):</p></li> 
+        <pre><code>npm install --save-dev typescript</code></pre>
+        <p>Shortcut:</p>
+        <pre><code>npm install -D typescript</code></pre>
+        <p>Dies installiert Typescript nur für das aktuelle Projekt als Entwicklungsabhängigkeit. (z.B. über ein npm-Skript).</p>
+        </ul>
+        <li><h4 class="textColor02">Wie kann man Typescript initialisieren?</h4></li>
+        <ul>
+            <li><p>Wenn <strong>lokal</strong> installiert:</p></li>
+            <pre><code>npx tsc --init</code></pre>
+            <li><p>Wenn <strong>global</strong> installiert:</p></li>
+            <pre><code>tsc --init</code></pre>
+        </ul>
+         <li><h4 class="textColor02">Wie kann man ein Projekt mit Typescript erstellen?</h4></li>
+         <ul>
+            <li><p>Step 01:</p>Node JS Projekt initialisieren (Terminal im aktuellen Folder verwenden)</li>
+            <pre><code>npm init</code></pre>
+            <p>Dies erstellt eine <code>package.json</code> Datei, die alle Abhängigkeiten und Skripte für das Projekt enthält.</p>
+            <p>Beim Erstellen der <code>package.json</code> sollte <code>"type": "module"</code> hinzugefügt werden, um moderne ES-Module zu verwenden:</p>
+            <pre><code>{
+  "name": "mein-projekt",
+  "version": "1.0.0",
+  "type": "module",
+  // weitere Felder ...
+}
+</code></pre>
+            <li><p>Step 02: Typescript in dem Projekt installieren mit: </p></li>
+            <pre><code>npm install -D typescript</code></pre>
+            <li><p>Step 03: Typescript initialisieren mit:</p></li>
+            <pre><code>npx tsc --init</code></pre>
+            <li><p>Step 04: Typescript File im Projekt erstellen. Beispiel: 'main.ts'</p></li>
+            <li><p>Step 05:</p>Beim package.json "scripts", "dev" hinzufügen, und '.ts' File in dem script angeben.</li>
+            <pre><code> "scripts": {
+    "dev": "ts-node main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },</code></pre>
+            <li><p>Step 06: Mit 'npm run dev', .ts File ausführen.</p></li>
+         </ul>
+        <li><h4 class="textColor02">Wie verwendet man Type Annotation für Variablen / Parameter / Rückgabewert?</h4></li>
+        <p>Type Annotation ist eine Möglichkeit, den Typ einer Variablen, eines Parameters oder eines Rückgabewerts in Typescript explizit anzugeben. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Variablen:</p></li>
+            <pre><code>let name: string = "John";</code></pre>
+            <li><p>Parameter:</p></li>
+            <pre><code>function greet(name: string): void { console.log("Hello, " + name); }</code></pre>
+            <li><p>Rückgabewert:</p></li>
+            <pre><code>function add(a: number, b: number): number { return a + b; }</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Wie beschreibt man Arrays in Typescript?</h4></li>
+        <p>Arrays in Typescript können mit der Syntax <code>Type[]</code> oder mit der <code>Array<Type></code> Syntax beschrieben werden. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Array von Zahlen:</p></li>
+            <pre><code>let numbers: number[] = [1, 2, 3];</code></pre>
+            <li><p>Array von Strings:</p></li>
+            <pre><code>let names: Array<string> = ["Alice", "Bob", "Charlie"];</code></pre>
+            <li><p>Array von Objekten:</p></li>
+            <pre><code>let users: { name: string; age: number }[] = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Wie beschreibt man Objekte in Typescript?</h4></li>
+        <p>Objekte in Typescript können mit der Syntax <code>{ property: Type }</code> beschrieben werden. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein Objekt mit zwei Eigenschaften:</p></li>
+            <pre><code>let user: { name: string; age: number } = { name: "Alice", age: 25 };</code></pre>
+            <li><p>Ein Objekt mit optionalen Eigenschaften:</p></li>
+            <pre><code>let user: { name: string; age?: number } = { name: "Alice" };</code></pre>
+            <li><p>Ein Objekt mit Index-Signaturen:</p></li>
+            <pre><code>let user: { [key: string]: string } = { name: "Alice", age: "25" };</code></pre>
+            <li><p>Ein Objekt mit Methoden:</p></li>
+            <pre><code>let user: { name: string; greet: () => void } = {
+    name: "Alice",
+    greet: function () { console.log("Hello, " + this.name); }
+};</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Wie verwendet man Interfaces in Typescript?</h4></li>
+        <p>Interfaces in Typescript sind eine Möglichkeit, den Typ eines Objekts zu definieren. Sie sind ähnlich wie Typen, bieten jedoch zusätzliche Funktionen wie Vererbung und Implementierung. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein einfaches Interface:</p></li>
+            <pre><code>interface User {
+    name: string;
+    age: number;
+}</code></pre>
+            <li><p>Ein Interface mit optionalen Eigenschaften:</p></li>
+            <pre><code>interface User {
+    name: string;
+    age?: number;
+}</code></pre>
+            <li><p>Ein Interface mit Index-Signaturen:</p></li>
+            <pre><code>interface User {
+    [key: string]: string;
+}</code></pre>
+            <li><p>Ein Interface mit Methoden:</p></li>
+            <pre><code>interface User {
+    name: string;
+    greet: () => void;
+}</code></pre>
+            <li><p>Ein Interface mit Vererbung:</p></li>
+            <pre><code>interface Person {
+    name: string;
+    age: number;
+}
+interface User extends Person {
+    email: string;
+}</code></pre>
+            <li><p>Ein Interface mit Implementierung:</p></li>
+            <pre><code>class User implements Person {
+    name: string;
+    age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    greet() {
+        console.log("Hello, " + this.name);
+    }
+}</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Wie verwendet man Type in Typescript?</h4></li>
+        <p>Type in Typescript ist eine Möglichkeit, den Typ eines Wertes zu definieren. Es ist ähnlich wie ein Interface, bietet jedoch zusätzliche Funktionen wie Union Types und Intersection Types. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein einfacher Type:</p></li>
+            <pre><code>type User = {
+    name: string;
+    age: number;
+}</code></pre>
+            <li><p>Ein Type mit optionalen Eigenschaften:</p></li>
+            <pre><code>type User = {
+    name: string;
+    age?: number;
+}</code></pre>
+            <li><p>Ein Type mit Index-Signaturen:</p></li>
+            <pre><code>type User = {
+    [key: string]: string;
+}</code></pre>
+            <li><p>Ein Type mit Methoden:</p></li>
+            <pre><code>type User = {
+    name: string;
+    greet: () => void;
+}</code></pre>
+            <li><p>Ein Type mit Union Types:</p></li>
+            <pre><code>type User = {
+    name: string;
+    age: number | string;
+}</code></pre>
+            <li><p>Ein Type mit Intersection Types:</p></li>
+            <pre><code>type Person = {
+    name: string;
+    age: number;
+}
+type User = Person & {
+    email: string;
+}</code></pre>
+            <li><p>Ein Type mit Vererbung:</p></li>
+            <pre><code>type Person = {
+    name: string;
+    age: number;
+}
+type User = Person & {
+    email: string;
+}</code></pre>
+            <li><p>Ein Type mit Implementierung:</p></li>
+            <pre><code>class User implements Person {
+    name: string;
+    age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    greet() {
+        console.log("Hello, " + this.name);
+    }
+}</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Was ist der Unterschied zwischen Interface und Type in Typescript?</h4></li>
+        <p>Der Hauptunterschied zwischen Interface und Type in Typescript ist, dass Interfaces eine Möglichkeit sind, den Typ eines Objekts zu definieren, während Types eine Möglichkeit sind, den Typ eines Wertes zu definieren. Hier sind einige weitere Unterschiede:</p>
+        <ul>
+            <li>Interfaces unterstützen Vererbung, während Types dies nicht tun.</li>
+            <li>Interfaces können mehrfach deklariert und automatisch zusammengeführt (merged) werden, während Types nicht zusammengeführt werden können.</li>
+            <li>Types können komplexere Typkonstrukte wie Union, Intersection und Tuple-Typen abbilden, Interfaces nicht.</li>
+            <li>Interfaces werden meist für Objekte und Klassen verwendet, Types sind flexibler und können auch primitive Typen, Unions, Intersections usw. beschreiben.</li>
+            <li>Types sind eine gute Wahl, wenn komplexe Typkonstrukte (z.B. Union oder Intersection Types) benötigt werden oder primitive Typen kombiniert werden sollen.</li>
+            <li>Interfaces sind zu bevorzugen, wenn es um die Definition von Objektstrukturen oder die Implementierung durch Klassen geht.</li>
+        </ul>
+        <li><h4 class="textColor02">Wie verwendet man Union Types?</h4></li>
+        <p>Union Types in Typescript ermöglichen es, einen Wert zu haben, der mehrere Typen annehmen kann. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein Union Type mit zwei Typen:</p></li>
+            <pre><code>let value: string | number = "Hello";</code></pre>
+            <li><p>Ein Union Type mit mehreren Typen:</p></li>
+            <pre><code>let value: string | number | boolean = true;</code></pre>
+            <li><p>Ein Union Type mit Objekten:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { name: string; role: string };
+let user: User | Admin = { name: "Alice", age: 25 };</code></pre>
+            <li><p>Ein Union Type mit Funktionen:</p></li>
+            <pre><code>type Callback = (value: string) => void;
+let callback: Callback | null = null;</code></pre>
+            <li><p>Ein Union Type mit Arrays:</p></li>
+            <pre><code>let values: (string | number)[] = ["Hello", 42];</code></pre>
+            <li><p>Ein Union Type mit Tuples:</p></li>
+            <pre><code>let tuple: [string, number] | [number, string] = ["Hello", 42];</code></pre>
+            <li><p>Ein Union Type mit generischen Typen:</p></li>
+            <pre><code>type Result<T> = { success: true; data: T } | { success: false; error: string };
+let result: Result<string> = { success: true, data: "Hello" };</code></pre>
+            <li><p>Ein Union Type mit Interfaces:</p></li>
+            <pre><code>interface User { name: string; age: number }
+interface Admin { name: string; role: string }
+let user: User | Admin = { name: "Alice", age: 25 };</code></pre>
+            <li><p>Ein Union Type mit Klassen:</p></li>
+            <pre><code>class User { constructor(public name: string, public age: number) {} }
+class Admin { constructor(public name: string, public role: string) {} }
+let user: User | Admin = new User("Alice", 25);</code></pre>
+            <li><p>Ein Union Type mit Enums:</p></li>
+            <pre><code>enum Status { Success, Error }
+let status: Status | string = Status.Success;</code></pre>
+            <li><p>Ein Union Type mit Literal Types:</p></li>
+            <pre><code>type Status = "success" | "error";
+let status: Status | string = "success";</code></pre>
+            <li><p>Ein Union Type mit Template Literal Types:</p></li>
+            <pre><code>type Status = `status-${string}`;
+let status: Status | string = "status-success";</code></pre>
+            <li><p>Ein Union Type mit Conditional Types:</p></li>
+            <pre><code>type Result<T> = T extends string ? { success: true; data: T } : { success: false; error: string };
+let result: Result<string> = { success: true, data: "Hello" };</code></pre>
+            <li><p>Ein Union Type mit Mapped Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type ReadonlyUser = { readonly [K in keyof User]: User[K] };
+let user: ReadonlyUser = { name: "Alice", age: 25 };</code></pre>
+            <li><p>Ein Union Type mit Utility Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type PartialUser = Partial<User>;
+let user: PartialUser = { name: "Alice" };</code></pre>
+            <li><p>Ein Union Type mit Intersection Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User & Admin;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin" };</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Wie verwendet man Intersection Types?</h4></li>
+        <p>Intersection Types in Typescript ermöglichen es, einen Wert zu haben, der mehrere Typen gleichzeitig annehmen kann. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein Intersection Type mit zwei Typen:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User & Admin;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin" };</code></pre>
+            <li><p>Ein Intersection Type mit mehreren Typen:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type Moderator = { permissions: string[] };
+type UserWithRole = User & Admin & Moderator;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin", permissions: ["read", "write"] };</code></pre>
+            <li><p>Ein Intersection Type mit Objekten:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User & Admin;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin" };</code></pre>
+            <li><p>Ein Intersection Type mit Funktionen:</p></li>
+            <pre><code>type Callback = (value: string) => void;
+type User = { name: string; age: number };
+type UserWithCallback = User & { callback: Callback };
+let user: UserWithCallback = {
+    name: "Alice",
+    age: 25,
+    callback: (value: string) => { console.log(value); }
+};</code></pre>
+            <li><p>Ein Intersection Type mit Arrays:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User & Admin;
+let users: (User & Admin)[] = [
+    { name: "Alice", age: 25, role: "admin" },
+    { name: "Bob", age: 30, role: "user" }
+];</code></pre>
+            <li><p>Ein Intersection Type mit Tuples:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User & Admin;
+let tuple: [User, Admin] = [
+    { name: "Alice", age: 25 },
+    { role: "admin" }
+];</code></pre>
+            <li><p>Ein Intersection Type mit generischen Typen:</p></li>
+            <pre><code>type Result<T> = { success: true; data: T } & { success: false; error: string };
+let result: Result<string> = { success: true, data: "Hello" };</code></pre>
+            <li><p>Ein Intersection Type mit Interfaces:</p></li>
+            <pre><code>interface User { name: string; age: number }
+interface Admin { role: string }
+type UserWithRole = User & Admin;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin" };</code></pre>
+            <li><p>Ein Intersection Type mit Klassen:</p></li>
+            <pre><code>class User { constructor(public name: string, public age: number) {} }
+class Admin { constructor(public role: string) {} }
+type UserWithRole = User & Admin;
+let user: UserWithRole = new User("Alice", 25);
+user.role = "admin";</code></pre>
+            <li><p>Ein Intersection Type mit Enums:</p></li>
+            <pre><code>enum Status { Success, Error }
+type User = { name: string; age: number };
+type UserWithStatus = User & { status: Status };
+let user: UserWithStatus = { name: "Alice", age: 25, status: Status.Success };</code></pre>
+            <li><p>Ein Intersection Type mit Literal Types:</p></li>
+            <pre><code>type Status = "success" | "error";
+type User = { name: string; age: number };
+type UserWithStatus = User & { status: Status };
+let user: UserWithStatus = { name: "Alice", age: 25, status: "success" };</code></pre>
+            <li><p>Ein Intersection Type mit Template Literal Types:</p></li>
+            <pre><code>type Status = `status-${string}`;
+type User = { name: string; age: number };
+type UserWithStatus = User & { status: Status };
+let user: UserWithStatus = { name: "Alice", age: 25, status: "status-success" };</code></pre>
+            <li><p>Ein Intersection Type mit Conditional Types:</p></li>
+            <pre><code>type Result<T> = T extends string ? { success: true; data: T } : { success: false; error: string };
+let result: Result<string> = { success: true, data: "Hello" };</code></pre>
+            <li><p>Ein Intersection Type mit Mapped Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type ReadonlyUser = { readonly [K in keyof User]: User[K] };
+let user: ReadonlyUser = { name: "Alice", age: 25 };</code></pre>
+            <li><p>Ein Intersection Type mit Utility Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type PartialUser = Partial<User>;
+let user: PartialUser = { name: "Alice" };</code></pre>
+            <li><p>Ein Intersection Type mit Union Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+type UserWithRole = User | Admin;
+let user: UserWithRole = { name: "Alice", age: 25, role: "admin" };</code></pre>
+        </ul>
+        <li><h4 class="textColor02">Was sind Generic? Wie verwendet man sie?</h4></li>
+        <p>Generics in Typescript ermöglichen es, Typen als Parameter zu verwenden, was den Code flexibler und wiederverwendbarer macht. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein einfaches Generic:</p></li>
+            <pre><code>function identity<T>(arg: T): T {
+    return arg;
+}</code></pre>
+            <li><p>Ein Generic mit mehreren Typen:</p></li>
+            <pre><code>function pair<T, U>(first: T, second: U): [T, U] {
+    return [first, second];
+}</code></pre>
+            <li><p>Ein Generic mit Constraints:</p></li>
+            <pre><code>function logLength<T extends { length: number }>(arg: T): void {
+    console.log(arg.length);
+}</code></pre>
+            <li><p>Ein Generic mit Default-Werten:</p></li>
+            <pre><code>function identity<T = string>(arg: T): T {
+    return arg;
+}</code></pre>
+            <li><p>Ein Generic mit Interfaces:</p></li>
+            <pre><code>interface Pair<T, U> {
+    first: T;
+    second: U;
+}
+function createPair<T, U>(first: T, second: U): Pair<T, U> {
+    return { first, second };
+}</code></pre>
+            <li><p>Ein Generic mit Klassen:</p></li>
+            <pre><code>class Box<T> {
+    constructor(public value: T) {}
+    getValue(): T {
+        return this.value;
+    }
+}
+let box = new Box<number>(42);
+let value = box.getValue(); // value ist vom Typ number
+</code></pre>
+            <li><p>Ein Generic mit Enums:</p></li>
+            <pre><code>enum Status { Success, Error }
+function handleResponse<T>(status: Status, data: T): void {
+    if (status === Status.Success) {
+        console.log("Success:", data);
+    } else {
+        console.log("Error:", data);
+    }
+}
+handleResponse(Status.Success, { message: "OK" });
+handleResponse(Status.Error, { message: "Not Found" });
+</code></pre>
+            <li><p>Ein Generic mit Union Types:</p></li>
+            <pre><code>function log<T>(value: T | string): void {
+    if (typeof value === "string") {
+        console.log("String:", value);
+    } else {
+        console.log("Value:", value);
+    }
+}
+log("Hello");
+log(42);
+</code></pre>
+            <li><p>Ein Generic mit Intersection Types:</p></li>
+            <pre><code>type User = { name: string; age: number };
+type Admin = { role: string };
+function logUser<T extends User & Admin>(user: T): void {
+    console.log("User:", user.name);
+    console.log("Role:", user.role);
+}
+let user = { name: "Alice", age: 25, role: "admin" };
+logUser(user);
+</code></pre>
+            <li><p>Ein Generic mit Literal Types:</p></li>
+            <pre><code>type Status = "success" | "error";
+function logStatus<T extends Status>(status: T): void {
+    if (status === "success") {
+        console.log("Success");
+    } else {
+        console.log("Error");
+    }
+}
+logStatus("success");
+logStatus("error");
+</code></pre>
+            <li><p>Ein Generic mit Template Literal Types:</p></li>
+            <pre><code>type Status = `status-${string}`;
+function logStatus<T extends Status>(status: T): void {
+    console.log("Status:", status);
+}
+logStatus("status-success");
+logStatus("status-error");
+</code></pre>
+           
+        </ul>
+        <li><h4 class="textColor02">Was sind enum in Typescript? Wie verwendet man sie?</h4></li>
+        <p>Enums in Typescript sind eine Möglichkeit, benannte Konstanten zu definieren. Sie ermöglichen es, eine Gruppe von Werten zu definieren, die zusammengehören. Hier sind einige Beispiele:</p>
+        <ul>
+            <li><p>Ein einfaches Enum:</p></li>
+            <pre><code>enum Color {
+    Red,
+    Green,
+    Blue
+}</code></pre>
+            <li><p>Ein Enum mit benannten Werten:</p></li>
+            <pre><code>enum Color {
+    Red = "RED",
+    Green = "GREEN",
+    Blue = "BLUE"
+}</code></pre>
+            <li><p>Ein Enum mit numerischen Werten:</p></li>
+            <pre><code>enum Color {
+    Red = 1,
+    Green = 2,
+    Blue = 3
+}</code></pre>
+            <li><p>Ein Enum mit gemischten Werten:</p></li>
+            <pre><code>enum Color {
+    Red = "RED",
+    Green = 2,
+    Blue = 3
+}</code></pre>
+            <li><p>Ein Enum mit berechneten Werten:</p></li>
+            <pre><code>enum Color {
+    Red = 1,
+    Green = Red * 2,
+    Blue = Green + 1
+}</code></pre>
+            <li><p>Ein Enum mit Reverse Mapping:</p></li>
+            <pre><code>enum Color {
+    Red = 1,
+    Green = 2,
+    Blue = 3
+}
+let colorName: string = Color[2]; // colorName ist "Green"
+let colorValue: number = Color.Green; // colorValue ist 2
+</code></pre>
+
+    </ul>
+    <br>
+
+
+</body>
+</html>
