@@ -25,7 +25,7 @@
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 
 
-import './style.css' bug
+import './style.css' 
 
 
 const headingDiv = document.getElementById("heading")!;
