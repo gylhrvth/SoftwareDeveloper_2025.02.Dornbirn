@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 140.1</title>
+    <link rel="stylesheet" href="../../Week 13/Journal/Journal Week 14.css">
+
+</head>
+
+<body>
+    <div class="main_container">
+        <h1>TypeScript</h1>
+        <div class="link_container">
+            <h3>Was ist TypeScript?</h3>
+            <p>TypeScript = JavaScript + Typisierung</p>
+            <ul>
+                <li>TypeScript ist ein sogenanntes Superset von JavaScript.</li>
+                <li>Das bedeutet: Jeder gültige JavaScript-Code ist auch gültiger TypeScript-Code.</li>
+                <li>Der große Unterschied: TypeScript führt statische Typen ein.</li>
+            </ul>
+            <h3>Was sind statische Typen?</h3>
+            <img src="img/statische Typen.png">
+            <p>👉 TypeScript prüft Typen zur Entwicklungszeit – JavaScript zur Laufzeit.</p>
+
+            <h3>Warum TypeScript verwenden?</h3>
+            <p>Vorteile</p>
+            <ul>
+                <li>Bessere Fehlererkennung beim Coden (schon vor dem Ausführen)</li>
+                <li>Autovervollständigung und bessere Hilfe in der IDE (z. B. VS Code)</li>
+                <li>Code ist besser wartbar und strukturierter, besonders in großen Projekten</li>
+                <li>Unterstützt moderne JavaScript-Features (ES6+), auch in älteren Browsern</li>
+            </ul>
+
+            <p>Nachteile:</p>
+            <ul>
+                <li>Mehr Schreibaufwand durch Typen</li>
+                <li>Muss vor dem Ausführen in JavaScript kompiliert (übersetzt) werden</li>
+                <li>Lernaufwand für Anfänger etwas höher</li>
+            </ul>
+
+            <p>Entwickelt wurde TypeScript von Microsoft und im Jahr 2012 veröffentlicht.Der Erfinder ist Anders
+                Hejlsberg, welcher auch C# und Turbo Pascal erfand.<br>
+                TypeScript wurde erschaffen, um die Schwächen von JavaScript in großen Projekten zu beheben.</p>
+            <img src="img/TS Vorteile gegenüber JS.png">
+            <img src="img/TS Nachteile gegenüber JS.png">
+            <div class="note_container">
+                <ul>
+                    <li>JavaScript ist flexibel, aber fehleranfälliger.</li>
+                    <li>TypeScript ist strenger, aber sicherer und klarer</li>
+                    <li>JavaScript ist wie „Fahren ohne Helm“, TypeScript ist wie „Fahren mit Sicherheitsausrüstung“<br>
+                        –
+                        du kannst beides machen, aber bei Unfällen macht es einen Unterschied</li>
+                </ul>
+            </div>
+        </div>
+        <div class="link_container">
+            <h3>Projekt erstellen mit TypeScript</h3>
+            <ol>
+                <li>Projektordner erstellen</li>
+                <ul>
+                    <li>"mkdir Projektname" im Terminal eingeben</li>
+                    <li>"cd Projektname" im Terminal eingeben</li>
+                </ul><br>
+
+                <li>package.json erstellen</li>
+                <ul>
+                    <li>"npm init y-" in Terminal eingeben</li>
+                </ul><br>
+
+                <li>TypeScript initialisieren</li>
+                <ul>
+                    <li>"npm install typescript --save-dev" im Terminal eingeben</li>
+                </ul>
+                <p>--save-dev heißt: es ist nur für die Entwicklung notwendig, nicht zur Laufzeit.</p><br>
+
+                <li>TypeScript konfigurieren</li>
+                <ul>
+                    <li>"npx tsc --init" im Terminal eingeben</li>
+                </ul><br>
+
+                <li>TypeScript-Datei erstellen</li>
+                <ul>
+                    <li>"mkdir src" im Terminal eingeben</li>
+                    <li>dann"touch src" eingeben</li>
+                    <li>Test Code schreiben</li>
+                </ul>
+
+                <li>Kompilieren</li>
+                <ul>
+                    <li>"npx tsc" im Terminal eigeben</li>
+                </ul>
+                <li> Ausführen mit Node.js</li>
+            </ol>
+            <p>Bonus: Automatisch kompilieren beim Speichern </p>
+            <ul>
+                <li>"npm tsc --watch" im Terminal eingeben</li>
+            </ul>
+            <img src="img/src&dist.png">
+        </div>
+
+        <div class="link_container">
+            <p>Type Annotations (Typ-Anmerkungen) sind das Herzstück von TypeScript. Damit sagst du dem Code (und
+                dir selbst), welchen Datentyp eine Variable, ein Parameter oder ein Rückgabewert haben soll.</p>
+            <img src="img/Type Annotations.png">
+        </div>
+        <div class="link_container">
+            <h3>beschreiben von Objekten</h3>
+            <img src="img/Objekte beschreiben mit TYpen.png">
+            <img src="img/Objekte beschreiben opt..png">
+        </div>
+
+        <div class="link_container">
+            <h3>Interface</h3>
+            <p>interface ist in TypeScript ein Werkzeug, um die Struktur von Objekten zu beschreiben – also welche
+                Eigenschaften und Typen ein Objekt haben muss.
+                Es ist besonders nützlich bei größeren Projekten, APIs oder Klassen.</p>
+
+        </div>
+
+        <div class="link_container">
+            <h3>unuon Types</h3>
+            <p>Union Types erlauben dir, eine Variable oder einen Parameter mit mehreren möglichen Typen zu definieren.</p>
+        </div>
+
+        <div class="link_container">
+            <h3>Intersection</h3>
+            <p>Intersection heißt: „UND</p>
+        </div>
+
+        <div class="link_container">
+            <h3>enum Typen</h3>
+            <p>enum steht für Enumeration (Aufzählung).</p>
+            <p>Damit legst du eine Gruppe von konstanten Werten mit Namen fest.</p>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
