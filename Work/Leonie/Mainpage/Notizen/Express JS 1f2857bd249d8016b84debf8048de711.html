@@ -1,0 +1,753 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Express.JS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1f2857bd-249d-8016-b84d-ebf8048de711" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Express.JS</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@13. Mai 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/Node-JS-1ef857bd249d80999d90fe4780503bf9?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Node.JS</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1f2857bd-249d-802e-a53a-c1a8f32b05af" class="column-list"><div id="1f2857bd-249d-80c4-bd66-ed3e19e448f6" style="width:50%" class="column"><h3 id="1f2857bd-249d-8026-821f-dec21830d3fa" class=""><strong>Was ist Express.js?</strong></h3><p id="1f2857bd-249d-8049-bf0e-cd74f8fcaf21" class=""><strong>Express.js</strong> ist ein minimalistisches und flexibles Web-Framework für <strong>Node.js</strong>, das die Entwicklung von Webanwendungen und APIs erleichtert. Es bietet eine einfache Möglichkeit, HTTP-Server zu erstellen, Routen zu definieren und Middleware zu verwenden.</p><hr id="1f2857bd-249d-80f9-8506-ebfcb30fea4f"/><h3 id="1f2857bd-249d-8055-9347-fdb826941721" class=""><strong>Warum Express.js verwenden?</strong></h3><ol type="1" id="1f2857bd-249d-804a-a9f1-dfc57e67988c" class="numbered-list" start="1"><li><strong>Einfachheit und Flexibilität:</strong><ul id="1f2857bd-249d-8088-a488-e08215a3df78" class="bulleted-list"><li style="list-style-type:disc">Express ist leichtgewichtig und bietet nur die grundlegenden Funktionen, die du für die Entwicklung benötigst.</li></ul><ul id="1f2857bd-249d-80c6-bf3a-c2f70b840a20" class="bulleted-list"><li style="list-style-type:disc">Du kannst es mit zusätzlichen Paketen erweitern, um spezifische Anforderungen zu erfüllen.</li></ul></li></ol><ol type="1" id="1f2857bd-249d-8061-a184-c6d6f77b9cbc" class="numbered-list" start="2"><li><strong>Schnelle Entwicklung:</strong><ul id="1f2857bd-249d-80b8-824e-cc3e2cb772ca" class="bulleted-list"><li style="list-style-type:disc">Express abstrahiert viele komplexe Aufgaben, wie das Verarbeiten von HTTP-Anfragen, das Routing und das Bereitstellen von statischen Dateien.</li></ul></li></ol><ol type="1" id="1f2857bd-249d-803e-9602-f606764f4686" class="numbered-list" start="3"><li><strong>Große Community:</strong><ul id="1f2857bd-249d-803e-8e6c-d02b823f8588" class="bulleted-list"><li style="list-style-type:disc">Es gibt eine riesige Community und viele Plugins, die dir helfen, deine Anwendung schneller zu entwickeln.</li></ul></li></ol><ol type="1" id="1f2857bd-249d-8044-a961-e9c004a92fc6" class="numbered-list" start="4"><li><strong>Middleware-Unterstützung:</strong><ul id="1f2857bd-249d-8097-a528-d1fef1e16d34" class="bulleted-list"><li style="list-style-type:disc">Middleware sind Funktionen, die zwischen der Anfrage (Request) und der Antwort (Response) ausgeführt werden. Sie ermöglichen es dir, Anfragen zu verarbeiten, zu validieren oder zu manipulieren.</li></ul></li></ol><hr id="1f2857bd-249d-8023-b6e1-eac433c90e03"/><h3 id="1f2857bd-249d-807b-9084-d742233f5a8a" class=""><strong>Wichtige Konzepte in Express.js</strong></h3><h3 id="1f2857bd-249d-808c-b417-d020dbd6527b" class=""><strong>1. Middleware</strong></h3><p id="1f2857bd-249d-80ef-ac2f-c17728eb7386" class="">Middleware sind Funktionen, die Zugriff auf das Anfrage-Objekt (<code>req</code>), das Antwort-Objekt (<code>res</code>) und die nächste Middleware-Funktion (<code>next</code>) haben.</p><ul id="1f2857bd-249d-800d-96c4-f436a1368f9b" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispiel:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-8098-94af-ca01a4019506" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use((req, res, next) =&gt; {
+    console.log(`Anfrage: ${req.method} ${req.url}`);
+    next(); // Geht zur nächsten Middleware oder Route
+});
+</code></pre></li></ul><ul id="1f2857bd-249d-80e9-bf09-e4f85febf1a3" class="bulleted-list"><li style="list-style-type:disc"><strong>Arten von Middleware:</strong><ul id="1f2857bd-249d-80ee-8fc8-c9de66a0e68d" class="bulleted-list"><li style="list-style-type:circle"><strong>Anwendungs-Middleware:</strong> Wird auf die gesamte Anwendung angewendet.</li></ul><ul id="1f2857bd-249d-80ff-8b08-c96cf8fd6d97" class="bulleted-list"><li style="list-style-type:circle"><strong>Router-Middleware:</strong> Wird nur auf bestimmte Routen angewendet.</li></ul><ul id="1f2857bd-249d-803f-aa4d-f8358a9d4184" class="bulleted-list"><li style="list-style-type:circle"><strong>Fehler-Middleware:</strong> Behandelt Fehler in der Anwendung.</li></ul></li></ul><hr id="1f2857bd-249d-80f7-bf94-e7631ed63141"/><h3 id="1f2857bd-249d-8075-b3a2-e2d92c3eca2b" class=""><strong>2. Routing</strong></h3><p id="1f2857bd-249d-80dd-bd79-cbf8842cb6bf" class="">Routing ist der Prozess, bei dem HTTP-Anfragen (z. B. GET, POST) an spezifische Funktionen weitergeleitet werden.</p><ul id="1f2857bd-249d-8067-be37-f302bd6078e5" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispiel:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80fb-b9fa-f6b14bd400d4" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/&#x27;, (req, res) =&gt; {
+    res.send(&#x27;Willkommen auf der Startseite!&#x27;);
+});
+
+app.post(&#x27;/person&#x27;, (req, res) =&gt; {
+    res.send(&#x27;Person hinzugefügt!&#x27;);
+});
+</code></pre></li></ul><ul id="1f2857bd-249d-807d-b408-fc299db4906b" class="bulleted-list"><li style="list-style-type:disc"><strong>Routen-Parameter:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-809c-ac70-da0e1cb6d56a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/user/:id&#x27;, (req, res) =&gt; {
+    const userId = req.params.id;
+    res.send(`Benutzer-ID: ${userId}`);
+});
+</code></pre></li></ul><hr id="1f2857bd-249d-806c-990b-f06279112847"/><h3 id="1f2857bd-249d-80ea-99cd-f236e6413a39" class=""><strong>3. Statische Dateien</strong></h3><p id="1f2857bd-249d-8010-aed9-d7bd9d975690" class="">Express kann statische Dateien wie CSS, Bilder oder JavaScript bereitstellen.</p><ul id="1f2857bd-249d-8019-bb20-f8082325aafc" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispiel:</strong><br/>Wenn du eine Datei <br/><code>public/style.css</code> hast, kannst du sie über <code>http://localhost:3000/style.css</code> aufrufen.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80e8-a7ca-e1258464a62d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.static(&#x27;public&#x27;));
+</code></pre></li></ul><hr id="1f2857bd-249d-80bf-9802-cd07e1a50371"/><h3 id="1f2857bd-249d-8032-8a10-cc42d280e266" class=""><strong>4. Template-Engines</strong></h3><p id="1f2857bd-249d-80a6-b309-ce55c2762de8" class="">Express unterstützt Template-Engines wie <strong>EJS</strong>, <strong>Pug</strong> oder <strong>Handlebars</strong>, um dynamische HTML-Seiten zu erstellen.</p><ul id="1f2857bd-249d-807a-a591-dd72b3828b0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispiel mit EJS:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-802c-bad5-fcc83c90a2f7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;);
+
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+    res.render(&#x27;index&#x27;, { title: &#x27;Startseite&#x27; });
+});
+</code></pre></li></ul><hr id="1f2857bd-249d-808b-b769-c124d563ee79"/><h3 id="1f2857bd-249d-80ee-8a8e-dbb7b73f7ae2" class=""><strong>5. Body-Parser</strong></h3><p id="1f2857bd-249d-804f-bdbc-c74d4b706e68" class="">Express kann Daten aus dem Body einer Anfrage verarbeiten (z. B. Formulardaten oder JSON).</p><ul id="1f2857bd-249d-8004-abd5-da2fc89a9733" class="bulleted-list"><li style="list-style-type:disc"><strong>Middleware für Body-Parsing:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80a1-ae93-cc8a2aa780dd" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.urlencoded({ extended: true })); // Für Formulardaten
+app.use(express.json()); // Für JSON-Daten
+</code></pre></li></ul><hr id="1f2857bd-249d-80fa-a3ac-e7bef253b403"/><h3 id="1f2857bd-249d-801b-b320-e1052f6938bc" class=""><strong>6. Fehlerbehandlung</strong></h3><p id="1f2857bd-249d-8068-bafa-e06ce81fc8c0" class="">Express bietet eine einfache Möglichkeit, Fehler zu behandeln.</p><ul id="1f2857bd-249d-800e-90ac-ff66ddf1add7" class="bulleted-list"><li style="list-style-type:disc"><strong>Beispiel:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80bf-9509-f078bdef4ee6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send(&#x27;Etwas ist schiefgelaufen!&#x27;);
+});
+</code></pre></li></ul><hr id="1f2857bd-249d-8002-9050-fbba35f79c68"/><h3 id="1f2857bd-249d-8011-8866-e8093adaa449" class=""><strong>Wichtige Funktionen in Express.js</strong></h3><table id="1f2857bd-249d-8083-9db2-dcbe4eedffbd" class="simple-table"><tbody><tr id="1f2857bd-249d-80fa-a92e-d0c333474bfa"><td id="JTgi" class=""><strong>Funktion</strong></td><td id="Qjjs" class=""><strong>Beschreibung</strong></td></tr><tr id="1f2857bd-249d-806b-817e-c2a707705a03"><td id="JTgi" class=""><code>app.get()</code></td><td id="Qjjs" class="">Definiert eine Route für GET-Anfragen.</td></tr><tr id="1f2857bd-249d-8055-87a9-f84425639a68"><td id="JTgi" class=""><code>app.post()</code></td><td id="Qjjs" class="">Definiert eine Route für POST-Anfragen.</td></tr><tr id="1f2857bd-249d-8001-adc0-c8d676288951"><td id="JTgi" class=""><code>app.use()</code></td><td id="Qjjs" class="">Fügt Middleware hinzu.</td></tr><tr id="1f2857bd-249d-802d-96ee-facb475c0660"><td id="JTgi" class=""><code>app.listen()</code></td><td id="Qjjs" class="">Startet den Server und lauscht auf einem bestimmten Port.</td></tr><tr id="1f2857bd-249d-80c9-a1d7-d50e6ed00d54"><td id="JTgi" class=""><code>req.params</code></td><td id="Qjjs" class="">Enthält die Parameter aus der URL (z. B. <code>/user/:id</code>).</td></tr><tr id="1f2857bd-249d-8058-b3a9-e04fead53f5b"><td id="JTgi" class=""><code>req.query</code></td><td id="Qjjs" class="">Enthält die Query-Parameter aus der URL (z. B. <code>?name=Max</code>).</td></tr><tr id="1f2857bd-249d-8076-a5ee-f68759af436a"><td id="JTgi" class=""><code>req.body</code></td><td id="Qjjs" class="">Enthält die Daten aus dem Body der Anfrage (z. B. bei POST).</td></tr><tr id="1f2857bd-249d-802a-bbd1-d9899a62bee1"><td id="JTgi" class=""><code>res.send()</code></td><td id="Qjjs" class="">Sendet eine einfache Antwort an den Client.</td></tr><tr id="1f2857bd-249d-802c-8931-cffcd9e73692"><td id="JTgi" class=""><code>res.render()</code></td><td id="Qjjs" class="">Rendert eine HTML-Seite mit einer Template-Engine.</td></tr><tr id="1f2857bd-249d-80a0-95c7-deb16e344c5c"><td id="JTgi" class=""><code>res.json()</code></td><td id="Qjjs" class="">Sendet eine JSON-Antwort an den Client.</td></tr></tbody></table><hr id="1f2857bd-249d-801a-9367-f08615f6c987"/><h3 id="1f2857bd-249d-8096-a55a-dabb4ed3d2cf" class=""><strong>Beispiel: Eine einfache Express-Anwendung</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-805a-a35d-ddeb6b17e993" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const express = require(&#x27;express&#x27;);
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+// Startseite
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+    res.send(&#x27;Willkommen auf der Startseite!&#x27;);
+});
+
+// Benutzer hinzufügen
+app.post(&#x27;/user&#x27;, (req, res) =&gt; {
+    const { name, age } = req.body;
+    res.json({ message: `Benutzer ${name} (${age} Jahre alt) hinzugefügt!` });
+});
+
+// Fehlerbehandlung
+app.use((err, req, res, next) =&gt; {
+    console.error(err.stack);
+    res.status(500).send(&#x27;Etwas ist schiefgelaufen!&#x27;);
+});
+
+// Server starten
+const PORT = 3000;
+app.listen(PORT, () =&gt; {
+    console.log(`Server läuft auf &lt;http://localhost&gt;:${PORT}`);
+});
+</code></pre><hr id="1f2857bd-249d-80a7-bda6-f90a8e43006e"/><h3 id="1f2857bd-249d-8049-ac40-d22468c38ee8" class=""><strong>Wichtige Pakete für Express.js</strong></h3><ol type="1" id="1f2857bd-249d-80d8-b282-c1f34141ea59" class="numbered-list" start="1"><li><code><strong>body-parser</strong></code><strong>:</strong> Verarbeitet Formulardaten und JSON (heute in Express integriert).</li></ol><ol type="1" id="1f2857bd-249d-8093-9fe8-ccd4001a78bf" class="numbered-list" start="2"><li><code><strong>morgan</strong></code><strong>:</strong> Protokolliert HTTP-Anfragen.</li></ol><ol type="1" id="1f2857bd-249d-804b-944a-e04916174390" class="numbered-list" start="3"><li><code><strong>cors</strong></code><strong>:</strong> Aktiviert Cross-Origin Resource Sharing.</li></ol><ol type="1" id="1f2857bd-249d-80c5-a5bd-dbea55a05729" class="numbered-list" start="4"><li><code><strong>dotenv</strong></code><strong>:</strong> Verwendet Umgebungsvariablen aus einer <code>.env</code>Datei.</li></ol><ol type="1" id="1f2857bd-249d-800b-8ff7-d84caf8febd2" class="numbered-list" start="5"><li><code><strong>express-validator</strong></code><strong>:</strong> Validiert und bereinigt Benutzereingaben.</li></ol><hr id="1f2857bd-249d-8095-abef-d8136154ecac"/><h3 id="1f2857bd-249d-8007-b9b8-c7a1877a6335" class=""><strong>Zusammenfassung</strong></h3><ul id="1f2857bd-249d-807e-a6fd-fc158734c8c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Express.js</strong> ist ein leichtgewichtiges Framework für Node.js, das die Entwicklung von Webanwendungen und APIs erleichtert.</li></ul><ul id="1f2857bd-249d-80cd-af91-fcf338cd373a" class="bulleted-list"><li style="list-style-type:disc">Es bietet Funktionen wie Routing, Middleware, Template-Engines und Fehlerbehandlung.</li></ul><ul id="1f2857bd-249d-803f-9870-fcbea7212b8a" class="bulleted-list"><li style="list-style-type:disc">Es ist flexibel und kann mit zusätzlichen Paketen erweitert werden.</li></ul><ul id="1f2857bd-249d-8041-a0c7-fb878ea7d3b7" class="bulleted-list"><li style="list-style-type:disc">Es ist ideal für kleine bis große Projekte und hat eine große Community.</li></ul><p id="1f2857bd-249d-8036-859a-f047c99f405d" class="">Falls du weitere Fragen hast, lass es mich wissen! 😊</p></div><div id="1f2857bd-249d-8037-8b6a-de241dbf68ad" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1f2857bd-249d-8079-b1b8-e2f5fd04f724"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1f2857bd-249d-80a3-b174-c534fd26978f"/><p id="1f2857bd-249d-801b-9ca1-fb4f98aa4912" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1f2857bd-249d-8002-8199-f2c1e7e323bd"/><ul id="1f2857bd-249d-80dc-8816-f0fea6bdc6a1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-80d4-a486-e21dc103b683" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-8046-bcaa-eb3ea2c39ba4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1f2857bd-249d-804d-85e2-f1b22a07b5f2" class="image"><a href="Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"><img style="width:425px" src="Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"/></a></figure><h3 id="1f2857bd-249d-80e3-bf38-eec2172aa9e1" class="">Was ist der Unterschied zwischen <code>req.body</code> und <code>req.query</code></h3><p id="1f2857bd-249d-808d-90a3-eebf935856de" class="">Der Unterschied zwischen <code>req.body</code> und <code>req.query</code> liegt in der Art und Weise, wie die Daten vom Client an den Server gesendet werden:</p><hr id="1f2857bd-249d-80fd-8031-cb1c457c9ecd"/><h3 id="1f2857bd-249d-80d2-9aa3-f9d2578f44ff" class=""><strong>1. </strong><code><strong>req.body</strong></code></h3><ul id="1f2857bd-249d-8056-b416-e353c64a58d6" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition:</strong> Enthält die Daten, die im <strong>Body</strong> (Nachrichtentext) einer HTTP-Anfrage gesendet werden.</li></ul><ul id="1f2857bd-249d-80d2-90c0-e18d03683adc" class="bulleted-list"><li style="list-style-type:disc"><strong>Verwendung:</strong> Wird hauptsächlich bei <strong>POST</strong>, <strong>PUT</strong> oder <strong>PATCH</strong>Anfragen verwendet.</li></ul><ul id="1f2857bd-249d-803f-b8fd-f9fd36abe266" class="bulleted-list"><li style="list-style-type:disc"><strong>Datenquelle:</strong> Die Daten werden typischerweise durch ein Formular oder eine API-Anfrage im Body der Anfrage gesendet.</li></ul><ul id="1f2857bd-249d-80ff-91b1-e5b355521ea1" class="bulleted-list"><li style="list-style-type:disc"><strong>Middleware erforderlich:</strong> Damit <code>req.body</code> funktioniert, muss die Middleware <code>express.urlencoded()</code> oder <code>express.json()</code> in der server.js aktiviert sein:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80cd-9e18-e5390b704f0a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+</code></pre></li></ul><h3 id="1f2857bd-249d-80f5-864a-eaaed0c489f2" class=""><strong>Beispiel:</strong></h3><p id="1f2857bd-249d-808a-8252-d089975c928f" class="">Ein Formular sendet Daten per POST:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80a4-bee9-e4fab11ca7bd" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;form action=&quot;/person&quot; method=&quot;POST&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;vorname&quot; value=&quot;Max&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;nachname&quot; value=&quot;Mustermann&quot;&gt;
+  &lt;button type=&quot;submit&quot;&gt;Absenden&lt;/button&gt;
+&lt;/form&gt;
+</code></pre><p id="1f2857bd-249d-80d1-b525-fb48b2908c0a" class="">In der Route:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-806b-98f0-ceab2f4665e0" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.post(&#x27;/person&#x27;, (req, res) =&gt; {
+    console.log(req.body); // { vorname: &#x27;Max&#x27;, nachname: &#x27;Mustermann&#x27; }
+});
+</code></pre><hr id="1f2857bd-249d-80e5-a6dc-c11033a8b771"/><h3 id="1f2857bd-249d-800c-91c2-d7b17bec9403" class=""><strong>2. </strong><code><strong>req.query</strong></code></h3><ul id="1f2857bd-249d-8065-977c-c3da14ae8b72" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition:</strong> Enthält die Daten, die als <strong>Query-Parameter</strong> in der URL gesendet werden.</li></ul><ul id="1f2857bd-249d-806f-8d3a-e47197fb14ae" class="bulleted-list"><li style="list-style-type:disc"><strong>Verwendung:</strong> Wird hauptsächlich bei <strong>GET</strong>Anfragen verwendet.</li></ul><ul id="1f2857bd-249d-80b6-9a1c-f6aa76da83f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Datenquelle:</strong> Die Daten werden in der URL als Schlüssel-Wert-Paare angehängt.</li></ul><ul id="1f2857bd-249d-8037-a07d-e2a88aef3a27" class="bulleted-list"><li style="list-style-type:disc"><strong>Kein Body erforderlich:</strong> <code>req.query</code> funktioniert ohne zusätzliche Middleware.</li></ul><h3 id="1f2857bd-249d-80e0-ab15-cc057fc259fd" class=""><strong>Beispiel:</strong></h3><p id="1f2857bd-249d-80d5-b7f2-df324b693b5d" class="">Ein Link oder eine URL mit Query-Parametern:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-808c-be90-f046dfcc8155" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">&lt;http://localhost:3000/search?vorname=Max&amp;nachname=Mustermann&gt;
+</code></pre><p id="1f2857bd-249d-8080-b2b6-d3bb992fa095" class="">In der Route:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80d2-b1de-c290b7acc76c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/search&#x27;, (req, res) =&gt; {
+    console.log(req.query); // { vorname: &#x27;Max&#x27;, nachname: &#x27;Mustermann&#x27; }
+});
+</code></pre><hr id="1f2857bd-249d-8069-a0a3-e926e229ba79"/><h3 id="1f2857bd-249d-80ad-ba46-dcdc1659b289" class=""><strong>Vergleich:</strong></h3><table id="1f2857bd-249d-8000-9844-ebec766e790b" class="simple-table"><tbody><tr id="1f2857bd-249d-8032-ac94-f4b4b72e60df"><td id="\gTE" class=""><strong>Eigenschaft</strong></td><td id="[?m:" class=""><code><strong>req.body</strong></code></td><td id="dD[G" class=""><code><strong>req.query</strong></code></td></tr><tr id="1f2857bd-249d-8085-8aba-f4d80228732a"><td id="\gTE" class=""><strong>Datenquelle</strong></td><td id="[?m:" class="">Body der Anfrage</td><td id="dD[G" class="">Query-Parameter in der URL</td></tr><tr id="1f2857bd-249d-805e-ae58-d315d68e4e70"><td id="\gTE" class=""><strong>HTTP-Methoden</strong></td><td id="[?m:" class="">POST, PUT, PATCH</td><td id="dD[G" class="">GET</td></tr><tr id="1f2857bd-249d-8031-975f-e20bd8f68666"><td id="\gTE" class=""><strong>Middleware erforderlich</strong></td><td id="[?m:" class="">Ja (<code>express.urlencoded</code> oder <code>express.json</code>)</td><td id="dD[G" class="">Nein</td></tr><tr id="1f2857bd-249d-8041-862e-df93146e3006"><td id="\gTE" class=""><strong>Beispiel-Datenformat</strong></td><td id="[?m:" class="">JSON, Formulardaten</td><td id="dD[G" class="">Schlüssel-Wert-Paare in der URL</td></tr><tr id="1f2857bd-249d-801b-a665-cfa6d6d05390"><td id="\gTE" class=""><strong>Beispiel-URL</strong></td><td id="[?m:" class="">Nicht sichtbar in der URL</td><td id="dD[G" class=""><code>http://localhost:3000/search?name=Max</code></td></tr></tbody></table><hr id="1f2857bd-249d-8031-91d8-fa5309679ea2"/><h3 id="1f2857bd-249d-80c4-82e0-f67a42594d46" class=""><strong>Wann verwende ich was?</strong></h3><ul id="1f2857bd-249d-80cf-b279-f11f7859e7c3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.body</strong></code><strong>:</strong> Wenn du sensible oder größere Datenmengen senden möchtest (z. B. Formulardaten, JSON-Daten).</li></ul><ul id="1f2857bd-249d-80dc-85c5-fb1d18815278" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.query</strong></code><strong>:</strong> Wenn du einfache Filter- oder Suchparameter übergeben möchtest (z. B. <code>?name=Max</code>).</li></ul><hr id="1f2857bd-249d-802a-bd01-d0fe9e3e0e46"/></div></div><p id="1f2857bd-249d-801c-9c5d-eba04bf292b2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

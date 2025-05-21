@@ -1,0 +1,929 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Node.JS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ef857bd-249d-8099-9d90-fe4780503bf9" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Node.JS</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@10. Mai 2025</time></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/book_gray.svg" style="width:14px;height:14px;display:block"/></span>Course</th><td><a href="https://www.notion.so/Javascript-199857bd249d80ac92bdf1234964c007?pvs=21"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/>Javascript</a>, <a href="https://www.notion.so/SQL-199857bd249d8029be83f943bf0fc878?pvs=21"><img class="icon" src="https://www.notion.so/icons/command-line_green.svg"/>SQL</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Zusammenhänge</th><td><a href="https://www.notion.so/EJS-1ea857bd249d80b9bcbdfd789aa0ecd9?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>EJS</a>, <a href="https://www.notion.so/Grundlagen-1ea857bd249d8005908cc77998b8a02f?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Grundlagen</a>, <a href="https://www.notion.so/JSON-1dd857bd249d80b18842c3417b73819c?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>JSON</a>, <a href="https://www.notion.so/API-1de857bd249d809dbf78f420f1f6d777?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>API</a>, <a href="https://www.notion.so/Express-JS-1f2857bd249d8016b84debf8048de711?pvs=21"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/>Express.JS</a></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1ef857bd-249d-8024-926d-c62444d73699" class="column-list"><div id="1ef857bd-249d-80cf-b295-e2dee6f25911" style="width:50%" class="column"><h3 id="1f8857bd-249d-8078-8ef3-fa51e4e82443" class=""><strong>1. Was ist eine JS Engine?</strong></h3><p id="1f8857bd-249d-803d-a54e-f8ca802f8bf1" class="">Eine <strong>JavaScript Engine</strong> ist ein Programm, das JavaScript-Code ausführt. Sie interpretiert und kompiliert JavaScript in Maschinencode, damit der Computer ihn ausführen kann. Beispiele:</p><ul id="1f8857bd-249d-80fd-b721-e9b08c0275b7" class="bulleted-list"><li style="list-style-type:disc"><strong>V8</strong>: Die Engine von Google Chrome und Node.js.</li></ul><ul id="1f8857bd-249d-8015-8214-d9e734c3c3af" class="bulleted-list"><li style="list-style-type:disc"><strong>SpiderMonkey</strong>: Die Engine von Mozilla Firefox.</li></ul><hr id="1f8857bd-249d-802d-a29d-c9c9b0727c78"/><h3 id="1f8857bd-249d-8054-b4b4-ea8729ee3493" class=""><strong>2. Was ist der Unterschied zwischen JS Engine in einem Webbrowser und Node.JS?</strong></h3><ul id="1f8857bd-249d-80ef-a0df-eba3758bc6fb" class="bulleted-list"><li style="list-style-type:disc"><strong>Webbrowser</strong>:<ul id="1f8857bd-249d-804f-9c81-cf9bc09bacba" class="bulleted-list"><li style="list-style-type:circle">Die JS Engine (z. B. V8) läuft im Browser und hat Zugriff auf browser-spezifische APIs wie <code>window</code>, <code>document</code>, <code>alert</code>, etc.</li></ul><ul id="1f8857bd-249d-80d9-9b6d-da169709155a" class="bulleted-list"><li style="list-style-type:circle">Hauptsächlich für Frontend-Entwicklung gedacht.</li></ul></li></ul><ul id="1f8857bd-249d-80c7-8c79-f9f6f1a0aa89" class="bulleted-list"><li style="list-style-type:disc"><strong>Node.js</strong>:<ul id="1f8857bd-249d-802d-bb95-dae7d05b132e" class="bulleted-list"><li style="list-style-type:circle">Verwendet die V8-Engine, aber ohne browser-spezifische APIs.</li></ul><ul id="1f8857bd-249d-809d-a7b9-edaaedb6f959" class="bulleted-list"><li style="list-style-type:circle">Stattdessen bietet Node.js serverseitige APIs wie <code>fs</code> (Dateisystem), <code>http</code> (Server), etc.</li></ul><ul id="1f8857bd-249d-801e-ad53-e02abdca9ab3" class="bulleted-list"><li style="list-style-type:circle">Hauptsächlich für Backend-Entwicklung gedacht.</li></ul></li></ul><hr id="1f8857bd-249d-8065-aa4a-cda1dc279d9a"/><h3 id="1f8857bd-249d-8058-93da-f6503320d3cb" class=""><strong>3. Was funktioniert NICHT in Node.JS?</strong></h3><ul id="1f8857bd-249d-8043-83a7-e6bda7a7ec40" class="bulleted-list"><li style="list-style-type:disc">Browser-spezifische Funktionen wie:<ul id="1f8857bd-249d-809c-8f69-cb18785c8e58" class="bulleted-list"><li style="list-style-type:circle"><code><strong>window</strong></code>, <code><strong>document</strong></code>, <code><strong>alert</strong></code></li></ul><ul id="1f8857bd-249d-8024-9e2e-f6a3a8cb972a" class="bulleted-list"><li style="list-style-type:circle">DOM-Manipulation</li></ul><ul id="1f8857bd-249d-80e7-9029-ca5384cb826f" class="bulleted-list"><li style="list-style-type:circle"><code>localStorage</code> oder <code>sessionStorage</code></li></ul></li></ul><hr id="1f8857bd-249d-806b-ac8d-c5d4828c2372"/><h3 id="1f8857bd-249d-8073-aea0-c23045b9b675" class=""><strong>4. Wofür steht npm?</strong></h3><p id="1f8857bd-249d-8010-a80c-f0bf1fdd295a" class=""><strong>npm</strong> steht für <strong>Node Package Manager</strong>. Es ist das Standard-Tool, um:</p><ul id="1f8857bd-249d-803f-8b5e-e3bb39d18980" class="bulleted-list"><li style="list-style-type:disc">Node.js-Pakete (Libraries) zu installieren, zu verwalten und zu aktualisieren.</li></ul><ul id="1f8857bd-249d-8090-95cf-d40daad75382" class="bulleted-list"><li style="list-style-type:disc">Abhängigkeiten in einem Projekt zu verwalten.</li></ul><hr id="1f8857bd-249d-8092-ab94-f2962f9cf93a"/><h3 id="1f8857bd-249d-8043-b1b4-eff32fb4420c" class=""><strong>5. Was bedeutet die Abkürzung CLI?</strong></h3><p id="1f8857bd-249d-80ed-9634-c0877e8890ef" class=""><strong>CLI</strong> steht für <strong>Command Line Interface</strong>. Es ist eine textbasierte Benutzeroberfläche, mit der du Befehle direkt in der Konsole/Terminal eingeben kannst.</p><hr id="1f8857bd-249d-80ec-be70-f6dc5d9fb156"/><h3 id="1f8857bd-249d-80ef-baaf-f222f86c1d95" class=""><strong>6. Was ist ein Node.JS Project?</strong></h3><p id="1f8857bd-249d-8065-8455-ca09fa46a9d6" class="">Ein <strong>Node.js-Projekt</strong> ist eine Anwendung oder ein Skript, das mit Node.js ausgeführt wird. Es enthält typischerweise:</p><ul id="1f8857bd-249d-8090-b334-c484da30270e" class="bulleted-list"><li style="list-style-type:disc">Eine <code><strong>package.json</strong></code>Datei, die die Abhängigkeiten und Metadaten des Projekts beschreibt.</li></ul><ul id="1f8857bd-249d-80c0-a822-d50d94def907" class="bulleted-list"><li style="list-style-type:disc">JavaScript-Dateien, die den Code enthalten.</li></ul><hr id="1f8857bd-249d-8042-95b0-f6c7971aaefe"/><h3 id="1f8857bd-249d-80fa-a942-ce3ef8d217e4" class=""><strong>7. Wie sieht die Grundstruktur von </strong><code><strong>package.json</strong></code><strong> aus?</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80af-a701-f94359c8a2a4" class="code"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;name&quot;: &quot;mein-projekt&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;Beschreibung des Projekts&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index.js&quot;
+  },
+  &quot;dependencies&quot;: {},
+  &quot;devDependencies&quot;: {}
+}
+</code></pre><hr id="1f8857bd-249d-8063-8448-dc709132d175"/><h3 id="1f8857bd-249d-8080-9626-f84e52cd3de2" class=""><strong>8. Wie erstelle ich ein neues Projekt?</strong></h3><ol type="1" id="1f8857bd-249d-80af-840b-f277ea804d75" class="numbered-list" start="1"><li>Öffne das Terminal.</li></ol><ol type="1" id="1f8857bd-249d-807c-8ef8-d0b57be6963e" class="numbered-list" start="2"><li>Erstelle ein neues Verzeichnis:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80b1-baa7-c584b8a5fb36" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">mkdir mein-projekt
+cd mein-projekt
+</code></pre></li></ol><ol type="1" id="1f8857bd-249d-80b2-b709-e532239f52c3" class="numbered-list" start="3"><li>Initialisiere das Projekt:<br/>(oder <br/><code>npm init -y</code>, um die Standardwerte zu verwenden)<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-8043-b059-c43aedd4bc99" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm init
+</code></pre></li></ol><hr id="1f8857bd-249d-803a-8e6a-f41fd5684862"/><h3 id="1f8857bd-249d-8011-beb8-d2e4f4cddf10" class=""><strong>9. Wie starte ich mein Projekt?</strong></h3><ol type="1" id="1f8857bd-249d-80bd-abc1-ff04cf7a139e" class="numbered-list" start="1"><li>Stelle sicher, dass du eine <code><strong>start</strong></code><strong>Script</strong> in der <code>package.json</code> hast:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80d3-9bb2-e6775a8cecaf" class="code"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;node index.js&quot;
+}
+</code></pre></li></ol><ol type="1" id="1f8857bd-249d-8068-a39e-fd8c2bce02f7" class="numbered-list" start="2"><li>Starte das Projekt:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80ca-bfeb-c0835d0366c7" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm start
+</code></pre></li></ol><hr id="1f8857bd-249d-809f-b549-c4ef368daf80"/><h3 id="1f8857bd-249d-8085-85a5-e0770f2f4b88" class=""><strong>10. Was sind Node Packages (dependency)?</strong></h3><p id="1f8857bd-249d-8094-9306-ed3ef214bf06" class=""><strong>Node Packages</strong> sind wiederverwendbare Module oder Bibliotheken, die du in deinem Projekt installieren kannst. Sie werden in der Datei <code><strong>node_modules</strong></code> gespeichert und in der <code><strong>package.json</strong></code> als Abhängigkeiten aufgeführt.</p><hr id="1f8857bd-249d-80b4-9e83-ed37cefaadcd"/><h3 id="1f8857bd-249d-807c-9a3b-e87ce9be3003" class=""><strong>11. Was sind Kriterien für die Auswahl der Node Packages?</strong></h3><ul id="1f8857bd-249d-8078-b698-d7ba394ff7d8" class="bulleted-list"><li style="list-style-type:disc"><strong>Beliebtheit</strong>: Anzahl der Downloads und Sterne auf GitHub.</li></ul><ul id="1f8857bd-249d-80dc-83d6-f13827fee759" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktualität</strong>: Regelmäßige Updates und Wartung.</li></ul><ul id="1f8857bd-249d-808b-8889-fd141cec0e15" class="bulleted-list"><li style="list-style-type:disc"><strong>Dokumentation</strong>: Gute und verständliche Dokumentation.</li></ul><ul id="1f8857bd-249d-809e-beb4-e4794b5525b8" class="bulleted-list"><li style="list-style-type:disc"><strong>Sicherheit</strong>: Überprüfe bekannte Sicherheitsprobleme (z. B. mit <code>npm audit</code>).</li></ul><ul id="1f8857bd-249d-8057-aee2-c79b867f1768" class="bulleted-list"><li style="list-style-type:disc"><strong>Kompatibilität</strong>: Passt das Package zu deiner Node.js-Version?</li></ul><hr id="1f8857bd-249d-805b-a988-cb42cf98b264"/><h3 id="1f8857bd-249d-80f1-bef5-fee4d2727cf9" class=""><strong>12. Wie installiere ich neue Packages?</strong></h3><ul id="1f8857bd-249d-80b6-bdec-dd617c2afb02" class="bulleted-list"><li style="list-style-type:disc">Installiere ein Package und füge es zu den Abhängigkeiten hinzu:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80e3-a11c-dc81596f39eb" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install &lt;package-name&gt;
+</code></pre></li></ul><ul id="1f8857bd-249d-8009-ac30-dd81acc49c3c" class="bulleted-list"><li style="list-style-type:disc">Für Entwicklungsabhängigkeiten:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-805b-89b5-c2b733dbbac6" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install &lt;package-name&gt; --save-dev
+</code></pre></li></ul><hr id="1f8857bd-249d-8066-8f7f-ddbee3630fb4"/><h3 id="1f8857bd-249d-8061-8d40-c7a8cd43032f" class=""><strong>13. Wie aktualisiere ich bestehende Packages?</strong></h3><ul id="1f8857bd-249d-80fb-ac7b-f2af14eb7f1e" class="bulleted-list"><li style="list-style-type:disc">Aktualisiere ein bestimmtes Package:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80e5-8aad-d8cf57fc6b3a" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm update &lt;package-name&gt;
+</code></pre></li></ul><ul id="1f8857bd-249d-805f-9013-eee4f2454ab7" class="bulleted-list"><li style="list-style-type:disc">Aktualisiere alle Abhängigkeiten:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-8080-978a-f86834c0aeec" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm update
+</code></pre></li></ul><hr id="1f8857bd-249d-8065-bce0-ef0e55ab918b"/><h3 id="1f8857bd-249d-80ce-9168-ca02deb3e9e2" class=""><strong>14. Wie entferne ich Packages, die ich nicht mehr brauche?</strong></h3><ul id="1f8857bd-249d-802a-97d1-c48ae7a8f32f" class="bulleted-list"><li style="list-style-type:disc">Entferne ein Package:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-806f-8735-c9902208fb23" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm uninstall &lt;package-name&gt;
+</code></pre></li></ul><hr id="1f8857bd-249d-8002-8967-d7bc00f9c468"/><h3 id="1f8857bd-249d-80e8-b94e-d6ba1c4635fc" class=""><strong>15. Was muss in .gitignore stehen?</strong></h3><p id="1f8857bd-249d-8015-b1b9-d95883ca6c97" class="">In der Datei <strong>.gitignore</strong> sollten Dateien und Ordner stehen, die nicht in das Git-Repository aufgenommen werden sollen. Für Node.js-Projekte:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80d3-8135-fb9c9fef5514" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">node_modules/
+.env
+.DS_Store
+npm-debug.log
+</code></pre><hr id="1f8857bd-249d-8000-876b-e6a3d0936089"/><h3 id="1f8857bd-249d-8097-a6fb-f07a14a73519" class=""><strong>Zusammenfassung</strong></h3><p id="1f8857bd-249d-800c-95de-d8df8a378d36" class="">Node.js ist eine serverseitige Laufzeitumgebung für JavaScript. Es verwendet die V8-Engine, bietet serverseitige APIs und wird durch npm unterstützt, um Pakete zu verwalten. Die <code>package.json</code> ist das Herzstück eines Node.js-Projekts, und der Umgang mit Abhängigkeiten ist ein zentraler Bestandteil der Arbeit mit Node.js.</p><h2 id="1ef857bd-249d-8079-9b41-fee534880eb1" class=""><strong>1. Grundlagen von Node.js</strong></h2><h3 id="1ef857bd-249d-804b-a33f-e50653cf6286" class=""><strong>Was ist Node.js?</strong></h3><ul id="1ef857bd-249d-8016-b169-d60c29e55e5c" class="bulleted-list"><li style="list-style-type:disc"><strong>Node.js</strong> ist eine serverseitige JavaScript-Laufzeitumgebung, die auf der <strong>V8-Engine</strong> von Google basiert.</li></ul><ul id="1ef857bd-249d-807f-af34-cc4976656655" class="bulleted-list"><li style="list-style-type:disc">Es ermöglicht die Ausführung von JavaScript außerhalb des Browsers, z. B. auf einem Server.</li></ul><ul id="1ef857bd-249d-8074-9dba-f5ed782eacbc" class="bulleted-list"><li style="list-style-type:disc">Es ist <strong>asynchron</strong> und <strong>ereignisgesteuert</strong>, was es ideal für Anwendungen mit hoher Parallelität macht (z. B. APIs).</li></ul><h3 id="1ef857bd-249d-8085-9112-e78efdda55ef" class=""><strong>Wichtige Eigenschaften von Node.js</strong></h3><ul id="1ef857bd-249d-80ac-911c-e38fb70c6102" class="bulleted-list"><li style="list-style-type:disc"><strong>Single-Threaded:</strong> Node.js verwendet einen einzigen Thread, um Anfragen zu bearbeiten, aber es kann dank des Event-Loop-Modells viele Anfragen gleichzeitig verarbeiten.</li></ul><ul id="1ef857bd-249d-80d1-bb1e-f18ec8b8b59b" class="bulleted-list"><li style="list-style-type:disc"><strong>Non-Blocking I/O:</strong> Eingabe-/Ausgabeoperationen (z. B. Datenbankabfragen) blockieren den Hauptthread nicht.</li></ul><ul id="1ef857bd-249d-8083-8380-e8cc5823c573" class="bulleted-list"><li style="list-style-type:disc"><strong>Modularität:</strong> Node.js verwendet das <strong>npm</strong>Ökosystem, das Tausende von Paketen bietet, um die Entwicklung zu beschleunigen.</li></ul><hr id="1ef857bd-249d-80a0-a39a-faba444ca4cc"/><h3 id="1f3857bd-249d-8018-8d1e-d30faeddc875" class="">Wie wird Node.js erstellt?</h3><p id="1f3857bd-249d-804d-b2f8-e29edaff7ae6" class="">Node.js wurde von Ryan Dahl im Jahr 2009 entwickelt. Es basiert auf der V8-JavaScript-Engine von Google, die in C++ geschrieben ist. Die wichtigsten Bestandteile von Node.js sind:</p><ul id="1f3857bd-249d-8063-a8b7-c546bcd7b9ef" class="bulleted-list"><li style="list-style-type:disc"><strong>V8-Engine</strong>: Führt JavaScript aus.</li></ul><ul id="1f3857bd-249d-8072-8497-ec42890a815b" class="bulleted-list"><li style="list-style-type:disc"><strong>libuv</strong>: Eine Bibliothek für asynchrone I/O und Event-Loop-Management.</li></ul><ul id="1f3857bd-249d-80a1-972b-ee1aea1baf12" class="bulleted-list"><li style="list-style-type:disc"><strong>C++-Bindings</strong>: Verbindet die V8-Engine mit nativen Systemfunktionen.</li></ul><h3 id="1f3857bd-249d-80ba-9360-dd0e06168797" class="">Installation und Nutzung:</h3><ol type="1" id="1f3857bd-249d-8073-b5f3-db3b81ab2861" class="numbered-list" start="1"><li><strong>Installation</strong>:<ul id="1f3857bd-249d-8054-b793-f165523110c9" class="bulleted-list"><li style="list-style-type:disc">Lade Node.js von der offiziellen Website herunter: <a href="https://nodejs.org/">https://nodejs.org</a>.</li></ul><ul id="1f3857bd-249d-804d-b7fb-c246af328771" class="bulleted-list"><li style="list-style-type:disc">Alternativ kannst du auf einem Mac den Paketmanager <code>brew</code> verwenden:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f3857bd-249d-8068-bb40-e4ef46455814" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">brew install node
+</code></pre></li></ul></li></ol><ol type="1" id="1f3857bd-249d-8035-8b1a-e9f73df20a46" class="numbered-list" start="2"><li><strong>Erstellen einer Node.js-Anwendung</strong>:<ul id="1f3857bd-249d-8015-87f6-ef643c30e026" class="bulleted-list"><li style="list-style-type:disc">Erstelle eine Datei, z. B. <code>app.js</code>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f3857bd-249d-8041-8ddc-dde4d25df2bd" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// app.js
+const http = require(&#x27;http&#x27;);
+
+const server = http.createServer((req, res) =&gt; {
+    res.writeHead(200, { &#x27;Content-Type&#x27;: &#x27;text/plain&#x27; });
+    res.end(&#x27;Hello, World!\\n&#x27;);
+});
+
+server.listen(3000, () =&gt; {
+    console.log(&#x27;Server läuft auf &lt;http://localhost:3000&gt;&#x27;);
+});
+</code></pre></li></ul><ul id="1f3857bd-249d-805b-9753-ca1b7e744d91" class="bulleted-list"><li style="list-style-type:disc">Starte die Anwendung:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f3857bd-249d-8044-aef0-f41f0c0ca99e" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">node app.js
+</code></pre></li></ul></li></ol><ol type="1" id="1f3857bd-249d-804b-b96e-c4a3ee785473" class="numbered-list" start="3"><li><strong>Paketverwaltung mit npm</strong>:<ul id="1f3857bd-249d-8094-a96d-f5c4e0bb7e31" class="bulleted-list"><li style="list-style-type:disc">Initialisiere ein Projekt:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f3857bd-249d-8019-9bf6-e249d4463c3e" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm init -y
+</code></pre></li></ul><ul id="1f3857bd-249d-80c7-a5cf-da095e6e0a4e" class="bulleted-list"><li style="list-style-type:disc">Installiere ein Paket:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f3857bd-249d-8036-b710-fee5c3fbb987" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install express
+</code></pre></li></ul></li></ol><p id="1f3857bd-249d-80b3-8e62-f5b214e2b93e" class="">Node.js ist besonders nützlich für Echtzeitanwendungen wie Chats, APIs und Streaming-Dienste.</p><h2 id="1ef857bd-249d-804d-8a57-e04f6a3c020f" class=""><strong>2. Integration mit SQL-Datenbanken</strong></h2><h3 id="1ef857bd-249d-80d9-bf61-fb9261d15cce" class=""><strong>Wahl der Datenbank</strong></h3><ul id="1ef857bd-249d-806b-a929-dd8cc63455ea" class="bulleted-list"><li style="list-style-type:disc"><strong>Relationale Datenbanken (SQL):</strong> MySQL, PostgreSQL, SQLite.</li></ul><ul id="1ef857bd-249d-80f3-a73b-ce6a43d3070f" class="bulleted-list"><li style="list-style-type:disc"><strong>NoSQL-Datenbanken:</strong> MongoDB, Redis (falls du keine relationalen Daten benötigst).</li></ul><h3 id="1ef857bd-249d-8036-81ea-f2818416f9fa" class=""><strong>MySQL-Integration mit Node.js</strong></h3><h3 id="1ef857bd-249d-801f-82b6-f6a122c8ea7b" class=""><strong>a) MySQL-Paket</strong></h3><ul id="1ef857bd-249d-8099-9f00-d7bdea7e709d" class="bulleted-list"><li style="list-style-type:disc">Verwende das Paket <code><strong>mysql2</strong></code> (wie in deinem Code), da es modern und effizient ist.</li></ul><ul id="1ef857bd-249d-8044-b256-f6e628f36369" class="bulleted-list"><li style="list-style-type:disc">Installiere es mit:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80a6-a327-f52300c03cf3" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install mysql2
+</code></pre></li></ul><h3 id="1ef857bd-249d-8032-b16b-ef2a7820e9b0" class=""><strong>b) Verbindung zur Datenbank</strong></h3><ul id="1ef857bd-249d-80e7-a29b-da9d29c5dc14" class="bulleted-list"><li style="list-style-type:disc">Stelle sicher, dass du eine <strong>Datenbankverbindung</strong> erstellst und Fehler abfängst:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8061-bf0c-ce34ca93547f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const mysql = require(&#x27;mysql2&#x27;);
+
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+db.connect((err) =&gt; {
+  if (err) {
+    console.error(&#x27;Fehler bei der Verbindung zur Datenbank:&#x27;, err);
+    return;
+  }
+  console.log(&#x27;Erfolgreich mit der Datenbank verbunden.&#x27;);
+});
+</code></pre></li></ul><h3 id="1ef857bd-249d-8035-a4c2-d491f3d3272e" class=""><strong>c) SQL-Abfragen</strong></h3><ul id="1ef857bd-249d-8044-b7f0-c52879d25f20" class="bulleted-list"><li style="list-style-type:disc">Verwende <strong>Prepared Statements</strong>, um SQL-Injection zu vermeiden:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80fe-b976-f6a2592b8d60" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const sqlQuery = &#x27;SELECT * FROM users WHERE username = ?&#x27;;
+db.query(sqlQuery, [username], (err, results) =&gt; {
+  if (err) {
+    console.error(&#x27;Datenbankfehler:&#x27;, err);
+    return;
+  }
+  console.log(results);
+});
+</code></pre></li></ul><h3 id="1ef857bd-249d-80a4-973e-cb2a72d8b463" class=""><strong>d) Verbindungspool</strong></h3><ul id="1ef857bd-249d-8023-a0bc-c05ffd5bedcd" class="bulleted-list"><li style="list-style-type:disc">Für größere Anwendungen ist ein <strong>Verbindungspool</strong> besser, um die Leistung zu verbessern:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8030-8a88-f9fac038315a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+
+pool.query(&#x27;SELECT * FROM users&#x27;, (err, results) =&gt; {
+  if (err) throw err;
+  console.log(results);
+});
+</code></pre></li></ul><hr id="1ef857bd-249d-803b-9ff2-e5a77ae6da49"/><h2 id="1ef857bd-249d-80bd-893f-ed72e5c0ce33" class=""><strong>3. Sicherheitsaspekte</strong></h2><h3 id="1ef857bd-249d-8002-8b58-cd7d1af4e1f7" class=""><strong>a) SQL-Injection verhindern</strong></h3><ul id="1ef857bd-249d-80d0-b1e6-ea36e5bb4234" class="bulleted-list"><li style="list-style-type:disc">Verwende immer <strong>Prepared Statements</strong> (wie oben gezeigt), um Benutzereingaben zu validieren.</li></ul><h3 id="1ef857bd-249d-80a5-a508-f1eb2e68f422" class=""><strong>b) Umgebungsvariablen</strong></h3><ul id="1ef857bd-249d-807e-a8b7-da2ae699eae3" class="bulleted-list"><li style="list-style-type:disc">Speichere sensible Daten wie Datenbank-Logins in einer <code>.env</code>Datei:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8023-b4f8-f4a976461c12" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=geheim
+DB_NAME=meinedatenbank
+PORT=3000
+</code></pre></li></ul><ul id="1ef857bd-249d-8080-a2da-e06b6437baff" class="bulleted-list"><li style="list-style-type:disc">Lade die Variablen mit dem Paket <strong>dotenv</strong>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8065-a488-ca8c513a8385" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">require(&#x27;dotenv&#x27;).config();
+</code></pre></li></ul><h3 id="1ef857bd-249d-800b-9770-d3f839fdfe7e" class=""><strong>c) Fehlerbehandlung</strong></h3><ul id="1ef857bd-249d-8094-a3e2-dde05974e479" class="bulleted-list"><li style="list-style-type:disc">Fange Fehler ab, um Abstürze zu vermeiden:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80a4-a963-ebd741ddce27" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">db.query(&#x27;SELECT * FROM users&#x27;, (err, results) =&gt; {
+  if (err) {
+    console.error(&#x27;Fehler:&#x27;, err);
+    res.status(500).send(&#x27;Interner Serverfehler&#x27;);
+    return;
+  }
+  res.json(results);
+});
+</code></pre></li></ul><hr id="1ef857bd-249d-805c-a4a6-c61a52975f67"/><h2 id="1ef857bd-249d-80cc-befa-ddc77982e888" class=""><strong>4. Best Practices</strong></h2><h3 id="1ef857bd-249d-807f-9234-f5254b6205a4" class=""><strong>a) Modularisierung</strong></h3><ul id="1ef857bd-249d-8088-b4ab-e49b3318610c" class="bulleted-list"><li style="list-style-type:disc">Teile deinen Code in Module auf, um ihn übersichtlicher zu machen:<ul id="1ef857bd-249d-8095-b8dd-c063f37c5142" class="bulleted-list"><li style="list-style-type:circle"><strong>server.js</strong>: Startet den Server.</li></ul><ul id="1ef857bd-249d-809b-ac6e-dcd055b093ad" class="bulleted-list"><li style="list-style-type:circle"><code><strong>routes/</strong></code>: Enthält die API-Routen.</li></ul><ul id="1ef857bd-249d-807a-bd17-cdedfb77cf09" class="bulleted-list"><li style="list-style-type:circle"><code><strong>controllers/</strong></code>: Enthält die Logik für jede Route.</li></ul><ul id="1ef857bd-249d-80d5-8ef4-e41bbc786578" class="bulleted-list"><li style="list-style-type:circle"><code><strong>models/</strong></code>: Enthält die Datenbankabfragen.</li></ul></li></ul><p id="1ef857bd-249d-80d0-98c5-ce232df54d6b" class="">Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8009-889b-fce17027f000" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// routes/userRoutes.js
+const express = require(&#x27;express&#x27;);
+const router = express.Router();
+const userController = require(&#x27;../controllers/userController&#x27;);
+
+router.get(&#x27;/users&#x27;, userController.getAllUsers);
+
+module.exports = router;
+</code></pre><h3 id="1ef857bd-249d-803d-8f41-d609713b6795" class=""><strong>b) Asynchrone Programmierung</strong></h3><ul id="1ef857bd-249d-80d6-abb2-ea1f70068caf" class="bulleted-list"><li style="list-style-type:disc">Verwende <strong>Promises</strong> oder <strong>async/await</strong>, um asynchrone Operationen übersichtlicher zu machen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80d6-801f-c47be7591d14" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const getUsers = async () =&gt; {
+  try {
+    const [rows] = await db.promise().query(&#x27;SELECT * FROM users&#x27;);
+    console.log(rows);
+  } catch (err) {
+    console.error(&#x27;Fehler:&#x27;, err);
+  }
+};
+</code></pre></li></ul><h3 id="1ef857bd-249d-80c4-9376-f7b02874ec16" class=""><strong>c) Logging</strong></h3><ul id="1ef857bd-249d-8071-bc09-d41fef34658d" class="bulleted-list"><li style="list-style-type:disc">Nutze ein Logging-Tool wie <strong>winston</strong>, um Fehler und Anfragen zu protokollieren:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80a5-9406-dbc452881c7f" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install winston
+</code></pre></li></ul><hr id="1ef857bd-249d-806b-a7ab-fe6f848bdf77"/><h2 id="1ef857bd-249d-8097-aad0-d5489fb57602" class=""><strong>5. Performance-Tipps</strong></h2><h3 id="1ef857bd-249d-8041-ae5e-e46bca03f214" class=""><strong>a) Caching</strong></h3><ul id="1ef857bd-249d-8093-8428-ecbf039a243c" class="bulleted-list"><li style="list-style-type:disc">Verwende ein Caching-Tool wie <strong>Redis</strong>, um häufige Datenbankabfragen zu vermeiden.</li></ul><h3 id="1ef857bd-249d-8045-99cd-d12328e1a0c5" class=""><strong>b) Verbindungspool</strong></h3><ul id="1ef857bd-249d-801a-bf14-cd53e514e8b6" class="bulleted-list"><li style="list-style-type:disc">Nutze einen Verbindungspool (wie oben gezeigt), um die Datenbankverbindungen effizient zu verwalten.</li></ul><h3 id="1ef857bd-249d-8035-90e3-d3be9a245d0c" class=""><strong>c) Pagination</strong></h3><ul id="1ef857bd-249d-8099-bda1-f3a73458670c" class="bulleted-list"><li style="list-style-type:disc">Lade nur die benötigten Daten aus der Datenbank, z. B. mit LIMIT und OFFSET:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8017-903e-dbc967bfce32" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">SELECT * FROM users LIMIT 10 OFFSET 0;
+</code></pre></li></ul><hr id="1ef857bd-249d-809f-8acf-fd948973365b"/><h2 id="1ef857bd-249d-808f-93ca-f9d395fc915d" class=""><strong>6. Tools und Frameworks</strong></h2><h3 id="1ef857bd-249d-80f9-9e5a-e09b9572aa82" class=""><strong>a) Express.js</strong></h3><ul id="1ef857bd-249d-8096-892b-d76fa5b6f4f6" class="bulleted-list"><li style="list-style-type:disc">Express ist das am häufigsten verwendete Framework für Node.js, um APIs zu erstellen.</li></ul><h3 id="1ef857bd-249d-8092-841c-c4f98a0fa0c1" class=""><strong>b) Sequelize</strong></h3><ul id="1ef857bd-249d-801a-bd64-c7d3b2661967" class="bulleted-list"><li style="list-style-type:disc">Sequelize ist ein ORM (Object-Relational Mapping), das die Arbeit mit SQL-Datenbanken vereinfacht:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8075-977c-f05f806e0343" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install sequelize mysql2
+</code></pre></li></ul><h3 id="1ef857bd-249d-80c8-a644-e4f97ff3e385" class=""><strong>c) Postman</strong></h3><ul id="1ef857bd-249d-8075-8978-e7ec9ee0404a" class="bulleted-list"><li style="list-style-type:disc">Verwende Postman, um deine API zu testen.</li></ul><hr id="1ef857bd-249d-8085-b915-e62692b1706e"/><h2 id="1ef857bd-249d-8005-a986-ca1d69a642e9" class=""><strong>7. Beispielprojekt</strong></h2><p id="1ef857bd-249d-8007-8d39-edd7177db671" class="">Hier ist ein einfaches Beispiel für eine Node.js-App mit MySQL:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-805e-b214-eca2fbea9d9c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const express = require(&#x27;express&#x27;);
+const mysql = require(&#x27;mysql2&#x27;);
+require(&#x27;dotenv&#x27;).config();
+
+const app = express();
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+db.connect((err) =&gt; {
+  if (err) throw err;
+  console.log(&#x27;Datenbank verbunden&#x27;);
+});
+
+app.get(&#x27;/users&#x27;, (req, res) =&gt; {
+  db.query(&#x27;SELECT * FROM users&#x27;, (err, results) =&gt; {
+    if (err) {
+      console.error(err);
+      res.status(500).send(&#x27;Fehler bei der Datenbankabfrage&#x27;);
+      return;
+    }
+    res.json(results);
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; {
+  console.log(`Server läuft auf &lt;http://localhost&gt;:${PORT}`);
+});
+</code></pre><hr id="1ef857bd-249d-80c8-8eb2-e092e07cd0a7"/><h2 id="1ef857bd-249d-8048-92e6-cef32473d1e5" class=""><strong>Fazit</strong></h2><ul id="1ef857bd-249d-80aa-9b8c-c24ea1a63c9e" class="bulleted-list"><li style="list-style-type:disc"><strong>Node.js</strong> ist ideal für APIs und serverseitige Anwendungen.</li></ul><ul id="1ef857bd-249d-8016-bbe4-eb70c9fad91e" class="bulleted-list"><li style="list-style-type:disc">Achte auf <strong>Sicherheit</strong> (SQL-Injection, Umgebungsvariablen).</li></ul><ul id="1ef857bd-249d-80dc-9636-c4c18def6094" class="bulleted-list"><li style="list-style-type:disc">Verwende <strong>Prepared Statements</strong> und <strong>Verbindungspools</strong> für SQL-Datenbanken.</li></ul><ul id="1ef857bd-249d-80c1-b289-f221afc78eba" class="bulleted-list"><li style="list-style-type:disc">Modularisiere deinen Code und nutze Tools wie <strong>Postman</strong> und <strong>winston</strong>.</li></ul></div><div id="1ef857bd-249d-8046-8a75-fbe01cc704cd" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1ef857bd-249d-80b3-a638-d9aa5da4aba9"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1ef857bd-249d-80d0-90ee-da483017fab2"/><p id="1ef857bd-249d-8045-b315-c24a44ba6a7b" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1ef857bd-249d-801d-87a5-c06188d5622d"/><ul id="1ef857bd-249d-80fb-b86d-f5012de8bb4e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ef857bd-249d-80eb-982f-e0b9cc341f65" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1ef857bd-249d-80a0-8ed1-f344eefed21a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1ef857bd-249d-801e-b439-c022ae192fef" class="image"><a href="Node%20JS%201ef857bd249d80999d90fe4780503bf9/33.png"><img style="width:425px" src="Node%20JS%201ef857bd249d80999d90fe4780503bf9/33.png"/></a></figure><h3 id="1f8857bd-249d-8093-94bd-f06dfb4b1133" class="">Wie importiere eine Funktion / Variable aus einem anderen Skript?</h3><p id="1f8857bd-249d-8023-81ed-c1e9e69277d8" class="">In <strong>Node.js</strong> kannst du Funktionen oder Variablen aus einem anderen Skript mithilfe von <code><strong>module.exports</strong></code> und <code><strong>require</strong></code> importieren/exportieren. Ab Node.js 14+ kannst du auch <strong>ES6-Module</strong> verwenden, die mit <code><strong>export</strong></code> und <code><strong>import</strong></code> arbeiten.</p><hr id="1f8857bd-249d-807e-9af5-cc21f629f3e8"/><h3 id="1f8857bd-249d-80f0-bf20-fb7d8ad5970f" class=""><strong>1. Mit </strong><code><strong>module.exports</strong></code><strong> und </strong><code><strong>require</strong></code><strong> (CommonJS)</strong></h3><h3 id="1f8857bd-249d-80ce-9527-e1a7e742ab2f" class=""><strong>Exportieren</strong></h3><p id="1f8857bd-249d-8017-a3c4-f5a459fd8fb6" class="">In der Datei, aus der du etwas exportieren möchtest (z. B. <code>utils.js</code>):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80c9-91d5-dc4c841194a6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// utils.js
+function add(a, b) {
+    return a + b;
+}
+
+const PI = 3.14;
+
+// Exportiere die Funktion und die Variable
+module.exports = { add, PI };
+</code></pre><h3 id="1f8857bd-249d-809c-8175-e744b4f797a7" class=""><strong>Importieren</strong></h3><p id="1f8857bd-249d-80b0-acba-eb4e55f9fdb2" class="">In der Datei, in der du die Funktion/Variable verwenden möchtest (z. B. <code>app.js</code>):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-8022-a1a5-d72928bda4a2" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// app.js
+const { add, PI } = require(&#x27;./utils&#x27;);
+
+console.log(add(2, 3)); // 5
+console.log(PI); // 3.14
+</code></pre><hr id="1f8857bd-249d-80df-a77d-d9ec1fb732c3"/><h3 id="1f8857bd-249d-804a-9745-e02b02026450" class=""><strong>2. Mit </strong><code><strong>export</strong></code><strong> und </strong><code><strong>import</strong></code><strong> (ES6-Module)</strong></h3><h3 id="1f8857bd-249d-8085-9627-ca52e7dc20cb" class=""><strong>Exportieren</strong></h3><p id="1f8857bd-249d-80f4-a05d-e517d68063a4" class="">In der Datei, aus der du etwas exportieren möchtest (z. B. <code>utils.js</code>):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-8078-b907-c1fe5ca3a79a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// utils.js
+export function add(a, b) {
+    return a + b;
+}
+
+export const PI = 3.14;
+</code></pre><h3 id="1f8857bd-249d-80a1-aea1-d7bac640b8b2" class=""><strong>Importieren</strong></h3><p id="1f8857bd-249d-8050-a7c6-e441b870e406" class="">In der Datei, in der du die Funktion/Variable verwenden möchtest (z. B. <code>app.js</code>):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80bc-bfc4-e2416e0f9cd3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// app.js
+import { add, PI } from &#x27;./utils.js&#x27;;
+
+console.log(add(2, 3)); // 5
+console.log(PI); // 3.14
+</code></pre><h3 id="1f8857bd-249d-8009-adb4-dadb7763f40c" class=""><strong>Hinweis</strong>:</h3><ul id="1f8857bd-249d-80a0-b6f2-f926b43a7481" class="bulleted-list"><li style="list-style-type:disc">Um ES6-Module in Node.js zu verwenden, musst du in der <code><strong>package.json</strong></code> die Eigenschaft <code>&quot;type&quot;: &quot;module&quot;</code> hinzufügen:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f8857bd-249d-80ed-ae87-ff00e4b3cc78" class="code"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;type&quot;: &quot;module&quot;
+}
+</code></pre></li></ul><hr id="1f8857bd-249d-8015-9d6b-cd46390c8abd"/><h3 id="1f8857bd-249d-80e0-b9e2-fde1cab0cd4d" class=""><strong>3. Unterschied zwischen CommonJS und ES6-Module</strong></h3><ul id="1f8857bd-249d-80a7-aef0-e0e99e6106f0" class="bulleted-list"><li style="list-style-type:disc"><strong>CommonJS (</strong><code><strong>require/module.exports</strong></code><strong>)</strong>:<ul id="1f8857bd-249d-80b9-bfe7-f85160885a35" class="bulleted-list"><li style="list-style-type:circle">Standard in Node.js.</li></ul><ul id="1f8857bd-249d-80cd-83c1-dffe532209c7" class="bulleted-list"><li style="list-style-type:circle">Unterstützt in allen Node.js-Versionen.</li></ul></li></ul><ul id="1f8857bd-249d-80e5-8666-ef38f74ba2d4" class="bulleted-list"><li style="list-style-type:disc"><strong>ES6-Module (</strong><code><strong>import/export</strong></code><strong>)</strong>:<ul id="1f8857bd-249d-8093-b1a4-ec0c4dd7d397" class="bulleted-list"><li style="list-style-type:circle">Moderner Standard.</li></ul><ul id="1f8857bd-249d-805d-b86e-de124907804c" class="bulleted-list"><li style="list-style-type:circle">Muss explizit aktiviert werden (<code>&quot;type&quot;: &quot;module&quot;</code> in <code>package.json</code>).</li></ul></li></ul><hr id="1f8857bd-249d-8012-aa0a-f39521ebffd3"/><h3 id="1f8857bd-249d-80ea-8dd4-f14ec0b3510b" class=""><strong>Zusammenfassung</strong></h3><ul id="1f8857bd-249d-8067-b3a8-c50c8ee25d76" class="bulleted-list"><li style="list-style-type:disc">Verwende <code><strong>module.exports</strong></code> und <code><strong>require</strong></code> für ältere Node.js-Versionen oder wenn du keine ES6-Module aktivieren möchtest.</li></ul><ul id="1f8857bd-249d-8065-bef0-e13fd0d107a6" class="bulleted-list"><li style="list-style-type:disc">Verwende <code><strong>export</strong></code> und <code><strong>import</strong></code>, wenn du moderne ES6-Module bevorzugst und <code>&quot;type&quot;: &quot;module&quot;</code> in deiner <code>package.json</code> gesetzt hast.</li></ul><hr id="1f8857bd-249d-8036-ba7a-ccadbb8b421e"/><p id="1f8857bd-249d-8016-9af5-ed0caf1d2d58" class="">
+</p><p id="1ef857bd-249d-80c9-a5ad-f76f7be05a3a" class="">Hier ist eine ausführliche Erklärung der Datei server.js, Zeile für Zeile, damit du die Funktionsweise verstehst. Ich werde die Konzepte so einfach wie möglich erklären.</p><h3 id="1ef857bd-249d-8052-bd3d-e848a2761ef5" class=""><strong>1. Import von Modulen</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80aa-8034-d91863fbc1e3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const express = require(&#x27;express&#x27;);
+</code></pre><ul id="1ef857bd-249d-805a-a57e-f86d834ee833" class="bulleted-list"><li style="list-style-type:disc"><code><strong>require(&#x27;express&#x27;)</strong></code><strong>:</strong> Importiert das <strong>Express.js </strong>Framework, das die Erstellung von Webservern und APIs erleichtert.</li></ul><ul id="1ef857bd-249d-80a2-a9ea-e5badb6c3366" class="bulleted-list"><li style="list-style-type:disc"><code><strong>const app = express();</strong></code><strong>:</strong> Erstellt eine neue Express-Anwendung, die als Webserver fungiert.</li></ul><hr id="1ef857bd-249d-8032-83ef-c41ffb9ce4b7"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80f2-9f4d-ff8e6fec052f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">require(&#x27;dotenv&#x27;).config();
+</code></pre><ul id="1ef857bd-249d-809d-9987-f5471ac2aee8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>dotenv</strong></code><strong>:</strong> Ein Paket, das Umgebungsvariablen aus einer <code>.env</code>Datei lädt.</li></ul><ul id="1ef857bd-249d-802c-8698-eacb932ab027" class="bulleted-list"><li style="list-style-type:disc"><code><strong>config()</strong></code><strong>:</strong> Aktiviert die Nutzung der <code>.env</code>Datei, um sensible Daten wie Datenbank-Logins oder Ports sicher zu speichern.</li></ul><hr id="1ef857bd-249d-80d4-8c6b-ea41da6d6d00"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80ab-ad97-d7228b9bb6e8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const mysql = require(&#x27;mysql2&#x27;);
+</code></pre><ul id="1ef857bd-249d-805e-a998-c6a4712c32e1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>mysql2</strong></code><strong>:</strong> Ein Paket, das die Verbindung zu einer MySQL-Datenbank ermöglicht und SQL-Abfragen ausführt.</li></ul><hr id="1ef857bd-249d-8049-b8f2-cb6d420b140e"/><h3 id="1ef857bd-249d-80b7-9262-fa9fadf4e856" class=""><strong>2. Verbindung zur MySQL-Datenbank</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-803d-a9bc-fd81e03653c0" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+</code></pre><ul id="1ef857bd-249d-8067-bb05-ee877472a7fc" class="bulleted-list"><li style="list-style-type:disc"><code><strong>mysql.createConnection</strong></code><strong>:</strong> Erstellt eine Verbindung zur MySQL-Datenbank.</li></ul><ul id="1ef857bd-249d-8017-9a27-fdc5965ef783" class="bulleted-list"><li style="list-style-type:disc"><code><strong>host</strong></code><strong>:</strong> Die Adresse des Datenbankservers (z. B. <code>localhost</code> oder eine IP-Adresse).</li></ul><ul id="1ef857bd-249d-80dc-b70f-e37a6ca89ad0" class="bulleted-list"><li style="list-style-type:disc"><code><strong>user</strong></code><strong>:</strong> Der Benutzername für die Datenbank.</li></ul><ul id="1ef857bd-249d-8055-b527-c71cb9da3504" class="bulleted-list"><li style="list-style-type:disc"><code><strong>password</strong></code><strong>:</strong> Das Passwort für den Benutzer.</li></ul><ul id="1ef857bd-249d-80c1-ba7c-f6d59f280339" class="bulleted-list"><li style="list-style-type:disc"><code><strong>database</strong></code><strong>:</strong> Der Name der Datenbank, mit der du arbeiten möchtest.</li></ul><ul id="1ef857bd-249d-80ea-a89a-c9d1a4b05116" class="bulleted-list"><li style="list-style-type:disc"><code><strong>process.env</strong></code><strong>:</strong> Liest die Werte aus der <code>.env</code>Datei, um sensible Daten nicht direkt im Code zu speichern.</li></ul><hr id="1ef857bd-249d-8084-a3e2-fedb47154266"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-809e-a520-e91ce78d1cd8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">db.connect((err) =&gt; {
+  if (err) {
+    console.error(&#x27;Fehler bei der Verbindung zur Datenbank:&#x27;, err);
+    return;
+  }
+  console.log(&#x27;Erfolgreich mit der Datenbank verbunden.&#x27;);
+});
+</code></pre><ul id="1ef857bd-249d-801c-91bb-eee4df6265d6" class="bulleted-list"><li style="list-style-type:disc"><code><strong>db.connect</strong></code><strong>:</strong> Stellt die Verbindung zur Datenbank her.</li></ul><ul id="1ef857bd-249d-808f-b4b5-e6d70ee90876" class="bulleted-list"><li style="list-style-type:disc"><code><strong>err</strong></code><strong>:</strong> Wenn ein Fehler auftritt (z. B. falsche Zugangsdaten), wird dieser hier abgefangen und ausgegeben.</li></ul><ul id="1ef857bd-249d-8034-9c36-ebc397d48f39" class="bulleted-list"><li style="list-style-type:disc"><code><strong>console.log</strong></code><strong>:</strong> Gibt eine Erfolgsmeldung aus, wenn die Verbindung erfolgreich hergestellt wurde.</li></ul><hr id="1ef857bd-249d-8025-a676-eeb14d3c7115"/><h3 id="1ef857bd-249d-8061-9720-c349983430c8" class=""><strong>3. Template-Engine konfigurieren</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8057-babb-d2cbc3d6fa97" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;);
+</code></pre><ul id="1ef857bd-249d-8067-bc60-ec922b9b97b3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>app.set</strong></code><strong>:</strong> Konfiguriert die Express-Anwendung.</li></ul><ul id="1ef857bd-249d-80b7-a32b-d1b1063373c1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>view engine</strong></code><strong>:</strong> Legt fest, dass <strong>EJS</strong> (Embedded JavaScript) als Template-Engine verwendet wird. Damit kannst du HTML-Seiten dynamisch mit Daten füllen.</li></ul><hr id="1ef857bd-249d-8016-b580-fbad792ae5a5"/><h3 id="1ef857bd-249d-807d-a465-d21a457bc68d" class=""><strong>4. Routen definieren</strong></h3><h3 id="1ef857bd-249d-8019-a59c-c7363a468132" class=""><strong>Route 1: </strong><code><strong>/</strong></code><strong> (Startseite)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-808b-978d-ca00d644a7e3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  res.json({message: &#x27;Hello World!&#x27;})
+});
+</code></pre><ul id="1ef857bd-249d-80b8-b289-ec64fb5a88dc" class="bulleted-list"><li style="list-style-type:disc"><code><strong>app.get(&#x27;/&#x27;)</strong></code><strong>:</strong> Definiert eine Route für die URL <code>/</code> (Startseite).</li></ul><ul id="1ef857bd-249d-8068-b7c9-fd0d2ace6d02" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req</strong></code><strong>:</strong> Das Anfrageobjekt (enthält Informationen über die Anfrage des Clients).</li></ul><ul id="1ef857bd-249d-8066-b9c5-fe4dfe91c6fc" class="bulleted-list"><li style="list-style-type:disc"><code><strong>res</strong></code><strong>:</strong> Das Antwortobjekt (wird verwendet, um eine Antwort an den Client zu senden).</li></ul><ul id="1ef857bd-249d-80ef-aad2-dff59906a464" class="bulleted-list"><li style="list-style-type:disc"><code><strong>res.json</strong></code><strong>:</strong> Sendet eine JSON-Antwort mit der Nachricht <code>Hello World!</code>.</li></ul><hr id="1ef857bd-249d-80d2-97b7-da10134ea660"/><h3 id="1ef857bd-249d-8080-b4bc-e22bd8a43b6d" class=""><strong>Route 2: </strong><code><strong>/</strong></code><strong> (SQL-Abfrage)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8006-bf32-de1262d74990" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/&#x27;, (req, res) =&gt; {
+    db.query(&#x27;SELECT * from country&#x27;, (err, rows, fields) =&gt; {
+        if (err) throw err;
+
+        res.render(&#x27;pages/index&#x27;, {
+            title: &#x27;SQL Example&#x27;,
+            header: fields,
+            content: rows
+        });
+    });
+});
+</code></pre><ul id="1ef857bd-249d-80ee-b052-d40a5b3efa2a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>db.query</strong></code><strong>:</strong> Führt eine SQL-Abfrage aus. Hier wird <code>SELECT * FROM country</code> verwendet, um alle Daten aus der Tabelle <code>country</code> abzurufen.</li></ul><ul id="1ef857bd-249d-8007-b657-fde9c41456f1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>err</strong></code><strong>:</strong> Wenn ein Fehler bei der Abfrage auftritt, wird dieser hier abgefangen.</li></ul><ul id="1ef857bd-249d-801f-8e55-e3dd59488f82" class="bulleted-list"><li style="list-style-type:disc"><code><strong>rows</strong></code><strong>:</strong> Enthält die Ergebnisse der Abfrage (z. B. die Länder aus der Tabelle <code>country</code>).</li></ul><ul id="1ef857bd-249d-808c-83f9-ec747a19b33a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>fields</strong></code><strong>:</strong> Enthält die Spaltennamen der Tabelle.</li></ul><ul id="1ef857bd-249d-801c-8fa7-fee825c81ed3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>res.render</strong></code><strong>:</strong> Rendert die EJS-Datei <code>pages/index</code> und übergibt die Daten (<code>title</code>, <code>header</code>, <code>content</code>) an die Seite.</li></ul><hr id="1ef857bd-249d-800e-b39a-e7c8bb8fd0ec"/><h3 id="1ef857bd-249d-80d6-94e9-d3907eef9cc2" class=""><strong>Route 3: </strong><code><strong>/city</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8065-92cf-c4dc2eea0af9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/city&#x27;, (req, res) =&gt; {
+    let name = &quot;%&quot; + req.query.name + &quot;%&quot;;
+
+    let sqlQueryText = &#x27;select * from city where name like ?&#x27;;
+    db.query(sqlQueryText, [name], (err, rows, fields) =&gt; {
+        if (err) throw err;
+
+        res.render(&#x27;pages/index&#x27;, {
+            title: &#x27;SQL Example&#x27;,
+            header: fields,
+            content: rows,
+            searchAction: &#x27;city&#x27;,
+            searchField: &#x27;name&#x27;
+        });
+    });
+});
+</code></pre><ul id="1ef857bd-249d-802d-8b34-f806d46f7220" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.query.name</strong></code><strong>:</strong> Liest den Parameter <code>name</code> aus der URL (z. B. <code>/city?name=Berlin</code>).</li></ul><ul id="1ef857bd-249d-8013-a73e-dc2769f8cb1d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>%</strong></code><strong> + </strong><code><strong>name</strong></code><strong> + </strong><code><strong>%</strong></code><strong>:</strong> Fügt Wildcards hinzu, um eine SQL-Suche mit <code>LIKE</code> zu ermöglichen.</li></ul><ul id="1ef857bd-249d-80e8-808e-d1b384afd6a9" class="bulleted-list"><li style="list-style-type:disc"><code><strong>sqlQueryText</strong></code><strong>:</strong> Die SQL-Abfrage sucht nach Städten, deren Name dem Suchbegriff entspricht.</li></ul><ul id="1ef857bd-249d-8007-b236-d1b36d9bfbce" class="bulleted-list"><li style="list-style-type:disc"><code><strong>res.render</strong></code><strong>:</strong> Rendert die Ergebnisse in der EJS-Datei <code>pages/index</code>.</li></ul><hr id="1ef857bd-249d-80be-aaf3-d66def316b18"/><h3 id="1ef857bd-249d-8090-9e20-d53b178d7421" class=""><strong>Route 4: </strong><code><strong>/country</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-8017-9f7e-feb490e15a26" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/country&#x27;, (req, res) =&gt; {
+    let name = &quot;%&quot; + req.query.name + &quot;%&quot;;
+
+    let sqlQueryText = &#x27;select * from country where name like ?&#x27;;
+    db.query(sqlQueryText, [name], (err, rows, fields) =&gt; {
+        if (err) throw err;
+
+        res.render(&#x27;pages/index&#x27;, {
+            title: &#x27;SQL Example&#x27;,
+            header: fields,
+            content: rows,
+            searchAction: &#x27;country&#x27;,
+            searchField: &#x27;name&#x27;
+        });
+    });
+});
+</code></pre><ul id="1ef857bd-249d-8034-8a04-edd14ff9cb38" class="bulleted-list"><li style="list-style-type:disc">Funktioniert ähnlich wie die <code>/city</code>Route, sucht jedoch in der Tabelle <code>country</code> nach Ländern, deren Name dem Suchbegriff entspricht.</li></ul><hr id="1ef857bd-249d-8097-a95b-c13d5b71f32d"/><h3 id="1ef857bd-249d-803d-8d19-d6d4b6953bd9" class=""><strong>5. Fehlerbehandlung für fehlenden Port</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80a0-9792-d77fc40bc645" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">if (!process.env.PORT) {
+  console.error(&#x27;Fehler: DB_PORT ist nicht gesetzt. Bitte überprüfen Sie Ihre .env-Datei.&#x27;);
+  process.exit(1);
+}
+</code></pre><ul id="1ef857bd-249d-803b-97e2-f6ad46123999" class="bulleted-list"><li style="list-style-type:disc"><code><strong>process.env.PORT</strong></code><strong>:</strong> Überprüft, ob der Port in der <code>.env</code>Datei definiert ist.</li></ul><ul id="1ef857bd-249d-80c1-95ce-da90fbe5d241" class="bulleted-list"><li style="list-style-type:disc"><code><strong>process.exit(1)</strong></code><strong>:</strong> Beendet die Anwendung, wenn der Port nicht gesetzt ist.</li></ul><hr id="1ef857bd-249d-80b8-a84d-d420ef1a13da"/><h3 id="1ef857bd-249d-8089-b515-fb0d3b2df099" class=""><strong>6. Server starten</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ef857bd-249d-80c6-b6f2-d5d99bae38e4" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const PORT = process.env.PORT;
+app.listen(PORT, () =&gt; {
+  console.log(`Server läuft auf &lt;http://localhost&gt;:${PORT}`);
+});
+</code></pre><ul id="1ef857bd-249d-8030-a5c2-f728f5be297f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>app.listen</strong></code><strong>:</strong> Startet den Server und lauscht auf dem angegebenen Port.</li></ul><ul id="1ef857bd-249d-80f2-9526-ebfbd147bc3e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>PORT</strong></code><strong>:</strong> Der Port wird aus der <code>.env</code>Datei gelesen.</li></ul><ul id="1ef857bd-249d-80f6-a914-c530580f2fae" class="bulleted-list"><li style="list-style-type:disc"><code><strong>console.log</strong></code><strong>:</strong> Gibt eine Nachricht aus, dass der Server läuft.</li></ul><hr id="1ef857bd-249d-8099-93ee-cde1f1babd2c"/><h3 id="1ef857bd-249d-8051-ba87-cc51c4d6524f" class=""><strong>Zusammenfassung</strong></h3><ol type="1" id="1ef857bd-249d-80ce-99e6-e8aecbe6de14" class="numbered-list" start="1"><li><strong>Express.js</strong> wird verwendet, um einen Webserver zu erstellen.</li></ol><ol type="1" id="1ef857bd-249d-808b-8a99-c23ded53fff2" class="numbered-list" start="2"><li><strong>MySQL</strong> wird integriert, um Daten aus einer Datenbank abzurufen.</li></ol><ol type="1" id="1ef857bd-249d-8043-bba9-e1e6f128cc54" class="numbered-list" start="3"><li><strong>EJS</strong> wird als Template-Engine verwendet, um dynamische HTML-Seiten zu erstellen.</li></ol><ol type="1" id="1ef857bd-249d-807d-8b7d-f10c7cc0f9bf" class="numbered-list" start="4"><li><strong>Routen</strong> definieren, wie der Server auf verschiedene URLs reagiert.</li></ol><ol type="1" id="1ef857bd-249d-80a1-b5df-d07152aeb9aa" class="numbered-list" start="5"><li><strong>Fehlerbehandlung</strong> und <strong>Umgebungsvariablen</strong> sorgen für Sicherheit und Stabilität.</li></ol></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
