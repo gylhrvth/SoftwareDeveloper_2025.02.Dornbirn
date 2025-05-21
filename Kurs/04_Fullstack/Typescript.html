@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typescript</title>
+  <link rel="stylesheet" href="../common.css">
+  <script src="../common.js" defer></script>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="nosnippet">
+<style>
+  @keyframes task {
+    0%   { transform: translateX(0);}
+    50%  { transform: translateX(50%);}
+    100% { transform: translateX(0);}
+    
+  }
+  .specialTask{
+    color:hsl(300, 85%, 25%);
+    font-size: 1.8em;
+    animation: task 4s linear infinite;
+  }
+</style>
+</head>
+
+<body>
+  <div class="menu">
+    <a href="../../index.html">Home</a>
+    <a href="../Aufgaben.html">Aufgaben</a>
+    <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+    <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+    <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+    <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+  </div>
+
+  
+
+  <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+  <p>Dokumente zu lesen:</p>
+  <ol>
+    <li><a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">TypeScript in 5 Minuten</a></li>
+    <li><a href="https://www.npmjs.com/package/typescript">npm typescript</a></li>
+    <li><a href="https://www.w3schools.com/typescript/typescript_intro.php">W3Schools TypeScript Einführung</a></li>
+  </ol>
+
+  <p>Fragen:</p>
+  <ol>
+    <li>Was ist Typescript? Woher kommt es?</li>
+    <li>Was sind die Vorteile / Nachteile von Typescript gegenüber JavaScript?</li>
+    <li>Wie erstelle ich ein Projekt mit Typescript?</li>
+    <li>Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</li>
+    <li>Wie beschreibe ich Arrays in Typescript?</li>
+    <li>Wie beschreibe ich Objekte in Typescript?</li>
+    <li>Wie verwende ich Interfaces in Typescript?</li>
+    <li>Wie verwende ich Type in Typescript?</li>
+    <li>Was ist der Unterschied zwischen Interface und Type in Typescript?</li>
+    <li>Wie verwende ich Union Types?</li>
+    <li>Wie verwende ich Intersection Types?</li>
+    <li>Was sind Generic? Wie verwende ich sie?</li>
+    <li>Was sind enum in Typescript? Wie verwende ich sie?</li>
+  </ol>
+
+
+  <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+  <ol>
+    <li>Erfahrung in Journal Seite eintragen</li>
+    <li>mit Git Commit die Änderungen festlegen</li>
+    <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+  </ol>
+
+  <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+  
+  <h2>Game of Life in TypeScript</h2>
+  <h3>Ziel</h3>
+  <p>
+      Erstelle eine webbasierte Implementierung von Conways Game of Life mit TypeScript. Verwende <a href="https://vitejs.dev/" target="_blank">Vite</a> als Build-Tool und Bundler.
+  </p>
+
+  <h3>Anforderungen</h3>
+  <ul>
+      <li>Verwende <strong>TypeScript</strong> für den gesamten Quellcode.</li>
+      <li>Nutze <strong>Vite</strong>, um dein Projekt zu erstellen und zu bauen.</li>
+      <li>Das Game of Life-Gitter soll im Browser angezeigt und gemäß den Spielregeln aktualisiert werden.</li>
+      <li>Die Gittergröße soll sich an die Bildschirmgröße anpassen.</li>
+      <li>Das Projekt muss responsiv und übersichtlich gestaltet sein.</li>
+  </ul>
+
+  <h3>Schritt-für-Schritt-Anleitung: Neues Vite + TypeScript Projekt aufsetzen</h3>
+  <ol>
+    <li>
+        <strong>Node.js installieren</strong><br>
+        Stelle sicher, dass <a href="https://nodejs.org/" target="_blank">Node.js</a> installiert ist.
+    </li>
+    <li>
+        <strong>Neues Vite-Projekt erstellen</strong><br>
+        Öffne dein Terminal und führe aus:<br>
+        <code>npm create vite@latest</code><br>
+        - Gib einen Projektnamen ein (z.B. <code>game-of-life</code>).<br>
+        - Wähle <strong>Vanilla</strong> als Framework.<br>
+        - Wähle <strong>TypeScript</strong> als Variante.
+    </li>
+    <li>
+        <strong>In das Projektverzeichnis wechseln</strong><br>
+        <code>cd game-of-life</code>
+    </li>
+    <li>
+        <strong>Abhängigkeiten installieren</strong><br>
+        <code>npm install</code>
+    </li>
+    <li>
+        <strong>Entwicklungsserver starten</strong><br>
+        <code>npm run dev</code><br>
+        Öffne die angezeigte lokale URL (meist <code>http://localhost:5173/</code>).
+    </li>
+    <li>
+        <strong>"Hello World!" im Browser anzeigen</strong><br>
+        Öffne <code>src/main.ts</code> und ersetze den Inhalt durch:<br>
+        <pre>document.querySelector&lt;HTMLDivElement&gt;('#app')!.innerHTML = `
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+`;</pre>
+        Stelle sicher, dass deine <code>index.html</code> ein <code>&lt;div id="app"&gt;&lt;/div&gt;</code> enthält.
+    </li>
+    <li>
+        <strong>Für Deployment bauen</strong><br>
+        <code>npm run build</code><br>
+        Das Ergebnis findest du im <code>dist</code>-Ordner.
+    </li>
+  </ol>
+
+  <h3>Nächste Schritte</h3>
+  <ul>
+      <li>Ersetze "Hello World!" durch deine Game of Life-Implementierung.</li>
+      <li>Verwende TypeScript für die gesamte Logik und DOM-Manipulation.</li>
+      <li>Mache das Gitter responsiv zur Bildschirmgröße.</li>
+  </ul>
+  <hr>
+
+
+
+
+  <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+  <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+  <div class="menu">
+    <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+    <a href="../../Work/Carlos/main.html">Carlos</a>
+    <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+    <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+    <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+    <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+    <a href="../../Work/Mehmet/Journal/journal.html">Mehmet</a>
+  </div>
+  <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>

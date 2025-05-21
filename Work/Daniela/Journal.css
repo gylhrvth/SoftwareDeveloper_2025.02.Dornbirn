@@ -40,6 +40,12 @@ main>div>h1 {
     text-decoration: none;
 }
 
+main>div>h2 {
+    color: rgb(238, 232, 239);
+    font-family: "Delius", cursive;
+    text-decoration: none;
+}
+
 header{
     justify-content: center;
     align-items: center;
