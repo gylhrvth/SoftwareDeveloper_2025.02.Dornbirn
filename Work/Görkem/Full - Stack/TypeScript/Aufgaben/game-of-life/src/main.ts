@@ -4,7 +4,6 @@
 type Grid = number[][];
 
 const app = document.querySelector<HTMLDivElement>('#app');
-const cellSize = 18;
 let rows: number, cols: number; // Anzahl der Zeilen und Spalten im Grid
 let grid: Grid;
 let running = true; // Gibt an, ob die Simulation läuft
@@ -64,46 +63,45 @@ if (app) {
 }
 
 let speed = 20;
-const speedSlider = document.getElementById('speedSlider') as HTMLInputElement;
-if (speedSlider) {
-  speed = Number(speedSlider.value);
-  speedSlider.addEventListener('input', () => {
-    speed = Number(speedSlider.value);
+const speedSliderElem = document.getElementById('speedSlider') as HTMLInputElement;
+if (speedSliderElem) {
+  speed = Number(speedSliderElem.value);
+  speedSliderElem.addEventListener('input', () => {
+    speed = Number(speedSliderElem.value);
   });
 }
 
 function getGridSize(): { rows: number; cols: number; cellSize: number } {
-  const minCellSize = 10; 
-  const maxCellSize = 24; 
-  const padding = 80; 
-  const maxCols = 40; 
-  const maxRows = 40; 
+  const padding = 80; // Platz für Überschrift/Buttons
+  const maxCols = 40; // Maximalspalten für mobile
+  const maxRows = 40; // Maximalzeilen für mobile
 
-  let cols = Math.floor(window.innerWidth / maxCellSize);
-  let rows = Math.floor((window.innerHeight - padding) / maxCellSize);
+  // Berechne, wie viele Zellen maximal reinpassen
+  let cols = Math.min(Math.floor((window.innerWidth - 32) / 18), maxCols);
+  let rows = Math.min(Math.floor((window.innerHeight - padding) / 18), maxRows);
 
-  cols = Math.min(cols, maxCols);
-  rows = Math.min(rows, maxRows);
-
-// Berechnet die optimale Grid-Größe und Zellgröße basierend auf Fenstergröße
-  const cellSize = Math.max(
-    minCellSize,
+  // Berechne die optimale Zellgröße, damit das Grid genau passt
+  const cellSize = Math.floor(
     Math.min(
-      Math.floor(window.innerWidth / cols),
-      Math.floor((window.innerHeight - padding) / rows)
+      (window.innerWidth - 32) / cols,
+      (window.innerHeight - padding) / rows
     )
   );
 
   return { rows, cols, cellSize };
 }
+
 // Erstellt ein neues (zufälliges) Grid
 function createGrid(rows: number, cols: number): Grid {
   return Array.from({length: rows}, () =>
     Array.from({ length: cols }, () => (Math.random() > 0.7 ? 1 : 0))
   );
 }
+
 // Zeichnet das Grid im DOM
-function renderInitialGrid(): void {
+function renderInitialGrid(grid: Grid, gridContainer: HTMLDivElement, cellSize: number): void {
+  const rows = grid.length;
+  const cols = grid[0].length;
   gridContainer.style.display = "grid";
   gridContainer.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
   gridContainer.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
@@ -123,8 +121,9 @@ function renderInitialGrid(): void {
     }
   }
 }
+
 // Aktualisiert die Darstellung der Zellen im DOM
-function updateGridDOM(): void {
+function updateGridDOM(grid: Grid, gridContainer: HTMLDivElement): void {
   const allCells = gridContainer.querySelectorAll<HTMLDivElement>('.cell');
   allCells.forEach(cell => {
     const r = parseInt(cell.dataset.row!);
@@ -133,9 +132,12 @@ function updateGridDOM(): void {
     cell.classList.toggle('alive', alive === 1);
   });
 }
+
 // Zählt die lebenden Nachbarn einer Zelle
-function countNeighbors(r: number, c: number): number {
+function countNeighbors(grid: Grid, r: number, c: number): number {
   let count = 0;
+  const rows = grid.length;
+  const cols = grid[0].length;
   for (let dr = -1; dr <= 1; dr++){
     for (let dc = -1; dc <= 1; dc++){
       if (dr === 0 && dc === 0) continue;
@@ -143,33 +145,38 @@ function countNeighbors(r: number, c: number): number {
       const nc = c + dc
       if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
         count += grid[nr][nc];
+      }
     }
   }
+  return count;
 }
-return count;
-}
+
 // Berechnet die nächste Generation nach den Spielregeln
-function nextGeneration(): void{
+function nextGeneration(grid: Grid): Grid {
+  const rows = grid.length;
+  const cols = grid[0].length;
   const next: Grid = grid.map(arr => [...arr]);
   for (let r = 0; r < rows; r++){
     for (let c = 0; c < cols; c++){
-      const neighbors = countNeighbors(r, c);
+      const neighbors = countNeighbors(grid, r, c);
       if (grid[r][c] === 1 && (neighbors < 2 || neighbors > 3)) next[r][c] = 0;
       else if (grid[r][c] === 0 && neighbors === 3) next[r][c] = 1;
     }
   }
-  grid = next;
+  return next;
 }
+
 // Haupt-Loop: Steuert die Animation und Geschwindigkeit
 function loop(): void {
   if (running) {
-    nextGeneration();
-    updateGridDOM();
+    grid = nextGeneration(grid);
+    updateGridDOM(grid, gridContainer);
   }
-   setTimeout(() => {
+  setTimeout(() => {
     animationFrameId = requestAnimationFrame(loop);
   }, 1000 / speed);
 }
+
 // Setzt das Grid bei Größenänderung neu auf
 function resizeGrid(): void {
   const size = getGridSize();
@@ -177,13 +184,15 @@ function resizeGrid(): void {
     rows = size.rows;
     cols = size.cols;
     grid = createGrid(rows, cols);
-    renderInitialGrid();
+    renderInitialGrid(grid, gridContainer, size.cellSize);
+    updateGridDOM(grid, gridContainer);
   }
 }
 
+// Zelle toggeln
 function toggleCell(r: number, c: number): void {
   grid[r][c] = grid[r][c] ? 0 : 1;
-  updateGridDOM();
+  updateGridDOM(grid, gridContainer);
 }
 
 // Klick auf eine Zelle toggelt deren Zustand (lebendig/tot)
@@ -199,13 +208,14 @@ gridContainer.addEventListener('click', (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === " ") {
     running = !running;
-  if (running) {
+    if (running) {
       requestAnimationFrame(loop);
     } else {
       cancelAnimationFrame(animationFrameId);
     }
   }
 });
+
 // Start/Stop-Button
 document.getElementById('startStopBtn')?.addEventListener('click', () => {
   running = !running;
@@ -215,20 +225,23 @@ document.getElementById('startStopBtn')?.addEventListener('click', () => {
     cancelAnimationFrame(animationFrameId);
   }
 });
+
 // Neustart-Button: Neues zufälliges Grid
 document.getElementById('restartBtn')?.addEventListener('click', () => {
   grid = createGrid(rows, cols); // neues zufälliges Grid
-  renderInitialGrid();
-  updateGridDOM();
+  renderInitialGrid(grid, gridContainer, getGridSize().cellSize);
+  updateGridDOM(grid, gridContainer);
 });
 
+// Dark Mode umschalten
 document.getElementById('darkModeBtn')?.addEventListener('click', () => {
   document.body.classList.toggle('dark');
 });
+
 // Fenstergröße ändert sich → Grid neu berechnen
 window.addEventListener("resize", () => {
   resizeGrid();
-  updateGridDOM();
+  updateGridDOM(grid, gridContainer);
 });
 
 // Initial starten
@@ -236,7 +249,7 @@ const size = getGridSize();
 rows = size.rows;
 cols = size.cols;
 grid = createGrid(rows, cols);
-renderInitialGrid();
+renderInitialGrid(grid, gridContainer, size.cellSize);
 requestAnimationFrame(loop);
 
 // Initiales Setup: Grid berechnen, erzeugen und Animation starten
