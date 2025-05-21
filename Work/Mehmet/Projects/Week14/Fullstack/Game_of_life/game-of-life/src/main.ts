@@ -28,147 +28,104 @@
 import './style.css'
 
 
-// --- Überschrift und Buttons erstellen ---
 const headingDiv = document.getElementById("heading")!;
+const app = document.querySelector<HTMLDivElement>('#app')!;
+const gridSize = 30;
+let grid = new Array(gridSize * gridSize).fill(false);
+const cells: HTMLDivElement[] = [];
 
-// Überschrift
-const head = document.createElement('h1');
-head.innerText = "Game of Life";
-headingDiv.appendChild(head);
-
-// Container für Buttons
+// Initialize heading and controls
+headingDiv.innerHTML = `<h1>Game of Life</h1>`;
 const controlsDiv = document.createElement('div');
 controlsDiv.id = "controls";
 headingDiv.appendChild(controlsDiv);
 
-// Restart Button
-const restartBtn = document.createElement('button');
-restartBtn.innerText = "Restart";
-controlsDiv.appendChild(restartBtn);
+// Create buttons utility
+function createButton(text: string): HTMLButtonElement {
+  const btn = document.createElement('button');
+  btn.textContent = text;
+  return btn;
+}
 
-// Start/Stop Button
-const startStopBtn = document.createElement('button');
-startStopBtn.innerText = "Stop";
-controlsDiv.appendChild(startStopBtn);
+// Create controls
+const restartBtn = createButton("Restart");
+const startStopBtn = createButton("Stop");
+const darkModeBtn = createButton("Dark Mode");
 
+const seedLabel = document.createElement('label');
+seedLabel.htmlFor = 'seedInput';
+seedLabel.textContent = 'Seeds: ';
 
-// --- Grid Setup ---
-const app = document.querySelector<HTMLDivElement>('#app')!;
-const gridSize = 30; // 30x30 Grid
+const seedInput = document.createElement('input');
+seedInput.type = 'number';
+seedInput.id = 'seedInput';
+seedInput.min = '1';
+seedInput.max = '300';
+seedInput.value = '20';
 
-let grid = new Array(gridSize * gridSize).fill(false);
-const cells: HTMLDivElement[] = [];
+controlsDiv.append(restartBtn, startStopBtn, darkModeBtn, seedLabel, seedInput);
 
-// Zellen erzeugen
+// Build grid cells and event listeners once
 for (let i = 0; i < grid.length; i++) {
   const cell = document.createElement('div');
   cell.classList.add('cell');
-  
-  // Klick: Zustand toggeln
   cell.addEventListener('click', () => {
     grid[i] = !grid[i];
-    updateDOM();
+    updateDOMCell(i);
   });
-
   app.appendChild(cell);
   cells.push(cell);
 }
 
-// Zufällige Startmuster (Blinker) setzen
-function setRandomSeeds(numSeeds: number) {
-  grid.fill(false);
-  for (let s = 0; s < numSeeds; s++) {
-    const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
-    const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
-
-    grid[row * gridSize + col - 1] = true;
-    grid[row * gridSize + col] = true;
-    grid[row * gridSize + col + 1] = true;
-  }
+// Efficiently update only the changed cell in DOM
+function updateDOMCell(i: number) {
+  cells[i].classList.toggle('alive', grid[i]);
 }
 
-setRandomSeeds(25);
-updateDOM();
-
-// DOM Update
+// Update all cells DOM (for batch updates)
 function updateDOM() {
-  for (let i = 0; i < grid.length; i++) {
-    if (grid[i]) cells[i].classList.add('alive');
-    else cells[i].classList.remove('alive');
-  }
+  grid.forEach((alive, i) => updateDOMCell(i));
 }
 
-// Nachbarn zählen
-function countAliveNeighbors(index: number): number {
-  const neighbors = [
-    -gridSize - 1, -gridSize, -gridSize + 1,
-    -1,             /* index */  +1,
-    gridSize - 1,  gridSize,  gridSize + 1
-  ];
-
+// Calculate alive neighbors of a cell at index i
+function countAliveNeighbors(i: number): number {
+  const row = Math.floor(i / gridSize);
+  const col = i % gridSize;
   let count = 0;
-  const row = Math.floor(index / gridSize);
-  const col = index % gridSize;
 
-  for (const offset of neighbors) {
-    const neighborIndex = index + offset;
-    const nRow = Math.floor(neighborIndex / gridSize);
-    const nCol = neighborIndex % gridSize;
-
-    if (
-      neighborIndex >= 0 && neighborIndex < grid.length &&
-      Math.abs(nRow - row) <= 1 &&
-      Math.abs(nCol - col) <= 1
-    ) {
-      if (grid[neighborIndex]) count++;
+  // Iterate neighbors offsets without the center (0,0)
+  for (let r = -1; r <= 1; r++) {
+    for (let c = -1; c <= 1; c++) {
+      if (r === 0 && c === 0) continue;
+      const nr = row + r;
+      const nc = col + c;
+      if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
+        if (grid[nr * gridSize + nc]) count++;
+      }
     }
   }
-
   return count;
 }
 
-// Nächste Generation berechnen
+// Compute next generation grid efficiently in one pass
 function nextGeneration() {
-  const newGrid = new Array(grid.length).fill(false);
-
+  const newGrid = new Array(gridSize * gridSize);
   for (let i = 0; i < grid.length; i++) {
-    const aliveNeighbors = countAliveNeighbors(i);
-
-    if (grid[i]) {
-      newGrid[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
-    } else {
-      newGrid[i] = aliveNeighbors === 3;
-    }
+    const neighbors = countAliveNeighbors(i);
+    newGrid[i] = grid[i] ? neighbors === 2 || neighbors === 3 : neighbors === 3;
   }
-
   grid = newGrid;
   updateDOM();
 }
 
-// Animation mit requestAnimationFrame
+// Animation loop with throttling by interval
 let lastUpdate = 0;
-const interval = 600; // ms
+const interval = 600;
 let running = true;
-
-startStopBtn.addEventListener('click', () => {
-  running = !running;
-  startStopBtn.innerText = running ? "Stop" : "Start";
-  if (running) requestAnimationFrame(animate);
-});
-
-restartBtn.addEventListener('click', () => {
-  setRandomSeeds(25);
-  updateDOM();
-  if (!running) {
-    running = true;
-    startStopBtn.innerText = "Stop";
-    requestAnimationFrame(animate);
-  }
-});
 
 function animate(time = 0) {
   if (!running) return;
-  if (time - lastUpdate > interval) {
+  if (time - lastUpdate >= interval) {
     nextGeneration();
     lastUpdate = time;
   }
@@ -177,6 +134,41 @@ function animate(time = 0) {
 
 requestAnimationFrame(animate);
 
+// Button event handlers
+startStopBtn.addEventListener('click', () => {
+  running = !running;
+  startStopBtn.textContent = running ? "Stop" : "Start";
+  if (running) requestAnimationFrame(animate);
+});
+
+restartBtn.addEventListener('click', () => {
+  grid.fill(false);
+  const seeds = Math.min(Math.max(parseInt(seedInput.value) || 20, 1), 300);
+
+  for (let i = 0; i < seeds; i++) {
+    // Random row and col excluding edges
+    const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
+    const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
+
+    // Seed a horizontal line of 3 cells, carefully avoiding index errors
+    const centerIndex = row * gridSize + col;
+    [centerIndex - 1, centerIndex, centerIndex + 1].forEach(idx => grid[idx] = true);
+  }
+
+  updateDOM();
+
+  if (!running) {
+    running = true;
+    startStopBtn.textContent = "Stop";
+    requestAnimationFrame(animate);
+  }
+});
+
+darkModeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  html.classList.toggle('dark-mode');
+  darkModeBtn.textContent = html.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+});
 
 
 
