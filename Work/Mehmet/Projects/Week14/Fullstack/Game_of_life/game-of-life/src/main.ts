@@ -25,29 +25,36 @@
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 
 
-import './style.css'
+import './style.css' bug
 
 
 const headingDiv = document.getElementById("heading")!;
 const app = document.querySelector<HTMLDivElement>('#app')!;
-const gridSize = 30;
-let grid = new Array(gridSize * gridSize).fill(false);
+
+const GRID_SIZE = 30;
+const CELL_COUNT = GRID_SIZE * GRID_SIZE;
+const SEED_MIN = 1;
+const SEED_MAX = 300;
+const ANIMATION_INTERVAL = 600;
+
+let grid = new Array(CELL_COUNT).fill(false);
 const cells: HTMLDivElement[] = [];
 
-// Initialize heading and controls
 headingDiv.innerHTML = `<h1>Game of Life</h1>`;
+
+// Controls container
 const controlsDiv = document.createElement('div');
 controlsDiv.id = "controls";
 headingDiv.appendChild(controlsDiv);
 
-// Create buttons utility
+// Utility to create buttons
 function createButton(text: string): HTMLButtonElement {
   const btn = document.createElement('button');
   btn.textContent = text;
   return btn;
 }
 
-// Create controls
+// Controls elements
 const restartBtn = createButton("Restart");
 const startStopBtn = createButton("Stop");
 const darkModeBtn = createButton("Dark Mode");
@@ -59,107 +66,122 @@ seedLabel.textContent = 'Seeds: ';
 const seedInput = document.createElement('input');
 seedInput.type = 'number';
 seedInput.id = 'seedInput';
-seedInput.min = '1';
-seedInput.max = '300';
+seedInput.min = SEED_MIN.toString();
+seedInput.max = SEED_MAX.toString();
 seedInput.value = '20';
 
 controlsDiv.append(restartBtn, startStopBtn, darkModeBtn, seedLabel, seedInput);
 
-// Build grid cells and event listeners once
-for (let i = 0; i < grid.length; i++) {
+// Build grid cells once with click toggling
+for (let i = 0; i < CELL_COUNT; i++) {
   const cell = document.createElement('div');
   cell.classList.add('cell');
   cell.addEventListener('click', () => {
     grid[i] = !grid[i];
-    updateDOMCell(i);
+    updateCell(i);
   });
   app.appendChild(cell);
   cells.push(cell);
 }
 
-// Efficiently update only the changed cell in DOM
-function updateDOMCell(i: number) {
-  cells[i].classList.toggle('alive', grid[i]);
+// Update a single cell's visual state
+function updateCell(index: number) {
+  cells[index].classList.toggle('alive', grid[index]);
 }
 
-// Update all cells DOM (for batch updates)
-function updateDOM() {
-  grid.forEach((alive, i) => updateDOMCell(i));
+// Update all cells in batch
+function updateAllCells() {
+  for (let i = 0; i < CELL_COUNT; i++) {
+    updateCell(i);
+  }
 }
 
-// Calculate alive neighbors of a cell at index i
-function countAliveNeighbors(i: number): number {
-  const row = Math.floor(i / gridSize);
-  const col = i % gridSize;
+// Count alive neighbors around a cell
+function countAliveNeighbors(index: number): number {
+  const row = Math.floor(index / GRID_SIZE);
+  const col = index % GRID_SIZE;
   let count = 0;
 
-  // Iterate neighbors offsets without the center (0,0)
   for (let r = -1; r <= 1; r++) {
     for (let c = -1; c <= 1; c++) {
       if (r === 0 && c === 0) continue;
       const nr = row + r;
       const nc = col + c;
-      if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
-        if (grid[nr * gridSize + nc]) count++;
+      if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+        if (grid[nr * GRID_SIZE + nc]) count++;
       }
     }
   }
+
   return count;
 }
 
-// Compute next generation grid efficiently in one pass
+let running = true;
+let lastTimestamp = 0;
+
 function nextGeneration() {
-  const newGrid = new Array(gridSize * gridSize);
-  for (let i = 0; i < grid.length; i++) {
-    const neighbors = countAliveNeighbors(i);
-    newGrid[i] = grid[i] ? neighbors === 2 || neighbors === 3 : neighbors === 3;
+  const newGrid = new Array(CELL_COUNT);
+
+  for (let i = 0; i < CELL_COUNT; i++) {
+    const aliveNeighbors = countAliveNeighbors(i);
+    const isAlive = grid[i];
+    newGrid[i] = isAlive ? (aliveNeighbors === 2 || aliveNeighbors === 3) : (aliveNeighbors === 3);
   }
+
   grid = newGrid;
-  updateDOM();
+  updateAllCells();
 }
 
-// Animation loop with throttling by interval
-let lastUpdate = 0;
-const interval = 600;
-let running = true;
-
-function animate(time = 0) {
+function animate(timestamp = 0) {
   if (!running) return;
-  if (time - lastUpdate >= interval) {
+
+  if (timestamp - lastTimestamp >= ANIMATION_INTERVAL) {
     nextGeneration();
-    lastUpdate = time;
+    lastTimestamp = timestamp;
   }
+
   requestAnimationFrame(animate);
 }
 
+// Initial start of animation loop
 requestAnimationFrame(animate);
 
-// Button event handlers
+// Button handlers
 startStopBtn.addEventListener('click', () => {
   running = !running;
   startStopBtn.textContent = running ? "Stop" : "Start";
-  if (running) requestAnimationFrame(animate);
+
+  if (running) {
+    lastTimestamp = performance.now(); // reset timing to avoid jump
+    requestAnimationFrame(animate);
+  }
 });
 
 restartBtn.addEventListener('click', () => {
   grid.fill(false);
-  const seeds = Math.min(Math.max(parseInt(seedInput.value) || 20, 1), 300);
+
+  let seeds = parseInt(seedInput.value);
+  if (isNaN(seeds) || seeds < SEED_MIN) seeds = SEED_MIN;
+  if (seeds > SEED_MAX) seeds = SEED_MAX;
 
   for (let i = 0; i < seeds; i++) {
-    // Random row and col excluding edges
-    const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
-    const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
+    // Random position avoiding edges
+    const row = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+    const col = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+    const centerIndex = row * GRID_SIZE + col;
 
-    // Seed a horizontal line of 3 cells, carefully avoiding index errors
-    const centerIndex = row * gridSize + col;
-    [centerIndex - 1, centerIndex, centerIndex + 1].forEach(idx => grid[idx] = true);
+    // Seed a horizontal line of 3 alive cells (if inside grid)
+    [centerIndex - 1, centerIndex, centerIndex + 1].forEach(idx => {
+      if (idx >= 0 && idx < CELL_COUNT) grid[idx] = true;
+    });
   }
 
-  updateDOM();
+  updateAllCells();
 
   if (!running) {
     running = true;
     startStopBtn.textContent = "Stop";
+    lastTimestamp = performance.now();
     requestAnimationFrame(animate);
   }
 });
