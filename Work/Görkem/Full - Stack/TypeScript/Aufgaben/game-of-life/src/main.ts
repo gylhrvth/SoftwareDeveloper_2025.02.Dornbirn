@@ -1,33 +1,83 @@
+// Conway's Game of Life - TypeScript/DOM-Implementierung
+// Interaktives, responsives Spielfeld mit Start/Stop, Dark Mode und Geschwindigkeitsregler
 
 type Grid = number[][];
 
 const app = document.querySelector<HTMLDivElement>('#app');
 const cellSize = 18;
-const gridPadding = 32;
-let rows: number, cols: number;
+let rows: number, cols: number; // Anzahl der Zeilen und Spalten im Grid
 let grid: Grid;
-let running = true;
+let running = true; // Gibt an, ob die Simulation läuft
 let animationFrameId: number;
 
+// Erzeuge das Grid-Container-DIV
 const gridContainer = document.createElement('div');
 gridContainer.id = 'grid';
+
 if (app) {
-  app.innerHTML = `
-    <h1>Game of Life</h1>
-    <div id="controls" style="text-align:center; margin-bottom:10px;">
-      <button id="startStopBtn">Start/Stop</button>
-      <button id="restartBtn">Neustart</button>
-    </div>
-  `;
+  // Überschrift
+  const heading = document.createElement('h1');
+  heading.textContent = 'Game of Life';
+
+  // Controls-Container
+  const controls = document.createElement('div');
+  controls.id = 'controls';
+  controls.style.textAlign = 'center';
+  controls.style.marginBottom = '10px';
+
+  // Buttons
+  const startStopBtn = document.createElement('button');
+  startStopBtn.id = 'startStopBtn';
+  startStopBtn.textContent = 'Start/Stop';
+
+  const restartBtn = document.createElement('button');
+  restartBtn.id = 'restartBtn';
+  restartBtn.textContent = 'Neustart';
+
+  const darkModeBtn = document.createElement('button');
+  darkModeBtn.id = 'darkModeBtn';
+  darkModeBtn.textContent = 'Dark Mode';
+
+  // Speed Slider
+  const speedLabel = document.createElement('label');
+  speedLabel.style.marginLeft = '16px';
+  speedLabel.textContent = 'Speed: ';
+  const speedSlider = document.createElement('input');
+  speedSlider.type = 'range';
+  speedSlider.id = 'speedSlider';
+  speedSlider.min = '1';
+  speedSlider.max = '60';
+  speedSlider.value = '20';
+  speedSlider.style.verticalAlign = 'middle';
+  speedLabel.appendChild(speedSlider);
+
+  // Buttons und Slider zu Controls hinzufügen
+  controls.appendChild(startStopBtn);
+  controls.appendChild(restartBtn);
+  controls.appendChild(darkModeBtn);
+  controls.appendChild(speedLabel);
+
+  // Alles ins App-DIV einfügen
+  app.appendChild(heading);
+  app.appendChild(controls);
   app.appendChild(gridContainer);
 }
 
+let speed = 20;
+const speedSlider = document.getElementById('speedSlider') as HTMLInputElement;
+if (speedSlider) {
+  speed = Number(speedSlider.value);
+  speedSlider.addEventListener('input', () => {
+    speed = Number(speedSlider.value);
+  });
+}
+
 function getGridSize(): { rows: number; cols: number; cellSize: number } {
-  const minCellSize = 10; // Minimum für Touch-Bedienung
-  const maxCellSize = 24; // Maximum für große Bildschirme
-  const padding = 80; // Platz für Überschrift/Buttons
-  const maxCols = 40; // Maximalspalten für mobile
-  const maxRows = 40; // Maximalzeilen für mobile
+  const minCellSize = 10; 
+  const maxCellSize = 24; 
+  const padding = 80; 
+  const maxCols = 40; 
+  const maxRows = 40; 
 
   let cols = Math.floor(window.innerWidth / maxCellSize);
   let rows = Math.floor((window.innerHeight - padding) / maxCellSize);
@@ -35,7 +85,7 @@ function getGridSize(): { rows: number; cols: number; cellSize: number } {
   cols = Math.min(cols, maxCols);
   rows = Math.min(rows, maxRows);
 
-  // Berechne die optimale Zellgröße, damit das Grid genau passt
+// Berechnet die optimale Grid-Größe und Zellgröße basierend auf Fenstergröße
   const cellSize = Math.max(
     minCellSize,
     Math.min(
@@ -46,13 +96,13 @@ function getGridSize(): { rows: number; cols: number; cellSize: number } {
 
   return { rows, cols, cellSize };
 }
-
+// Erstellt ein neues (zufälliges) Grid
 function createGrid(rows: number, cols: number): Grid {
   return Array.from({length: rows}, () =>
     Array.from({ length: cols }, () => (Math.random() > 0.7 ? 1 : 0))
   );
 }
-
+// Zeichnet das Grid im DOM
 function renderInitialGrid(): void {
   gridContainer.style.display = "grid";
   gridContainer.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
@@ -73,7 +123,7 @@ function renderInitialGrid(): void {
     }
   }
 }
-
+// Aktualisiert die Darstellung der Zellen im DOM
 function updateGridDOM(): void {
   const allCells = gridContainer.querySelectorAll<HTMLDivElement>('.cell');
   allCells.forEach(cell => {
@@ -83,7 +133,7 @@ function updateGridDOM(): void {
     cell.classList.toggle('alive', alive === 1);
   });
 }
-
+// Zählt die lebenden Nachbarn einer Zelle
 function countNeighbors(r: number, c: number): number {
   let count = 0;
   for (let dr = -1; dr <= 1; dr++){
@@ -98,7 +148,7 @@ function countNeighbors(r: number, c: number): number {
 }
 return count;
 }
-
+// Berechnet die nächste Generation nach den Spielregeln
 function nextGeneration(): void{
   const next: Grid = grid.map(arr => [...arr]);
   for (let r = 0; r < rows; r++){
@@ -110,15 +160,17 @@ function nextGeneration(): void{
   }
   grid = next;
 }
-
+// Haupt-Loop: Steuert die Animation und Geschwindigkeit
 function loop(): void {
   if (running) {
     nextGeneration();
     updateGridDOM();
   }
-  animationFrameId = requestAnimationFrame(loop);
+   setTimeout(() => {
+    animationFrameId = requestAnimationFrame(loop);
+  }, 1000 / speed);
 }
-
+// Setzt das Grid bei Größenänderung neu auf
 function resizeGrid(): void {
   const size = getGridSize();
   if (size.rows !== rows || size.cols !== cols){
@@ -134,7 +186,7 @@ function toggleCell(r: number, c: number): void {
   updateGridDOM();
 }
 
-// Klickbare Zellen aktivieren
+// Klick auf eine Zelle toggelt deren Zustand (lebendig/tot)
 gridContainer.addEventListener('click', (e) => {
   const target = e.target as HTMLDivElement;
   if (!target.classList.contains('cell')) return;
@@ -143,7 +195,7 @@ gridContainer.addEventListener('click', (e) => {
   toggleCell(r, c);
 });
 
-// Space zum Start/Stop
+// Leertaste startet/stoppt die Simulation
 document.addEventListener("keydown", (e) => {
   if (e.key === " ") {
     running = !running;
@@ -154,6 +206,7 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+// Start/Stop-Button
 document.getElementById('startStopBtn')?.addEventListener('click', () => {
   running = !running;
   if (running) {
@@ -162,13 +215,17 @@ document.getElementById('startStopBtn')?.addEventListener('click', () => {
     cancelAnimationFrame(animationFrameId);
   }
 });
-
+// Neustart-Button: Neues zufälliges Grid
 document.getElementById('restartBtn')?.addEventListener('click', () => {
   grid = createGrid(rows, cols); // neues zufälliges Grid
   renderInitialGrid();
   updateGridDOM();
 });
 
+document.getElementById('darkModeBtn')?.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
+// Fenstergröße ändert sich → Grid neu berechnen
 window.addEventListener("resize", () => {
   resizeGrid();
   updateGridDOM();
@@ -181,6 +238,8 @@ cols = size.cols;
 grid = createGrid(rows, cols);
 renderInitialGrid();
 requestAnimationFrame(loop);
+
+// Initiales Setup: Grid berechnen, erzeugen und Animation starten
 
 
 
