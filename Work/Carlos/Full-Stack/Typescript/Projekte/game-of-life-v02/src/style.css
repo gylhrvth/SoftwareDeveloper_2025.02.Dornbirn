@@ -1,0 +1,47 @@
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#grid {
+  display: grid;
+  gap: 2px;
+  margin: 0 auto;
+  background: #ccc;
+  aspect-ratio: 1 / 1;
+  width: 95vmin;
+  height: 95vmin;
+  max-width: 800px;
+  max-height: 800px;
+  border: 4px solid #bbb; /* Optional: frame around the grid */
+  box-sizing: border-box;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background: #fff;
+  /* Remove border here */
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.cell.alive {
+  background: #222;
+}
+
+button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b0b0b0;
+}

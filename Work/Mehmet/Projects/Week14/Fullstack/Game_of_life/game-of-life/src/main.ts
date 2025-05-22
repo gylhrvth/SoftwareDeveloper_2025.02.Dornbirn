@@ -25,161 +25,172 @@
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 
 
-import './style.css'
+import './style.css' 
 
 
-
-// this is just the for appending the heading to the id= heading div in index.html
-const head = document.createElement('h1');
-head.innerText = "Game of Life";
-document.getElementById("heading")!.appendChild(head);
-
-const restartBtn = document.createElement('button');
-restartBtn.innerText = "Restart";
-restartBtn.style.marginLeft = "12px";
-document.getElementById("heading")!.appendChild(restartBtn);
-
-const startStopBtn = document.createElement('button');
-startStopBtn.innerText = "Stop";
-document.getElementById("heading")!.appendChild(startStopBtn);
-
-
+const headingDiv = document.getElementById("heading")!;
 const app = document.querySelector<HTMLDivElement>('#app')!;
-const gridSize = 30; // Größe des Gitters (30x30)
 
-// Spielfeld-Daten: Array von booleans (true = lebendig, false = tot)
-let grid = new Array(gridSize * gridSize).fill(false);
+const GRID_SIZE = 30;
+const CELL_COUNT = GRID_SIZE * GRID_SIZE;
+const SEED_MIN = 1;
+const SEED_MAX = 300;
+const ANIMATION_INTERVAL = 600;
 
-// Array für DOM-Zellen, damit wir sie schnell updaten können
+let grid = new Array(CELL_COUNT).fill(false);
 const cells: HTMLDivElement[] = [];
 
-// --- Zellen erzeugen und ins DOM einfügen ---
-for (let i = 0; i < grid.length; i++) {
+headingDiv.innerHTML = `<h1>Game of Life</h1>`;
+
+// Controls container
+const controlsDiv = document.createElement('div');
+controlsDiv.id = "controls";
+headingDiv.appendChild(controlsDiv);
+
+// Utility to create buttons
+function createButton(text: string): HTMLButtonElement {
+  const btn = document.createElement('button');
+  btn.textContent = text;
+  return btn;
+}
+
+// Controls elements
+const restartBtn = createButton("Restart");
+const startStopBtn = createButton("Stop");
+const darkModeBtn = createButton("Dark Mode");
+
+const seedLabel = document.createElement('label');
+seedLabel.htmlFor = 'seedInput';
+seedLabel.textContent = 'Seeds: ';
+
+const seedInput = document.createElement('input');
+seedInput.type = 'number';
+seedInput.id = 'seedInput';
+seedInput.min = SEED_MIN.toString();
+seedInput.max = SEED_MAX.toString();
+seedInput.value = '20';
+
+controlsDiv.append(restartBtn, startStopBtn, darkModeBtn, seedLabel, seedInput);
+
+// Build grid cells once with click toggling
+for (let i = 0; i < CELL_COUNT; i++) {
   const cell = document.createElement('div');
   cell.classList.add('cell');
-
-  // Klick auf Zelle schaltet Status alive/tot um
   cell.addEventListener('click', () => {
-    grid[i] = !grid[i]; // Zustand im Array toggeln
-    updateDOM();        // DOM anpassen, um Farbe zu aktualisieren
+    grid[i] = !grid[i];
+    updateCell(i);
   });
-
   app.appendChild(cell);
   cells.push(cell);
 }
 
-// --- Start-Muster setzen ---
-// --- Zufällige Startmuster setzen ---
-const numSeeds = 25; // Anzahl der Startmuster (hier 5, beliebig änderbar)
-for (let s = 0; s < numSeeds; s++) {
-  // Zufällige Position im Grid (nicht am Rand)
-  const row = Math.floor(Math.random() * (gridSize - 2)) + 1;
-  const col = Math.floor(Math.random() * (gridSize - 2)) + 1;
-  // Einfaches Muster: "Blinker" (drei Zellen in einer Reihe)
-  grid[row * gridSize + col - 1] = true;
-  grid[row * gridSize + col] = true;
-  grid[row * gridSize + col + 1] = true;
+// Update a single cell's visual state
+function updateCell(index: number) {
+  cells[index].classList.toggle('alive', grid[index]);
 }
 
-
-// DOM einmal initial updaten
-updateDOM();
-
-
-// --- Funktion: DOM an den Zustand im Array anpassen --- 
-function updateDOM() {
-  for (let i = 0; i < grid.length; i++) {
-    if (grid[i]) {
-      cells[i].classList.add('alive');
-    } else {
-      cells[i].classList.remove('alive');
-    }
+// Update all cells in batch
+function updateAllCells() {
+  for (let i = 0; i < CELL_COUNT; i++) {
+    updateCell(i);
   }
 }
 
-
-// --- Funktion: Anzahl lebender Nachbarn für eine Zelle berechnen --- 
+// Count alive neighbors around a cell
 function countAliveNeighbors(index: number): number {
-  // Relative Positionen der 8 Nachbarn um die Zelle herum
-  const neighbors = [
-    -gridSize - 1, -gridSize, -gridSize + 1,
-    -1,            /* index */  +1,
-    gridSize - 1,  gridSize,  gridSize + 1
-  ];
-
+  const row = Math.floor(index / GRID_SIZE);
+  const col = index % GRID_SIZE;
   let count = 0;
-  const row = Math.floor(index / gridSize);
-  const col = index % gridSize;
 
-  for (const offset of neighbors) {
-    const neighborIndex = index + offset;
-    const nRow = Math.floor(neighborIndex / gridSize);
-    const nCol = neighborIndex % gridSize;
-
-    // Prüfen, ob Nachbar im gültigen Bereich ist
-    // und nicht über den linken oder rechten Rand hinausgeht
-    if (
-      neighborIndex >= 0 && neighborIndex < grid.length &&
-      Math.abs(nRow - row) <= 1 &&
-      Math.abs(nCol - col) <= 1
-    ) {
-      if (grid[neighborIndex]) count++;
+  for (let r = -1; r <= 1; r++) {
+    for (let c = -1; c <= 1; c++) {
+      if (r === 0 && c === 0) continue;
+      const nr = row + r;
+      const nc = col + c;
+      if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+        if (grid[nr * GRID_SIZE + nc]) count++;
+      }
     }
   }
 
   return count;
 }
 
+let running = true;
+let lastTimestamp = 0;
 
-// --- Funktion: nächste Generation berechnen --- 
 function nextGeneration() {
-  const newGrid = new Array(grid.length).fill(false);
+  const newGrid = new Array(CELL_COUNT);
 
-  for (let i = 0; i < grid.length; i++) {
+  for (let i = 0; i < CELL_COUNT; i++) {
     const aliveNeighbors = countAliveNeighbors(i);
-
-    if (grid[i]) {
-      // Regeln für lebende Zellen: bleiben nur bei 2 oder 3 Nachbarn leben
-      newGrid[i] = aliveNeighbors === 2 || aliveNeighbors === 3;
-    } else {
-      // Regeln für tote Zellen: werden lebendig, wenn genau 3 Nachbarn leben
-      newGrid[i] = aliveNeighbors === 3;
-    }
+    const isAlive = grid[i];
+    newGrid[i] = isAlive ? (aliveNeighbors === 2 || aliveNeighbors === 3) : (aliveNeighbors === 3);
   }
 
-  // Spielfeld aktualisieren
   grid = newGrid;
-  updateDOM();
+  updateAllCells();
 }
 
+function animate(timestamp = 0) {
+  if (!running) return;
 
-// --- Animation: Steuerung der automatischen Updates mit requestAnimationFrame --- 
-
-let lastUpdate = 0;          // Zeit des letzten Updates (in ms)
-const interval = 600;        // Zeitintervall zwischen Updates (500ms = 0.5s)
-
-
-let running = true;
-startStopBtn.addEventListener('click', () => {
-  running = !running;
-  startStopBtn.innerText = running ? "Stop" : "Start";
-  if (running) requestAnimationFrame(animate);
-});
-
-// Animation anpassen:
-function animate(time = 0) {
-  if (!running) return; // <--- Animation pausieren, wenn nicht running
-  if (time - lastUpdate > interval) {
+  if (timestamp - lastTimestamp >= ANIMATION_INTERVAL) {
     nextGeneration();
-    lastUpdate = time;
+    lastTimestamp = timestamp;
   }
+
   requestAnimationFrame(animate);
 }
 
-
-// Animation starten
+// Initial start of animation loop
 requestAnimationFrame(animate);
 
+// Button handlers
+startStopBtn.addEventListener('click', () => {
+  running = !running;
+  startStopBtn.textContent = running ? "Stop" : "Start";
+
+  if (running) {
+    lastTimestamp = performance.now(); // reset timing to avoid jump
+    requestAnimationFrame(animate);
+  }
+});
+
+restartBtn.addEventListener('click', () => {
+  grid.fill(false);
+
+  let seeds = parseInt(seedInput.value);
+  if (isNaN(seeds) || seeds < SEED_MIN) seeds = SEED_MIN;
+  if (seeds > SEED_MAX) seeds = SEED_MAX;
+
+  for (let i = 0; i < seeds; i++) {
+    // Random position avoiding edges
+    const row = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+    const col = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+    const centerIndex = row * GRID_SIZE + col;
+
+    // Seed a horizontal line of 3 alive cells (if inside grid)
+    [centerIndex - 1, centerIndex, centerIndex + 1].forEach(idx => {
+      if (idx >= 0 && idx < CELL_COUNT) grid[idx] = true;
+    });
+  }
+
+  updateAllCells();
+
+  if (!running) {
+    running = true;
+    startStopBtn.textContent = "Stop";
+    lastTimestamp = performance.now();
+    requestAnimationFrame(animate);
+  }
+});
+
+darkModeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  html.classList.toggle('dark-mode');
+  darkModeBtn.textContent = html.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+});
 
 
 

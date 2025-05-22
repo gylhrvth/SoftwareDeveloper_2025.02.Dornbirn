@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  text-align: center;
+  margin-top: 40px;
+}
+
+canvas {
+  border: 2px solid #333;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b0b0b0;
+}

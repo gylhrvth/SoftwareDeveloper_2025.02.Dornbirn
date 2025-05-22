@@ -1,0 +1,107 @@
+body {
+    font-size: 1.3em;
+    font-family: Arial, sans-serif;
+    background-color: #fefefe; 
+    color: #333;
+    padding: 50px;
+    margin: 0;
+    box-sizing: border-box;
+    word-spacing: 2px;
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5rem; /* Größer als Standard */
+    margin-bottom: 20px; /* Abstand nach unten */
+}
+
+h2 {
+    font-size: 1.75rem; /* Größer als Standard */
+    margin-bottom: 15px; /* Abstand nach unten */
+}
+
+h3 {
+    color: #2D6A4F;
+    font-size: 1.75rem; /* Größer als Standard */
+    margin-bottom: 10px; /* Abstand nach unten */
+}
+
+.textColor {
+    color: black; 
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.textColor .underline {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.code-box {
+    background-color: #f4f4f4; /* Heller Hintergrund */
+    border: 2px solid #2D6A4F; /* Dunkelgrüner Rahmen */
+    border-radius: 5px; /* Abgerundete Ecken */
+    padding: 10px;
+    margin: 10px 0;
+    font-family: monospace; /* Monospace-Schrift für Code */
+    font-size: 1.25rem;
+    white-space: pre-wrap; /* Zeilenumbrüche im Code erlauben */
+    color: #333; /* Textfarbe */
+}
+
+p, li {
+    font-size: 1.25rem;
+}
+
+.sql-table {
+    width: 100%; /* Tabelle nimmt die gesamte Breite ein */
+    border-collapse: collapse; /* Entfernt doppelte Rahmen */
+    margin: 20px 0; /* Abstand nach oben und unten */
+    font-size: 1rem; /* Schriftgröße */
+    text-align: left; /* Text linksbündig */
+}
+
+.sql-table th, .sql-table td {
+    border: 2px solid #2D6A4F; /* Dunkelgrüner Rahmen */
+    padding: 10px; /* Innenabstand */
+}
+
+.sql-table th {
+    background-color: #2D6A4F; /* Dunkelgrüner Hintergrund für die Kopfzeile */
+    color: white; /* Weiße Schrift */
+    font-weight: bold; /* Fettschrift */
+}
+
+.sql-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Heller Hintergrund für gerade Zeilen */
+}
+
+.sql-table tr:nth-child(odd) {
+    background-color: #ffffff; /* Weißer Hintergrund für ungerade Zeilen */
+}
+
+code {
+    font-family: var(--secondary-font);
+    background-color: var(--secondary-color);
+    color: var(--secondary-background-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.code-sample>code {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    border: none;
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-sample {
+    font-size: 1.05em;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    overflow-x: auto;
+    white-space: pre;
+}

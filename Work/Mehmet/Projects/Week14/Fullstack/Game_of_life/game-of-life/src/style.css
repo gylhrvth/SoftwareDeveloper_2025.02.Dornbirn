@@ -97,94 +97,222 @@ button:focus-visible {
 
 
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f6f8fa;
+  color: #222;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f6f8fa; /* sehr helles Grau */
-  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
 }
 
+/* Container */
 #container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px 10px 30px;
+  box-sizing: border-box;
 }
 
-#heading {
-  color: #2d7ff9; /* freundliches Blau */
-  text-align: center;
+/* Heading */
+#heading h1 {
+  color: #060efd;
   margin-bottom: 24px;
   text-shadow: 0 2px 8px #e0e7ef;
+  user-select: none;
+  text-align: center;
 }
 
+/* Controls */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+#controls label {
+  font-weight: 600;
+  color: #2d7ff9;
+  font-size: 1.3em; /* increase font size */
+}
+
+#controls input[type="number"] {
+  width: 80px;
+  padding: 0.7em 1.2em;
+  font-size: 1.1em;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: linear-gradient(90deg, #5bbafe 0%, #1fdaff 100%);
+  border: 1px solid #2d7ff9;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px #b0c4de55;
+  cursor: text;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  -moz-appearance: textfield; /* remove default arrows on Firefox */
+  appearance: textfield;
+}
+
+#controls input[type="number"]::-webkit-inner-spin-button,
+#controls input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* remove default arrows on Chrome/Safari */
+  margin: 0;
+}
+
+#controls input[type="number"]:hover {
+  background: linear-gradient(90deg, #8cdbff 0%, #2d7ff9 100%);
+  box-shadow: 0 3px 14px #b0c4de88;
+  transform: translateY(-2px) scale(1.04);
+  border-color: #4ade80;
+}
+
+#controls input[type="number"]:focus {
+  background: linear-gradient(90deg, #4ade80 0%, #2d7ff9 100%);
+  box-shadow: 0 3px 14px #b0c4de88;
+  transform: translateY(-2px) scale(1.04);
+  border-color: #4ade80;
+  outline: none;
+}
+/* SIMPLE Input Settings
+#controls input[type="number"] {
+  width: 60px;
+  font-size: 1em;
+  padding: 4px 8px;
+  border: 1px solid #2d7ff9;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+#controls input[type="number"]:focus {
+  border-color: #4ade80;
+  background-color: #f0fff4;
+  box-shadow: 0 0 5px #4ade80aa;
+  outline: none;
+} */
+
+/* Spacing for buttons/input */
+#controls > * {
+  margin: 4px;
+}
+
+/* Game container */
 #game {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  max-height: calc(100vh - 180px - 30px);
 }
 
+/* Grid app */
 #app {
   display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 90vmin;
-  height: 90vmin;
-  border: 2px solid #b0c4de;
-  gap: 1px;
-  background-color: #e0e7ef; /* helles Blau-Grau */
   grid-template-columns: repeat(30, 1fr);
   grid-template-rows: repeat(30, 1fr);
+  width: 90vmin;
+  height: 90vmin;
+  gap: 1px;
+  background: #e0e7ef;
+  border: 2px solid #b0c4de;
+  border-radius: 6px;
   box-shadow: 0 4px 24px #b0c4de55;
+  touch-action: manipulation;
 }
 
+/* Cells */
 .cell {
-  width: 100%;
-  height: 100%;
+  background: #fafdff;
+  border: 1px solid #dbeafe;
   border-radius: 3px;
   cursor: pointer;
-  background-color: #fafdff; /* fast weiß */
-  border: 1px solid #dbeafe;
   transition: background 0.2s;
 }
 
 .cell.alive {
-  background-color: #4ade80; /* freundliches Grün */
+  background: #4ade80;
   border-color: #22c55e;
   box-shadow: 0 0 4px #22c55e55;
 }
 
+/* Buttons */
 button {
-  border-radius: 8px;
-  border: 1px solid #2d7ff9;
   padding: 0.7em 2em;
   font-size: 1.1em;
   font-weight: 600;
-  font-family: inherit;
-  background: linear-gradient(90deg, #2d7ff9 0%, #4ade80 100%);
   color: #fff;
+  background: linear-gradient(90deg, #2d7ff9 0%, #4ade80 100%);
+  border: 1px solid #2d7ff9;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 8px #b0c4de55;
-  margin-top: 12px;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 3px 10px #b0c4de55;
+  transition: all 0.2s ease-in-out;
 }
 
 button:hover {
   background: linear-gradient(90deg, #4ade80 0%, #2d7ff9 100%);
-  box-shadow: 0 2px 16px #b0c4de88;
+  box-shadow: 0 3px 14px #b0c4de88;
   transform: translateY(-2px) scale(1.04);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 3px solid #2d7ff9;
+button:focus{
+  outline: 2px solid #2d7ff9;
   outline-offset: 2px;
+}
+
+
+/* Dark mode */
+.dark-mode {
+  background: #121212;
+  color: #ddd;
+}
+
+.dark-mode #heading h1 {
+  color: #66aaff;
+  text-shadow: none;
+}
+
+.dark-mode #app {
+  background: #222;
+  border-color: #555;
+  box-shadow: 0 4px 24px #000000cc;
+}
+
+.dark-mode .cell {
+  background: #333;
+  border-color: #555;
+}
+
+.dark-mode .cell.alive {
+  background: #22c55e;
+  border-color: #16a34a;
+  box-shadow: 0 0 8px #16a34acc;
+}
+
+.dark-mode button {
+  background: linear-gradient(90deg, #0d376d 0%, #166534 100%);
+  border-color: #1f2622;
+  color: #d0f0c0;
+  box-shadow: 0 2px 8px #166534aa;
+}
+
+.dark-mode button:hover {
+  background: linear-gradient(90deg, #166534 0%, #0d3d82 100%);
+  box-shadow: 0 2px 16px #22c55ecc;
+}
+
+.dark-mode body{
+  background: #121212;
 }
