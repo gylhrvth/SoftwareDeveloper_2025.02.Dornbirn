@@ -1,7 +1,16 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+}
+
 #gameField{
+    margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(40, 20px);
-    grid-template-rows: repeat(40, 20px);
     gap: 1px;
 }
 .cell{
@@ -12,4 +21,33 @@
 }
 .cell.alive{
     background-color: black;
+}
+
+.userInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.userInput input[type="number"]{
+    width: 50px;
+    margin-right: 10px;
+}
+.userInput input[type="button"]{
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.userInput input[type="button"]:hover{
+    background-color: #0056b3;
 }
