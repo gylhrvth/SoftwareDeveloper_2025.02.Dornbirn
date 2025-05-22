@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Game of Life - Einfach erklärt</title>
+  <style>
+    /* Tabelle ohne Abstand zwischen Zellen */
+    table {
+      border-collapse: collapse;
+    }
+
+    /* Jede Zelle ist 20x20 Pixel groß und hat einen Rahmen */
+    td {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ccc;
+      cursor: pointer; /* Zeigt Mauszeiger als "Klickbar" */
+    }
+
+    /* Lebendige Zellen sind schwarz */
+    .alive {
+      background-color: black;
+    }
+
+    /* Tote Zellen sind weiß */
+    .dead {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Game of Life - Einfach erklärt</h2>
+<!-- Knopf um Simulation zu starten oder anzuhalten -->
+<button id="startBtn">Start</button>
+<!-- Knopf um alles zurückzusetzen -->
+<button id="clearBtn">Clear</button>
+
+<!-- Hier wird das Spielfeld als Tabelle angezeigt -->
+<table id="grid"></table>
+
+<script>
+  // Anzahl Reihen (vertikal) im Spielfeld
+  const rows = 30;
+  // Anzahl Spalten (horizontal) im Spielfeld
+  const cols = 100; // Breite des Bildschirms geteilt durch 20 Pixel pro Zelle
+
+  // Das Spielfeld speichern wir als 2D-Array:
+  // grid[r][c] = Zustand der Zelle in Reihe r und Spalte c
+  // true = lebendig, false = tot
+  let grid = [];
+
+  // Variable für den Status, ob die Simulation läuft oder pausiert
+  let running = false;
+  // Hier speichern wir die Intervall-ID, um die Simulation anhalten zu können
+  let interval;
+
+  // Funktion: Erzeugt ein leeres Spielfeld mit allen toten Zellen (false)
+  function createGrid() {
+    grid = []; // leeres Array vorbereiten
+    for(let r = 0; r < rows; r++) { // für jede Reihe
+      let row = []; // neue Reihe erstellen
+      for(let c = 0; c < cols; c++) { // für jede Spalte in der Reihe
+        row.push(false); // Zelle ist tot (false)
+      }
+      grid.push(row); // Reihe zum Spielfeld hinzufügen
+    }
+  }
+
+  // Funktion: Zeichnet das Spielfeld in die Tabelle im HTML
+  function drawGrid() {
+    const table = document.getElementById('grid');
+    table.innerHTML = ''; // Tabelle leeren, um neu zu zeichnen
+
+    for(let r = 0; r < rows; r++) { // für jede Reihe
+      const tr = document.createElement('tr'); // neue Tabellen-Reihe
+
+      for(let c = 0; c < cols; c++) { // für jede Zelle in der Reihe
+        const td = document.createElement('td'); // neue Tabellen-Zelle
+
+        // Wenn Zelle lebendig ist, bekommt sie Klasse 'alive', sonst 'dead'
+        td.className = grid[r][c] ? 'alive' : 'dead';
+
+        // Wenn wir auf die Zelle klicken, ändern wir ihren Zustand:
+        td.addEventListener('click', () => {
+          grid[r][c] = !grid[r][c]; // Zustand umschalten: lebendig <-> tot
+          drawGrid(); // Spielfeld neu zeichnen, damit man die Änderung sieht
+        });
+
+        tr.appendChild(td); // Zelle zur Tabellen-Reihe hinzufügen
+      }
+
+      table.appendChild(tr); // Reihe zur Tabelle hinzufügen
+    }
+  }
+
+  // Funktion: Zählt lebendige Nachbarn einer Zelle an Position (r, c)
+  function countNeighbors(r, c) {
+    let count = 0; // Zähler für lebende Nachbarn
+
+    // Wir schauen alle Nachbar-Zellen im 3x3 Bereich um die Zelle (r,c) an
+    for(let dr = -1; dr <= 1; dr++) {  // dr = Änderung der Reihe (-1, 0, 1)
+      for(let dc = -1; dc <= 1; dc++) { // dc = Änderung der Spalte (-1, 0, 1)
+
+        // Überspringe die Zelle selbst (dr=0, dc=0)
+        if(dr === 0 && dc === 0) continue;
+
+        const nr = r + dr; // Nachbar-Reihe
+        const nc = c + dc; // Nachbar-Spalte
+
+        // Prüfe, ob der Nachbar innerhalb des Spielfelds liegt
+        if(nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+          if(grid[nr][nc]) { // Wenn Nachbar lebendig ist
+            count++;        // Zähler erhöhen
+          }
+        }
+      }
+    }
+
+    return count; // Anzahl lebender Nachbarn zurückgeben
+  }
+
+  // Funktion: Berechnet den nächsten Zustand für alle Zellen nach den Regeln
+  function nextGeneration() {
+    // Neues leeres Spielfeld für die nächste Generation
+    const newGrid = [];
+
+    for(let r = 0; r < rows; r++) {
+      const newRow = [];
+      for(let c = 0; c < cols; c++) {
+        const alive = grid[r][c];            // aktueller Zustand der Zelle
+        const neighbors = countNeighbors(r, c); // lebende Nachbarn zählen
+
+        // Regeln von Conway anwenden:
+        if(alive) {
+          // Regel 1 und 3: Zelle stirbt, wenn zu wenig oder zu viele Nachbarn
+          if(neighbors < 2 || neighbors > 3) {
+            newRow.push(false); // Zelle stirbt (wird tot)
+          } else {
+            // Regel 2: Zelle lebt weiter mit 2 oder 3 Nachbarn
+            newRow.push(true);
+          }
+        } else {
+          // Regel 4: Tote Zelle wird lebendig, wenn genau 3 Nachbarn lebendig sind
+          if(neighbors === 3) {
+            newRow.push(true);
+          } else {
+            newRow.push(false); // bleibt tot
+          }
+        }
+      }
+      newGrid.push(newRow);
+    }
+
+    grid = newGrid; // altes Spielfeld durch das neue ersetzen
+    drawGrid();     // neu zeichnen, damit wir die Änderung sehen
+  }
+
+  // Funktion: Startet oder stoppt die Simulation (Animation)
+  function toggleRun() {
+    const btn = document.getElementById('startBtn');
+
+    if(running) {
+      // Wenn Simulation läuft, stoppen wir sie
+      clearInterval(interval);  // stoppt das automatische Weitermachen
+      btn.textContent = 'Start'; // Knopftext zurücksetzen
+      running = false;
+    } else {
+      // Simulation starten: alle 500 ms neue Generation berechnen
+      interval = setInterval(nextGeneration, 500);
+      btn.textContent = 'Pause'; // Knopftext ändern
+      running = true;
+    }
+  }
+
+  // Funktion: Setzt das Spielfeld zurück (alle Zellen tot)
+  function clearGrid() {
+    createGrid();  // neues leeres Spielfeld erzeugen
+    drawGrid();    // zeichnen
+    if(running) {
+      toggleRun(); // wenn Simulation läuft, stoppen
+    }
+  }
+
+  // Hier startet das Programm:
+
+  createGrid(); // Erstellt das leere Spielfeld
+  drawGrid();   // Zeichnet es auf die Seite
+
+  // Verknüpft die Buttons mit den Funktionen
+  document.getElementById('startBtn').addEventListener('click', toggleRun);
+  document.getElementById('clearBtn').addEventListener('click', clearGrid);
+</script>
+
+</body>
+</html

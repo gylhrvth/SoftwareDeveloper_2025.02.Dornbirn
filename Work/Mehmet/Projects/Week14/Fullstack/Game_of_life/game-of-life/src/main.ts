@@ -1,37 +1,11 @@
 
-// import './style.css'
-// import typescriptLogo from './typescript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.ts'
-
-// document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-//   <div>
-//     <a href="https://vite.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://www.typescriptlang.org/" target="_blank">
-//       <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-//     </a>
-//     <h1>Vite + TypeScript</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite and TypeScript logos to learn more
-//     </p>
-//   </div>
-// `
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
-
-
 import './style.css' 
 
 
 const headingDiv = document.getElementById("heading")!;
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
-const GRID_SIZE = 30;
+const GRID_SIZE: number = 30;
 const CELL_COUNT = GRID_SIZE * GRID_SIZE;
 const SEED_MIN = 1;
 const SEED_MAX = 300;
@@ -84,6 +58,8 @@ for (let i = 0; i < CELL_COUNT; i++) {
   cells.push(cell);
 }
 
+
+
 // Update a single cell's visual state
 function updateCell(index: number) {
   cells[index].classList.toggle('alive', grid[index]);
@@ -119,24 +95,31 @@ function countAliveNeighbors(index: number): number {
 let running = true;
 let lastTimestamp = 0;
 
-function nextGeneration() {
-  const newGrid = new Array(CELL_COUNT);
 
-  for (let i = 0; i < CELL_COUNT; i++) {
+// Calculate the next generation of cells
+// based on the current state of the grid
+
+function nextGeneration(grid: boolean[], cellCount: number = CELL_COUNT) {
+  const newGrid = new Array(cellCount);
+
+  grid.forEach((isAlive, i) => {
     const aliveNeighbors = countAliveNeighbors(i);
-    const isAlive = grid[i];
     newGrid[i] = isAlive ? (aliveNeighbors === 2 || aliveNeighbors === 3) : (aliveNeighbors === 3);
-  }
+  });
 
-  grid = newGrid;
-  updateAllCells();
+  return newGrid;
+  
 }
+
+
+
 
 function animate(timestamp = 0) {
   if (!running) return;
 
   if (timestamp - lastTimestamp >= ANIMATION_INTERVAL) {
-    nextGeneration();
+    grid = nextGeneration(grid);
+    updateAllCells();
     lastTimestamp = timestamp;
   }
 
@@ -191,7 +174,6 @@ darkModeBtn.addEventListener('click', () => {
   html.classList.toggle('dark-mode');
   darkModeBtn.textContent = html.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
 });
-
 
 
 
