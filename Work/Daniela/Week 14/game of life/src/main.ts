@@ -74,13 +74,13 @@ function countAliveNeighbors(grid: boolean[][], row: number, col: number): numbe
 //---------------------------------------------
 // 4. next Generation berechnen 
 function getNextGeneration(grid: boolean[][]): boolean[][] {
-return grid.map((row, i) => 
-row.map((cell, j) => {
-  const aliveNeighbors = countAliveNeighbors(grid, i, j);
-  return cell? aliveNeighbors ===2 || aliveNeighbors === 3
-  : aliveNeighbors === 3;
-})
-);
+  return grid.map((row, i) =>
+    row.map((cell, j) => {
+      const aliveNeighbors = countAliveNeighbors(grid, i, j);
+      return cell ? aliveNeighbors === 2 || aliveNeighbors === 3
+        : aliveNeighbors === 3;
+    })
+  );
 }
 //----------------------------------------------------------------------------------------
 // 5. Gitter grösse anpassen 
@@ -136,7 +136,6 @@ function createPatternButton(label: string, pattern: [number, number][], offsetF
 }
 // ---------------------------------Patterns ausgelagert in "patterns.ts"------------------------- !!
 import { applyPattern, heartPattern, smileyPattern, dinoPattern, daniPattern } from './patterns';
-
 //Pattern-List
 const patternButtons = [
   { label: '❤️ Herz', pattern: heartPattern },
