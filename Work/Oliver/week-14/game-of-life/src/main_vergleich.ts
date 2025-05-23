@@ -8,6 +8,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div id="grid-container"></div>
   <div id="controls"></div>
 `;
+
+
+
 //--------------------------------------------------------------------
 //Globale Variablen
 const cellSize = 20;
