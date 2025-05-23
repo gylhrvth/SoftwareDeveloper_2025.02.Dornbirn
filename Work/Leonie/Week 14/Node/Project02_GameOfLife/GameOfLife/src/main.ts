@@ -91,7 +91,6 @@ function startGame(rows: number, colls: number, speed: number) {
 }
 
 function randomizeCells(rows: number, colls: number): number[][] {
-  console.log("Randomize");
   const grid = Array.from({ length: rows }, () =>
     Array.from({ length: colls }, () => Math.random() < 0.7 ? 0 : 1)
   );
