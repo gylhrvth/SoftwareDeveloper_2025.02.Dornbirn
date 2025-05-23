@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#app {
+  padding: 2rem;
+  text-align: center;
+}
+
+/*--------------------------------Gitter-Styling--------------------------------------- */
+.game-grid {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.game-grid td {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.alive {
+  background-color: rgb(35, 223, 18);
+}
+
+.dead {
+  background-color: rgb(7, 7, 7);
+}
+
+#controls button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+

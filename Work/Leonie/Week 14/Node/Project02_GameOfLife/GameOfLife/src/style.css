@@ -1,15 +1,172 @@
-#gameField{
+:root {
+    --primary-color: #007BFF;
+    --hover-color: #0056b3;
+    --bg-color: #f5f5f5;
+    --control-bg: rgba(211, 211, 211, 0.95);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+#gameField {
     display: grid;
-    grid-template-columns: repeat(40, 20px);
-    grid-template-rows: repeat(40, 20px);
     gap: 1px;
-}
-.cell{
-    border: 1px solid black;
+    width: min(80vh, 80vw);
+    height: min(80vh, 80vw);
+    aspect-ratio: 1;
+    margin: 20px auto;
     background-color: white;
-    width: 20px;
-    height: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
-.cell.alive{
-    background-color: black;
+
+.cell {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+    min-width: 0;
+    min-height: 0;
+}
+
+.cell.alive {
+    background-color: var(--primary-color);
+}
+
+.userInput {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 90vw;
+    padding: 15px;
+    background-color: var(--control-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.userInput label {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.userInput input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+/* Media Queries für verschiedene Bildschirmgrößen */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        padding-bottom: 220px;
+    }
+
+    #gameField {
+        width: 85vw;
+        height: 85vw;
+        margin: 10px auto;
+    }
+
+    .userInput {
+        flex-direction: column;
+        padding: 8px;
+        gap: 4px;
+        width: 85vw;
+        font-size: 14px;
+        bottom: 10px;
+    }
+
+    .userInput label {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .userInput input[type="number"] {
+        width: 70px;
+        padding: 4px;
+        height: 25px;
+    }
+
+    button {
+        width: 100%;
+        margin: 2px 0;
+        padding: 6px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+        padding-bottom: 180px;
+    }
+
+    #gameField {
+        width: 90vw;
+        height: 90vw;
+        margin: 5px auto;
+    }
+
+    .userInput {
+        width: 92vw;
+        padding: 6px;
+        bottom: 5px;
+        font-size: 12px;
+        gap: 2px;
+    }
+
+    .userInput label {
+        font-size: 12px;
+    }
+
+    .userInput input[type="number"] {
+        width: 60px;
+        padding: 2px 4px;
+        height: 22px;
+    }
+
+    button {
+        padding: 5px;
+        font-size: 12px;
+        margin: 1px 0;
+    }
 }
