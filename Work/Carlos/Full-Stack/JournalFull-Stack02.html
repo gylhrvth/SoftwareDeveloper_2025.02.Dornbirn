@@ -18,6 +18,7 @@
     <h1 class="textColor01">Full-Stack Journal 02</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day59">FR 23/05/25</a>: Vite + Typescript</h3>
     <h3 class="textColor01">▷ <a href="#day58">DO 22/05/25</a>: Vite + Typescript</h3>
     <h3 class="textColor01">▷ <a href="#day57">MI 21/05/25</a>: Typescript</h3>
     
@@ -26,11 +27,30 @@
     <br>
     <br>
 
+    <h2 id="day59">Freitag 23. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (Vite + Typescript)</h3>
+
+    <h4 class="textColor02">Gyulas Workaround für Vite + Typescript mit 'type: module' (anstatt 'type: commonjs')</h4>
+
+    <ul>
+        <li><p>Step 01:</p></li>
+        <p>Beim package.json -> "type": "module"</p>
+        <p>Beim package.json -> "scripts": -> "dev": "node --loader ts-node/esm main.ts" eingeben (Vorausgesetzt main.ts ist der Typescript File)</p>
+        <li><p>Step 02:</p></li>
+        <p>Beim tsconfig.json:</p>
+        <p>-> Language and Environment -> "target": "es2020"</p>
+        <p>-> Modules -> "module": "es2020"</p>
+        <p>-> Modules -> "moduleResolution": "node"</p>
+        <li><p>Step 03:</p></li>
+        <p>Änderungen speichern. Terminal sollte jetzt mit 'npm run dev' typescrpt code richtig anzeigen, ohne strip-only mode Fehler.</p>
+    </ul>
+    
     <h2 id="day58">Donnerstag 22. Mai 2025</h2>
 
-    <h3 class="textColor01">Full-Stack (Typescript)</h3>
+    <h3 class="textColor01">Full-Stack (Vite + Typescript)</h3>
 
-    <h4 class="textColor01">Vite + Typescript Projekt Anleitung:</h4>
+    <h4 class="textColor02">Vite + Typescript Projekt Anleitung:</h4>
     <ul>
         <li><p>Step 01:</p></li>
         <p>Node.js muss installiert sein. In dem Projekt-Folder Terminal eingeben: </p>

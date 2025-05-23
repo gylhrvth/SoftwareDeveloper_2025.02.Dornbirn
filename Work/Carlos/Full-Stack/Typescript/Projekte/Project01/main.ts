@@ -162,7 +162,7 @@ let currentDirection: CardinalDirections = CardinalDirections.North; // This is 
 //By default, enums will initialize the first value to 0 and add 1 to each additional value:
  console.log(CardinalDirections.North); // 0
 
-//In TS with Node JS, enum is not supported in strip-only mode. (if using Modules ESM) 
+// In TS with Node JS, enum is not supported in strip-only mode. (if using Modules ESM) 
 // It will throw an error if you try to use it in strip-only mode.
 // You can compile the main.ts into main.js with the following command:
 // npx tsc main.ts
@@ -194,6 +194,44 @@ enum CardinalDirectionsString {
 }
 
 console.log(CardinalDirectionsString.North); // logs "N"
+
+//Type Aliases
+//Type aliases are a way to create a new name for an existing type. This is useful for creating more descriptive names for complex types or for creating reusable types that can be used in multiple places in your code.
+
+type CarYear = number
+type CarBrand = string
+type CarModel = string
+type CarObject = {
+    year: CarYear
+    brand: CarBrand
+    model: CarModel
+}
+
+const carYear: CarYear = 2016;
+const carBrand: CarBrand = "VW";
+const carModel: CarModel = "Golf";
+const carObject: CarObject = {
+    year: carYear,
+    brand: carBrand,
+    model: carModel
+}
+console.log(carObject); // logs { year: 2016, brand: 'VW', model: 'Golf' }
+
+//Interfaces
+//Interfaces are a way to define the shape of an object. This is useful for defining the structure of complex data types and ensuring that your code is type-safe. Interfaces are more powerful than type aliases because they can be extended and implemented, while type aliases cannot. However, type aliases are more flexible because they can be used to create unions and intersections of types, while interfaces cannot.
+
+interface Rectangle {
+    height: number,
+    width: number
+}
+
+const rectangle: Rectangle = {
+    height: 20,
+    width: 10
+}
+
+console.log(`Example of Interface: ${JSON.stringify(rectangle)}`); // logs { height: 20, width: 10 }
+
 
 
 
