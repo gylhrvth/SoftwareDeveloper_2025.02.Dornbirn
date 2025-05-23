@@ -17,7 +17,7 @@ let intervalId: number | null = null; // For the animation
 
 // This function sets the grid size based on the window size
 function setGridSize() {
-  const cellPixel = 25;
+  const cellPixel:number = 25;
   // Find out how many cells fit in the smallest window side
   const maxCells = Math.floor(Math.min(window.innerWidth, window.innerHeight) * 0.95 / cellPixel);
   gridSize = Math.max(10, Math.min(maxCells, 40)); // Between 10 and 40

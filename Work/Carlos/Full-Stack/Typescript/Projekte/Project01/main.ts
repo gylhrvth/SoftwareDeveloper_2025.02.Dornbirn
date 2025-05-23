@@ -232,7 +232,8 @@ const rectangle: Rectangle = {
 
 console.log(`Example of Interface: ${JSON.stringify(rectangle)}`); // logs { height: 20, width: 10 }
 
-
+// Extending Interfaces
+// Extending an interface means you are creating a new interface with the same properties as the original, plus something new.
 
 
 
