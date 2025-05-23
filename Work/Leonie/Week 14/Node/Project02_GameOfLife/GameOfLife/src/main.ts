@@ -1,7 +1,3 @@
-// const colls = 40;
-// const rows = 40;
-
-
 addEventListener("DOMContentLoaded", () => {
   const rowsInput = document.getElementById("rows") as HTMLInputElement;
   const collsInput = document.getElementById("columns") as HTMLInputElement;
@@ -10,12 +6,18 @@ addEventListener("DOMContentLoaded", () => {
   const restartButton = document.getElementById("restartButton") as HTMLButtonElement;
   let rows = parseInt(rowsInput.value);
   let colls = parseInt(collsInput.value);
+  
   // Initiales Grid erstellen
   updateGridStyle(rows, colls);
   recreateGridStyle(rows, colls);
 
-  let grid = randomizeCells(rows, colls); // Initialisiere das Grid mit zufälligen Zellen
+  // Hier erstellen wir das Grid, aber ohne es zu randomisieren
+  let grid = Array.from({ length: rows }, () => Array(colls).fill(0));
+  
+  // Nur beim ersten Mal randomisieren
+  grid = randomizeCells(rows, colls);
 
+  // ... rest of your event listeners ...
 
   // Eventlistener für Änderungen an den Eingabefeldern
   rowsInput.addEventListener("change", () => {
@@ -43,17 +45,16 @@ addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Eventlistener für den Start-Button
+  // Start-Button Event Listener
   startButton.addEventListener("click", () => {
     const speed = parseInt(speedInput.value);
+    // Hier wird das existierende Grid verwendet, ohne es neu zu randomisieren
     startGame(rows, colls, grid, speed);
-
   });
 
-  // Eventlistener für Restart-Button
+  // Restart-Button ist der einzige Ort, wo wir das Grid neu randomisieren
   restartButton.addEventListener("click", () => {
     grid = randomizeCells(parseInt(rowsInput.value), parseInt(collsInput.value));
-
   });
 });
 
@@ -63,9 +64,9 @@ function startGame(rows: number, colls: number, grid: number[][], speed: number)
   const stopButton = document.getElementById("stopButton") as HTMLButtonElement;
   let nextGrid = Array.from({ length: rows }, () => Array(colls).fill(0));
   const interval = setInterval(() => {
-    nextGrid = checkCell(grid, nextGrid);
+    nextGrid = checkCell(grid);
     updateGrid(colls, nextGrid);
-    if (isGridStable(grid, nextGrid, rows, colls)) {
+    if (isGridStable(grid, nextGrid)) {
       clearInterval(interval);
     }
     [grid, nextGrid] = syncGrid(grid, nextGrid);
@@ -78,38 +79,32 @@ function startGame(rows: number, colls: number, grid: number[][], speed: number)
   }, speed);
 }
 
-function randomizeCells(rows: number, colls: number): number[][] {  // foreach
-  const grid = Array.from({ length: rows }, () => Array(colls).fill(0));
+function randomizeCells(rows: number, colls: number): number[][] {
+  const grid = Array.from({ length: rows }, () => 
+    Array.from({ length: colls }, () => Math.random() < 0.7 ? 0 : 1)
+  );
+  
+  // Update DOM
   grid.forEach((row, i) => {
-    row.forEach((_, j) => {
-      grid[i][j] = Math.random() < 0.7 ? 0 : 1; // Randomly initialize cells
-      const cell = document.querySelectorAll(".cell")[i * colls + j] as HTMLDivElement;
-      if (grid[i][j] === 1) {
-        cell.classList.add("alive");
-      } else {
-        cell.classList.remove("alive");
-      }
+    row.forEach((cell, j) => {
+      const domCell = document.querySelectorAll(".cell")[i * colls + j] as HTMLDivElement;
+      domCell.classList.toggle("alive", cell === 1);
     });
   });
+  
   return grid;
 }
 
-function checkCell(grid: number[][], nextGrid: number[][]): number[][] {
-  grid.forEach((row, i) => {
-    row.forEach((cell, j) => {
+function checkCell(grid: number[][]): number[][] {
+  return grid.map((row, i) => 
+    row.map((cell, j) => {
       const neighbors = countNeighbors(i, j, grid);
-      if (cell === 1 && (neighbors < 2 || neighbors > 3)) {
-        nextGrid[i][j] = 0; // Cell dies
-      } else if (cell === 0 && neighbors === 3) {
-        nextGrid[i][j] = 1; // Cell becomes alive
-      } else {
-        nextGrid[i][j] = cell; // Cell remains the same
-      }
-    });
-  });
-  return nextGrid;
+      if (cell === 1 && (neighbors < 2 || neighbors > 3)) return 0;
+      if (cell === 0 && neighbors === 3) return 1;
+      return cell;
+    })
+  );
 }
-
 
 function countNeighbors(row: number, coll: number, grid: number[][]): number {
   let count = 0;
@@ -132,15 +127,10 @@ function countNeighbors(row: number, coll: number, grid: number[][]): number {
 }
 
 function updateGrid(colls: number, nextGrid: number[][]) {
-  const cells = document.querySelectorAll(".cell");
-  cells.forEach((cell, index) => {
+  Array.from(document.querySelectorAll(".cell")).forEach((cell, index) => {
     const i = Math.floor(index / colls);
     const j = index % colls;
-    if (nextGrid[i][j] === 1) {
-      cell.classList.add("alive");
-    } else {
-      cell.classList.remove("alive");
-    }
+    cell.classList.toggle("alive", nextGrid[i][j] === 1);
   });
 }
 
@@ -148,15 +138,10 @@ function syncGrid(grid: number[][], nextGrid: number[][]): [number[][], number[]
   return [nextGrid, grid];
 }
 
-function isGridStable(grid: number[][], nextGrid: number[][], rows: number, colls: number): boolean {
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < colls; j++) {
-      if (grid[i][j] !== nextGrid[i][j]) {
-        return false;
-      }
-    }
-  }
-  return true;
+function isGridStable(grid: number[][], nextGrid: number[][]): boolean {
+  return grid.every((row, i) => 
+    row.every((_cell, j) => grid[i][j] === nextGrid[i][j])
+  );
 }
 
 function updateGridStyle(rows: number, colls: number) {
@@ -177,4 +162,3 @@ function recreateGridStyle(rows: number, colls: number) {
   }
   randomizeCells(rows, colls);
 }
-
