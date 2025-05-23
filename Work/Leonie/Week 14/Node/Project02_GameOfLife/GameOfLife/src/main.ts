@@ -22,12 +22,14 @@ addEventListener("DOMContentLoaded", () => {
   // Eventlistener für Änderungen an den Eingabefeldern
   rowsInput.addEventListener("change", () => {
     rows = parseInt(rowsInput.value);
+    grid = Array.from({ length: rows }, () => Array(colls).fill(0)); // Neues leeres Grid
     updateGridStyle(rows, colls);
     recreateGridStyle(rows, colls);
   });
 
   collsInput.addEventListener("change", () => {
     colls = parseInt(collsInput.value);
+    grid = Array.from({ length: rows }, () => Array(colls).fill(0)); // Neues leeres Grid
     updateGridStyle(rows, colls);
     recreateGridStyle(rows, colls);
   });
@@ -49,7 +51,7 @@ addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", () => {
     const speed = parseInt(speedInput.value);
     // Hier wird das existierende Grid verwendet, ohne es neu zu randomisieren
-    startGame(rows, colls, grid, speed);
+    startGame(rows, colls, speed);
   });
 
   // Restart-Button ist der einzige Ort, wo wir das Grid neu randomisieren
@@ -60,9 +62,20 @@ addEventListener("DOMContentLoaded", () => {
 
 
 
-function startGame(rows: number, colls: number, grid: number[][], speed: number) {
+function startGame(rows: number, colls: number, speed: number) {
+  // Grid aus dem DOM rekonstruieren
+  let grid: number[][] = Array.from({ length: rows }, () => Array(colls).fill(0));
+  const cells = document.querySelectorAll('.cell');
+  
+  cells.forEach((cell, index) => {
+    const row = Math.floor(index / colls);
+    const col = index % colls;
+    grid[row][col] = cell.classList.contains('alive') ? 1 : 0;
+  });
+
   const stopButton = document.getElementById("stopButton") as HTMLButtonElement;
   let nextGrid = Array.from({ length: rows }, () => Array(colls).fill(0));
+  
   const interval = setInterval(() => {
     nextGrid = checkCell(grid);
     updateGrid(colls, nextGrid);
@@ -71,16 +84,15 @@ function startGame(rows: number, colls: number, grid: number[][], speed: number)
     }
     [grid, nextGrid] = syncGrid(grid, nextGrid);
 
-    // Eventlistener für den Stop-Button
     stopButton.addEventListener("click", () => {
       clearInterval(interval);
     });
-
   }, speed);
 }
 
 function randomizeCells(rows: number, colls: number): number[][] {
-  const grid = Array.from({ length: rows }, () => 
+  console.log("Randomize");
+  const grid = Array.from({ length: rows }, () =>
     Array.from({ length: colls }, () => Math.random() < 0.7 ? 0 : 1)
   );
   
@@ -145,9 +157,9 @@ function isGridStable(grid: number[][], nextGrid: number[][]): boolean {
 }
 
 function updateGridStyle(rows: number, colls: number) {
-  const gameField = document.getElementById("gameField") as HTMLDivElement;
-  gameField.style.gridTemplateColumns = `repeat(${colls}, 20px)`;
-  gameField.style.gridTemplateRows = `repeat(${rows}, 20px)`;
+    const gameField = document.getElementById("gameField") as HTMLDivElement;
+    gameField.style.gridTemplateColumns = `repeat(${colls}, 1fr)`;
+    gameField.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 }
 
 function recreateGridStyle(rows: number, colls: number) {
@@ -160,5 +172,4 @@ function recreateGridStyle(rows: number, colls: number) {
       gameField.appendChild(cell);
     }
   }
-  randomizeCells(rows, colls);
 }
