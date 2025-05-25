@@ -153,89 +153,28 @@ function updateControlButtons() {
 
 // --- Event Listeners ---
 
-clearButton.addEventListener('click', clearGrid);
-randomizeButton.addEventListener('click', randomizeGrid);
-startButton.addEventListener('click', startSimulation);
-stopButton.addEventListener('click', stopSimulation);
+function setupEventListeners() {
+  clearButton.addEventListener('click', clearGrid);
+  randomizeButton.addEventListener('click', randomizeGrid);
+  startButton.addEventListener('click', startSimulation);
+  stopButton.addEventListener('click', stopSimulation);
 
-speedRange.addEventListener('input', () => {
-  STEP_INTERVAL = Number(speedRange.value); // Update the interval variable to match the slider value
-  speedValue.textContent = `${STEP_INTERVAL} ms`; // The displayed speed text is updated
+  speedRange.addEventListener('input', handleSpeedChange);
+}
 
-  // If running, restart interval with new speed
+function handleSpeedChange() {
+  STEP_INTERVAL = Number(speedRange.value);
+  speedValue.textContent = `${STEP_INTERVAL} ms`;
+
   if (running) {
-    clearInterval(intervalId!); //Stop the old interval
-    intervalId = setInterval(nextGeneration, STEP_INTERVAL); // Start a new one with the new speed
+    clearInterval(intervalId!);
+    intervalId = setInterval(nextGeneration, STEP_INTERVAL);
   }
-})
+}
 
 // --- Initial Render ---
 renderGrid(grid);
 updateControlButtons();
+setupEventListeners();
 speedRange.value = STEP_INTERVAL.toString();// Sets the slider to the default value (500 ms) when the page loads.
 speedValue.textContent = `${STEP_INTERVAL} ms`; //Sets the display text to the default value (500 ms) when the page loads.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-import './style.css';
-
-const gridDiv = document.getElementById('grid')!;
-
-// Define grid size (you can make this dynamic later)
-const gridSize = 20;
-
-// Create a 2D array for the cells (false = dead, true = alive)
-type Cell = boolean;
-type Grid = Cell[][];
-let grid: Grid = Array.from({ length: gridSize }, () =>
-  Array(gridSize).fill(false)
-);
-
-// Function to render the grid
-function renderGrid() {
-  gridDiv.innerHTML = '';
-  gridDiv.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-  gridDiv.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
-      const cellDiv = document.createElement('div');
-      cellDiv.className = 'cell' + (grid[row][col] ? ' alive' : '');
-      gridDiv.appendChild(cellDiv);
-    }
-  }
-}
-
-renderGrid();
-
-*/
