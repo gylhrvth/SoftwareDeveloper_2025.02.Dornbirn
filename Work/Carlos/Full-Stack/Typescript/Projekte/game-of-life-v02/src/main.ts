@@ -1,33 +1,44 @@
 import './style.css';
 
+// --- Types and Interfaces ---
+
+// Type for a single cell (alive or dead)
+type Cell = boolean;
+
+// Type for the grid (2D array of cells)
+type Grid = Cell[][];
+
+// Interface for a grid position (optional, for clarity)
+interface Position {
+  row: number;
+  col: number;
+}
+
+// --- Main Code ---
+
 // Get references to HTML elements
 const gridDiv = document.getElementById('grid')!;
 const randomButton = document.getElementById('random')!;
 const startButton = document.getElementById('start')!;
 const clearButton = document.getElementById('clear')!;
-//The '!' operator is used to assert that the element is not null.
-// This is a TypeScript feature that tells the compiler that you are sure the value will not be null or undefined.
 
 // These variables control the grid and the game
 let gridSize: number = 20; // Number of rows and columns (always square)
-let grid: boolean[][] = []; // 2D array for the cells (true = alive, false = dead)
-//TypeScript annotation: boolean[][] means a 2D array of booleans
+let grid: Grid = []; // 2D array for the cells (true = alive, false = dead)
 let running: boolean = false; // Is the game running?
-let intervalId: number | null = null; // For the animation
+let intervalId: ReturnType<typeof setInterval> | null = null;
 
 // This function sets the grid size based on the window size
 function setGridSize() {
-  const cellPixel:number = 25;
+  const cellPixel: number = 25;
   // Find out how many cells fit in the smallest window side
   const maxCells = Math.floor(Math.min(window.innerWidth, window.innerHeight) * 0.95 / cellPixel);
   gridSize = Math.max(10, Math.min(maxCells, 40)); // Between 10 and 40
 }
 
 // This function creates a new empty grid (all cells dead)
-function createEmptyGrid(): boolean[][] {
+function createEmptyGrid(): Grid {
   return Array.from({ length: gridSize }, () => Array(gridSize).fill(false));
-  // The outer Array.from creates an array of rows. 
-  // The arrow function () => Array(gridSize).fill(false)); is called once for each row, creating a new array filled with false values.
 }
 
 // This function shows the grid on the page
@@ -41,7 +52,6 @@ function showGrid() {
       const cellDiv = document.createElement('div');
       cellDiv.className = 'cell' + (grid[row][col] ? ' alive' : '');
       // When you click a cell, it toggles between alive and dead
-
       cellDiv.addEventListener('click', () => {
         grid[row][col] = !grid[row][col];
         showGrid();
@@ -52,16 +62,13 @@ function showGrid() {
 }
 
 // This function counts how many living neighbors a cell has
-function countLivingNeighbors(row: number, col: number): number {
+function countLivingNeighbors(pos: Position): number {
   let count = 0;
-  // dr = delta row (change in row), dc = delta column (change in column)
-  // Loop through the 8 possible neighbors
   for (let dr = -1; dr <= 1; dr++) {
     for (let dc = -1; dc <= 1; dc++) {
-      if (dr === 0 && dc === 0) continue; // Skip the cell itself
-      const newRow = row + dr;
-      const newCol = col + dc;
-      // Check if neighbor is inside the grid and alive
+      if (dr === 0 && dc === 0) continue;
+      const newRow = pos.row + dr;
+      const newCol = pos.col + dc;
       if (
         newRow >= 0 && newRow < gridSize &&
         newCol >= 0 && newCol < gridSize &&
@@ -76,10 +83,10 @@ function countLivingNeighbors(row: number, col: number): number {
 
 // This function creates the next generation of the grid
 function nextGeneration() {
-  const newGrid = createEmptyGrid();
+  const newGrid: Grid = createEmptyGrid();
   for (let row = 0; row < gridSize; row++) {
     for (let col = 0; col < gridSize; col++) {
-      const neighbors = countLivingNeighbors(row, col);
+      const neighbors = countLivingNeighbors({ row, col });
       if (grid[row][col]) {
         // Alive cell: survives with 2 or 3 neighbors
         newGrid[row][col] = neighbors === 2 || neighbors === 3;
