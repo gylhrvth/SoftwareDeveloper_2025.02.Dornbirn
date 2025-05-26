@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testeite mit EJS</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
     <h1><%= title %> </h1>
     <div class="daten">
         <% data.forEach(function(item) { %>
-            <p><%= item.city %> - <%= item.country %></p>
+            <a href="<%= item.id %>"><p><%= item.city %> - <%= item.country %></p></a>
         <% }); %>
+    </div>
+
+    <form action="/create" method="POST">
+        <input type="text" name="city" placeholder="Stadt" required>
+        <input type="text" name="country" placeholder="Land" required>
+        <button type="submit">Erstellen</button>
+    </form>
+    <div class="footer">
+        <p>© 2025 Leonie</p>
+        <p>Powered by EJS</p>
     </div>
     
 </body>
