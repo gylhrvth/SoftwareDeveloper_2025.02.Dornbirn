@@ -2,49 +2,28 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// .env-Datei laden
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware zum Parsen von JSON-Bodies
 app.use(express.json());
-
-// Statische Dateien aus dem "public"-Ordner bereitstellen (z. B. HTML/CSS/JS)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// ======= Beispielrouten =======
-
-// /hello → Textantwort
-app.get('/hello', (_req: Request, res: Response) => {
-  res.send('Hello Digital Campus!');
-});
-
-// /api/data → JSON-Antwort
-app.get('/api/data', (_req: Request, res: Response) => {
-  res.json({
-    name: "Mehmet",
-    beruf: "Entwickler",
-    interessen: ["Node.js", "Express", "TypeScript"]
-  });
-});
-
-// ======= REST-API für Städte =======
-
+// Interface für City
 interface City {
   id: number;
   name: string;
   population: number;
 }
 
-// In-Memory-Datenbank
+// In-Memory Datenbank
 let cities: City[] = [
   { id: 1, name: 'Berlin', population: 3500000 },
   { id: 2, name: 'München', population: 1500000 }
 ];
 
-// GET /api/city – alle Städte abrufen
+// GET /api/city – alle Städte zurückgeben
 app.get('/api/city', (_req: Request, res: Response) => {
   res.json(cities);
 });
@@ -54,7 +33,8 @@ app.post('/api/city', (req: Request, res: Response) => {
   const { name, population } = req.body;
 
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
+     res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+     return
   }
 
   const newCity: City = {
@@ -67,16 +47,21 @@ app.post('/api/city', (req: Request, res: Response) => {
   res.status(201).json(newCity);
 });
 
-// PUT /api/city/:id – ganze Stadt ersetzen
+// PUT /api/city/:id – komplette Stadt ersetzen
 app.put('/api/city/:id', (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = Number(req.params.id);
+  const index = cities.findIndex(city => city.id === id);
+
+  if (index === -1) {
+    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    return
+  }
+
   const { name, population } = req.body;
 
-  const index = cities.findIndex(city => city.id === id);
-  if (index === -1) return res.status(404).json({ message: "City not found" });
-
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
+    res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+    return
   }
 
   cities[index] = { id, name, population };
@@ -85,29 +70,36 @@ app.put('/api/city/:id', (req: Request, res: Response) => {
 
 // PATCH /api/city/:id – Stadt teilweise aktualisieren
 app.patch('/api/city/:id', (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
-  const city = cities.find(c => c.id === id);
+  const id = Number(req.params.id);
+  const city = cities.find(city => city.id === id);
 
-  if (!city) return res.status(404).json({ message: "City not found" });
+  if (!city) {
+    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    return
+  }
 
-  if (req.body.name !== undefined) city.name = req.body.name;
-  if (req.body.population !== undefined) city.population = req.body.population;
+  const { name, population } = req.body;
+
+  if (name !== undefined) city.name = name;
+  if (population !== undefined) city.population = population;
 
   res.json(city);
 });
 
 // DELETE /api/city/:id – Stadt löschen
 app.delete('/api/city/:id', (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = Number(req.params.id);
   const index = cities.findIndex(city => city.id === id);
 
-  if (index === -1) return res.status(404).json({ message: "City not found" });
+  if (index === -1) {
+    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    return
+  }
 
   cities.splice(index, 1);
-  res.status(204).send(); // Kein Inhalt
+  res.status(204).send();
 });
 
-// ======= Server starten =======
 app.listen(port, () => {
   console.log(`🚀 Server läuft auf http://localhost:${port}`);
 });
