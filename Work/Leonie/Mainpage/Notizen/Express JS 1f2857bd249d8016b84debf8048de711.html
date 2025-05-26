@@ -735,7 +735,8 @@ const PORT = 3000;
 app.listen(PORT, () =&gt; {
     console.log(`Server läuft auf &lt;http://localhost&gt;:${PORT}`);
 });
-</code></pre><hr id="1f2857bd-249d-80a7-bda6-f90a8e43006e"/><h3 id="1f2857bd-249d-8049-ac40-d22468c38ee8" class=""><strong>Wichtige Pakete für Express.js</strong></h3><ol type="1" id="1f2857bd-249d-80d8-b282-c1f34141ea59" class="numbered-list" start="1"><li><code><strong>body-parser</strong></code><strong>:</strong> Verarbeitet Formulardaten und JSON (heute in Express integriert).</li></ol><ol type="1" id="1f2857bd-249d-8093-9fe8-ccd4001a78bf" class="numbered-list" start="2"><li><code><strong>morgan</strong></code><strong>:</strong> Protokolliert HTTP-Anfragen.</li></ol><ol type="1" id="1f2857bd-249d-804b-944a-e04916174390" class="numbered-list" start="3"><li><code><strong>cors</strong></code><strong>:</strong> Aktiviert Cross-Origin Resource Sharing.</li></ol><ol type="1" id="1f2857bd-249d-80c5-a5bd-dbea55a05729" class="numbered-list" start="4"><li><code><strong>dotenv</strong></code><strong>:</strong> Verwendet Umgebungsvariablen aus einer <code>.env</code>Datei.</li></ol><ol type="1" id="1f2857bd-249d-800b-8ff7-d84caf8febd2" class="numbered-list" start="5"><li><code><strong>express-validator</strong></code><strong>:</strong> Validiert und bereinigt Benutzereingaben.</li></ol><hr id="1f2857bd-249d-8095-abef-d8136154ecac"/><h3 id="1f2857bd-249d-8007-b9b8-c7a1877a6335" class=""><strong>Zusammenfassung</strong></h3><ul id="1f2857bd-249d-807e-a6fd-fc158734c8c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Express.js</strong> ist ein leichtgewichtiges Framework für Node.js, das die Entwicklung von Webanwendungen und APIs erleichtert.</li></ul><ul id="1f2857bd-249d-80cd-af91-fcf338cd373a" class="bulleted-list"><li style="list-style-type:disc">Es bietet Funktionen wie Routing, Middleware, Template-Engines und Fehlerbehandlung.</li></ul><ul id="1f2857bd-249d-803f-9870-fcbea7212b8a" class="bulleted-list"><li style="list-style-type:disc">Es ist flexibel und kann mit zusätzlichen Paketen erweitert werden.</li></ul><ul id="1f2857bd-249d-8041-a0c7-fb878ea7d3b7" class="bulleted-list"><li style="list-style-type:disc">Es ist ideal für kleine bis große Projekte und hat eine große Community.</li></ul><p id="1f2857bd-249d-8036-859a-f047c99f405d" class="">Falls du weitere Fragen hast, lass es mich wissen! 😊</p></div><div id="1f2857bd-249d-8037-8b6a-de241dbf68ad" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1f2857bd-249d-8079-b1b8-e2f5fd04f724"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1f2857bd-249d-80a3-b174-c534fd26978f"/><p id="1f2857bd-249d-801b-9ca1-fb4f98aa4912" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1f2857bd-249d-8002-8199-f2c1e7e323bd"/><ul id="1f2857bd-249d-80dc-8816-f0fea6bdc6a1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-80d4-a486-e21dc103b683" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-8046-bcaa-eb3ea2c39ba4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1f2857bd-249d-804d-85e2-f1b22a07b5f2" class="image"><a href="Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"><img style="width:425px" src="Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"/></a></figure><h3 id="1f2857bd-249d-80e3-bf38-eec2172aa9e1" class="">Was ist der Unterschied zwischen <code>req.body</code> und <code>req.query</code></h3><p id="1f2857bd-249d-808d-90a3-eebf935856de" class="">Der Unterschied zwischen <code>req.body</code> und <code>req.query</code> liegt in der Art und Weise, wie die Daten vom Client an den Server gesendet werden:</p><hr id="1f2857bd-249d-80fd-8031-cb1c457c9ecd"/><h3 id="1f2857bd-249d-80d2-9aa3-f9d2578f44ff" class=""><strong>1. </strong><code><strong>req.body</strong></code></h3><ul id="1f2857bd-249d-8056-b416-e353c64a58d6" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition:</strong> Enthält die Daten, die im <strong>Body</strong> (Nachrichtentext) einer HTTP-Anfrage gesendet werden.</li></ul><ul id="1f2857bd-249d-80d2-90c0-e18d03683adc" class="bulleted-list"><li style="list-style-type:disc"><strong>Verwendung:</strong> Wird hauptsächlich bei <strong>POST</strong>, <strong>PUT</strong> oder <strong>PATCH</strong>Anfragen verwendet.</li></ul><ul id="1f2857bd-249d-803f-b8fd-f9fd36abe266" class="bulleted-list"><li style="list-style-type:disc"><strong>Datenquelle:</strong> Die Daten werden typischerweise durch ein Formular oder eine API-Anfrage im Body der Anfrage gesendet.</li></ul><ul id="1f2857bd-249d-80ff-91b1-e5b355521ea1" class="bulleted-list"><li style="list-style-type:disc"><strong>Middleware erforderlich:</strong> Damit <code>req.body</code> funktioniert, muss die Middleware <code>express.urlencoded()</code> oder <code>express.json()</code> in der server.js aktiviert sein:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80cd-9e18-e5390b704f0a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.urlencoded({ extended: true }));
+</code></pre><hr id="1f2857bd-249d-80a7-bda6-f90a8e43006e"/><h3 id="1f2857bd-249d-8049-ac40-d22468c38ee8" class=""><strong>Wichtige Pakete für Express.js</strong></h3><ol type="1" id="1f2857bd-249d-80d8-b282-c1f34141ea59" class="numbered-list" start="1"><li><code><strong>body-parser</strong></code><strong>:</strong> Verarbeitet Formulardaten und JSON (heute in Express integriert).</li></ol><ol type="1" id="1f2857bd-249d-8093-9fe8-ccd4001a78bf" class="numbered-list" start="2"><li><code><strong>morgan</strong></code><strong>:</strong> Protokolliert HTTP-Anfragen.</li></ol><ol type="1" id="1f2857bd-249d-804b-944a-e04916174390" class="numbered-list" start="3"><li><code><strong>cors</strong></code><strong>:</strong> Aktiviert Cross-Origin Resource Sharing.</li></ol><ol type="1" id="1f2857bd-249d-80c5-a5bd-dbea55a05729" class="numbered-list" start="4"><li><code><strong>dotenv</strong></code><strong>:</strong> Verwendet Umgebungsvariablen aus einer <code>.env</code>Datei.</li></ol><ol type="1" id="1f2857bd-249d-800b-8ff7-d84caf8febd2" class="numbered-list" start="5"><li><code><strong>express-validator</strong></code><strong>:</strong> Validiert und bereinigt Benutzereingaben.</li></ol><hr id="1f2857bd-249d-8095-abef-d8136154ecac"/><h3 id="1f2857bd-249d-8007-b9b8-c7a1877a6335" class=""><strong>Zusammenfassung</strong></h3><ul id="1f2857bd-249d-807e-a6fd-fc158734c8c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Express.js</strong> ist ein leichtgewichtiges Framework für Node.js, das die Entwicklung von Webanwendungen und APIs erleichtert.</li></ul><ul id="1f2857bd-249d-80cd-af91-fcf338cd373a" class="bulleted-list"><li style="list-style-type:disc">Es bietet Funktionen wie Routing, Middleware, Template-Engines und Fehlerbehandlung.</li></ul><ul id="1f2857bd-249d-803f-9870-fcbea7212b8a" class="bulleted-list"><li style="list-style-type:disc">Es ist flexibel und kann mit zusätzlichen Paketen erweitert werden.</li></ul><ul id="1f2857bd-249d-8041-a0c7-fb878ea7d3b7" class="bulleted-list"><li style="list-style-type:disc">Es ist ideal für kleine bis große Projekte und hat eine große Community.</li></ul><p id="1f2857bd-249d-8036-859a-f047c99f405d" class="">Falls du weitere Fragen hast, lass es mich wissen! 😊</p><p id="1ff857bd-249d-8002-b2e1-d1c04aa6879e" class="">
+</p></div><div id="1f2857bd-249d-8037-8b6a-de241dbf68ad" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1f2857bd-249d-8079-b1b8-e2f5fd04f724"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1f2857bd-249d-80a3-b174-c534fd26978f"/><p id="1f2857bd-249d-801b-9ca1-fb4f98aa4912" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1f2857bd-249d-8002-8199-f2c1e7e323bd"/><ul id="1f2857bd-249d-80dc-8816-f0fea6bdc6a1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-80d4-a486-e21dc103b683" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1f2857bd-249d-8046-bcaa-eb3ea2c39ba4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1f2857bd-249d-804d-85e2-f1b22a07b5f2" class="image"><a href="../../../../../../Downloads/express/Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"><img style="width:425px" src="../../../../../../Downloads/express/Express%20JS%201f2857bd249d8016b84debf8048de711/33.png"/></a></figure><h3 id="1f2857bd-249d-80e3-bf38-eec2172aa9e1" class="">Was ist der Unterschied zwischen <code>req.body</code> und <code>req.query</code></h3><p id="1f2857bd-249d-808d-90a3-eebf935856de" class="">Der Unterschied zwischen <code>req.body</code> und <code>req.query</code> liegt in der Art und Weise, wie die Daten vom Client an den Server gesendet werden:</p><hr id="1f2857bd-249d-80fd-8031-cb1c457c9ecd"/><h3 id="1f2857bd-249d-80d2-9aa3-f9d2578f44ff" class=""><strong>1. </strong><code><strong>req.body</strong></code></h3><ul id="1f2857bd-249d-8056-b416-e353c64a58d6" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition:</strong> Enthält die Daten, die im <strong>Body</strong> (Nachrichtentext) einer HTTP-Anfrage gesendet werden.</li></ul><ul id="1f2857bd-249d-80d2-90c0-e18d03683adc" class="bulleted-list"><li style="list-style-type:disc"><strong>Verwendung:</strong> Wird hauptsächlich bei <strong>POST</strong>, <strong>PUT</strong> oder <strong>PATCH</strong>Anfragen verwendet.</li></ul><ul id="1f2857bd-249d-803f-b8fd-f9fd36abe266" class="bulleted-list"><li style="list-style-type:disc"><strong>Datenquelle:</strong> Die Daten werden typischerweise durch ein Formular oder eine API-Anfrage im Body der Anfrage gesendet.</li></ul><ul id="1f2857bd-249d-80ff-91b1-e5b355521ea1" class="bulleted-list"><li style="list-style-type:disc"><strong>Middleware erforderlich:</strong> Damit <code>req.body</code> funktioniert, muss die Middleware <code>express.urlencoded()</code> oder <code>express.json()</code> in der server.js aktiviert sein:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80cd-9e18-e5390b704f0a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 </code></pre></li></ul><h3 id="1f2857bd-249d-80f5-864a-eaaed0c489f2" class=""><strong>Beispiel:</strong></h3><p id="1f2857bd-249d-808a-8252-d089975c928f" class="">Ein Formular sendet Daten per POST:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80a4-bee9-e4fab11ca7bd" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;form action=&quot;/person&quot; method=&quot;POST&quot;&gt;
   &lt;input type=&quot;text&quot; name=&quot;vorname&quot; value=&quot;Max&quot;&gt;
@@ -749,5 +750,305 @@ app.use(express.json());
 </code></pre><p id="1f2857bd-249d-8080-b2b6-d3bb992fa095" class="">In der Route:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2857bd-249d-80d2-b1de-c290b7acc76c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">app.get(&#x27;/search&#x27;, (req, res) =&gt; {
     console.log(req.query); // { vorname: &#x27;Max&#x27;, nachname: &#x27;Mustermann&#x27; }
 });
-</code></pre><hr id="1f2857bd-249d-8069-a0a3-e926e229ba79"/><h3 id="1f2857bd-249d-80ad-ba46-dcdc1659b289" class=""><strong>Vergleich:</strong></h3><table id="1f2857bd-249d-8000-9844-ebec766e790b" class="simple-table"><tbody><tr id="1f2857bd-249d-8032-ac94-f4b4b72e60df"><td id="\gTE" class=""><strong>Eigenschaft</strong></td><td id="[?m:" class=""><code><strong>req.body</strong></code></td><td id="dD[G" class=""><code><strong>req.query</strong></code></td></tr><tr id="1f2857bd-249d-8085-8aba-f4d80228732a"><td id="\gTE" class=""><strong>Datenquelle</strong></td><td id="[?m:" class="">Body der Anfrage</td><td id="dD[G" class="">Query-Parameter in der URL</td></tr><tr id="1f2857bd-249d-805e-ae58-d315d68e4e70"><td id="\gTE" class=""><strong>HTTP-Methoden</strong></td><td id="[?m:" class="">POST, PUT, PATCH</td><td id="dD[G" class="">GET</td></tr><tr id="1f2857bd-249d-8031-975f-e20bd8f68666"><td id="\gTE" class=""><strong>Middleware erforderlich</strong></td><td id="[?m:" class="">Ja (<code>express.urlencoded</code> oder <code>express.json</code>)</td><td id="dD[G" class="">Nein</td></tr><tr id="1f2857bd-249d-8041-862e-df93146e3006"><td id="\gTE" class=""><strong>Beispiel-Datenformat</strong></td><td id="[?m:" class="">JSON, Formulardaten</td><td id="dD[G" class="">Schlüssel-Wert-Paare in der URL</td></tr><tr id="1f2857bd-249d-801b-a665-cfa6d6d05390"><td id="\gTE" class=""><strong>Beispiel-URL</strong></td><td id="[?m:" class="">Nicht sichtbar in der URL</td><td id="dD[G" class=""><code>http://localhost:3000/search?name=Max</code></td></tr></tbody></table><hr id="1f2857bd-249d-8031-91d8-fa5309679ea2"/><h3 id="1f2857bd-249d-80c4-82e0-f67a42594d46" class=""><strong>Wann verwende ich was?</strong></h3><ul id="1f2857bd-249d-80cf-b279-f11f7859e7c3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.body</strong></code><strong>:</strong> Wenn du sensible oder größere Datenmengen senden möchtest (z. B. Formulardaten, JSON-Daten).</li></ul><ul id="1f2857bd-249d-80dc-85c5-fb1d18815278" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.query</strong></code><strong>:</strong> Wenn du einfache Filter- oder Suchparameter übergeben möchtest (z. B. <code>?name=Max</code>).</li></ul><hr id="1f2857bd-249d-802a-bd01-d0fe9e3e0e46"/></div></div><p id="1f2857bd-249d-801c-9c5d-eba04bf292b2" class="">
+</code></pre><hr id="1f2857bd-249d-8069-a0a3-e926e229ba79"/><h3 id="1f2857bd-249d-80ad-ba46-dcdc1659b289" class=""><strong>Vergleich:</strong></h3><table id="1f2857bd-249d-8000-9844-ebec766e790b" class="simple-table"><tbody><tr id="1f2857bd-249d-8032-ac94-f4b4b72e60df"><td id="\gTE" class=""><strong>Eigenschaft</strong></td><td id="[?m:" class=""><code><strong>req.body</strong></code></td><td id="dD[G" class=""><code><strong>req.query</strong></code></td></tr><tr id="1f2857bd-249d-8085-8aba-f4d80228732a"><td id="\gTE" class=""><strong>Datenquelle</strong></td><td id="[?m:" class="">Body der Anfrage</td><td id="dD[G" class="">Query-Parameter in der URL</td></tr><tr id="1f2857bd-249d-805e-ae58-d315d68e4e70"><td id="\gTE" class=""><strong>HTTP-Methoden</strong></td><td id="[?m:" class="">POST, PUT, PATCH</td><td id="dD[G" class="">GET</td></tr><tr id="1f2857bd-249d-8031-975f-e20bd8f68666"><td id="\gTE" class=""><strong>Middleware erforderlich</strong></td><td id="[?m:" class="">Ja (<code>express.urlencoded</code> oder <code>express.json</code>)</td><td id="dD[G" class="">Nein</td></tr><tr id="1f2857bd-249d-8041-862e-df93146e3006"><td id="\gTE" class=""><strong>Beispiel-Datenformat</strong></td><td id="[?m:" class="">JSON, Formulardaten</td><td id="dD[G" class="">Schlüssel-Wert-Paare in der URL</td></tr><tr id="1f2857bd-249d-801b-a665-cfa6d6d05390"><td id="\gTE" class=""><strong>Beispiel-URL</strong></td><td id="[?m:" class="">Nicht sichtbar in der URL</td><td id="dD[G" class=""><code>http://localhost:3000/search?name=Max</code></td></tr></tbody></table><hr id="1f2857bd-249d-8031-91d8-fa5309679ea2"/><h3 id="1f2857bd-249d-80c4-82e0-f67a42594d46" class=""><strong>Wann verwende ich was?</strong></h3><ul id="1f2857bd-249d-80cf-b279-f11f7859e7c3" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.body</strong></code><strong>:</strong> Wenn du sensible oder größere Datenmengen senden möchtest (z. B. Formulardaten, JSON-Daten).</li></ul><ul id="1f2857bd-249d-80dc-85c5-fb1d18815278" class="bulleted-list"><li style="list-style-type:disc"><code><strong>req.query</strong></code><strong>:</strong> Wenn du einfache Filter- oder Suchparameter übergeben möchtest (z. B. <code>?name=Max</code>).</li></ul><hr id="1f2857bd-249d-802a-bd01-d0fe9e3e0e46"/><h2 id="1ff857bd-249d-80d6-b46d-c76e0a98c0d2" class="">Was ist Express.js? Wozu wird es verwendet?</h2><p id="1ff857bd-249d-80e1-906c-c2edf0bf10fb" class="">Express.js ist ein minimalistisches, flexibles Web-Framework für Node.js. Es vereinfacht die Erstellung von Webanwendungen und APIs durch eine schlanke Schicht grundlegender Webfunktionen. Express wird verwendet für:</p><ul id="1ff857bd-249d-805a-b470-f38466e933fd" class="bulleted-list"><li style="list-style-type:disc">Erstellung von Web-Servern</li></ul><ul id="1ff857bd-249d-80ad-a94f-c877286abf3a" class="bulleted-list"><li style="list-style-type:disc">Entwicklung von REST APIs</li></ul><ul id="1ff857bd-249d-805d-9e24-da5e73b1b21a" class="bulleted-list"><li style="list-style-type:disc">Single-Page-Anwendungen</li></ul><ul id="1ff857bd-249d-80c1-83cd-f915fcd26c35" class="bulleted-list"><li style="list-style-type:disc">Microservices</li></ul><h2 id="1ff857bd-249d-8062-84cf-d127c4f75fb6" class="">Wie installiere ich Express.js in einem TypeScript-Projekt?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8068-abef-e28f05468005" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all"># Grundinstallation
+npm install express
+npm install --save-dev @types/express typescript ts-node
+
+# package.json ergänzen
+# &quot;scripts&quot;: {
+#   &quot;build&quot;: &quot;tsc&quot;,
+#   &quot;start&quot;: &quot;node dist/index.js&quot;,
+#   &quot;dev&quot;: &quot;ts-node src/index.ts&quot;
+# }
+
+# tsconfig.json erstellen
+npx tsc --init
+</code></pre><h2 id="1ff857bd-249d-80af-bee9-e7c6f5cd3165" class="">Wie erstelle ich einen einfachen Web-Server mit Express?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80ec-a36b-c9a272a47293" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+
+const app = express();
+const port = 3000;
+
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  res.send(&#x27;Hallo Welt!&#x27;);
+});
+
+app.listen(port, () =&gt; {
+  console.log(`Server läuft auf &lt;http://localhost&gt;:${port}`);
+});
+</code></pre><h2 id="1ff857bd-249d-80e6-ab9d-d0beae08f274" class="">Was ist dotenv und warum sollte man es verwenden?</h2><p id="1ff857bd-249d-8055-be84-c9c3a276ff02" class="">Dotenv ist ein Paket, das Umgebungsvariablen aus einer <code>.env</code>-Datei in <code>process.env</code> lädt. Man sollte es verwenden, um:</p><ul id="1ff857bd-249d-80ae-91cb-d3058b8a8fd2" class="bulleted-list"><li style="list-style-type:disc">Sensible Daten (Passwörter, API-Schlüssel) von der Codebasis zu trennen</li></ul><ul id="1ff857bd-249d-803b-b71c-e00aa755e89a" class="bulleted-list"><li style="list-style-type:disc">Verschiedene Konfigurationen für unterschiedliche Umgebungen zu ermöglichen</li></ul><ul id="1ff857bd-249d-8050-a663-d3e2448f7a10" class="bulleted-list"><li style="list-style-type:disc">Sicherheitsrisiken zu reduzieren</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8004-96f8-eaa9ffba56e4" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install dotenv
+</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80c5-84d1-dbca1cf8d4b2" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import dotenv from &#x27;dotenv&#x27;;
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+</code></pre><h2 id="1ff857bd-249d-805f-9f01-ef765fa14a1b" class="">Wie definiere ich Routes in Express?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-809e-ad36-e4117537f8f1" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+// Einfache Route
+app.get(&#x27;/hello&#x27;, (req, res) =&gt; {
+  res.send(&#x27;Hallo Besucher!&#x27;);
+});
+
+// Route mit Parameter
+app.get(&#x27;/users/:id&#x27;, (req, res) =&gt; {
+  res.send(`Benutzer-ID: ${req.params.id}`);
+});
+
+// Verschachtelte Routen mit Router
+const router = express.Router();
+router.get(&#x27;/profile&#x27;, (req, res) =&gt; {
+  res.send(&#x27;Benutzerprofil&#x27;);
+});
+
+app.use(&#x27;/user&#x27;, router); // Zugriff über /user/profile
+</code></pre><h2 id="1ff857bd-249d-805f-b04b-e451aef78c48" class="">Wie kann ich statische Dateien mit Express bereitstellen?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80d9-9a24-f663772e869a" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+import path from &#x27;path&#x27;;
+
+const app = express();
+
+// Einen Ordner für statische Dateien bereitstellen
+app.use(express.static(path.join(__dirname, &#x27;public&#x27;)));
+
+// Spezifische Route für statische Dateien
+app.use(&#x27;/assets&#x27;, express.static(path.join(__dirname, &#x27;assets&#x27;)));
+</code></pre><h2 id="1ff857bd-249d-80bf-a89e-fe622760c383" class="">Wie kann ich eine JSON als REST API als Ergebnis bereitstellen?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-808b-8268-d4b83a97eb11" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+app.get(&#x27;/api/users&#x27;, (req, res) =&gt; {
+  const users = [
+    { id: 1, name: &#x27;Max&#x27; },
+    { id: 2, name: &#x27;Anna&#x27; }
+  ];
+
+  res.json(users);
+});
+
+app.get(&#x27;/api/products/:id&#x27;, (req, res) =&gt; {
+  const product = { id: req.params.id, name: &#x27;Beispielprodukt&#x27;, price: 19.99 };
+  res.status(200).json(product);
+});
+</code></pre><h2 id="1ff857bd-249d-8090-8085-c940fb9a81f6" class="">Wie kann ich eine generierte HTML Dokument als Ergebnis bereitstellen?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8041-94fc-cf4dfdfd375d" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+import path from &#x27;path&#x27;;
+
+const app = express();
+
+// Option 1: HTML direkt senden
+app.get(&#x27;/einfach&#x27;, (req, res) =&gt; {
+  res.send(`
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+      &lt;head&gt;&lt;title&gt;Meine Seite&lt;/title&gt;&lt;/head&gt;
+      &lt;body&gt;&lt;h1&gt;Willkommen&lt;/h1&gt;&lt;/body&gt;
+    &lt;/html&gt;
+  `);
+});
+
+// Option 2: Mit Template Engine (z.B. EJS)
+// npm install ejs
+app.set(&#x27;view engine&#x27;, &#x27;ejs&#x27;);
+app.set(&#x27;views&#x27;, path.join(__dirname, &#x27;views&#x27;));
+
+app.get(&#x27;/template&#x27;, (req, res) =&gt; {
+  res.render(&#x27;index&#x27;, { title: &#x27;Meine Seite&#x27;, message: &#x27;Hallo Welt!&#x27; });
+});
+</code></pre><h2 id="1ff857bd-249d-8033-b9f1-f3d9e7c87d41" class="">Wie behandle ich HTTP-Anfragen (GET, POST, etc.)?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8075-8c83-d33fcf84f385" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+app.use(express.json()); // Für JSON-Requests
+app.use(express.urlencoded({ extended: true })); // Für Form-Daten
+
+app.get(&#x27;/daten&#x27;, (req, res) =&gt; {
+  res.send(&#x27;GET-Anfrage empfangen&#x27;);
+});
+
+app.post(&#x27;/daten&#x27;, (req, res) =&gt; {
+  console.log(req.body);
+  res.send(&#x27;POST-Anfrage empfangen&#x27;);
+});
+
+app.put(&#x27;/daten/:id&#x27;, (req, res) =&gt; {
+  res.send(`PUT-Anfrage für ID ${req.params.id} empfangen`);
+});
+
+app.delete(&#x27;/daten/:id&#x27;, (req, res) =&gt; {
+  res.send(`DELETE-Anfrage für ID ${req.params.id} empfangen`);
+});
+</code></pre><h2 id="1ff857bd-249d-800e-865d-c71414a13fdd" class="">Wie kann ich Query-Parameter und URL-Parameter verarbeiten?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8070-ad5a-eadcf66babc8" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+// URL-Parameter (/users/123)
+app.get(&#x27;/users/:id&#x27;, (req, res) =&gt; {
+  const userId = req.params.id;
+  res.send(`User ID: ${userId}`);
+});
+
+// Query-Parameter (/search?q=express&amp;sort=desc)
+app.get(&#x27;/search&#x27;, (req, res) =&gt; {
+  const query = req.query.q;
+  const sort = req.query.sort;
+  res.send(`Suche nach: ${query}, Sortierung: ${sort}`);
+});
+</code></pre><h2 id="1ff857bd-249d-80c3-b09b-f77751305fb3" class="">Wie kann ich Body eines Query lesen?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80fe-8899-eb485f17baec" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+// Middleware für JSON-Parsing
+app.use(express.json());
+// Middleware für URL-encoded Formulardaten
+app.use(express.urlencoded({ extended: true }));
+
+app.post(&#x27;/api/data&#x27;, (req, res) =&gt; {
+  // Body als JSON abrufen
+  const data = req.body;
+  console.log(data);
+  res.json({ message: &#x27;Daten empfangen&#x27;, receivedData: data });
+});
+</code></pre><h2 id="1ff857bd-249d-8032-9c23-c60dc9d90b81" class="">Was kann ich als Body in einem Query bekommen?</h2><p id="1ff857bd-249d-8024-b13d-f09a31dc7b03" class="">In Express kannst du verschiedene Datenformate im Request-Body empfangen:</p><ul id="1ff857bd-249d-80d9-9c6d-d7cc3710f27a" class="bulleted-list"><li style="list-style-type:disc">JSON-Objekte (<code>application/json</code>)</li></ul><ul id="1ff857bd-249d-801c-99ed-c6c40b132ead" class="bulleted-list"><li style="list-style-type:disc">Formular-Daten (<code>application/x-www-form-urlencoded</code>)</li></ul><ul id="1ff857bd-249d-80c5-aaf4-ea307a83c5f7" class="bulleted-list"><li style="list-style-type:disc">Multipart-Formulare (<code>multipart/form-data</code>) - für Datei-Uploads (benötigt <code>multer</code>)</li></ul><ul id="1ff857bd-249d-80c3-9026-c0ac526d5584" class="bulleted-list"><li style="list-style-type:disc">Text (<code>text/plain</code>)</li></ul><ul id="1ff857bd-249d-8031-a418-f286be30a24c" class="bulleted-list"><li style="list-style-type:disc">XML (<code>application/xml</code>)</li></ul><ul id="1ff857bd-249d-8009-b2ed-dcdf3f708751" class="bulleted-list"><li style="list-style-type:disc">Binärdaten</li></ul><h2 id="1ff857bd-249d-8056-a336-e2f8d5bd0ed5" class="">Was sind Middleware-Funktionen in Express?</h2><p id="1ff857bd-249d-80ff-b607-c5928afe219a" class="">Middleware-Funktionen sind Funktionen, die Zugriff auf das Request-Objekt, das Response-Objekt und die nächste Middleware-Funktion haben. Sie können:</p><ul id="1ff857bd-249d-80bf-b5e1-ffc3391ff68e" class="bulleted-list"><li style="list-style-type:disc">Request- und Response-Objekte modifizieren</li></ul><ul id="1ff857bd-249d-8072-b8b7-d56342c1c812" class="bulleted-list"><li style="list-style-type:disc">Den Request-Response-Zyklus beenden</li></ul><ul id="1ff857bd-249d-80e3-a583-cf628f824a51" class="bulleted-list"><li style="list-style-type:disc">Die nächste Middleware in der Kette aufrufen</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80ab-9b93-d5bf7a88905b" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+// Globale Middleware
+app.use((req, res, next) =&gt; {
+  console.log(`${req.method} ${req.url}`);
+  next(); // Wichtig: Weiterleitung an die nächste Middleware
+});
+
+// Route-spezifische Middleware
+const checkAuth = (req, res, next) =&gt; {
+  if (req.query.token === &#x27;secret&#x27;) {
+    next();
+  } else {
+    res.status(401).send(&#x27;Nicht autorisiert&#x27;);
+  }
+};
+
+app.get(&#x27;/geschützt&#x27;, checkAuth, (req, res) =&gt; {
+  res.send(&#x27;Geschützter Bereich&#x27;);
+});
+</code></pre><h2 id="1ff857bd-249d-80db-bcff-d9d175722b39" class="">Wie implementiere ich Error-Handling in Express?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-808e-8618-f361bfd54f33" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+const app = express();
+
+// Route mit Error-Handling
+app.get(&#x27;/fehler&#x27;, (req, res, next) =&gt; {
+  try {
+    // Wenn hier ein Fehler auftritt
+    throw new Error(&#x27;Etwas ist schief gelaufen&#x27;);
+  } catch (error) {
+    next(error); // Übergabe an Error-Handler
+  }
+});
+
+// Asynchrone Route mit Error-Handling
+app.get(&#x27;/async-fehler&#x27;, async (req, res, next) =&gt; {
+  try {
+    // Asynchrone Operation
+    const result = await someAsyncFunction();
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Error-Handling Middleware (MUSS 4 Parameter haben)
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) =&gt; {
+  console.error(err.stack);
+  res.status(500).send(&#x27;Etwas ist schief gelaufen!&#x27;);
+});
+</code></pre><h2 id="1ff857bd-249d-80d7-83b0-f0673932b086" class="">Was sind die Best Practices für die Strukturierung einer Express-Anwendung?</h2><ol type="1" id="1ff857bd-249d-80c2-99f5-fcc864354dc7" class="numbered-list" start="1"><li><strong>Modulare Struktur</strong><ul id="1ff857bd-249d-80e3-86ac-fab49ba0009f" class="bulleted-list"><li style="list-style-type:disc">Trennung von Routen, Controllern, Modellen</li></ul><ul id="1ff857bd-249d-80a7-9d7c-c7adc0f1d4f0" class="bulleted-list"><li style="list-style-type:disc">Verwendung von Express Router</li></ul></li></ol><ol type="1" id="1ff857bd-249d-803f-a194-e2802d02a10f" class="numbered-list" start="2"><li><strong>MVC-ähnliches Muster</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8098-bc4c-da9276173ae6" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">/src
+  /controllers - Logik zur Anfrageverarbeitung
+  /models - Datenmodelle und Datenbankzugriff
+  /routes - Routendefinitionen
+  /middleware - Benutzerdefinierte Middleware-Funktionen
+  /services - Geschäftslogik
+  /utils - Hilfsfunktionen
+  /config - Konfigurationsdateien
+  app.ts - Express-Anwendung
+  server.ts - HTTP-Server-Start
+</code></pre></li></ol><ol type="1" id="1ff857bd-249d-8037-b262-e80c098d2013" class="numbered-list" start="3"><li><strong>Umgebungskonfiguration mit dotenv</strong></li></ol><h2 id="1ff857bd-249d-8001-821c-fa80da91120c" class="">Wie stelle ich die Sicherheit meiner Express-Anwendung sicher?</h2><ol type="1" id="1ff857bd-249d-80fa-91c1-f0860a8a8d66" class="numbered-list" start="1"><li><strong>Verwende Sicherheits-Middleware</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8013-b689-db158cfefdde" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import helmet from &#x27;helmet&#x27;; // npm install helmet
+app.use(helmet()); // Setzt verschiedene HTTP-Header
+</code></pre></li></ol><ol type="1" id="1ff857bd-249d-80cb-9985-f0b9326e695d" class="numbered-list" start="2"><li><strong>CORS konfigurieren</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80e8-b0e8-fb2cf414cd7d" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import cors from &#x27;cors&#x27;; // npm install cors
+app.use(cors({
+  origin: &#x27;&lt;https://meine-app.com&gt;&#x27;,
+  methods: [&#x27;GET&#x27;, &#x27;POST&#x27;]
+}));
+</code></pre></li></ol><ol type="1" id="1ff857bd-249d-808d-b7a5-c5f51e5b9574" class="numbered-list" start="3"><li><strong>Validierung von Benutzereingaben</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8006-9088-d66a94b50c97" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import { body, validationResult } from &#x27;express-validator&#x27;;
+
+app.post(&#x27;/user&#x27;,
+  body(&#x27;email&#x27;).isEmail(),
+  body(&#x27;password&#x27;).isLength({ min: 8 }),
+  (req, res) =&gt; {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    // Verarbeitung...
+  }
+);
+</code></pre></li></ol><ol type="1" id="1ff857bd-249d-80fa-9146-cb83e37f2439" class="numbered-list" start="4"><li><strong>Rate Limiting</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-803f-bf33-cb40b69fe66e" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import rateLimit from &#x27;express-rate-limit&#x27;;
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 Minuten
+  max: 100 // max 100 Anfragen pro IP
+});
+
+app.use(limiter);
+</code></pre></li></ol><h2 id="1ff857bd-249d-80d4-b670-f907d0a8bedc" class="">Wie integriere ich Express mit einer Datenbank?</h2><p id="1ff857bd-249d-8034-b88d-c014891d187e" class=""><strong>Mit MySQL:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-8060-89c0-d909ddd6322f" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import mysql from &#x27;mysql2/promise&#x27;;
+
+// Verbindungspool erstellen
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+app.get(&#x27;/users&#x27;, async (req, res) =&gt; {
+  try {
+    const [rows] = await pool.query(&#x27;SELECT * FROM users&#x27;);
+    res.json(rows);
+  } catch (error) {
+    res.status(500).send(&#x27;Datenbankfehler&#x27;);
+  }
+});
+</code></pre><p id="1ff857bd-249d-80d2-aac8-ead54f43e334" class=""><strong>Mit MongoDB:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-80bd-9673-cb1233be4d43" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import mongoose from &#x27;mongoose&#x27;;
+
+mongoose.connect(process.env.MONGO_URI);
+
+const User = mongoose.model(&#x27;User&#x27;, {
+  name: String,
+  email: String
+});
+
+app.get(&#x27;/users&#x27;, async (req, res) =&gt; {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).send(&#x27;Datenbankfehler&#x27;);
+  }
+});
+</code></pre><h2 id="1ff857bd-249d-8014-ab42-e7b1146ce2cf" class="">Wie kann ich einen Webserver erstellen, der HTTPS unterstützt?</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff857bd-249d-805f-a190-c111a489d8a5" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">import express from &#x27;express&#x27;;
+import https from &#x27;https&#x27;;
+import fs from &#x27;fs&#x27;;
+import path from &#x27;path&#x27;;
+
+const app = express();
+
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  res.send(&#x27;Sichere Verbindung!&#x27;);
+});
+
+const options = {
+  key: fs.readFileSync(path.join(__dirname, &#x27;ssl/privkey.pem&#x27;)),
+  cert: fs.readFileSync(path.join(__dirname, &#x27;ssl/cert.pem&#x27;))
+};
+
+https.createServer(options, app).listen(443, () =&gt; {
+  console.log(&#x27;HTTPS-Server läuft auf Port 443&#x27;);
+});
+
+// Optional: HTTP-Server umleiten
+const http = express();
+http.get(&#x27;*&#x27;, (req, res) =&gt; {
+  res.redirect(`https://${req.headers.host}${req.url}`);
+});
+http.listen(80);
+</code></pre></div></div><p id="1f2857bd-249d-801c-9c5d-eba04bf292b2" class="">
 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

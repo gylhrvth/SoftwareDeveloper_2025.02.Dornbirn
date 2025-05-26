@@ -1,0 +1,856 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Typescript</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1fa857bd-249d-8029-9672-f1fc2c32e39b" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/clipping_gray.svg"/></div><h1 class="page-title">Typescript</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><td><time>@21. Mai 2025</time></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/archive_gray.svg" style="width:14px;height:14px;display:block"/></span>Archive</th><td><div class="checkbox checkbox-off"></div></td></tr></tbody></table></header><div class="page-body"><div id="1fa857bd-249d-8010-8d22-d1673bb81975" class="column-list"><div id="1fa857bd-249d-8068-bb0b-fdecec619034" style="width:50%" class="column"><h3 id="1fa857bd-249d-8006-a592-fc9d5dcf7545" class=""><strong>Was ist TypeScript? Woher kommt es?</strong></h3><p id="1fa857bd-249d-800f-9dfb-c173e577e81b" class="">TypeScript ist eine <strong>Open-Source-Programmiersprache</strong>, die von <strong>Microsoft</strong> entwickelt wurde und erstmals 2012 veröffentlicht wurde. Es ist eine <strong>Obermenge von JavaScript</strong>, was bedeutet, dass jedes gültige JavaScript-Programm auch ein gültiges TypeScript-Programm ist. TypeScript erweitert JavaScript um <strong>statische Typisierung</strong> und moderne Features wie Interfaces, Generics und Enums.</p><ul id="1fa857bd-249d-802f-a863-f39b8abe305d" class="bulleted-list"><li style="list-style-type:disc"><strong>Warum TypeScript?</strong><br/>JavaScript ist dynamisch typisiert, was bedeutet, dass Typfehler erst zur Laufzeit auftreten können. TypeScript löst dieses Problem, indem es Typen zur Entwicklungszeit überprüft, was zu weniger Fehlern und besser wartbarem Code führt.<br/></li></ul><ul id="1fa857bd-249d-80ea-89cb-d5a8a827370b" class="bulleted-list"><li style="list-style-type:disc"><strong>Wie funktioniert TypeScript?</strong><br/>TypeScript wird in <br/><strong>JavaScript transpiliert</strong> (übersetzt), da Browser und JavaScript-Engines nur JavaScript ausführen können. Der Transpiler (Compiler) von TypeScript übernimmt diese Aufgabe.</li></ul><hr id="1fa857bd-249d-80c3-95f7-f59c18ccbc4a"/><h3 id="1fa857bd-249d-803d-9c12-e811f130ff96" class=""><strong>Was sind die Vorteile / Nachteile von TypeScript gegenüber JavaScript?</strong></h3><h3 id="1fa857bd-249d-80d3-9969-c6fe00e84b86" class=""><strong>Vorteile:</strong></h3><ol type="1" id="1fa857bd-249d-8018-9798-d401b52a003a" class="numbered-list" start="1"><li><strong>Statische Typisierung:</strong><ul id="1fa857bd-249d-80d6-aa21-fb5f8a3b9e1e" class="bulleted-list"><li style="list-style-type:disc">TypeScript prüft Typen zur Entwicklungszeit, wodurch viele Fehler frühzeitig erkannt werden.</li></ul><ul id="1fa857bd-249d-80e4-ae1e-de915b52f34c" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-802f-8f0c-fccc1ae39ed9" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let zahl: number = &quot;Hallo&quot;; // Fehler: Typ &quot;string&quot; ist nicht zuweisbar an Typ &quot;number&quot;.
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-80a3-950b-ce957b5a6169" class="numbered-list" start="2"><li><strong>Bessere IDE-Unterstützung:</strong><ul id="1fa857bd-249d-801a-bd91-f7136ed566ce" class="bulleted-list"><li style="list-style-type:disc">Dank Typinformationen bietet TypeScript eine bessere Autovervollständigung, Fehlererkennung und Refactoring-Tools in IDEs wie Visual Studio Code.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-805f-8ab1-efb8f1b8ac08" class="numbered-list" start="3"><li><strong>Moderne Features:</strong><ul id="1fa857bd-249d-80b5-bb88-d3470dde64c9" class="bulleted-list"><li style="list-style-type:disc">TypeScript unterstützt Features wie Klassen, Interfaces, Enums, Generics und Module, die in JavaScript erst später oder gar nicht verfügbar sind.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-80f2-b4f7-c67b0a63c7d5" class="numbered-list" start="4"><li><strong>Lesbarkeit und Wartbarkeit:</strong><ul id="1fa857bd-249d-808e-ad89-c9dbe89e3f9a" class="bulleted-list"><li style="list-style-type:disc">Der Code ist durch Typen besser dokumentiert und leichter zu verstehen, besonders in großen Teams.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-8030-b1a1-f8f8db5dbdba" class="numbered-list" start="5"><li><strong>Kompatibilität:</strong><ul id="1fa857bd-249d-805b-904b-c63a47b6fd22" class="bulleted-list"><li style="list-style-type:disc">TypeScript ist vollständig kompatibel mit JavaScript. Du kannst bestehende JavaScript-Projekte schrittweise auf TypeScript migrieren.</li></ul></li></ol><h3 id="1fa857bd-249d-806d-a644-e18c874b49ae" class=""><strong>Nachteile:</strong></h3><ol type="1" id="1fa857bd-249d-80c4-9d45-c28ccca9f7a2" class="numbered-list" start="1"><li><strong>Zusätzlicher Aufwand:</strong><ul id="1fa857bd-249d-8007-8cf0-ecdbf362dcb9" class="bulleted-list"><li style="list-style-type:disc">Entwickler müssen Typen definieren und den Code vor der Ausführung kompilieren.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-80b1-a491-efaaf167e553" class="numbered-list" start="2"><li><strong>Lernkurve:</strong><ul id="1fa857bd-249d-80f1-a29a-e9f598092741" class="bulleted-list"><li style="list-style-type:disc">Entwickler, die nur JavaScript kennen, müssen sich an die Typisierung und die neuen Konzepte gewöhnen.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-8093-8db1-eb2c68440629" class="numbered-list" start="3"><li><strong>Build-Schritt erforderlich:</strong><ul id="1fa857bd-249d-809a-b361-d2e2f9d36742" class="bulleted-list"><li style="list-style-type:disc">TypeScript muss vor der Ausführung in JavaScript transpiliert werden, was den Entwicklungsprozess verlängern kann.</li></ul></li></ol><hr id="1fa857bd-249d-80b2-a89c-d7d73610353c"/><h3 id="1fa857bd-249d-8018-934d-e946b382f3e3" class=""><strong>Wie erstelle ich ein Projekt mit TypeScript?</strong></h3><ol type="1" id="1fa857bd-249d-80d4-af99-eaa7062f0bce" class="numbered-list" start="1"><li><strong>Projektverzeichnis erstellen:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8084-8838-ecc65aea19ee" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">mkdir mein-typescript-projekt
+cd mein-typescript-projekt
+</code></pre></li></ol><ol type="1" id="1fa857bd-249d-804f-b202-eee439d1739f" class="numbered-list" start="2"><li><strong>Node.js initialisieren:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8068-bea4-eb3de0ca728d" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm init -y
+</code></pre><p id="1fa857bd-249d-8069-9f3a-ca71e8e6d5f5" class="">Dies erstellt eine <code>package.json</code>-Datei.</p></li></ol><ol type="1" id="1fa857bd-249d-8002-bf7b-ca7fdf022794" class="numbered-list" start="3"><li><strong>TypeScript installieren:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8038-ad98-c535b40a5abb" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npm install typescript --save-dev
+</code></pre><p id="1fa857bd-249d-80bb-9a40-e354df220f24" class="">TypeScript wird als Entwicklungsabhängigkeit hinzugefügt.</p></li></ol><ol type="1" id="1fa857bd-249d-8028-b7eb-ec460ab6f576" class="numbered-list" start="4"><li><strong>TypeScript-Konfiguration erstellen:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8053-9ed6-db74a424f400" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npx tsc --init
+</code></pre><p id="1fa857bd-249d-8061-a62c-df9d24d68d40" class="">Dies erstellt eine <code>tsconfig.json</code>, in der du die Compiler-Optionen anpassen kannst.</p></li></ol><ol type="1" id="1fa857bd-249d-8050-85ce-d6856a3e4e57" class="numbered-list" start="5"><li><strong>TypeScript-Datei erstellen:</strong><br/>Erstelle eine Datei mit der Endung <br/><code>.ts</code>, z. B. <code>index.ts</code>, und schreibe deinen Code.</li></ol><ol type="1" id="1fa857bd-249d-809c-84d6-f8fe0b77d568" class="numbered-list" start="6"><li><strong>Code kompilieren:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80a6-aa96-c4f066519f98" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">npx tsc
+</code></pre><p id="1fa857bd-249d-802b-9830-c27a5c644d3f" class="">Der TypeScript-Compiler übersetzt die <code>.ts</code>-Dateien in <code>.js</code>-Dateien.</p></li></ol><ol type="1" id="1fa857bd-249d-80b3-bb74-e7dde0c3f2b5" class="numbered-list" start="7"><li><strong>JavaScript-Datei ausführen:</strong><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-800e-8258-ef1927d50c11" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">node dist/index.js
+</code></pre></li></ol><hr id="1fa857bd-249d-80fc-bd73-d173d3f11586"/><h3 id="1fa857bd-249d-80aa-a284-f86f60f571fc" class=""><strong>Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</strong></h3><p id="1fa857bd-249d-8027-b32b-eab629936fe7" class="">TypeScript erlaubt es, Typen explizit anzugeben, um Fehler zu vermeiden.</p><h3 id="1fa857bd-249d-809f-a0f6-f07886d10c1a" class=""><strong>Variablen:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-808c-b654-d5993c464e19" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let name: string = &quot;Max&quot;;
+let age: number = 25;
+let isStudent: boolean = true;
+</code></pre><h3 id="1fa857bd-249d-8011-bb36-e80388788bd4" class=""><strong>Funktionen:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8063-99cc-fde0e61ee24d" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function add(a: number, b: number): number {
+    return a + b;
+}
+</code></pre><ul id="1fa857bd-249d-8022-806b-fa5b7716e0f5" class="bulleted-list"><li style="list-style-type:disc"><code>a: number</code> und <code>b: number</code> geben die Typen der Parameter an.</li></ul><ul id="1fa857bd-249d-806a-8502-e5f415a6de34" class="bulleted-list"><li style="list-style-type:disc"><code>: number</code> nach der Klammer gibt den Rückgabewert der Funktion an.</li></ul><h3 id="1fa857bd-249d-8076-b0bf-f0fb28bfb43b" class=""><strong>Optionale Parameter:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80b2-9b4d-dbf212c1ad75" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function greet(name: string, age?: number): string {
+    return age ? `Hallo, ${name}. Du bist ${age} Jahre alt.` : `Hallo, ${name}.`;
+}
+</code></pre><ul id="1fa857bd-249d-8092-a7e1-ff49492a9643" class="bulleted-list"><li style="list-style-type:disc">Das <code>?</code> macht den Parameter <code>age</code> optional.</li></ul><hr id="1fa857bd-249d-805b-99d2-edf00b0fe4e1"/><h3 id="1fa857bd-249d-8000-b4f3-d0d549224238" class=""><strong>Wie beschreibe ich Arrays in TypeScript?</strong></h3><h3 id="1fa857bd-249d-8025-b7b1-cd51e42b20a8" class=""><strong>Einfaches Array:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8085-a181-fb379260fa63" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let zahlen: number[] = [1, 2, 3];
+let namen: string[] = [&quot;Anna&quot;, &quot;Ben&quot;, &quot;Clara&quot;];
+</code></pre><h3 id="1fa857bd-249d-8028-94bf-cd9991d75e7e" class=""><strong>Generische Syntax:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80ea-aa92-eb1d5328d40d" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let booleans: Array&lt;boolean&gt; = [true, false, true];
+</code></pre><h3 id="1fa857bd-249d-80f5-b0d3-e3dccfc2c2d7" class=""><strong>Array mit gemischten Typen:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8070-9845-e6471c3a4cbf" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let gemischt: (number | string)[] = [1, &quot;zwei&quot;, 3];
+</code></pre><hr id="1fa857bd-249d-80af-89be-c6958d8f1dcb"/><h3 id="1fa857bd-249d-8095-b005-e47fcb8b9a25" class=""><strong>Wie beschreibe ich Objekte in TypeScript?</strong></h3><h3 id="1fa857bd-249d-80ed-882a-c7956b304b80" class=""><strong>Einfaches Objekt:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8038-8425-f73439f7e487" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let person: { name: string; age: number } = {
+    name: &quot;Max&quot;,
+    age: 30,
+};
+</code></pre><h3 id="1fa857bd-249d-80b7-b678-f834eb017c5a" class=""><strong>Verschachtelte Objekte:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-801a-8ff7-e343b4455912" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let auto: { marke: string; modell: { name: string; jahr: number } } = {
+    marke: &quot;BMW&quot;,
+    modell: {
+        name: &quot;X5&quot;,
+        jahr: 2022,
+    },
+};
+</code></pre><hr id="1fa857bd-249d-80e5-958e-ef8c5520cbf8"/><h3 id="1fa857bd-249d-80bf-8496-d9378bf5ff2d" class=""><strong>Wie verwende ich Interfaces in TypeScript?</strong></h3><p id="1fa857bd-249d-8005-a980-fbccea4ab4df" class="">Interfaces beschreiben die Struktur eines Objekts.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8034-aa71-fd0794bdcdfd" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">interface Person {
+    name: string;
+    age: number;
+    greet(): string;
+}
+
+let person: Person = {
+    name: &quot;Anna&quot;,
+    age: 25,
+    greet() {
+        return `Hallo, ich bin ${this.name}.`;
+    },
+};
+</code></pre><hr id="1fa857bd-249d-809c-9b74-fb1ff74eddf2"/><h3 id="1fa857bd-249d-80cc-9a60-c0e6f593366d" class=""><strong>Wie verwende ich </strong><code><strong>type</strong></code><strong> in TypeScript?</strong></h3><p id="1fa857bd-249d-805c-a46f-ccc008786aca" class=""><code>type</code> ist eine flexible Möglichkeit, Typen zu definieren.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80c0-9736-d6738025bca6" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">type Person = {
+    name: string;
+    age: number;
+};
+
+let person: Person = {
+    name: &quot;Ben&quot;,
+    age: 40,
+};
+</code></pre><hr id="1fa857bd-249d-8032-8388-dea2d3db3708"/><h3 id="1fa857bd-249d-80d8-9af3-ccfa0edeb023" class=""><strong>Was ist der Unterschied zwischen Interface und Type in TypeScript?</strong></h3><table id="1fa857bd-249d-80ef-bb66-e44bf5df46e9" class="simple-table"><tbody><tr id="1fa857bd-249d-805c-b17e-e57ba9057dd0"><td id="UKRh" class=""><strong>Feature</strong></td><td id="wH?P" class=""><strong>Interface</strong></td><td id="GNEz" class=""><strong>Type</strong></td></tr><tr id="1fa857bd-249d-80c9-b995-c25a34e440f0"><td id="UKRh" class=""><strong>Erweiterbarkeit</strong></td><td id="wH?P" class="">Kann erweitert werden (<code>extends</code>)</td><td id="GNEz" class="">Kann kombiniert werden (<code>&amp;</code>)</td></tr><tr id="1fa857bd-249d-80ca-88d4-fc8ccb1f4d6e"><td id="UKRh" class=""><strong>Flexibilität</strong></td><td id="wH?P" class="">Nur für Objekte</td><td id="GNEz" class="">Kann auch Union/Intersection sein</td></tr><tr id="1fa857bd-249d-809d-80d6-e11ba774a3c7"><td id="UKRh" class=""><strong>Performance</strong></td><td id="wH?P" class="">Besser für große Projekte</td><td id="GNEz" class="">Weniger performant bei komplexen Typen</td></tr></tbody></table><p id="1fa857bd-249d-8020-a1a2-d9bc30ac67b4" class="">Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8079-9a3b-d8c8c0a38903" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">interface A {
+    x: number;
+}
+
+type B = {
+    y: string;
+};
+
+type C = A &amp; B; // Intersection Type
+</code></pre><hr id="1fa857bd-249d-8077-a9cd-c8d7753728cf"/><h3 id="1fa857bd-249d-80dc-b181-f82579fab879" class=""><strong>Wie verwende ich Union Types?</strong></h3><p id="1fa857bd-249d-8048-9280-c9287ffcad07" class="">Union Types erlauben es, mehrere Typen zu kombinieren.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8007-929e-c7ef03c15468" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let id: number | string;
+id = 123; // gültig
+id = &quot;abc&quot;; // auch gültig
+</code></pre><hr id="1fa857bd-249d-8033-b475-f7b81fd2c86c"/><h3 id="1fa857bd-249d-8004-95c6-cb1e92f9bf5a" class=""><strong>Wie verwende ich Intersection Types?</strong></h3><p id="1fa857bd-249d-8009-80fd-c7d8ef4fb9af" class="">Intersection Types kombinieren mehrere Typen zu einem neuen Typ.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-806c-8f81-df7b0e4651b7" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">type A = { x: number };
+type B = { y: string };
+
+type C = A &amp; B;
+
+let obj: C = { x: 10, y: &quot;Hallo&quot; };
+</code></pre><hr id="1fa857bd-249d-807f-a31c-fa48819e77c7"/><h3 id="1fa857bd-249d-803e-ab35-ebb232673f77" class=""><strong>Was sind Generics? Wie verwende ich sie?</strong></h3><p id="1fa857bd-249d-8096-8081-f36d19a732ee" class="">Generics ermöglichen es, Typen flexibel zu gestalten.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8022-95a0-e183fa604a27" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function identity&lt;T&gt;(value: T): T {
+    return value;
+}
+
+let zahl = identity&lt;number&gt;(42);
+let text = identity&lt;string&gt;(&quot;Hallo&quot;);
+</code></pre><hr id="1fa857bd-249d-80b5-8ec8-e8d3713195cd"/><h3 id="1fa857bd-249d-802c-bd32-c08c08591b7b" class=""><strong>Was sind </strong><code><strong>enum</strong></code><strong> in TypeScript? Wie verwende ich sie?</strong></h3><p id="1fa857bd-249d-8003-b77c-cd8f37150f65" class="">Enums definieren eine Sammlung von benannten Konstanten.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80a4-a001-de81006bffe3" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">enum Farbe {
+    Rot,
+    Grün,
+    Blau,
+}
+
+let meineFarbe: Farbe = Farbe.Grün;
+console.log(meineFarbe); // Ausgabe: 1
+</code></pre><p id="1fa857bd-249d-8010-b9c2-f00d1a7bbd4d" class="">Enums können auch benutzerdefinierte Werte haben:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8061-a9d9-fc5084855913" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">enum Status {
+    Aktiv = &quot;AKTIV&quot;,
+    Inaktiv = &quot;INAKTIV&quot;,
+}
+
+let status: Status = Status.Aktiv;
+console.log(status); // Ausgabe: &quot;AKTIV&quot;
+</code></pre></div><div id="1fa857bd-249d-8029-91f9-db4c77e5ff5a" style="width:50%" class="column"><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="1fa857bd-249d-80b5-98af-d880cc4597da"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><div style="width:100%"><strong>Notes</strong><hr id="1fa857bd-249d-80bb-aa37-d9b83bf4ea60"/><p id="1fa857bd-249d-805d-8c02-ebf961505148" class="">Write here…<br/><br/><br/><br/><br/><strong>To-dos</strong></p><hr id="1fa857bd-249d-8057-8b8c-d84655da5f1d"/><ul id="1fa857bd-249d-8010-aab5-e5946fedcfe3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1fa857bd-249d-80a4-ae87-fbebcaa93754" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul><ul id="1fa857bd-249d-8089-a478-e5c08294a987" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span><div class="indented"></div></li></ul></div></figure><figure id="1fa857bd-249d-807a-be28-ec2a908cfdb4" class="image"><a href="../../../../../../Downloads/typescript/Typescript%201fa857bd249d80299672f1fc2c32e39b/33.png"><img style="width:425px" src="../../../../../../Downloads/typescript/Typescript%201fa857bd249d80299672f1fc2c32e39b/33.png"/></a></figure><h3 id="1fa857bd-249d-807f-a28d-fbcfb65aa551" class=""><strong>Wichtige Konzepte in TypeScript</strong></h3><ol type="1" id="1fa857bd-249d-80f8-b70e-dddf005d3507" class="numbered-list" start="1"><li><strong>Typen:</strong><ul id="1fa857bd-249d-80fd-bf93-ea56525e2cc4" class="bulleted-list"><li style="list-style-type:disc">TypeScript bietet eine Vielzahl von Typen wie <code>string</code>, <code>number</code>, <code>boolean</code>, <code>array</code>, <code>object</code>, <code>any</code>, <code>void</code>, <code>unknown</code>, <code>never</code> und mehr.</li></ul><ul id="1fa857bd-249d-80b6-998c-f18bb0c87b38" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8069-b18b-ee7f01da89a7" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let name: string = &quot;Max&quot;;
+let age: number = 30;
+let isStudent: boolean = true;
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-8045-855c-c78d4dff1001" class="numbered-list" start="2"><li><strong>Type Inference (Typableitung):</strong><ul id="1fa857bd-249d-80de-b0d1-f1a53daf2295" class="bulleted-list"><li style="list-style-type:disc">TypeScript kann Typen automatisch ableiten, wenn sie nicht explizit angegeben werden.</li></ul><ul id="1fa857bd-249d-80bc-9fbe-c87e2f2f4202" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8069-a457-f0c44f19f877" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let name = &quot;Max&quot;; // TypeScript erkennt automatisch, dass &quot;name&quot; ein string ist.
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-801a-b519-e0de75d94e1f" class="numbered-list" start="3"><li><strong>Interfaces und Typen:</strong><ul id="1fa857bd-249d-8080-b421-f56ed4b11977" class="bulleted-list"><li style="list-style-type:disc">Interfaces und Typen helfen, die Struktur von Objekten zu definieren.</li></ul><ul id="1fa857bd-249d-803a-b1b7-e11c50560a55" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-801e-a5bf-c1ee77c22969" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">interface Person {
+    name: string;
+    age: number;
+}
+
+let person: Person = { name: &quot;Anna&quot;, age: 25 };
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-809b-bc5a-f7b37e2da380" class="numbered-list" start="4"><li><strong>Union und Intersection Types:</strong><ul id="1fa857bd-249d-805f-b23b-c3617115b551" class="bulleted-list"><li style="list-style-type:disc">Union Types erlauben es, mehrere mögliche Typen zu definieren.</li></ul><ul id="1fa857bd-249d-80b5-848d-cc85670ec03d" class="bulleted-list"><li style="list-style-type:disc">Intersection Types kombinieren mehrere Typen.</li></ul><ul id="1fa857bd-249d-8036-8929-d58b6bf520c2" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-808d-9e8a-f49c391fd618" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let id: number | string; // Union Type
+id = 123;
+id = &quot;abc&quot;;
+
+type A = { x: number };
+type B = { y: string };
+type C = A &amp; B; // Intersection Type
+let obj: C = { x: 10, y: &quot;Hallo&quot; };
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-80e7-bf71-fed81753bf84" class="numbered-list" start="5"><li><strong>Generics:</strong><ul id="1fa857bd-249d-80fe-b3af-ee967b597562" class="bulleted-list"><li style="list-style-type:disc">Generics ermöglichen es, Typen flexibel zu gestalten.</li></ul><ul id="1fa857bd-249d-80e8-aed2-c4c1e8680971" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80a5-9c9d-cd207154c269" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function identity&lt;T&gt;(value: T): T {
+    return value;
+}
+
+let zahl = identity&lt;number&gt;(42);
+let text = identity&lt;string&gt;(&quot;Hallo&quot;);
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-80f5-807e-d4f11c41c2e1" class="numbered-list" start="6"><li><strong>Enums:</strong><ul id="1fa857bd-249d-80d5-b030-caabc90b274a" class="bulleted-list"><li style="list-style-type:disc">Enums definieren eine Sammlung von benannten Konstanten.</li></ul><ul id="1fa857bd-249d-8054-a7c3-daa076a2deca" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80e6-bbe9-fa70c508dfbc" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">enum Status {
+    Aktiv,
+    Inaktiv,
+}
+
+let status: Status = Status.Aktiv;
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-8057-9c62-da449e19f972" class="numbered-list" start="7"><li><strong>Module und Namespaces:</strong><ul id="1fa857bd-249d-80a1-9a37-f2eca0372613" class="bulleted-list"><li style="list-style-type:disc">TypeScript unterstützt die Organisation von Code in Modulen und Namespaces, was die Strukturierung großer Projekte erleichtert.</li></ul></li></ol><hr id="1fa857bd-249d-80c9-b916-ed86ebe13b27"/><h3 id="1fa857bd-249d-80dc-9f9f-f2da71bdfdba" class=""><strong>Wichtige Best Practices in TypeScript</strong></h3><ol type="1" id="1fa857bd-249d-8023-904c-ff99120adce2" class="numbered-list" start="1"><li><strong>Typen explizit angeben:</strong><ul id="1fa857bd-249d-8078-97e5-e70b9fc75406" class="bulleted-list"><li style="list-style-type:disc">Auch wenn TypeScript Typen ableiten kann, ist es oft hilfreich, Typen explizit anzugeben, um den Code klarer zu machen.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-80e5-aa69-e98d22e5aa77" class="numbered-list" start="2"><li><code><strong>any</strong></code><strong> vermeiden:</strong><ul id="1fa857bd-249d-807e-97e9-e0c49a6c8742" class="bulleted-list"><li style="list-style-type:disc">Der Typ <code>any</code> deaktiviert die Typprüfung und sollte nur verwendet werden, wenn es keine andere Möglichkeit gibt.</li></ul><ul id="1fa857bd-249d-80cd-a9e1-efa9c7e2f1be" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80dd-be59-d193babee80c" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let value: any = &quot;Hallo&quot;; // Vermeiden, wenn möglich
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-804d-9ecb-f5217c3fac35" class="numbered-list" start="3"><li><code><strong>unknown</strong></code><strong> statt </strong><code><strong>any</strong></code><strong> verwenden:</strong><ul id="1fa857bd-249d-8060-8ede-e7601036b94e" class="bulleted-list"><li style="list-style-type:disc"><code>unknown</code> ist sicherer als <code>any</code>, da es eine Typprüfung erfordert, bevor der Wert verwendet wird.</li></ul><ul id="1fa857bd-249d-805e-b3af-c5e2ee6bc899" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8093-959c-dd9b6ef36c87" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">let value: unknown = &quot;Hallo&quot;;
+if (typeof value === &quot;string&quot;) {
+    console.log(value.toUpperCase());
+}
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-80bd-9148-c429d7c30da6" class="numbered-list" start="4"><li><strong>Optionale Parameter und Standardwerte:</strong><ul id="1fa857bd-249d-8095-a423-c35f62dc1b01" class="bulleted-list"><li style="list-style-type:disc">Verwende optionale Parameter (<code>?</code>) und Standardwerte, um Funktionen flexibler zu gestalten.</li></ul><ul id="1fa857bd-249d-809e-ac13-d1b7f97e558c" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-80c8-9403-e5ec22d6da29" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function greet(name: string, age?: number): string {
+    return age ? `Hallo, ${name}. Du bist ${age} Jahre alt.` : `Hallo, ${name}.`;
+}
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-804d-af6c-ed3c7ce418ec" class="numbered-list" start="5"><li><code><strong>strict</strong></code><strong> Mode aktivieren:</strong><ul id="1fa857bd-249d-8063-8477-f3098aac5056" class="bulleted-list"><li style="list-style-type:disc">Aktiviere den <code>strict</code> Mode in der <code>tsconfig.json</code>, um strengere Typprüfungen zu erzwingen.</li></ul><ul id="1fa857bd-249d-8017-8385-cc0fb02173c9" class="bulleted-list"><li style="list-style-type:disc">Beispiel:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fa857bd-249d-8013-a4a2-da66b8d6381e" class="code"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;compilerOptions&quot;: {
+    &quot;strict&quot;: true
+  }
+}
+</code></pre></li></ul></li></ol><ol type="1" id="1fa857bd-249d-8031-9b21-cdef2351633f" class="numbered-list" start="6"><li><strong>Code modularisieren:</strong><ul id="1fa857bd-249d-8061-a057-fc2afac3a55b" class="bulleted-list"><li style="list-style-type:disc">Teile den Code in kleinere, wiederverwendbare Module auf, um die Wartbarkeit zu verbessern.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-806d-bd40-d62d7223bbc7" class="numbered-list" start="7"><li><strong>Linting verwenden:</strong><ul id="1fa857bd-249d-8052-8b9f-c2cac92764a9" class="bulleted-list"><li style="list-style-type:disc">Verwende Tools wie <strong>ESLint</strong> mit TypeScript-Plugins, um den Code sauber und konsistent zu halten.</li></ul></li></ol><hr id="1fa857bd-249d-8080-8a9d-dac41747fb06"/><h3 id="1fa857bd-249d-8034-a79c-f033f4f1a039" class=""><strong>Herausforderungen und Dinge, die zu beachten sind</strong></h3><ol type="1" id="1fa857bd-249d-80eb-9546-cc93301d07ec" class="numbered-list" start="1"><li><strong>Build-Schritt erforderlich:</strong><ul id="1fa857bd-249d-80fb-8f86-c27b0626ad45" class="bulleted-list"><li style="list-style-type:disc">TypeScript muss vor der Ausführung in JavaScript transpiliert werden. Dies erfordert zusätzliche Tools wie den TypeScript-Compiler (<code>tsc</code>) oder Build-Tools wie Webpack.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-8070-9b20-c6e2dbb90693" class="numbered-list" start="2"><li><strong>Komplexität bei großen Projekten:</strong><ul id="1fa857bd-249d-8094-8f44-d2d02c7396f2" class="bulleted-list"><li style="list-style-type:disc">In sehr großen Projekten kann die Typisierung komplex werden, insbesondere bei der Verwendung von Generics, Union Types und Intersection Types.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-809c-b542-d025b1d8189f" class="numbered-list" start="3"><li><strong>Migration von JavaScript:</strong><ul id="1fa857bd-249d-8092-8138-ced4e7a24877" class="bulleted-list"><li style="list-style-type:disc">Die Migration eines bestehenden JavaScript-Projekts zu TypeScript kann zeitaufwändig sein, insbesondere wenn der Code schlecht strukturiert ist.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-80fe-850a-eff2ff2866a6" class="numbered-list" start="4"><li><strong>Lernkurve:</strong><ul id="1fa857bd-249d-8033-93ae-fcba34652729" class="bulleted-list"><li style="list-style-type:disc">Entwickler, die nur JavaScript kennen, müssen sich an die Typisierung und die neuen Konzepte gewöhnen.</li></ul></li></ol><ol type="1" id="1fa857bd-249d-8012-b745-cf310caadeb2" class="numbered-list" start="5"><li><strong>Performance:</strong><ul id="1fa857bd-249d-80e7-a24d-e8d0ec528c1b" class="bulleted-list"><li style="list-style-type:disc">Die Typprüfung kann bei sehr großen Projekten die Entwicklungszeit verlängern, da der Compiler mehr Arbeit leisten muss.</li></ul></li></ol><hr id="1fa857bd-249d-803f-b582-c72173041bb9"/><h3 id="1fa857bd-249d-8049-b078-e05165df58ef" class=""><strong>Zusammenfassung: Was ist wichtig bei TypeScript?</strong></h3><ul id="1fa857bd-249d-8052-b214-e58468f4c75f" class="bulleted-list"><li style="list-style-type:disc"><strong>Statische Typisierung:</strong> Nutze die Typprüfung, um Fehler frühzeitig zu erkennen.</li></ul><ul id="1fa857bd-249d-8088-989e-ce30dcc06d8b" class="bulleted-list"><li style="list-style-type:disc"><strong>Flexibilität:</strong> Verwende Generics, Union Types und Intersection Types, um flexible und wiederverwendbare Typen zu erstellen.</li></ul><ul id="1fa857bd-249d-80ca-868b-d46f0d866c18" class="bulleted-list"><li style="list-style-type:disc"><strong>Codequalität:</strong> Halte den Code sauber und modular, und vermeide den Typ <code>any</code>.</li></ul><ul id="1fa857bd-249d-80be-a221-cba59fc067b4" class="bulleted-list"><li style="list-style-type:disc"><strong>Konfiguration:</strong> Passe die <code>tsconfig.json</code> an deine Projektanforderungen an.</li></ul><ul id="1fa857bd-249d-8093-9b2b-fc8710bb5547" class="bulleted-list"><li style="list-style-type:disc"><strong>Migration:</strong> Beginne mit kleinen Schritten, wenn du ein bestehendes JavaScript-Projekt migrierst.</li></ul><p id="1fa857bd-249d-80a6-bf4e-ff7c7758197f" class="">TypeScript ist ein mächtiges Werkzeug, das die Entwicklung von robustem, wartbarem und skalierbarem Code erleichtert. Es erfordert jedoch Disziplin und ein grundlegendes Verständnis der Typensysteme, um das Beste daraus zu machen.</p><hr id="1fc857bd-249d-800f-a4f6-cfcad57a1f54"/><p id="1fc857bd-249d-800f-979b-ffc321c03a08" class="">In TypeScript kannst du optionale Eigenschaften in einem Interface definieren, indem du ein Fragezeichen (<code>?</code>) nach dem Eigenschaftsnamen setzt. Hier ist ein Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fc857bd-249d-8046-a39b-ea584d253199" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">interface Person {
+  name: string;          // Pflichtfeld
+  alter: number;         // Pflichtfeld
+  adresse?: string;      // Optional
+  telefonnummer?: string; // Optional
+}
+</code></pre><p id="1fc857bd-249d-8011-8663-f7559981806a" class="">Mit dieser Definition kannst du Objekte erstellen, die nur die Pflichtfelder enthalten:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fc857bd-249d-804a-a42b-f15e3882bbb1" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">const person1: Person = {
+  name: &quot;Max&quot;,
+  alter: 30
+  // adresse und telefonnummer sind optional und können weggelassen werden
+};
+
+const person2: Person = {
+  name: &quot;Anna&quot;,
+  alter: 25,
+  adresse: &quot;Musterstraße 1&quot;
+  // telefonnummer ist weggelassen, aber das ist in Ordnung
+};
+</code></pre><p id="1fc857bd-249d-802b-bfb6-d26910b4f205" class="">Du kannst auch Standardwerte für optionale Eigenschaften festlegen, indem du eine Hilfsfunktion verwendest:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fc857bd-249d-809a-a092-ca7875f59144" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function createPerson(person: Person): Person {
+  return {
+    ...person
+  };
+}
+</code></pre><p id="1fc857bd-249d-8089-9158-cab4dcdd3f5b" class="">In deinem Game of Life-Projekt könntest du beispielsweise ein Interface für Konfigurationsoptionen mit optionalen Werten erstellen:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fc857bd-249d-80f9-8f16-c8bd8944207e" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">interface GameConfig {
+  rows: number;
+  colls: number;
+  speed: number;
+  initialPattern?: Pattern;
+  autoStart?: boolean;
+  wrapAround?: boolean;
+}
+</code></pre><hr id="1fc857bd-249d-801c-b1bf-cc3650b9db3d"/><p id="1fc857bd-249d-809a-815f-c83232c2c362" class="">In TypeScript kannst du optionale Parameter in einer Funktion definieren, indem du ein Fragezeichen (<code>?</code>) nach dem Parameternamen setzt. Hier ein Beispiel:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fc857bd-249d-808f-93b8-dc57ba58640b" class="code"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function greet(name: string, greeting?: string): string {
+  return `${greeting || &#x27;Hallo&#x27;}, ${name}!`;
+}
+
+console.log(greet(&#x27;Max&#x27;)); // Ausgabe: &quot;Hallo, Max!&quot;
+console.log(greet(&#x27;Anna&#x27;, &#x27;Guten Morgen&#x27;)); // Ausgabe: &quot;Guten Morgen, Anna!&quot;
+</code></pre><p id="1fc857bd-249d-80f0-8c19-fe9284fac48b" class="">In diesem Beispiel ist der Parameter <code>greeting</code> optional. Wenn er nicht übergeben wird, wird ein Standardwert (<code>&#x27;Hallo&#x27;</code>) verwendet.</p></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

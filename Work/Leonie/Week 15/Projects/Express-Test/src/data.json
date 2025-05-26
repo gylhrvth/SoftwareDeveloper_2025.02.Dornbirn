@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "city": "New York",
+    "country": "USA"
+  },
+  {
+    "id": 2,
+    "city": "Los Angeles",
+    "country": "USA"
+  },
+  {
+    "id": 3,
+    "city": "Chicago",
+    "country": "USA"
+  },
+  {
+    "id": 4,
+    "city": "Houston",
+    "country": "USA"
+  },
+  {
+    "id": 5,
+    "city": "Phoenix",
+    "country": "USA"
+  },
+  {
+    "id": 6,
+    "city": "Philadelphia",
+    "country": "USA"
+  },
+  {
+    "id": 7,
+    "city": "San Antonio",
+    "country": "USA"
+  },
+  {
+    "id": 8,
+    "city": "San Diego",
+    "country": "USA"
+  },
+  {
+    "id": 9,
+    "city": "Dallas",
+    "country": "USA"
+  },
+  {
+    "id": 10,
+    "city": "San Jose",
+    "country": "USA"
+  },
+  {
+    "id": 11,
+    "city": "Dornbirn",
+    "country": "Austria"
+  }
+]

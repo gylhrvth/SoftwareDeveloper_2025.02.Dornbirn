@@ -84,7 +84,7 @@
     <li>Implementiere verschiedene Route-Handler für:
         <ul>
             <li>Eine Hello World Seite ("/hello")</li>
-            <li>Eine API-Route ("/api/data") --> nur GET-Request</li>
+            <li>Eine API-Route ("/api/data") --&gt; nur GET-Request</li>
             <li>Eine statische Datei-Route für HTML/CSS/JS Dateien</li>
         </ul>
     </li>
@@ -97,6 +97,63 @@
 <ul>
     <li>Sehen wir uns nach den Aufgaben 1 und 2 an ;-)</li>
 </ul>
+
+<h2>Vervollständige dein Webserver für einen completten REST API</h2>
+<ol>
+    <li>Create GET Request für /api/city</li>
+    <li>Create POST Request für /api/city</li>
+    <li>Create PUT Request für /api/city/:id</li>
+    <li>Create PATCH Request für /api/city/:id</li>
+    <li>Create DELETE Request für /api/city/:id</li>
+</ol>
+
+<h2>Erstelle einen neuen Server mit EJS</h2>
+<ol>
+    <li>Erstelle einen neuen Express-Server</li>
+    <li>Verwende dotenv für Umgebungsvariablen (Server-Port)</li>
+    <li>Stelle sicher, dass statische Dateien (CSS/JS) korrekt geladen werden</li>
+    <li>Konfiguriere EJS als Template-Engine</li>
+    <li>Implementiere eine Route, die eine EJS-Vorlage rendert</li>
+    <li>Implementiere eine einfache Fehlerseite (404)</li>
+    <li>Implementiere eine einfache Navigation zwischen verschiedenen EJS-Seiten</li>
+    <li>Füge eine einfache Formularverarbeitung hinzu</li>
+    <li>Verwende Redirect nach Bearbeitung von POST abfragen</li>
+</ol>
+
+<h2>Bonusaufgabe: Login / Logout for your EJS Webseite</h2>
+<p><b>SECURITY</b>: Benutzerverwaltung und Authenthifiziereung sind komplexe und oft sicherheitsrelevanten Themen. Lieber eine state of Art Lösung verwenden, als selbst herumexperimentieren...</p>
+<p>Es gibt unzählige Anbieter, die Authenthifiziereung anbieten:</p>
+<ol>
+    <li><a href="https://auth0.com/" target="_blank">Auth0</a></li>
+    <li><a href="https://firebase.google.com/docs/auth" target="_blank">Firebase Authentication (google)</a></li>
+    <li><a href="https://aws.amazon.com/de/cognito/" target="_blank">Amazon AWS Cognito</a></li>
+    <li>...</li>
+</ol>
+
+<h3>Erstelle eine Webseite mit Auth0 Integration</h3>
+<ol>
+    <li>Auth0  (kostenloses) Account anlegen</li>
+    <li>Erstelle eine Anwendung auf Auth0 Dashboard</li>
+    <li>Sample Code herunterladen</li>
+    <li>Abhängigkeiten installieren und Sample Code testen</li>
+    <li>Die entsprechende Auth0 Code-Blöcke in deinem server.JS übernehmen</li>
+    <li>Webseite mit Login Formular erstellen</li>
+    <li>Falls der User Angemeldet ist, seine Name ausdrucken</li>
+    <li>Seiteninhalt nur für Angemeldeten User darstellen, ansonstens nur den Login Formular.</li>
+    <li>Implementiere eine Logout-Funktion</li>
+</ol>
+
+<h2>Bonusaufgabe: Erstelle eine Webseite / REST API mit Auth0 Integration</h3>
+<ol>
+    <li>Auth0  (kostenloses) Account anlegen</li>
+    <li>Erstelle eine Anwendung auf Auth0 Dashboard</li>
+    <li>Sample Code herunterladen</li>
+    <li>Abhängigkeiten installieren und Sample Code testen</li>
+    <li>Die entsprechende Auth0 Code-Blöcke in deinem server.JS übernehmen</li>
+    <li>In fetch Aufruf auch das "bearer" Token hinzufügen</li>
+    <li>Validiere den "bearer" Token im Backend</li>
+</ol>
+
 
 <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
 <p>Dokumentiere deine Erfahrungen auf deiner "Journal" Seite!</p>
