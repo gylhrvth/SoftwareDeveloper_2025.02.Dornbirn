@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import { Request, Response } from 'express';
 
@@ -14,10 +16,13 @@ let cities: City[] = [
 
 const app = express();
 
+// Middleware to serve static files from the 'public' directory
+app.use(express.static('public'));
+
 // JSON Middleware to parse JSON bodies
 app.use(express.json());
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3000;
 
 //Root Message
 app.get('/', (req: Request, res: Response) => {
