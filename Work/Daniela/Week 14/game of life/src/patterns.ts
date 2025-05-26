@@ -52,3 +52,33 @@ export const daniPattern: [number, number][] = [
     [26, 26], [26, 28], [25, 28], [24, 28],
     [22, 28], [21, 28]
 ];
+
+
+let magicPattern: [number, number][]=[];
+
+//Funktion muster Auslesen 
+export function extractPattern(grid: boolean[][]): [number, number][]{
+    const pattern: [number, number][]= [];
+
+    grid.forEach((rowArray, rowIndex) => {
+        rowArray.forEach((cell, colIndex) => {
+            if (cell) {
+                pattern.push([rowIndex, colIndex]);
+            }
+        });
+    });
+    return pattern;
+}
+
+//Funktion muster in grid einfügen 
+export function patternInjection(grid: boolean[][], pattern: [number, number][], offsetRow = 0, offsetCol = 0): void{
+pattern.forEach(([row, col]) => {
+   const newRow = row + offsetRow;      //pos. verschiebung des musters
+   const newCol = col + offsetCol;
+
+   //Nur Zellen setzen die im grid gültig sind 
+   if (grid[newRow] && grid[newRow][newCol] !== undefined){
+    grid[newRow][newCol] = true;
+   }
+});
+}
