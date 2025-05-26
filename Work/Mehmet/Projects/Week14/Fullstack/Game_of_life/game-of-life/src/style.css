@@ -1,4 +1,6 @@
 
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -56,7 +58,7 @@ html, body {
 }
 
 #controls input[type="number"] {
-  width: 80px;
+  width: 40px;
   padding: 0.7em 1.2em;
   font-size: 1.1em;
   font-weight: 600;
@@ -106,17 +108,21 @@ html, body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 5px;
-  max-height: calc(100vh - 180px - 30px);
+  margin-top: 2px;
+  max-height: calc(100vh - 100px - 20px);
 }
 
 /* Grid app */
 #app {
   display: grid;
-  grid-template-columns: repeat(30, 1fr);
-  grid-template-rows: repeat(30, 1fr);
-  width: min(90vmin, 90%);
-  height: min(90vmin, 90%);
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
+  width: 100%;
+  height: 100%;
+  /* This would be a optimized width and height but i wen for the full width 
+   width:  min(90vmin, 90%);
+   height: min(90vmin, 90%);
+   */
   gap: 1px;
   background: #e0e7ef;
   border: 2px solid #b0c4de;
@@ -207,4 +213,12 @@ button:focus {
 
 .dark-mode body {
   background: #121212;
+}
+
+span {
+  color: #0051ff;
+  font-weight: 600;
+  background-color: #22c55e;
+  border: 1px solid #0d376d;
+  border-radius: 5px;
 }
