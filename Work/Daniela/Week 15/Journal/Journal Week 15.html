@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 15</title>
+    <link rel="stylesheet" href="../../Week 13/Journal/Journal Week 14.css">
+
+<body>
+    <div class="main_container">
+        <div class="link_container">
+            <h2>Express.js</h2>
+            <p>Express.js ist ein minimalistisches und flexibles Webframework für Node.js, das dabei hilft,
+                Webanwendungen und APIs (Schnittstellen) schnell und einfach zu erstellen. Es ist eines der beliebtesten
+                Frameworks für JavaScript auf der Serverseite.</p>
+
+            <p>📦 Wozu wird Express.js verwendet?</p>
+            <ul>
+                <li>Erstellen von Webservern</li>
+                <li>Erstellen von REST-APIs</li>
+                <li>Verwalten von Routen (z. B. GET, POST, PUT, DELETE)</li>
+                <li>Verarbeiten von Formulardaten oder JSON-Daten</li>
+                <li>Anbindung an Datenbanken (z. B. MongoDB, MySQL)</li>
+                <li>Middleware-Integration (z. B. Authentifizierung, Logging, Fehlerbehandlung)</li>
+            </ul>
+        </div>
+
+        <div class="link_container">
+            <h3>Express.js in TypeScript.js installieren</h3>
+            <p>Schritt-für-Schritt-Anleitung</p>
+            <ol>
+                <li>Projekt initialisieren</li>
+                <img src="img/Prijekt initialisieren.png">
+                <li>TypeScript und Express installieren</li>
+                <img src="img/TS und Express installieren.png">
+                <li>tsconfig.json erstellen</li>
+                <img src="img/tsconfig.json erstellen.png">
+                <li> Projektstruktur anlegen</li>
+                <img src="img/Projektstruktur anlegen.png">
+                <li>Express in TypeScript verwenden</li>
+                <img src="img/Express in TS verwenden.png">
+                <li>Datei kompilieren und Server starten</li>
+                <img src="img/kompilieren und server start.png">
+
+            </ol>
+        </div>
+
+        <div class="link_container">
+            <h3>Erstellen eines Web-Servers</h3>
+            <ol>
+                <li> Projekt-Ordner erstellen</li>
+                <li>Express installieren</li>
+                <li> Neue Datei anlegen</li>
+                <li>Den Server schreiben</li>
+                <li>Den Server starten</li>
+            </ol>
+        </div>
+
+
+        <div class="link_container">
+            <h3>.env</h3>
+            <p>🔒 dotenv hilft dir, geheime Informationen aus deinem Code rauszuhalten.</p>
+            <img src="img/dotenv.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Routes in Express</h3>
+            <p>Routes (Routen) in Express sind die Wege, die ein Benutzer im Browser aufruft, z. B. /, /about, /kontakt.
+                in Express kannst du mit .get(), .post(), .put() usw. definieren, was passieren soll, wenn jemand diese
+                Routen aufruft.</p>
+            <img src="img/Routes.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Statische-Dateien in Express bereitstellen</h3>
+            <p>Statische Dateien sind z. B. deine:</p>
+            <ul>
+                <li>HTML-Seiten</li>
+                <li>CSS-Dateien</li>
+                <li>Bilder</li>
+                <li>JavaScript-Dateien für die Website (nicht dein Node-Code!)</li>
+            </ul>
+            <img src="img/Statische-Dateien bereitstellen Teil1.png">
+            <img src="img/Statische-Dateien bereitstellen Teil2.png">
+
+
+        </div>
+
+        <div class="link_container">
+            <h3> generierte HTML Dokument als Ergebnis bereitstellen</h3>
+            <img src="img/gen.HTML bereitstellen Teil1.png">
+            <img src="img/gen.HTML bereitstellen Teil2.png">
+        </div>
+
+        <div class="link_container">
+            <h3>http-Anfragen behandeln</h3>
+            <p>📋 Kurz zu HTTP-Methoden:</p>
+            <ul>
+                <li>GET = Daten anfordern (z. B. eine Webseite oder Daten aus einer Datenbank)</li>
+                <li>POST = Neue Daten schicken (z. B. Formular absenden)</li>
+                <li>PUT = Daten aktualisieren (z. B. bestehenden Datensatz ändern)</li>
+                <li>DELETE = Daten löschen</li>
+            </ul>
+
+            <img src="img/HTTP-Anfragen behandeln Teil1.png"><br>
+            <img src="img/HTTP-Anfragen behandeln Teil2.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Query-Parameter und URL-Parameter verarbeiten</h3>
+            <img src="img/Query-Parameter und URL-Parameter verarbeiten Teil1.png">
+            <img src="img/Query-Parameter und URL-Parameter verarbeiten Teil2.png">
+
+        </div>
+
+        <div class="link_container">
+            <h3>Body des Querys lesen</h3>
+            <p> -> console.log()</p>
+        </div>
+
+        <div class="link_container">
+            <h3>Middleware</h3>
+            <p>Eine Middleware ist eine Funktion, die eine HTTP-Anfrage bearbeitet, bevor sie zur eigentlichen Route
+                kommt – oder auch danach.</p>
+            <p>Sie kann:</p>
+            <ul>
+                <li>etwas prüfen (z. B. ob der Nutzer eingeloggt ist)</li>
+                <li>Daten verändern</li>
+                <li>den Request weiterleiten</li>
+                <li>oder sogar ganz beenden (mit einer Antwort)</li>
+            </ul>
+            <img src="img/Middleware Teil1.png">
+            <img src="img/Middleware Teil2.png">
+            <img src="img/Middleware Teil3.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Error-Handling</h3>
+            <p>Fehlerbehandlung (Error Handling) in Express hilft dir dabei, dass dein Server nicht abstürzt, wenn etwas
+                schiefgeht – und dass du dem Benutzer oder Entwickler eine klare Fehlermeldung zeigen kannst.</p>
+            <p>Stell dir vor, bei einer Anfrage passiert ein Fehler.
+                Statt dass der Server crasht, wird der Fehler an eine Error-Middleware weitergegeben.</p>
+
+            <img src="img/Error-Handling.png">
+            <ol>
+                <p>Was passiert wann?</p>
+                <li>/ Route → ganz normal: zeigt "Willkommen..."</li>
+                <li>/kaputt Route → wirft einen Fehler → geht automatisch zur Error-Middleware</li>
+                <li>Error-Middleware:
+                    <ul>
+                        <li>zeigt den Fehler im Terminal (für dich als Entwickler)</li>
+                        <li>gibt dem Nutzer z. B. eine Fehlermeldung im Browser</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="link_container">
+            <h3>Best Practices für die Strukturierung einer Express-Anwendung</h3>
+            <img src="img/Strukturierung Teil 1.png"><br>
+            <img src="img/Strukturierung Teil 2.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Sicherheit der Express-Anwendung gewährleisten</h3>
+            <img src="img/Sicherheit Teil1.png">
+            <img src="img/Sicherheit Teil2.png">
+            <img src="img/Sicherheit Teil3.png">
+            <img src="img/Sicherheit Teil4.png">
+            <img src="img/Sicherheit Teil5.png">
+            <img src="img/Sicherheit Teil6.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Datenbank integrieren</h3>
+            <img src="img/Datenbank integrieren.png">
+        </div>
+
+        <div class="link_container">
+            <h3></h3>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

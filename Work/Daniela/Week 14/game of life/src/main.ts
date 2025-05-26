@@ -115,7 +115,7 @@ playButton.addEventListener('click', () => {
   }
 });
 
-document.body.appendChild(playButton);
+//document.body.appendChild(playButton);
 //----------------------------------------
 //Übergeordnete Funktion um Pattern-Button zu erstellen 
 function createPatternButton(label: string, pattern: [number, number][], offsetFactor: number = 2): HTMLButtonElement {   //offsetFactor: Wert, der die Position des Musters beeinflusst 
@@ -134,30 +134,58 @@ function createPatternButton(label: string, pattern: [number, number][], offsetF
   });
   return button;
 }
-// ---------------------------------Patterns ausgelagert in "patterns.ts"------------------------- !!
+// ---------------------------------Patterns ausgelagert in "patterns.ts"-------------------------
+//Funktion für magic-Button 
+function createMagicButton(offsetFactor: number = 2): HTMLButtonElement {
+
+  const magicButton = document.createElement('button');
+  magicButton.textContent = '🪄Magic🔮';
+
+  magicButton.addEventListener('click', () => {
+    updateGridSize(); // gitter leeren
+
+    const magicPattern = extractPattern(grid); //Holt musster aus akt. Grid 
+
+    const offsetRow = Math.floor((grid.length - magicPattern.length) / offsetFactor); //Pos.
+    const offsetCol = Math.floor((grid[0].length - magicPattern[0].length) / offsetFactor);
+    patternInjection(grid, magicPattern, offsetRow, offsetCol);
+    renderGrid(grid);
+  });
+  return magicButton;
+}
+
+import { patternInjection, extractPattern } from './patterns';
+
+//----------------------------------------------------------------------------------------------------
 import { applyPattern, heartPattern, smileyPattern, dinoPattern, daniPattern } from './patterns';
+
 //Pattern-List
 const patternButtons = [
   { label: '❤️ Herz', pattern: heartPattern },
   { label: '😊 Smiley', pattern: smileyPattern },
   { label: '🦖 Dino', pattern: dinoPattern },
-  { label: 'DANI', pattern: daniPattern }
+  { label: 'DANI', pattern: daniPattern },
 ];
+
 // Buttons automatisch erstellen
 const buttonContainer = document.createElement('div');
+const magicButton = createMagicButton();    //MagicButton 
 
 patternButtons.forEach(p => {
-  buttonContainer.appendChild(createPatternButton(p.label, p.pattern))
+  buttonContainer.appendChild(createPatternButton(p.label, p.pattern));
+ 
 });
 
-document.body.appendChild(buttonContainer);
+buttonContainer.appendChild(magicButton);
+
 // Buttons ins UI
 const controls = document.querySelector<HTMLDivElement>('#controls')!;
 controls.appendChild(playButton);
 controls.appendChild(buttonContainer);
 
+
 // Button in HTML einfügen 
-document.querySelector<HTMLDivElement>('#controls')!.appendChild(playButton);
+//document.querySelector<HTMLDivElement>('#controls')!.appendChild(playButton);
 //---------------------------------------------------------------------------------------------------
 // 8. Initial starten
 updateGridSize(); //Grid wird erstellt und gerendert; 
