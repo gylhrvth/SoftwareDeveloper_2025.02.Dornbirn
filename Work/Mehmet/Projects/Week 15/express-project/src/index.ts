@@ -54,8 +54,9 @@ app.post('/api/city', (req: Request, res: Response) => {
   const { name, population } = req.body;
 
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
-  }
+     res.status(400).json({ message: "Name und Population erforderlich" });
+      return;
+    }
 
   const newCity: City = {
     id: cities.length ? cities[cities.length - 1].id + 1 : 1,
@@ -73,11 +74,15 @@ app.put('/api/city/:id', (req: Request, res: Response) => {
   const { name, population } = req.body;
 
   const index = cities.findIndex(city => city.id === id);
-  if (index === -1) return res.status(404).json({ message: "City not found" });
-
+  if (index === -1)  { 
+    
+    res.status(404).json({ message: "City not found" });
+    return
+}
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
-  }
+     res.status(400).json({ message: "Name und Population erforderlich" });
+    return;
+    }
 
   cities[index] = { id, name, population };
   res.json(cities[index]);
@@ -88,7 +93,10 @@ app.patch('/api/city/:id', (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const city = cities.find(c => c.id === id);
 
-  if (!city) return res.status(404).json({ message: "City not found" });
+  if (!city){ 
+ res.status(404).json({ message: "City not found" });
+return
+  } 
 
   if (req.body.name !== undefined) city.name = req.body.name;
   if (req.body.population !== undefined) city.population = req.body.population;
@@ -101,8 +109,9 @@ app.delete('/api/city/:id', (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const index = cities.findIndex(city => city.id === id);
 
-  if (index === -1) return res.status(404).json({ message: "City not found" });
-
+  if (index === -1) { 
+     res.status(404).json({ message: "City not found" });
+  return; }
   cities.splice(index, 1);
   res.status(204).send(); // Kein Inhalt
 });
