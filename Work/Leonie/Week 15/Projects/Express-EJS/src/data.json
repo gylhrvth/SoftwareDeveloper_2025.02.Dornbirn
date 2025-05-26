@@ -53,5 +53,15 @@
     "id": 11,
     "city": "Dornbirn",
     "country": "Austria"
+  },
+  {
+    "id": 12,
+    "city": "Bregenz",
+    "country": "Austria"
+  },
+  {
+    "id": 13,
+    "city": "Feldkirch",
+    "country": "Austria"
   }
 ]
