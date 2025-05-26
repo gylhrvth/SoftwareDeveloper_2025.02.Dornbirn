@@ -8,7 +8,31 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>This are the Cities!</h1>
-    <ul id="city-list"></ul>
+    <h1 class="main-title">City & Country API</h1>
+    <div class="lists-container">
+        <div>
+            <h2>Cities</h2>
+            <ul id="city-list"></ul>
+        </div>
+        <div>
+            <h2>Countries</h2>
+            <ul id="country-list"></ul>
+        </div>
+    </div>
+
+    <div class="forms-container">
+    <form id="city-form">
+        <h3>Neue Stadt hinzufügen</h3>
+        <input type="text" id="city-name" placeholder="Stadtname" required pattern="^[A-Za-zÄÖÜäöüß\s\-]+$" title="Nur Buchstaben und Leerzeichen erlaubt">
+        <span id="city-error" class="error"></span>
+        <button type="submit">Hinzufügen</button>
+    </form>
+    <form id="country-form">
+        <h3>Neues Land hinzufügen</h3>
+        <input type="text" id="country-name" placeholder="Landname" required pattern="^[A-Za-zÄÖÜäöüß\s\-]+$" title="Nur Buchstaben und Leerzeichen erlaubt">
+        <span id="country-error" class="error"></span>
+        <button type="submit">Hinzufügen</button>
+    </form>
+    </div>
 </body>
 </html>

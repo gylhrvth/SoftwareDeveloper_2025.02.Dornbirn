@@ -1,33 +1,111 @@
-body{
-    background-color: salmon;
+:root {
+    --main-bg: salmon;
+    --container-bg: rgba(255,255,255,0.8);
+    --container-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    --container-radius: 1rem;
+    --container-padding: 1.5rem 2rem;
+    --list-max-width: 400px;
+    --list-item-bg: #fff;
+    --list-item-radius: 0.5rem;
+    --list-item-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --list-item-hover: #ffe5e0;
+    --main-title-size: 5rem;
+    --gap: 3rem;
 }
 
-h1{
+body {
+    background-color: var(--main-bg);
+}
+
+h1 {
     text-align: center;
-    font-size: 5rem;
+    font-size: var(--main-title-size);
 }
 
-ul#city-list {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 1.5rem 2rem;
-    background: rgba(255,255,255,0.8);
-    border-radius: 1rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+.lists-container {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap);
+    margin-top: 2rem;
+}
+
+.lists-container > div {
+    background: var(--container-bg);
+    padding: var(--container-padding);
+    border-radius: var(--container-radius);
+    box-shadow: var(--container-shadow);
+    min-width: 300px;
+}
+
+ul {
+    max-width: var(--list-max-width);
+    margin: 2rem auto 0 auto;
+    padding: var(--container-padding);
+    background: var(--container-bg);
+    border-radius: var(--container-radius);
+    box-shadow: var(--container-shadow);
     list-style: none;
 }
 
-ul#city-list li {
+ul li {
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
-    background: #fff;
-    border-radius: 0.5rem;
+    background: var(--list-item-bg);
+    border-radius: var(--list-item-radius);
     font-size: 1.3rem;
     color: #333;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: var(--list-item-shadow);
     transition: background 0.2s;
 }
 
-ul#city-list li:hover {
-    background: #ffe5e0;
+ul li:hover {
+    background: var(--list-item-hover);
+}
+
+.forms-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.forms-container form {
+    background: var(--container-bg);
+    padding: 1rem 2rem;
+    border-radius: var(--container-radius);
+    box-shadow: var(--container-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forms-container input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.forms-container button {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    background: var(--main-bg);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.forms-container button:hover {
+    background: #ff8c69;
+}
+
+.error {
+  color: #b30000;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+  display: block;
+  min-height: 1.2em;
 }

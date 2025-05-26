@@ -16,14 +16,52 @@ let cities = [
 ];
 let nextId = 3;
 
+let countries = [
+    { id: 1, name: 'Österreich' },
+    { id: 2, name: 'Deutschland' }
+];
+let nextCountryId = 3;
+
+// GET /api/country
+app.get('/api/country', (req: Request, res: Response) => {
+    res.json(countries);
+});
+
+// POST /api/country
+app.post('/api/country', (req: Request, res: Response): void => {
+    const name = req.body.name?.trim();
+    if (!name || !/^[A-Za-zÄÖÜäöüß\s\-]+$/.test(name)) {
+        res.status(400).json({ message: 'Ungültiger Name! Nur Buchstaben und Leerzeichen erlaubt.' });
+        return;
+    }
+    const exists = countries.some(country => country.name.toLowerCase() === name.toLowerCase());
+    if (exists) {
+        res.status(409).json({ message: 'Dieses Land existiert bereits!' });
+        return;
+    }
+    const newCountry = { id: nextCountryId++, name };
+    countries.push(newCountry);
+    res.status(201).json(newCountry);
+});
+
 // GET /api/city
 app.get('/api/city', (req: Request, res: Response) => {
     res.json(cities);
 });
 
 // POST /api/city
-app.post('/api/city', (req: Request, res: Response) => {
-    const newCity = { id: nextId++, ...req.body };
+app.post('/api/city', (req: Request, res: Response): void => {
+    const name = req.body.name?.trim();
+    if (!name || !/^[A-Za-zÄÖÜäöüß\s\-]+$/.test(name)) {
+        res.status(400).json({ message: 'Ungültiger Name! Nur Buchstaben und Leerzeichen erlaubt.' });
+        return;
+    }
+    const exists = cities.some(city => city.name.toLowerCase() === name.toLowerCase());
+    if (exists) {
+        res.status(409).json({ message: 'Diese Stadt existiert bereits!' });
+        return;
+    }
+    const newCity = { id: nextId++, name };
     cities.push(newCity);
     res.status(201).json(newCity);
 });
@@ -67,4 +105,3 @@ app.delete('/api/city/:id', (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Server läuft auf http://localhost:${port}`);
 });
-
