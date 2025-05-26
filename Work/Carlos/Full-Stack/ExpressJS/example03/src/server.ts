@@ -16,7 +16,7 @@ let cities: City[] = [
 
 const app = express();
 
-// Middleware to serve static files from the 'public' directory
+//
 app.use(express.static('public'));
 
 // JSON Middleware to parse JSON bodies
