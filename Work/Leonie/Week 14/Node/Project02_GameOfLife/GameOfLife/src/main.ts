@@ -1,9 +1,15 @@
-// Typendefinition
-type Cell = number;
-type Grid = Cell[][];
-type Pattern = [Cell, Cell][];
+// Import der Typendefinitionen und Event-System
+import {
+  type Cell,
+  type Grid,
+  type Pattern,
+  setupEventListeners,
+  EVENTS,
+  type GameStartEvent,
+  type GridUpdateEvent
+} from "./eventAndTypes";
 
-
+// Game-Logik-Funktionen
 function startGame(rows: number, colls: number, speed: number) {
   // Grid aus dem DOM rekonstruieren
   let grid: Grid = Array.from({ length: rows }, () => Array(colls).fill(0));
@@ -41,7 +47,9 @@ function randomizeCells(rows: number, colls: number): Grid {
   grid.forEach((row: Cell[], i: number) => {
     row.forEach((cell: Cell, j: number) => {
       const domCell = document.querySelectorAll(".cell")[i * colls + j] as HTMLDivElement;
-      domCell.classList.toggle("alive", cell === 1);
+      if (domCell) {
+        domCell.classList.toggle("alive", cell === 1);
+      }
     });
   });
   
@@ -83,7 +91,9 @@ function updateGrid(colls: number, nextGrid: Grid) {
   Array.from(document.querySelectorAll(".cell")).forEach((cell, index) => {
     const i = Math.floor(index / colls);
     const j = index % colls;
-    cell.classList.toggle("alive", nextGrid[i][j] === 1);
+    if (nextGrid[i] && nextGrid[i][j] !== undefined) {
+      cell.classList.toggle("alive", nextGrid[i][j] === 1);
+    }
   });
 }
 
@@ -98,9 +108,9 @@ function isGridStable(grid: Grid, nextGrid: Grid): boolean {
 }
 
 function updateGridStyle(rows: number, colls: number) {
-    const gameField = document.getElementById("gameField") as HTMLDivElement;
-    gameField.style.gridTemplateColumns = `repeat(${colls}, 1fr)`;
-    gameField.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+  const gameField = document.getElementById("gameField") as HTMLDivElement;
+  gameField.style.gridTemplateColumns = `repeat(${colls}, 1fr)`;
+  gameField.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 }
 
 function recreateGridStyle(rows: number, colls: number) {
@@ -115,64 +125,28 @@ function recreateGridStyle(rows: number, colls: number) {
   }
 }
 
-addEventListener("DOMContentLoaded", () => {
-  const rowsInput = document.getElementById("rows") as HTMLInputElement;
-  const collsInput = document.getElementById("columns") as HTMLInputElement;
-  const speedInput = document.getElementById("speed") as HTMLInputElement;
-  const startButton = document.getElementById("startButton") as HTMLButtonElement;
-  const restartButton = document.getElementById("restartButton") as HTMLButtonElement;
-  let rows: number = parseInt(rowsInput.value);
-  let colls: number = parseInt(collsInput.value);
+// Event-Listener für die vom Event-System ausgelösten Events
+function setupGameLogicEventListeners() {
+  // Game Start Event
+  window.addEventListener(EVENTS.GAME_START, ((event: GameStartEvent) => {
+    const { rows, cols, speed } = event.detail;
+    startGame(rows, cols, speed);
+  }) as EventListener);
 
-  // Initiales Grid erstellen
-  updateGridStyle(rows, colls);
-  recreateGridStyle(rows, colls);
+  // Grid Update Event
+  window.addEventListener(EVENTS.GRID_UPDATE, ((event: GridUpdateEvent) => {
+    const { rows, cols } = event.detail;
+    updateGridStyle(rows, cols);
+    recreateGridStyle(rows, cols);
+  }) as EventListener);
 
-  // Hier erstellen wir das Grid, aber ohne es zu randomisieren
-  let grid: Grid = Array.from({ length: rows }, () => Array(colls).fill(0));
+  // Randomize Event
+  window.addEventListener(EVENTS.RANDOMIZE, ((event: CustomEvent) => {
+    const { rows, cols } = event.detail;
+    randomizeCells(rows, cols);
+  }) as EventListener);
+}
 
-  // Nur beim ersten Mal randomisieren
-  grid = randomizeCells(rows, colls);
-
-  // ... rest of your event listeners ...
-
-  // Eventlistener für Änderungen an den Eingabefeldern
-  rowsInput.addEventListener("change", () => {
-    rows = parseInt(rowsInput.value);
-    grid = Array.from({ length: rows }, () => Array(colls).fill(0)); // Neues leeres Grid
-    updateGridStyle(rows, colls);
-    recreateGridStyle(rows, colls);
-  });
-
-  collsInput.addEventListener("change", () => {
-    colls = parseInt(collsInput.value);
-    grid = Array.from({ length: rows }, () => Array(colls).fill(0)); // Neues leeres Grid
-    updateGridStyle(rows, colls);
-    recreateGridStyle(rows, colls);
-  });
-
-  // Eventlistener für Klicks auf Zellen
-  const gameField = document.getElementById("gameField") as HTMLDivElement;
-  gameField.addEventListener("click", (event) => {
-    const target = event.target as HTMLDivElement;
-    if (target.classList.contains("cell")) {
-      target.classList.toggle("alive");
-      const index = Array.from(gameField.children).indexOf(target);
-      const row = Math.floor(index / parseInt(collsInput.value));
-      const coll = index % parseInt(collsInput.value);
-      grid[row][coll] = grid[row][coll] === 1 ? 0 : 1; // Toggle cell state
-    }
-  });
-
-  // Start-Button Event Listener
-  startButton.addEventListener("click", () => {
-    const speed = parseInt(speedInput.value);
-    // Hier wird das existierende Grid verwendet, ohne es neu zu randomisieren
-    startGame(rows, colls, speed);
-  });
-
-  // Restart-Button ist der einzige Ort, wo wir das Grid neu randomisieren
-  restartButton.addEventListener("click", () => {
-    grid = randomizeCells(parseInt(rowsInput.value), parseInt(collsInput.value));
-  });
-});
+// Initialisierung
+setupEventListeners();
+setupGameLogicEventListeners();
