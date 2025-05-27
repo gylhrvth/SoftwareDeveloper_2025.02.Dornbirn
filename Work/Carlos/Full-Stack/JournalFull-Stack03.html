@@ -32,8 +32,43 @@
     <h3 class="textColor01">Full-Stack (Express JS + EJS)</h3>
 
     <h4 class="textColor02">EJS Recap:</h4>
+    <ul>
 
+    <li><p>Verzeichnis 'public' wird verwendet für statische Dateien wie CSS, Bilder und JavaScript files.</p></li>
+    <li><p>Verzeichnis 'views' wird verwendet für dynamischen files, die mit EJS gerendert werden (templates).</p></li>
+    <li><p>Verzeichnis 'views/partials' wird verwendet für wiederverwendbare EJS-Teile (partials), die in anderen EJS-Dateien eingebunden werden können.</p></li>
+    <li><p>In dem 'server.js' file können Variablen definiert werden, die in den EJS-Templates verwendet werden können.</p></li>
+    <p>Beispiel:</p>
+    <p>Man kann in server.js eine Variable definieren:</p>
+    <pre><code>const navLinks = [
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+    { name: 'Form', url: '/form' }
+]; </code></pre>
+    <p>Und diese Variable dann an die EJS-Templates übergeben:</p>
+    <pre><code>app.get('/', (req, res) => {
+    res.render('index', { navLinks });
+});</code></pre>
+    <p>(In diesem Fall wird die Variable 'navLinks' zu verfügung gestellt, in dem index.ejs).</p>
+    <li><p>Control Structures wie if/else statements, loops und switch statements können in EJS verwendet werden, um dynamische Inhalte zu generieren.</p></li>
+    <li><p>In solche Fälle verwenden wir <code>&lt;% code zeilen %&gt;</code>. Achtung: Hier verwender wir kein 'gleich' Zeichen (<code>=</code>), da wir nur Code ausführen wollen, aber kein HTML generieren wollen.</p></li>
+    <li><p>In den EJS-Templates können die Variablen mit <code>&lt;%= variableName %&gt;</code> eingebunden werden. Das bedeutet, dass der Wert der Variable an dieser Stelle im HTML-Code eingefügt wird.</p></li>
+    <li><p>Die EJS-Templates können auch Logik enthalten, z.B. Schleifen oder Bedingungen, um dynamische Inhalte zu generieren.</p></li>
+    <li><p>Die EJS-Templates können auch Partials enthalten, die in anderen EJS-Dateien eingebunden werden können. Das ermöglicht eine Wiederverwendbarkeit von Code und eine bessere Strukturierung der Anwendung.</p></li>
+    <li><p>Das können wir mit 'include' erreichen:</p>
+    <pre><code>&lt;ul&gt;
+    &lt;% skills.forEach(skill =&gt; { -%&gt;
+    &lt;%- include('showASkill', { skill }); -%&gt;
+    &lt;% }) -%&gt;
+&lt;/ul&gt;</code></pre>
+    <p>In diesem Beispiel wird die Datei 'showASkill.ejs' eingebunden und die Variable 'skill' wird an diese Datei übergeben.</p>
+    <p>Die Datei showASkill beinhaltet Code, de 'li' Elemente erstellt, für jeden 'skill' aufgelistet in dem 'skills' arry.</p></li>
+    <p>So kann unser Code modularer und übersichtlicher werden, da wir wiederverwendbare Teile (partials) erstellen können, die in anderen EJS-Dateien eingebunden werden können.</p>
     
+    <li><p>Wenn man res.redirect verwendet, um eine Seite nach dem Absenden eines Formulars zu aktualisieren, sollte man darauf achten, dass der 'Middleware' für das Parsen von Formulardaten (z.B. <code>express.urlencoded({ extended: true })</code>) vor der Route definiert wird, die das Formular verarbeitet.</p></li>
+
+
+</ul>
 
     <h3 class="textColor01">Full-Stack (Express JS + EJS)</h3>
 
