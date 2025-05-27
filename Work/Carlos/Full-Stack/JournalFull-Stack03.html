@@ -18,6 +18,7 @@
     <h1 class="textColor01">Full-Stack Journal 02</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day61">DI 27/05/25</a>:Express JS + EJS</h3>
     <h3 class="textColor01">▷ <a href="#day60">MO 26/05/25</a>:Express JS</h3>
     
     
@@ -25,6 +26,129 @@
 
     <br>
     <br>
+
+    <h2 id="day61">Dienstag 27. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (Express JS + EJS)</h3>
+
+    <h4 class="textColor02">Beispiel: Express JS mit EJS erstellen -> Anleitung:</h4>
+
+    <ol>
+        <li>Neues Projekt anlegen:</li>
+        <pre><code>mkdir example_ejs_server</code></pre>
+        <pre><code>cd example_ejs_server</code></pre>
+        <li>Node.js Projekt initialisieren:</li>
+        <pre><code>npm init -y</code></pre>
+        <li>Express, EJS und dotenv installieren:</li>
+        <pre><code>npm install express ejs dotenv</code></pre>
+        <li>TypeScript und zugehörige Typen installieren:</li>
+        <pre><code>npm install --save-dev typescript @types/node @types/express ts-node nodemon</code></pre>
+        <li>TypeScript-Konfiguration erstellen:</li>
+        <pre><code>npx tsc --init</code></pre>
+        <li>Verzeichnisstruktur erstellen:</li>
+        <img src="../AssetsMain/Images/ejs_struktur.png" alt="Verzeichnisstruktur für Express EJS Projekt">
+        <li>Konfiguration .env Datei:</li>
+        <pre><code>PORT=3000</code></pre>
+        <li>Konifguration package.json:</li>
+        <p>Ohne Typescript:</p>
+        <pre><code>"scripts": {
+            "dev": "nodemon server.js"
+        }</pre></code>
+        <p>Mit Typescript:</p>
+        <pre><code>"scripts": {
+            "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
+        }</pre></code>
+    </ol>
+
+    <h4 class="textColor02">Beispiel Code für server.js mit EJS:</h4>
+    <pre><code>require('dotenv').config();
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// EJS als Template-Engine konfigurieren
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Statische Dateien bereitstellen
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware für Formulardaten
+app.use(express.urlencoded({ extended: true }));
+
+// Navigation als Partial
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+  { name: 'Form', url: '/form' }
+];
+
+// Startseite
+app.get('/', (req, res) => {
+  res.render('index', { navLinks });
+});
+
+// About-Seite
+app.get('/about', (req, res) => {
+  res.render('about', { navLinks });
+});
+
+// Formular-Seite
+app.get('/form', (req, res) => {
+  res.render('form', { navLinks, submitted: false, name: '' });
+});
+
+// Formular-Verarbeitung
+app.post('/form', (req, res) => {
+  const { name } = req.body;
+  // Nach POST Redirect (PRG-Pattern)
+  res.redirect(`/form?submitted=true&name=${encodeURIComponent(name)}`);
+});
+
+// Formular-Redirect-Route
+app.get('/form', (req, res) => {
+  const { submitted, name } = req.query;
+  res.render('form', { navLinks, submitted, name });
+});
+
+// 404 Fehlerseite
+app.use((req, res) => {
+  res.status(404).render('404', { navLinks });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server läuft auf http://localhost:${PORT}`);
+});</code></pre>
+
+<h4 class="textColor02">Beispiel Code für EJS Templates:</h4>
+
+<p>views/partials/nav.ejs</p>
+
+<pre><code>&lt;nav&gt;
+  &lt;% navLinks.forEach(link =&gt; { %&gt;
+    &lt;a href="&lt;%= link.url %&gt;"&gt;&lt;%= link.name %&gt;&lt;/a&gt;
+  &lt;% }) %&gt;
+&lt;/nav&gt;</code></pre>
+
+<p>views/index.ejs</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Home&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;% include partials/nav %&gt;
+  &lt;h1&gt;Willkommen!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<br>
 
     <h2 id="day60">Montag 26. Mai 2025</h2>
 
@@ -92,9 +216,7 @@ app.get('/api/example', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-});  
-        </code></pre>
-    
+});</code></pre>
     </ol>
 
     <h4 class="textColor01">Express JS: Recherche</h4>
