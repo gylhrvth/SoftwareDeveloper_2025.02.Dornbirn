@@ -12,14 +12,12 @@ export interface City {
 
 const dataPath = path.join(__dirname, '..', 'data', 'cities.json');
 
-// Helper: Load cities
 function loadCities(): City[] {
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf-8');
   return JSON.parse(raw);
 }
 
-// Helper: Save cities
 function saveCities(cities: City[]): void {
   fs.writeFileSync(dataPath, JSON.stringify(cities, null, 2));
 }
@@ -33,7 +31,7 @@ router.post('/add', (req, res) => {
   const cities = loadCities();
   const { name, population } = req.body;
   const newCity: City = {
-    id: Date.now(), // use timestamp as unique ID
+    id: Date.now(),
     name,
     population: parseInt(population)
   };
@@ -45,8 +43,8 @@ router.post('/add', (req, res) => {
 router.post('/delete/:id', (req, res) => {
   const cities = loadCities();
   const id = parseInt(req.params.id);
-  const updatedCities = cities.filter(city => city.id !== id);
-  saveCities(updatedCities);
+  const updated = cities.filter(city => city.id !== id);
+  saveCities(updated);
   res.redirect('/');
 });
 
