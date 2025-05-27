@@ -1,25 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./stlye.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Städteverwaltung</title>
+  <link rel="stylesheet" href="stlye.css" />
 </head>
 <body>
+  <main>
+    <h1>Städteverwaltung</h1>
 
-    <h1 >Express.js testing you know</h1>
-    <p>Welcome to the Express Project!</p>
-    <p>Use the navigation links to explore the application.</p>
-    <nav>
-        <ul>
-            <li><a href="/users">Users</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/orders">Orders</a></li>
-        </ul>
-    </nav>
-    <footer>
-        <p>&copy; 2023 Express Project</p>
-    </footer>
+    <section id="list-section">
+      <h2>Städte Liste</h2>
+      <ul id="city-list" aria-live="polite" aria-label="Liste der Städte"></ul>
+    </section>
+
+    <section id="form-section">
+      <h2>Neue Stadt hinzufügen</h2>
+      <form id="city-form" novalidate>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name der Stadt" required />
+
+        <label for="population">Bevölkerung:</label>
+        <input
+          type="number"
+          id="population"
+          name="population"
+          placeholder="Anzahl Einwohner"
+          required
+          min="1"
+        />
+
+        <button type="submit">Hinzufügen</button>
+      </form>
+      <p id="form-message" role="alert" aria-live="assertive"></p>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

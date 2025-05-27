@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -7,121 +7,61 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// EJS als Template Engine konfigurieren
-app.set('view engine', 'ejs');
-// views-Ordner definieren (standardmäßig 'views' im Projektroot)
-app.set('views', path.join(__dirname, '../views'));
-
-// Middleware für JSON-Daten im Body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Statische Dateien aus public bereitstellen
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Interface für City
 interface City {
   id: number;
   name: string;
   population: number;
 }
 
-// Beispiel-Daten
 let cities: City[] = [
   { id: 1, name: 'Berlin', population: 3500000 },
-  { id: 2, name: 'München', population: 1500000 }
+  { id: 2, name: 'München', population: 1500000 },
 ];
 
-/* =========================
-   EJS Routen
-=========================*/
-
-// Startseite mit Liste aller Städte
-app.get('/', (_req: Request, res: Response) => {
-  res.render('index', { cities }); // EJS-Template "index.ejs" mit cities als Daten
-});
-
-// Formularseite für neue Stadt
-app.get('/add-city', (_req: Request, res: Response) => {
-  res.render('add-city');
-});
-
-// POST für neues City-Formular (Formularverarbeitung)
-app.post('/add-city', (req: Request, res: Response) => {
-  const { name, population } = req.body;
-
-  if (!name || !population) {
-    // Im echten Projekt lieber Fehlerseite oder Flash-Message anzeigen
-    res.status(400).send('Name und Population sind erforderlich.');
-    return;
-  }
-
-  const newCity: City = {
-    id: cities.length ? cities[cities.length - 1].id + 1 : 1,
-    name,
-    population: Number(population)
-  };
-
-  cities.push(newCity);
-
-  // Nach Hinzufügen weiterleiten zur Startseite (Redirect)
-  res.redirect('/');
-});
-
-/* =========================
-   API Routen (wie gehabt)
-=========================*/
-
-// GET alle Städte
+// GET all cities
 app.get('/api/city', (_req: Request, res: Response) => {
   res.json(cities);
 });
 
-// GET Stadt nach ID
-app.get('/api/city/:id', (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  const city = cities.find(c => c.id === id);
-
-  if (!city) {
-    res.status(404).json({ message: 'Stadt nicht gefunden' });
-    return;
-  }
-
-  res.json(city);
-});
-
-// POST neue Stadt
+// POST new city
 app.post('/api/city', (req: Request, res: Response) => {
   const { name, population } = req.body;
 
   if (!name || !population) {
-    res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+    res.status(400).json({ message: 'Name and population are required.' });
     return;
   }
 
   const newCity: City = {
     id: cities.length ? cities[cities.length - 1].id + 1 : 1,
-    name,
-    population
+    name: String(name),
+    population: Number(population),
   };
 
   cities.push(newCity);
+
   res.status(201).json(newCity);
 });
 
-// PUT Stadt ersetzen
+// PUT to replace a city
 app.put('/api/city/:id', (req: Request, res: Response) => {
   const id = Number(req.params.id);
-  const index = cities.findIndex(c => c.id === id);
+  const index = cities.findIndex(city => city.id === id);
 
   if (index === -1) {
-    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    res.status(404).json({ message: 'City not found.' });
     return;
   }
 
   const { name, population } = req.body;
 
   if (!name || !population) {
-    res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+    res.status(400).json({ message: 'Name and population are required.' });
     return;
   }
 
@@ -129,13 +69,13 @@ app.put('/api/city/:id', (req: Request, res: Response) => {
   res.json(cities[index]);
 });
 
-// PATCH Stadt teilweise aktualisieren
+// PATCH to update partial city
 app.patch('/api/city/:id', (req: Request, res: Response) => {
   const id = Number(req.params.id);
-  const city = cities.find(c => c.id === id);
+  const city = cities.find(city => city.id === id);
 
   if (!city) {
-    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    res.status(404).json({ message: 'City not found.' });
     return;
   }
 
@@ -147,13 +87,13 @@ app.patch('/api/city/:id', (req: Request, res: Response) => {
   res.json(city);
 });
 
-// DELETE Stadt löschen
+// DELETE a city
 app.delete('/api/city/:id', (req: Request, res: Response) => {
   const id = Number(req.params.id);
-  const index = cities.findIndex(c => c.id === id);
+  const index = cities.findIndex(city => city.id === id);
 
   if (index === -1) {
-    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    res.status(404).json({ message: 'City not found.' });
     return;
   }
 
@@ -161,14 +101,22 @@ app.delete('/api/city/:id', (req: Request, res: Response) => {
   res.status(204).send();
 });
 
-/* =========================
-   Fehlerseite 404
-=========================*/
-app.use((_req: Request, res: Response) => {
-  res.status(404).render('404');
+// Handle unknown API endpoints with 404 JSON
+app.use('/api/*', (_req, res) => {
+  res.status(404).json({ message: 'API endpoint not found.' });
 });
 
-// Server starten
+// 404 for all other routes (serve 404.html)
+app.use((_req: Request, res: Response) => {
+  res.status(404).sendFile(path.join(__dirname, '../public/404.html'));
+});
+
+// Global error handler
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal Server Error' });
+});
+
 app.listen(port, () => {
-  console.log(`🚀 Server läuft auf http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
