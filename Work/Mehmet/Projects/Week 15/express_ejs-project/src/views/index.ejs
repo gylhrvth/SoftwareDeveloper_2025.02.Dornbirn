@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Städteverwaltung</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
@@ -9,32 +10,32 @@
   <main>
     <h1>Städteverwaltung</h1>
 
-    <form action="/add" method="POST" id="city-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required placeholder="Stadtname" />
+    <section>
+      <h2>Neue Stadt hinzufügen</h2>
+      <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Stadtname" required />
+        <input type="number" name="population" placeholder="Bevölkerung" required />
+        <button type="submit">Hinzufügen</button>
+      </form>
+    </section>
 
-      <label for="population">Bevölkerung:</label>
-      <input type="number" id="population" name="population" required min="1" placeholder="Einwohnerzahl" />
-
-      <button type="submit">Hinzufügen</button>
-    </form>
-
-    <h2>Städte Liste</h2>
-
-    <% if (cities.length === 0) { %>
-      <p>Keine Städte vorhanden.</p>
-    <% } else { %>
+    <section>
+      <h2>Städte Liste</h2>
       <ul>
-        <% cities.forEach(city => { %>
-          <li>
-            <strong><%= city.name %></strong> — <%= city.population %> Einwohner
-            <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
-              <button type="submit" class="delete-btn">Löschen</button>
-            </form>
-          </li>
-        <% }) %>
+        <% if (cities.length === 0) { %>
+          <li>Keine Städte vorhanden.</li>
+        <% } else { %>
+          <% cities.forEach(city => { %>
+            <li>
+              <strong><%= city.name %></strong> – Bevölkerung: <%= city.population %>
+              <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="delete-btn">🗑️ Löschen</button>
+              </form>
+            </li>
+          <% }) %>
+        <% } %>
       </ul>
-    <% } %>
+    </section>
   </main>
 </body>
-</html
+</html>

@@ -1,4 +1,8 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
+
+const router = express.Router();
 
 export interface City {
   id: number;
@@ -6,33 +10,43 @@ export interface City {
   population: number;
 }
 
-const router = express.Router();
+const dataPath = path.join(__dirname, '..', 'data', 'cities.json');
 
-let cities: City[] = [];
-let idCounter = 1;
+// Helper: Load cities
+function loadCities(): City[] {
+  if (!fs.existsSync(dataPath)) return [];
+  const raw = fs.readFileSync(dataPath, 'utf-8');
+  return JSON.parse(raw);
+}
 
-// Show list and form
+// Helper: Save cities
+function saveCities(cities: City[]): void {
+  fs.writeFileSync(dataPath, JSON.stringify(cities, null, 2));
+}
+
 router.get('/', (_req, res) => {
+  const cities = loadCities();
   res.render('index', { cities });
 });
 
-// Add city
 router.post('/add', (req, res) => {
+  const cities = loadCities();
   const { name, population } = req.body;
-  if (name && population && !isNaN(Number(population))) {
-    cities.push({
-      id: idCounter++,
-      name: name.trim(),
-      population: Number(population),
-    });
-  }
+  const newCity: City = {
+    id: Date.now(), // use timestamp as unique ID
+    name,
+    population: parseInt(population)
+  };
+  cities.push(newCity);
+  saveCities(cities);
   res.redirect('/');
 });
 
-// Delete city
 router.post('/delete/:id', (req, res) => {
-  const id = Number(req.params.id);
-  cities = cities.filter(city => city.id !== id);
+  const cities = loadCities();
+  const id = parseInt(req.params.id);
+  const updatedCities = cities.filter(city => city.id !== id);
+  saveCities(updatedCities);
   res.redirect('/');
 });
 
