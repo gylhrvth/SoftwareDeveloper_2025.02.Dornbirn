@@ -10,11 +10,17 @@
   <main>
     <h1>Städteverwaltung</h1>
 
+    <% if (user) { %>
+      <p>Hallo, <%= user.name || user.email %>! <a href="/logout">Logout</a></p>
+    <% } else { %>
+      <p><a href="/login">Login</a></p>
+    <% } %>
+
     <section>
       <h2>Neue Stadt hinzufügen</h2>
       <form action="/add" method="POST">
         <input type="text" name="name" placeholder="Stadtname" required />
-        <input type="number" name="population" placeholder="Bevölkerung" required />
+        <input type="number" name="population" placeholder="Bevölkerung" min="0" max="1000000000" required />
         <button type="submit">Hinzufügen</button>
       </form>
     </section>
@@ -31,6 +37,7 @@
               <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
                 <button type="submit" class="delete-btn">🗑️ Löschen</button>
               </form>
+              <a href="/edit/<%= city.id %>">Bearbeiten</a>
             </li>
           <% }) %>
         <% } %>
