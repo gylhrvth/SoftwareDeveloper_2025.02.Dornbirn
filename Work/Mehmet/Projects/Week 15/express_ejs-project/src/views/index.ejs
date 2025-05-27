@@ -1,28 +1,40 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Städteverwaltung</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Städteverwaltung</h1>
 
-<h1>Städteverwaltung</h1>
+    <form action="/add" method="POST" id="city-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required placeholder="Stadtname" />
 
-<form method="POST" action="/add">
-  <label>Name:</label>
-  <input type="text" name="name" required />
-  <label>Bevölkerung:</label>
-  <input type="number" name="population" required />
-  <button type="submit">Hinzufügen</button>
-</form>
+      <label for="population">Bevölkerung:</label>
+      <input type="number" id="population" name="population" required min="1" placeholder="Einwohnerzahl" />
 
-<% if (error) { %>
-  <p style="color:red;"><%= error %></p>
-<% } %>
+      <button type="submit">Hinzufügen</button>
+    </form>
 
-<ul>
-  <% cities.forEach(city => { %>
-    <li>
-      <%= city.name %> – <%= city.population.toLocaleString() %> Einwohner
-      <form method="POST" action="/delete/<%= city.id %>" style="display:inline;">
-        <button type="submit">Löschen</button>
-      </form>
-    </li>
-  <% }) %>
-</ul>
+    <h2>Städte Liste</h2>
 
-<%- include('partials/footer') %>
+    <% if (cities.length === 0) { %>
+      <p>Keine Städte vorhanden.</p>
+    <% } else { %>
+      <ul>
+        <% cities.forEach(city => { %>
+          <li>
+            <strong><%= city.name %></strong> — <%= city.population %> Einwohner
+            <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
+              <button type="submit" class="delete-btn">Löschen</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
+</body>
+</html

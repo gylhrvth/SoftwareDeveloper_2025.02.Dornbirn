@@ -1,36 +1,37 @@
-import { Router } from 'express';
-import { City } from '../types';
+import express from 'express';
 
-const router = Router();
+export interface City {
+  id: number;
+  name: string;
+  population: number;
+}
 
-let cities: City[] = [
-  { id: 1, name: 'Berlin', population: 3500000 },
-  { id: 2, name: 'Wien', population: 1900000 },
-];
+const router = express.Router();
 
-// Show all cities
+let cities: City[] = [];
+let idCounter = 1;
+
+// Show list and form
 router.get('/', (_req, res) => {
   res.render('index', { cities });
 });
 
-// Add a city
+// Add city
 router.post('/add', (req, res) => {
   const { name, population } = req.body;
-  if (!name || !population) {
-    return res.render('index', { cities, error: 'Bitte alle Felder ausfüllen.' });
+  if (name && population && !isNaN(Number(population))) {
+    cities.push({
+      id: idCounter++,
+      name: name.trim(),
+      population: Number(population),
+    });
   }
-  const newCity: City = {
-    id: cities.length ? cities[cities.length - 1].id + 1 : 1,
-    name,
-    population: parseInt(population),
-  };
-  cities.push(newCity);
   res.redirect('/');
 });
 
-// Delete a city
+// Delete city
 router.post('/delete/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = Number(req.params.id);
   cities = cities.filter(city => city.id !== id);
   res.redirect('/');
 });
