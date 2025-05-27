@@ -1,42 +1,102 @@
 body {
-  font-family: sans-serif;
-  background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #fff);
   padding: 2rem;
+  margin: 0;
 }
 
 main {
-  max-width: 600px;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  max-width: 800px;
   margin: auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-input, button {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+main:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+h1, h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+input[type="text"],
+input[type="number"],
 button {
-  background-color: #007bff;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #00796b;
+  outline: none;
+}
+
+button[type="submit"] {
+  background-color: #00796b;
   color: white;
-  cursor: pointer;
   border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #004d40;
 }
 
 button.delete-btn {
-  background-color: crimson;
+  background-color: #e74c3c;
   color: white;
-  padding: 0.3rem 0.6rem;
-  margin-left: 1rem;
   border: none;
-  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  opacity: 0.9;
+button.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+a {
+  color: #00796b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
 }

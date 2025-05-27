@@ -1,11 +1,12 @@
 {
-  "name": "express-project",
+  "name": "produkte-shop",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "start": "node dist/main.js",
+    "dev": "nodemon --watch backend --exec ts-node backend/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +16,11 @@
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "express-openid-connect": "^2.18.1"
+    "express-ejs-layouts": "^2.5.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
+    "@types/express-ejs-layouts": "^2.5.4",
     "@types/node": "^22.15.21",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",

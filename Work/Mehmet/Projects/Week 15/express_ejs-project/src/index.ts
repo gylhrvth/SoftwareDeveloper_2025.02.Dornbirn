@@ -6,12 +6,17 @@ import cityRoutes from './routes/cityRoutes';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.locals.user = (req as any).oidc?.user;
+  next();
+});
+
+app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', cityRoutes);
@@ -21,5 +26,5 @@ app.use((_req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`✅ Server: http://localhost:${port}`);
 });

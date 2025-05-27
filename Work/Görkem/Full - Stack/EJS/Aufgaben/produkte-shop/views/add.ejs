@@ -1,0 +1,22 @@
+<h2>Produkt hinzufügen</h2>
+
+<form class="product-form" action="/add" method="POST" autocomplete="off">
+  <% if (error) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+
+  <label for="name">Produktname</label>
+  <input type="text" id="name" name="name" required placeholder="z.B. Apfel">
+
+  <label for="price">Preis</label>
+  <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="z.B. 1.99">
+
+  <label for="description">Beschreibung <span style="color:var(--text-light); font-weight:400;">(optional)</span></label>
+  <textarea id="description" name="description" rows="2" placeholder="Kurze Beschreibung"></textarea>
+
+  <label for="image">Bilddateiname <span style="color:var(--text-light); font-weight:400;">(optional, z.B. apfel.jpg)</span></label>
+  <input type="text" id="image" name="image" placeholder="apfel.jpg">
+
+  <button type="submit">Produkt speichern</button>
+</form>
+
