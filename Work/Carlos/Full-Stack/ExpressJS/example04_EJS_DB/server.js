@@ -33,6 +33,20 @@ const navLinks = [
   { name: 'Registrations', url: '/registrations' }
 ];
 
+// Middleware to allow only localhost access to /registrations
+function onlyLocalhost(req, res, next) {
+  const allowed = ['127.0.0.1', '::1', 'localhost'];
+  const remoteAddress = req.ip || req.connection.remoteAddress;
+  if (
+    allowed.includes(remoteAddress) ||
+    remoteAddress === '::ffff:127.0.0.1'
+  ) {
+    next();
+  } else {
+    res.status(403).send('Access denied: Only localhost is allowed.');
+  }
+}
+
 // Middleware: navLinks für alle Templates verfügbar machen
 app.use((req, res, next) => {
   res.locals.navLinks = navLinks;
@@ -74,7 +88,7 @@ app.post('/form', async (req, res) => {
 });
 
 // Show all registrations
-app.get('/registrations', async (req, res) => {
+app.get('/registrations', onlyLocalhost, async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM Registration');
     res.render('registrations', { registrations: rows });

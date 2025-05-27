@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= typeof title !== 'undefined' ? title : 'Produkte-Shop' %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <%- include('partials/nav') %>
+  <main>
+    <%- body %>
+  </main>
+  <%- include('partials/footer') %>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>
