@@ -57,7 +57,8 @@ app.post('/api/city', (req: Request, res: Response) => {
 
   // Validation: beides muss vorhanden sein
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
+    res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+    return;
   }
 
   const newCity: City = {
@@ -82,11 +83,9 @@ app.put('/api/city/:id', (req: Request, res: Response) => {
 
   const { name, population } = req.body;
 
-  const index = cities.findIndex(city => city.id === id);
-  if (index === -1) return res.status(404).json({ message: "City not found" });
-
   if (!name || !population) {
-    return res.status(400).json({ message: "Name und Population erforderlich" });
+    res.status(400).json({ message: 'Name und Population sind erforderlich.' });
+    return;
   }
 
   // Ganze Stadt ersetzen
@@ -99,10 +98,16 @@ app.patch('/api/city/:id', (req: Request, res: Response) => {
   const id = Number(req.params.id);
   const city = cities.find(city => city.id === id);
 
-  if (!city) return res.status(404).json({ message: "City not found" });
+  if (!city) {
+    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    return;
+  }
 
-  if (req.body.name !== undefined) city.name = req.body.name;
-  if (req.body.population !== undefined) city.population = req.body.population;
+  const { name, population } = req.body;
+
+  // Nur das aktualisieren, was mitgeschickt wurde
+  if (name !== undefined) city.name = name;
+  if (population !== undefined) city.population = population;
 
   res.json(city);
 });
@@ -112,10 +117,13 @@ app.delete('/api/city/:id', (req: Request, res: Response) => {
   const id = Number(req.params.id);
   const index = cities.findIndex(city => city.id === id);
 
-  if (index === -1) return res.status(404).json({ message: "City not found" });
+  if (index === -1) {
+    res.status(404).json({ message: 'Stadt nicht gefunden' });
+    return;
+  }
 
-  cities.splice(index, 1);
-  res.status(204).send(); // Kein Inhalt
+  cities.splice(index, 1); // Stadt aus Array entfernen
+  res.status(204).send(); // 204 = erfolgreich, aber kein Inhalt
 });
 
 // 🚀 Server starten
