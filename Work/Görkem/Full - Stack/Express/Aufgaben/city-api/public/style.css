@@ -48,14 +48,17 @@ ul {
 }
 
 ul li {
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
-    background: var(--list-item-bg);
-    border-radius: var(--list-item-radius);
-    font-size: 1.3rem;
-    color: #333;
-    box-shadow: var(--list-item-shadow);
-    transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--list-item-bg, #fff);
+  border-radius: var(--list-item-radius, 0.5rem);
+  font-size: 1.3rem;
+  color: #333;
+  box-shadow: var(--list-item-shadow, 0 2px 8px rgba(0,0,0,0.05));
+  transition: background 0.2s;
 }
 
 ul li:hover {
@@ -108,4 +111,22 @@ ul li:hover {
   margin-top: 0.2rem;
   display: block;
   min-height: 1.2em;
+}
+
+.delete-btn {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #b30000;
+  transition: color 0.2s;
+  padding: 0;
+  line-height: 1;
+  display: inline;
+  vertical-align: middle;
+}
+
+.delete-btn:hover {
+  color: #ff3333;
 }

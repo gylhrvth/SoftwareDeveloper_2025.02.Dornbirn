@@ -8,6 +8,18 @@ async function loadCities() {
       cities.forEach(city => {
         const li = document.createElement('li');
         li.textContent = `${city.name} (ID: ${city.id})`;
+
+        // Mülleimer-Button
+        const delBtn = document.createElement('button');
+        delBtn.innerHTML = '🗑️';
+        delBtn.title = 'Stadt löschen';
+        delBtn.className = 'delete-btn';
+        delBtn.onclick = async () => {
+          await fetch(`/api/city/${city.id}`, { method: 'DELETE' });
+          loadCities();
+        };
+
+        li.appendChild(delBtn);
         list.appendChild(li);
       });
     }
@@ -26,6 +38,18 @@ async function loadCountries() {
       countries.forEach(country => {
         const li = document.createElement('li');
         li.textContent = `${country.name} (ID: ${country.id})`;
+
+        // Mülleimer-Button
+        const delBtn = document.createElement('button');
+        delBtn.innerHTML = '🗑️';
+        delBtn.title = 'Land löschen';
+        delBtn.className = 'delete-btn';
+        delBtn.onclick = async () => {
+          await fetch(`/api/country/${country.id}`, { method: 'DELETE' });
+          loadCountries();
+        };
+
+        li.appendChild(delBtn);
         list.appendChild(li);
       });
     }
@@ -37,7 +61,7 @@ async function loadCountries() {
 loadCities();
 loadCountries();
 
-
+// Stadt hinzufügen
 document.getElementById('city-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('city-name').value.trim();
@@ -60,6 +84,7 @@ document.getElementById('city-form').addEventListener('submit', async (e) => {
   }
 });
 
+// Land hinzufügen
 document.getElementById('country-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('country-name').value.trim();
