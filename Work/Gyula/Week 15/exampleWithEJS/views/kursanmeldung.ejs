@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kursanmeldung - Software Developer Kurs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        h1 { text-align: center; }
+        label { display: block; margin-top: 15px; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
+        button { margin-top: 20px; width: 100%; padding: 10px; background: #0078d7; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;}
+        button:hover { background: #005fa3; }
+        .course-info { background: #e7f3ff; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kursanmeldung</h1>
+        <div class="course-info">
+            <strong>Software Developer Kurs</strong><br>
+            Startdatum: <b>25.05.2025</b> um <b>08:30</b>
+        </div>
+        <form action="/register" method="POST">
+            <label for="name">Vollständiger Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-Mail-Adresse</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Telefonnummer</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="experience">Programmiererfahrung</label>
+            <select id="experience" name="experience" required>
+                <option value="">Bitte wählen...</option>
+                <option value="none">Keine</option>
+                <option value="beginner">Anfänger</option>
+                <option value="intermediate">Fortgeschritten</option>
+                <option value="advanced">Experte</option>
+            </select>
+
+            <button type="submit">Jetzt anmelden</button>
+        </form>
+    </div>
+</body>
+</html>
