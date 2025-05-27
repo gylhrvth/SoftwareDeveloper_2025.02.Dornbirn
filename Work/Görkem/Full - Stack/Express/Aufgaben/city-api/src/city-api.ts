@@ -28,7 +28,7 @@ app.get('/api/country', (req: Request, res: Response) => {
 });
 
 // POST /api/country
-app.post('/api/country', (req: Request, res: Response): void => {
+app.post('/api/country', (req: Request, res: Response) => {
     const name = req.body.name?.trim();
     if (!name || !/^[A-Za-zÄÖÜäöüß\s\-]+$/.test(name)) {
         res.status(400).json({ message: 'Ungültiger Name! Nur Buchstaben und Leerzeichen erlaubt.' });
@@ -42,6 +42,18 @@ app.post('/api/country', (req: Request, res: Response): void => {
     const newCountry = { id: nextCountryId++, name };
     countries.push(newCountry);
     res.status(201).json(newCountry);
+});
+
+// DELETE /api/country/:id
+app.delete('/api/country/:id', (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    const index = countries.findIndex(country => country.id === id);
+    if (index !== -1) {
+        const deleted = countries.splice(index, 1)[0];
+        res.json(deleted);
+    } else {
+        res.status(404).json({ message: 'Country not found' });
+    }
 });
 
 // GET /api/city
