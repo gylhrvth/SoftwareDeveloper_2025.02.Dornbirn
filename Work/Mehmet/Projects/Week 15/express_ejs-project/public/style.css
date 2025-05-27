@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: #f3f3f3;
+}
+main {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+form {
+  margin-bottom: 1rem;
+}
+input, button {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
