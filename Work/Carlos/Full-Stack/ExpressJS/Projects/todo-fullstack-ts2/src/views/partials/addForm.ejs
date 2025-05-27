@@ -1,0 +1,20 @@
+<form id="todoForm" action="/add?lang=<%= lang %>" method="POST">
+  <h3><%= t.newTask %></h3>
+  <label for="title"><strong><%= t.taskTitle %>:</strong></label>
+  <input type="text" id="title" name="title" required>
+  <label for="description"><strong><%= t.taskDescription %>:</strong></label>
+  <textarea id="description" name="description"></textarea>
+  <label for="status"><strong><%= t.status %>:</strong></label>
+  <select id="status" name="status">
+    <option value="Pending"><%= t.pending %></option>
+    <option value="Completed"><%= t.completed %></option>
+  </select>
+  <label for="priority"><strong><%= t.priority %>:</strong></label>
+  <select id="priority" name="priority">
+    <option value="Low"><%= t.low %></option>
+    <option value="Normal" selected><%= t.normal %></option>
+    <option value="High"><%= t.high %></option>
+  </select>
+  <button type="submit"><%= t.addTask %></button>
+  <button type="button" id="closeFormButton"><%= t.cancel %></button>
+</form>
