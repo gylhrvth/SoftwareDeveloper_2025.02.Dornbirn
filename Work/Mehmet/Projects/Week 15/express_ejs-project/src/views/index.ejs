@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Städteverwaltung</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Städteverwaltung</h1>
+
+    <section>
+      <h2>Neue Stadt hinzufügen</h2>
+      <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Stadtname" required />
+        <input type="number" name="population" placeholder="Bevölkerung" required />
+        <button type="submit">Hinzufügen</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Städte Liste</h2>
+      <ul>
+        <% if (cities.length === 0) { %>
+          <li>Keine Städte vorhanden.</li>
+        <% } else { %>
+          <% cities.forEach(city => { %>
+            <li>
+              <strong><%= city.name %></strong> – Bevölkerung: <%= city.population %>
+              <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="delete-btn">🗑️ Löschen</button>
+              </form>
+            </li>
+          <% }) %>
+        <% } %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

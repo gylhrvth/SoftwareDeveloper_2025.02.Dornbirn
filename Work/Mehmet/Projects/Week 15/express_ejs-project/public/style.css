@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  padding: 2rem;
+}
+
+main {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, button {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+button.delete-btn {
+  background-color: crimson;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 6px;
+}
+
+button:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registrations</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <h1>Alle Registrierungen</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Kommentar</th>
+        <th>Newsletter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% registrations.forEach(reg => { %>
+        <tr>
+          <td><%= reg.reg_id %></td>
+          <td><%= reg.reg_name %></td>
+          <td><%= reg.reg_email %></td>
+          <td><%= reg.reg_comment %></td>
+          <td><%= reg.reg_newsletter ? 'Ja' : 'Nein' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

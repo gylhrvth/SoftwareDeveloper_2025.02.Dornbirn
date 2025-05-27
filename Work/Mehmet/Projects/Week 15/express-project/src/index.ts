@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import { link } from 'fs';
 
 dotenv.config();
 
@@ -18,7 +19,8 @@ interface City {
   population: number;
 }
 
-let cities: City[] = [
+let cities: City[] = [  
+      // Sample data
   { id: 1, name: 'Berlin', population: 3500000 },
   { id: 2, name: 'München', population: 1500000 },
 ];
@@ -102,7 +104,7 @@ app.delete('/api/city/:id', (req: Request, res: Response) => {
 });
 
 // Handle unknown API endpoints with 404 JSON
-app.use('/api/*', (_req, res) => {
+app.use(/\/api\/*/, (_req, res) => {
   res.status(404).json({ message: 'API endpoint not found.' });
 });
 
