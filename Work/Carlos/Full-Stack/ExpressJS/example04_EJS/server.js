@@ -1,19 +1,19 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path');
+const path = require('path'); //Importieren des path-Moduls für Pfadoperationen
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // EJS als Template-Engine konfigurieren
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs'); // Tells Express to use EJS for rendering views
+app.set('views', path.join(__dirname, 'views')); // Sets the folder where EJS templates are stored
 
 // Statische Dateien bereitstellen
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // Serves files from public/ (like CSS and JS) at the root URL.
 
 // Middleware für Formulardaten
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // Allows Express to parse URL-encoded bodies (like form submissions)
 
 // Navigation als Partial
 const navLinks = [
