@@ -37,6 +37,7 @@
               <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
                 <button type="submit" class="delete-btn">🗑️ Löschen</button>
               </form>
+              <a href="/edit/<%= city.id %>">Bearbeiten</a>
             </li>
           <% }) %>
         <% } %>
