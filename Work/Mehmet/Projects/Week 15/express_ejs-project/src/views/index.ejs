@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<h1>Städteverwaltung</h1>
+
+<form method="POST" action="/add">
+  <label>Name:</label>
+  <input type="text" name="name" required />
+  <label>Bevölkerung:</label>
+  <input type="number" name="population" required />
+  <button type="submit">Hinzufügen</button>
+</form>
+
+<% if (error) { %>
+  <p style="color:red;"><%= error %></p>
+<% } %>
+
+<ul>
+  <% cities.forEach(city => { %>
+    <li>
+      <%= city.name %> – <%= city.population.toLocaleString() %> Einwohner
+      <form method="POST" action="/delete/<%= city.id %>" style="display:inline;">
+        <button type="submit">Löschen</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer') %>

@@ -18,6 +18,7 @@
     <h1 class="textColor01">Full-Stack Journal 02</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day61">DI 27/05/25</a>:Express JS + EJS</h3>
     <h3 class="textColor01">▷ <a href="#day60">MO 26/05/25</a>:Express JS</h3>
     
     
@@ -26,9 +27,203 @@
     <br>
     <br>
 
+    <h2 id="day61">Dienstag 27. Mai 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (Express JS + EJS)</h3>
+
+    <h4 class="textColor02">EJS Recap:</h4>
+
+    
+
+    <h3 class="textColor01">Full-Stack (Express JS + EJS)</h3>
+
+    <h4 class="textColor02">Beispiel: Express JS mit EJS erstellen -> Anleitung:</h4>
+
+    <ol>
+        <li>Neues Projekt anlegen:</li>
+        <pre><code>mkdir example_ejs_server</code></pre>
+        <pre><code>cd example_ejs_server</code></pre>
+        <li>Node.js Projekt initialisieren:</li>
+        <pre><code>npm init -y</code></pre>
+        <li>Express, EJS und dotenv installieren:</li>
+        <pre><code>npm install express ejs dotenv</code></pre>
+        <li>TypeScript und zugehörige Typen installieren:</li>
+        <pre><code>npm install --save-dev typescript @types/node @types/express ts-node nodemon</code></pre>
+        <li>TypeScript-Konfiguration erstellen:</li>
+        <pre><code>npx tsc --init</code></pre>
+        <li>Verzeichnisstruktur erstellen:</li>
+        <img src="../AssetsMain/Images/ejs_struktur.png" alt="Verzeichnisstruktur für Express EJS Projekt">
+        <li>Konfiguration .env Datei:</li>
+        <pre><code>PORT=3000</code></pre>
+        <li>Konifguration package.json:</li>
+        <p>Ohne Typescript:</p>
+        <pre><code>"scripts": {
+            "dev": "nodemon server.js"
+        }</pre></code>
+        <p>Mit Typescript:</p>
+        <pre><code>"scripts": {
+            "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
+        }</pre></code>
+    </ol>
+
+    <h4 class="textColor02">Beispiel Code für server.js mit EJS:</h4>
+    <pre><code>require('dotenv').config();
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// EJS als Template-Engine konfigurieren
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Statische Dateien bereitstellen
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware für Formulardaten
+app.use(express.urlencoded({ extended: true }));
+
+// Navigation als Partial
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+  { name: 'Form', url: '/form' }
+];
+
+// Startseite
+app.get('/', (req, res) => {
+  res.render('index', { navLinks });
+});
+
+// About-Seite
+app.get('/about', (req, res) => {
+  res.render('about', { navLinks });
+});
+
+// Formular-Seite
+app.get('/form', (req, res) => {
+  res.render('form', { navLinks, submitted: false, name: '' });
+});
+
+// Formular-Verarbeitung
+app.post('/form', (req, res) => {
+  const { name } = req.body;
+  // Nach POST Redirect (PRG-Pattern)
+  res.redirect(`/form?submitted=true&name=${encodeURIComponent(name)}`);
+});
+
+// Formular-Redirect-Route
+app.get('/form', (req, res) => {
+  const { submitted, name } = req.query;
+  res.render('form', { navLinks, submitted, name });
+});
+
+// 404 Fehlerseite
+app.use((req, res) => {
+  res.status(404).render('404', { navLinks });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server läuft auf http://localhost:${PORT}`);
+});</code></pre>
+
+<h4 class="textColor02">Beispiel Code für EJS Templates:</h4>
+
+<p>views/partials/nav.ejs</p>
+
+<pre><code>&lt;nav&gt;
+  &lt;% navLinks.forEach(link =&gt; { %&gt;
+    &lt;a href="&lt;%= link.url %&gt;"&gt;&lt;%= link.name %&gt;&lt;/a&gt;
+  &lt;% }) %&gt;
+&lt;/nav&gt;</code></pre>
+
+<p>views/index.ejs</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Home&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;% include partials/nav %&gt;
+  &lt;h1&gt;Willkommen!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<br>
+
     <h2 id="day60">Montag 26. Mai 2025</h2>
 
     <h3 class="textColor01">Full-Stack (Express JS)</h3>
+
+    <h4 class="textColor02">Beispiel: Express JS mit Typescrypt Projekt erstellen -> Anleitung:</h4>
+    <ol>
+        <li>Projektordner anlegen: </li>
+        <pre><code>mkdir example1</code></pre>
+        <pre><code>cd example1</code></pre>
+
+        <li>Node.js Projekt initialisieren:</li>
+        <pre><code>npm init -y</code></pre>
+
+        <li>Express und TypeScript installieren:</li>
+        <pre><code>npm install express</code></pre>
+        <pre><code>npm install --save-dev typescript @types/node @types/express ts-node nodemon</code></pre>
+        
+        <li>TypeScript-Konfiguration erstellen:</li>
+        <pre><code>npx tsc --init</code></pre>
+
+       <li>Verzeichnisstruktur erstellen:</li>
+       <p>Zum Beispiel:</p>
+       <p>mit public/images/carlos.jpeg Struktur</p> 
+       <p>src/server.ts</p>
+     
+        <li>Bei package.json, folgendes konfigurieren:</li>
+        <pre><code> "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
+}</code></pre>
+
+        <li>Beispiel-Struktur für das Projekt (mit statischen Dateien und REST-API-Endpunkten):</li>
+        <pre><code>import express from 'express';
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware zum Loggen und IP-Check
+app.use((req, res, next) => {
+    console.log('Query:', req.method, req.url, req.ip);
+    console.log('Headers:', req.headers['user-agent']);
+    if (req.ip !== '::1') {
+        res.status(403).send('Access denied');
+        return;
+    }
+    next();
+});
+
+// Statische Dateien bereitstellen
+app.use(express.static('public'));
+
+// Einfache Routen
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+});
+
+app.get('/carlos', (req, res) => {
+    res.send('Hola, Carlos!');
+});
+
+// REST API Beispiel
+app.get('/api/example', (req, res) => {
+    res.json({ message: 'Dies ist eine REST API Antwort!' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});</code></pre>
+    </ol>
 
     <h4 class="textColor01">Express JS: Recherche</h4>
     <ul>
@@ -44,14 +239,411 @@
         <li>Große Community und Ökosystem: Es hat eine große Community und viele verfügbare Module und Plugins.</li>
         <li>Integration mit anderen Node.js-Modulen: Es lässt sich leicht mit anderen Node.js-Modulen integrieren.</li>
     </ul>
+
     <li><h4 class="textColor02">Wie installiert man Express.js in einem TypeScript-Projekt?</h4></li>
+    <p>Um Express.js in einem TypeScript-Projekt zu installieren, kann man die folgenden Schritte ausführen:</p>
+    <ul>
+        <li><pre><code>npm install express</code></pre></li>
+        <li><pre><code>npm install --save-dev typescript @types/node @types/express ts-node nodemon</code></pre></li>
+        <li><code>tsconfig.json</code>-Datei mit den erforderlichen TypeScript-Konfigurationen erstellen.</li>
+        <li><code>src</code>-Verzeichnis und eine <code>app.ts</code>-Datei erstellen, in der man IExpress-Code schreiben kann.</li>
 
-    </ul>   
+    </ul>
 
- 
+    <li><h4 class="textColor02">Wie erstellt man einen einfachen Web-Server mit Express?</h4></li>
+    <p>Ein einfacher Web-Server mit Express kann wie folgt erstellt werden:</p>
+    <pre><code>import express from 'express'; // Importiere Express in TypeScript
+const app = express();
+const port = 3000;
+app.get('/', (req, res) => {
+  res.send('Hallo Welt!');
+});
+app.listen(port, () => {
+  console.log(`Server läuft auf http://localhost:${port}`);
+});</code></pre>
+    <p>Dieser Code importiert Express, erstellt eine Instanz der Anwendung, definiert eine Route für die Startseite und startet den Server auf Port 3000.</p>
     
+
+        <li><h4 class="textColor02">Projekt Erstellung mit ExpressJS und Typescript:</h4></li>
+    <ol>
+        <li>Neues Verzeichnis anlegen und installieren:</li>
+        <pre><code>mkdir mein-express-projekt</code></pre>
+        <pre><code>cd mein-express-projekt</code></pre>
+        <pre><code>npm init -y</code></pre>
+
+        <li>Express und Typescript installieren:</li>
+        <pre><code>npm install express</code></pre>
+        <pre><code>npm install --save-dev typescript @types/node @types/express ts-node nodemon</code></pre>
+    
+        <li>Typescript-Konfiguration erstellen:</li>
+        <pre><code>npx tsc --init</code></pre>
+
+        <p>tsconfig.json anpassen:</p>
+        <pre><code>{
+"compilerOptions": {
+"target": "ES2020",
+"module": "commonjs",
+"outDir": "./dist",
+"rootDir": "./src",
+"strict": true,
+"esModuleInterop": true
+}
+}
+</code></pre>
+
+         <li>Typescript-Konfiguration erstellen:</li>
+         <pre><code>mkdir src</code></pre>
+         <pre><code>touch src/app.ts</code></pre>
+        
+        <li>Beispiel-Code in src/app.ts schreiben:</li>
+        <pre><code>import express from 'express';
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hallo Welt!');
+});
+
+app.listen(port, () => {
+  console.log(`Server läuft auf http://localhost:${port}`);
+});</code></pre>
+
+<li>Start-Skript in package.json hinzufügen:</li>
+        <pre><code>"scripts": {
+  "build": "tsc",
+  "start": "node dist/app.js",
+  "dev": "nodemon --watch src --exec ts-node src/app.ts"
+}</code></pre>
+
+        <li>Entwicklung starten:</li>
+        <pre><code>npm run dev</code></pre>
+    
+    </ol>
+
+    <li><h4 class="textColor02">Was ist dotenv und warum sollte man es verwenden?</h4></li>
+    <p>dotenv ist ein Zero-Dependency-Modul, das es ermöglicht, Umgebungsvariablen aus einer <code>.env</code>-Datei in Node.js-Anwendungen zu laden. Es wird verwendet, um Konfigurationsdaten wie API-Schlüssel, Datenbankverbindungsinformationen und andere sensible Daten sicher zu speichern und zu verwalten, ohne sie im Quellcode hardcodiert zu haben.</p>
+    <p>Durch die Verwendung von dotenv kann man sensible Konfigurationsdaten wie Passwörter, API-Keys oder Datenbank-URLs aus dem Quellcode auslagern und sicher in einer separaten <code>.env</code>-Datei speichern. Dadurch erhöht sich die Sicherheit und Flexibilität der Anwendung, da Umgebungsvariablen einfach angepasst werden können, ohne den Code zu verändern.</p>
+    <li><h4 class="textColor02">Wie definiert man Routes in Express?</h4></li>
+    <p>In Express definiert man Routen mit Methoden wie <code>app.get()</code>, <code>app.post()</code>, <code>app.put()</code> oder <code>app.delete()</code>. Jede Methode entspricht einem HTTP-Verb. Beispiel:</p>
+    <pre><code>app.get('/beispiel', (req, res) => {
+        res.send('Dies ist eine GET-Route!');
+    });
+
+    app.post('/beispiel', (req, res) => {
+        res.send('Dies ist eine POST-Route!');
+    });
+    </code></pre>
+    <p>Der erste Parameter ist der Pfad, der zweite eine Callback-Funktion, die aufgerufen wird, wenn die Route angesprochen wird.</p>
+    
+    <li><h4 class="textColor02">Wie kann man statische Dateien mit Express bereitstellen?</h4></li>
+    <p>Um statische Dateien mit Express bereitzustellen, kann man die eingebaute Middleware <code>express.static</code> verwenden. Damit können z.B. HTML-, CSS-, Bild- oder JavaScript-Dateien aus einem bestimmten Verzeichnis öffentlich zugänglich gemacht werden.</p>
+    <pre><code>import express from 'express';
+    const app = express();
+
+    // Statisches Verzeichnis "public" bereitstellen
+    app.use(express.static('public'));
+
+    app.listen(3000, () => {
+        console.log('Server läuft auf http://localhost:3000');
+    });
+    </code></pre>
+    <p>Alle Dateien im <code>public</code>-Verzeichnis sind dann über den Browser erreichbar, z.B. <code>http://localhost:3000/style.css</code>.</p>
+    
+    <li><h4 class="textColor02">Wie kann man JSON REST API als Ergebnis bereitstellen?</h4></li>
+    <p>Um eine JSON REST API mit Express bereitzustellen, kann man die <code>res.json()</code>-Methode verwenden. Beispiel:</p>
+    <pre><code>import express from 'express';
+    const app = express();
+
+    app.get('/api/daten', (req, res) => {
+        res.json({ nachricht: 'Dies ist eine JSON-Antwort!', status: 'ok' });
+    });
+
+    app.listen(3000, () => {
+        console.log('Server läuft auf http://localhost:3000');
+    });
+    </code></pre>
+    <p>Bei einem Aufruf von <code>/api/daten</code> gibt der Server eine JSON-Antwort zurück. So lassen sich REST APIs mit Express einfach umsetzen.</p>
+
     
     <br>
+
+    <li><h4 class="textColor02">Wie kann man ein generiertes HTML Dokument als Ergebnis bereitstellen?</h4></li>
+    <p>Um ein generiertes HTML-Dokument als Ergebnis bereitzustellen, kann man die <code>res.send()</code>-Methode verwenden und dabei einen HTML-String übergeben. Beispiel:</p>
+    <pre><code>import express from 'express';
+    const app = express();
+
+    app.get('/html', (req, res) => {
+        res.send(`
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="de"&gt;
+            &lt;head&gt;
+                &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;Generiertes HTML&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Hallo von Express!&lt;/h1&gt;
+                &lt;p&gt;Dies ist ein dynamisch generiertes HTML-Dokument.&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+        `);
+    });
+
+    app.listen(3000, () => {
+        console.log('Server läuft auf http://localhost:3000');
+    });
+    </code></pre>
+    <p>Beim Aufruf von <code>/html</code> liefert der Server ein vollständiges HTML-Dokument als Antwort zurück.</p>
+
+    <li><h4 class="textColor02">Wie behandelt man HTTP-Anfragen (GET, POST, etc.)?</h4></li>
+    <p>In Express behandelt man HTTP-Anfragen mit den entsprechenden Methoden wie <code>app.get()</code>, <code>app.post()</code>, <code>app.put()</code> und <code>app.delete()</code>. Jede Methode entspricht einem HTTP-Verb und nimmt als Argument den Pfad und eine Callback-Funktion entgegen. Beispiel:</p>
+    <pre><code>import express from 'express';
+    const app = express();
+
+    app.use(express.json()); // Für das Parsen von JSON im Body
+
+    // GET-Anfrage
+    app.get('/daten', (req, res) => {
+        res.send('GET-Anfrage empfangen');
+    });
+
+    // POST-Anfrage
+    app.post('/daten', (req, res) => {
+        res.send('POST-Anfrage empfangen mit Daten: ' + JSON.stringify(req.body));
+    });
+
+    // PUT-Anfrage
+    app.put('/daten/:id', (req, res) => {
+        res.send(`PUT-Anfrage für ID ${req.params.id} empfangen`);
+    });
+
+    // DELETE-Anfrage
+    app.delete('/daten/:id', (req, res) => {
+        res.send(`DELETE-Anfrage für ID ${req.params.id} empfangen`);
+    });
+
+    app.listen(3000, () => {
+        console.log('Server läuft auf http://localhost:3000');
+    });
+    </code></pre>
+    <p>Mit diesen Methoden kann man verschiedene HTTP-Anfragen gezielt behandeln und darauf reagieren.</p>
+
+    <li><h4 class="textColor02">Wie kann man Query-Parameter und URL-Parameter verarbeiten?</h4></li>
+    <p>In Express kann man Query-Parameter (z.B. <code>?name=Max</code>) über <code>req.query</code> und URL-Parameter (z.B. <code>/user/123</code>) über <code>req.params</code> auslesen. Beispiel:</p>
+    <pre><code>import express from 'express';
+const app = express();
+
+// Query-Parameter: /suche?begriff=express
+app.get('/suche', (req, res) => {
+    const begriff = req.query.begriff;
+    res.send(`Gesuchter Begriff: ${begriff}`);
+});
+
+// URL-Parameter: /user/123
+app.get('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    res.send(`User ID: ${userId}`);
+});
+
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+    <p>Mit <code>req.query</code> erhält man die Query-Parameter als Objekt, mit <code>req.params</code> die URL-Parameter.</p>
+
+<li><h4 class="textColor02">Wie kann man den Body einer Query lesen?</h4></li>
+<p>Um den Body einer Anfrage zu lesen, muss man in Express die passende Middleware verwenden. Für JSON-Daten nutzt man <code>express.json()</code>, für URL-codierte Daten <code>express.urlencoded()</code>. Beispiel:</p>
+<pre><code>import express from 'express';
+const app = express();
+
+app.use(express.json()); // Für JSON-Body
+app.use(express.urlencoded({ extended: true })); // Für Formulardaten
+
+app.post('/daten', (req, res) => {
+    // Zugriff auf den Body der Anfrage
+    const daten = req.body;
+    res.send('Empfangene Daten: ' + JSON.stringify(daten));
+});
+
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+<p>Mit <code>req.body</code> kann man dann auf die gesendeten Daten zugreifen.</p>
+
+<li><h4 class="textColor02">Was kann man als Body in einer Query bekommen?</h4></li>
+<p>Als Body einer Anfrage (z.B. bei POST oder PUT) kann man verschiedene Datenformate erhalten, abhängig davon, wie der Client die Daten sendet und welche Middleware in Express verwendet wird. Typische Formate sind:</p>
+<ul>
+    <li><b>JSON:</b> Häufig bei modernen APIs. Wird mit <code>express.json()</code> geparst.</li>
+    <li><b>URL-codierte Formulardaten:</b> Klassisch bei HTML-Formularen (<code>application/x-www-form-urlencoded</code>). Wird mit <code>express.urlencoded()</code> geparst.</li>
+    <li><b>Multipart/Form-Data:</b> Für Datei-Uploads, z.B. mit <code>multer</code> als Middleware.</li>
+    <li><b>Text:</b> Reiner Text, z.B. mit <code>express.text()</code> geparst.</li>
+    <li><b>Rohdaten:</b> Binärdaten, z.B. mit <code>express.raw()</code> geparst.</li>
+</ul>
+<p>Das Format des Bodys wird durch den <code>Content-Type</code>-Header der Anfrage bestimmt. Express stellt verschiedene Middleware bereit, um die jeweiligen Formate zu verarbeiten.</p>
+
+<li><h4 class="textColor02">Was sind Middleware-Funktionen in Express?</h4></li>
+<p>Middleware-Funktionen in Express sind Funktionen, die den Request- und Response-Objekten Zugriff gewähren und die Anfrageverarbeitung beeinflussen können. Sie werden in der Reihenfolge aufgerufen, in der sie definiert wurden, und können verwendet werden, um Anfragen zu protokollieren, Authentifizierung durchzuführen, Daten zu parsen oder Fehler zu behandeln.</p>
+<p>Eine Middleware-Funktion hat Zugriff auf das <code>req</code>-Objekt (Request), das <code>res</code>-Objekt (Response) und die <code>next</code>-Funktion, die aufgerufen werden muss, um die Verarbeitung an die nächste Middleware oder Route weiterzugeben. Beispiel:</p>
+<pre><code>import express from 'express';
+const app = express();
+app.use((req, res, next) => {
+    console.log(`Anfrage empfangen: ${req.method} ${req.url}`);
+    next(); // Weiter zur nächsten Middleware oder Route
+});
+app.get('/', (req, res) => {
+    res.send('Hallo Welt!');
+});
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+<p>In diesem Beispiel wird eine Middleware definiert, die jede eingehende Anfrage protokolliert, bevor sie an die nächste Route weitergegeben wird.</p>
+
+<p>Ein anderes Beispiel für eine Middleware, die Anfragen protokolliert:</p>
+<pre><code>import express from 'express';
+const app = express();
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next(); // Weiter zur nächsten Middleware oder Route
+});
+app.get('/', (req, res) => {
+    res.send('Willkommen auf der Startseite!');
+});
+app.get('/about', (req, res) => {
+    res.send('Dies ist die About-Seite.');
+});
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+<p>In diesem Beispiel wird eine Middleware definiert, die das aktuelle Datum und die Uhrzeit zusammen mit der HTTP-Methode und der URL jeder Anfrage protokolliert. Dadurch erhält  man einen Überblick darüber, wann welche Anfragen an den Server gestellt wurden. Solche Middleware-Funktionen sind hilfreich für Debugging, Monitoring und Logging in Webanwendungen.
+<li><h4 class="textColor02">Wie implementiert man Error-Handling in Express?</h4></li>
+<p>In Express implementiert man Error-Handling mit speziellen Middleware-Funktionen, die vier Parameter haben: <code>(err, req, res, next)</code>. Diese Middleware fängt Fehler ab, die in vorherigen Routen oder Middleware-Funktionen auftreten. Beispiel:</p>
+<pre><code>import express from 'express';
+const app = express();
+
+// Beispielroute, die einen Fehler auslöst
+app.get('/fehler', (req, res, next) => {
+    const error = new Error('Etwas ist schiefgelaufen!');
+    next(error); // Fehler an die Error-Handling-Middleware weitergeben
+});
+
+// Error-Handling-Middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Interner Serverfehler: ' + err.message);
+});
+
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+<p>Die Error-Handling-Middleware sollte immer am Ende der Middleware-Kette stehen. Sie fängt alle Fehler ab, die mit <code>next(error)</code> weitergegeben wurden, und kann eine passende Fehlermeldung an den Client senden.</p>
+
+<li><h4 class="textColor02">Was sind die Best Practices für die Strukturierung einer Express-Anwendung?</h4></li>
+<p>Die Strukturierung einer Express-Anwendung sollte klar und modular sein, um Wartbarkeit und Skalierbarkeit zu gewährleisten. Hier sind einige Best Practices:</p>
+<ul>
+    <li><b>Modularisierung:</b> Teile die Anwendung in Module auf, z.B. für Routen, Middleware, Controller und Modelle.</li>
+    <li><b>Verzeichnisstruktur:</b> Verwende eine klare Verzeichnisstruktur, z.B. <code>/routes</code>, <code>/controllers</code>, <code>/models</code>, <code>/middlewares</code>.</li>
+    <li><b>Konfiguration:</b> Lagere Konfigurationen (z.B. Datenbankverbindungen, API-Schlüssel) in separate Dateien oder Umgebungsvariablen aus.</li>
+    <li><b>Fehlerbehandlung:</b> Implementiere eine zentrale Error-Handling-Middleware.</li>
+    <li><b>Logging:</b> Verwende ein Logging-Framework, um Anfragen und Fehler zu protokollieren.</li>
+    <li><b>Sicherheit:</b> Implementiere Sicherheitsmaßnahmen wie CORS, Rate Limiting und Validierung von Benutzereingaben.</li>
+    <li><b>Dokumentation:</b> Dokumentiere die API mit Tools wie Swagger oder Postman.</li>
+    <li><b>Tests:</b> Schreibe Unit- und Integrationstests, um die Funktionalität der Anwendung zu überprüfen.</li>
+</ul>
+    <p>Eine mögliche Verzeichnisstruktur könnte so aussehen:</p>
+    <pre><code>mein-express-projekt/
+├── src/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   └── app.ts
+├── config/
+├── .env
+├── package.json
+├── tsconfig.json
+└── README.md
+</code></pre>
+
+<li><h4 class="textColor02">Wie stellt man die Sicherheit einer Express-Anwendung sicher?</h4></li>
+<p>Die Sicherheit einer Express-Anwendung kann durch verschiedene Maßnahmen verbessert werden:</p>
+<ul>
+    <li><b>Verwendung von HTTPS:</b> Stelle sicher, dass die Anwendung über HTTPS läuft, um Daten während der Übertragung zu schützen.</li>
+    <li><b>Validierung von Benutzereingaben:</b> Verwende Bibliotheken wie <code>express-validator</code>, um Benutzereingaben zu validieren und zu sanitieren.</li>
+    <li><b>CORS:</b> Konfiguriere Cross-Origin Resource Sharing (CORS), um den Zugriff auf die API von bestimmten Ursprüngen zu beschränken.</li>
+    <li><b>Rate Limiting:</b> Implementiere Rate Limiting, um Missbrauch durch zu viele Anfragen zu verhindern.</li>
+    <li><b>Helmet:</b> Verwende das Helmet-Middleware-Paket, um HTTP-Header für zusätzliche Sicherheit zu setzen.</li>
+    <li><b>Fehlerbehandlung:</b> Implementiere eine zentrale Fehlerbehandlung, um sensible Informationen nicht preiszugeben.</li>
+    <li><b>Sichere Konfiguration:</b> Lagere sensible Daten in Umgebungsvariablen aus und verwende das dotenv-Paket.</li>
+    <li><b>Sicherheitsupdates:</b> Halte Abhängigkeiten und Pakete regelmäßig auf dem neuesten Stand, um Sicherheitslücken zu schließen.</li>
+    <li><b>Authentifizierung und Autorisierung:</b> Implementiere sichere Authentifizierungs- und Autorisierungsmechanismen, z.B. mit JWT (JSON Web Tokens).</li>
+</ul>
+
+<li><h4 class="textColor02">Wie integriert man Express mit einer Datenbank?</h4></li>
+<p>Um Express mit einer Datenbank zu integrieren (z.B mysql), geht man typischerweise wie folgt vor:</p>
+<ol>
+    <li>Installiere das entsprechende Datenbank-Client-Paket, z.B. <code>mysql2</code> für MySQL.</li>
+    <li>Erstelle eine Verbindung zur Datenbank in der Express-Anwendung.</li>
+    <li>Definiere Routen, die Datenbankabfragen durchführen (z.B. zum Abrufen, Einfügen oder Aktualisieren von Daten).</li>
+    <li>Verwende Promises oder async/await, um asynchrone Datenbankoperationen zu handhaben.</li>
+    <li>Schließe die Datenbankverbindung beim Beenden der Anwendung.</li>
+    <li>Optional: Verwende ein ORM (Object-Relational Mapping) wie Sequelize oder TypeORM, um die Interaktion mit der Datenbank zu vereinfachen.</li>
+</ol>
+
+<p>Beispiel mit MySQL:</p>
+<pre><code>import express from 'express';
+import mysql from 'mysql2/promise';
+const app = express();
+app.use(express.json()); // Für JSON-Body
+const db = await mysql.createConnection({
+    host: 'localhost',
+    user: ' dein_benutzer',
+    password: ' dein_passwort',
+    database: ' deine_datenbank'
+});
+app.get('/users', async (req, res) => {
+    const [rows] = await db.query('SELECT * FROM users');
+    res.json(rows);
+});
+app.post('/users', async (req, res) => {
+    const { name, email } = req.body;
+    const [result] = await db.query('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
+    res.json({ id: result.insertId, name, email });
+});
+app.listen(3000, () => {
+    console.log('Server läuft auf http://localhost:3000');
+});
+</code></pre>
+
+<li><h4 class="textColor02">Wie kann man eine Webserver erstellen, der HTTPS unterstützt?</h4></li>
+<p>Um einen Webserver mit HTTPS in Express zu erstellen, benötigt man ein SSL-Zertifikat (bestehend aus einer <code>.key</code>- und einer <code>.crt</code>-Datei). Dann kann man das <code>https</code>-Modul von Node.js verwenden. Beispiel:</p>
+<pre><code>import express from 'express';
+import https from 'https';
+import fs from 'fs';
+
+const app = express();
+
+// SSL-Zertifikat und Schlüssel laden
+const options = {
+    key: fs.readFileSync('pfad/zur/server.key'),
+    cert: fs.readFileSync('pfad/zur/server.crt')
+};
+
+app.get('/', (req, res) => {
+    res.send('HTTPS-Server läuft!');
+});
+
+// HTTPS-Server starten
+https.createServer(options, app).listen(3443, () => {
+    console.log('HTTPS-Server läuft auf https://localhost:3443');
+});
+</code></pre>
+<p>Ersetze <code>pfad/zur/server.key</code> und <code>pfad/zur/server.crt</code> durch die tatsächlichen Pfade zu deinem privaten Schlüssel und Zertifikat. Der Server ist dann über <code>https://localhost:3443</code> erreichbar.</p>
+    
 
 
 </body>
