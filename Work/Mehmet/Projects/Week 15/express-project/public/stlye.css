@@ -1,7 +1,17 @@
-h1{
-    color: blue;
-    background-color: tomato;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+  background: #f2f2f2;
+}
+form {
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 400px;
+}
+input, button {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
 }
