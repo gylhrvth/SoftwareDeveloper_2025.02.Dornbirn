@@ -9,16 +9,43 @@
   <script defer src="/main.js"></script>
 </head>
 <body>
-  <header>
-    <h1>To-Do App</h1>
-    <form id="langForm" style="display:inline;">
-      <select id="langSelect" name="lang">
-        <option value="en" <%= lang === 'en' ? 'selected' : '' %>>English</option>
-        <option value="es" <%= lang === 'es' ? 'selected' : '' %>>Español</option>
-        <option value="hu" <%= lang === 'hu' ? 'selected' : '' %>>Magyar</option>
-      </select>
-    </form>
-  </header>
+<header>
+  <div class="header-container">
+    <div class="header-left">
+      <h1><%= t.title %></h1>
+    </div>
+    <div class="header-right">
+      <form id="filterForm" method="GET" action="/tasks">
+        <select name="status">
+          <option value=""><%= t.status %>...</option>
+          <option value="Pending"><%= t.pending %></option>
+          <option value="Completed"><%= t.completed %></option>
+        </select>
+        <select name="priority">
+          <option value=""><%= t.priority %>...</option>
+          <option value="Low"><%= t.low %></option>
+          <option value="Medium"><%= t.medium %></option>
+          <option value="High"><%= t.high %></option>
+        </select>
+        <input type="date" name="date">
+        <input type="hidden" name="lang" value="<%= lang %>">
+        <button type="submit"><%= t.filter || 'Filter' %></button>
+        <button type="button" id="clearFiltersButton" onclick="window.location.href='/tasks?lang=<%= lang %>'"><%= t.clearFilters || 'Clear' %></button>
+      </form>
+      <form id="langForm">
+        <select id="langSelect" name="lang">
+          <option value="en" <%= lang === 'en' ? 'selected' : '' %>>English</option>
+          <option value="es" <%= lang === 'es' ? 'selected' : '' %>>Español</option>
+          <option value="hu" <%= lang === 'hu' ? 'selected' : '' %>>Magyar</option>
+        </select>
+      </form>
+    </div>
+  </div>
+  <div class="header-underline">
+    
+  </div>
+</header>
+
   <main>
     <div id="editPopupForm" class="hidden"></div>
     <div id="popupForm" class="hidden"></div>
@@ -26,6 +53,9 @@
       <div class="upperContent">
         <h2><%= t.myTasks %></h2>
         <div id="mainButtons">
+            <button id="toggleDarkModeButton" type="button" title="Toggle Dark Mode">
+            <img src="/assets/icons/dark.svg" alt="Toggle Dark Mode" class="icon">
+            </button>
           <button id="addTodoButton" type="button">
             <img src="/assets/icons/add.svg" alt="Add New Todo" class="icon">
           </button>
@@ -71,10 +101,10 @@
                 }
               %>
               <% if (task.created_at) { %>
-                <p><strong>Created At:</strong> <%= formatDate(task.created_at) %></p>
+                <p><strong><%= t.createdAt %>:</strong> <%= formatDate(task.created_at) %></p>
               <% } %>
               <% if (task.updated_at) { %>
-                <p><strong>Updated At:</strong> <%= formatDate(task.updated_at) %></p>
+                <p><strong><%= t.updatedAt %>:</strong> <%= formatDate(task.updated_at) %></p>
               <% } %>
             </div>
           </div>
