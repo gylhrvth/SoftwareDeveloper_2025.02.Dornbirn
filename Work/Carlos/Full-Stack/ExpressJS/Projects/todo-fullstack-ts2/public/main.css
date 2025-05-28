@@ -416,3 +416,104 @@ font-weight: bold;
   z-index: 1000;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
+
+#filterForm > button {
+  width: auto;
+  background-color: var(--edit);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.8em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+#filterForm > button:hover {
+  background-color: var(--edit-hover);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  padding-bottom: 0.2em;
+  /*border-bottom: 1px solid #e0e0e0;*/
+  margin-bottom: 0.2em;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 2.1em;
+  font-weight: 700;
+}
+
+.header-center {
+  min-width: 140px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#langForm {
+  margin: 0;
+}
+
+#filterForm {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin: 0;
+}
+
+.clear-filters-link {
+  margin-left: 0.7em;
+  color: #0078d7;
+  text-decoration: underline;
+  font-size: 0.98em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.clear-filters-link:hover {
+  color: #005fa3;
+}
+
+.header-underline {
+  width: 90%; /* set desired width */
+  border-bottom: 0.4px solid #e0e0e0;
+  margin: 0 auto 1.5em auto;
+}
+
+#mainButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+#toggleDarkModeButton {
+  background-color: var(--dark);
+  color: var(--white);
+  border-radius: 10%;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+#toggleDarkModeButton:hover {
+  background-color: var(--dark-hover);
+}
+
+#toggleDarkModeButton img.icon {
+  width: 1.5em;
+  filter: invert(1);
+}

@@ -108,6 +108,10 @@ function initCheckboxHandlers() {
   });
 }
 
+document.getElementById('toggleDarkModeButton')?.addEventListener('click', function () {
+  document.body.classList.toggle('dark-mode');
+});
+
 
 
 // Initialize all UI handlers after DOM is loaded

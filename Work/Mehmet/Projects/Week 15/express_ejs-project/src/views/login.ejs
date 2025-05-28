@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+  <h1>Login</h1>
+  <% if (typeof error !== 'undefined') { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+  <form action="/login" method="POST">
+    <input name="username" placeholder="Benutzername" required />
+    <input type="password" name="password" placeholder="Passwort" required />
+    <button type="submit">Login</button>
+  </form>
+  <p><a href="/register">Registrieren</a></p>
+</body>
+</html>

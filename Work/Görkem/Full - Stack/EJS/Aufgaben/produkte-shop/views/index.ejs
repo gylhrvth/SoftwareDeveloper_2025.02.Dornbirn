@@ -2,7 +2,7 @@
 <table id="product-table" class="shop-table">
   <thead>
     <tr>
-      <th>Remove</th>
+      <th>Remove/Edit</th>
       <th>Image</th>
       <th>Product</th>
       <th>Price</th>
@@ -14,5 +14,21 @@
   <!-- Wird per JS befüllt -->
   </tbody>
 </table>
+
+<!-- Modal-Dialog für Produkt bearbeiten -->
+<div id="editModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-btn" id="closeEditModal">&times;</span>
+    <h2>Produkt bearbeiten</h2>
+    <form id="editProductForm">
+      <input type="hidden" id="edit-id" />
+      <label>Product: <input type="text" id="edit-name" required /></label><br>
+      <label>Price: <input type="number" id="edit-price" step="0.01" required /></label><br>
+      <label>Description: <input type="text" id="edit-description" /></label><br>
+      <label>Image: <input type="text" id="edit-image" /></label><br>
+      <button type="submit">Speichern</button>
+    </form>
+  </div>
+</div>
 
 <script src="/js/script.js"></script>
