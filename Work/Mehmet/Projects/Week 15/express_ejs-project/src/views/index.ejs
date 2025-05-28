@@ -9,54 +9,53 @@
 <body>
   <main>
     <h1>Städteverwaltung</h1>
-      <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
+    <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
 
- <% if (user) { %>
-  <p>Hallo, <%= user.email %>! <a href="/logout">Logout</a></p>
-<% } else { %>
-  <p><a href="/login">Login</a></p>
-<% } %>
-
-    <section>
-      <h2>Neue Stadt hinzufügen</h2>
-      <form action="/add" method="POST">
-        <input type="text" name="name" placeholder="Stadtname" required />
-        <input type="number" name="population" placeholder="Bevölkerung" min="0" max="1000000000" required />
-        <button type="submit">Hinzufügen</button>
+    <% if (user) { %>
+      <h2>Hallo, <%= user.username %>!</h2>
+      <form method="POST" action="/logout" style="display:inline;">
+        <button type="submit">Logout</button>
       </form>
-    </section>
 
-    <section>
-      <h2>Städte Liste</h2>
+      <h3>Deine Städte</h3>
       <ul>
         <% if (cities.length === 0) { %>
-          <li>Keine Städte vorhanden.</li>
+          <li>Keine Einträge</li>
         <% } else { %>
           <% cities.forEach(city => { %>
             <li>
-              <strong><%= city.name %></strong> – Bevölkerung: <%= city.population %>
-              <form action="/delete/<%= city.id %>" method="POST" style="display:inline;">
-                <button type="submit" class="delete-btn">🗑️ Löschen</button>
+              <strong><%= city.name %></strong> - Bevölkerung: <%= city.population %>
+              <form method="POST" action="/delete/<%= city.id %>" style="display:inline;">
+                <button type="submit">Löschen</button>
               </form>
               <a href="/edit/<%= city.id %>">Bearbeiten</a>
             </li>
           <% }) %>
         <% } %>
       </ul>
-    </section>
+
+      <h3>Neue Stadt hinzufügen</h3>
+      <form method="POST" action="/add">
+        <input type="text" name="name" placeholder="Stadtname" required />
+        <input type="number" name="population" placeholder="Bevölkerung" required />
+        <button type="submit">Hinzufügen</button>
+      </form>
+
+    <% } else { %>
+      <h2>Willkommen! Bitte <a href="/login">einloggen</a> oder <a href="/register">registrieren</a>.</h2>
+    <% } %>
   </main>
 
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+    }
 
-<script>
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
-  }
-
-  // Load saved preference
-  if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList.add('dark-mode');
-  }
-</script>
+    // Load saved preference
+    if (localStorage.getItem('dark-mode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
 </body>
 </html>
