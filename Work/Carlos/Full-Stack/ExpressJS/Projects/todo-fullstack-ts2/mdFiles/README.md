@@ -12,6 +12,9 @@ Users can manage tasks, switch between English, Spanish, and Hungarian, and enjo
 - **Instant UI updates** with AJAX (no page reloads for status changes or popup forms)
 - **Date formatting** according to locale
 - **MVC architecture** for clean code separation
+- **Popup/modal forms** for adding and editing tasks (no full-page edit/add views)
+- **Dark mode toggle**
+- **Task filtering** by status, priority, and date
 
 ---
 
@@ -19,8 +22,8 @@ Users can manage tasks, switch between English, Spanish, and Hungarian, and enjo
 
 - **Backend:** Node.js, Express.js, TypeScript
 - **Frontend:** EJS templates, Vanilla JS (with fetch/AJAX)
-- **Database:** (Your choice, e.g., SQLite, PostgreSQL, etc.)
-- **Styling:** CSS
+- **Database:** MySQL
+- **Styling:** CSS (with dark mode support)
 
 ---
 
@@ -41,7 +44,7 @@ npm install
 
 ### 3. Configure environment
 
-- Set up your database connection if needed.
+- Set up your MySQL database and update your `.env` file with the connection details.
 - (Optional) Edit `/src/i18n/translations.ts` to customize translations.
 
 ### 4. Run the app
@@ -61,6 +64,8 @@ Visit [http://localhost:3003](http://localhost:3003) in your browser.
 - **Delete a task:** Click the trash icon.
 - **Toggle status:** Check/uncheck the box to mark as completed/pending.
 - **Change language:** Use the dropdown in the header. The app and all forms will update instantly.
+- **Filter tasks:** Use the filter form to filter by status, priority, or date.
+- **Switch dark mode:** Use the dark mode toggle button in the header.
 
 ---
 
@@ -69,9 +74,9 @@ Visit [http://localhost:3003](http://localhost:3003) in your browser.
 ```
 src/
   controllers/    # Express controllers (business logic)
-  models/         # Data models
+  models/         # Data models and database logic
   routes/         # Express routes
-  views/          # EJS templates (UI)
+  views/          # EJS templates (UI, including partials for forms)
   i18n/           # translations.ts (all translations)
 public/           # Static JS/CSS/assets
 ```
@@ -83,6 +88,7 @@ public/           # Static JS/CSS/assets
 - **MVC:** Separation of Model (data), View (UI), Controller (logic)
 - **AJAX:** Used for dynamic form loading and status toggling
 - **i18n:** All UI text is translatable via a single translations file
+- **Partials:** Popup/modal forms for add/edit are rendered as EJS partials
 
 ---
 

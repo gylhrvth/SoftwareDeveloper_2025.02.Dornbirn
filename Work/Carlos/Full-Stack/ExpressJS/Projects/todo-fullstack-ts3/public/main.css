@@ -121,13 +121,52 @@ h3 {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 2em;
+  gap: 0.5em;
 }
 
-.header-underline {
-  width: 90%;
-  border-bottom: 0.4px solid #e0e0e0;
-  margin: 0 auto 1.5em auto;
+.lowerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em 0.6rem;
+  background-color: var(--header-bg);
+  color: var(--lightText);
+  border-radius: var(--radius);
+}
+
+.lowerHeader  a {
+  color: white;
+}
+.rightHeaderText{
+  font-weight: bold;
+}
+.rightHeaderText > a {
+  color: rgb(252, 217, 213);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+span > a.logout {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.lowerHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.userLogic {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2em;
+  font-size: 0.9em;
+  
 }
 
 /* =============================
@@ -167,6 +206,7 @@ h3 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
   width: auto;
+  height: auto;
 }
 
 #filterForm button:hover {
@@ -186,6 +226,10 @@ h3 {
   color: var(--text-main);
   cursor: pointer;
   transition: border-color var(--transition-fast);
+}
+
+span.langLabel {
+  font-size: 0.9em;
 }
 
 .clear-filters-link {
