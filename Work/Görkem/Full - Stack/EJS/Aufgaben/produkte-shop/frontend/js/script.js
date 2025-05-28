@@ -49,6 +49,12 @@ function renderProductTable(products) {
         <input type="number" min="1" value="1" class="qty-input" />
       </td>
       <td class="total-cell">$${product.price.toFixed(2)}</td>
+      <td>
+        <button class="add-btn edit-btn" title="In den Warenkorb"
+        onclick="addToCart(${product.id}, '${escapeHTML(product.name)}', ${product.price}, '${product.image || 'placeholder.png'}', this)">
+        <span class="material-symbols-outlined">add_shopping_cart</span>
+        </button>
+      </td>
     `;
     row.querySelector('.qty-input').addEventListener('input', () => updateTotalPrice(row));
     row.querySelector('.remove-btn').addEventListener('click', async () => {
@@ -104,3 +110,106 @@ function updateTotalPrice(row) {
   const qty = parseInt(qtyInput.value) || 1;
   totalCell.textContent = '$' + (price * qty).toFixed(2);
 }
+
+let cart = [];
+
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, tag => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;',
+    '"': '&quot;', "'": '&#39;'
+  }[tag]));
+}
+
+function openCart() {
+  document.getElementById('sidebar-cart').style.display = 'block';
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById('sidebar-cart').style.display = 'none';
+}
+
+function addToCart (id, name, price, image, btn) {
+  let qty = 1;
+  if (btn) {
+    const row = btn.closest('tr');
+    const qtyInput = row.querySelector('.qty-input');
+    if (qtyInput) qty = parseInt(qtyInput.value) || 1;
+  }
+  const existing = cart.find(item => item.id === id);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ id, name, price, image, qty });
+  }
+  saveCart();
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    removeFromCart(id);
+  } else {
+    saveCart();
+    renderCart();
+  }
+}
+
+function renderCart() {
+  const cartItems = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<em>Warenkorb ist leer.</em>';
+    document.getElementById('cart-total').innerText = '0,00 €';
+    
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) cartCount.textContent = '0';
+    return;
+  
+  }
+
+let sum = 0;
+  cartItems.innerHTML = cart.map(item => {
+    sum += item.price * item.qty;
+    return `
+      <div style="display:flex;align-items:center;margin-bottom:1rem;">
+        <img src="/img/${item.image || 'placeholder.png'}" alt="${escapeHTML(item.name)}" width="50" style="margin-right:1rem;">
+        <div style="flex:1;">
+          <strong>${escapeHTML(item.name)}</strong><br>
+          <span>${item.price.toFixed(2)} €</span>
+        </div>
+        <div>
+          <button onclick="changeQty(${item.id}, -1)">-</button>
+          <span style="margin:0 0.5rem;">${item.qty}</span>
+          <button onclick="changeQty(${item.id}, 1)">+</button>
+        </div>
+        <button onclick="removeFromCart(${item.id})" style="margin-left:1rem;">🗑️</button>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('cart-total').innerText = sum.toFixed(2) + ' €';
+
+  const cartCount = document.getElementById('cart-count');
+  if (cartCount) cartCount.textContent = cart.reduce((a, b) => a + b.qty, 0);
+}
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCart() {
+  const data = localStorage.getItem('cart');
+  cart = data ? JSON.parse(data) : [];
+}
+
+window.addEventListener('load', () => {
+  loadCart();
+  renderCart();
+});

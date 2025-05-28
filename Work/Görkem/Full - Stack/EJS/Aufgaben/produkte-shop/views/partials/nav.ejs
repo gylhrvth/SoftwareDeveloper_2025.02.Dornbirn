@@ -2,6 +2,11 @@
   <ul>
     <li><a href="/" class="<%= title === 'Produkte' ? 'active' : '' %>">Produkte</a></li>
     <li><a href="/add" class="<%= title === 'Produkt hinzufügen' ? 'active' : '' %>">Produkt hinzufügen</a></li>
+    <button onclick="openCart()" id="cart-nav-btn" style="position:relative;">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <span id="cart-count" style="background:#ffd814; border-radius:50%; padding:2px 7px; font-size:0.9em; cursor:pointer; position:absolute; top:-8px; right:-8px;">0</span>
+    </button>
   </ul>
 </nav>
+
 
