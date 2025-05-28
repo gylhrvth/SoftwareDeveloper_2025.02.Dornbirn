@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head><title>Login</title></head>
-<link rel="stylesheet" href="/style.css" />
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
 <body>
   <h1>Login</h1>
   <% if (typeof error !== 'undefined') { %>
-    <p style="color:red;"><%= error %></p>
+    <p class="error-message"><%= error %></p>
   <% } %>
   <form action="/login" method="POST">
     <input name="username" placeholder="Benutzername" required />
@@ -13,7 +15,6 @@
     <button type="submit">Login</button>
   </form>
   <p><a href="/register">Registrieren</a></p>
-    <h3>FOLLOW me on Github for more such stuff <a href="https://github.com/masteremin" target="_blank">@masteremin0</a></h3>
-
+  <h3>FOLLOW me on Github for more such stuff <a href="https://github.com/masteremin" target="_blank">@masteremin0</a></h3>
 </body>
 </html>

@@ -70,5 +70,17 @@
     "name": "CarlosCity",
     "population": 3000,
     "userId": 1748434156840
+  },
+  {
+    "id": 1748436283550,
+    "name": "Städte sind einbischen langweilig wie wärs mit Journal mit categorisierungen ",
+    "population": 0,
+    "userId": 1748427152842
+  },
+  {
+    "id": 1748437028746,
+    "name": "now i have to do Auth0 but i dont know should i fetch or ejs",
+    "population": 7,
+    "userId": 1748425694517
   }
 ]
