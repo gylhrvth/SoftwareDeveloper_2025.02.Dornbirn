@@ -12,7 +12,7 @@
   <label for="edit-priority"><strong><%= t.priority %>:</strong></label>
   <select id="edit-priority" name="priority">
     <option value="Low" <%= task.priority === 'Low' ? 'selected' : '' %>><%= t.low %></option>
-    <option value="Normal" <%= task.priority === 'Normal' ? 'selected' : '' %>><%= t.normal %></option>
+    <option value="Medium" <%= task.priority === 'Medium' ? 'selected' : '' %>><%= t.medium %></option>
     <option value="High" <%= task.priority === 'High' ? 'selected' : '' %>><%= t.high %></option>
   </select>
   <button type="submit"><%= t.saveChanges || 'Save Changes' %></button>

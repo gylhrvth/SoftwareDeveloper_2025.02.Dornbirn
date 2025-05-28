@@ -52,8 +52,8 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('layout', 'layout');
 
 app.use(express.static(path.join(__dirname, '../frontend')));
-
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.locals.nav = [
@@ -102,6 +102,30 @@ app.delete('/api/products/:id', (req: Request, res: Response) => {
   }
   products.splice(index, 1);
   res.json({ success: true });
+});
+
+app.patch('/api/products/:id', (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const product = products.find(p => p.id === id);
+  if (!product) {
+    res.status(404).json({ error: 'Produkt nicht gefunden' });
+    return
+  }
+  const { name, price, description, image } = req.body;
+
+  if (name !== undefined) product.name = name;
+  if (price !== undefined && price !== "") {
+    const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice)) {
+      res.status(400).json({ error: 'Ungültiger Preis' });
+      return 
+    }
+    product.price = parsedPrice;
+  }
+  if (description !== undefined) product.description = description;
+  if (image !== undefined) product.image = image || 'placeholder.png';
+
+  res.json({ success: true, product });
 });
 
 // 404 Fehlerseite

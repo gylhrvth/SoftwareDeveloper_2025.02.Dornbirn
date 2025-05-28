@@ -1,60 +1,8 @@
 import { Request, Response } from 'express';
 import * as Task from '../models/taskModel';
+import translations from '../i18n/translations';
 
-// Helper for translations
-const translations = {
-  en: {
-    myTasks: 'My Tasks',
-    addTask: 'Add Task',
-    newTask: 'New Task',
-    taskTitle: 'Task Title',
-    taskDescription: 'Description',
-    status: 'Status',
-    pending: 'Pending',
-    completed: 'Completed',
-    priority: 'Priority',
-    low: 'Low',
-    normal: 'Normal',
-    high: 'High',
-    cancel: 'Cancel',
-    editTask: 'Edit Task',
-    saveChanges: 'Save Changes'
-  },
-  es: {
-    myTasks: 'Mis Tareas',
-    addTask: 'Añadir Tarea',
-    newTask: 'Nueva Tarea',
-    taskTitle: 'Título de la Tarea',
-    taskDescription: 'Descripción',
-    status: 'Estado',
-    pending: 'Pendiente',
-    completed: 'Completada',
-    priority: 'Prioridad',
-    low: 'Baja',
-    normal: 'Normal',
-    high: 'Alta',
-    cancel: 'Cancelar',
-    editTask: 'Editar Tarea',
-    saveChanges: 'Guardar Cambios'
-  },
-  hu: {
-    myTasks: 'Feladataim',
-    addTask: 'Feladat hozzáadása',
-    newTask: 'Új Feladat',
-    taskTitle: 'Feladat címe',
-    taskDescription: 'Leírás',
-    status: 'Állapot',
-    pending: 'Függőben',
-    completed: 'Elvégezve',
-    priority: 'Prioritás',
-    low: 'Alacsony',
-    normal: 'Normál',
-    high: 'Magas',
-    cancel: 'Mégse',
-    editTask: 'Feladat szerkesztése',
-    saveChanges: 'Változtatások mentése'
-  }
-};
+
 
 function getLang(req: Request): 'en' | 'es' | 'hu' {
   let lang = req.query.lang;
@@ -64,8 +12,26 @@ function getLang(req: Request): 'en' | 'es' | 'hu' {
 }
 
 export const list = async (req: Request, res: Response) => {
-  const tasks = await Task.getAll();
   const lang = getLang(req);
+  const { status, priority, date } = req.query;
+
+  // Fetch and filter tasks based on query params
+  let tasks = await Task.getAll();
+
+  if (status) {
+    tasks = tasks.filter(task => task.status === status);
+  }
+  if (priority) {
+    tasks = tasks.filter(task => task.priority === priority);
+  }
+  if (date) {
+    const dateObj = new Date(date as string);
+    tasks = tasks.filter(task => {
+      const taskDate = new Date(task.created_at || task.updated_at || '');
+      return taskDate.toDateString() === dateObj.toDateString();
+    });
+  }
+
   res.render('tasks', {
     tasks,
     lang,
