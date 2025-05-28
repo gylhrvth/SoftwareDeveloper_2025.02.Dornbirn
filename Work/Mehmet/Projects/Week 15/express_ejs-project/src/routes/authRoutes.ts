@@ -40,8 +40,8 @@ router.post('/login', (req, res) => {
   const user = users.find(u => u.username === username);
 
   if (!user || !bcrypt.compareSync(password, user.password)) {
-     res.send('Falsche Login-Daten.');
-     return
+    // Instead of res.send, render login page with error message
+    return res.render('login', { error: 'Falsche Login-Daten.' });
   }
 
   req.session.user = { id: user.id, username: user.username };
