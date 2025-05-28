@@ -1,20 +1,37 @@
+<!--
+  Add Task Form Partial
+  This form is rendered as a popup/modal or partial for adding a new task.
+  It uses translations (t) and the current language (lang) for localization.
+-->
 <form id="todoForm" action="/add?lang=<%= lang %>" method="POST">
+  <!-- Form title, translated -->
   <h3><%= t.newTask %></h3>
+  
+  <!-- Task title input (required) -->
   <label for="title"><strong><%= t.taskTitle %>:</strong></label>
   <input type="text" id="title" name="title" required>
+  
+  <!-- Task description textarea -->
   <label for="description"><strong><%= t.taskDescription %>:</strong></label>
   <textarea id="description" name="description"></textarea>
+  
+  <!-- Status selection dropdown -->
   <label for="status"><strong><%= t.status %>:</strong></label>
   <select id="status" name="status">
     <option value="Pending"><%= t.pending %></option>
     <option value="Completed"><%= t.completed %></option>
   </select>
+  
+  <!-- Priority selection dropdown -->
   <label for="priority"><strong><%= t.priority %>:</strong></label>
   <select id="priority" name="priority">
     <option value="Low"><%= t.low %></option>
     <option value="Medium" selected><%= t.medium %></option>
     <option value="High"><%= t.high %></option>
   </select>
+  
+  <!-- Submit button to add the task -->
   <button type="submit"><%= t.addTask %></button>
+  <!-- Cancel/close button for the popup/modal -->
   <button type="button" id="closeFormButton"><%= t.cancel %></button>
 </form>

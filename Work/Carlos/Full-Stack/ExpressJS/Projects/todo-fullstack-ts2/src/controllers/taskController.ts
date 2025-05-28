@@ -2,8 +2,7 @@ import { Request, Response } from 'express';
 import * as Task from '../models/taskModel';
 import translations from '../i18n/translations';
 
-
-
+// Utility function to get language from request query
 function getLang(req: Request): 'en' | 'es' | 'hu' {
   let lang = req.query.lang;
   if (Array.isArray(lang)) lang = lang[0];
@@ -11,6 +10,9 @@ function getLang(req: Request): 'en' | 'es' | 'hu' {
   return lang as 'en' | 'es' | 'hu';
 }
 
+// =================== READ ===================
+
+// READ (GET): List tasks with optional filtering
 export const list = async (req: Request, res: Response) => {
   const lang = getLang(req);
   const { status, priority, date } = req.query;
@@ -39,29 +41,22 @@ export const list = async (req: Request, res: Response) => {
   });
 };
 
-export const create = async (req: Request, res: Response) => {
-  try {
-    await Task.create(req.body);
-    const lang = req.query.lang || 'en';
-    res.redirect(`/tasks?lang=${lang}`);
-  } catch (err) {
-    res.status(500).send('Error creating task.');
-  }
-};
-
+// READ (GET): Show edit page for a specific task
 export const showEdit = async (req: Request, res: Response) => {
   const task = await Task.getById(Number(req.params.id));
   if (!task) return res.status(404).render('404');
   res.render('edit', { task });
 };
 
+// READ (GET): Show edit form partial for a specific task
 export const showEditForm = async (req: Request, res: Response): Promise<void> => {
   const task = await Task.getById(Number(req.params.id));
   if (!task) {
     res.status(404).send('Not found');
     return;
   }
-  // Get lang from query or default to 'en'
+
+  // Get language from query or default to 'en'
   let lang = req.query.lang;
   if (Array.isArray(lang)) lang = lang[0];
   if (typeof lang !== 'string' || !['en', 'es', 'hu'].includes(lang)) lang = 'en';
@@ -73,7 +68,7 @@ export const showEditForm = async (req: Request, res: Response): Promise<void> =
   });
 };
 
-// Example for add form
+// READ (GET): Show add form partial
 export const showAddForm = (req: Request, res: Response) => {
   let lang = req.query.lang;
   if (Array.isArray(lang)) lang = lang[0];
@@ -85,6 +80,22 @@ export const showAddForm = (req: Request, res: Response) => {
   });
 };
 
+// =================== CREATE ===================
+
+// CREATE (POST): Create a new task
+export const create = async (req: Request, res: Response) => {
+  try {
+    await Task.create(req.body);
+    const lang = req.query.lang || 'en';
+    res.redirect(`/tasks?lang=${lang}`);
+  } catch (err) {
+    res.status(500).send('Error creating task.');
+  }
+};
+
+// =================== UPDATE ===================
+
+// UPDATE (POST): Update a specific task
 export const update = async (req: Request, res: Response) => {
   try {
     await Task.update(Number(req.params.id), req.body);
@@ -95,15 +106,7 @@ export const update = async (req: Request, res: Response) => {
   }
 };
 
-export const remove = async (req: Request, res: Response) => {
-  try {
-    await Task.remove(Number(req.params.id));
-    res.redirect('/tasks');
-  } catch (err) {
-    res.status(500).send('Error deleting task.');
-  }
-};
-
+// UPDATE (POST): Toggle the status of a specific task
 export const toggleStatus = async (req: Request, res: Response): Promise<void> => {
   const id = Number(req.params.id);
   const { status } = req.body;
@@ -114,10 +117,22 @@ export const toggleStatus = async (req: Request, res: Response): Promise<void> =
   }
   await Task.update(id, { ...task, status });
 
-  // Get lang from query or default to 'en'
+  // Get the language from the request query or default to 'en'
   const lang = getLang(req);
   const statusKey = status.toLowerCase() as 'pending' | 'completed';
   const translatedStatus = translations[lang][statusKey] || status;
 
   res.json({ success: true, translatedStatus });
+};
+
+// =================== DELETE ===================
+
+// DELETE (POST): Remove a specific task
+export const remove = async (req: Request, res: Response) => {
+  try {
+    await Task.remove(Number(req.params.id));
+    res.redirect('/tasks');
+  } catch (err) {
+    res.status(500).send('Error deleting task.');
+  }
 };
