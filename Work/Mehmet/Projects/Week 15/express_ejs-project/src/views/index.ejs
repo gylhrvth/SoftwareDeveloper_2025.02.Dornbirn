@@ -9,6 +9,7 @@
 <body>
   <main>
     <h1>Städteverwaltung</h1>
+      <button class="toggle-darkmode" onclick="toggleDarkMode()">🌙</button>
 
  <% if (user) { %>
   <p>Hallo, <%= user.email %>! <a href="/logout">Logout</a></p>
@@ -44,5 +45,18 @@
       </ul>
     </section>
   </main>
+
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+  }
+
+  // Load saved preference
+  if (localStorage.getItem('dark-mode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+</script>
 </body>
 </html>

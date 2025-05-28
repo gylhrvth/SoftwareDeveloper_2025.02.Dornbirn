@@ -89,6 +89,21 @@ app.post('/add', (req: Request, res: Response) => {
   res.redirect('/');
 });
 
+app.get('/api/products', (req: Request, res: Response) => {
+    res.json(products);
+});
+
+app.delete('/api/products/:id', (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const index = products.findIndex(p => p.id === id);
+  if (index === -1) {
+    res.status(404).json({ error: 'Produkt nicht gefunden' });
+    return 
+  }
+  products.splice(index, 1);
+  res.json({ success: true });
+});
+
 // 404 Fehlerseite
 app.use((req: Request, res: Response) => {
   res.status(404).render('404', { title: '404' });

@@ -1,12 +1,41 @@
+:root {
+  --bg-gradient: linear-gradient(to right, #e0f7fa, #fff);
+  --main-bg: #ffffff;
+  --text-color: #2c3e50;
+  --card-bg: #f9f9f9;
+  --input-border: #ccc;
+  --focus-border: #00796b;
+  --submit-bg: #00796b;
+  --submit-hover: #004d40;
+  --delete-bg: #e74c3c;
+  --delete-hover: #c0392b;
+  --link-color: #00796b;
+}
+
+body.dark-mode {
+  --bg-gradient: linear-gradient(to right, #121212, #1a1a1a);
+  --main-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --card-bg: #2a2a2a;
+  --input-border: #444;
+  --focus-border: #80cbc4;
+  --submit-bg: #26a69a;
+  --submit-hover: #00796b;
+  --delete-bg: #ef5350;
+  --delete-hover: #c62828;
+  --link-color: #80cbc4;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #e0f7fa, #fff);
+  background: var(--bg-gradient);
   padding: 2rem;
   margin: 0;
+  color: var(--text-color);
 }
 
 main {
-  background: #ffffff;
+  background: var(--main-bg);
   padding: 2.5rem;
   border-radius: 15px;
   max-width: 800px;
@@ -20,7 +49,7 @@ main:hover {
 }
 
 h1, h2 {
-  color: #2c3e50;
+  color: var(--text-color);
   margin-bottom: 1rem;
 }
 
@@ -35,19 +64,20 @@ button {
   margin: 0.5rem 0;
   font-size: 1rem;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
   width: 100%;
   box-sizing: border-box;
-  transition: border 0.3s ease;
+  background-color: var(--main-bg);
+  color: var(--text-color);
 }
 
 input:focus {
-  border-color: #00796b;
+  border-color: var(--focus-border);
   outline: none;
 }
 
 button[type="submit"] {
-  background-color: #00796b;
+  background-color: var(--submit-bg);
   color: white;
   border: none;
   cursor: pointer;
@@ -55,11 +85,11 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #004d40;
+  background-color: var(--submit-hover);
 }
 
 button.delete-btn {
-  background-color: #e74c3c;
+  background-color: var(--delete-bg);
   color: white;
   border: none;
   padding: 0.4rem 0.8rem;
@@ -71,7 +101,7 @@ button.delete-btn {
 }
 
 button.delete-btn:hover {
-  background-color: #c0392b;
+  background-color: var(--delete-hover);
 }
 
 ul {
@@ -80,7 +110,7 @@ ul {
 }
 
 li {
-  background: #f9f9f9;
+  background: var(--card-bg);
   padding: 1rem;
   border: 1px solid #eee;
   border-radius: 8px;
@@ -92,11 +122,32 @@ li {
 }
 
 a {
-  color: #00796b;
+  color: var(--link-color);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Toggle button */
+.toggle-darkmode {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.toggle-darkmode:hover {
+  background-color: #777;
 }

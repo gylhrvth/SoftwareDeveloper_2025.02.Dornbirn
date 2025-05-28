@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="<%= lang || 'en' %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/main.css">
+  <script defer src="/main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>To-Do App</h1>
+    <form id="langForm" style="display:inline;">
+      <select id="langSelect" name="lang">
+        <option value="en" <%= lang === 'en' ? 'selected' : '' %>>English</option>
+        <option value="es" <%= lang === 'es' ? 'selected' : '' %>>Español</option>
+        <option value="hu" <%= lang === 'hu' ? 'selected' : '' %>>Magyar</option>
+      </select>
+    </form>
+  </header>
+  <main>
+    <div id="editPopupForm" class="hidden"></div>
+    <div id="popupForm" class="hidden"></div>
+    <section id="todoListSection">
+      <div class="upperContent">
+        <h2><%= t.myTasks %></h2>
+        <div id="mainButtons">
+          <button id="addTodoButton" type="button">
+            <img src="/assets/icons/add.svg" alt="Add New Todo" class="icon">
+          </button>
+        </div>
+      </div>
+      <div id="todoList">
+        <% tasks.forEach(task => { %>
+          <div class="todo_main <%= task.status === 'Completed' ? 'completed' : '' %>">
+            <div class="todo_header">
+              <div class="left_content_header">
+                <input type="checkbox" class="todo_checkbox" data-task-id="<%= task.id %>" <%= task.status === 'Completed' ? 'checked' : '' %>>
+                <div class="todo_task <%= task.status === 'Completed' ? 'line-through' : '' %>">
+                  <%= task.title %>
+                  <% if (task.priority === 'High') { %><span> ‼️</span><% } %>
+                </div>
+              </div>
+              <div class="todo_actions">
+                <form action="/tasks/edit/<%= task.id %>" method="GET" style="display:inline;">
+                  <button type="button" class="edit">
+                    <img src="/assets/icons/edit.svg" alt="Edit" class="icon">
+                  </button>
+                </form>
+                <form action="/tasks/delete/<%= task.id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="delete"><img src="/assets/icons/delete.svg" alt="Delete" class="icon"></button>
+                </form>
+              </div>
+            </div>
+            <div class="todo_details">
+              <p><strong><%= t.taskDescription %>:</strong> <%= task.description %></p>
+              <p><strong><%= t.status %>:</strong> <span class="<%= task.status === 'Completed' ? 'status-complete' : '' %>"><%= t[task.status.toLowerCase()] || task.status %></span></p>
+              <p><strong><%= t.priority %>:</strong> <span class="priority-<%= task.priority && task.priority.toLowerCase() %>"><%= t[task.priority.toLowerCase()] || task.priority %></span></p>
+              <% function formatDate(date) {
+                  const d = new Date(date);
+                  return d.toLocaleString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                  }).replace(',', '');
+                }
+              %>
+              <% if (task.created_at) { %>
+                <p><strong>Created At:</strong> <%= formatDate(task.created_at) %></p>
+              <% } %>
+              <% if (task.updated_at) { %>
+                <p><strong>Updated At:</strong> <%= formatDate(task.updated_at) %></p>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p><em>Made with Express, Typescript and EJS</em></p>
+    <p>&copy; 2025 To-Do App by Car_ & Cop_</p>
+  </footer>
+  <script>
+    document.getElementById('langSelect').addEventListener('change', function() {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', this.value);
+      window.location.href = url.toString();
+    });
+  </script>
+</body>
+</html>

@@ -4,8 +4,11 @@ export interface Task {
   id?: number;
   title: string;
   description?: string;
-  status?: string;
-  priority?: string;
+  status: string;
+  priority: string;
+  created_at?: Date;
+  updated_at?: Date;
+  photo?: string;
 }
 
 export const getAll = async (): Promise<Task[]> => {
@@ -19,17 +22,17 @@ export const getById = async (id: number): Promise<Task | undefined> => {
 };
 
 export const create = async (task: Task): Promise<void> => {
-  const { title, description, priority } = task;
+  const { title, description, status, priority } = task;
   await db.query(
-    'INSERT INTO Tasks (title, description, priority) VALUES (?, ?, ?)',
-    [title, description, priority]
+    'INSERT INTO Tasks (title, description, status, priority) VALUES (?, ?, ?, ?)',
+    [title, description, status, priority]
   );
 };
 
 export const update = async (id: number, task: Task): Promise<void> => {
   const { title, description, status, priority } = task;
   await db.query(
-    'UPDATE Tasks SET title=?, description=?, status=?, priority=? WHERE id=?',
+    'UPDATE Tasks SET title=?, description=?, status=?, priority=?, updated_at=NOW() WHERE id=?',
     [title, description, status, priority, id]
   );
 };
