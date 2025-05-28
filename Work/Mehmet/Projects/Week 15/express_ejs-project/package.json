@@ -12,10 +12,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/express-session": "^1.18.1",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "express-openid-connect": "^2.18.1"
+    "express-openid-connect": "^2.18.1",
+    "express-session": "^1.18.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <h1>Login</h1>
+    <% if (error) { %>
+      <p style="color:red"><%= error %></p>
+    <% } %>
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="E-Mail" required />
+      <input type="password" name="password" placeholder="Passwort" required />
+      <button type="submit">Login</button>
+    </form>
+    <p><a href="/">Zurück zur Startseite</a></p>
+  </main>
+</body>
+</html>

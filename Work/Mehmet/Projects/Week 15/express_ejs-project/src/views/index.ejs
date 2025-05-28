@@ -10,11 +10,11 @@
   <main>
     <h1>Städteverwaltung</h1>
 
-    <% if (user) { %>
-      <p>Hallo, <%= user.name || user.email %>! <a href="/logout">Logout</a></p>
-    <% } else { %>
-      <p><a href="/login">Login</a></p>
-    <% } %>
+ <% if (user) { %>
+  <p>Hallo, <%= user.email %>! <a href="/logout">Logout</a></p>
+<% } else { %>
+  <p><a href="/login">Login</a></p>
+<% } %>
 
     <section>
       <h2>Neue Stadt hinzufügen</h2>
