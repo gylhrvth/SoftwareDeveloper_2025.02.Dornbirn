@@ -9,43 +9,41 @@ import {
   showAddForm,
   toggleStatus
 } from '../controllers/taskController';
-import translations from '../i18n/translations';
 
 const router = Router();
 
+// =================== READ ROUTES ===================
+
+// List all tasks (GET)
 router.get('/', list);
 router.get('/tasks', list);
-router.post('/add', create);
+
+// Show edit page for a specific task (GET)
 router.get('/tasks/edit/:id', showEdit);
-router.post('/tasks/edit/:id', update);
-router.post('/tasks/delete/:id', remove);
-router.post('/tasks/toggle-status/:id', toggleStatus);
 
-// Serve add form partial
-router.get('/add-form', (req, res) => {
-  let lang = req.query.lang;
-  if (Array.isArray(lang)) lang = lang[0];
-  if (typeof lang !== 'string' || !['en', 'es', 'hu'].includes(lang)) lang = 'en';
-  res.render('partials/addForm', {
-    lang,
-    t: translations[lang as 'en' | 'es' | 'hu']
-  });
-});
-
-// Serve edit form partial
+// Serve edit form partial for a specific task (GET)
 router.get('/tasks/edit-form/:id', showEditForm);
 
+// Serve add form partial (GET)
 router.get('/add-form', showAddForm);
-/*
-// Example for your main page route
-router.get(['/', '/tasks'], (req, res) => {
-  let lang = req.query.lang;
-  if (Array.isArray(lang)) lang = lang[0];
-  if (typeof lang !== 'string' || !['en', 'es', 'hu'].includes(lang)) lang = 'en';
-  res.render('index', {
-    lang,
-    t: translations[lang as 'en' | 'es' | 'hu']
-  });
-});
-*/
+
+// =================== CREATE ROUTES ===================
+
+// Create a new task (POST)
+router.post('/add', create);
+
+// =================== UPDATE ROUTES ===================
+
+// Update a specific task (POST)
+router.post('/tasks/edit/:id', update);
+
+// Toggle the status of a specific task (POST)
+router.post('/tasks/toggle-status/:id', toggleStatus);
+
+// =================== DELETE ROUTES ===================
+
+// Remove a specific task (POST)
+router.post('/tasks/delete/:id', remove);
+
+
 export default router;

@@ -1,20 +1,37 @@
+<!--
+  Edit Task Form Partial
+  This form is rendered as a popup/modal or partial for editing an existing task.
+  It uses translations (t), the current language (lang), and the task object for localization and pre-filling values.
+-->
 <form id="editTodoForm" action="/tasks/edit/<%= task.id %>?lang=<%= lang %>" method="POST">
+  <!-- Form title, translated (fallbacks to newTask if editTask is missing) -->
   <h3><%= t.editTask || t.newTask %></h3>
+  
+  <!-- Task title input (pre-filled, required) -->
   <label for="edit-title"><strong><%= t.taskTitle %>:</strong></label>
   <input type="text" id="edit-title" name="title" value="<%= task.title %>" required>
+  
+  <!-- Task description textarea (pre-filled) -->
   <label for="edit-description"><strong><%= t.taskDescription %>:</strong></label>
   <textarea id="edit-description" name="description"><%= task.description %></textarea>
+  
+  <!-- Status selection dropdown (pre-selects current status) -->
   <label for="edit-status"><strong><%= t.status %>:</strong></label>
   <select id="edit-status" name="status">
     <option value="Pending" <%= task.status === 'Pending' ? 'selected' : '' %>><%= t.pending %></option>
     <option value="Completed" <%= task.status === 'Completed' ? 'selected' : '' %>><%= t.completed %></option>
   </select>
+  
+  <!-- Priority selection dropdown (pre-selects current priority) -->
   <label for="edit-priority"><strong><%= t.priority %>:</strong></label>
   <select id="edit-priority" name="priority">
     <option value="Low" <%= task.priority === 'Low' ? 'selected' : '' %>><%= t.low %></option>
     <option value="Medium" <%= task.priority === 'Medium' ? 'selected' : '' %>><%= t.medium %></option>
     <option value="High" <%= task.priority === 'High' ? 'selected' : '' %>><%= t.high %></option>
   </select>
+  
+  <!-- Submit button to save changes -->
   <button type="submit"><%= t.saveChanges || 'Save Changes' %></button>
+  <!-- Cancel/close button for the popup/modal -->
   <button type="button" id="closeEditFormButton"><%= t.cancel %></button>
 </form>

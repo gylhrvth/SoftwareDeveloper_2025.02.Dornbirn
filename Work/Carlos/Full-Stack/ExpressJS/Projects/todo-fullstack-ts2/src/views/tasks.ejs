@@ -4,34 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do App</title>
+  <!-- Google Fonts for styling -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Main CSS file -->
   <link rel="stylesheet" href="/main.css">
+  <!-- Main JS file (deferred) -->
   <script defer src="/main.js"></script>
 </head>
 <body>
 <header>
   <div class="header-container">
     <div class="header-left">
+      <!-- App title, translated -->
       <h1><%= t.title %></h1>
     </div>
     <div class="header-right">
-      <form id="filterForm" method="GET" action="/tasks">
-        <select name="status">
-          <option value=""><%= t.status %>...</option>
-          <option value="Pending"><%= t.pending %></option>
-          <option value="Completed"><%= t.completed %></option>
-        </select>
-        <select name="priority">
-          <option value=""><%= t.priority %>...</option>
-          <option value="Low"><%= t.low %></option>
-          <option value="Medium"><%= t.medium %></option>
-          <option value="High"><%= t.high %></option>
-        </select>
-        <input type="date" name="date">
-        <input type="hidden" name="lang" value="<%= lang %>">
-        <button type="submit"><%= t.filter || 'Filter' %></button>
-        <button type="button" id="clearFiltersButton" onclick="window.location.href='/tasks?lang=<%= lang %>'"><%= t.clearFilters || 'Clear' %></button>
-      </form>
+
+      <!-- Language selection dropdown -->
       <form id="langForm">
         <select id="langSelect" name="lang">
           <option value="en" <%= lang === 'en' ? 'selected' : '' %>>English</option>
@@ -41,87 +30,126 @@
       </form>
     </div>
   </div>
-  <div class="header-underline">
-    
-  </div>
+  <!-- Decorative underline (can be styled in CSS) -->
+  
+          <!-- Filter form for tasks -->
+      <form id="filterForm" method="GET" action="/tasks">
+        <!-- Status filter -->
+        <select name="status">
+          <option value=""><%= t.status %>...</option>
+          <option value="Pending"><%= t.pending %></option>
+          <option value="Completed"><%= t.completed %></option>
+        </select>
+        <!-- Priority filter -->
+        <select name="priority">
+          <option value=""><%= t.priority %>...</option>
+          <option value="Low"><%= t.low %></option>
+          <option value="Medium"><%= t.medium %></option>
+          <option value="High"><%= t.high %></option>
+        </select>
+        <!-- Date filter -->
+        <input type="date" name="date">
+        <!-- Language persistence -->
+        <input type="hidden" name="lang" value="<%= lang %>">
+        <!-- Filter and clear buttons -->
+        <button type="submit"><%= t.filter || 'Filter' %></button>
+        <button type="button" id="clearFiltersButton" onclick="window.location.href='/tasks?lang=<%= lang %>'"><%= t.clearFilters || 'Clear' %></button>
+      </form>
+  
 </header>
 
-  <main>
-    <div id="editPopupForm" class="hidden"></div>
-    <div id="popupForm" class="hidden"></div>
-    <section id="todoListSection">
-      <div class="upperContent">
-        <h2><%= t.myTasks %></h2>
-        <div id="mainButtons">
-            <button id="toggleDarkModeButton" type="button" title="Toggle Dark Mode">
-            <img src="/assets/icons/dark.svg" alt="Toggle Dark Mode" class="icon">
-            </button>
-          <button id="addTodoButton" type="button">
-            <img src="/assets/icons/add.svg" alt="Add New Todo" class="icon">
-          </button>
-        </div>
+<main>
+  <!-- Popup forms for editing/adding tasks (hidden by default, shown via JS) -->
+  <div id="editPopupForm" class="hidden"></div>
+  <div id="popupForm" class="hidden"></div>
+  <section id="todoListSection">
+    <div class="upperContent">
+      <!-- Section title, translated -->
+      <h2><%= t.myTasks %></h2>
+      <div id="mainButtons">
+        <!-- Add new task button -->
+        <button id="addTodoButton" type="button">
+          <img src="/assets/icons/add.svg" alt="Add New Todo" class="icon">
+        </button>
+                <!-- Dark mode toggle button -->
+        <button id="toggleDarkModeButton" type="button" title="Toggle Dark Mode">
+          <img src="/assets/icons/dark.svg" alt="Toggle Dark Mode" class="icon">
+        </button>
       </div>
-      <div id="todoList">
-        <% tasks.forEach(task => { %>
-          <div class="todo_main <%= task.status === 'Completed' ? 'completed' : '' %>">
-            <div class="todo_header">
-              <div class="left_content_header">
-                <input type="checkbox" class="todo_checkbox" data-task-id="<%= task.id %>" <%= task.status === 'Completed' ? 'checked' : '' %>>
-                <div class="todo_task <%= task.status === 'Completed' ? 'line-through' : '' %>">
-                  <%= task.title %>
-                  <% if (task.priority === 'High') { %><span> ‼️</span><% } %>
-                </div>
-              </div>
-              <div class="todo_actions">
-                <form action="/tasks/edit/<%= task.id %>" method="GET" style="display:inline;">
-                  <button type="button" class="edit">
-                    <img src="/assets/icons/edit.svg" alt="Edit" class="icon">
-                  </button>
-                </form>
-                <form action="/tasks/delete/<%= task.id %>" method="POST" style="display:inline;">
-                  <button type="submit" class="delete"><img src="/assets/icons/delete.svg" alt="Delete" class="icon"></button>
-                </form>
+    </div>
+    <!-- Date formatting function, available for the whole template -->
+    <% function formatDate(date) {
+        const d = new Date(date);
+        return d.toLocaleString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(',', '');
+      }
+    %>
+    <div id="todoList">
+      <!-- Loop through all tasks and render each one -->
+      <% tasks.forEach(task => { %>
+        <div class="todo_main <%= task.status === 'Completed' ? 'completed' : '' %>">
+          <div class="todo_header">
+            <div class="left_content_header">
+              <!-- Checkbox for marking task as completed -->
+              <input type="checkbox" class="todo_checkbox" data-task-id="<%= task.id %>" <%= task.status === 'Completed' ? 'checked' : '' %>>
+              <!-- Task title, with line-through if completed, and priority icon if high -->
+              <div class="todo_task <%= task.status === 'Completed' ? 'line-through' : '' %>">
+                <%= task.title %>
+                <% if (task.priority === 'High') { %><span> ‼️</span><% } %>
               </div>
             </div>
-            <div class="todo_details">
-              <p><strong><%= t.taskDescription %>:</strong> <%= task.description %></p>
-              <p><strong><%= t.status %>:</strong> <span class="<%= task.status === 'Completed' ? 'status-complete' : '' %>"><%= t[task.status.toLowerCase()] || task.status %></span></p>
-              <p><strong><%= t.priority %>:</strong> <span class="priority-<%= task.priority && task.priority.toLowerCase() %>"><%= t[task.priority.toLowerCase()] || task.priority %></span></p>
-              <% function formatDate(date) {
-                  const d = new Date(date);
-                  return d.toLocaleString('en-GB', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                  }).replace(',', '');
-                }
-              %>
-              <% if (task.created_at) { %>
-                <p><strong><%= t.createdAt %>:</strong> <%= formatDate(task.created_at) %></p>
-              <% } %>
-              <% if (task.updated_at) { %>
-                <p><strong><%= t.updatedAt %>:</strong> <%= formatDate(task.updated_at) %></p>
-              <% } %>
+            <div class="todo_actions">
+              <!-- Edit button (opens popup, not a real form submit) -->
+              <form action="/tasks/edit/<%= task.id %>" method="GET" style="display:inline;">
+                <button type="button" class="edit">
+                  <img src="/assets/icons/edit.svg" alt="Edit" class="icon">
+                </button>
+              </form>
+              <!-- Delete button (submits form to delete task) -->
+              <form action="/tasks/delete/<%= task.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="delete"><img src="/assets/icons/delete.svg" alt="Delete" class="icon"></button>
+              </form>
             </div>
           </div>
-        <% }) %>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p><em>Made with Express, Typescript and EJS</em></p>
-    <p>&copy; 2025 To-Do App by Car_ & Cop_</p>
-  </footer>
-  <script>
-    document.getElementById('langSelect').addEventListener('change', function() {
-      const url = new URL(window.location.href);
-      url.searchParams.set('lang', this.value);
-      window.location.href = url.toString();
-    });
-  </script>
+          <div class="todo_details">
+            <!-- Task description -->
+            <p><strong><%= t.taskDescription %>:</strong> <%= task.description %></p>
+            <!-- Task status, translated and styled if completed -->
+            <p><strong><%= t.status %>:</strong> <span class="<%= task.status === 'Completed' ? 'status-complete' : '' %>"><%= t[task.status.toLowerCase()] || task.status %></span></p>
+            <!-- Task priority, translated and styled by priority -->
+            <p><strong><%= t.priority %>:</strong> <span class="priority-<%= task.priority && task.priority.toLowerCase() %>"><%= t[task.priority.toLowerCase()] || task.priority %></span></p>
+            <!-- Task creation date, formatted -->
+            <% if (task.created_at) { %>
+              <p><strong><%= t.createdAt %>:</strong> <%= formatDate(task.created_at) %></p>
+            <% } %>
+            <!-- Task update date, formatted -->
+            <% if (task.updated_at) { %>
+              <p><strong><%= t.updatedAt %>:</strong> <%= formatDate(task.updated_at) %></p>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<footer>
+  <p><em>Made with Express, Typescript and EJS</em></p>
+  <p>&copy; 2025 To-Do App by Car_ & Cop_</p>
+</footer>
+<!-- Language change handler: reloads page with new lang param -->
+<script>
+  document.getElementById('langSelect').addEventListener('change', function() {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', this.value);
+    window.location.href = url.toString();
+  });
+</script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= country.name %> - Edit</title>
+</head>
+<body>
+    <h1>Edit</h1>
+    <form action="/country/<%= country.Code -%>/save" method="POST">
+        <input type="hidden" name="Code" value="<%= country.Code -%>">
+        <label for="name"><strong>Name:</strong></label>
+        <input type="text" id="name" name="Name" value="<%= country.Name %>" required><br>
+
+        <label for="capital"><strong>Capital:</strong></label>
+        <input type="text" id="capital" name="Capital" value="<%= country.Capital %>" required><br>
+
+        <label for="province"><strong>Province:</strong></label>
+        <input type="text" id="province" name="Province" value="<%= country.Province %>"><br>
+
+        <label for="population"><strong>Population:</strong></label>
+        <input type="number" id="population" name="Population" value="<%= country.Population %>" min="0"><br>
+
+        <label for="area"><strong>Area (km²):</strong></label>
+        <input type="number" id="area" name="Area" value="<%= country.Area %>" min="0" step="any"><br>
+
+        <button type="submit">Save</button>
+        <a href="/country/<%= country.Code -%>" style="margin-left:10px;"><button type="button">Cancel</button></a>
+    </form>
+    <a href="/country">Back to Country List</a>
+</body>
+</html>
