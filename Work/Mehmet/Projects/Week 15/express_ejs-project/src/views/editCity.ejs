@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit City</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>Edit City</h1>
+
+  <!-- ✅ POST to /cities/edit/:id -->
+  <form action="/cities/edit/<%= city.id %>" method="POST">
+    <label for="name">City Name:</label>
+    <input type="text" id="name" name="name" value="<%= city.name %>" required />
+
+    <label for="population">Population:</label>
+    <input type="number" id="population" name="population" value="<%= city.population %>" required />
+
+    <button type="submit">Update</button>
+  </form>
+
+  <a href="/">Back to Cities</a>
+</body>
+</html>
