@@ -148,6 +148,7 @@ function addToCart (id, name, price, image, btn) {
 
 function removeFromCart(id) {
   cart = cart.filter(item => item.id !== id);
+  saveCart();
   renderCart();
 }
 
