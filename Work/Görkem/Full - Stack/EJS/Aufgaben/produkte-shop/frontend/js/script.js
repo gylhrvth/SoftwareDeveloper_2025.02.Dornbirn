@@ -35,6 +35,10 @@ function renderProductTable(products) {
         <button class="remove-btn" title="Remove">
           <span>&#128465;</span>
         </button>
+        <button class="edit-btn" title="Edit">
+        <span class="material-symbols-outlined">
+        stylus</span>
+        </button>
       </td>
       <td>
         <img src="/img/${product.image || 'placeholder.png'}" alt="${product.name}" class="product-img" />
@@ -51,9 +55,46 @@ function renderProductTable(products) {
         await deleteProduct(product.id);
         loadProducts();
     });
+    row.querySelector('.edit-btn').addEventListener('click', () => openEditModal(product));
     tableBody.appendChild(row);
   });
 }
+
+// Öffnet das Modal und füllt die Felder
+function openEditModal(product){
+  document.getElementById('edit-id').value = product.id;
+  document.getElementById('edit-name').value = product.name;
+  document.getElementById('edit-price').value = product.price;
+  document.getElementById('edit-description').value = product.description || '';
+  document.getElementById('edit-image').value = product.image || '';
+  document.getElementById('editModal').style.display = 'block';
+}
+
+// Schließt das Modal
+document.getElementById('closeEditModal').onclick = function() {
+  document.getElementById('editModal').style.display = 'none';
+};
+
+// PATCH-Request beim Absenden des Formulars
+document.getElementById('editProductForm').onsubmit = async function(e) {
+  e.preventDefault();
+  const id = document.getElementById('edit-id').value;
+  const name = document.getElementById('edit-name').value;
+  const price = document.getElementById('edit-price').value;
+  const description = document.getElementById('edit-description').value;
+  const image = document.getElementById('edit-image').value;
+  const res = await fetch(`/api/products/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, price, description, image })
+  });
+  if (res.ok) {
+    document.getElementById('editModal').style.display = 'none';
+    loadProducts();
+  } else {
+    //alert('Fehler beim Bearbeiten');
+  }
+};
 
 function updateTotalPrice(row) {
   const priceCell = row.querySelector('.price-cell');

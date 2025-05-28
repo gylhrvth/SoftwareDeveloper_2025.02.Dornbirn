@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country List</title>
+    <style>
+        .mode-space {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 20px 0;
+            padding: 12px 0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Country List</h1>
+    <ul>
+    <% countries.forEach(country => { %>
+        <li class="mode-space"><a href="/country/<%= country.code %>"><%= country.name %></a></li>
+    <% }); %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+ToDo:
+
+# Ordner Initialisieren
+  npm init -y
+  npm install --save-dev nodemon typescript ts-node @types/node @types/express
+  npm install express ejs dotenv
+
+## Add .gitignore
+
+## Initilize TypeScript
+  npx tsc --init
+
+## nodemon für dev
+
+## Create a src/server.ts with "Hello World"
+
+## Create a simple Express server in src/server.ts
+
+## config static files
+
+## config views für ejs
+## Create a simple EJS view in src/views/index.ejs
+
+# Mondial EJS
+
+## Connect MySQL with Mondial Database
+  npm install mysql2 
+
+  connect to the MySQL database using mysql2 in src/server.ts
+
+## Create a route /country (List all countries)
+
+
+## Create a route /country/:code (Details of a country)
+
+## Create a route /country/:code/Edit 
+
+## Create a route /country/Create (!!! Vorsicht mit der Reinfolge !!!)
+## Create a route /country/:code/Delete 
