@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Umgebungsvariablen
+.env
+
+
+# Log-Dateien
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build-Output (bei TypeScript)
+dist/
+build/
+
+# Betriebssystem-/Editor-Dateien
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
