@@ -147,8 +147,31 @@ h3 {
   transition: color var(--transition-fast);
 }
 
-span > a.logout {
+span > a.logout,
+span > a.homeButton,
+a.nav-link {
   color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.rightHeaderText > a:hover {
+  color: #ff7e5f;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+span > a.logout:hover,
+span > a.homeButton:hover,
+a.nav-link:hover {
+  color: #ff7e5f;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+section > a.nav-link {
+  color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
   transition: color var(--transition-fast);

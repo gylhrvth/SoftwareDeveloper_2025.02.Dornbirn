@@ -1,3 +1,4 @@
+import db from '../models/db';
 import { Request, Response } from 'express';
 import * as Task from '../models/taskModel';
 import translations from '../i18n/translations';
@@ -14,11 +15,16 @@ function getLang(req: Request): 'en' | 'es' | 'hu' {
 
 // READ (GET): List tasks with optional filtering
 export const list = async (req: Request, res: Response) => {
+    if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  // Get language from query or default to 'en'
   const lang = getLang(req);
   const { status, priority, date } = req.query;
+  const userSub = req.oidc.user?.sub;
 
-  // Fetch and filter tasks based on query params
-  let tasks = await Task.getAll();
+  // Fetch only tasks for the logged-in user
+  let tasks = await Task.getByUserSub(userSub);
 
   if (status) {
     tasks = tasks.filter(task => task.status === status);
@@ -84,14 +90,21 @@ export const showAddForm = (req: Request, res: Response) => {
 
 // CREATE (POST): Create a new task
 export const create = async (req: Request, res: Response) => {
+  if (!req.oidc.isAuthenticated()) {
+    return res.redirect('/login');
+  }
   try {
-    await Task.create(req.body);
+    const userSub = req.oidc.user?.sub;
     const lang = req.query.lang || 'en';
+    // Add user_sub to the task data
+    const taskData = { ...req.body, user_sub: userSub };
+    await Task.create(taskData);
     res.redirect(`/tasks?lang=${lang}`);
   } catch (err) {
     res.status(500).send('Error creating task.');
   }
 };
+
 
 // =================== UPDATE ===================
 

@@ -3,6 +3,7 @@ import { auth, ConfigParams } from 'express-openid-connect';
 import { Request, Response } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
+import db from './models/db';
 
 const config: ConfigParams = {
   authRequired: false,
@@ -67,13 +68,27 @@ app.get('/', (req, res) => {
 });
 
 // Profile route to display user information if authenticated
-app.get('/profile', (req, res) => {
+
+app.get('/profile', async (req, res) => {
   if (req.oidc.isAuthenticated()) {
-    const t = { user: 'User' }; // Add more keys as needed for other translations
+    const t = { user: 'User' };
+    const user = req.oidc.user;
+    const sid = user?.sid;
+    const sub = user?.sub;
+    const name = user?.name;
+
+    if (sid && name && sub) {
+      // Save or update sid and name in the database
+      await db.query(
+        'INSERT INTO Users (user_name, user_sid, user_sub) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_name = VALUES(user_name), user_sid = VALUES(user_sid), user_sub = VALUES(user_sub)',
+        [name, sid, sub]
+      );
+    }
+
     res.render('profile', { 
-      user: req.oidc.user,
-      userProfile: JSON.stringify(req.oidc.user, null, 2),
-      t // <-- pass t to the template
+      user,
+      userProfile: JSON.stringify(user, null, 2),
+      t
     });
   } else {
     res.redirect('/login');

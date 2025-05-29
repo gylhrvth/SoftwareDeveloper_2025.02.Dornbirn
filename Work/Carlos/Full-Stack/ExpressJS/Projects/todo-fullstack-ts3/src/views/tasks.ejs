@@ -21,6 +21,7 @@
     <div class="header-right">
       <div class="userLogic">
       <span class="rightHeaderText"><%= t.user %>: <a href="http://localhost:3003/profile"><%= user ? user.name : 'Guest' %></a></span>
+      <span><a class="homeButton" href="http://localhost:3003/">Home</a></span>
       <span><a class="logout" href="http://localhost:3003/logout">Logout</a></span>
     </div>
     </div>
@@ -107,15 +108,22 @@
       <% tasks.forEach(task => { %>
         <div class="todo_main <%= task.status === 'Completed' ? 'completed' : '' %>">
           <div class="todo_header">
-            <div class="left_content_header">
-              <!-- Checkbox for marking task as completed -->
-              <input type="checkbox" class="todo_checkbox" data-task-id="<%= task.id %>" <%= task.status === 'Completed' ? 'checked' : '' %>>
-              <!-- Task title, with line-through if completed, and priority icon if high -->
-              <div class="todo_task <%= task.status === 'Completed' ? 'line-through' : '' %>">
-                <%= task.title %>
-                <% if (task.priority === 'High') { %><span> ‼️</span><% } %>
-              </div>
+          <div class="left_content_header">
+            <!-- Checkbox for marking task as completed -->
+            <input
+              type="checkbox"
+              class="todo_checkbox"
+              data-task-id="<%= task.id %>"
+              id="todo_checkbox_<%= task.id %>"
+              name="completed_<%= task.id %>"
+              <%= task.status === 'Completed' ? 'checked' : '' %>
+            >
+            <!-- Task title, with line-through if completed, and priority icon if high -->
+            <div class="todo_task <%= task.status === 'Completed' ? 'line-through' : '' %>">
+              <%= task.title %>
+              <% if (task.priority === 'High') { %><span> ‼️</span><% } %>
             </div>
+          </div>
             <div class="todo_actions">
               <!-- Edit button (opens popup, not a real form submit) -->
               <form action="/tasks/edit/<%= task.id %>" method="GET" style="display:inline;">

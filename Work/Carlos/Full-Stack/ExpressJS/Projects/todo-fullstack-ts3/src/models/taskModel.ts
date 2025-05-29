@@ -7,6 +7,7 @@ export interface Task {
   description?: string;
   status: string;
   priority: string;
+  user_sub: string; // <-- Add this line
   created_at?: Date;
   updated_at?: Date;
   //photo?: string;
@@ -20,6 +21,11 @@ export const getAll = async (): Promise<Task[]> => {
   return rows as Task[];
 };
 
+export const getByUserSub = async (user_sub: string): Promise<Task[]> => {
+  const [rows] = await db.query('SELECT * FROM Tasks WHERE user_sub = ? ORDER BY created_at DESC', [user_sub]);
+  return rows as Task[];
+};
+
 // Get a single task by ID (GET)
 export const getById = async (id: number): Promise<Task | undefined> => {
   const [rows] = await db.query('SELECT * FROM Tasks WHERE id = ?', [id]);
@@ -30,10 +36,10 @@ export const getById = async (id: number): Promise<Task | undefined> => {
 
 // Create a new task (POST)
 export const create = async (task: Task): Promise<void> => {
-  const { title, description, status, priority } = task;
+  const { title, description, status, priority, user_sub } = task;
   await db.query(
-    'INSERT INTO Tasks (title, description, status, priority) VALUES (?, ?, ?, ?)',
-    [title, description, status, priority]
+    'INSERT INTO Tasks (title, description, status, priority, user_sub) VALUES (?, ?, ?, ?, ?)',
+    [title, description, status, priority, user_sub]
   );
 };
 
