@@ -16,7 +16,7 @@
       <div class="header-right">
         <div class="userLogic">
           <span class="rightHeaderText">
-            <span class="rightHeaderText"><%= t.user %>: <a href="http://localhost:3003/profile"><%= user ? user.name : 'Guest' %></a></span>
+            <span class="rightHeaderText"><%= t.user %>: <a href="http://localhost:3003/profile"><%= user && user.name ? user.name : (user && user.nickname ? user.nickname : 'Unnamed') %></a></span>
           </span>
           <% if (locals.user) { %>
             <span><a class="logout" href="/logout">Logout</a></span>
