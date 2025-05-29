@@ -37,6 +37,22 @@ app.use(function (req, res, next) {
 
 app.use('/', router);
 
+app.get('/admin-tasks', (req, res) => {
+  if (!req.oidc.isAuthenticated() || req.oidc.user.name !== 'ScraleGi') {
+    return res.status(403).send('Forbidden');
+  }
+  // Fetch all tasks (not just for the user)
+  Task.getAll().then(tasks => {
+    const lang = req.query.lang || 'en';
+    res.render('tasks', {
+      tasks,
+      lang,
+      t: translations[lang],
+      user: req.oidc.user
+    });
+  });
+});
+
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
   const err = new Error('Not Found');

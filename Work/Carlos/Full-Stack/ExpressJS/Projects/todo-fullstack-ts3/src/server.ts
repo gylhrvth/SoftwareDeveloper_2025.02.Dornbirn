@@ -110,6 +110,7 @@ app.use(express.urlencoded({ extended: true }));
 // Register task-related routes (all main app routes)
 app.use('/', taskRoutes);
 
+
 // Handle 404 errors by rendering a custom 404 page
 app.use((req, res) => {
   res.status(404).render('404');

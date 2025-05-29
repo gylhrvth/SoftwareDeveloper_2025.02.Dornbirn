@@ -15,17 +15,23 @@ function getLang(req: Request): 'en' | 'es' | 'hu' {
 
 // READ (GET): List tasks with optional filtering
 export const list = async (req: Request, res: Response) => {
-    if (!req.oidc.isAuthenticated()) {
+  if (!req.oidc.isAuthenticated()) {
     return res.redirect('/login');
   }
-  // Get language from query or default to 'en'
   const lang = getLang(req);
-  const { status, priority, date } = req.query;
-  const userSub = req.oidc.user?.sub;
+  const { status, priority, date, all } = req.query;
+  let tasks;
 
-  // Fetch only tasks for the logged-in user
-  let tasks = await Task.getByUserSub(userSub);
+// Check if the user is authenticated and has the right to view all tasks
+// http://localhost:3003/tasks?all=1 will show all tasks for the user ScraleGi
+  if (all && req.oidc.user && req.oidc.user.sub === process.env.ADMIN_SUB) {
+    tasks = await Task.getAll();
+  } else {
+    const userSub = req.oidc.user?.sub;
+    tasks = await Task.getByUserSub(userSub);
+  }
 
+  // Filtering logic
   if (status) {
     tasks = tasks.filter(task => task.status === status);
   }
@@ -43,7 +49,8 @@ export const list = async (req: Request, res: Response) => {
   res.render('tasks', {
     tasks,
     lang,
-    t: translations[lang]
+    t: translations[lang as 'en' | 'es' | 'hu'],
+    user: req.oidc.user
   });
 };
 
@@ -61,6 +68,7 @@ export const showEditForm = async (req: Request, res: Response): Promise<void> =
     res.status(404).send('Not found');
     return;
   }
+  
 
   // Get language from query or default to 'en'
   let lang = req.query.lang;
