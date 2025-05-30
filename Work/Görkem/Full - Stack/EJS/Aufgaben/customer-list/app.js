@@ -3,9 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const connectDB = require('./server/config/db');
+
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// Connect to Database
+connectDB();
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +24,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('layout', 'layouts/main');
 
 // Routes
+
+// Startseite
 app.get('/', (req, res) => {
   const locals = {
     title: 'Node.js',
@@ -27,9 +34,23 @@ app.get('/', (req, res) => {
   res.render('index', locals);
 });
 
+// About-Seite
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About',
+    description: 'Informationen über dieses Projekt'
+  });
+});
+
+// Customer-Routen
+app.use('/customer', require('./server/routes/customer'));
+
 // Error Handling (optional)
 app.use((req, res) => {
-  res.status(404).render('404', { title: 'Seite nicht gefunden' });
+  res.status(404).render('404', { 
+    title: 'Seite nicht gefunden',
+    description: 'Die angeforderte Seite wurde nicht gefunden' 
+  });
 });
 
 // Server Start
@@ -40,4 +61,5 @@ app.listen(port, (err) => {
   }
   console.log(`Server is running on port ${port}`);
 });
+
 
