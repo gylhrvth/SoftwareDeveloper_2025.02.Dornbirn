@@ -6,12 +6,9 @@ const customerController = require('../controllers/customerController');
  * Customer Routes
  */
 
-router.get('/customer', (req, res) => {
-  res.render('customer/index', {
-    title: 'Kunden',
-    description: 'Alle Kunden im Überblick'
-  });
-});
+// Kundenübersicht
+router.get('/customer', customerController.homepage);
+router.get('/add', customerController.addCustomer);
 
 module.exports = router;
 
