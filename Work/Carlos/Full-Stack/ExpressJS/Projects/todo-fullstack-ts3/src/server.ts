@@ -77,13 +77,12 @@ app.get('/profile', async (req, res) => {
     const sub = user?.sub;
     const name = user?.name;
 
-    if (sid && name && sub) {
-      // Save or update sid and name in the database
-      await db.query(
-        'INSERT INTO Users (user_name, user_sid, user_sub) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_name = VALUES(user_name), user_sid = VALUES(user_sid), user_sub = VALUES(user_sub)',
-        [name, sid, sub]
-      );
-    }
+/*if (sid && sub) {
+  await db.query(
+    'INSERT INTO Users (user_name, user_sid, user_sub) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_name = VALUES(user_name), user_sid = VALUES(user_sid), user_sub = VALUES(user_sub)',
+    [name || 'Unnamed', sid, sub]
+  );
+}*/
 
     res.render('profile', { 
       user,
@@ -93,6 +92,27 @@ app.get('/profile', async (req, res) => {
   } else {
     res.redirect('/login');
   }
+});
+
+// Middleware to insert/update user info in DB before /tasks
+app.use('/tasks', async (req, res, next) => {
+  if (req.oidc && req.oidc.isAuthenticated()) {
+    const user = req.oidc.user;
+    const sid = user?.sid;
+    const sub = user?.sub;
+    const name = user?.name;
+    if (sid && sub) {
+      try {
+        await db.query(
+          'INSERT INTO Users (user_name, user_sid, user_sub) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE user_name = VALUES(user_name), user_sid = VALUES(user_sid), user_sub = VALUES(user_sub)',
+          [name || 'Unnamed', sid, sub]
+        );
+      } catch (err) {
+        console.error('DB error in /tasks middleware:', err);
+      }
+    }
+  }
+  next();
 });
 
 // Set EJS as the view engine for rendering templates
@@ -109,7 +129,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Register task-related routes (all main app routes)
 app.use('/', taskRoutes);
-
 
 // Handle 404 errors by rendering a custom 404 page
 app.use((req, res) => {

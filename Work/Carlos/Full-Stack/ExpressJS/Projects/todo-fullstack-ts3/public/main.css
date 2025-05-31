@@ -90,7 +90,7 @@ footer p {
 }
 
 h1 {
-  padding: 0.5rem;
+  
   margin: 0;
 }
 
@@ -128,7 +128,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2em 0.6rem;
+
   background-color: var(--header-bg);
   color: var(--lightText);
   border-radius: var(--radius);
@@ -192,10 +192,15 @@ section > a.nav-link {
   
 }
 
+.user-guest {
+  color: rgb(252, 217, 213);
+  
+}
+
 /* =============================
    Filter & Language Forms
 ============================= */
-#filterForm {
+form#filterForm {
   display: flex;
   justify-content: flex-end;
   gap: 0.5em;
