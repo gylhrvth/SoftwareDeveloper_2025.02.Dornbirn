@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Journal</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>Welcome, <%= user?.username || 'Guest' %>!</h1>
+
+  <% if (!user) { %>
+    <a href="/login">Login</a> | <a href="/register">Register</a>
+  <% } else { %>
+    <form action="/logout" method="post">
+      <button>Logout</button>
+    </form>
+
+    <a href="/add">Add New Journal Entry</a>
+    
+    <% if (journals.length === 0) { %>
+      <p>You have no journal entries yet.</p>
+    <% } else { %>
+      <ul>
+        <% journals.forEach(journal => { %>
+          <li>
+            <strong><%= journal.title %></strong> - <em><%= new Date(journal.updatedAt).toLocaleString() %></em><br/>
+            <p><%= journal.content %></p>
+            <a href="/edit/<%= journal.id %>">Edit</a>
+            <form action="/delete/<%= journal.id %>" method="post" style="display:inline;">
+              <button type="submit" onclick="return confirm('Delete this entry?')">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= journal ? 'Edit' : 'Add' %> Journal Entry</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1><%= journal ? 'Edit' : 'Add' %> Journal Entry</h1>
+  <form action="<%= journal ? '/edit/' + journal.id : '/add' %>" method="post">
+    <label>Title: <input type="text" name="title" value="<%= journal?.title || '' %>" required></label><br>
+    <label>Content:<br>
+      <textarea name="content" rows="10" cols="50" required><%= journal?.content || '' %></textarea>
+    </label><br>
+    <button type="submit"><%= journal ? 'Update' : 'Create' %></button>
+  </form>
+  <a href="/">Back to Journal</a>
+</body>
+</html>
