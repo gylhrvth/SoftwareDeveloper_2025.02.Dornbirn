@@ -37,6 +37,8 @@ const app = express();
 // Set the port from environment or default to 3000
 const PORT = Number(process.env.PORT) || 3000;
 
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+
 
 // Initialize authentication middleware with Auth0 configuration
 // auth router attaches /login, /logout, and /callback routes to the baseURL

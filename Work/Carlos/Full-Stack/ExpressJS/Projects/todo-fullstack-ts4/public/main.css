@@ -1,0 +1,608 @@
+/* =============================
+   Root Variables & Dark Mode
+============================= */
+:root {
+  --font-family: 'Nunito', sans-serif;
+  --bg-main: #f4f4f4;
+  --text-main: #333;
+  --lightText: #f4f4f4;
+  --white: #ffffff;
+  --blue: #0056b3;
+  --header-bg: #14365a;
+  --todoCompleted: #ecf0f3;
+  --todoCompletedBorder: #c9d4db;
+  --edit: #697f96;
+  --edit-hover: #506072;
+  --dark: rgb(33, 67, 103);
+  --dark-hover: rgb(41, 81, 124);
+  --delete: #90276b;
+  --delete-hover: #801e5d;
+  --tooltip-bg: #333;
+  --tooltip-color: #fff;
+  --box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  --radius: 5px;
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --task-text: rgb(16, 41, 72);
+  --priority: rgb(197, 79, 79);
+  --border-top: #cbcdd0 1px solid;
+}
+
+/* Dark mode overrides for variables */
+body.dark-mode {
+  --bg-main: #121212;
+  --text-main: #f6f5f5;
+  --lightText: #f5f5f5;
+  --white: #1e1e1e;
+  --blue: #d6faf2;
+  --header-bg: #1f1f1f;
+  --todoCompleted: #2e3234;
+  --todoCompletedBorder: #404446;
+  --edit: #5c6bc0;
+  --edit-hover: #3949ab;
+  --dark: rgb(61, 71, 71);
+  --dark-hover: rgb(52, 146, 130);
+  --delete: #ef5350;
+  --delete-hover: #d32f2f;
+  --tooltip-bg: #333;
+  --tooltip-color: #e0e0e0;
+  --box-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+  --task-text: #b2bbf2;
+  --priority: rgb(238, 137, 137);
+  --border-top: #4e5155 1px solid;
+}
+
+/* =============================
+   Layout & Structure
+============================= */
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+header,
+footer {
+  background-color: var(--header-bg);
+  color: var(--lightText);
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 6rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+h1 {
+  
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+/* =============================
+   Header & Navigation
+============================= */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 2.1em;
+  font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.lowerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--header-bg);
+  color: var(--lightText);
+  border-radius: var(--radius);
+}
+
+.lowerHeader  a {
+  color: white;
+}
+.rightHeaderText{
+  font-weight: bold;
+}
+.rightHeaderText > a {
+  color: rgb(252, 217, 213);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+span > a.logout,
+span > a.homeButton,
+a.nav-link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.rightHeaderText > a:hover {
+  color: #ff7e5f;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+span > a.logout:hover,
+span > a.homeButton:hover,
+a.nav-link:hover {
+  color: #ff7e5f;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+section > a.nav-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.lowerHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.userLogic {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2em;
+  font-size: 0.9em;
+  
+}
+
+.user-guest {
+  color: rgb(252, 217, 213);
+  
+}
+
+/* =============================
+   Filter & Language Forms
+============================= */
+form#filterForm {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+  align-items: center;
+  margin: 0;
+}
+
+#filterForm select,
+#filterForm input {
+  padding: 0.2em;
+  font-size: 0.8em;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+#filterForm input[type="date"] {
+  padding: 0.4em;
+}
+
+#filterForm button {
+  padding: 0.2em 0.8em;
+  font-size: 0.8em;
+  border-radius: var(--radius);
+  background-color: var(--edit);
+  color: var(--lightText);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: auto;
+  height: auto;
+}
+
+#filterForm button:hover {
+  background-color: var(--edit-hover);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+#langForm {
+  margin: 0;
+}
+
+#langSelect {
+  padding: 0.2em;
+  font-size: 0.8em;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+span.langLabel {
+  font-size: 0.9em;
+}
+
+.clear-filters-link {
+  margin-left: 0.7em;
+  color: #0078d7;
+  text-decoration: underline;
+  font-size: 0.98em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.clear-filters-link:hover {
+  color: #005fa3;
+}
+
+/* =============================
+   To-Do List Components
+============================= */
+.upperContent,
+.todo_main {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+}
+
+.upperContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5em;
+  padding-inline: 1rem;
+}
+
+.todo_main {
+  margin: 0.25em 0;
+  padding: 15px;
+  position: relative;
+}
+
+.todo_main.completed {
+  background-color: var(--todoCompleted);
+  border: 1px solid var(--todoCompletedBorder);
+  transition: background-color var(--transition-medium), border var(--transition-medium);
+}
+
+.todo_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left_content_header,
+.todo_actions,
+#mainButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo_task {
+  color: var(--task-text);
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: transform var(--transition-fast), font-size var(--transition-fast);
+}
+
+.todo_task:hover {
+  transform: scale(1.02);
+}
+
+.todo_task.line-through {
+  text-decoration: line-through;
+  color: #6c757d;
+  transition: color var(--transition-medium), text-decoration var(--transition-medium);
+}
+
+.todo_checkbox {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.todo_checkbox:hover {
+  transform: scale(1.2);
+}
+
+strong {
+  color: var(--task-text);
+}
+
+.todo_details {
+  display: none;
+  margin-top: 0.9em;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.todo_details.visible {
+  display: block;
+  border-top: var(--border-top);
+}
+
+.todo_details img.todo-image {
+  max-width: 40%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+
+/* =============================
+   Buttons & Tooltips
+============================= */
+button,
+#mainButtons button {
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--transition-fast), background-color var(--transition-medium);
+}
+
+button {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+
+#mainButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+#mainButtons button {
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 10%;
+  background-color: var(--edit);
+  color: var(--white);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  display: flex;
+}
+
+#mainButtons > button img.icon,
+.todo_actions button > img {
+  filter: invert(1);
+  width: 1.5em;
+}
+
+#mainButtons > button img.icon {
+  width: 2em;
+  margin: 0;
+}
+
+.todo_actions .edit,
+#mainButtons button.edit {
+  background-color: var(--edit);
+  color: var(--white);
+}
+
+.todo_actions .edit:hover,
+#mainButtons button:hover,
+button.edit:hover {
+  background-color: var(--edit-hover);
+}
+
+.todo_actions .delete,
+#mainButtons > #deleteCompletedTodosButton,
+button.delete {
+  background-color: var(--delete);
+  color: var(--white);
+}
+
+.todo_actions .delete:hover,
+#mainButtons > #deleteCompletedTodosButton:hover,
+button.delete:hover {
+  background-color: var(--delete-hover);
+}
+
+#mainButtons > #toggleDarkModeButton {
+  background-color: var(--dark);
+  color: var(--white);
+  border-radius: 10%;
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+#toggleDarkModeButton:hover {
+  background-color: var(--dark-hover);
+}
+
+#toggleDarkModeButton img.icon {
+  width: 1.5em;
+  filter: invert(1);
+}
+
+/* Tooltip styles for buttons */
+#mainButtons > #addTodoButton,
+#mainButtons > #deleteCompletedTodosButton,
+#mainButtons > #toggleDarkModeButton,
+button.edit,
+button.delete {
+  position: relative;
+}
+
+#mainButtons > #addTodoButton::after,
+#mainButtons > #deleteCompletedTodosButton::after,
+#mainButtons > #toggleDarkModeButton::after,
+button.edit::after,
+button.delete::after {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+#mainButtons > #addTodoButton:hover::after,
+#mainButtons > #deleteCompletedTodosButton:hover::after,
+#mainButtons > #toggleDarkModeButton:hover::after,
+button.edit:hover::after,
+button.delete:hover::after {
+  opacity: 1;
+}
+
+#mainButtons > #addTodoButton::after { content: 'Add new Task'; }
+#mainButtons > #deleteCompletedTodosButton::after { content: 'Delete Completed Tasks'; }
+#mainButtons > #toggleDarkModeButton::after { content: 'Change Color Scheme'; }
+button.edit::after { content: 'Edit Task'; }
+button.delete::after { content: 'Delete Task'; }
+
+/* =============================
+   Forms & Popups
+============================= */
+#popupForm,
+#editPopupForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #9e9e9e;
+  z-index: 1000;
+  display: none;
+}
+
+#popupForm.visible,
+#editPopupForm.visible {
+  display: block;
+}
+
+#popupForm form,
+#editPopupForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#popupForm input,
+#popupForm textarea,
+#popupForm select,
+#popupForm button,
+#editPopupForm input,
+#editPopupForm textarea,
+#editPopupForm select,
+#editPopupForm button {
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#popupForm button,
+#editPopupForm button {
+  background-color: var(--edit);
+  color: var(--white);
+}
+
+#popupForm button:hover,
+#editPopupForm button:hover {
+  background-color: var(--edit-hover);
+}
+
+#popupForm #closeFormButton,
+#editPopupForm #closeEditFormButton {
+  background-color: var(--delete);
+}
+
+#popupForm #closeFormButton:hover,
+#editPopupForm #closeEditFormButton:hover {
+  background-color: var(--delete-hover);
+}
+
+body.popup-active,
+body.edit-popup-active {
+  overflow: hidden;
+}
+
+/* =============================
+   Utility & Miscellaneous
+============================= */
+.hidden { display: none; }
+
+.status-complete {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.priority-high {
+  color: var(--priority);
+  font-weight: bold;
+}
+
+.popup-form {
+  position: fixed;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 2px solid #333;
+  padding: 2em;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Show/hide details for tasks */
+.todo_details { display: none; }
+.todo_details.visible { display: block; }
