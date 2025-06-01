@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= locals.title || "To-Do App" %></title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="shortcut icon" href="//cdn2.auth0.com/styleguide/latest/lib/logos/img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <h1>To-Do App</h1>
+      </div>
+      <div class="header-right">
+        <div class="userLogic">
+      <span class="rightHeaderText">
+        <img src="/assets/icons/user02.svg" alt="User"">
+        <% if (user) { %>
+          <a href="http://localhost:3003/profile">
+            <%= (user.name && user.name.trim()) ? user.name
+              : ((user.nickname && user.nickname.trim()) ? user.nickname : 'Unnamed') %>
+          </a>
+        <% } else { %>
+          <span class="user-guest">Guest</span>
+        <% } %>
+      </span>
+     
+        </div>
+      </div>
+    </div>
+    <div class="lowerHeader">
+      <div class="lowerHeaderLeft">
+        <a href="/" class="nav-link"><img src="/assets/icons/home.svg"></a>
+        <% if (user && user.name === 'ScraleGi') { %>
+        <a class="nav-link" href="/tasks?all=1"><img src="/assets/icons/admin.svg"></a>
+        <% } %>
+        <a href="/tasks" class="nav-link"><img src="/assets/icons/list.svg"></a>
+        <a href="/profile" class="nav-link"><img src="/assets/icons/profile.svg"></a>
+        <% if (locals.user) { %>
+        <span><a class="logout" href="/logout"><img src="/assets/icons/logout.svg"></a></span>
+        <% } else { %>
+        <span><a class="logout" href="/login"><img src="/assets/icons/login.svg"></a></span>
+        <% } %>
+      </div>
+      <div class="lowerHeaderRight">
+        <a href="https://github.com/ScraleGi" target="_blank" class="nav-link"><img src="/assets/icons/github.svg"></a>
+      </div>
+    </div>
+  </header>
+  <main>
