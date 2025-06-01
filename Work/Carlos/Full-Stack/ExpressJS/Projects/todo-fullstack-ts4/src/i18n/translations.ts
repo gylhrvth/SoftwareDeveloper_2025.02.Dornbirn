@@ -1,3 +1,5 @@
+import { clear } from "console";
+
 const translations = {
   en: {
     title: 'To-Do App',
@@ -19,7 +21,9 @@ const translations = {
     createdAt: 'Created At',
     updatedAt: 'Updated At',
     user: 'User',
-    language: 'Language'
+    language: 'Language',
+    clearImage: 'Clear Image',
+    currentFile: 'Current File'
   },
   es: {
     title: 'Mis Tareas',
@@ -41,7 +45,9 @@ const translations = {
     createdAt: 'Creada el',
     updatedAt: 'Actualizada el',
     user: 'Usuario',
-    language: 'Idioma'
+    language: 'Idioma',
+    clearImage: 'Eliminar Imagen',
+    currentFile: 'Archivo Actual'
   },
   hu: {
     title: 'Feladatkezelő',
@@ -63,7 +69,9 @@ const translations = {
     createdAt: 'Létrehozva',
     updatedAt: 'Módosítva',
     user: 'Felhasználó',
-    language: 'Nyelv'
+    language: 'Nyelv',
+    clearImage: 'Kép törlése',
+    currentFile: 'Jelenlegi fájl'
   }
 };
 

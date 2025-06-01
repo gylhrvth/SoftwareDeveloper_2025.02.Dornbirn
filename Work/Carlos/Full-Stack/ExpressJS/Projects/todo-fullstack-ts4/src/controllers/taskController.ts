@@ -130,21 +130,27 @@ export const create = [
 // =================== UPDATE ===================
 
 // UPDATE (POST): Update a specific task
+import fs from 'fs';
+import path from 'path';
+
 export const update = [
   upload.single('image_file'),
   async (req: Request, res: Response) => {
     try {
       const id = Number(req.params.id);
       const { title, description, status, priority } = req.body;
-      let img_URL = null;
+      const existingTask = await Task.getById(id);
 
-      // If a new file is uploaded, use its path
-      if (req.file) {
+      let img_URL = existingTask?.img_URL || null;
+
+      // If "Clear Image" is checked, remove the image
+      if (req.body.remove_image && existingTask?.img_URL) {
+        img_URL = null;
+        // Optionally delete the file from disk
+        const filePath = path.join(__dirname, '../../public', existingTask.img_URL);
+        fs.unlink(filePath, err => { /* ignore errors */ });
+      } else if (req.file) {
         img_URL = '/uploads/' + req.file.filename;
-      } else {
-        // If not, keep the existing image URL from the DB
-        const existingTask = await Task.getById(id);
-        img_URL = existingTask?.img_URL || null;
       }
 
       await Task.update(id, {

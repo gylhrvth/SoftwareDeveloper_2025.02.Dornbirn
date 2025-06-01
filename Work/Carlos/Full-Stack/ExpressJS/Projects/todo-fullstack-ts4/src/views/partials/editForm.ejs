@@ -32,6 +32,21 @@
 
   <label for="image_file"><strong>Image:</strong></label>
   <input type="file" id="image_file" name="image_file" accept="image/*">
+
+  <% if (task.img_URL) { %>
+    <div class="imageControls">
+      <div class="currentFileName">
+        <strong><%= t.currentFile || 'Current file' %>:</strong>
+        <%= task.img_URL.split('/').pop() %>
+      </div>
+      
+        <label class="clearImageLabel">
+          <strong><%= t.clearImage || 'Clear Image' %>:</strong>
+          <input type="checkbox" name="remove_image" value="1" class="clearImageCheckbox">
+          
+        </label>
+    </div>
+  <% } %>
   
   <!-- Submit button to save changes -->
   <button type="submit" name="save"><%= t.saveChanges || 'Save Changes' %></button>
