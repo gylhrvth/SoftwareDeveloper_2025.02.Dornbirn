@@ -10,6 +10,7 @@ const config: ConfigParams = {
   auth0Logout: true,
   secret: process.env.AUTH0_SECRET!,
   baseURL: 'http://localhost:3003',
+  //http://192.168.8.167:3003 (IP Zuhause)
   clientID: process.env.AUTH0_CLIENT_ID!,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL!,
   afterCallback: async (

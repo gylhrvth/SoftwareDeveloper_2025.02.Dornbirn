@@ -1031,6 +1031,611 @@ function ToggleButton({ isActive, onClick }) {
   </p>
 </section>
 
+<!-- frage 11 -->
+<section>
+  <h2>11. Welche Daten kann ich als Props übergeben?</h2>
+  <p>
+    Props (Properties) in React sind extrem flexibel: Du kannst prinzipiell <strong>jede JavaScript-Datenstruktur</strong> als Prop an eine Komponente übergeben.
+  </p>
+
+  <h3>1. Strings (Text)</h3>
+  <p>Einzelne Zeichenketten, z. B. „Hallo Welt“ oder „primary-button“:</p>
+  <pre><code>
+function Title({ text }) {
+  return &lt;h1&gt;{text}&lt;/h1&gt;;
+}
+
+// Nutzung:
+&lt;Title text="Willkommen auf meiner Seite" /&gt;
+  </code></pre>
+
+  <h3>2. Zahlen (Numbers)</h3>
+  <p>Numerische Werte, z. B. 42 oder 3.14:</p>
+  <pre><code>
+function Counter({ initialCount }) {
+  return &lt;p&gt;Startwert: {initialCount}&lt;/p&gt;;
+}
+
+// Nutzung:
+&lt;Counter initialCount={10} /&gt;
+  </code></pre>
+
+  <h3>3. Booleans (true/false)</h3>
+  <p>Wahrheitswerte, um Bedingungen zu steuern:</p>
+  <pre><code>
+function Button({ disabled }) {
+  return &lt;button disabled={disabled}&gt;Absenden&lt;/button&gt;;
+}
+
+// Nutzung:
+&lt;Button disabled={true} /&gt;
+  </code></pre>
+
+  <h3>4. Objekte (Objects)</h3>
+  <p>Komplexe Datenstrukturen, um mehrere Werte zu bündeln:</p>
+  <pre><code>
+function UserCard({ user }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{user.name}&lt;/h2&gt;
+      &lt;p&gt;Alter: {user.age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+const anna = { name: "Anna", age: 30 };
+&lt;UserCard user={anna} /&gt;
+  </code></pre>
+
+  <h3>5. Arrays</h3>
+  <p>Listen von Werten, oft mit <code>.map()</code> gerendert:</p>
+  <pre><code>
+function ItemList({ items }) {
+  return (
+    &lt;ul&gt;
+      {items.map((item, i) =&gt; (
+        &lt;li key={i}&gt;{item}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+// Nutzung:
+&lt;ItemList items={["Apfel", "Banane", "Kirsche"]} /&gt;
+  </code></pre>
+
+  <h3>6. Funktionen (Callbacks)</h3>
+  <p>Um Ereignis-Handler weiterzureichen:</p>
+  <pre><code>
+function Button({ onClick, label }) {
+  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;;
+}
+
+// Nutzung:
+&lt;Button onClick={() =&gt; alert("Button geklickt")} label="Klick mich!" /&gt;
+  </code></pre>
+
+  <h3>7. JSX-Elemente oder andere Komponenten</h3>
+  <p>Du kannst komplette React-Elemente oder Komponenten als Props übergeben:</p>
+  <pre><code>
+// Beispiel mit children:
+function Card({ children }) {
+  return &lt;div className="card"&gt;{children}&lt;/div&gt;;
+}
+
+// Nutzung:
+&lt;Card&gt;
+  &lt;h2&gt;Titel&lt;/h2&gt;
+  &lt;p&gt;Inhalt der Karte&lt;/p&gt;
+&lt;/Card&gt;
+
+// Beispiel mit benannter JSX-Prop:
+function Panel({ header, content }) {
+  return (
+    &lt;div className="panel"&gt;
+      &lt;div className="panel-header"&gt;{header}&lt;/div&gt;
+      &lt;div className="panel-content"&gt;{content}&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+&lt;Panel
+  header=&lt;h3&gt;Überschrift&lt;/h3&gt;
+  content=&lt;p&gt;Beliebiger JSX-Block&lt;/p&gt;
+/&gt;
+  </code></pre>
+
+  <h3>8. Kombinationen / Gemischte Daten</h3>
+  <p>Du kannst Objekte, Arrays und Funktionen kombinieren, um komplexe Props zu übergeben:</p>
+  <pre><code>
+function Dashboard({ user, onLogout, widgets }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Willkommen, {user.name}&lt;/h1&gt;
+      &lt;button onClick={onLogout}&gt;Abmelden&lt;/button&gt;
+      &lt;div className="widgets"&gt;
+        {widgets.map((widget, i) =&gt; (
+          &lt;div key={i} className="widget"&gt;{widget}&lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+const user = { name: "Mehmet", id: 123 };
+const widgets = [
+  &lt;p&gt;Widget A&lt;/p&gt;,
+  &lt;p&gt;Widget B&lt;/p&gt;,
+  &lt;p&gt;Widget C&lt;/p&gt;
+];
+
+&lt;Dashboard
+  user={user}
+  onLogout={() =&gt; console.log("Logout")}
+  widgets={widgets}
+/&gt;
+  </code></pre>
+
+  <h3>9. Zusammenfassung</h3>
+  <p>Props können sein:</p>
+  <ul>
+    <li><strong>Strings:</strong> Texte wie „Hallo Welt“</li>
+    <li><strong>Zahlen:</strong> Numerische Werte wie 42 oder 3.14</li>
+    <li><strong>Booleans:</strong> Wahrheitswerte true/false</li>
+    <li><strong>Objekte:</strong> Komplexe Datenstrukturen</li>
+    <li><strong>Arrays:</strong> Listen von Werten</li>
+    <li><strong>Funktionen:</strong> Callback-Handler für Events</li>
+    <li><strong>JSX/Komponenten:</strong> Ganzen React-Baum oder JSX-Blöcke</li>
+    <li><strong>Kombinationen:</strong> Beliebige Mischung aus allen Typen</li>
+  </ul>
+  <p>
+    Props sind also das Fundament, um deine Komponenten <strong>flexibel, wiederverwendbar und dynamisch</strong> zu gestalten.
+  </p>
+</section>
+
+
+<!-- frage 12  -->
+<section>
+  <h2>12. Kann ich einen Event-Handler als Props übergeben?</h2>
+  <p>
+    Ja, du kannst einen Event-Handler (also eine Funktion, die auf ein Ereignis reagiert) als Prop an eine React-Komponente weiterreichen. 
+    Das ist eine der häufigsten Anwendungen von Props, weil so Eltern-Komponenten die Kontrolle über Klicks oder andere Events in Kinder-Komponenten behalten.
+  </p>
+
+  <h3>1. Warum Event-Handler als Props?</h3>
+  <ul>
+    <li>Trennung von Logik und Darstellung: Die Kind-Komponente kümmert sich ums Layout, der Parent um die Logik.</li>
+    <li>Unidirektionaler Datenfluss: Daten (hier die Funktion) fließen vom Parent zum Child. Das Child ruft die Funktion auf, wenn das Event eintritt.</li>
+  </ul>
+
+  <h3>2. Event-Handler im Parent definieren</h3>
+  <pre><code>
+function handleButtonClick() {
+  alert("Der Button wurde geklickt!");
+}
+  </code></pre>
+
+  <h3>3. Event-Handler als Prop übergeben</h3>
+  <pre><code>
+&lt;MyButton onClick={handleButtonClick} /&gt;
+  </code></pre>
+  <p>
+    Hier übergibst du <code>handleButtonClick</code> als Prop <code>onClick</code> an die Komponente <code>MyButton</code>.
+  </p>
+
+  <h3>4. Prop in der Child-Komponente verwenden</h3>
+  <pre><code>
+function MyButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Klick mich&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    In <code>MyButton</code> nutzt du <code>onClick</code> direkt als Event-Handler für den Button. Wenn der Button geklickt wird, wird die Funktion aus dem Parent ausgeführt.
+  </p>
+
+  <h3>5. Beispiel komplett</h3>
+  <pre><code>
+// Eltern-Komponente (Parent)
+function App() {
+  function handleButtonClick() {
+    console.log("Button wurde geklickt!");
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Meine App&lt;/h1&gt;
+      &lt;MyButton onClick={handleButtonClick} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Kind-Komponente (Child)
+function MyButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Klick mich&lt;/button&gt;;
+}
+  </code></pre>
+
+  <h3>6. Vorteile dieses Vorgehens</h3>
+  <ul>
+    <li>Wiederverwendbarkeit: <code>MyButton</code> bleibt unverändert, nur der Event-Handler ändert sich.</li>
+    <li>Klarer Datenfluss: Die Logik liegt im Parent, das Child ist nur fürs Layout zuständig.</li>
+    <li>Testbarkeit: Du kannst im Parent eine Mock-Funktion übergeben und testen, ob sie aufgerufen wird.</li>
+  </ul>
+
+  <h3>7. Dynamische Parameterübergabe</h3>
+  <p>
+    Falls du dem Event-Handler Parameter mitgeben willst, kannst du eine Inline-Funktion im Parent verwenden:
+  </p>
+  <pre><code>
+&lt;MyButton onClick={() =&gt; handleButtonClick(42)} /&gt;
+
+function handleButtonClick(id) {
+  console.log("ID:", id);
+}
+  </code></pre>
+  <p>
+    So wird <code>handleButtonClick</code> mit dem Wert <code>42</code> aufgerufen, wenn der Button geklickt wird.
+  </p>
+
+  <h3>8. Zusammenfassung</h3>
+  <ul>
+    <li>Ja, du kannst Event-Handler als Props übergeben.</li>
+    <li>Definiere die Funktion im Parent und übergebe sie als Prop.</li>
+    <li>Im Child bindest du die Prop an das gewünschte Event-Attribut (z. B. <code>onClick</code>).</li>
+    <li>Vorteile: Wiederverwendbare Components, klarer Datenfluss, bessere Testbarkeit.</li>
+  </ul>
+</section>
+
+<!-- frage 13  -->
+
+<section>
+  <h2>13. Kann ich einen Event-Handler mit Zusatzinformation per Parameter als Prop übergeben?</h2>
+  <p>
+    Ja, genau das ist möglich und oft sogar notwendig, wenn du im Child-Component wissen willst, 
+    welche spezifische Information (z. B. eine ID oder ein Index) mit dem Event übergeben wird. 
+    Der Trick ist, im Parent-Component eine Funktion zu definieren, die einen Parameter erwartet, 
+    und diese als Prop weiterzugeben. Damit das Kind-Component weiß, welche Daten es beim Aufruf 
+    übergeben soll, nutzt du im JSX meistens eine Inline-Funktion (Arrow Function) oder bindest die 
+    Parameter vorab.
+  </p>
+
+  <h3>1. Warum überhaupt Parameter weitergeben?</h3>
+  <ul>
+    <li>Oft klickst du in einer Liste auf einen Button, der genau zu diesem Listeneintrag eine Aktion ausführen soll.</li>
+    <li>Dann braucht der Event-Handler im Parent die ID oder den Index des Eintrags, um zu wissen, was passiert.</li>
+  </ul>
+
+  <h3>2. Aufbau im Parent-Component</h3>
+  <p>1. <strong>Event-Handler definieren, der Parameter erwartet</strong><br/>
+    In der Parent-Komponente schreibst du eine Funktion, die einen Parameter annimmt:
+  </p>
+  <pre><code>
+function handleItemClick(itemId) {
+  console.log("Klick auf Item mit ID:", itemId);
+}
+  </code></pre>
+  <p>2. <strong>Inline-Funktion oder <code>bind</code> verwenden, um Parameter weiterzugeben</strong><br/>
+    Wenn du dein Button-Component renderst, übergibst du diesen Handler so, dass das Child-Component 
+    den <code>itemId</code> kennt:
+  </p>
+  <pre><code>
+{/* Variante A: Inline-Arrow-Funktion */}
+&lt;ItemButton onClick={() =&gt; handleItemClick(42)} /&gt;
+
+{/* Variante B: bind (ältere Schreibweise) */}
+&lt;ItemButton onClick={handleItemClick.bind(null, 42)} /&gt;
+  </code></pre>
+  <p>
+    Bei <strong>Variante A</strong> wird <code>() =&gt; handleItemClick(42)</code> als Prop übergeben. 
+    Wenn das Child klickt, ruft es diese Inline-Funktion auf, die dann <code>handleItemClick(42)</code> ausführt.<br/>
+    Bei <strong>Variante B</strong> bindest du <code>handleItemClick</code> direkt mit dem Argument <code>42</code>. 
+    Praktisch identisch, aber <code>bind</code> ist etwas länger und seltener im modernen React-Code.
+  </p>
+
+  <h3>3. Child-Component empfängt und nutzt den Prop</h3>
+  <pre><code>
+function ItemButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Item öffnen&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    In <code>ItemButton</code> empfängst du die Funktion per Destructuring und bindest sie ans native 
+    <code>button onClick</code>-Attribut. Wenn der Nutzer auf den Button klickt, ruft React <code>onClick</code> auf – 
+    in Wahrheit deine Inline-Funktion aus dem Parent, die <code>handleItemClick(42)</code> ausführt und den Parameter weitergibt.
+  </p>
+
+  <h3>4. Wichtig: Keine direkten Aufrufe im JSX des Parents</h3>
+  <pre><code>
+{/* FALSCH: ruft die Funktion sofort auf und übergibt Ergebnis (undefined) */}
+&lt;ItemButton onClick={handleItemClick(42)} /&gt;
+
+{/* RICHTIG: gib eine Funktion referenz oder Arrow-Funktion weiter */}
+&lt;ItemButton onClick={() =&gt; handleItemClick(42)} /&gt;
+  </code></pre>
+  <p>
+    Bei <code>{`{handleItemClick(42)}`}</code> wird die Funktion <strong>sofort</strong> ausgeführt, noch bevor der Button 
+    überhaupt gerendert wird. Du willst aber, dass <code>handleItemClick(42)</code> erst beim Klick geschieht. 
+    Deshalb die Arrow-Funktion.
+  </p>
+
+  <h3>5. Kompletter Beispiel-Fluss</h3>
+  <pre><code>
+// Parent-Component
+function App() {
+  function handleItemClick(itemId) {
+    alert("You clicked item " + itemId);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Meine Artikel&lt;/h1&gt;
+      {/** Angenommen, du hast eine Liste mit IDs 1, 2, 3 **/}
+      {[1, 2, 3].map(id =&gt; (
+        &lt;ItemButton key={id} onClick={() =&gt; handleItemClick(id)} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+// Child-Component
+function ItemButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Item öffnen&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    <strong>Erklärung:</strong><br/>
+    - <code>App</code> erzeugt drei Buttons. Jeder Button übergibt beim Rendern eine Inline-Funktion wie 
+      <code>() =&gt; handleItemClick(1)</code>, <code>() =&gt; handleItemClick(2)</code> usw.<br/>
+    - Wenn du auf „Item öffnen“ klickst, weiß die <code>ItemButton</code>-Komponente nicht direkt von welcher ID, 
+      sondern ruft nur <code>onClick</code>. Der Parent-Handler (<code>handleItemClick</code>) bekommt dann die richtige 
+      ID als Parameter und kann damit arbeiten.
+  </p>
+
+  <h3>6. Vorteile dieser Methode</h3>
+  <ul>
+    <li><strong>Flexibilität:</strong> Du kannst beliebige Parameter übergeben – ID, Index, Objekt, Text.</li>
+    <li><strong>Klarer Datenfluss:</strong> Parent bestimmt, was passiert, wenn das Child klickt, inklusive spezifischer Kontextdaten.</li>
+    <li><strong>Wiederverwendbarkeit:</strong> Die Child-Komponente bleibt generisch (<code>&lt;ItemButton /&gt;</code>), weiß nichts 
+      über IDs, nur dass sie eine Funktion ausführen soll, wenn geklickt.</li>
+  </ul>
+
+  <h3>7. Zusammenfassung</h3>
+  <ul>
+    <li>Definiere im Parent einen Handler, der Parameter akzeptiert.</li>
+    <li>Übergebe als Prop eine Inline-Arrow-Funktion (oder <code>bind</code>), die diesen Parameter an den Handler weiterreicht.</li>
+    <li>Im Child bindest du <code>onClick={onClick}</code> ans native Event-Attribut (<code>onClick</code> auf <code>button</code>).</li>
+    <li>Klick → Parent-Handler erhält den Parameter und kann damit arbeiten.</li>
+  </ul>
+</section>
+
+
+<!-- frage 14  -->
+
+<section>
+  <h2>14. Wie schreibe ich eine Schleife in JSX?</h2>
+  <p>
+    In React kannst du nicht direkt eine klassische <code>for</code>-Schleife im JSX schreiben, weil JSX nur Ausdrücke (<em>Expressions</em>) erlaubt und keine Anweisungsblöcke (<em>Statements</em>). Stattdessen nutzt du häufig <code>.map()</code> oder erzeugst das JSX-Array außerhalb des Returns.
+  </p>
+
+  <h3>1. Warum keine normale <code>for</code>-Schleife im JSX?</h3>
+  <p>
+    Ein einfacher <code>for</code>-Loop ist ein JavaScript-Statement, kein Ausdruck, und wird innerhalb von <code>{ }</code> in JSX nicht akzeptiert.
+  </p>
+  <pre><code>
+// FALSCH – das funktioniert nicht in JSX, weil "for" ein Statement ist
+return (
+  &lt;ul&gt;
+    for (let i = 0; i &lt; items.length; i++) {
+      &lt;li&gt;{items[i]}&lt;/li&gt;
+    }
+  &lt;/ul&gt;
+);
+  </code></pre>
+
+  <h3>2. Lösung: Mit <code>.map()</code> arbeiten</h3>
+  <p>
+    Der Standardansatz in React ist, ein Array von Daten mit <code>.map()</code> in ein Array von JSX-Elementen zu verwandeln und dieses Ergebnis in <code>{ }</code> einzufügen.
+  </p>
+  <pre><code>
+function NameList({ names }) {
+  return (
+    &lt;ul&gt;
+      {names.map((name, index) =&gt; (
+        &lt;li key={index}&gt;{name}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+  <p>
+    Hier erzeugt <code>names.map(...)</code> für jeden Eintrag im <code>names</code>-Array ein <code>&lt;li&gt;</code>-Element. Das Ergebnis ist ein Array von JSX-Elementen.
+  </p>
+
+  <h3>3. Beispiele für verschiedene Schleifen-Fälle</h3>
+  <h4>a) Einfache String-Liste</h4>
+  <pre><code>
+function StadtListe() {
+  const staedte = ["Berlin", "München", "Hamburg"];
+  return (
+    &lt;ul&gt;
+      {staedte.map((stadt, idx) =&gt; (
+        &lt;li key={idx}&gt;{stadt}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+
+  <h4>b) Liste von Objekten mit komplexeren Daten</h4>
+  <pre><code>
+function ProduktListe({ produkte }) {
+  // produkte ist z. B. [{ id: 1, name: "Apfel", preis: 1.2 }, …]
+  return (
+    &lt;div&gt;
+      {produkte.map((produkt) =&gt; (
+        &lt;div key={produkt.id} className="produkt"&gt;
+          &lt;h3&gt;{produkt.name}&lt;/h3&gt;
+          &lt;p&gt;Preis: €{produkt.preis.toFixed(2)}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h4>c) Bedingte Anzeige in der Schleife</h4>
+  <pre><code>
+function AngebotListe({ produkte }) {
+  return (
+    &lt;ul&gt;
+      {produkte
+        .filter((p) =&gt; p.angebot)    // zuerst filtern
+        .map((p) =&gt; (
+          &lt;li key={p.id}&gt;{p.name} – €{p.preis}&lt;/li&gt;
+        ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+  <p>
+    Hier filtert <code>.filter()</code> zuerst alle Produkte mit <code>p.angebot === true</code> heraus, und <code>.map()</code> rendert nur diese gefilterten Einträge.
+  </p>
+
+  <h3>4. Alternativen zu <code>.map()</code> (wenn nötig)</h3>
+  <p>
+    Falls du wirklich eine klassische Schleife bevorzugst, kannst du das Array von JSX-Elementen außerhalb des Returns zusammenbauen und dann im JSX einfach das fertige Array einfügen.
+  </p>
+  <pre><code>
+function KomplexeListe({ daten }) {
+  const listItems = [];
+  for (let i = 0; i &lt; daten.length; i++) {
+    if (daten[i].sichtbar) {
+      listItems.push(
+        &lt;li key={daten[i].id}&gt;{daten[i].text}&lt;/li&gt;
+      );
+    }
+  }
+  return &lt;ul&gt;{listItems}&lt;/ul&gt;;
+}
+  </code></pre>
+  <p>
+    Hier baust du im Vorfeld (außerhalb des JSX-Returns) ein Array <code>listItems</code>, das du dann in <code>{listItems}</code> einfügst.
+  </p>
+
+  <h3>5. Zusammenfassung</h3>
+  <ul>
+    <li>JSX erlaubt keine <code>for</code>-Schleifen direkt, weil nur Ausdrücke in <code>{ }</code> stehen dürfen.</li>
+    <li>Der empfohlene Weg ist meist <code>.map()</code> innerhalb von <code>{ }</code>, um ein Array von JSX-Elementen zu erzeugen.</li>
+    <li>Jedes gerenderte Element muss eine eindeutige <code>key</code>-Prop haben (z. B. ein ID-Wert oder der Index).</li>
+    <li>Du kannst <code>.filter()</code>, <code>.sort()</code> oder andere Array-Methoden vor oder nach <code>.map()</code> verwenden, um nur bestimmte Einträge zu rendern.</li>
+    <li>Wenn du wirklich eine klassische Schleife brauchst, baue das JSX-Array in einer Variablen auf und gib diese Variable im Return mit <code>{ }</code> zurück.</li>
+  </ul>
+</section>
+
+<!-- frage 15 -->
+<section>
+  <h2>15. Wie schreibe ich eine if-Bedingung in JSX?</h2>
+  <p>
+    Im herkömmlichen JavaScript würdest du eine <code>if</code>-Anweisung verwenden, um Bedingungen zu prüfen. In JSX funktioniert das aber etwas anders, weil JSX in <code>{ }</code> nur Ausdrücke (<em>Expressions</em>) erlaubt und keine Anweisungsblöcke (<em>Statements</em>). Stattdessen nutzt du meist den <strong>ternären Operator</strong> oder das <strong>logische UND (<code>&&</code>)</strong>, um bedingtes Rendern umzusetzen.
+  </p>
+
+  <h3>1. Warum kein normales <code>if</code> direkt in JSX?</h3>
+  <p>
+    Eine normale <code>if (…){ … }</code>-Anweisung ist ein Statement und wird innerhalb von <code>{ }</code> in JSX nicht akzeptiert. JSX erwartet in <code>{ }</code> nur Ausdrücke.
+  </p>
+  <pre><code>
+// FALSCH – funktioniert nicht in JSX, weil „if“ ein Statement ist
+return (
+  &lt;div&gt;
+    { if (isLoggedIn) {
+        &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;;
+      } else {
+        &lt;h1&gt;Bitte einloggen&lt;/h1&gt;;
+      }
+    }
+  &lt;/div&gt;
+);
+  </code></pre>
+
+  <h3>2. Lösung A: Ternärer Operator (<code>? :</code>)</h3>
+  <p>
+    Mit dem ternären Operator kannst du eine <code>if / else</code>-Logik in einem einzigen Ausdruck abbilden:
+  </p>
+  <pre><code>
+function Greeting({ isLoggedIn }) {
+  return (
+    &lt;div&gt;
+      {isLoggedIn
+        ? &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;
+        : &lt;h1&gt;Bitte einloggen&lt;/h1&gt;
+      }
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+// &lt;Greeting isLoggedIn={true} /&gt;  // zeigt "Willkommen zurück!"
+// &lt;Greeting isLoggedIn={false} /&gt; // zeigt "Bitte einloggen"
+  </code></pre>
+
+  <h3>3. Lösung B: Logisches UND (<code>&&</code>)</h3>
+  <p>
+    Wenn du nur etwas rendern willst, falls die Bedingung wahr ist, und ansonsten nichts, verwendest du das logische UND:
+  </p>
+  <pre><code>
+function Warning({ showWarning }) {
+  return (
+    &lt;div&gt;
+      {showWarning && &lt;p style={{ color: 'red' }}&gt;Achtung: Etwas stimmt nicht!&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+// &lt;Warning showWarning={true} /&gt;  // zeigt Warnung an
+// &lt;Warning showWarning={false} /&gt; // zeigt nichts
+  </code></pre>
+
+  <h3>4. Lösung C: Bedingtes Rendern außerhalb von JSX</h3>
+  <p>
+    Wenn deine Logik zu komplex ist oder du mehrere Abfragen kombinieren möchtest, kannst du die Bedingung <em>außerhalb</em> des eigentlichen <code>return</code> auswerten und das Ergebnis in einer Variablen speichern:
+  </p>
+  <pre><code>
+function Content({ isLoggedIn }) {
+  let message;
+
+  if (isLoggedIn) {
+    message = &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;;
+  } else {
+    message = &lt;h1&gt;Bitte einloggen&lt;/h1&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      {message}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>5. Wann welche Variante nutzen?</h3>
+  <ul>
+    <li><strong>Ternärer Operator (<code>? :</code>)</strong>: Wenn du zwischen zwei JSX-Teilen (if/else) auswählen willst.</li>
+    <li><strong>Logisches UND (<code>&&</code>)</strong>: Wenn du nur „rendern, falls wahr“ benötigst und sonst nichts.</li>
+    <li><strong>Bedingung außerhalb JSX</strong>: Wenn du sehr komplexe Logik oder mehrere Bedingungen hast.</li>
+  </ul>
+
+  <h3>6. Zusammenfassung</h3>
+  <ul>
+    <li>JSX erlaubt keine klassischen <code>if</code>-Statements direkt innerhalb von <code>{ }</code>.</li>
+    <li>Verwende den <strong>ternären Operator</strong> für <code>if / else</code> in einem Ausdruck.</li>
+    <li>Nutze <strong>logisches UND (<code>&&</code>)</strong> für „wenn wahr, dann rendern, sonst nichts“.</li>
+    <li>Bei komplexeren Fällen kannst du die Bedingung <em>außerhalb</em> des JSX-Returns auswerten und das Ergebnis in einer Variablen speichern.</li>
+  </ul>
+</section>
+
 
 <h2> </h2>
 
