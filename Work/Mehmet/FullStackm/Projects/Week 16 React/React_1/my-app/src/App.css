@@ -1,0 +1,20 @@
+/* src/App.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center; /* wirkt auf h1 und andere block elemente */
+}
+
+
+.buttonr {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center; /* Button Text zentrieren */
+  width: 150px;       /* Optional: feste Breite für bessere Optik */
+}

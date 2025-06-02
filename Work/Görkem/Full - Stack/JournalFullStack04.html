@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="../Full - Stack/main02.css">
+</head>
+<body>
+    <h1>Full - Stack</h1>
+    <h2>Montag, 02. Juni 2025</h2>
+    <h3>React</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Woher kommt der Name "react"?</span>
+        <p>React ist eine <b>JavaScript-Bibliothek für Benutzeroberflächen,</b> die <b>reaktiv</b> arbeitet - das heißt:</p>
+        <ul>
+            <li>Sie <b>„reagiert“ automatisch auf Änderungen von Daten oder Zuständen</b> in einer Anwendung.</li>
+            
+            <li>Anstatt dass der Entwickler manuell den DOM aktualisieren muss, übernimmt React das.</li>
+
+            <li>Sobald sich <b>State oder Props</b> ändern, <b>reagiert React,</b>berechnet den neuen virtuellen DOM und <b>rendert nur das, was nötig ist,</b> effizient und automatisch.</li>
+        </ul><br>
+        <p><strong>🟡 Beispiel:</strong> Wenn du ein Zähler mit <code>useState</code> baust</p>
+        <div class="code-box">
+            <code>
+                import &#123; useState &#125; from "react";<br><br>
+                function Counter() &#123;<br>
+                &nbsp;&nbsp;const [count, setCount] = useState(0);<br><br>
+                &nbsp;&nbsp;return (<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Du hast &#123;count&#125; Mal geklickt<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+                &nbsp;&nbsp;);<br>
+                &#125;
+            </code>
+        </div>
+        <p>➡️ Jedes Mal, wenn du klickst, <b>ändert sich der Zustand,</b>  und React reagiert, indem es die Komponente neu rendert.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein JSX?</span>
+        <p><b>JSX</b> steht für <b>JavaScript XML</b></p>
+        <p>Es ist eine <b>Erweiterungssyntax für JavaScript,</b> die von React verwendet wird, um <b>HTML-ähnlichen Code direkt in JavaScript</b> zu schreiben.</p>
+        
+        <p><strong>🔹 Was macht JSX besonders?</strong></p>
+        <p>Normalerweise würde man UI mit React.createElement() schreiben - aber das ist unübersichtlich. JSX macht das einfacher und lesbarer.</p><br>
+
+        <p><strong>🟡 Beispiel:</strong> Ohne JSX</p>
+        <div class="code-box">
+            <code>
+                const element = React.createElement('h1', null, 'Hallo Welt');
+            </code>
+        </div><br>
+
+        <p><strong>Mit JSX:</strong></p>
+        <div class="code-box">
+            <code>
+                const element = &lt;h1&gt;Hallo Welt&lt;/h1&gt;;
+            </code>
+        </div>
+        <p>➡️ JSX wird <b>unter der Haube</b> in React.createElement() umgewandelt.</p><br>
+
+        <p><strong>🧠 Wichtig:</strong></p>
+        <p>JSX <b>ist kein HTML - </b> es sieht nur so aus. Es ist JavaScript mit XML - Syntax:</p>
+        <ul>
+            <li>class <b>wird zu</b> className (weil class ein reserviertes Wort in JS ist)</li>
+
+            <li><b>JS - Ausdrücke in {}:</b></li>
+        </ul><br>
+        <div class="code-box">
+            <code>
+                const name = "Anna";
+                const element =  &lt;h1&gt;Hallo {name}&lt;/h1&gt;;
+            </code>
+        </div>
+
+        <p><strong>✅ Vorteile von JSX:</strong></p>
+        <ul>
+            <li>Lesbar & übersichtlicher Code</li>
+            <li>HTML - ähnliche Syntax für UI</li>
+            <li>Direkt mit JavaScript kombinierbar</li>
+            <li>Erleichtert die Arbeit mit Komponenten</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was ist ein Component?</span>
+        <p>Eine Komponente ist eine <b> Funktion (oder Klasse),</b> die <b>JSX zurückgibt.</b> Sie beschreibt, <b>wie ein bestimmter Teil der Oberfläche aussehen soll und wie er sich verhalten soll.</b></p>
+        <p><strong>🧠 Wichtigsten Merkmale:</strong></p>
+        <ul>
+            <li>Beginnt mit <b>Großbuchstaben</b> (myComponent)</li>
+            <li>Gibt <b>JSX</b> zurück</li>
+            <li>Kann <b>Props</b> (Daten) empfangen</li>
+            <li>Ist <b>wiederverwendbar</b></li>
+        </ul><br>
+
+        <p><strong>🟡 Einfaches Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                function Welcome(){
+                    return &lt;h1&gt;Wilkommen bei React!&lt;/h1&gt;;
+                }
+            </code>
+        </div>
+        <p>Verwendung in der App:</p>
+
+        <div class="code-box">
+            <code>
+                function App (){
+                    return (
+                        &lt;div&gt;
+                        &lt;Welcome /&gt;
+                        &lt;/div&gt;
+                    );
+                }
+            </code>
+        </div>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie erstelle ich eine einfache Component ohne Props?</span>
+        <p>Eine <b>einfache Komponente ohne Props</b> ist eine Funktion, die <b>JSX zurückgibt</b> und keine Eingabedaten (Props) benötigt.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function HelloWorld() &#123;<br>
+            &nbsp;&nbsp;return &lt;h2&gt;Hallo Welt!&lt;/h2&gt;;<br>
+            &#125;
+            </code>
+        </div>
+        <p>Du kannst diese Komponente wie ein HTML-Tag verwenden:</p>
+        <div class="code-box">
+            <code>
+            function App() &#123;<br>
+            &nbsp;&nbsp;return (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HelloWorld /&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+            &nbsp;&nbsp;);<br>
+            &#125;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>Keine Props:</b> Die Komponente bekommt keine Eingabedaten.</li>
+            <li><b>Wiederverwendbar:</b> Du kannst sie überall in deiner App einfügen.</li>
+            <li><b>Funktioniert wie ein Baustein:</b> Ideal für statische Inhalte oder UI-Elemente, die keine Daten brauchen.</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Komponenten ohne Props sind perfekt für einfache, wiederkehrende UI-Elemente.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie füge ich className zu meinem JSX elementen?</span>
+        <p>In JSX verwendest du <b>className</b> anstelle von <b>class</b>, weil <code>class</code> ein reserviertes Wort in JavaScript ist.</p>
+        <p>Mit <b>className</b> kannst du CSS-Klassen zu deinen JSX-Elementen hinzufügen, genau wie im normalen HTML.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function InfoBox() &#123;<br>
+            &nbsp;&nbsp;return &lt;div className="info"&gt;Das ist eine Info-Box&lt;/div&gt;;<br>
+            &#125;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>className</b> ist das Attribut für CSS-Klassen in JSX.</li>
+            <li>Du kannst mehrere Klassen mit Leerzeichen trennen: <code>className="box highlight"</code></li>
+            <li>Für dynamische Klassen kannst du JavaScript-Ausdrücke verwenden: <code>className=&#123;isActive ? "active" : "inactive"&#125;</code></li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Immer <b>className</b> statt <b>class</b> in JSX verwenden!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind Props?</span>
+        <p><b>Props</b> steht für <b>Properties</b> und sind die <b>Eingabedaten</b> für React-Komponenten.</p>
+        <ul>
+            <li>Props werden als <b>Objekt</b> an Komponenten übergeben.</li>
+            <li>Sie machen Komponenten <b>dynamisch</b> und <b>wiederverwendbar</b>.</li>
+            <li>Props sind <b>nur lesbar</b> (readonly) - eine Komponente kann ihre Props nicht verändern.</li>
+        </ul>
+        <p><strong>🟡 Einfaches Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Welcome(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;h2&gt;Hallo, &#123;props.name&#125;!&lt;/h2&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            &lt;Welcome name="Anna" /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>props.name</b> enthält den Wert <code>"Anna"</code>.</li>
+            <li>Du kannst beliebig viele Props übergeben: <code>&lt;Welcome name="Anna" age="25" /&gt;</code></li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Mit Props kannst du Komponenten flexibel gestalten und Daten von außen übergeben.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie erstelle ich eine Component mit Props?</span>
+        <p>Eine <b>Komponente mit Props</b> ist eine Funktion, die <b>JSX zurückgibt</b> und <b>Eingabedaten (Props)</b> von außen erhält.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Welcome(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;h2&gt;Hallo, &#123;props.name&#125;!&lt;/h2&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            &lt;Welcome name="Anna" /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>Props werden als Argument übergeben:</b> <code>props</code> ist ein Objekt mit allen übergebenen Eigenschaften.</li>
+            <li><b>props.name</b> enthält den Wert, der beim Aufruf gesetzt wurde (z.B. "Anna").</li>
+            <li>Du kannst mehrere Props übergeben: <code>&lt;Welcome name="Anna" age="25" /&gt;</code></li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Mit Props kannst du Komponenten flexibel gestalten und Daten von außen übergeben.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie verwende ich Props in meinem JSX-Code?</span>
+        <p>Du kannst <b>Props direkt in deinem JSX</b> verwenden, indem du sie mit <code>&#123;props.propName&#125;</code> einfügst.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Welcome(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;h2&gt;Hallo, &#123;props.name&#125;!&lt;/h2&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            &lt;Welcome name="Anna" /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>props.name</b> wird im JSX als <code>&#123;props.name&#125;</code> eingefügt.</li>
+            <li>Du kannst beliebige Props im JSX anzeigen, z.B. <code>&#123;props.age&#125;</code></li>
+            <li>Props machen deine Komponenten dynamisch und flexibel.</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Immer geschweifte Klammern <code>&#123; &#125;</code> für JavaScript-Ausdrücke in JSX verwenden!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Kann ich einen Text / Zahl als Props übergeben?</span>
+        <p><b>Ja!</b> Du kannst sowohl <b>Text (Strings)</b> als auch <b>Zahlen</b> als Props an eine Komponente übergeben.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Info(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;p&gt;Name: &#123;props.name&#125;, Alter: &#123;props.age&#125;&lt;/p&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            &lt;Info name="Max" age=&#123;30&#125; /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>Text (String):</b> <code>name="Max"</code></li>
+            <li><b>Zahl (Number):</b> <code>age=&#123;30&#125;</code> (ohne Anführungszeichen!)</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Strings in Anführungszeichen, Zahlen in geschweiften Klammern übergeben.</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Kann ich ein oder mehrere className als Props übergeben?</span>
+        <p><b>Ja!</b> Du kannst <b>className</b> als Prop an eine Komponente übergeben und damit das Styling flexibel steuern.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function InfoBox(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;div className=&#123;props.className&#125;&gt;Info-Text&lt;/div&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            &lt;InfoBox className="info highlight" /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>Einzelne Klasse:</b> <code>className="info"</code></li>
+            <li><b>Mehrere Klassen:</b> <code>className="info highlight"</code></li>
+            <li>Du kannst auch dynamisch Klassen zusammenbauen, z.B. <code>className=&#123;isActive ? "active" : "inactive"&#125;</code></li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> <b>className</b> als Prop macht Komponenten vielseitig und wiederverwendbar!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche Daten kann ich als Props übergeben?</span>
+        <p>Du kannst <b>verschiedene Datentypen</b> als Props an eine Komponente übergeben:</p>
+        <ul>
+            <li><b>Strings:</b> <code>name="Anna"</code></li>
+            <li><b>Zahlen:</b> <code>age=&#123;25&#125;</code></li>
+            <li><b>Booleans:</b> <code>isActive=&#123;true&#125;</code></li>
+            <li><b>Arrays:</b> <code>items=&#123;[1,2,3]&#125;</code></li>
+            <li><b>Objekte:</b> <code>user=&#123;&#123;name: "Anna", age: 25&#125;&#125;</code></li>
+            <li><b>Funktionen:</b> <code>onClick=&#123;handleClick&#125;</code></li>
+            <li><b>JSX/Komponenten:</b> <code>children</code> oder eigene Komponenten als Prop</li>
+        </ul>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            &lt;Profile<br>
+            &nbsp;&nbsp;name="Anna"<br>
+            &nbsp;&nbsp;age=&#123;25&#125;<br>
+            &nbsp;&nbsp;isActive=&#123;true&#125;<br>
+            &nbsp;&nbsp;hobbies=&#123;["Lesen", "Sport"]&#125;<br>
+            &nbsp;&nbsp;user=&#123;&#123;city: "Wien"&#125;&#125;<br>
+            &nbsp;&nbsp;onClick=&#123;handleClick&#125;<br>
+            /&gt;
+            </code>
+        </div>
+        <p><strong>✅ Wichtig:</strong> <b>Strings</b> in Anführungszeichen, <b>alles andere</b> in geschweiften Klammern übergeben!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Kann ich ein EventHandler als Props übergeben?</span>
+        <p><b>Ja!</b> Du kannst <b>EventHandler-Funktionen</b> (z.B. für Klicks) als Props an Komponenten übergeben.</p>
+        <p>So kann die Eltern-Komponente steuern, was beim Event passieren soll.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Button(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;button onClick=&#123;props.onClick&#125;&gt;Klick mich!&lt;/button&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            function handleClick() &#123;<br>
+            &nbsp;&nbsp;alert("Button wurde geklickt!");<br>
+            &#125;<br>
+            &lt;Button onClick=&#123;handleClick&#125; /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li><b>Die Funktion</b> <code>handleClick</code> wird als Prop <code>onClick</code> übergeben.</li>
+            <li><b>Die Komponente</b> ruft <code>props.onClick</code> beim Klick auf.</li>
+            <li>So bleibt die Komponente flexibel und wiederverwendbar.</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> EventHandler immer als Funktion (nicht als Funktionsaufruf) übergeben: <code>onClick=&#123;handleClick&#125;</code></p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Kann ich ein EventHandler (die Zusatzinformation per parameter bekommen wird) als Props übergeben?</span>
+        <p><b>Ja!</b> Du kannst einen EventHandler als Prop übergeben und dabei auch Parameter an die Funktion weitergeben.</p>
+        <p>Das geht, indem du eine anonyme Funktion (Arrow Function) verwendest, die beim Event ausgeführt wird und die gewünschten Parameter übergibt.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            function Button(props) &#123;<br>
+            &nbsp;&nbsp;return &lt;button onClick=&#123;() =&gt; props.onClick("Hallo", 42)&#125;&gt;Klick mich!&lt;/button&gt;;<br>
+            &#125;<br><br>
+            // Verwendung:<br>
+            function handleClick(message, number) &#123;<br>
+            &nbsp;&nbsp;alert(message + " " + number);<br>
+            &#125;<br>
+            &lt;Button onClick=&#123;handleClick&#125; /&gt;
+            </code>
+        </div>
+        <ul><br>
+            <li>Mit <code>() =&gt; props.onClick("Hallo", 42)</code> übergibst du beim Klick die gewünschten Werte.</li>
+            <li>Der EventHandler <code>handleClick</code> bekommt die Parameter.</li>
+            <li>So kannst du Zusatzinformationen flexibel an die Funktion übergeben.</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Für Parameterübergabe immer eine anonyme Funktion verwenden, sonst wird die Funktion sofort ausgeführt!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie schreibe ich eine Schleife in JSX?</span>
+        <p>In JSX kannst du keine klassische <code>for</code>-Schleife direkt schreiben. Stattdessen verwendest du meist die <b>Array-Methode <code>map()</code></b>, um Listen von Elementen zu erzeugen.</p>
+        <p><strong>🟡 Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+            const namen = ["Anna", "Max", "Lisa"];<br>
+            function NamensListe() &#123;<br>
+            &nbsp;&nbsp;return (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;namen.map((name, index) =&gt; (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li key=&#123;index&#125;&gt;&#123;name&#125;&lt;/li&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))&#125;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+            &nbsp;&nbsp;);<br>
+            &#125;
+            </code>
+        </div><br>
+        <ul>
+            <li><b>map()</b> erzeugt für jedes Element im Array ein neues JSX-Element.</li>
+            <li>Jedes Element braucht ein eindeutiges <code>key</code>-Attribut (z.B. <code>index</code>).</li>
+            <li>Du kannst auch komplexere Strukturen mit <code>map()</code> bauen.</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Immer <code>map()</code> für Listen in JSX verwenden, keine klassische <code>for</code>-Schleife!</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie schreibe ich eine if-Bedingung in JSX?</span>
+        <p>In JSX kannst du keine klassische <code>if</code>-Anweisung direkt verwenden. Stattdessen nutzt du <b>ternäre Operatoren</b> oder <b>logisches UND (<code>&amp;&amp;</code>)</b>, um Bedingungen einzubauen.</p>
+        <p><strong>🟡 Beispiel mit ternärem Operator:</strong></p>
+        <div class="code-box">
+            <code>
+            function Begruessung(props) &#123;<br>
+            &nbsp;&nbsp;return (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.istAngemeldet ? "Willkommen zurück!" : "Bitte einloggen."&#125;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+            &nbsp;&nbsp;);<br>
+            &#125;
+            </code>
+        </div>
+        <p><strong>🟡 Beispiel mit logischem UND:</strong></p>
+        <div class="code-box">
+            <code>
+            function Hinweis(props) &#123;<br>
+            &nbsp;&nbsp;return (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.fehler &amp;&amp; &lt;span&gt;Es ist ein Fehler aufgetreten!&lt;/span&gt;&#125;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+            &nbsp;&nbsp;);<br>
+            &#125;
+            </code>
+        </div>
+        <ul>
+            <li><b>Ternärer Operator:</b> <code>Bedingung ? Ausdruck1 : Ausdruck2</code></li>
+            <li><b>Logisches UND:</b> <code>Bedingung &amp;&amp; Ausdruck</code> (wird nur angezeigt, wenn die Bedingung wahr ist)</li>
+        </ul>
+        <p><strong>✅ Wichtig:</strong> Für komplexere Bedingungen kannst du auch vorher im Code <code>if</code> verwenden und das Ergebnis in einer Variable speichern.</p>
+    </li>
+</ul>
+</body>
+</html>
