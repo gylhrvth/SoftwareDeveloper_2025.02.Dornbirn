@@ -7,12 +7,21 @@ const mongoose = require('mongoose');
  */
 
 exports.homepage = async (req, res) => {
-    const locals = {
-        title: 'Node.js',
-        description: 'Free NodeJs User Managment System'
+    try {
+        const data = await Customer.find({}).limit(22);
+        const messages = req.flash('info');
+        const locals = {
+            title: 'Node.js',
+            description: 'Free NodeJs User Managment System',
+            data,
+            messages
+        };
+        res.render('index', locals);
+    } catch (err) {
+        console.log('ERROR', err);
+        res.status(500);
     }
-    res.render('index', locals);
-}
+};
 
 /**
  * GET /customer/add
@@ -43,10 +52,22 @@ exports.postCustomer = async (req, res) => {
 
     try {
         await Customer.create(newCustomer);
+        req.flash('info', 'Neuer Kunde wurde erfolgreich angelegt!');
         res.redirect('/');
     
     } catch (error) {
         console.error(error);
         res.status(500).send('Fehler beim Anlegen des Kunden.');
+    }
+};
+
+exports.deleteCustomer = async (req, res) => {
+    try {
+        await Customer.findByIdAndDelete(req.params.id);
+        req.flash('info', 'Kunde wurde gelöscht!');
+        res.redirect('/');
+    } catch (err) {
+        console.log('ERROR', err);
+        res.status(500).send('Fehler beim Löschen des Kunden.');
     }
 };

@@ -42,12 +42,20 @@ app.use(flash());
 // Routes
 
 // Startseite
-app.get('/', (req, res) => {
-  const locals = {
-    title: 'Node.js',
-    description: 'Fundiertes User Management System mit Node.js und EJS'
-  };
-  res.render('index', locals);
+app.get('/', async (req, res) => {
+  try {
+    const data = await require('./models/Customer').find({}).limit(22); // Passe den Pfad ggf. an!
+    const locals = {
+      title: 'Node.js',
+      description: 'Fundiertes User Management System mit Node.js und EJS',
+      data,
+      messages: req.flash('info')
+    };
+    res.render('index', locals);
+  } catch (err) {
+    console.log('ERROR', err);
+    res.status(500).send('Fehler beim Laden der Startseite.');
+  }
 });
 
 // About-Seite

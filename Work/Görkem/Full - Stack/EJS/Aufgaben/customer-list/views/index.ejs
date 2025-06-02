@@ -6,3 +6,47 @@
     </div>
   </div>
 </div>
+<div>
+<!-- Flash-Nachrichten -->
+<% (messages || []).forEach(element => { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= element %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% }) %>
+
+<!-- Kundentabelle -->
+<table class="table table-striped mt-4">
+  <thead>
+    <tr>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Telefon</th>
+      <th>Email</th>
+      <th>Aktionen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (data && data.length > 0) { %>
+      <% data.forEach(customer => { %>
+        <tr>
+          <td><%= customer.firstName %></td>
+          <td><%= customer.lastName %></td>
+          <td><%= customer.tel %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <!-- Beispiel-Buttons für spätere Aktionen -->
+            <a href="#" class="btn btn-sm btn-primary">Bearbeiten</a>
+            <form action="/customer/delete/<%= customer._id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Wirklich löschen?')">Löschen</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="5" class="text-center">Keine Kunden gefunden.</td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
