@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me - Web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>About Me</h1>
+        <p>Hello! I'm a passionate web developer with experience in building dynamic and scalable web applications.</p>
+        <div class="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <% skills.forEach(skill => { -%>
+                    <%- include('showASkill', { skill }); -%>
+                <% }) -%>
+            </ul>
+        </div>
+        <p>I enjoy solving complex problems and continuously learning new technologies to deliver high-quality software solutions.</p>
+        <p><%= 'a'.repeat(count).toUpperCase() %></p>
+    </div>
+</body>
+</html>

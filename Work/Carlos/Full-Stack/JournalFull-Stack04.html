@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>Full-Stack Journal 04</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Full-Stack Journal 04</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day63">FR 02/06/25</a>: React</h3>
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="day63">Freitag 02. Juni 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (React)</h3>
+
+    <h3>React: Project erstellen -> Anleitung</h3>
+
+    <ul>
+        <li><h4 class="textColor02">Step 01:</h4></li>
+            <pre><code>npm create vite@latest</code></pre>
+            <p><em>Wähle den Projektnamen -> React -> Typescript</em></p>
+        <li><h4 class="textColor02">Step 02:</h4></li>
+            <pre><code>cd projectName</code></pre>
+            <pre><code>npm install</code></pre>
+        <li><h4 class="textColor02">Step 03:</h4></li>
+            <pre><code>npm run dev</code></pre>
+            <p><em>Öffne den Browser und gehe zu <a href="http://localhost:5173">http://localhost:5173</em></a></p>
+        <li><h4 class="textColor02">Step 04:</h4></li>
+            <p>src/App.tsx verwenden, um die Struktur aufzubauen.</p>
+    </ul>
+
+    <h3>React (Recherche)</h3>
+
+    <ul>
+        <li><h4 class="textColor02">Woher kommt der Name "React"?</h4></li>
+            <p>Der Name "React" stammt von der Fähigkeit der Bibliothek, auf Änderungen im Zustand der Anwendung zu reagieren und die Benutzeroberfläche entsprechend zu aktualisieren.</p>
+        <li><h4 class="textColor02">Was ist JSX?</h4></li>
+            <p>JSX (JavaScript XML) ist eine Syntaxerweiterung für JavaScript, die es ermöglicht, HTML-ähnliche Syntax in JavaScript-Dateien zu verwenden. Es wird häufig in React verwendet, um Komponenten zu definieren.</p>
+        <li><h4 class="textColor02">Was ist ein Component?</h4></li>
+            <p>Ein Component (Komponente) in React ist eine wiederverwendbare, isolierte Einheit, die eine bestimmte Funktionalität oder ein bestimmtes UI-Element kapselt. Komponenten können in andere Komponenten eingebettet werden und ermöglichen eine modulare Entwicklung.</p>
+        <li><h4 class="textColor02">Was sind Props?</h4></li>
+            <p>Props (Eigenschaften) sind Parameter, die an Komponenten übergeben werden, um deren Verhalten oder Darstellung zu beeinflussen. Sie ermöglichen es, Daten von einer übergeordneten Komponente an eine untergeordnete Komponente weiterzugeben.</p>
+            <p>Beispiel:</p>
+            <pre><code>&lt;MyComponent title="Hello World" /&gt;</code></pre>
+            <p>In diesem Beispiel wird die Prop "title" mit dem Wert "Hello World" an die Komponente "MyComponent" übergeben.</p>
+        <li><h4 class="textColor02">Wie verwendet man Props in einem JSX code?</h4></li>
+            <p>Props werden in JSX verwendet, indem sie als Attribute an Komponenten übergeben werden. Hier ist ein Beispiel:</p>
+            <pre><code>const MyComponent = (props) => {
+    return &lt;h1&gt;{props.title}&lt;/h1&gt;;
+};</code></pre>
+            <p>In diesem Beispiel nimmt die Arrow Function "MyComponent" die Props als Argument entgegen und gibt ein <code>&lt;h1&gt;</code>-Element mit dem Titel zurück, der über die Prop "title" übergeben wurde.</p>
+            <p>props ist ein Objekt, das alle Eigenschaften enthält, die der Komponente beim Aufruf übergeben werden.</p>
+            <p>Beispiel:</p>
+            <pre><code>&lt;MyComponent title="Hello World" /&gt;</code></pre>
+            <p>In diesem Beispiel wird die Prop "title" mit dem Wert "Hello World" an die Komponente "MyComponent" übergeben.</p>
+            <p>Ergebnis im Browser:</p>
+            <pre><code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></pre>
+
+            <p>Fazit:</p>
+            <ul>
+                <li>Props sind Parameter, die an Komponenten übergeben werden, um deren Verhalten oder Darstellung zu beeinflussen.</li>
+                <li>{props.title} liest den Wert aus der Prop "title" und gibt ihn in der Komponente aus.</li>
+                <li>JSX macht es möglich, HTML und JavaScript in einer Datei zu kombinieren, was die Entwicklung von Benutzeroberflächen erleichtert.</li>
+            </ul>
+        <li><h4 class="textColor02">Was ist State?</h4></li>
+            <p>State (Zustand) ist ein internes Datenobjekt einer Komponente, das den aktuellen Zustand der Komponente speichert. Änderungen am State führen zu einer Aktualisierung der Benutzeroberfläche.</p>
+            <p>Beispiel:</p>
+            <pre><code>const [count, setCount] = useState(0);</code></pre>
+            <p>Hier wird der Zustand "count" initial auf 0 gesetzt und kann mit der Funktion "setCount" aktualisiert werden.</p>
+            <p>Auf die Weise kann der Zustand einer Komponente dynamisch geändert werden, was zu einer Aktualisierung der Benutzeroberfläche führt.</p>
+        <li><h4 class="textColor02">Wie erstellt man ein Component ohne Props?</h4></li>
+            <p>Ein Component ohne Props kann einfach als Funktion oder Klasse definiert werden, die JSX zurückgibt. Hier ist ein Beispiel für eine funktionale Komponente:</p>
+            <pre><code>const MyComponent = () => {
+    return &lt;div&gt;Hello World&lt;/div&gt;;
+};</code></pre>
+            <p>In diesem Beispiel gibt die Komponente "MyComponent" einfach einen <code>&lt;div&gt;</code>-Block mit dem Text "Hello World" zurück. Es werden keine Props verwendet.</p>
+        <li><h4 class="textColor02">Wie fügt man className zu den JSX elementen?</h4></li>
+            <p>In JSX wird das Attribut "className" verwendet, um CSS-Klassen zu einem Element hinzuzufügen. Hier ist ein Beispiel:</p>
+            <pre><code>&lt;div className="my-class"&gt;Hello World&lt;/div&gt;</code></pre>
+            <p>In diesem Beispiel wird die Klasse "my-class" dem <code>&lt;div&gt;</code>-Element hinzugefügt.</p>
+        <li><h4 class="textColor02">Kann man einen Text / Zahl als Props übergeben?</h4></li>
+            <p>Ja, man kann sowohl Text (Strings) als auch Zahlen als Props an eine Komponente übergeben.</p>
+            <p>Beispiel für Text:</p>
+            <pre><code>&lt;MyComponent message="Hallo Welt" /&gt;</code></pre>
+            <p>Beispiel für Zahl:</p>
+            <pre><code>&lt;MyComponent count={5} /&gt;</code></pre>
+            <p>In der Komponente kann man dann auf diese Props zugreifen:</p>
+            <pre><code>const MyComponent = (props) =&gt; {
+    return (
+        &lt;div&gt;
+            &lt;p&gt;{props.message}&lt;/p&gt;
+            &lt;p&gt;{props.count}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+};</code></pre>
+            <p>So werden Text und Zahl als Props verwendet und angezeigt.</p>
+            <p>Ergebnis im Browser:</p>
+            <pre><code>&lt;div&gt;
+    &lt;p&gt;Hallo Welt&lt;/p&gt;
+    &lt;p&gt;5&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <p>Fazit:</p>
+            <ul>
+                <li>Props können Text und Zahlen sein.</li>
+                <li>Props werden in der Komponente über das "props"-Objekt abgerufen.</li>
+                <li>JSX ermöglicht es, HTML-ähnliche Syntax in JavaScript zu verwenden, um Komponenten zu erstellen.</li>
+            </ul>
+        <li><h4 class="textColor02">Kann man eine oder mehrere className als Props übergeben?</h4></li>
+            <p>Ja, man kann eine oder mehrere <code>className</code>-Werte als Props an eine Komponente übergeben.</p>
+            <p>Beispiel:</p>
+            <p>In der Komponente kann man die Prop wie folgt verwenden:</p>
+            <pre><code>const MyComponent = (props) =&gt; {
+    return &lt;div className={props.className}&gt;Hello World&lt;/div&gt;;
+};</code></pre>
+<pre><code>&lt;MyComponent className="my-class another-class" /&gt;</code></pre>
+            <p>So kann man beliebige CSS-Klassen als String (mit Leerzeichen getrennt) übergeben und anwenden.</p>
+            <p>Ergebnis im Browser:</p>
+            <pre><code>&lt;div class="my-class another-class"&gt;Hello World&lt;/div&gt;</code></pre>
+            <p>In diesem Beispiel wird die Klasse "my-class another-class" dem <code>&lt;div&gt;</code>-Element hinzugefügt.</p>
+            <p>Die Komponente verwendet dann <code>className={props.className}</code> im JSX, um die übergebenen Klassen anzuwenden.</p>
+            <p>Fazit:</p>
+            <ul>
+                <li><code>className</code> kann als Prop übergeben werden.</li>
+                <li>Mehrere Klassen werden als String mit Leerzeichen getrennt übergeben.</li>
+                <li>Die Komponente verwendet dann <code>className={props.className}</code> im JSX.</li>
+            </ul>
+            
+        <li><h4 class="textColor02">Welche Daten kann man als Props übergeben?</h4></li>
+            <p>Als Props können verschiedene Datentypen an eine Komponente übergeben werden, darunter:</p>
+            <ul>
+                <li><strong>Strings</strong> (Text): <code>&lt;MyComponent title="Hallo" /&gt;</code></li>
+                <li><strong>Zahlen</strong>: <code>&lt;MyComponent count={5} /&gt;</code></li>
+                <li><strong>Booleans</strong>: <code>&lt;MyComponent isActive={true} /&gt;</code></li>
+                <li><strong>Arrays</strong>: <code>&lt;MyComponent items={[1, 2, 3]} /&gt;</code></li>
+                <li><strong>Objekte</strong>: <code>&lt;MyComponent user=&#123; name: "Max", age: 25 &#125; /&gt;</code></li>
+                <li><strong>Funktionen</strong>: <code>&lt;MyComponent onClick=&#123;handleClick&#125; /&gt;</code></li>
+                <li><strong>React-Elemente/Komponenten</strong>: <code>&lt;MyComponent header=&#123;&lt;Header /&gt;&#125; /&gt;</code></li>
+            </ul>
+            <p>Props sind flexibel und können beliebige Werte enthalten, die in der Komponente verwendet werden sollen.</p>
+        <li><h4 class="textColor02">Kann man ein EventHandler als Props übergeben?</h4></li>
+            <p>Ja, man kann einen EventHandler (z.B. eine Funktion für onClick) als Prop an eine Komponente übergeben.</p>
+            <p>Beispiel:</p>
+            <pre><code>const MyButton = (props) =&gt; {
+    return &lt;button onClick={props.onClick}&gt;Klick mich!&lt;/button&gt;;
+};
+
+// Verwendung:
+const handleClick = () =&gt; {
+    alert('Button wurde geklickt!');
+};
+
+&lt;MyButton onClick={handleClick} /&gt;</code></pre>
+            <p>In diesem Beispiel wird die Funktion <code>handleClick</code> als Prop <code>onClick</code> an die Komponente <code>MyButton</code> übergeben. Beim Klick auf den Button wird die Funktion ausgeführt.</p>
+            <p>Fazit:</p>
+            <ul>
+                <li>EventHandler wie <code>onClick</code> können als Props übergeben werden.</li>
+                <li>Die Komponente ruft die übergebene Funktion bei einem Event auf.</li>
+            </ul>
+
+        <li><h4 class="textColor02">Kann man einer Komponente einen Event-Handler als Prop übergeben, der beim Aufruf zusätzliche Parameter enthält?</h4></li>
+        <p>Ja, das ist möglich. Wenn man einer Komponente einen Event-Handler mit zusätzlichen Parametern übergeben möchte, kann man eine anonyme Funktion (Arrow Function) verwenden, um die gewünschten Parameter zu übergeben.</p>
+        <p>Beispiel:</p>
+        <pre><code>const MyButton = (props) =&gt; {
+        return &lt;button onClick={() =&gt; props.onClick('Hallo', 42)}&gt;Klick mich!&lt;/button&gt;;
+    };
+
+    // Verwendung:
+    const handleClick = (text, number) =&gt; {
+        alert(`Text: ${text}, Zahl: ${number}`);
+    };
+
+    &lt;MyButton onClick={handleClick} /&gt;</code></pre>
+        <p>In diesem Beispiel wird beim Klick auf den Button die Funktion <code>handleClick</code> mit den Parametern <code>'Hallo'</code> und <code>42</code> aufgerufen.</p>
+        <p>Die anonyme Funktion in <code>onClick={() =&gt; props.onClick('Hallo', 42)}</code> ermöglicht es, zusätzliche Argumente an den Event-Handler zu übergeben.</p>
+        <p>Ergebnis im Browser:</p>
+        <pre><code>&lt;button onClick="handleClick('Hallo', 42)"&gt;Klick mich!&lt;/button&gt;</code></pre>
+        <p>Wenn der Button geklickt wird, erscheint ein Alert mit dem Text "Text: Hallo, Zahl: 42".</p>
+        <p>Fazit:</p>
+        <ul>
+            <li>Man kann eine anonyme Funktion verwenden, um zusätzliche Parameter an einen Event-Handler zu übergeben.</li>
+            <li>Der Event-Handler in der Elternkomponente erhält die gewünschten Werte als Argumente.</li>
+        </ul>
+
+        <li><h4 class="textColor02">Wie schreibt man eine Schleife in JSX?</h4></li>
+            <p>In JSX kann man keine klassische for-Schleife direkt im Markup schreiben. Stattdessen verwendet man Methoden wie <code>map()</code>, um über Arrays zu iterieren und Elemente zu rendern.</p>
+            <p>Beispiel:</p>
+            <pre><code>const items = ['Apfel', 'Banane', 'Orange'];
+
+            return (
+                &lt;ul&gt;
+                    {items.map((item, index) =&gt; (
+                        &lt;li key={index}&gt;{item}&lt;/li&gt;
+                    ))}
+                &lt;/ul&gt;
+            );</code></pre>
+            <p>In diesem Beispiel wird das Array <code>items</code> mit <code>map()</code> durchlaufen und für jedes Element ein <code>&lt;li&gt;</code>-Element erzeugt. Der <code>key</code>-Prop hilft React, die Elemente effizient zu verwalten.</p>
+            <p>Fazit:</p>
+            <ul>
+                <li>Für Schleifen in JSX verwendet man meist <code>map()</code> auf Arrays.</li>
+                <li>Jedes erzeugte Element sollte einen eindeutigen <code>key</code> erhalten.</li>
+            </ul>
+
+            <p>Ergebnis im Browser:</p>
+            <pre><code>&lt;ul&gt;
+    &lt;li&gt;Apfel&lt;/li&gt;
+    &lt;li&gt;Banane&lt;/li&gt;
+    &lt;li&gt;Orange&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            <p>Dies erzeugt eine ungeordnete Liste mit den Früchten.</p>
+
+            <p>Beispiel mit Array.from:</p>
+            <pre><code>const items = Array.from({ length: 5 }, (_, index) =&gt; `Item ${index + 1}`);
+            return (
+                &lt;ul&gt;
+                    {items.map((item, index) =&gt; (
+                        &lt;li key={index}&gt;{item}&lt;/li&gt;
+                    ))}
+                &lt;/ul&gt;
+            );</code></pre>
+            <p>In diesem Beispiel wird ein Array mit 5 Elementen erstellt, die von "Item 1" bis "Item 5" reichen. Dann wird es mit <code>map()</code> in eine Liste umgewandelt.</p>
+            <p>Ergebnis im Browser:</p>
+            <pre><code>&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+    &lt;li&gt;Item 4&lt;/li&gt;
+    &lt;li&gt;Item 5&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            <p>Dies erzeugt eine ungeordnete Liste mit den Items von 1 bis 5.</p>
+
+        <li><h4 class="textColor02">Wie schreibt man eine if-Bedingung in JSX?</h4></li>
+            <p>In JSX kann man keine klassische <code>if</code>-Anweisung direkt im Markup verwenden. Stattdessen nutzt man den <strong>ternären Operator</strong> (<code>?</code>), <strong>logisches UND</strong> (<code>&amp;&amp;</code>) oder schreibt die Bedingung vor dem <code>return</code> im Funktionskörper.</p>
+            <p><strong>Beispiel mit ternärem Operator:</strong></p>
+            <pre><code>const isLoggedIn = true;
+
+            return (
+                &lt;div&gt;
+                    {isLoggedIn ? &lt;p&gt;Willkommen zurück!&lt;/p&gt; : &lt;p&gt;Bitte einloggen.&lt;/p&gt;}
+                &lt;/div&gt;
+            );</code></pre>
+            <p>Hier wird je nach Wert von <code>isLoggedIn</code> ein anderer Text angezeigt.</p>
+
+            <p><strong>Beispiel mit logischem UND:</strong></p>
+            <pre><code>const showMessage = true;
+
+            return (
+                &lt;div&gt;
+                    {showMessage &amp;&amp; &lt;p&gt;Nachricht sichtbar&lt;/p&gt;}
+                &lt;/div&gt;
+            );</code></pre>
+            <p>Das Element wird nur angezeigt, wenn <code>showMessage</code> <code>true</code> ist.</p>
+
+            <p><strong>Beispiel: Bedingung vor dem return</strong></p>
+            <pre><code>let content;
+            if (isLoggedIn) {
+                content = &lt;p&gt;Willkommen zurück!&lt;/p&gt;;
+            } else {
+                content = &lt;p&gt;Bitte einloggen.&lt;/p&gt;;
+            }
+
+            return (
+                &lt;div&gt;
+                    {content}
+                &lt;/div&gt;
+            );</code></pre>
+            <p>Fazit:</p>
+            <ul>
+                <li>Für Bedingungen in JSX verwendet man meist den ternären Operator oder logisches UND.</li>
+                <li>Klassische <code>if</code>-Anweisungen schreibt man außerhalb des JSX.</li>
+            </ul>
+        
+        </ul>
+
+
+
+
+</body>
+</html>

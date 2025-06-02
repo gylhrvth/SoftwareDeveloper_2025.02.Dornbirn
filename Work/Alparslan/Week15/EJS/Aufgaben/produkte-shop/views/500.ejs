@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Serverfehler</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main>
+    <h1>500 - Interner Serverfehler</h1>
+    <p>Entschuldigung, es ist ein unerwarteter Fehler aufgetreten.</p>
+    <% if (error && error.message) { %>
+      <pre style="color: #b30000;"><%= error.message %></pre>
+    <% } %>
+    <a href="/" class="button">Zurück zur Startseite</a>
+  </main>
+</body>
+</html>
