@@ -32,7 +32,7 @@
 body.dark-mode {
   --bg-main: #121212;
   --text-main: #f6f5f5;
-  --lightText: #a4abcf;
+  --lightText: #f5f5f5;
   --white: #1e1e1e;
   --blue: #d6faf2;
   --header-bg: #1f1f1f;
@@ -161,7 +161,7 @@ h3 {
   font-size: 0.8em;
   border-radius: var(--radius);
   background-color: var(--edit);
-  color: var(--white);
+  color: var(--lightText);
   border: none;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);

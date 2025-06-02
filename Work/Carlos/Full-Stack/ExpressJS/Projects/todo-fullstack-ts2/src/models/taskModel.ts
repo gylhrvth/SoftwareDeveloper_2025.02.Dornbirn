@@ -9,7 +9,7 @@ export interface Task {
   priority: string;
   created_at?: Date;
   updated_at?: Date;
-  photo?: string;
+  //photo?: string;
 }
 
 // =================== READ ===================
@@ -47,6 +47,7 @@ export const update = async (id: number, task: Task): Promise<void> => {
     [title, description, status, priority, id]
   );
 };
+
 
 // =================== DELETE ===================
 
