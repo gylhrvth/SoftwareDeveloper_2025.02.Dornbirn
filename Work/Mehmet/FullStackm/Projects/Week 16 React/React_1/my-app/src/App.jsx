@@ -8,17 +8,49 @@ function MyButton() {
   );
 }
 
+const Hallo = () => { return( 
+  <h1 className='test'>hallo welt</h1>);
+}
+
+function PropTest(props) {
+  return (
+    <div>
+      <h2>Props Test, nr { props.num}</h2>
+      <p>This is a simple component to test props.</p>
+    </div>
+  );
+}
+
+function Proping() {
+  return (
+    <div className='propings'>
+      <PropTest num={5} />
+      <PropTest num={10} />
+      <PropTest num={15} />
+    </div>
+  );
+}  
+
 export default function MyApp() {
   return (
+<>
     <div className="app">
       <h1>Welcome to my app</h1>
       <MyButton />
+     <Hallo />
     </div>
+    <div className="footer">
+      <p>Made with ❤️ by Mehmet</p>
+    </div>
+    <Proping />
+     </>
   );
 }
 
 
 
+
+// Beispielaufruf der propTest-Komponente mit einer Prop)
 
 // Button wiht cout functions
 
