@@ -42,6 +42,7 @@ function Counter() {
             {/* Button mit Click-Handler */}
             <button onClick={handleClick}>
                 Increment
+                ({count})
             </button>
         </div>
     )

@@ -1,114 +1,191 @@
-/* General Layout */
-body {
-  background-color: #2e2d2d;
-  color: #d0d0d0;
-  font-family: Arial, sans-serif;
-  margin: 2rem;
-  line-height: 1.6;
+  :root {
+  --bg-color: rgb(46, 45, 45);
+  --text-color: white;
+  --highlight-color: greenyellow;
+  --code-bg: rgba(52, 240, 49, 0.3);
+  --code-border: rgb(0, 255, 255);
+  --table-bg: rgba(44, 91, 210, 0.737);
+  --heading-color: rgb(4, 255, 255);
+  --underline-color: rgb(0, 255, 21);
+  --link-color: azure;
+  --pre-color: yellow;
+  --date-bg: rgb(9, 45, 116);
+  --date-color: rgb(228, 4, 244);
 }
 
-/* Headings */
-h1, h2 {
-  color: #04ffff;
+body.light {
+  --bg-color: #f0f0f0;
+  --text-color: #1e1e1e;
+  --highlight-color: darkgreen;
+  --code-bg: #e0ffe0;
+  --code-border: #00b894;
+  --table-bg: #e6f0ff;
+  --heading-color: #003366;
+  --underline-color: #00b894;
+  --link-color: #0066cc;
+  --pre-color: black;
+  --date-bg: #dbe9ff;
+  --date-color: #8e44ad;
 }
-h3 {
-  color: rgba(4, 255, 255, 0.765);
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+/* Listen */
+ul {
+  padding-left: 0;
+  margin-left: 0;
+  list-style: none;
+  max-width: 100%;
+}
+
+ul li {
+  display: flex;
+  flex-wrap: wrap; /* umbrechen wenn zu eng */
+  width: max-content;
+  justify-content: start;
+  gap: 0.5rem;
+  background-color: rgba(0, 255, 255, 0.2);
+  color: var(--highlight-color);
+  font-weight: bolder;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+li {
+  margin-bottom: 0.3rem;
+  color: var(--text-color);
 }
 
 /* Links */
 a {
-  color: azure;
-  text-decoration: none;
+  color: var(--link-color);
+  word-break: break-word;
 }
-a:hover {
+
+/* Absätze */
+p {
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+/* Inline Code */
+code {
+  display: inline-block;
+  background-color: var(--code-bg);
+  color: var(--pre-color);
+  font-weight: bolder;
+  border: 2px solid var(--code-border);
+  padding: 0.2rem;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Tabellen */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  display: block;
+  overflow-x: auto;
+}
+
+th, td {
+  border: 2px solid var(--code-border);
+  padding: 8px;
+  white-space: nowrap;
+}
+
+/* Überschriften */
+h1, h2 {
+  color: var(--heading-color);
   text-decoration: underline;
+  text-decoration-color: var(--underline-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
+  word-break: break-word;
 }
 
-/* Lists */
-ul, ol {
-  padding-left: 1.5rem;
-}
-ul li, ol li {
-  display: flex;
-  justify-content: flex-start;
-  width: max-content;
-  background-color: rgba(0, 255, 255, 0.15);
-  color: greenyellow;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+h3 {
+  color: var(--heading-color);
+  word-break: break-word;
 }
 
-/* Special Section List */
+/* Pre-Tag */
+pre {
+  color: var(--pre-color);
+  font-size: 1rem;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Inhalt-Liste */
 #Inhalt li {
-  color: rgb(0, 255, 21);
+  color: var(--underline-color);
   font-weight: bolder;
   font-family: 'Courier New', Courier, monospace;
+  word-break: break-word;
 }
 
-/* Code & Pre Blocks */
-code {
-  background-color: rgba(52, 240, 49, 0.2);
-  color: rgb(255, 159, 5);
-  padding: 0.2rem 0.4rem;
+/* Datum */
+#date {
+  color: var(--date-color);
+  background-color: var(--date-bg);
+  display: inline-flex;
+  margin: 0;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  font-weight: bold;
-}
-pre {
-  background-color: #1e1e1e;
-  color: yellow;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-size: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
 }
 
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: rgba(44, 91, 210, 0.6);
-  color: white;
-}
-th, td {
-  border: 2px solid rgba(0, 255, 255, 0.3);
-  padding: 8px;
-  text-align: left;
-}
-
-/* Utility Classes */
-.highlight {
-  background-color: rgba(255, 255, 0, 0.1);
-  color: #ffff00;
-  font-weight: bold;
-}
-.note {
-  background-color: rgba(0, 255, 255, 0.1);
-  border-left: 5px solid cyan;
+/* Mode Toggle Button */
+#mode-toggle {
+  position: fixed;
+  top: 10px;
+  right: 20px;
   padding: 0.5rem 1rem;
-  margin: 1rem 0;
-  color: #00ffee;
-}
-.code-block {
-  background-color: #1a1a1a;
-  border: 1px solid #555;
-  padding: 1rem;
-  border-radius: 6px;
-  font-family: monospace;
-  color: #ffa500;
-}
-.box {
-  border: 1px solid rgba(0,255,255,0.3);
-  padding: 1rem;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 6px;
-  margin: 1rem 0;
+  background-color: var(--code-border);
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-/* Spacing Helpers */
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.p-1 { padding: 0.5rem; }
-.p-2 { padding: 1rem; }
+/* Responsive Anpassungen */
+@media (max-width: 900px) {
+  body {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  ul li {
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  ul li {
+    flex-direction: column; /* untereinander auf kleinen Bildschirmen */
+    gap: 0.2rem;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  code, pre {
+    font-size: 0.9rem;
+  }
+}
