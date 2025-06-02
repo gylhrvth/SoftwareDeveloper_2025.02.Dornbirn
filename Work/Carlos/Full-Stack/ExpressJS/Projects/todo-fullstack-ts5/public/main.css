@@ -505,6 +505,7 @@ button.delete:hover {
 #mainButtons > #addTodoButton,
 #mainButtons > #deleteCompletedTodosButton,
 #mainButtons > #toggleDarkModeButton,
+#openFilterModal,
 button.edit,
 button.delete {
   position: relative;
@@ -513,6 +514,7 @@ button.delete {
 #mainButtons > #addTodoButton::after,
 #mainButtons > #deleteCompletedTodosButton::after,
 #mainButtons > #toggleDarkModeButton::after,
+#openFilterModal::after,
 button.edit::after,
 button.delete::after {
   position: absolute;
@@ -533,19 +535,20 @@ button.delete::after {
 #mainButtons > #addTodoButton:hover::after,
 #mainButtons > #deleteCompletedTodosButton:hover::after,
 #mainButtons > #toggleDarkModeButton:hover::after,
+#openFilterModal:hover::after,
 button.edit:hover::after,
 button.delete:hover::after {
   opacity: 1;
 }
 
 #mainButtons > #addTodoButton::after { content: 'Add new Task'; }
+#openFilterModal::after { content: 'Filter Tasks'; }
 #mainButtons > #deleteCompletedTodosButton::after { content: 'Delete Completed Tasks'; }
 #mainButtons > #toggleDarkModeButton::after { content: 'Change Color Scheme'; }
 button.edit::after { content: 'Edit Task'; }
 button.delete::after { content: 'Delete Task'; }
 
 /*Tooltips for Navigation Icons */
-/* Tooltips for navigation icons */
 a.nav-link,
 a.logout {
   position: relative;

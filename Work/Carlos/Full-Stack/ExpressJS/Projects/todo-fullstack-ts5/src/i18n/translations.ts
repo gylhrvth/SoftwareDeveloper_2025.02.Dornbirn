@@ -27,7 +27,12 @@ const translations = {
     filterTasks: 'Filter Tasks',
     image: 'Image',
     filter: 'Filter',
-    clearFilters: 'Clear'
+    clearFilters: 'Clear',
+    welcomeTitle: 'Welcome!!!',
+    welcomeText1: 'This is a simple To-Do application built with Express.js and TypeScript.',
+    welcomeText2: 'You can manage your tasks easily.',
+    welcomeText3: 'Feel free to explore the features.',
+    loggedIn: 'You are logged in.'
   },
   es: {
     title: 'Mis Tareas',
@@ -55,7 +60,12 @@ const translations = {
     filterTasks: 'Filtrar Tareas',
     image: 'Imagen',
     filter: 'Filtrar',
-    clearFilters: 'Quitar Filtros'
+    clearFilters: 'Quitar Filtros',
+    welcomeTitle: '¡Bienvenido!',
+    welcomeText1: 'Esta es una aplicación de tareas sencilla construida con Express.js y TypeScript.',
+    welcomeText2: 'Puedes gestionar tus tareas fácilmente.',
+    welcomeText3: 'Siéntete libre de explorar las funciones.',
+    loggedIn: 'Has iniciado sesión.'
   },
   hu: {
     title: 'Feladatkezelő',
@@ -83,7 +93,12 @@ const translations = {
     filterTasks: 'Feladatok szűrése',
     image: 'Kép',
     filter: 'Szűrő',
-    clearFilters: 'Szűrők törlése'
+    clearFilters: 'Szűrők törlése',
+    welcomeTitle: 'Üdvözlet!',
+    welcomeText1: 'Ez egy egyszerű teendő alkalmazás Express.js és TypeScript használatával.',
+    welcomeText2: 'Könnyedén kezelheted a feladataidat.',
+    welcomeText3: 'Fedezd fel bátran a funkciókat.',
+    loggedIn: 'Sikeresen bejelentkeztél.'
   }
 };
 
