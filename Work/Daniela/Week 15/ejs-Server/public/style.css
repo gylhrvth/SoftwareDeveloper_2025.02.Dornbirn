@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 2rem;
+}
+
+nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #007acc;
+}
+
+button {
+    margin: 0.5em;
+    background: linear-gradient(rgb(207, 216, 228), rgb(167, 183, 247));
+}
+
+.Button2 {
+    border-radius: 0.5em;
+}
+
+.Button2:hover{
+    cursor: pointer;
+}
+
+.more{
+    font-size: 5em;
+    margin: 0;
+}
