@@ -3,11 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash');
+const session = require('express-session');
+
 const connectDB = require('./server/config/db');
 
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Connect to Database
 connectDB();
@@ -22,6 +25,19 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('layout', 'layouts/main');
+
+// Express Session
+app.use(session({
+  secret: 'dein-geheimes-passwort',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}));
+
+// express-flash-message mit sessionKeyName
+app.use(flash());
 
 // Routes
 

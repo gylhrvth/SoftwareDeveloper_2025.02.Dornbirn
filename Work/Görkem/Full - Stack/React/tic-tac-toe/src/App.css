@@ -74,16 +74,27 @@ h1 {
   border-color: var(--square-border-hover);
 }
 
-.square.highlight {
-  background: var(--winner-bg);
-  border-color: var(--winner-border);
-  color: var(--winner-color);
-  animation: winner-glow 0.7s alternate infinite;
+.square.highlight-x {
+  background: #e3f2fd;
+  border-color: #1976d2;
+  color: #1976d2;
+  animation: winner-glow-x 0.7s alternate infinite;
 }
 
-@keyframes winner-glow {
-  from { box-shadow: 0 0 0 0 var(--winner-bg); }
-  to   { box-shadow: 0 0 16px 4px var(--winner-bg); }
+.square.highlight-o {
+  background: #ffe0b2;
+  border-color: #bf360c;
+  color: #bf360c;
+  animation: winner-glow-o 0.7s alternate infinite;
+}
+
+@keyframes winner-glow-x {
+  from { box-shadow: 0 0 0 0 #42a5f5; }
+  to   { box-shadow: 0 0 16px 4px #1976d2; }
+}
+@keyframes winner-glow-o {
+  from { box-shadow: 0 0 0 0 #ffb300; }
+  to   { box-shadow: 0 0 16px 4px #ffb300; }
 }
 
 div:last-child {
@@ -118,6 +129,28 @@ div:last-child {
   margin-top: 10px;
   font-weight: 500;
   letter-spacing: 1px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 18px 0 10px 0;
+  letter-spacing: 1px;
+}
+.score-x { color: #1976d2; }
+.score-o { color: #bf360c; }
+.score-divider { color: #888; }
+
+.square-x {
+  color: #1976d2; /* Blau für X */
+}
+
+.square-o {
+  color: #bf360c; /* Orange/Rot für O */
 }
 
 @media (max-width: 600px) {

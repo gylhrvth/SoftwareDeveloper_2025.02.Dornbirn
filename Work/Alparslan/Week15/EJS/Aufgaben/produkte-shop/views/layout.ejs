@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= typeof title !== 'undefined' ? title : 'Produkte-Shop' %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+  <%- include('partials/nav') %>
+  <main>
+    <%- body %>
+  </main>
+  <%- include('partials/footer') %>
+
+  <!-- Sidebar-Warenkorb START -->
+  <div id="sidebar-cart">
+    <h3>Warenkorb</h3>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+      <strong>Summe: <span id="cart-total">0,00 €</span></strong>
+      <button onclick="closeCart()" id="close-cart-btn">Schließen</button>
+    </div>
+  </div>
+  <!-- Sidebar-Warenkorb ENDE -->
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

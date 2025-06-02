@@ -1,0 +1,56 @@
+<div class="customer-header">
+  <h1 class="customer-title">Customer</h1>
+  <div class="customer-toolbar">
+    <div class="customer-toolbar-group">
+      <button class="customer-help-btn">?</button>
+    </div>
+  </div>
+</div>
+
+<div class="customer-breadcrumb-row">
+  <div class="customer-breadcrumb-col">
+    <nav aria-label="breadcrumb">
+      <ol class="customer-breadcrumb">
+        <li class="customer-breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="customer-breadcrumb-separator">/</li>
+        <li class="customer-breadcrumb-item active">New Customer</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="customer-breadcrumb-id">
+    <b>UserId</b>
+  </div>
+</div>
+
+<form action="/customer/add" method="POST" class="customer-add-form">
+  <div class="customer-form-row">
+    <div class="customer-form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="customer-input" id="firstName" name="firstName" placeholder="First Name" required>
+    </div>
+    <div class="customer-form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="customer-input" id="lastName" name="lastName" placeholder="Last Name" required>
+    </div>
+  </div>
+
+  <div class="customer-form-row">
+    <div class="customer-form-group">
+      <label for="tel">Telephone</label>
+      <input type="text" class="customer-input" id="tel" name="tel" placeholder="Telephone" required>
+    </div>
+    <div class="customer-form-group">
+      <label for="email">Email</label>
+      <input type="email" class="customer-input" id="email" name="email" placeholder="Email" required>
+    </div>
+  </div>
+
+  <div class="customer-form-group">
+    <label for="details">Customer Details</label>
+    <textarea class="customer-textarea" name="details" id="details" cols="30" rows="6" placeholder="Customer Details"></textarea>
+  </div>
+
+  <div class="customer-form-group">
+    <button type="submit" class="customer-submit-btn">Add Customer</button>
+  </div>
+</form>
