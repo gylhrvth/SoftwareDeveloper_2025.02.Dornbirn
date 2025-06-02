@@ -36,7 +36,12 @@ type SquareProps = {
 function Square({ value, onSquareClick, highlight }: SquareProps) {
   return (
     <button
-      className={`square${highlight ? ' highlight' : ''}`}
+      className={
+        `square${highlight ? ' highlight' : ''}` +
+        (value === 'X' ? ' square-x' : value === 'O' ? ' square-o' : '') +
+        (highlight && value === 'X' ? ' highlight-x' : '') +
+        (highlight && value === 'O' ? ' highlight-o' : '')
+      }
       onClick={onSquareClick}
     >
       {value}
