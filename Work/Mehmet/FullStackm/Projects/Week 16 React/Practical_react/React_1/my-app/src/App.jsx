@@ -1,35 +1,10 @@
 import './App.css'; // Importiere CSS-Stile
+import meme from './assets/typeScriptMeme.jpg'; // Importiere ein Bild
 
-function MyButton() {
-  return (
-    <button className="buttonr" onClick={() => alert('Button clicked!')}>
-      I'm a button
-    </button>
-  );
-}
 
-const Hallo = () => { return( 
-  <h1 className='test'>hallo welt</h1>);
-}
-
-function PropTest(props) {
-  return (
-    <div>
-      <h2>Props Test, nr { props.num}</h2>
-      <p>This is a simple component to test props.</p>
-    </div>
-  );
-}
-
-function Proping() {
-  return (
-    <div className='propings'>
-      <PropTest num={5} />
-      <PropTest num={10} />
-      <PropTest num={15} />
-    </div>
-  );
-}  
+//note that everthing in reaact is a component, that means a // function that returns JSX (JavaScript XML) code.
+// to be dsiplayed in the front end it has to be in th efunction APP
+// so every function here is also embeded in the App function r must be to be displayed
 
 export function App() {
   return (
@@ -43,6 +18,7 @@ export function App() {
       <p>Made with ❤️ by Mehmet</p>
     </div>
     <Proping />
+    <TodoList />
      </>
   );
 }
@@ -50,29 +26,73 @@ export function App() {
 
 
 
-// Beispielaufruf der propTest-Komponente mit einer Prop)
 
-// Button wiht cout functions
+// here we create a simple button component
+function MyButton() {
+  return (
+    <button className="buttonr" onClick={() => alert('Button clicked!')}>
+      I'm a button
+    </button>
+  );
+}
 
-// // src/App.jsx
-// import { useState } from 'react'; // Importiere useState-Hook
-// import './App.css'; // Styles
+// here we create a simple component that returns a header
+const Hallo = () => { return( 
+  <h1 className='test'>hallo welt</h1>);
+}
 
-// // Hauptkomponente App
-// function App() {
-//   const [count, setCount] = useState(0); // Zähler mit initial 0
+// here we create a simple component that takes props, and the Function Proping
+// receives a number prop and displays it in a header<h2/>
+function PropTest(props) {
+  return (
+    <div>
+      <h2>Props Test, nr {props.num}</h2>
+      <p>This is a simple component to test props.</p>
+    </div>
+  );
+}
 
-//   return (
-//     <div className="app">
-//       <h1>Hello World aus React 🎉</h1>
-//       <p>Du hast {count} Mal geklickt.</p>
-      
-//       {/* Wenn der Button geklickt wird, erhöht sich der Zähler */}
-//       <button onClick={() => setCount(count + 1)}>
-//         Klick mich!
-//       </button>
-//     </div>
-//   );
-// }
+// here we create a component that uses the PropTest component multiple times
+function Proping() {
+  return (
+    <div className='propings'>
+      <PropTest num={5} />
+      <PropTest num={10} />
+      <PropTest num={15} />
+      <PropTest num={20} />
+    </div>
+  );
+}  
 
-// export default App; // Exportiere App als Hauptkomponente
+
+const PERSON = { 
+  name: 'Kendricka Lamar',
+  age: 30,
+  hobbies: ['Coding', 'Reading', 'Gaming'],
+  theme:{
+    backgroundColor: 'lightblue',
+    color: 'darkblue',
+  }
+};
+
+
+function TodoList() {
+  const todos = ['Learn React', 'Build a project', 'Share with friends,', 'Complete the Course'];
+  return (
+    <div style={PERSON.theme} className="todo-list">
+      <h2>{PERSON.name}´s Todo List</h2>
+      <img src="https://i.imgur.com/yXOvdOSs.jpg" alt="Kendricka lamar"/>
+      <ul>
+        {todos.map((todo, i) => (
+          <li key={i}>{todo}</li>
+        ))}
+      </ul>
+      <p>Todo list is a simple list of tasks to complete.</p>
+    </div>
+  );
+}
+
+
+
+
+
