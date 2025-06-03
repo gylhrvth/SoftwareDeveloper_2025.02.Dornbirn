@@ -1,35 +1,57 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface InputDivsProps {
+    label: string;
+    id: string;
+    value: number;
+    onChange: (value: number) => void;
 }
 
-export default App
+export default function App() {
+    const [celsius, setCelsius] = useState<number>(0);
+    const [result, setResult] = useState<string>('');
+
+    function handleCalc() {
+        const convertedTemp = convertTemperature(celsius);
+        setResult(`${celsius}°C = ${convertedTemp}°F`);
+    }
+
+    return (
+        <>
+            <h1>Temperature Converter</h1>
+            <div className="container">
+                <InputDivs
+                    label="Celsius"
+                    id="celsius"
+                    value={celsius}
+                    onChange={setCelsius}
+                />
+
+                <button onClick={handleCalc}>Convert</button>
+                <div className="result">
+                    <p id="result-text">{result || 'Result will be displayed here'}</p>
+                </div>
+            </div>
+        </>
+    );
+}
+
+function InputDivs({ label, id, value, onChange }: InputDivsProps) {
+    return (
+        <div className="input-group">
+            <label htmlFor={id}>{label}</label>
+            <input
+                value={value}
+                type="number"
+                id={id}
+                onChange={(e) => onChange(Number(e.target.value))}
+            />
+        </div>
+    );
+}
+
+
+function convertTemperature(celsius: number): number {
+  return (celsius * 9/5) + 32;
+}
