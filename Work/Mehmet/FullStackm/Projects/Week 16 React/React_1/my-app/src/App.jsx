@@ -31,7 +31,7 @@ function Proping() {
   );
 }  
 
-export default function MyApp() {
+export function App() {
   return (
 <>
     <div className="app">
