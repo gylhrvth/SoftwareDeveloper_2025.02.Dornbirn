@@ -11,6 +11,14 @@ html, body {
   text-align: center;
 }
 
+.pic{
+  width: auto;
+  height: 200px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center; /* Zentriert den Inhalt horizontal */
+  align-items: center;     /* Zentriert den Inhalt vertikal */
+}
 
 .buttonr {
   padding: 10px 20px;

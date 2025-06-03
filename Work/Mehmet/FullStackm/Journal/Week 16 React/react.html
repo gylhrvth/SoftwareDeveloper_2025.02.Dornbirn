@@ -30,6 +30,7 @@
   <li>Kann ich einen EventHandler (die Zusatzinformation per Parameter bekommen wird) als Props übergeben?</li>
   <li>Wie schreibe ich eine Schleife in JSX?</li>
   <li>Wie schreibe ich eine if-Bedingung in JSX?</li>
+  <li>Wie fügt man Bilder in React hinzu?</li>
     
     </ol>
 
@@ -1635,6 +1636,112 @@ function Content({ isLoggedIn }) {
     <li>Bei komplexeren Fällen kannst du die Bedingung <em>außerhalb</em> des JSX-Returns auswerten und das Ergebnis in einer Variablen speichern.</li>
   </ul>
 </section>
+
+<!-- Frage 16 -->
+
+<section>
+  <h2>16. Wie fügt man Bilder in React hinzu?</h2>
+  <p>In React kannst du Bilder auf zwei Arten einfügen:</p>
+
+  <h3>✅ 1. Lokale Bilder (aus dem Projektordner)</h3>
+  <p><strong>📘 Prinzip:</strong><br>
+    React verwendet Module Bundler wie Vite oder Webpack. Damit die Bilder im finalen Build korrekt eingebunden werden, musst du das Bild zuerst importieren.</p>
+  <p><strong>🧠 Warum?</strong><br>
+    Wenn du nur eine relative Pfadangabe im <code>src</code> schreibst (z.B. <code>../assets/bild.png</code>), kann der Bundler den Pfad nicht sicher auflösen. Beim Importieren wird das Bild tatsächlich in den Build-Prozess integriert.</p>
+  <p><strong>📌 Beispiel:</strong></p>
+  <pre><code>import gokuImage from './assets/SonGoku_Smiling.png';
+
+const IMGLocal = () =&gt; {
+  return (
+    &lt;img className='pic' src={gokuImage} alt="Son Goku is smiling with closed eyes" /&gt;
+  );
+}</code></pre>
+  <p><strong>✅ Wichtig:</strong></p>
+  <ul>
+    <li>Der Pfad muss relativ zum aktuellen File stimmen.</li>
+    <li>Das Bild wird wie eine Variable behandelt: <code>{'{gokuImage}'}</code>.</li>
+    <li>Beim Build wird das Bild automatisch verarbeitet.</li>
+  </ul>
+
+  <h3>✅ 2. Externe Bilder über eine URL</h3>
+  <p><strong>📘 Prinzip:</strong><br>
+    Du kannst auch direkt einen öffentlichen Link zu einem Bild benutzen. Das funktioniert, wenn der Link direkt zu einer Bilddatei führt (endet auf .jpg, .png, .webp usw.).</p>
+  <p><strong>🧠 Warum?</strong><br>
+    Weil <code>&lt;img src="..." /&gt;</code> in HTML erwartet, dass <code>src</code> auf eine direkte Ressource verweist. Ein Link zu einer Webseite (z. B. ein Artikel) funktioniert nicht.</p>
+  <p><strong>📌 Beispiel:</strong></p>
+  <pre><code>const IMGUrl = () =&gt; {
+  return (
+    &lt;img className='pic' src="https://i.imgur.com/8gmeb2F.png" alt="Son Goku is smiling" /&gt;
+  );
+}</code></pre>
+  <p><strong>✅ Wichtig:</strong></p>
+  <ul>
+    <li>Der Link muss direkt auf ein Bild zeigen.</li>
+    <li>Der Server muss das Bild öffentlich und ohne Authentifizierung verfügbar machen.</li>
+    <li>Praktisch: Rechtsklick → „Bildadresse kopieren“ liefert oft den korrekten Link.</li>
+  </ul>
+
+  <h3>🧩 Gesamtes Beispiel in deiner App:</h3>
+  <pre><code>import './App.css'; // CSS laden
+import gokuImage from './assets/SonGoku_Smiling.png'; // Lokales Bild importieren
+
+const IMGLocal = () =&gt; {
+  return (
+    &lt;img className='pic' src={gokuImage} alt="Son Goku is smiling with closed eyes" /&gt;
+  );
+}
+
+const IMGUrl = () =&gt; {
+  return (
+    &lt;img className='pic' src="https://i.imgur.com/8gmeb2F.png" alt="Son Goku is smiling" /&gt;
+  );
+}
+
+export function App() {
+  return (
+    &lt;div className="app"&gt;
+      &lt;h1&gt;Welcome to my app&lt;/h1&gt;
+      &lt;IMGLocal /&gt;
+      &lt;IMGUrl /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+  <h3>🎨 CSS-Tipp (App.css):</h3>
+  <pre><code>.pic {
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin: 10px;
+}</code></pre>
+
+  <h3>📌 Zusammenfassung:</h3>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;">
+    <thead>
+      <tr style="background-color: #f0f0f0;">
+        <th>Methode</th>
+        <th>Import nötig</th>
+        <th>Endung wie .png</th>
+        <th>Funktioniert bei Build</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lokales Bild</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja</td>
+      </tr>
+      <tr>
+        <td>Bild via URL</td>
+        <td>❌ Nein</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja (wenn öffentlich)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 
 
 <h2> </h2>
