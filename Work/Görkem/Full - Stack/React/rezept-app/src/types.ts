@@ -4,5 +4,6 @@ export type Recipe = {
     image: string;
     description: string;
     ingredients: string[];
+    instructions?: string;
     difficulty: 'easy' | 'medium' | 'hard';
 };
