@@ -1,0 +1,39 @@
+/* src/App.css */
+html, body {
+    font-family: Arial, sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* centers vertically */
+  align-items: center;      /* centers horizontally */
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.pic{
+  width: auto;
+  height: 200px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center; /* Zentriert den Inhalt horizontal */
+  align-items: center;     /* Zentriert den Inhalt vertikal */
+}
+
+.buttonr {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center; /* Button Text zentrieren */
+  width: 150px;       /* Optional: feste Breite für bessere Optik */
+}
+
+.test { 
+  background-color: yellow;
+  text-align: center;
+}
+
+.propings{
+  background-color: aqua;
+}
