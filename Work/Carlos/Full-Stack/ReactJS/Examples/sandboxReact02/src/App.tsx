@@ -1,7 +1,7 @@
 
 
 import './App.css'
-import ClickMeButton from './clickMeButton'
+import ClickMeButton from './ClickMeButton'
 
 function App() {
   function handleClick(name: string) {
