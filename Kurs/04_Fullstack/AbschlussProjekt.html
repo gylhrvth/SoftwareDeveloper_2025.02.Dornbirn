@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abschlussprojekt</title>
+    <link rel="stylesheet" href="../common.css">
+    <script src="../common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="../../index.html">Home</a>
+        <a href="../Aufgaben.html">Aufgaben</a>
+        <a href="#Aufgabe1ID">Aufgabe 1: Entwicklungsumbegung erstellen</a>
+        <a href="#Aufgabe2ID">Aufgabe 2: Daten-Model erstellen</a>
+        <a href="#Aufgabe3ID">Aufgabe 3: Stammdatenbearbeitung</a>
+        <a href="#Aufgabe4ID">Aufgabe 4: Generieren docx Dokumente</a>
+        <a href="#Aufgabe5ID">Aufgabe 5: Generieren HTML / Text Dokumente</a>
+        <a href="#Aufgabe6ID">Aufgabe 6: Upload own docx Templates</a>
+        <a href="#Aufgabe7ID">Aufgabe 7: Email Template Bearbeiten</a>
+        <a href="#Aufgabe8ID">Aufgabe 8: Kurstage</a>
+        <a href="#Aufgabe9ID">Aufgabe 9: Raumreservierung</a>
+    </div>
+
+    <h1">Ziel des Abschlussprojekts</h1>
+        <p>
+            Das Ziel des Abschlussprojekts ist es, euer Wissen und eure Fähigkeiten
+            in einem echten Projekt anzuwenden.
+        </p>
+        <p>
+            Am Ende des Kurses wird ein <b>Proof of Concept</b> (PoC) entstehen.
+            PoC bedeutet, dass Ideen schrittweise umgesetzt werden, mit Fokus auf die Themen
+            die etwas sichtbares Ergebnis liefern. Ein PoC ist kein fertiges Produkt,
+            sondern ein Konzept, das zeigt, wie die Ideen in der Praxis funktionieren können.
+        </p>
+
+        <h2>Team</h2>
+        <p>
+            Es hat Sinn verschiedene Rollen anzunehmen. zB: eine Person kümmert sich um
+            das Design, eine Person kümmert sich um die Integration von Änderungen, usw.
+            Die Rollen sind nicht endgültig, sondern können je nach Bedarf angepasst werden.
+        </p>
+
+        <h2>Aufgabestellung</h2>
+        <p>Erstellt ein komplette Web Applikation, für die Kursverwaltung (KVS). Die wichtigste Ziele sind:</p>
+        <ul>
+            <li>Intuitive Navigation</li>
+            <li>Einfache Bearbeitung von Stammdanten (Kurs, Kurstermin, Teilnehmer, Trainer, ...)</li>
+            <li>Semi-Automatische Erstellung von E-Mails an den Teilnehmer / Interessenten ==> Spart wertvolle
+                Arbeitszeit
+            </li>
+            <li>Semi-Automatische Erstellung und Bereitstellung von DOCX-Dokumenten ==> Spart wertvolle Arbeitszeit</li>
+            <li>Kalender und Alert System ==> Wann, was, für welchen Kurs ist zu machen</li>
+            <li>Berechtigungskontrolle durch Gruppen (z.B. Administrator, Programmanager, Read-Only)</li>
+        </ul>
+
+        <h1>Teilaufgaben</h1>
+        <p>Die Teilaufgaben sind parallel auszuführen. Es kann vorkommen,
+            dass Abhängigkeiten entstehen. Aber es ist auch normal.</p>
+
+        <h2 id="Aufgabe1ID">Entwicklungsumbegung erstellen</h2>
+        <p>
+        <ul>
+            <li>Erstelle ein Projekt mit next.js und TypeScript. Eventuell aus <a href="https://auth0.com/">Auth0
+                    samplen</a></li>
+            <li>Push it in a private GitHub repository.</li>
+            <li>.gitignore erstellen</li>
+            <li>Projekt in dev Modus starten</li>
+            <li>Einen Branch für eine Entwicklungs-Ziel erstellen.</li>
+            <li>Nach einer Änderung auf dem Entwicklungs-Branch, ein Pull-Request erstellen</li>
+            <li>Änderungen aus dem Entwicklungsbranch mergen</li>
+        </ul>
+        </p>
+        <p>Anmerkung: Gyula wird das Auth0 Konfiguration und GitHub Repository zur Verfügung stellen.</p>
+
+        <h2 id="Aufgabe2ID">Daten-Model erstellen</h2>
+
+        <p>Mit Hilfe von <a href="https://www.prisma.io/">Prisma</a> und MySQL ein Datenmodell erstellen.</p>
+        <ul>
+            <li>Gruppen</li>
+            <li>Bereich (Name)
+                <ul>
+                    <li>Kurs (Name, Beschreibung, Unterichtseinheiten UE, Listenpreis)</li>
+                    <ul>
+                        <li>Kurstermin (Kursstart)</li>
+                        <ul>
+                            <li>Kursanmeldung
+                                <ul>
+                                    <li>Reference: Teilnehmer</li>
+                                    <li>Status: (Interessent, Angemeldet, Gestartet, Fertig)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ul>
+                </ul>
+            </li>
+            <li>Teilnehmer (Vorname, Nachname, E-Mail, Telefon, Adresse)</li>
+        </ul>
+        <p>Anmerkung: Es geht nicht darum, vollständig zu sein, sondern ein gute Basis zu schaffen, die man
+            weiterentwickeln kann.</p>
+
+        <p>Später...</p>
+        <ul>
+            <li>Gruppen</li>
+            <li>Bereich (Name)
+                <ul>
+                    <li>Kurs (Name, Beschreibung, Unterichtseinheiten UE, Listenpreis)</li>
+                    <ul>
+                        <li>Kurstermin (Kursstart)</li>
+                        <ul>
+                            <li>Reference: Trainer</li>
+                            <li>Kursanmeldung
+                                <ul>
+                                    <li>Reference: Teilnehmer</li>
+                                    <li>Status: (Interessent, Angemeldet, Gestartet, Fertig)</li>
+                                    <li>Reference: Rechnung</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ul>
+                </ul>
+            </li>
+            <li>Raum (Name, Kapazität)
+                <ul>
+                    <li>Raumreservierung (Datum, Uhrzeit, Dauer, Anmerkung)
+                        <ul>
+                            <li>Reference: Kurstermin</li>
+                            <li>Reference: Extenre Partern</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Externe Partner (Name, Kontaktperson, E-Mail, Telefon, Adresse, Umsatzsteuer-ID)</li>
+            <li>Trainer (Vorname, Nachname, E-Mail)</li>
+            <li>Teilnehmer (Vorname, Nachname, E-Mail, Telefon, Adresse)</li>
+            <li>Rechnung (Empfänger, Betrag, Datum, Status)</li>
+        </ul>
+
+
+        <h2 id="Aufgabe3ID">Stammdatenbearbeitung</h2>
+        <p>Erstelle eine praktische Darstellung / Bearbeitungsformular mit Hilfe von <a
+                href="https://ui.shadcn.com/">schadcn component Library</a></p>
+        <p>Achte darauf:</p>
+        <ul>
+            <li>Intuitive Darstellung der Daten</li>
+            <li>Klare Führung der Anwender durch die Seite</li>
+            <li>Links für die Navigation in den unterelementen und zurück</li>
+            <li>Link für die Referenzierten Datenrekoden</li>
+            <li>Anwendung von Soft-Delete (für "Undo")</li>
+        </ul>
+
+        <h2 id="Aufgabe4ID">Generieren docx Dokumente</h2>
+        <p>Aus den von Datenbank gelesene Daten (plus ein Template) generiere docx Dokument mit Hilfe von <a
+                href="https://www.npmjs.com/package/docx-templates">DocX Template</a></p>
+        <p>Achte darauf:</p>
+        <ul>
+            <li>Die generierte Dokument ist auf dem Server zu speichern.</li>
+            <li>Das URL von Dokument ist in Datenbank zu speichern.</li>
+            <li>Das GUI muss weiterentwickelt werden, dass diese Dokumente heruntergeladen werden können.</li>
+            <li>Gebe die Möglichkeit generierte Unterlagen löschen und neu generieren (soft delete?)</li>
+        </ul>
+
+
+        <h2 id="Aufgabe5ID">Generieren HTML / Text Dokumente</h2>
+        <p>Aus den von Datenbank gelesene Daten (plus ein Template) generiere ein HTML und ein Text Dokument mit Hilfe
+            von <a href="https://www.npmjs.com/package/ejs">EJS</a></p>
+        <p>Email zu schicken kannst du mit dem <a href="https://www.npmjs.com/package/nodemailer">nodemailer</a></p>
+        <p>Achte darauf:</p>
+        <ul>
+            <li>Die generierte Dokument ist auf dem Server zu speichern. Für die weiterverarbeitung.</li>
+            <li>Schicke die generierte Dokument im Namen des Angemeldeten Anwender an die E-Mail-Adresse des
+                Teilnehmers.</li>
+            <li>Setze in BCC der Absender selbst.</li>
+        </ul>
+
+        <h2 id="Aufgabe6ID">Upload own docx Templates</h2>
+        <p>Zu jede Aufgabe kann ein eigenes docx Template (von den bestehenden) ausgewählt werden.</p>
+        <p>Erstelle eine Upload Funktion, mit der die Anwender eigene docx Templates hochladen können.</p>
+        <p>Templates können System Spezifisch oder Kurs Spezifisch sein...</p>
+        <p>Achte darauf:</p>
+        <ul>
+            <li>Die Template Funktionen können entwer von einem konkreten Anmeldung (1 Kurstermin - 1 Person) ausgehen
+            </li>
+            <li>Oder wir wollen anwenden an alle aktive Kursteilnehmern (1 Kurstermin - ALLE Personen).</li>
+        </ul>
+
+        <h2 id="Aufgabe7ID">Email Template Bearbeiten</h2>
+        <p>Zu jede Aufgabe kann ein eigenes EJS (eine für HTML-Email und eine für Text-Email) Template (von den
+            bestehenden) ausgewählt werden.</p>
+        <p>Erstelle eine Upload Funktion, mit der die Anwender eigene EJS Templates hochladen können.</p>
+        <p>Templates können System Spezifisch oder Kurs Spezifisch sein...</p>
+        <p>Achte darauf:</p>
+        <ul>
+            <li>Die Template Funktionen können entwer von einem konkreten Anmeldung (1 Kurstermin - 1 Person) ausgehen
+            </li>
+            <li>Oder wir wollen anwenden an alle aktive Kursteilnehmern (1 Kurstermin - ALLE Personen).</li>
+        </ul>
+
+        <h2 id="Aufgabe8ID">Kurstage</h2>
+        <p>Erweitere den Kurstermin mit dem Kurstagen (zB: Mo-Do. 08:30-12:30 und 13:00-15:30 und Fr. 08:30-12:30)</p>
+        <p>Erstelle eine Funktion, die nach dem Kursbeginn, bzw. Kurstage die Liste der Kurstage erstellt</p>
+        <p>Die System-weit definierten Feiertagen müssen übersrungen</p>
+        <p>Gebe die Möglichkeit für die Anwenden, Kurstage manuell zufügen, entfernen. Die Restzeit muss neu berechnet
+            werden</p>
+        <p>Erstelle eine Darstellung der Kurstage in einer Liste mit Export funktion.</p>
+
+
+        <h2 id="Aufgabe9ID">Raumreservierung</h2>
+        <p>Erweitere das System mit Verwaltung von Kursräumen inkl. Raumreservierung</p>
+        <p>Kurse mit Kurstagen müssen bestimmten Räumen zugewiesen werden. Während der Kurszeiten ist das Raum besetzt.
+        </p>
+        <p>Zusätzlich ist es möglich Räumlichkeiten für externe Veranstaltungen zu vermieten.
+            Die Externen Partner sind als Stammdaten (Name, Kontaktperson, E-Mail, Telefon,
+            Adresse, Umsatzsteuer-ID) zu verwalten.</p>
+        </p>
+
+        <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>

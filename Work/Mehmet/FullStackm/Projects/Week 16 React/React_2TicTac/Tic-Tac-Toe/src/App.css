@@ -1,0 +1,129 @@
+:root {
+  --color-bg-page: #f0f4f8;
+  --color-bg-square: #cce0ff;
+  --color-bg-square-hover: #99bbff;
+  --color-border-square: #3399ff;
+  --color-bg-button: #3399ff;
+  --color-bg-button-hover: #2673cc;
+  --color-text: #0a1a2b;
+
+  --font-family: Arial, sans-serif;
+}
+
+/* Dark mode overrides */
+body.dark {
+  --color-bg-page: #0a1a2b;
+  --color-bg-square: #1e3a5f;
+  --color-bg-square-hover: #2563eb;
+  --color-border-square: #3ea1f2;
+  --color-bg-button: #3ea1f2;
+  --color-bg-button-hover: #1e40af;
+  --color-text: white;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-bg-page);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  border-radius: 12px;
+  padding: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.status {
+  font-size: 1.5rem;
+  min-height: 2rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+}
+
+.board-row {
+  display: contents;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+
+  background-color: var(--color-bg-square);
+  border: 2px solid var(--color-border-square);
+  color: var(--color-text);
+}
+
+.square:hover {
+  background-color: var(--color-bg-square-hover);
+}
+
+.restart {
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  background-color: var(--color-bg-button);
+  color: var(--color-text);
+  align-self: center;
+}
+
+.restart:hover {
+  background-color: var(--color-bg-button-hover);
+}
+
+/* Dark mode toggle button */
+.mode-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+
+  background-color: var(--color-bg-button);
+  color: var(--color-text);
+
+  transition: background-color 0.2s ease;
+  z-index: 1000;
+}
+
+.mode-toggle:hover {
+  background-color: var(--color-bg-button-hover);
+}
