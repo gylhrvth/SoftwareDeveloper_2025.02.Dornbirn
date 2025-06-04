@@ -35,6 +35,12 @@ const initialRecipes: Recipe[] = [
 export default function App() {
   const [recipes, setRecipes] = useState<Recipe[]>(initialRecipes);
   const [editId, setEditId] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+
+  // Filter-Logik
+  const filteredRecipes = recipes.filter(recipe =>
+    recipe.title.toLowerCase().includes(search.toLowerCase())
+  )
 
   function handleDelete(id: number) {
     setRecipes(recipes => recipes.filter(recipe => recipe.id !== id));
@@ -54,18 +60,32 @@ export default function App() {
   return (
     <Router>
       <div>
+        <div className="header-search-wrapper">
         <h1>Rezept App</h1>
-        <div className="add-btn-wrapper">
-        <Link to="/add">
-          <button>Neues Rezept hinzufügen</button>
-        </Link>
+        <div className="search-add-bar">
+          <div className="search-input-wrapper">
+            <span className="material-icons search-icon" aria-label="Suche">search</span>
+          <input
+            type="text"
+            placeholder="Rezept suchen..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="search-input"
+          />
+          </div>
+          <Link to="/add">
+            <button className="add-btn" title="Neues Rezept hinzufügen">
+              <span className="material-icons" aria-label="Rezept hinzufügen">restaurant_menu</span>
+            </button>
+          </Link>
         </div>
+      </div>
         <Routes>
           <Route
             path="/"
             element={
               <RecipeList
-                recipes={recipes}
+                recipes={filteredRecipes}
                 onDelete={handleDelete}
                 onEdit={handleEdit}
                 editId={editId}
@@ -77,8 +97,8 @@ export default function App() {
             path="/add"
             element={<RecipeAdd onAdd={handleAdd} />}
           />
-        </Routes>
-      </div>
+          </Routes>
+        </div>
     </Router>
   );
 }
