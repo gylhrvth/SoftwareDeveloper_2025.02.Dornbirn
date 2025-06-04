@@ -1,0 +1,49 @@
+body{
+  width: 100vw; 
+  display: flex;
+  justify-content: center;
+  align-items: center;     
+  min-height: 100vh;       
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border: 2px solid blueviolet;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+
+.count-btn, .lable{
+  flex-shrink: 0;
+}
+.label {
+  font-size: 2.5em;
+  margin-right: 0.5em;
+}
+
+.count-btn {
+  width: 3em;
+  height: 3em;
+  background: white;
+  color: black;
+  font-size: large;
+  margin-right: 4em;
+  padding: 0.5em;
+}
+
+.result-array {
+  font-size: 2.5em;
+  max-width: 20rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}

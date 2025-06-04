@@ -6,9 +6,15 @@ const customerController = require('../controllers/customerController');
  * Customer Routes
  */
 
-// Kundenübersicht
-router.get('/customer', customerController.homepage);
+// Kundenübersicht (Hauptseite für /customer)
+router.get('/', customerController.homepage);
+
+// Formular für neuen Kunden
 router.get('/add', customerController.addCustomer);
 
-module.exports = router;
+router.post('/add', customerController.createCustomer);
 
+
+
+
+module.exports = router;

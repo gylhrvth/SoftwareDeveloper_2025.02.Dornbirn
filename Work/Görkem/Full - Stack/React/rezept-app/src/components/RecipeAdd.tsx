@@ -29,6 +29,11 @@ const RecipeAdd: React.FC<RecipeAddProps> = ({ onAdd }) => {
   };
 
   return (
+    <>
+      <h2 className="add-form-title">Neues Rezept hinzufügen</h2>
+      <p className="form-description">
+        Fülle das Formular aus, um ein neues Rezept zu deiner Sammlung hinzuzufügen.
+      </p>
     <form className="edit-form" onSubmit={handleSubmit}>
       <label htmlFor="title">Titel</label>
       <input id="title" value={title} onChange={e => setTitle(e.target.value)} required />
@@ -59,6 +64,7 @@ const RecipeAdd: React.FC<RecipeAddProps> = ({ onAdd }) => {
         <button type="button" className="cancel" onClick={() => navigate("/")}>Abbrechen</button>
       </div>
     </form>
+    </>
   );
 };
 

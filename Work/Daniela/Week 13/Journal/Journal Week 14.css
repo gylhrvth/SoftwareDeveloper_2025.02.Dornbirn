@@ -24,8 +24,22 @@ body{
     margin: 2em;
 }
 
-.link_container p, li {
-    font-size: 1.2em;
+.link_container h3{
+    font-size: 1.5em;
+}
+
+.link_container p {
+    font-size: 1.3em;
+}
+.link_container ol > li > ul > li {
+    font-size: 1.3em;
+}
+.link_container ul > li{
+    font-size: 1.3em;
+}
+
+.link_container ol {
+    font-size: 1.3em;
 }
 
 .link_container >img{
@@ -41,4 +55,7 @@ body{
     margin: 0.5em;
     justify-content: space-evenly;
     align-items: center;
+}
+.note_container > p {
+    font-size: 1.3em;
 }
