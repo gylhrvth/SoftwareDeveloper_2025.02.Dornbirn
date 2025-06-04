@@ -5,21 +5,20 @@ interface InputDivsProps {
     label: string;
     id: string;
     value: number;
-    onChange: (value: number) => void;
+    onValueChange: (value: number) => void;
 }
 
 export default function App() {
     const [celsius, setCelsius] = useState<number>(0);
     const [result, setResult] = useState<string>('');
 
-    function handleCalc() {
+    function handleCalc(value: number) {
         // Convert Celsius to Fahrenheit
-        // Formula: F = C * 9/5 + 32
-        const celsiusInput = document.getElementById('celsius') as HTMLInputElement;
-        const celsius = Number(celsiusInput.value);
-        setCelsius(celsius);
-        const convertedTemp = convertTemperature(celsius);
-        setResult(`${celsius}°C = ${convertedTemp}°F`);
+        // Formel: F = C * 9/5 + 32
+
+        setCelsius(value);
+        const convertedTemp = convertTemperature(value);
+        setResult(`${value}°C = ${convertedTemp}°F`);
     }
 
     return (
@@ -30,7 +29,7 @@ export default function App() {
                     label="Celsius"
                     id="celsius"
                     value={celsius}
-                    onChange={handleCalc}
+                    onValueChange={handleCalc}
                 />
                 <div className="result">
                     <p id="result-text">{result || 'Result will be displayed here'}</p>
@@ -40,7 +39,7 @@ export default function App() {
     );
 }
 
-function InputDivs({ label, id, value, onChange }: InputDivsProps) {
+function InputDivs({ label, id, value, onValueChange }: InputDivsProps) {
     return (
         <div className="input-group">
             <label htmlFor={id}>{label}</label>
@@ -48,7 +47,7 @@ function InputDivs({ label, id, value, onChange }: InputDivsProps) {
                 value={value}
                 type="range"
                 id={id}
-                onChange={(e) => onChange(Number(e.target.value))}
+                onChange={(event) => onValueChange(Number(event.target.value))}
             />
         </div>
     );

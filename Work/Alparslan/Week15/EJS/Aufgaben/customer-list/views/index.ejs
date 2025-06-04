@@ -2,7 +2,40 @@
   <h1 class="h2">Dashboard</h1>
   <div class="btn-toolbar">
     <div class="btn-group me-2">
-      <a href="/customer/add" class="btn btn-sm btn-outline-secondary">+ New User</a>
+     <a href="/customer/add" class="btn btn-sm btn-outline-secondary">+ New User</a>
+
     </div>
   </div>
 </div>
+
+
+
+<!-- Kundenliste -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Telefon</th>
+      <th>Email</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% customers.forEach(customer => { %>
+      <tr>
+        <td><%= customer.firstName %></td>
+        <td><%= customer.lastName %></td>
+        <td><%= customer.tel %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.details %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<!-- 
+Domain: dev-agtt0fcy5bts2qbd.us.auth0.com
+Client ID:  KgYF6zoEzV3Vvgf31IOr9gG9pNwOXQGv
+Client Secret:  bISfmncZKsOCpnGMJoOLqDmmbiP9mCpW8cF29znu5fCkUuaBAdtqu-F4hT_3pFB1
+-->
