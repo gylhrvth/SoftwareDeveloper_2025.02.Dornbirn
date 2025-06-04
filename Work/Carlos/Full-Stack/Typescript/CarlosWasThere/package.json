@@ -1,0 +1,19 @@
+{
+  "name": "carloswasthere",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/carlos-was-there2.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "node-ts": "^8.0.5",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.8.3"
+  }
+}
