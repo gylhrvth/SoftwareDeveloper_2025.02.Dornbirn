@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import type { Recipe } from './types';
 import RecipeList from './components/RecipeList';
 import RecipeAdd from './components/RecipeAdd';
@@ -51,6 +51,8 @@ export default function App() {
   const [sortBy, setSortBy] = useState<'title' | 'difficulty' | 'ingredientsCount'>('title');
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
   }, [recipes]);
@@ -97,8 +99,8 @@ export default function App() {
   }
 
   return (
-    <Router>
       <div>
+        {location.pathname === "/" && (
         <div className="header-search-wrapper">
         <h1>Rezept App</h1>
         <div className="search-add-bar">
@@ -141,6 +143,7 @@ export default function App() {
           </Link>
         </div>
       </div>
+      )}
         <Routes>
           <Route
             path="/"
@@ -160,7 +163,6 @@ export default function App() {
           />
           </Routes>
         </div>
-    </Router>
   );
 }
 

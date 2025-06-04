@@ -52,9 +52,15 @@ body {
     text-align: center;
 }
 
-.somePicture{
- 
-  /*justify-content: center;
-  align-items: center;*/
+.Header.on {
+  background: radial-gradient( rgb(7, 7, 7), rgba(7, 7, 7), rgba(166, 3, 242, 0.349),rgba(162, 2, 47, 0.404));
+  
 }
+
+.Header.off {
+  background: radial-gradient(rgb(7, 7, 7),rgb(7, 7, 7),rgb(179, 221, 10),rgb(11, 202, 167), rgb(5, 19, 115));
+  
+}
+
+
 

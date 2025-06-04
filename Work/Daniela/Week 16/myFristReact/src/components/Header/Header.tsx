@@ -2,11 +2,14 @@ import type { HeaderProps } from './Header_Types';
 
 
 
-export function Header( {title, subtitle, className = ''} : HeaderProps){
-    return(
-        <header className={`Header ${className}`}>
+export function Header({ title, subtitle, isOn }: HeaderProps) {
+    const className = `Header ${isOn ? 'on' : 'off'}`
+
+    return (
+        <header 
+        className={className}>
             <h1>{title}</h1>
-            {subtitle && <p className="subtitle">{subtitle}</p>}
+            <p>{subtitle}</p>
         </header>
     );
 }

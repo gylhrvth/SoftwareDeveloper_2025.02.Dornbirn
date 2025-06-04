@@ -22,10 +22,10 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--color-bg);
+  background-color: #f5f7fa;
   color: var(--color-text);
 }
 
@@ -39,6 +39,13 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.recipe-card h4 {
+  margin-bottom: 0.3rem; 
+  margin-top: 1rem;        
+  font-size: 1.08rem;      
+  color: var(--color-title);
 }
 
 .recipe-list {
@@ -86,17 +93,17 @@ h1 {
 
 .recipe-card p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1.0rem;
 }
 
 .recipe-card ul {
-  list-style-type: disc;
+  margin-top: 0;           
+  margin-bottom: 0.5rem;
   padding-left: 1.2rem;
-  margin: 0.5rem 0;
 }
 
 .recipe-card li {
-  font-size: 0.9rem;
+  font-size: 1.0rem;
 }
 
 .recipe-card .difficulty {
@@ -148,12 +155,29 @@ h1 {
   background: var(--color-btn-danger-hover);
 }
 
+.add-form-title {
+  margin-top: 5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-title);
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.form-description {
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-size: 1.08rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .edit-form {
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
   padding: 2rem;
-  margin: 2rem auto;
+  margin: 3rem auto 2rem auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.2rem;
