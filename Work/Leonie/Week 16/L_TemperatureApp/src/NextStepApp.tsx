@@ -1,12 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-
-interface InputDivsProps {
-    label: string;
-    id: string;
-    value: number;
-    onValueChange: (value: number) => void;
-}
+import { InputDivs } from './components/InputDivs'
+import { convertTemperature } from './utils/temperature'
 
 export default function App() {
     const [celsius, setCelsius] = useState<number>(0);
@@ -37,22 +32,4 @@ export default function App() {
             </div>
         </>
     );
-}
-
-function InputDivs({ label, id, value, onValueChange }: InputDivsProps) {
-    return (
-        <div className="input-group">
-            <label htmlFor={id}>{label}</label>
-            <input
-                value={value}
-                type="range"
-                id={id}
-                onChange={(event) => onValueChange(Number(event.target.value))}
-            />
-        </div>
-    );
-}
-
-function convertTemperature(celsius: number): number {
-  return (celsius * 9/5) + 32;
 }

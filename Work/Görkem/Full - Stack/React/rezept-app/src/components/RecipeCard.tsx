@@ -10,19 +10,28 @@ type RecipeCardProps = {
 };
 
 export default function RecipeCard({ recipe, onDelete, onEdit, isEditing, setEditId }: RecipeCardProps) {
-  const [form, setForm] = useState<Recipe>(recipe);
+  const { ingredients, ... rest } = recipe;
+  const [form, setForm] = useState<Omit<Recipe, "ingredients">>(rest)
+  const [ingredientsInput, setIngredientsInput] = useState<string>(ingredients.join(', '));
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
-    setForm(prev => ({
-      ...prev,
-      [name]: name === 'ingredients' ? value.split(',').map(i => i.trim()) : value
-    }));
+    if (name === 'ingredients') {
+      setIngredientsInput(value)
+    } else {
+      setForm(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onEdit(recipe.id, form);
+    onEdit(recipe.id, {
+      ...form,
+      ingredients: ingredientsInput.split(',').map(i => i.trim()).filter(Boolean),
+    });
   }
 
   if (isEditing) {
@@ -38,7 +47,7 @@ export default function RecipeCard({ recipe, onDelete, onEdit, isEditing, setEdi
         <textarea id="description" name="description" value={form.description} onChange={handleChange} required />
 
         <label htmlFor="ingredients">Zutaten (durch Kommas getrennt)</label>
-        <input id="ingredients" name="ingredients" value={form.ingredients.join(', ')} onChange={handleChange} required />
+        <input id="ingredients" name="ingredients" value={ingredientsInput} onChange={handleChange} required />
 
         <label htmlFor="difficulty">Schwierigkeitsgrad</label>
         <select id="difficulty" name="difficulty" value={form.difficulty} onChange={handleChange}>

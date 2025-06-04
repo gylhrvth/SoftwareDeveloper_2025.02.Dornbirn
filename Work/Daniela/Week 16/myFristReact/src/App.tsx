@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
 import type { HeaderProps } from './components/Header/Header_Types';
@@ -8,9 +8,12 @@ import type { HeaderProps } from './components/Header/Header_Types';
 
 function App() {
 
+  const [isOn, setIsOn] = useState(false);
+
   const headerData: HeaderProps = {
     title: '💕Mein Header💕',
     subtitle: '💕 Mit Props erstellt 💕',
+    isOn, 
   };
 
   const handelClick = () => {
@@ -36,26 +39,26 @@ function App() {
     console.log('The alert button has been pressed.');
   }
 
-  const [isOn, setIsOn] = useState(false);
 
-  const toggle = () => {
-    setIsOn(!isOn);
 
-  }
+  
   return (
     <>
 
       <Header {...headerData} />
 
-      
+
+      <BackgroundToggle isOn={isOn} setIsOn={setIsOn} />
 
       <div>
+       
+
         <Img
-        src="./src/assets/somePicture.jpg"
-        alt="some Picture"
-        width={700}
-        className='somePicture'
-      />
+          src="./src/assets/somePicture.jpg"
+          alt="some Picture"
+          width={700}
+          className='somePicture'
+        />
 
         <h1>My first Button</h1>
         <button onClick={handelClick} className='Btn'>Klick here!</button>
@@ -63,9 +66,7 @@ function App() {
         <button onClick={thirdHandelClick} className='Btn white'>Another button</button>
         <button onClick={alertHandelClick} className='Btn alert'>alert button</button>
 
-        <button onClick={toggle} className={`Btn toggle ${isOn ? 'on' : 'off'}`}>
-          {isOn ? 'ON' : 'OFF'}
-        </button>
+       
         <Button label="Ich bin grossartig! Und bescheiden." />
         <Button label="Another Button" className='white' onClick={forthHandelClick} />
         <Button label='alert Button' className='alert' />
@@ -112,6 +113,31 @@ function Img({ src, alt, width, height, className = '' }: ImgProps) {
     />
   );
 
+}
+
+
+interface BackgroundToggleProps {
+  isOn: boolean;
+  setIsOn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function BackgroundToggle({ isOn, setIsOn}: BackgroundToggleProps) {
+  
+  const toggle = () => {
+    setIsOn(prev => !prev);
+  };
+
+  useEffect(() => {
+    document.body.style.background = isOn
+    ?'radial-gradient(rgb(101, 7, 120), rgb(6, 18, 101))'
+      : 'radial-gradient(rgb(179, 221, 10),rgb(11, 202, 167), rgb(5, 19, 115))';
+  }, [isOn]);
+
+  return (
+    <button onClick={toggle} className='Btn toggle'>
+      {isOn ? 'ON' : 'OFF'}
+    </button>
+  );
 }
 
 
