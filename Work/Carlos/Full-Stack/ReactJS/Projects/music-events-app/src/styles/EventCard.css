@@ -1,0 +1,21 @@
+.eventCard {
+  background: rgba(58, 28, 113, 0.15);
+  border: 1px solid #30e3ca;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.eventCard:hover {
+  box-shadow: 0 2px 16px #a259f7aa;
+}
+
+.soldOut {
+    color: #a259f7;
+}
+
+.ticketsLeft {
+    color: rgb(217, 144, 118);
+}
