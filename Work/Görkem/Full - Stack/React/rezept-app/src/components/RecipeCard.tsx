@@ -66,8 +66,12 @@ export default function RecipeCard({ recipe, onDelete, onEdit, isEditing, setEdi
 
   return (
     <div className="recipe-card">
+      <div>
       <h2>{recipe.title}</h2>
       <img src={recipe.image} alt={recipe.title} className="recipe-image" />
+      </div>
+      <div className='recipe-card-content'>
+        <div className='recipe-card-ingredients'>
       <p>{recipe.description}</p>
       <h4>Zutaten:</h4>
       <ul>
@@ -75,11 +79,15 @@ export default function RecipeCard({ recipe, onDelete, onEdit, isEditing, setEdi
           <li key={idx}>{ingredient}</li>
         ))}
       </ul>
+      </div>
       <p className={`difficulty ${recipe.difficulty}`}>
         Schwierigkeitsgrad: {recipe.difficulty}
       </p>
+      </div>
+      <div className='recipe-card-actions'>
       <button onClick={() => setEditId(recipe.id)}>Bearbeiten</button>
       <button onClick={() => onDelete(recipe.id)}>Löschen</button>
+      </div>
     </div>
   );
 }
