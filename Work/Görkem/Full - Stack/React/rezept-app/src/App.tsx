@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import type { Recipe } from './types';
 import RecipeList from './components/RecipeList';
 import RecipeAdd from './components/RecipeAdd';
 import './App.css'
+
+// Schlüssel für localStorage
+const LOCAL_STORAGE_KEY = "rezepte";
 
 const initialRecipes: Recipe[] = [
   {
@@ -33,9 +36,22 @@ const initialRecipes: Recipe[] = [
 ];
 
 export default function App() {
-  const [recipes, setRecipes] = useState<Recipe[]>(initialRecipes);
+  const [recipes, setRecipes] = useState<Recipe[]>(() => {
+    
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    try {
+      return stored ? JSON.parse(stored) : initialRecipes;
+    } catch {
+      return initialRecipes;
+    }
+  });
+  
   const [editId, setEditId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+  }, [recipes]);
 
   // Filter-Logik
   const filteredRecipes = recipes.filter(recipe =>
@@ -47,14 +63,19 @@ export default function App() {
   }
 
   function handleEdit(id: number, updated: Recipe) {
-    setRecipes(recipes =>
-      recipes.map(recipe => (recipe.id === id ? updated : recipe))
-    );
+    setRecipes(prev => {
+      const updatedList = prev.map(r => (r.id === id ? updated : r));
+      return updatedList.sort((a, b) => a.title.localeCompare(b.title));
+    });
     setEditId(null);
   }
 
   function handleAdd(recipe: Recipe) {
-    setRecipes(recipes => [...recipes, recipe]);
+    setRecipes(prev => {
+      const newId = Math.max(0, ...prev.map(r => r.id)) + 1;
+      const newRecipes = [...prev, { ...recipe, id: newId }];
+      return newRecipes.sort((a, b) => a.title.localeCompare(b.title));
+    });
   }
 
   return (
