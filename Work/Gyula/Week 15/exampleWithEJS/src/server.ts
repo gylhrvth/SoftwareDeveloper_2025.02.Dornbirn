@@ -31,7 +31,25 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/kursanmeldung', (req, res) => { 
-    res.render('kursanmeldung', { })
+    res.render('kursanmeldung', { 
+        training: {
+            name: "Software Developer Kurs"
+        }
+    });
+})
+
+app.get('/kursteilnehmer', (req, res) => { 
+    res.render('kursanmeldung', { 
+        training: {
+            name: "Software Developer Kurs"
+        },
+        trainees: [
+            {
+                name: "Alp",
+                mail: ""
+            }
+        ]
+    });
 })
 
 
