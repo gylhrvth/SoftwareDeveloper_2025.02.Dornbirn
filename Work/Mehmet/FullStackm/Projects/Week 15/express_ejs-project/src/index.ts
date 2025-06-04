@@ -2,13 +2,21 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import session from 'express-session';
-const SQLiteStoreFactory = require('connect-sqlite3'); // Add this import
+const SQLiteStoreFactory = require('connect-sqlite3');
 
-import authRoutes from './routes/authRoutes';
-import cityRoutes from './routes/cityRoutes';
+import routes from './routes/routes';
 
 dotenv.config();
 
+// Inline City type (optional, if needed elsewhere)
+export interface City {
+  id: number;
+  name: string;
+  population: number;
+  userId: number;
+}
+
+// Inline session user augmentation
 declare module 'express-session' {
   interface SessionData {
     user?: {
@@ -21,13 +29,13 @@ declare module 'express-session' {
 const app = express();
 const port = process.env.PORT || 3001;
 
-const SQLiteStore = SQLiteStoreFactory(session); // Initialize SQLiteStore
+const SQLiteStore = SQLiteStoreFactory(session);
 
 // Session middleware with SQLite store
 app.use(session({
   store: new SQLiteStore({
-    dir: './data',          // Folder for the SQLite session DB file (make sure this exists)
-    db: 'sessions.sqlite',  // Session DB file name
+    dir: './data',
+    db: 'sessions.sqlite',
   }),
   secret: process.env.SESSION_SECRET || 'supersecret',
   resave: false,
@@ -36,7 +44,7 @@ app.use(session({
     maxAge: 10 * 60 * 1000, // 10 minutes
     httpOnly: true,
   },
-  rolling: true,  // Reset maxAge on every response (keeps session alive on activity)
+  rolling: true,
 }));
 
 // Body parser
@@ -53,9 +61,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Use routers
-app.use('/', authRoutes);
-app.use('/', cityRoutes);
+// Use merged routes
+app.use('/', routes);
 
 // 404 handler
 app.use((_req, res) => {
