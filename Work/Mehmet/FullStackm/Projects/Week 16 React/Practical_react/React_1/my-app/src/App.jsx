@@ -19,13 +19,34 @@ export function App() {
     </div>
     <Proping />
     <TodoList />
+    <Card>
+      <Avatar size={100} />
+    </Card>
      </>
   );
 }
 
 
 
+function Avatar({ name, size }) {
+  return (
+    <img
+      className="avatar"
+      src="https://i.imgur.com/"       // Reference from public folder
+      alt={name}
+      width={size}
+      height={size}
+    />
+  );
+}
 
+function Card({ children }) {
+  return (
+    <div className="card">
+      {children}
+    </div>
+  );
+}
 
 // here we create a simple button component
 function MyButton() {

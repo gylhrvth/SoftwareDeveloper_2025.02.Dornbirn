@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Week 16</title>
+    <link rel="stylesheet" href="../../Week 13/Journal/Journal Week 14.css">
+</head>
+
+<body>
+
+
+    <div class="main_container">
+        <h1 style="font-size: 5em;">React</h1>
+        <div class="link_container">
+            <p>Der name React leitet sich vom englischen: "react" ab, was "reagieren" bedeutet.</p>
+        </div>
+
+        <div class="link_container">
+            <h3>Was ist JSX</h3>
+            <p>JSX steht für JavaScript XML<br>
+                Es ist eine Erweiterung von JavaScript, mit der du HTML-ähnlichen Code direkt in JavaScript schreiben
+                kannst – speziell in React.</p>
+            <p>JSX ist eine Syntax, mit der du in React-Komponenten HTML-Strukturen schreiben kannst, als wären sie Teil
+                des JavaScript-Codes.</p>
+        </div>
+
+
+        <div class="link_container">
+            <h3>Was ist eine Coomponente</h3>
+            <p>Eine Component ist eine wiederverwendbare, in sich geschlossene Einheit, die UI (Benutzeroberfläche)
+                beschreibt — also ein Teil der Webseite oder App.</p>
+            <ul>
+                <li>Sie besteht meist aus HTML (JSX), JavaScript-Logik und optional Styles.</li>
+                <li>Jede Component rendert einen Teil der Benutzeroberfläche.</li>
+                <li>Components können ineinander verschachtelt werden, also Components können andere Components
+                    enthalten.</li>
+            </ul>
+            <h3>Warum Components?</h3>
+            <ul>
+                <li>Wiederverwendbarkeit: Du kannst die gleiche Component an vielen Stellen nutzen.</li>
+                <li>Organisation: UI wird in kleine, verständliche Bausteine zerlegt.</li>
+                <li>Wartbarkeit: Änderungen an einer Component beeinflussen nur diesen Teil.</li>
+            </ul>
+            <h3>Arten von Componenten:</h3>
+            <ol>
+                <li>Function Components
+                    <ul>
+                        <li>einfach zu schreiben </li>
+                        <li>Sind JavaScript-Funktionen, die JSX zurückgeben</li>
+                    </ul>
+
+                </li>
+                <li>Class Components
+                    <ul>
+                        <li>Werden seltener genutzt, sind etwas komplexer</li>
+                        <li>Werden mit ES6 Klassen definiert</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="link_container">
+            <h3>einfache Component ohne props</h3>
+            <img src="img/Component without props.png">
+        </div>
+
+        <div class="link_container">
+            <h3>Class & ClassName</h3>
+            <p>in JSX wird ClassName anstatt Class verwendet, da class ein reserviertes Schlüsselwort in JavaScript ist.
+                Um konflikte zu vermeiden wird in JSX ClassName verwendet.</p>
+        </div>
+
+        <div class="link_container">
+            <h3>Was sind props</h3>
+            <p>Props leitet sich von "properties" ab zu deutsch: "Eigenschaften"</p>
+            <p>In React ist ein prop (Kurzform für property) eine Möglichkeit, Daten von einer Component an eine andere
+                zu übergeben.</p>
+            <div class="note_container">
+                <p>Props sind wie Parameter bei Funktionen – sie geben Informationen an eine Component weiter.</p>
+            </div>
+        </div>
+
+        <div class="link_container">
+            <h3>verwendung von Props</h3>
+            <p>Props verwendest du in deinem JSX-Code ganz einfach, um dynamische Inhalte darzustellen. Sie kommen als
+                JavaScript-Ausdrücke in geschweiften Klammern {}.</p>
+            <img src="img/props.png">
+            <div class="note_container">
+                <h3>🧠 Wichtig:</h3>
+                <ul>
+                    <li>Strings schreibst du in "Anführungszeichen"</li>
+                    <li>Zahlen, Booleans oder JavaScript-Ausdrücke schreibst du in {}</li>
+                </ul>
+            </div>
+            <img src="img/props-List.png">
+        </div>
+
+        <div class="link_container">
+            <h3>eventhandler als pros übergeben</h3>
+            <p>Wenn du einem Event-Handler eine Zusatzinformation (Parameter) mitgeben willst, kannst du das über eine
+                anonyme Funktion (Arrow Function) machen, die den Parameter an deine Handler-Funktion weitergibt.</p>
+        </div>
+
+        <div class="link_container">
+            <img src="img/Schleife in JSX.png">
+        </div>
+
+    </div>
+
+</body>
+
+</html>
