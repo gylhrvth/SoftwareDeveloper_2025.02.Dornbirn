@@ -11,6 +11,14 @@
   --color-medium-text: #856404;
   --color-hard-bg: #f8d7da;
   --color-hard-text: #721c24;
+  --color-border: #ccc;
+  --color-dropdown-bg: #fff;
+  --color-dropdown-hover: #f5f5f5;
+  --color-dropdown-shadow: rgba(0,0,0,0.08);
+  --color-btn-bg: #00adb5;
+  --color-btn-bg-hover: #007b83;
+  --color-btn-danger: #ff6b6b;
+  --color-btn-danger-hover: #e63946;
 }
 
 body {
@@ -119,7 +127,7 @@ h1 {
   margin: 0.3rem 0.3rem 0 0;
   border: none;
   border-radius: 6px;
-  background: #00adb5;
+  background: var(--color-btn-bg);
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
@@ -128,16 +136,16 @@ h1 {
 }
 
 .recipe-card button:hover {
-  background: #007b83;
+  background: var(--color-btn-bg-hover);
   transform: translateY(-2px) scale(1.04);
 }
 
 .recipe-card button:last-child {
-  background: #ff6b6b;
+  background: var(--color-btn-danger);
 }
 
 .recipe-card button:last-child:hover {
-  background: #e63946;
+  background: var(--color-btn-danger-hover);
 }
 
 .edit-form {
@@ -176,7 +184,7 @@ h1 {
 .edit-form input:focus,
 .edit-form textarea:focus,
 .edit-form select:focus {
-  border-color: #00adb5;
+  border-color: var(--color-btn-bg);
   background-color: #fff;
   outline: none;
 }
@@ -195,22 +203,22 @@ h1 {
   font-size: 1rem;
   cursor: pointer;
   color: #fff;
-  background-color: #00adb5;
+  background-color: var(--color-btn-bg);
   transition: background-color 0.2s ease, transform 0.2s ease;
   min-width: 120px;
 }
 
 .edit-form button:hover {
-  background-color: #007b83;
+  background-color: var(--color-btn-bg-hover);
   transform: translateY(-1px);
 }
 
 .edit-form button.cancel {
-  background-color: #ff6b6b;
+  background-color: var(--color-btn-danger);
 }
 
 .edit-form button.cancel:hover {
-  background-color: #e63946;
+  background-color: var(--color-btn-danger-hover);
 }
 
 .search-add-bar {
@@ -238,9 +246,9 @@ h1 {
 }
 
 .search-input {
-  padding: 0.6rem 1rem 0.6rem 2.2rem; /* Platz für Icon links */
+  padding: 0.6rem 2.2rem 0.6rem 2.2rem; /* Platz für Icon links und Sortier-Icon rechts */
   border-radius: 24px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   font-size: 1.1rem;
   min-width: 220px;
   background: #fff;
@@ -250,6 +258,57 @@ h1 {
 .search-input:focus {
   border-color: var(--color-title);
   outline: none;
+}
+
+.sort-icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.sort-dropdown {
+  position: absolute;
+  right: 0;
+  top: 110%; /* nach unten ausklappen */
+  background: var(--color-dropdown-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--color-dropdown-shadow);
+  z-index: 10;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  animation: dropdownDown 0.2s;
+}
+
+@keyframes dropdownDown {
+  from { opacity: 0; transform: translateY(-10px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+.sort-dropdown button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-text);
+}
+
+.sort-dropdown button:hover {
+  background: var(--color-dropdown-hover);
 }
 
 .add-btn {
