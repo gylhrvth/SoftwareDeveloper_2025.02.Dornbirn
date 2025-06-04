@@ -13,6 +13,11 @@ export default function App() {
     const [result, setResult] = useState<string>('');
 
     function handleCalc() {
+        // Convert Celsius to Fahrenheit
+        // Formula: F = C * 9/5 + 32
+        const celsiusInput = document.getElementById('celsius') as HTMLInputElement;
+        const celsius = Number(celsiusInput.value);
+        setCelsius(celsius);
         const convertedTemp = convertTemperature(celsius);
         setResult(`${celsius}°C = ${convertedTemp}°F`);
     }
@@ -25,10 +30,8 @@ export default function App() {
                     label="Celsius"
                     id="celsius"
                     value={celsius}
-                    onChange={setCelsius}
+                    onChange={handleCalc}
                 />
-
-                <button onClick={handleCalc}>Convert</button>
                 <div className="result">
                     <p id="result-text">{result || 'Result will be displayed here'}</p>
                 </div>
@@ -43,14 +46,13 @@ function InputDivs({ label, id, value, onChange }: InputDivsProps) {
             <label htmlFor={id}>{label}</label>
             <input
                 value={value}
-                type="number"
+                type="range"
                 id={id}
                 onChange={(e) => onChange(Number(e.target.value))}
             />
         </div>
     );
 }
-
 
 function convertTemperature(celsius: number): number {
   return (celsius * 9/5) + 32;
