@@ -1,5 +1,6 @@
 import './App.css'; // Importiere CSS-Stile
 import meme from './assets/typeScriptMeme.jpg'; // Importiere ein Bild
+import {people} from './data'; // Importiere die Daten von Personen
 
 
 //note that everthing in reaact is a component, that means a // function that returns JSX (JavaScript XML) code.
@@ -20,30 +21,115 @@ export function App() {
     <Proping />
     <TodoList />
     <Card>
-      <Avatar size={100} />
+      <Avatar size={200}
+        
+        person={{ imageId: 'YfeOqp2', name: 'Katsuko Saruhashi' }} // Example person object      
+      />****
+      <img src={meme} height={200} />
+      
+      <BildAlt alt={"Katsuko!!!Saruhashi"} />**** 
     </Card>
+    <h1 className="meme-header">Packing List Space Expedition</h1>
+    <Items name="Space Armor" isPacked={true} />
+    <Items name="Lightsaber" isPacked={false} />
+    <Items name="Picture of the Earth" isPacked={true} />
+    <List />
      </>
+  );
+}
+
+// The List component displays a list of scientists using the 'people' array.
+// It maps over each person object in 'people' and creates a card with their image and info.
+// Each person card has a unique 'key' (person.id) to help React identify items efficiently.
+function List() {
+  // Create an array of JSX elements by mapping over 'people'.
+  // For each 'person', return a 'div' containing an image and a list item.
+  const listItems = people.map(person => (
+    <div key={person.id} className="person-card">
+      {/* Display the person's avatar image */}
+      <img
+        className="avatar"
+        src={getImageUrl(person)}    // Use getImageUrl to get the image URL based on person's imageId
+        alt={person.name}            // Accessibility: show person's name if image doesn't load
+        width={100}
+        height={100}
+      />
+      {/* Show person's name, profession, and accomplishment inside a list item */}
+      <li>
+        <b>{person.name}:</b>         {/* Person's name in bold */}
+        {' ' + person.profession + ' '} {/* Person's profession with spaces */}
+        known for {person.accomplishment} {/* What person is known for */}
+      </li>
+    </div>
+  ));
+
+  // Render the article containing a heading and a list of all person cards
+  return (
+    <article>
+      <h1>Scientists</h1>       {/* Title of the list */}
+      <ul>{listItems}</ul>      {/* Render all the generated person cards inside a <ul> */}
+    </article>
   );
 }
 
 
 
-function Avatar({ name, size }) {
+// This Items component receives a name and isPacked boolean.
+// It displays the name and a checkmark or cross based on isPacked.
+// If isPacked is true, it shows a checkmark (✅), otherwise a cross (❌).
+function Items({name, isPacked}){
+  return (
+    
+    <li>
+      {name} {isPacked && '✅'} {/* If isPacked is true, show a checkmark */}
+      {!isPacked && '❌'} {/* If isPacked is false, show a cross */}
+      {/* The && operator is a shorthand for conditional rendering in React */}
+      {/* If isPacked is true, it renders the checkmark, otherwise it renders the cross */}
+      {/* This is a simple way to conditionally render content based on a boolean value */}
+    </li>
+  );
+}
+
+
+// This function generates a full image URL from a person's image ID.
+// `size` is optional and defaults to 's' (small).
+function getImageUrl(person, size = 's') {
+  return (
+    'https://i.imgur.com/' +    // Base URL
+    person.imageId +            // Image ID from the person object
+    size +                      // Size string (e.g. 's' for small, 'l' for large)
+    '.jpg'                      // File extension
+  );
+}
+
+
+// This Avatar component receives a `person` object and a `size`.
+// It uses getImageUrl() to build the image URL and renders an <img> tag.
+function Avatar({ person, size }) {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/"       // Reference from public folder
-      alt={name}
-      width={size}
+      src={getImageUrl(person)}  // Use the getImageUrl function to get image path
+      alt={person.name}          // Use the person's name for accessibility (alt text)
+      width={size}               // Width and height come from the size prop
       height={size}
     />
   );
 }
 
+function BildAlt({ alt }) {
+  return (
+  'alt:' + alt + ' ' // This component simply displays the alt text passed to it (OLIVER TESTING ALT!!)
+  )
+}
+
+
+// The Card component acts like a wrapper or container.
+// It receives children and displays them inside a styled <div>.
 function Card({ children }) {
   return (
     <div className="card">
-      {children}
+      {children}                
     </div>
   );
 }
@@ -51,7 +137,7 @@ function Card({ children }) {
 // here we create a simple button component
 function MyButton() {
   return (
-    <button className="buttonr" onClick={() => alert('Button clicked!')}>
+    <button className="buttonr" onClick={() => alert('you forgot the lightsaber!')}>
       I'm a button
     </button>
   );
