@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import type { Recipe } from './types';
 import RecipeList from './components/RecipeList';
+import RecipeAdd from './components/RecipeAdd';
 import './App.css'
 
 const initialRecipes: Recipe[] = [
@@ -45,17 +47,39 @@ export default function App() {
     setEditId(null);
   }
 
+  function handleAdd(recipe: Recipe) {
+    setRecipes(recipes => [...recipes, recipe]);
+  }
+
   return (
-    <div>
-      <h1>Rezept App</h1>
-      <RecipeList
-        recipes={recipes}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-        editId={editId}
-        setEditId={setEditId}
-      />
-    </div>
+    <Router>
+      <div>
+        <h1>Rezept App</h1>
+        <div className="add-btn-wrapper">
+        <Link to="/add">
+          <button>Neues Rezept hinzufügen</button>
+        </Link>
+        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RecipeList
+                recipes={recipes}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+                editId={editId}
+                setEditId={setEditId}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={<RecipeAdd onAdd={handleAdd} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
