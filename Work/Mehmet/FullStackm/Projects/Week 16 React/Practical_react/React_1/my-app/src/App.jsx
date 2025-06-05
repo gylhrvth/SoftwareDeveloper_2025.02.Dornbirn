@@ -1,9 +1,10 @@
 import './App.css'; // Importiere CSS-Stile
 import meme from './assets/typeScriptMeme.jpg'; // Importiere ein Bild
 import {people} from './data'; // Importiere die Daten von Personen
+import { useState } from 'react'; 
 
 
-//note that everthing in reaact is a component, that means a // function that returns JSX (JavaScript XML) code.
+// note that everthing in reaact is a component, that means a // function that returns JSX (JavaScript XML) code.
 // to be dsiplayed in the front end it has to be in th efunction APP
 // so every function here is also embeded in the App function r must be to be displayed
 
@@ -13,6 +14,9 @@ export function App() {
     <div className="app">
       <h1>Welcome to my app</h1>
       <MyButton />
+      <div>
+      <ClickButton />
+      </div>
      <Hallo />
     </div>
     <div className="footer">
@@ -34,7 +38,50 @@ export function App() {
     <Items name="Lightsaber" isPacked={false} />
     <Items name="Picture of the Earth" isPacked={true} />
     <List />
-     </>
+    <TeaSet />
+</>
+  );
+}
+
+function ClickButton() {
+    const [count, setCount] = useState(0); // useState hook to manage count state
+    
+    function handleClick() {
+        setCount(count + 1); // Increment count by 1 on button click
+    }
+  return ( 
+    <button onClick={handleClick} className="button">
+      The Button is this {count} many times clicked got clicked!
+    </button>
+  );
+    }
+  
+// The Cup component receives a person object and a count. this is a Pure Compnent it does not take anthng gloabally
+function Cup({ person, count }) {
+  return (
+    <h2>Tea Cup #{count} for {person.name}</h2>
+  );
+}
+
+// This is also a functional component that renders a list of tea cups. automaticly
+// the Cup component is used to display each person's tea cup. it takes the Cup Function on gloabal and does a map on const people array.
+function TeaSet() {
+  const people = [
+    { name: 'Mehmet' },
+    { name: 'Ali' },
+    { name: 'Yasin' }
+  ];
+
+  return (
+    <div>
+      {people.map((person, index) => (
+        <Cup
+          key={index}
+          person={person}
+          count={index + 1}
+        />
+      ))}
+    </div>
   );
 }
 
