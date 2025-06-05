@@ -1,0 +1,8 @@
+.eventList {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: rgba(24, 24, 36, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(48, 227, 202, 0.08);
+  padding: 2rem;
+}
