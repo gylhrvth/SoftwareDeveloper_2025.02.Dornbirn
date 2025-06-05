@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { type TodoItem } from '../App.tsx';
 import './TodoComponent.css'
 
