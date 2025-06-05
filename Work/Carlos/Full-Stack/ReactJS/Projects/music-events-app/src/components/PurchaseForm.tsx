@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import type { PurchaseFormProps } from '../types'
 
-const PurchaseForm: React.FC<PurchaseFormProps> = ({ event, onClose}) => {
+const PurchaseForm: React.FC<PurchaseFormProps> = ({ event, onClose, onPurchase}) => {
      // State for form fields
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
@@ -15,6 +15,7 @@ const PurchaseForm: React.FC<PurchaseFormProps> = ({ event, onClose}) => {
     // Handle form submission
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        onPurchase(event.id, quantity) // Updates the tickets left
         alert(`Thank you, ${name}! You bought ${quantity} ticket(s) for ${event.name}.`)
         onClose()
     }

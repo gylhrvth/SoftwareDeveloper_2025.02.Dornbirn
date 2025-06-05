@@ -7,8 +7,20 @@ export interface Event {
   price: number;
   ticketsAvailable: number;
   description: string;
+  image: string; 
+  tags: string[];
 }
 
+export interface EventListProps {
+  events: Event[]
+  onPurchase: (eventId: number, ticketsBought: number) => void
+  onToggleFilter: () => void
+}
+
+export interface EventCardProps {
+    event: Event
+    onPurchase: (eventId: number, quantity: number) => void
+}
 export interface BuyTicketButtonProps {
   disabled: boolean;
   onClick?: () => void;
@@ -18,4 +30,16 @@ export interface BuyTicketButtonProps {
 export interface PurchaseFormProps {
   event: Event
   onClose: () => void
+  onPurchase: (eventId: number, quantity: number) => void
+}
+
+export interface EventFilterProps {
+  maxPrice: number | ''
+  setMaxPrice: (value: number | '') => void
+  minTicketsLeft: number | ''
+  setMinTicketsLeft: (value: number | '') => void
+  selectedTag: string | null
+  setSelectedTag: (tag: string | null) => void
+  allTags: string[]
+  show: boolean
 }
