@@ -1,1 +1,10 @@
-[] 
+[
+  {
+    "username": "Mehmet",
+    "password": "1"
+  },
+  {
+    "username": "Gyula ",
+    "password": "$2b$10$Td0kVFuTnXdIk6dX0VyDLullkRqPdGrRHDMdguuA.xNmQX.21EpYW"
+  }
+]

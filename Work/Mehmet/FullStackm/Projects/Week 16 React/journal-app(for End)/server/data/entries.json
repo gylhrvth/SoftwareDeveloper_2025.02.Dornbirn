@@ -1,1 +1,12 @@
-[] 
+[
+  {
+    "id": 1749114780745,
+    "text": "Today i startet with my journal Date 05.06.2025 11:12",
+    "user": "Mehmet"
+  },
+  {
+    "id": 1749115617162,
+    "text": "Today we did .map Function in Reeac for Todo-lists with a few props",
+    "user": "Gyula "
+  }
+]
