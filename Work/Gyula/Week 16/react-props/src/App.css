@@ -1,0 +1,17 @@
+.circle {
+  width: 350px;           /* Set the size */
+  height: 350px;
+  border: 4px solid #3498db; /* Circle border */
+  border-radius: 50%;     /* Makes the div a circle */
+  overflow: hidden;       /* Clips the image to the circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* Ensures the image covers the circle */
+  display: block;
+}
