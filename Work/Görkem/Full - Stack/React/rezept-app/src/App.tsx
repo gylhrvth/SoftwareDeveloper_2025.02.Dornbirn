@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import type { Recipe } from './types';
 import HeaderSearchBar from './components/HeaderSearchBar';
+import NotificationBanner from './components/NotificationBanner';
 import RecipeAdd from './components/RecipeAdd';
 import RecipeList from './components/RecipeList';
 import { sortRecipes } from './utils/recipeUtils';
@@ -41,8 +42,10 @@ export default function App() {
   const [sortBy, setSortBy] = useState<'title' | 'difficulty' | 'ingredientsCount'>('title');
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
   const [recipes, setRecipes] = useRecipes(initialRecipes);
-
+  const [notification, setNotification] = useState<string | null>(null);
+  
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Filter-Logik
   const filteredRecipes = sortRecipes(
@@ -54,6 +57,7 @@ export default function App() {
 
   function handleDelete(id: number) {
     setRecipes(recipes => recipes.filter(recipe => recipe.id !== id));
+    setNotification("Rezept wurde gelöscht!");
   }
 
   function handleEdit(id: number, updated: Recipe) {
@@ -62,6 +66,7 @@ export default function App() {
       return updatedList.sort((a, b) => a.title.localeCompare(b.title));
     });
     setEditId(null);
+    setNotification("Rezept wurde bearbeitet!");
   }
 
   function handleAdd(recipe: Recipe) {
@@ -70,6 +75,14 @@ export default function App() {
       const newRecipes = [...prev, { ...recipe, id: newId }];
       return newRecipes.sort((a, b) => a.title.localeCompare(b.title));
     });
+    setNotification("Rezept wurde hinzugefügt!");
+
+    if(location.pathname === "/add"){
+      setTimeout(() => {
+        setNotification(null);
+        navigate("/")
+      }, 2000);
+    }
   }
 
   return (
@@ -83,6 +96,14 @@ export default function App() {
           setSortBy={setSortBy}
         />
       )}
+
+      {notification && (
+        <NotificationBanner
+          message={notification}
+          onClose={() => setNotification(null)}
+        />
+      )}
+
       <Routes>
         <Route
           path="/"
