@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import StarRating from './StarRating';
 import type { Recipe } from '../types';
 
 type RecipeCardProps = {
@@ -83,6 +84,10 @@ export default function RecipeCard({ recipe, onDelete, onEdit, isEditing, setEdi
       <p className={`difficulty ${recipe.difficulty}`}>
         Schwierigkeitsgrad: {recipe.difficulty}
       </p>
+      <StarRating
+        value={recipe.rating ?? 0}
+        onChange={newRating => onEdit(recipe.id, { ...recipe, rating: newRating })}
+      />
       </div>
       <div className='recipe-card-actions'>
       <button onClick={() => setEditId(recipe.id)}>Bearbeiten</button>

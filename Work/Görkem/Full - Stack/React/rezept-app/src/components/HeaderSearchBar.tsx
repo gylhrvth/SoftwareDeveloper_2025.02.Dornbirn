@@ -5,7 +5,7 @@ type Props = {
   setSearch: (v: string) => void;
   sortMenuOpen: boolean;
   setSortMenuOpen: (v: boolean | ((v: boolean) => boolean)) => void;
-  setSortBy: (v: 'title' | 'difficulty' | 'ingredientsCount') => void;
+  setSortBy: (v: 'title' | 'difficulty' | 'ingredientsCount' | 'rating') => void;
 };
 
 export default function HeaderSearchBar({ search, setSearch, sortMenuOpen, setSortMenuOpen, setSortBy }: Props) {
@@ -41,6 +41,9 @@ export default function HeaderSearchBar({ search, setSearch, sortMenuOpen, setSo
               </button>
               <button onClick={() => { setSortBy('ingredientsCount'); setSortMenuOpen(false); }}>
                 <span className="material-icons">format_list_numbered</span> Zutatenanzahl
+              </button>
+              <button onClick={() => { setSortBy('rating'); setSortMenuOpen(false); }}>
+                <span className="material-icons">star</span> Bewertung
               </button>
             </div>
           )}
