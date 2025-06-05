@@ -96,7 +96,7 @@ export default function App() {
     if (notification === "Rezept wurde hinzugefügt!" && location.pathname === "/add") {
       const timer = setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [notification, location.pathname, navigate]);

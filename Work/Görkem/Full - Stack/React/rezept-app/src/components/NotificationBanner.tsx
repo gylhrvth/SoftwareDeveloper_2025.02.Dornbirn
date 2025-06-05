@@ -6,7 +6,7 @@ type Props = {
     duration?: number;
 };
 
-export default function NotificationBanner({ message, onClose, duration = 2000 }: Props) {
+export default function NotificationBanner({ message, onClose, duration = 1500 }: Props) {
   useEffect(() => {
     const timer = setTimeout(onClose, duration);
     return () => clearTimeout(timer);
