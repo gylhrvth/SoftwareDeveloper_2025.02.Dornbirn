@@ -8,8 +8,9 @@ export interface TodoListProps {
 
 export function TodoListComponent(props: TodoListProps): JSX.Element {
   return (
-    <div>
+    <>
       <h2>Todo List</h2>
+      <div className='todoList'>
       {
         props.todos.map((todo, index) => (
           <TodoComponent 
@@ -19,6 +20,7 @@ export function TodoListComponent(props: TodoListProps): JSX.Element {
           />
         ))
       }
-    </div>
+      </div>
+    </>
   )
 }
