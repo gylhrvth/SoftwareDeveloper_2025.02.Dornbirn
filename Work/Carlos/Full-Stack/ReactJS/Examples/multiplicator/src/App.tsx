@@ -11,8 +11,9 @@ function App() {
       </div>
 
       <div className="number">
-        <MultiplicationRow factor={1} />
-         <MultiplicationRow factor={2} />
+        <MultiplicationRow01 factor={1} />
+        <br />
+        <MultiplicationRow02 factor={2} />
 
       </div>
     </div>
@@ -27,27 +28,56 @@ interface MultiplicationRowProps {
   factor: number;
 }
 
-function MultiplicationRow({ factor }: MultiplicationRowProps) {
+function MultiplicationRow01({ factor }: MultiplicationRowProps) {
   const [count, setCount] = useState(0);
   const [results, setResults] = useState<number[]>([]);
 
 
-  const handleClick = () => {
+  const handleClick01 = () => {
     const result = factor * count;
-    setResults([...results, result]);
     setCount(count + 1);
+    setResults([...results, result]);
+    
   };
 
   return (
     <div className="row">
       <span className="label">{factor}x</span>
 
-      <button onClick={handleClick} className="count-btn">
+      <button onClick={handleClick01} className="count-btn">
         {count}
       </button>
 
       <div className="result-array">
         [{results.join(', ')}]
+      </div>
+
+    </div>
+  );
+}
+
+function MultiplicationRow02({ factor }: MultiplicationRowProps) {
+  const [count, setCount] = useState(0);
+  const [results, setResults] = useState<number[]>([]);
+
+
+  const handleClick01 = () => {
+    const result = factor * count;
+    setCount(count + 1);
+    setResults([result]);
+    
+  };
+
+  return (
+    <div className="row">
+      <span className="label">{factor}x</span>
+
+      <button onClick={handleClick01} className="count-btn">
+        {count}
+      </button>
+
+      <div className="result-array">
+        [{results}]
       </div>
 
     </div>

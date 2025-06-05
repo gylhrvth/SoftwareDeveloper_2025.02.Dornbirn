@@ -4,6 +4,7 @@
   box-shadow: 0 4px 14px #30e3ca33;
   padding: 2rem 4rem;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
@@ -16,6 +17,12 @@
   color: #30e3ca;
   margin-bottom: 0.5em;
   text-align: center;
+}
+
+.purchaseFormWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .purchaseForm label {

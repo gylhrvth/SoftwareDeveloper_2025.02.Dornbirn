@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
-import type { Event } from '../types'
+
+import type { EventCardProps } from '../types'
 
 import BuyTicketButton from './BuyTicketButton'
 import PurchaseForm from './PurchaseForm'
@@ -8,11 +9,9 @@ import PurchaseForm from './PurchaseForm'
 import '../styles/BuyTicketButton.css'
 import '../styles/PurchaseForm.css'
 
-interface EventCardProps {
-    event: Event
-}
 
-const EventCard: React.FC<EventCardProps> = ({ event }) => {
+
+const EventCard: React.FC<EventCardProps> = ({ event, onPurchase }) => {
     // This state remembers if the form should be shown
     const [showForm, setShowForm] = useState(false)
 
@@ -23,9 +22,9 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
 
     return (
 
-
         <div className="eventCard">
             <h2>{event.name}</h2>
+            <img src={event.image} alt={event.name} className="eventImage" /> 
             <p>{event.date} - {event.location}</p>
             <p>{event.adress}</p>
             <p>{event.description}</p>
@@ -46,7 +45,12 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             </div>
             {/* Show the form if showForm is true */}
             {showForm && (
-                <PurchaseForm event={event} onClose={() => setShowForm(false)} />
+                <div className="purchaseFormWrapper">
+                    <PurchaseForm 
+                        event={event} 
+                        onClose={() => setShowForm(false)} 
+                        onPurchase={onPurchase}/>
+                </div>
             )}
         </div>
     )
@@ -55,36 +59,3 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
 export default EventCard
 
 
-/*============== Summary: ===============/
-
-import type { Event } from '../types'
-
-- `import type { Event } from '../types'`: This imports the `Event` type you made, so TypeScript knows what an event looks like.
-
----
-
-**Defining Props for the Component**
-
-```tsx
-interface EventCardProps {
-  event: Event
-}
-```
-- This says: “My component will get one thing called `event`, and it must look like the `Event` type.”
-- This helps you catch mistakes if you forget a property or spell something wrong.
-
----
-
-## **Summary**
-
-- You made a reusable card for any event.
-- You used **props** to pass data in.
-- You used **destructuring** to grab the event.
-- You used **conditional rendering** to show “Sold Out” or tickets left.
-- You styled everything with class names.
-
----
-
-**Now, whenever you want to show an event, just use `<EventCard event={event} />`!**
-
-*/
