@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import type { Recipe } from './types';
+
 import HeaderSearchBar from './components/HeaderSearchBar';
 import NotificationBanner from './components/NotificationBanner';
+import DarkModeButton from './components/DarkModeButton';
 import RecipeAdd from './components/RecipeAdd';
 import RecipeList from './components/RecipeList';
+
 import { sortRecipes } from './utils/recipeUtils';
 import { useRecipes } from './hooks/useRecipe';
+
 import './App.css'
+import './components/DarkMode.css';
 
 const initialRecipes: Recipe[] = [
   {
@@ -44,6 +49,8 @@ export default function App() {
   const [recipes, setRecipes] = useRecipes(initialRecipes);
   const [notification, setNotification] = useState<string | null>(null);
   const [ratingFilter] = useState<number | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
+  
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -56,6 +63,10 @@ export default function App() {
     ),
     sortBy
   );
+
+  function toggleDarkMode() {
+    setDarkMode(dm => !dm);
+  }
 
   function handleDelete(id: number) {
     setRecipes(recipes => recipes.filter(recipe => recipe.id !== id));
@@ -103,6 +114,7 @@ export default function App() {
 
   return (
     <div>
+      <DarkModeButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       {location.pathname === "/" && (
         <HeaderSearchBar
           search={search}
@@ -110,6 +122,8 @@ export default function App() {
           sortMenuOpen={sortMenuOpen}
           setSortMenuOpen={setSortMenuOpen}
           setSortBy={setSortBy}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
         />
       )}
 
