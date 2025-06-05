@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import type { Recipe } from './types';
 import HeaderSearchBar from './components/HeaderSearchBar';
@@ -39,10 +39,11 @@ const initialRecipes: Recipe[] = [
 export default function App() {
   const [editId, setEditId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState<'title' | 'difficulty' | 'ingredientsCount'>('title');
+  const [sortBy, setSortBy] = useState<'title' | 'difficulty' | 'ingredientsCount' | 'rating'>('title');
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
   const [recipes, setRecipes] = useRecipes(initialRecipes);
   const [notification, setNotification] = useState<string | null>(null);
+  const [ratingFilter] = useState<number | null>(null);
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -50,7 +51,8 @@ export default function App() {
   // Filter-Logik
   const filteredRecipes = sortRecipes(
     recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(search.toLowerCase())
+      recipe.title.toLowerCase().includes(search.toLowerCase()) &&
+      (ratingFilter === null || (recipe.rating ?? 0) >= ratingFilter)
     ),
     sortBy
   );
@@ -62,11 +64,23 @@ export default function App() {
 
   function handleEdit(id: number, updated: Recipe) {
     setRecipes(prev => {
+      const old = prev.find(r => r.id === id);
       const updatedList = prev.map(r => (r.id === id ? updated : r));
-      return updatedList.sort((a, b) => a.title.localeCompare(b.title));
+      if (
+        old &&
+        (
+          old.title !== updated.title ||
+          old.description !== updated.description ||
+          old.difficulty !== updated.difficulty ||
+          old.image !== updated.image ||
+          JSON.stringify(old.ingredients) !== JSON.stringify(updated.ingredients)
+        )
+      ) {
+        setNotification("Rezept wurde bearbeitet!");
+      }
+        return updatedList.sort((a, b) => a.title.localeCompare(b.title));
     });
     setEditId(null);
-    setNotification("Rezept wurde bearbeitet!");
   }
 
   function handleAdd(recipe: Recipe) {
@@ -76,14 +90,16 @@ export default function App() {
       return newRecipes.sort((a, b) => a.title.localeCompare(b.title));
     });
     setNotification("Rezept wurde hinzugefügt!");
-
-    if(location.pathname === "/add"){
-      setTimeout(() => {
-        setNotification(null);
-        navigate("/")
-      }, 2000);
-    }
   }
+
+  useEffect(() => {
+    if (notification === "Rezept wurde hinzugefügt!" && location.pathname === "/add") {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification, location.pathname, navigate]);
 
   return (
     <div>

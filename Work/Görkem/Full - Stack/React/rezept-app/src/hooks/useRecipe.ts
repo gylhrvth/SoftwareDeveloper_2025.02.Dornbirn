@@ -8,13 +8,18 @@ export function useRecipes(initialRecipes: Recipe[]) {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     try {
       return stored ? JSON.parse(stored) : initialRecipes;
-    } catch {
+    } catch (err) {
+      console.warn("Fehler beim Parsen von Rezepten aus LocalStorage:", err);
       return initialRecipes;
     }
   });
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const serialized = JSON.stringify(recipes);
+    if (stored !== serialized) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+    }
   }, [recipes]);
 
   return [recipes, setRecipes] as const;
