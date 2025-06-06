@@ -6,4 +6,5 @@ export type Recipe = {
     ingredients: string[];
     instructions?: string;
     difficulty: 'easy' | 'medium' | 'hard';
+    rating?: number;
 };

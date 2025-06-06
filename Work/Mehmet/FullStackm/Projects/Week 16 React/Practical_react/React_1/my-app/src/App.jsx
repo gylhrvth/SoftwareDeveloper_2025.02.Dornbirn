@@ -2,7 +2,7 @@ import './App.css'; // Importiere CSS-Stile
 import meme from './assets/typeScriptMeme.jpg'; // Importiere ein Bild
 import {people} from './data'; // Importiere die Daten von Personen
 import { useState } from 'react'; 
-
+import { ButtonImport, ButtonImportSync } from './ButtonSep';
 
 // note that everthing in reaact is a component, that means a // function that returns JSX (JavaScript XML) code.
 // to be dsiplayed in the front end it has to be in th efunction APP
@@ -39,9 +39,18 @@ export function App() {
     <Items name="Picture of the Earth" isPacked={true} />
     <List />
     <TeaSet />
+   <ButtonImport />
+   <ButtonImport />
+   <ButtonImportSync />
 </>
   );
+
 }
+
+
+// The ButtonImport component is a simple button that uses the useState hook to manage its click count.
+// ButtonImportSync is a seperate component that can be imported and used in other files.
+
 
 function ClickButton() {
     const [count, setCount] = useState(0); // useState hook to manage count state

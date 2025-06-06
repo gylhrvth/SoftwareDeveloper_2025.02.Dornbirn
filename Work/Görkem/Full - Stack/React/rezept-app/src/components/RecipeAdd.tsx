@@ -25,7 +25,6 @@ const RecipeAdd: React.FC<RecipeAddProps> = ({ onAdd }) => {
       ingredients: ingredients.split(",").map(i => i.trim()).filter(Boolean),
       difficulty,
     });
-    navigate("/");
   };
 
   return (

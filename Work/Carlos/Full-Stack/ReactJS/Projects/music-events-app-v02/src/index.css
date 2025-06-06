@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: linear-gradient(135deg, #181824 0%, #1f2937 70%, #3a1c71 100%);
+  color: #e0e7ef;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  color: #30e3ca;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: #a259f7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+

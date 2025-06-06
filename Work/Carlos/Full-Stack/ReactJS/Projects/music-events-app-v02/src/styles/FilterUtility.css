@@ -1,0 +1,125 @@
+.filterUtility {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5em 0;
+  gap: 1em;
+}
+
+.maxPriceInput {
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  border: 1px solid #30e3ca;
+  font-size: 1em;
+  width: 160px;
+  background: #f8fafd;
+  color: #222;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.maxPriceInput:focus {
+  border: 2px solid #30e3ca;
+}
+
+.tagButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7em;
+  justify-content: center;
+}
+
+.tagButton {
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  background: #eee;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tagButton.selected {
+  background: #30e3ca;
+  color: #fff;
+}
+
+.clearTagButton {
+  margin-left: 1em;
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  background: #a259f7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+
+.clearTagButton:hover {
+  background: #30e3ca;
+}
+
+.filterToggleButton {
+    margin: 1em 0;
+    padding: 0.5em 1.5em;
+    border-radius: 8px;
+    background: #30e3ca; 
+    color: #565656;
+    border: none; 
+    cursor: pointer;
+    font-weight: 600 
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5em; /* space between h1 and filter */
+  justify-content: space-between; /* or space-between if you want them at ends */
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  /* Remove width: 100% and justify-content: center; */
+}
+
+.ticketsLeftInput {
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  border: 1px solid #30e3ca;
+  font-size: 1em;
+  width: 160px;
+  background: #f8fafd;
+  color: #222;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.ticketsLeftInput:focus {
+  border: 2px solid #30e3ca;
+}
+
+.dateInput {
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  border: 1px solid #30e3ca;
+  font-size: 1em;
+  background: #f8fafd;
+  color: #222;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.dateInput:focus {
+  border: 2px solid #30e3ca;
+}
+
+.filterRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1em;
+}

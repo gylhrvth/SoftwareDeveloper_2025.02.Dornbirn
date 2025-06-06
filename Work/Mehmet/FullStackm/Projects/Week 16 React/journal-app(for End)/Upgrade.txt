@@ -1,0 +1,8 @@
+COOKIES
+Cookies session Css overlay where users can set their logout time after inactivty 
+
+*CSS*
+Better Styling of the Website and responsivity 
+
+*DATA_FILTERING*
+Users Should be able to Filter DATA in Criteras as as DATE, YEAR, MONTH, DAY
