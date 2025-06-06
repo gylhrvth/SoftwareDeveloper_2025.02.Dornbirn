@@ -6,6 +6,8 @@ type Props = {
   sortMenuOpen: boolean;
   setSortMenuOpen: (v: boolean | ((v: boolean) => boolean)) => void;
   setSortBy: (v: 'title' | 'difficulty' | 'ingredientsCount' | 'rating') => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 };
 
 export default function HeaderSearchBar({ search, setSearch, sortMenuOpen, setSortMenuOpen, setSortBy }: Props) {
