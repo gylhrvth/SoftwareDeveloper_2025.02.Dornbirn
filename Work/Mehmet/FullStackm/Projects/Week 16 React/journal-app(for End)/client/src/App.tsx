@@ -183,6 +183,12 @@ function App() {
         </button>
       </div>
 
+    // Display wel
+      {user && (
+        <div className="text-right mb-2 text-lg font-semibold">
+          Welcome, {user}!
+        </div>
+      )}
       {page !== 'journal' ? (
         <div className="space-y-6 bg-white dark:bg-galacticBlue-dark rounded-lg p-6 shadow-lg transition-colors duration-500">
           <h1 className="text-3xl font-extrabold text-center">
