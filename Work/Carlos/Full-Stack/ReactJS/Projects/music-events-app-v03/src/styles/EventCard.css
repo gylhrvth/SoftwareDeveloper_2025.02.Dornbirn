@@ -1,0 +1,31 @@
+.eventCard {
+  background: rgba(58, 28, 113, 0.15);
+  border: 1px solid #30e3ca;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.eventCard:hover {
+  box-shadow: 0 2px 16px #a259f7aa;
+}
+
+.soldOut {
+    color: #a259f7;
+}
+
+.ticketsLeft {
+    color: rgb(255, 118, 68);
+}
+
+.eventImage {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  /*border: 3px solid #30e3ca;      /* Add a colored border */
+  /*box-shadow: 0 2px 8px #30e3ca33; /* Optional: subtle shadow */
+  margin-bottom: 1em;
+}

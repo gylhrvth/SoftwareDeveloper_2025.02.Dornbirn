@@ -1,0 +1,24 @@
+.buyButtonContainer {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.2rem;
+}
+
+.buyButton {
+  background: linear-gradient(90deg, #30e3ca 0%, #a259f7 100%);
+  color: #181824;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 1em;
+}
+
+.buyButton:disabled {
+  background: #44475a;
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
