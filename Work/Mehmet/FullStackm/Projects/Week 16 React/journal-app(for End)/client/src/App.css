@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ensure full height and smooth color transition */
+html, body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Default light mode */
+body {
+  @apply bg-galacticBlue-light text-gray-900;
+}
+
+/* Dark mode */
+html.dark body {
+  @apply bg-galacticBlue-midnight text-gray-100;
+}
