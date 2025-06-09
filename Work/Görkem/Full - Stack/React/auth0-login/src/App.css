@@ -1,0 +1,95 @@
+:root {
+  --btn-bg: #1976d2;
+  --btn-bg-hover: #1565c0;
+  --btn-color: #fff;
+  --btn-radius: 6px;
+  --btn-padding: 0.6em 1.4em;
+  --btn-font-size: 1rem;
+  --btn-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+    
+  --body-bg: #f5f7fa;
+  --main-bg: #fff;
+  --main-radius: 12px;
+  --main-padding: 2.5em 2em;
+  --main-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+
+  --font-family: system-ui, sans-serif;
+  --h1-color: #333;
+  --h1-size: 2rem;
+  --h1-spacing: 1px;
+  --h1-margin: 0 0 2em 0;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--body-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  background: var(--main-bg);
+  padding: var(--main-padding);
+  border-radius: var(--main-radius);
+  box-shadow: var(--main-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: var(--h1-margin);
+  color: var(--h1-color);
+  font-size: var(--h1-size);
+  letter-spacing: var(--h1-spacing);
+}
+
+
+/* Login Button/Logout Button */
+.auth-btn {
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  font-size: var(--btn-font-size);
+  box-shadow: var(--btn-shadow);
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 1em 0;
+}
+
+.auth-btn:hover {
+  background: var(--btn-bg-hover);
+}
+
+/* Profile Section */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5em;
+}
+
+.profile-container img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 0.5em;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+}
+
+.profile-container h2 {
+  margin: 0.2em 0 0.1em 0;
+  font-size: 1.2em;
+  color: var(--h1-color);
+}
+
+.profile-container p {
+  margin: 0;
+  color: #555;
+  font-size: 1em;
+}
