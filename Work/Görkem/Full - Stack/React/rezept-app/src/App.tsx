@@ -9,11 +9,11 @@ import RecipeAdd from './components/RecipeAdd';
 import RecipeList from './components/RecipeList';
 
 import { sortRecipes } from './utils/recipeUtils';
-import { useRecipes } from './hooks/useRecipe';
+//import { useRecipes } from './hooks/useRecipe';
 
 import './App.css'
 import './components/DarkMode.css';
-
+/*
 const initialRecipes: Recipe[] = [
   {
     id: 1,
@@ -40,13 +40,13 @@ const initialRecipes: Recipe[] = [
     difficulty: 'hard',
   }
 ];
-
+*/
 export default function App() {
   const [editId, setEditId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState<'title' | 'difficulty' | 'ingredientsCount' | 'rating'>('title');
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
-  const [recipes, setRecipes] = useRecipes(initialRecipes);
+  const [recipes, setRecipes] = useState<Recipe[]>([])  // useRecipes(initialRecipes);
   const [notification, setNotification] = useState<string | null>(null);
   const [ratingFilter] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState(false);
@@ -54,6 +54,25 @@ export default function App() {
   
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://localhost:3000/", {
+      method: "GET",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      mode: "cors"
+    })
+    .then(result => {
+      result.json().then(data => {
+        console.log("data: ", data)
+      })
+    })
+    .catch(err => {
+      console.error('An error has occured by fetching data', err)
+    })
+  }, [])
+
 
   // Filter-Logik
   const filteredRecipes = sortRecipes(
@@ -95,6 +114,22 @@ export default function App() {
   }
 
   function handleAdd(recipe: Recipe) {
+    fetch("http://localhost:3000/api/recipes", {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(recipe)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Recipe added:", data);
+    })
+    .catch(err => {
+      console.error('An error occurred while adding the recipe', err);
+    });
+
     setRecipes(prev => {
       const newId = Math.max(0, ...prev.map(r => r.id)) + 1;
       const newRecipes = [...prev, { ...recipe, id: newId }];
