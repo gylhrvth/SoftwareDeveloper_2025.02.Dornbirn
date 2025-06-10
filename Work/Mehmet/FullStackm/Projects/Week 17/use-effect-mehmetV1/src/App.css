@@ -1,0 +1,83 @@
+/* App.css - Dark Galactic Theme */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at center, #0d0d25, #000014 80%);
+  color: #cbd5e1; /* light grey-blue */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px;
+  background: #11122e;
+  border-radius: 12px;
+  box-shadow:
+    0 0 10px #7f5af0,
+    0 0 20px #4f46e5,
+    inset 0 0 30px #2a2a72;
+  padding: 30px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #a78bfa;
+  text-shadow:
+    0 0 8px #a78bfa,
+    0 0 20px #7c3aed,
+    0 0 30px #5b21b6;
+  margin-bottom: 24px;
+  user-select: none;
+}
+
+select {
+  background: #1e1e4f;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #cbd5e1;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    0 0 5px #7c3aed;
+  transition: box-shadow 0.3s ease;
+  outline: none;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+select:hover, select:focus {
+  box-shadow:
+    0 0 12px #a78bfa;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #d1d5db;
+  text-shadow: 0 0 5px #2a2a72;
+}
+
+button {
+  background: #7c3aed;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 12px #a78bfa;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #a78bfa;
+}
