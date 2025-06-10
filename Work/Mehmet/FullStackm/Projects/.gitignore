@@ -1,0 +1,6 @@
+# This file is used to specify files and directories that should be ignored by Git 
+
+
+node_modules
+
+.env

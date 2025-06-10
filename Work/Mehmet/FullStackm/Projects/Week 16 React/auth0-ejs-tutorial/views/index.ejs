@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home</title></head>
+<body>
+  <h1>Welcome to Auth0 Demo</h1>
+  <% if (isAuthenticated) { %>
+    <p>Hello, <%= user.name %>!</p>
+    <a href="/profile">Profile</a><br>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+  <% } %>
+</body>
+</html>
