@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="../../../MekStyle.css">
+</head>
+
+<body>
+     <button id="mode-toggle">Light Mode</button>
+
+    <h1>Node JS Notizen</h1>
+    
+    <ol id="Inhalt">
+  <li>Was ist das Problem mit Plain CSS?</li>
+  <li>Welche Lösungen bietet Tailwind CSS?</li>
+  <li>Was sind die Voraussetzungen, dass ich Tailwind CSS in meinem Projekt verwenden kann?</li>
+  <li>Wie installiere ich tailwind CSS, in einem Vite, React, Typescript Projekt?</li>
+  <li>Was sind die wichtigste class Namen?</li>
+  <li>Wie kann ich meine eigenen Brand-Farben/Schrift verwenden?</li>
+    </ol>
+
+<!-- FRAGE 1 -->
+<section>
+  <h2>1. Was ist das Problem mit Plain CSS?</h2>
+
+  <p><strong>Ausführliche Erklärung:</strong><br />
+  Plain CSS (also klassisches CSS) ist simpel und direkt, aber gerade bei größeren Projekten entstehen schnell Probleme:</p>
+
+  <ul>
+    <li><strong>Globale Styles:</strong> CSS-Klassen und IDs sind global. Wenn du z.B. <code>.button</code> definierst, wirkt das überall, wo <code>.button</code> benutzt wird. Das führt oft zu unbeabsichtigten Überschreibungen, wenn verschiedene Entwickler oder Komponenten dieselben Klassennamen verwenden.</li>
+    <li><strong>Namenskonflikte:</strong> Es kann schwer werden, Namenskonflikte zu vermeiden oder zu debuggen, besonders wenn mehrere CSS-Dateien oder Frameworks zusammenkommen.</li>
+    <li><strong>Wiederverwendung:</strong> Du musst oft sehr viele Klassen schreiben und pflegen, um ähnliche Elemente unterschiedlich zu stylen.</li>
+    <li><strong>Komplexe Selektoren:</strong> Um spezifischere Styles zu definieren, werden oft verschachtelte oder sehr lange Selektoren verwendet. Das macht den Code schwer wartbar.</li>
+    <li><strong>Fehlende Konsistenz:</strong> Ohne ein zentrales Design-System können Farben, Abstände und Schriftgrößen inkonsistent werden.</li>
+  </ul>
+
+  <h3>Beispiel für das Problem: globale Namenskonflikte</h3>
+
+  <pre><code>/* styles.css */
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+  </code></pre>
+
+  <pre><code>&lt;!-- index.html --&gt;
+&lt;button class="button"&gt;Speichern&lt;/button&gt;
+  </code></pre>
+
+  <p>Angenommen, du arbeitest an einem anderen Teil der Seite und möchtest einen anderen Button-Stil, definierst aber ebenfalls <code>.button</code>:</p>
+
+  <pre><code>/* andere-styles.css */
+.button {
+  background-color: red;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 0;
+}
+  </code></pre>
+
+  <p>Nun hast du zwei verschiedene <code>.button</code>-Definitionen, die sich gegenseitig überschreiben — abhängig davon, welche CSS-Datei zuletzt geladen wird. Das führt zu unerwartetem Styling und Bugfixing-Aufwand.</p>
+
+  <h3>Warum ist das problematisch?</h3>
+
+  <ul>
+    <li>Du kannst nicht sicher sein, welche <code>.button</code>-Definition gerade greift.</li>
+    <li>Änderungen an <code>.button</code> können unbeabsichtigte Auswirkungen auf andere Teile der Seite haben.</li>
+    <li>Skalierbarkeit leidet stark, wenn das Projekt wächst.</li>
+  </ul>
+
+  <p><strong>Fazit:</strong> Plain CSS kann bei kleinen Projekten gut funktionieren, aber bei großen oder langfristigen Projekten wird es schwer, Styles modular, konsistent und wartbar zu halten.</p>
+</section>
+
+<!-- FRAGE "2"     -->
+<section>
+  <h2>2. Welche Lösungen bietet Tailwind CSS?</h2>
+
+  <p><strong>Ausführliche Erklärung:</strong><br>
+    Tailwind CSS ist ein <em>Utility-First CSS-Framework</em>. Anstatt eigene CSS-Klassen für jeden Button oder jede Komponente zu schreiben, nutzt man viele kleine Klassen direkt im HTML. Diese sogenannten Utility-Klassen lassen sich flexibel kombinieren und bieten viele Vorteile:
+  </p>
+
+  <ul>
+    <li><strong>Kein globales Styling:</strong> Klassen wie <code>bg-blue-500</code> oder <code>p-4</code> gelten nur lokal – es gibt keine ungewollten Überschreibungen.</li>
+    <li><strong>Schnelle Entwicklung:</strong> Styles werden direkt im HTML definiert, ohne dass separate CSS-Dateien notwendig sind.</li>
+    <li><strong>Hohe Wiederverwendbarkeit & Konsistenz:</strong> Einheitliche Utility-Klassen machen das Design konsistent und leicht wartbar.</li>
+    <li><strong>Einfache zentrale Anpassung:</strong> Im <code>tailwind.config.js</code> kannst du Farben, Abstände, Schriftarten etc. projektweit definieren.</li>
+    <li><strong>Responsive & State-Varianten:</strong> Tailwind unterstützt Klassen wie <code>md:</code>, <code>hover:</code> oder <code>focus:</code> direkt – ganz ohne eigene Media Queries.</li>
+  </ul>
+
+  <h3>Beispiel:</h3>
+  <pre><code>&lt;button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"&gt;
+  Speichern
+&lt;/button&gt;</code></pre>
+
+  <p>
+    <strong>Was passiert hier?</strong><br>
+    <code>bg-blue-500</code>: mittleres Blau als Hintergrund<br>
+    <code>hover:bg-blue-700</code>: dunkleres Blau beim Hover<br>
+    <code>text-white</code>: weißer Text<br>
+    <code>font-bold</code>: fette Schrift<br>
+    <code>py-2 px-4</code>: vertikale und horizontale Polsterung<br>
+    <code>rounded</code>: abgerundete Ecken
+  </p>
+
+  <h3>💡 Technischer Hinweis:</h3>
+  <p>
+    Tailwind erstellt beim Build-Prozess (z. B. mit Vite oder webpack) eine optimierte CSS-Datei, die nur die Klassen enthält, die du im Projekt benutzt hast. Dieses Tree-Shaking spart Ladezeit und Speicher.
+  </p>
+  <p>
+    Diese generierte Datei wird wie jede andere CSS-Datei im HTML eingebunden. Wenn du Tailwind nicht mehr verwenden willst, kannst du sie einfach entfernen.
+  </p>
+  <p>
+    Außerdem kannst du jederzeit zusätzlich eigenes CSS einbinden – Tailwind blockiert das nicht.
+  </p>
+</section>
+
+
+
+
+
+
+<script>
+    const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    
+  </script>  
+</body>
+</html>
