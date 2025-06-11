@@ -1,0 +1,51 @@
+:root {
+    --main-bg-color: hsl(0, 0%, 18%);
+    --card-bg-color:  hsl(0, 0%, 38%);
+    --text-color: hsl(238, 78%, 78%);
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    font-family: 'Open Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.dogCard {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dogCardMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dogCardMain h2 {
+    margin: 0;
+    font-size: 2.4rem;
+}
+.dogCardMain p:nth-child(2) {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.dogCardMain p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.dogCardIcons {
+    display: flex;
+    justify-content: space-around;
+}

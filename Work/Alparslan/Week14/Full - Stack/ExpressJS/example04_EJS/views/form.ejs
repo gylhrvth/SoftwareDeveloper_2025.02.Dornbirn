@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formular</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <h1>Formular</h1>
+  <% if (submitted) { %>
+    <div class ="feedbackBox">
+    <p>Danke, <%= name %>!</p>
+    </div>
+  <% } else { %>
+    <form action="/form" method="POST">
+      <input type="text" name="name" placeholder="Dein Name" required>
+        <input type="email" name="email" placeholder="Deine E-Mail" required>
+        <input type="text" name="message" placeholder="Deine Nachricht" required>
+        <label>
+          <input type="checkbox" name="subscribe" value="yes"> Ich möchte den Newsletter abonnieren
+        </label>
+        <label>
+          <input type="checkbox" name="terms" value="yes" required> Ich akzeptiere die <a href="/terms">Nutzungsbedingungen</a>
+        </label>
+      <button type="submit">Absenden</button>
+    </form>
+  <% } %>
+</body>
+</html>

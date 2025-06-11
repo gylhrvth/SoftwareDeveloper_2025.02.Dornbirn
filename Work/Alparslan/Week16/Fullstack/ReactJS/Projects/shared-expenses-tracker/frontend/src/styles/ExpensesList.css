@@ -1,0 +1,65 @@
+.expenses-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.expense-item {
+  border-bottom: 1px solid var(--border);
+  padding: 1em 0;
+}
+
+.expense-description {
+  font-weight: 500;
+}
+
+.expense-amount {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.expense-payer {
+  color: var(--accent);
+}
+
+.expense-date {
+  color: #888;
+  margin-left: 0.5em;
+}
+
+.expense-participants {
+  margin-top: 0.3em;
+}
+
+.participant {
+  display: inline-block;
+  margin-right: 0.7em;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  padding: 0.1em 0.5em;
+}
+
+.remove-participant-btn {
+  margin-left: 0.3em;
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 1.3em;
+  height: 1.3em;
+  cursor: pointer;
+  font-size: 1em;
+  vertical-align: middle;
+  line-height: 1.3em;
+  padding: 0;
+}
+
+.delete-expense-btn {
+  margin-left: 1em;
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1.1em;
+  vertical-align: middle;
+}

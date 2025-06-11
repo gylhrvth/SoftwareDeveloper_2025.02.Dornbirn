@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-ceasar: "Caesar Dressing", system-ui;
+}

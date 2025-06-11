@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <style>
+                
+        table {
+            display: inline-block;
+            width: auto; /* Adjust the width as needed (e.g., 50%, 300px, etc.) */
+            margin: 0 auto; /* Center the table horizontally */
+            border: medium solid #6495ed;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: center;
+            border: thin solid #6495ed;
+        }
+
+        th {
+            background-color: #D0E3FA;
+            font-family: monospace;
+        }
+
+        td {
+            font-family: sans-serif;
+        }
+
+        .odd {
+            background: #e8edff;
+        }
+
+        .hidden {
+            display: none; /* Hides the table */
+        }
+        .toggle-button {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+
+    <title>SQL Journal 01</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">SQL Journal 01</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day50">FR 08/05/25</a>: SQL (Insert/Update/Delete)</h3>
+    <h3 class="textColor01">▷ <a href="#day49">DO 08/05/25</a>: SQL (Insert/Update/Delete)</h3>
+    <h3 class="textColor01">▷ <a href="#day48">MI 07/05/25</a>: SQL (Select)</h3>
+    <h3 class="textColor01">▷ <a href="#day47">DI 06/05/25</a>: SQL (Select)</h3>
+    <h3 class="textColor01">▷ <a href="#day46">MO 05/05/25</a>: SQL (Basics)</h3>
+
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="day50">Freitag 09. Mai 2025</h2>
+
+    <p><em>Heute nicht anwesend im Kurs. Am Abend Übung mit Datenbank Erstellung.</em></p>
+
+    <h2 id="day49">Donnerstag 08. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL (CREATE TABLE)</h3>
+
+    <h4 class="textColor01">Recherche (Data Definition Language):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was ist eine Tabelle?</h4></li>
+        <p>Eine Tabelle ist eine strukturierte Sammlung von Daten, die in Zeilen und Spalten organisiert ist.
+        Jede Zeile repräsentiert einen Datensatz, während jede Spalte ein bestimmtes Attribut oder eine Eigenschaft des Datensatzes darstellt.</p>
+
+        <li><h4 class="textColor02">Was ist eine Spalte?</h4></li>
+        <p>Eine Spalte ist ein vertikales Element in einer Tabelle, das eine bestimmte Art von Daten speichert.
+        Jede Spalte hat einen Namen und einen Datentyp, der angibt, welche Art von Werten in dieser Spalte gespeichert werden können.</p>
+        
+        <li><h4 class="textColor02">Was ist eine Zeile?</h4></li>
+        <p>Eine Zeile ist ein horizontales Element in einer Tabelle, das einen einzelnen Datensatz darstellt.
+        Jede Zeile besteht aus Werten, die den Spalten der Tabelle entsprechen.</p>
+        
+        <li><h4 class="textColor02">Welche Datentypen existieren in MySQL?</h4></li>
+        <p>In MySQL gibt es verschiedene Datentypen, darunter:</p>
+        <ul>
+            <li><strong>INT</strong>: Ganzzahlige Werte</li>
+            <li><strong>FLOAT</strong>: Gleitkommazahlen</li>
+            <li><strong>DOUBLE</strong>: Doppelt präzise Gleitkommazahlen</li>
+            <li><strong>CHAR(n)</strong>: Feste Länge von n Zeichen</li>
+            <li><strong>VARCHAR(n)</strong>: Variable Länge von bis zu n Zeichen</li>
+            <li><strong>DATE</strong>: Datumswerte</li>
+            <li><strong>DATETIME</strong>: Datum und Uhrzeit</li>
+            <li><strong>BOOLEAN</strong>: Wahrheitswerte (true/false)</li>
+        </ul>
+        <p>Es gibt auch viele andere Datentypen, die für spezifische Anforderungen verwendet werden können.</p>
+        
+        <li><h4 class="textColor02">Welche sind die wichtigste 3-4 Datentypen?</h4></li>
+        <p>Die wichtigsten Datentypen in MySQL sind:</p>
+        <ul>
+            <li><strong>INT</strong>: Für ganze Zahlen, z.B. für IDs oder Zähler.</li>
+            <li><strong>VARCHAR(n)</strong>: Für variable Zeichenfolgen, z.B. für Namen oder Adressen.</li>
+            <li><strong>DATE</strong>: Für Datumswerte, z.B. für Geburtsdaten oder Transaktionsdaten.</li>
+            <li><strong>BOOLEAN</strong>: Für Wahrheitswerte, z.B. für Statusanzeigen (aktiv/inaktiv).</li>
+        
+        <li><h4 class="textColor02">Was ist ein Primärschlüssel?</h4></li>
+        <p>Ein Primärschlüssel ist eine spezielle Spalte (oder eine Kombination von Spalten), die jede Zeile in einer Tabelle eindeutig identifiziert.
+        Er stellt sicher, dass keine zwei Zeilen denselben Wert im Primärschlüssel haben und wird häufig verwendet, um Beziehungen zwischen Tabellen herzustellen.</p>
+        <p>Beispiel:</p>
+        <p>CREATE TABLE city (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Country VARCHAR(50),<br>
+            Province VARCHAR(50),<br>
+            Population INT,<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT<br>
+        );
+        </p>
+
+        <p>In diesem Beispiel ist die Spalte "ID" der Primärschlüssel der Tabelle "city".</p>
+        
+        <li><h4 class="textColor02">Wie erstellt man eine Beziehung zwischen die Tabellen?</h4></li>
+        <p>Eine Beziehung zwischen Tabellen wird in der Regel durch die Verwendung von Primär- und Fremdschlüsseln hergestellt.
+        Ein Primärschlüssel in einer Tabelle kann als Fremdschlüssel in einer anderen Tabelle verwendet werden, um eine Verbindung zwischen den beiden Tabellen herzustellen.</p>
+        <p>Beispiel:</p>
+        <p>CREATE TABLE country (<br>
+            Code VARCHAR(3) PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Population INT<br>
+        );<br><br>
+        CREATE TABLE city (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Country VARCHAR(3),<br>
+            Province VARCHAR(50),<br>
+            Population INT,<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT,<br>
+            FOREIGN KEY (Country) REFERENCES country(Code)<br>
+        );</p>
+        <p>In diesem Beispiel ist die Spalte "Country" in der Tabelle "city" ein Fremdschlüssel, der auf die Spalte "Code" in der Tabelle "country" verweist.</p>
+
+        <li><h4 class="textColor02">Was ist ein Fremdschlüssel? Was bedeutet ein Fremdschlüssel zu haben?</h4></li>
+        <p>Ein Fremdschlüssel ist eine Spalte (oder eine Kombination von Spalten) in einer Tabelle, die auf den Primärschlüssel einer anderen Tabelle verweist.
+        Er wird verwendet, um Beziehungen zwischen Tabellen herzustellen und sicherzustellen, dass die referenzierten Werte in der anderen Tabelle vorhanden sind.</p>
+        <p>Ein Fremdschlüssel stellt sicher, dass die referenzierten Daten konsistent und gültig sind.
+        Wenn ein Fremdschlüssel definiert ist, kann die Datenbank sicherstellen, dass keine Zeilen in der Tabelle mit einem Fremdschlüssel existieren, die auf nicht vorhandene Zeilen in der referenzierten Tabelle verweisen.</p>
+
+        <p>Beispiel:</p>
+        <p>CREATE TABLE mountain (<br>
+            ID INT PRIMARY KEY,<br>
+            Name VARCHAR(50),<br>
+            Height INT,<br>
+            Type VARCHAR(50),<br>
+            Longitude FLOAT,<br>
+            Latitude FLOAT<br>
+        );<br><br>
+        CREATE TABLE geo_mountain (<br>
+            ID INT PRIMARY KEY,<br>
+            Mountain VARCHAR(50),<br>
+            Country VARCHAR(3),<br>
+            Province VARCHAR(50),<br>
+            FOREIGN KEY (Mountain) REFERENCES mountain(Name)<br>
+        );</p>
+        <p>In diesem Beispiel ist die Spalte "Mountain" in der Tabelle "geo_mountain" ein Fremdschlüssel, der auf die Spalte "Name" in der Tabelle "mountain" verweist.</p>
+
+        <li><h4 class="textColor02">Was ist die Normalization in SQL? Warum ist es wichtig?</h4></li>
+        <p>Die Normalisierung in SQL ist der Prozess, bei dem Daten in einer Datenbank so organisiert werden, dass Redundanz minimiert und die Datenintegrität maximiert wird.
+        Dies geschieht durch die Aufteilung von Daten in mehrere Tabellen und die Definition von Beziehungen zwischen diesen Tabellen.</p>
+        <p>Die Normalisierung ist wichtig, weil sie hilft, Datenanomalien zu vermeiden, die Konsistenz der Daten zu gewährleisten und die Effizienz von Abfragen zu verbessern.
+        Durch die Normalisierung wird auch der Speicherplatz optimiert, da redundante Daten vermieden werden.</p>
+        <p>Es gibt mehrere Normalformen (1NF, 2NF, 3NF usw.), die jeweils spezifische Regeln und Anforderungen für die Organisation von Daten in einer Datenbank definieren.</p>
+
+        <li><h4 class="textColor02">Wie kann man entscheiden, was kommt in eine Tabelle oder was muss separat angelegt werden?</h4></li>
+        <p>Die Entscheidung, was in eine Tabelle aufgenommen werden soll und was separat angelegt werden sollte, hängt von mehreren Faktoren ab:</p>
+        <ul>
+            <li><strong>Redundanz vermeiden:</strong> Wenn Daten redundant sind und in mehreren Tabellen gespeichert werden könnten, sollten sie in separaten Tabellen organisiert werden.</li>
+            <li><strong>Beziehungen definieren:</strong> Wenn es eine Beziehung zwischen zwei Datensätzen gibt, sollten sie in separaten Tabellen organisiert werden, um die referenzielle Integrität zu gewährleisten.</li>
+            <li><strong>Datenintegrität:</strong> Wenn bestimmte Daten nur in einer bestimmten Tabelle gültig sind, sollten sie dort gespeichert werden.</li>
+            <li><strong>Abfrageeffizienz:</strong> Wenn häufige Abfragen auf bestimmte Daten erforderlich sind, sollten diese Daten in einer Tabelle organisiert werden, um die Abfrageeffizienz zu verbessern.</li>
+            <li><strong>Normalisierung:</strong> Die Normalisierung hilft, die Struktur der Datenbank zu bestimmen und zu entscheiden, welche Daten in separaten Tabellen organisiert werden sollten.</li>
+        </ul>
+
+        <p>Beispiel:</p>
+        <p>Wenn wir eine Tabelle für "Kunden" haben, die Informationen wie Name, Adresse und Telefonnummer enthält, sollten wir eine separate Tabelle für "Bestellungen" erstellen, die auf den Primärschlüssel der "Kunden"-Tabelle verweist.
+        Auf diese Weise können wir die Bestellungen eines Kunden verfolgen, ohne redundante Daten in der "Kunden"-Tabelle zu speichern.</p>
+        
+        <li><h4 class="textColor02">Was ist ein Index?</h4></li>
+        <p>Ein Index ist eine Datenstruktur, die verwendet wird, um den Zugriff auf Daten in einer Tabelle zu beschleunigen.
+        Er funktioniert ähnlich wie ein Inhaltsverzeichnis in einem Buch, das es ermöglicht, schnell zu bestimmten Informationen zu gelangen, ohne die gesamte Tabelle durchsuchen zu müssen.</p>
+        <p>Ein Index wird auf einer oder mehreren Spalten einer Tabelle erstellt und ermöglicht es der Datenbank, Abfragen schneller auszuführen, indem er die Suche nach bestimmten Werten optimiert.</p>
+        <p>Beispiel:</p>
+        <p>CREATE INDEX idx_city_name ON city(Name);<br>
+        In diesem Beispiel wird ein Index auf der Spalte "Name" der Tabelle "city" erstellt, um die Suche nach Städtenamen zu beschleunigen.</p>
+
+        <li><h4 class="textColor02">Wann soll ich ein Index verwenden / vermeiden?</h4></li>
+        <p>Ein Index sollte verwendet werden, wenn:</p>
+        <ul>
+            <li>Häufige Abfragen auf bestimmten Spalten durchgeführt werden.</li>
+            <li>Die Tabelle groß ist und die Suche nach bestimmten Werten optimiert werden muss.</li>
+            <li>Die Daten in der Tabelle häufig aktualisiert oder gelöscht werden.</li>
+        </ul>
+    
+    </ul>
+
+    <h4 class="textColor01">Recherche (Datenbank Administration):</h4>
+
+    <ul>
+        <li><h4 class="textColor02">Was sind die DB Benutzer und wo sind sie gespeichert?</h4></li>
+        <p>DB-Benutzer sind Konten, die Zugriff auf eine Datenbank haben und Berechtigungen zum Ausführen von Abfragen, Einfügen, Aktualisieren oder Löschen von Daten haben.
+        Sie sind in der Regel in einer speziellen Systemtabelle gespeichert, die von der Datenbankverwaltung verwaltet wird.</p>
+        <p>In MySQL werden Benutzer in der Tabelle "mysql.user" gespeichert, die Informationen wie Benutzernamen, Host, Passwort und Berechtigungen enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host FROM mysql.user;</p>
+        <p>In diesem Beispiel werden alle Benutzer und ihre zugehörigen Hosts aus der Tabelle "mysql.user" abgerufen.</p>
+
+        <li><h4 class="textColor02">Wie erstellt man einen neuen Benutzer?</h4></li>
+        <p>Ein neuer Benutzer kann mit dem Befehl "CREATE USER" erstellt werden.</p>
+        <p>Beispiel:</p>
+        <p>CREATE USER 'newuser'@'localhost
+        IDENTIFIED BY 'password';</p>
+        <p>In diesem Beispiel wird ein neuer Benutzer "new
+        user" mit dem Passwort "password" erstellt, der nur von "localhost" aus auf die Datenbank zugreifen kann.</p>
+
+        <li><h4 class="textColor02">Wo sind Server Rollen gespeichert?</h4></li>
+        <p>Serverrollen sind Gruppen von Berechtigungen, die mehreren Benutzern zugewiesen werden können, um den Zugriff auf Datenbanken zu steuern.
+        Sie sind in der Regel in speziellen Systemtabellen gespeichert, die von der Datenbankverwaltung verwaltet werden.</p>
+        <p>In MySQL werden Serverrollen in der Tabelle "mysql.roles_mapping" gespeichert, die Informationen über die Zuordnung von Rollen zu Benutzern enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host, Role FROM mysql.roles_mapping;</p>
+        <p>In diesem Beispiel werden alle Benutzer, Hosts und zugehörigen Rollen aus der Tabelle "mysql.roles_mapping" abgerufen.</p>
+
+        <li><h4 class="textColor02">Wo sind Datenbank Berechtigungen gespeichert?</h4></li>
+        <p>Datenbankberechtigungen sind spezifische Berechtigungen, die Benutzern oder Rollen für den Zugriff auf bestimmte Datenbanken und deren Objekte zugewiesen werden.
+        Sie sind in der Regel in speziellen Systemtabellen gespeichert, die von der Datenbankverwaltung verwaltet werden.</p>
+        <p>In MySQL werden Datenbankberechtigungen in der Tabelle "mysql.db" gespeichert, die Informationen über die Berechtigungen für jede Datenbank enthält.</p>
+        <p>Beispiel:</p>
+        <p>SELECT User, Host, Db, Select_priv, Insert_priv, Update_priv FROM mysql.db;</p>
+        <p>In diesem Beispiel werden alle Benutzer, Hosts, Datenbanken und deren Berechtigungen aus der Tabelle "mysql.db" abgerufen.</p>
+        
+    </ul>
+
+    <h3 class="textColor01">SQL (INSERT, UPDATE, DELETE)</h3>
+
+    <h4 class="textColor01">Recherche (INSERT/UPDATE/DELETE):</h4>
+
+    <ul>
+
+    <li><h4 class="textColor02">Wie funktioniert INSERT INTO Statement?</h4></li>
+    <p>Das INSERT INTO Statement wird verwendet, um neue Datensätze in eine Tabelle einzufügen. 
+        Es fügt eine oder mehrere Zeilen in eine Tabelle ein, indem es die Werte für die Spalten angibt.</p>
+    <p>INSERT INTO hat die folgende Struktur:</p>
+    <p>table_name (column1, column2, column3, ...)<br>
+       VALUES (value1, value2, value3, ...);</p>
+    <p>Beispiel:</p>
+    <p>INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+       VALUES ('Girona', 'E', 'El Gironès', 106476, 2.8249, 41.9831);</p>
+   
+       <li><h4 class="textColor02">Wie funktioniert UPDATE Statement?</h4></li>
+       <p>Das UPDATE Statement wird verwendet, um bestehende Datensätze in einer Tabelle zu ändern. 
+        Es aktualisiert die Werte in einer oder mehreren Spalten für alle Zeilen, die den angegebenen Bedingungen entsprechen.</p>  
+        <p>UPDATE hat die folgende Struktur:</p>
+        <p>UPDATE table_name<br>
+           SET column1 = value1, column2 = value2, ...<br>
+           WHERE condition;</p>
+
+        <p>Beispiel:</p>
+        <p>UPDATE city<br>
+           SET Population = 16<br>
+           WHERE name = 'Girona';</p>
+
+        <li><h4 class="textColor02">Wie funktioniert DELETE Statement?</h4></li>
+        <p>Das DELETE Statement wird verwendet, um Datensätze aus einer Tabelle zu löschen.
+        Es entfernt eine oder mehrere Zeilen aus einer Tabelle, die den angegebenen Bedingungen entsprechen.</p>
+        <p>DELETE hat die folgende Struktur:</p>
+        <p>DELETE FROM table_name<br>
+           WHERE condition;</p>
+        <p>Beispiel:</p>
+        <p>DELETE FROM city<br>
+           WHERE name = 'Girona' AND Province = 'El Gironès';</p>
+
+    </ul>
+    <br>
+    <h4 id="sqlAufgabe03">‼️➡️ Aufgaben:</h4>
+
+    <ul>
+        
+        <li><h4 class="textColor02">Erstelle eine neue Stadt in der Mondial Datenbank</h4></li>
+        <p>SELECT * FROM city WHERE country = 'A';<br>
+           INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+           VALUES ('Panchotown', 'A', 'Vorarlberg', 273, 24.62675, 40.56986);</p>
+
+        <li><h4 class="textColor02">Umbennene die Stadt</h4></li>
+        <p>UPDATE city<br>
+           SET Name = 'Panchoville'<br>
+           WHERE Name = 'Panchotown';</p>
+
+        <li><h4 class="textColor02">Lösche die von dir erstellten Stadt</h4></li>
+        <p>DELETE FROM city<br>
+           WHERE Name = 'Panchoville' AND Province = 'Vorarlberg';</p>
+
+        <li><h4 class="textColor02">Erstelle einen neuen Berg (mountain und geo_mountain Tabellen)</h4></li>
+        <p>SELECT * FROM mountain;<br>
+            INSERT INTO mountain (Name, Mountains, Height, Type, Longitude, Latitude)<br>
+            VALUES ('Panchitosspitze', 'Panchitos Alpen', '4123', 'karstik', '9.6', '47.5');</p>
+        <p>SELECT * FROM geo_mountain;<br>
+            INSERT INTO geo_mountain (Mountain, Country, Province)<br>
+            VALUES ('Panchitosspitze', 'A', 'Vorarlberg');</p>
+
+        <li><h4 class="textColor02">Mach dein Berg größer</h4></li>
+
+        <p>
+            UPDATE mountain<br>
+            SET Height = '4737'<br>
+            WHERE Name = 'Panchitosspitze';<br>
+        </p>
+
+        <li><h4 class="textColor02">Lösche die von dir erstellten Berg (mountain und geo_mountain Tabellen)</h4></li>
+
+            DELETE FROM mountain <br>
+            WHERE Name = 'Panchitosspitze';<br>
+            <br>
+            DELETE FROM geo_mountain <br>
+            WHERE Mountain = 'Panchitosspitze';<br>
+
+    </ul>
+    <br>
+
+
+    <h4 class="textColor01">-> Gyulas Erklärung:</h4>
+
+    <p>
+        SELECT * FROM city WHERE country = 'A';<br>
+
+        INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+        VALUES ('Loreville', 'A', 'Vorarlberg', 12, 14.12345, 40.56789);<br><br>
+
+        UPDATE city<br>
+        SET Population = 16<br>
+        WHERE name = 'Loreville'<br><br>
+
+        DELETE FROM city WHERE name = 'Loreville' AND Province = 'Wonderland'<br>
+    </p>
+    <br>
+    <h4 class="textColor01">-> Meine Beispiele:</h4>
+        <p>
+            <h4>Stadt 'Girona' INSERT/UPDATE:</h4>
+
+            SELECT * FROM city WHERE country = 'E';<br>
+            INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+            VALUES ('Girona', 'E', 'El Gironès','106476', '2.8249', '41.9831');<br><br>
+
+            SELECT * FROM city <br>
+            WHERE Name = 'Girona';<br><br>
+
+            UPDATE city <br>
+            SET Population = 106477<br>
+            WHERE Name = 'Girona'<br>
+
+            <h4>Stadt 'Groovyville' INSERT/UPDATE/DELETE:</h4>
+
+            SELECT * FROM city WHERE country = 'AND';<br>
+            INSERT INTO city (Name, Country, Province, Population, Longitude, Latitude)<br>
+            VALUES ('Groovyville', 'AND', 'Andorra', '1649', '1.2', '42.4')<br><br>
+
+            SELECT * FROM city<br>
+            WHERE country = 'AND'<br><br>
+
+            UPDATE city <br>
+            SET Province = 'Dimension XY-Pi'<br>
+            WHERE Name = 'Groovyville';<br><br>
+
+            DELETE FROM city WHERE name = 'Groovyville' AND Province = 'Dimension XY-Pi';
+
+        </p>
+        <br>
+
+        <h4 id="sqlAufgabe04">‼️➡️ Aufgaben -> Datenbank 'Mitarbeiter' erstellen:</h4>
+    
+        <ul>
+            <li><strong>Step 01:</strong> Datenbank erstellen<br><br>
+                CREATE DATABASE Mitarbeiter;<br>
+                USE Mitarbeiter;<br><br></li>
+            <li><strong>Step 02:</strong> Benutzer erstellen und Berechtigungen zuweisen<br><br>
+                CREATE USER 'deinBenutzername'@'localhost' IDENTIFIED BY 'deinPasswort';<br>
+                GRANT ALL PRIVILEGES ON Mondial.* TO 'deinBenutzername'@'localhost';<br>
+                GRANT ALL PRIVILEGES ON Mitarbeiter.* TO 'deinBenutzername'@'localhost';<br>
+                FLUSH PRIVILEGES;<br><br></li>
+            </li>
+            <li><strong>Step 03:</strong> Anmeldung mit dem neuen Benutzername<br>
+            <p>In DBeaver, neue Verbindung erstellen:</p>
+            <ul>
+                <li>Auf 'New Database Connection' clicken (+ Symbol)</li>
+                <li>MySQL als Treiber aus der Datenbanken-Liste wählen </li>
+                <li>Hostname: localhost</li>
+                <li>Port: 3306</li>
+                <li>Username: deinBenutzername</li>
+                <li>Password: deinPasswort</li>
+                <li>Database: Mitarbeiter</li>
+                <li>Testen und speichern.</li>
+                <li>Verbinden.</li>
+            </ul>
+    
+            <p>Zusätzliche Hinweise: </p>
+            <ul>
+                <li>Falls 'Public Key Retrieval is not allowed' Fehler auftritt -><br>
+                <li>In DBeaver, beim Database Navigator (linkes Fenster), rechtsclick auf die aktuelle Verbindung (Mitarbeiter in dem Beispiel)</li>
+                <li>Edit Connection wählen</li>
+                <li>In dem neuen Fenster, auf 'Driver Properties' Tab klicken</li>
+                <li>Scrollen und 'allowPublicKeyRetrieval' auf 'true' setzen.</li>
+                <li>Auf 'OK' klicken und die Verbindung erneut testen.</li> 
+            
+            </ul>
+            
+            
+            </li>
+            <br>
+            <li><strong>Step 04:</strong> Tabelle Beruf erstellen<br><br>
+                CREATE TABLE Beruf (<br>
+                Beruf_ID INT AUTO_INCREMENT PRIMARY KEY,<br>
+                Beruf_Name VARCHAR(100) NOT NULL,<br>
+                Beruf_Beschreibung TEXT<br>
+                );<br><br></li>
+    
+            <li><strong>Step 05:</strong> Tabelle Person erstellen<br><br>
+                CREATE TABLE Person (<br>
+                Person_ID INT AUTO_INCREMENT PRIMARY KEY,<br>
+                Person_Vorname VARCHAR(100) NOT NULL,<br>
+                Person_Nachname VARCHAR(100) NOT NULL,<br>
+                Person_Beruf_ID INT,<br>
+                FOREIGN KEY (Person_Beruf_ID) REFERENCES Beruf(Beruf_ID)<br>
+                );<br><br></li>
+    
+            <li><strong>Step 06:</strong> Daten einfügen (Beruf)<br><br>
+                INSERT INTO <br>Beruf (Beruf_Name, Beruf_Beschreibung)<br><br>
+                VALUES <br>('Softwareentwickler', 'Entwicklung von Softwarelösungen'),<br>
+                ('Datenbankadministrator', 'Verwaltung von Datenbanken'),<br>
+                ('Systemanalytiker', 'Analyse und Design von Systemen');<br><br></li>
+    
+            <li><strong>Step 07:</strong> Daten einfügen (Person)<br><br>
+                INSERT INTO <br>Person (Person_Vorname, Person_Nachname, Person_Beruf_ID)<br><br>
+                VALUES <br>('Max', 'Mustermann', 1),<br>
+                ('Anna', 'Müller', 2),<br>
+                ('Peter', 'Schmidt', 3);<br><br></li>
+    
+            <li><strong>Step 08:</strong> Daten abfragen<br><br>
+                SELECT * FROM Person;<br>
+                SELECT * FROM Beruf;<br><br></li>
+    
+            <li><strong>Step 09:</strong>  Dump generieren<br>
+                <p>On DBeaver -> Right Click on the Database -> Tools -> Dump database</p>
+                <p>In der Dump-Datei sind alle Datenbank-Objekte (Tabellen, Views, Stored Procedures, etc.) und deren Daten enthalten.</p>
+                <p>Die Dump-Datei kann verwendet werden, um die Datenbank auf einem anderen Server oder in einer anderen Umgebung wiederherzustellen.</p>
+                <p>Die Dump-Datei enthält auch die Struktur der Datenbank, einschließlich der Definitionen der Tabellen, Spalten und Beziehungen.</p>
+                <p>Die Dump-Datei kann auch verwendet werden, um eine Sicherungskopie der Datenbank zu erstellen, die später wiederhergestellt werden kann.</p>
+    
+                <p>Falls Local Client Configuration notwendig, <em>follow this steps -> </em><a href="https://dbeaver.com/docs/dbeaver/Local-Client-Configuration/#local-client-configuration-for-windows">Link</a></p>
+                <p>In Mac Terminal: find / -name "mysqldump" 2>/dev/null</p>
+                <p>Ergebnis: /usr/local/mysql-9.3.0-macos15-arm64/bin/mysqldump</p>
+                <p>Omit /bin/mysql -> /usr/local/mysql-9.3.0-macos15-arm64/</p>
+                <p>Input path in Local Client Section</p>
+                <p>Dump-Data Setup: <a href="./mitarbeiterDB/Dump_Data_Setup.png">Link (Dump Data)</a></p>
+                <p>Dump-Schema Setup: <a href="./mitarbeiterDB/Dump_Schema_Setup.png">Link (Dump Schema)</a></p>
+            </li>
+            <br>
+    
+        </ul>
+
+    <h2 id="day48">Mittwoch 07. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL (SELECT / Subqueries)</h3>
+
+    <p>Beispiel:</p>
+
+    <p>
+        /* Case 1: Konstant Wert */<br>
+        SELECT Code FROM country WHERE name = 'Austria'; <br>
+
+        SELECT *
+        FROM city<br>
+        WHERE country = (SELECT Code FROM country WHERE name = 'Austria');<br>
+        <br>
+
+        /* Case 2: Liste */<br>
+        SELECT Code FROM country WHERE name like '%ria'; <br>
+
+        SELECT *
+        FROM city<br>
+        WHERE country IN (SELECT Code FROM country WHERE name like '%ria');<br>
+        <br>
+
+        /* Case 3: Tabelle */<br>
+        SELECT Code, Name FROM country WHERE name like '%ria'; <br>
+
+        SELECT co.Name, c.Name AS city<br>
+        FROM city c <br>
+        JOIN (SELECT Code, Name FROM country WHERE name like '%ria') AS co ON c.Country = co.Code<br>
+        ORDER BY co.Name, c.Name<br>
+        <br>
+
+
+        /* The same with WITH statement */<br>
+        WITH co AS (SELECT Code, Name FROM country WHERE name like '%ria')<br>
+        SELECT co.Name, c.Name AS city<br>
+        FROM city c
+        JOIN co ON c.Country = co.Code<br>
+        ORDER BY co.Name, c.Name<br>
+
+        <p>Important!: Keyword HAVING ist eigentlich eine Abkürzung für eine Sub-Querie.</p>
+    </p>
+
+    <br>
+
+
+    <h2 id="day47">Dienstag 06. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL (SELECT)</h3>
+
+    <h4>‼️➡️ Aufgaben:</h4>
+
+    <h4 class="textColor01" id="sqlAufgabe01">-> Kleine Wiederholung:</h4>
+
+    <ol>
+        
+
+        <li><h4 class="textColor02">Zeige die aktuelle Uhrzeit als Query-Result an.</h4></li>
+        <p>SELECT now()</p>
+
+        <li><h4 class="textColor02">Zeige "Hello World!" als Query-Result an.</h4></li>
+        <p>SELECT 'Hello World!'</p>
+        <li><h4 class="textColor02">Zeige alle Spalten, alle Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT * FROM country</p>
+        <li><h4 class="textColor02">Zeige alle Spalten, erste 5 Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT * FROM country<br>
+           LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital der ersten 5 Zeilen aus der country Tabelle.</h4></li>
+        <p>SELECT Name, Capital FROM country<br>
+           LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital der ersten 5 Zeilen aus der country Tabelle mit eigenen Namen.</h4></li>
+            <p>SELECT Name AS Land, Capital AS Hauptstadt FROM country,<br>
+                LIMIT 5;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name 'Austria'.</h4></li>
+        <p>SELECT Name, Capital FROM country<br>
+           WHERE Name = 'Austria';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Population kleiner 1 Million.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Population < 1000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Population zwischen 1 Million und 2 Millionen.</h4></li>
+                <p>SELECT Name, Capital FROM country<br>
+                WHERE Population BETWEEN 1000000 AND 2000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A'.</h4></li>
+        <p>Alternative 01:</p>
+        <p>SELECT Name, Capital FROM country<br>
+           WHERE Name LIKE 'A%';</p><br>
+
+        <p>Alternative 02:</p>
+           <p>SELECT Name, Capital<br>
+            FROM country<br>
+            WHERE SUBSTR(Name, 1, 1) = 'a';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name am Ende mit 'A'.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Name LIKE '%a';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name nicht beginnend mit 'A'.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE NOT Name LIKE 'A%';</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A' oder Population kleiner 1 Million.</h4></li>
+            <p>SELECT Name, Capital FROM country<br>
+                WHERE Name LIKE 'A%' OR Population < 1000000;</p>
+        <li><h4 class="textColor02">Zeige die Spalten Name und Capital aus der country Tabelle mit Filter auf Name beginnend mit 'A' und Population kleiner 1 Million.</h4></li>
+            <p>SELECT NAme, Capital FROM country<br>
+                WHERE Name LIKE 'A%' AND Population < 1000000;</p>
+    </ol>
+
+    <br>
+
+    <h4 class="textColor01" id="sqlAufgabe02">-> Challenge Aufgaben:</h4>
+
+    <p><strong>Database Schema:</strong><a href="https://www.dbis.informatik.uni-goettingen.de/Mondial/mondial-abh.pdf">Link</a></p>
+    
+    <ol>
+
+        <li><h4 class="textColor02">Wie viele Einwohner hat Österreich?</h4></li>
+        <p>SELECT Population FROM country<br>
+           WHERE Name = 'Austria';</p>
+
+        <p>Lösung: Österreich hat 8,023,244 Einwohner.</p>
+
+        <li><h4 class="textColor02">Wie viele Einwohner hat der Kontinent Europa?</h4></li>
+            <p>SELECT<br>
+                SUM(country.Population) AS TotalPopulation<br>
+               FROM country<br>
+               JOIN encompasses ON country.Code = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe' and Percentage > 50;</p>
+
+        <p>Lösung: Europa hat 580,580,439 Einwohner.</p>
+
+        <li><h4 class="textColor02">Welche Flüsse fließen durch Österreich?</h4></li>
+            <p>SELECT<br>
+                 DISTINCT geo_river.River AS River<br>
+               FROM geo_river<br>
+               JOIN country ON geo_river.Country = country.Code<br>
+               WHERE country.Name = 'Austria';</p>
+        
+            <p>Lösung: Raab, Drau, Donau, March, Enns, Mur, Salzach, Inn, Isar, Lech, Iller, Rhein </p>
+
+        <li><h4 class="textColor02">Welche Flüsse fließen durch Europa (nur den Flussnamen)?</h4></li>
+            <p>SELECT<br>
+                DISTINCT geo_river.River AS River<br>
+               FROM geo_river<br>
+               JOIN country ON geo_river.Country = country.Code<br>
+               JOIN encompasses ON country.Code = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe'</p>
+
+            <p>Lösung: </p>
+            <p>Euphrat, Aare, Limmat, Reuss, Rhein, Murat, Glomma, Lagen, Black Drin, Drin, White Drin, Guadiana, Saar, Katun, Ob, Goetaaelv, Amur, Guadalquivir, Garonne, Ebro, Northern Dwina, Petschora, Volga, Loire, Douro, Donau, Breg, Brigach, Iller, Neckar, Drau, Tigris, Alz, Ammer, Inn, Isar, Lech, Main, Salzach, Wurm, Dnepr, Western Dwina, Thames, Weichsel, Theiss, Save, Pruth, Doubs, Saone, Seine, Elbe, Oder, Olt, Weser, Raab, Tajo, Maas, Marne, Ural, Dnjestr, Argun, Schilka, Mur, Dalaelv, Oesterdalaelv, Vaesterdalaelv, Po, Karasu, Narva, Paatsjoki, Rhone, Kymijoki, Klaraelv, Fulda, Werra, Joekulsa a Fjoellum, Thjorsa, Angara, Lena, Moldau, March, Oka, Kura, Southern Morava, Chatanga, Jenissej, Vuoksi, Tobol, Kemijoki, Ounasjoki, Tiber, Newa, Swir, Don, Adda, Ticino, Mosel, Kolyma, Aller, Leine, Irtysch, Ischim, Oulujoki, Isere, Enns, Morava, Western Morava, Waag, Arno, Etsch, Kokemaeenjoki, Umeaelv, Mincio, Suchona.
+            </p>
+            <br>
+
+            <p>-> Abfrage zu Flüssen in Ländern, deren Fläche zu mindestens 50 % in Europa liegt.</p>
+        
+            <p>SELECT DISTINCT gr.River
+                FROM geo_river gr<br>
+                WHERE gr.Country IN (<br>
+                SELECT country.Code<br>
+                FROM country<br>
+                JOIN encompasses ON country.Code = encompasses.Country<br>
+                WHERE encompasses.Continent = 'Europe' AND Percentage > 50<br> 
+                )<br>
+                ORDER BY gr.River;</p>
+            
+                <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table1">Show/Hide Table 1</h4>
+            <table id="table1" class="hidden">
+            <tr class="odd"><td><strong>Name</strong></td></tr>
+            <tr><td>Adda</td></tr>
+            <tr class="odd"><td>Aller</td></tr>
+            <tr><td>Alz</td></tr>
+            <tr class="odd"><td>Ammer</td></tr>
+            <tr><td>Arno</td></tr>
+            <tr class="odd"><td>Black Drin</td></tr>
+            <tr><td>Breg</td></tr>
+            <tr class="odd"><td>Brigach</td></tr>
+            <tr><td>Dalaelv</td></tr>
+            <tr class="odd"><td>Dnepr</td></tr>
+            <tr><td>Dnjestr</td></tr>
+            <tr class="odd"><td>Donau</td></tr>
+            <tr><td>Doubs</td></tr>
+            <tr class="odd"><td>Douro</td></tr>
+            <tr><td>Drau</td></tr>
+            <tr class="odd"><td>Drin</td></tr>
+            <tr><td>Ebro</td></tr>
+            <tr class="odd"><td>Elbe</td></tr>
+            <tr><td>Enns</td></tr>
+            <tr class="odd"><td>Etsch</td></tr>
+            <tr><td>Fulda</td></tr>
+            <tr class="odd"><td>Garonne</td></tr>
+            <tr><td>Glomma</td></tr>
+            <tr class="odd"><td>Goetaaelv</td></tr>
+            <tr><td>Guadalquivir</td></tr>
+            <tr class="odd"><td>Guadiana</td></tr>
+            <tr><td>Iller</td></tr>
+            <tr class="odd"><td>Inn</td></tr>
+            <tr><td>Isar</td></tr>
+            <tr class="odd"><td>Isere</td></tr>
+            <tr><td>Joekulsa a Fjoellum</td></tr>
+            <tr class="odd"><td>Kemijoki</td></tr>
+            <tr><td>Klaraelv</td></tr>
+            <tr class="odd"><td>Kokemaeenjoki</td></tr>
+            <tr><td>Kymijoki</td></tr>
+            <tr class="odd"><td>Lagen</td></tr>
+            <tr><td>Lech</td></tr>
+            <tr class="odd"><td>Leine</td></tr>
+            <tr><td>Limmat</td></tr>
+            <tr class="odd"><td>Loire</td></tr>
+            <tr><td>Maas</td></tr>
+            <tr class="odd"><td>Main</td></tr>
+            <tr><td>March</td></tr>
+            <tr class="odd"><td>Marne</td></tr>
+            <tr><td>Mincio</td></tr>
+            <tr class="odd"><td>Moldau</td></tr>
+            <tr><td>Morava</td></tr>
+            <tr class="odd"><td>Mosel</td></tr>
+            <tr><td>Mur</td></tr>
+            <tr class="odd"><td>Narva</td></tr>
+            <tr><td>Neckar</td></tr>
+            <tr class="odd"><td>Oder</td></tr>
+            <tr><td>Oesterdalaelv</td></tr>
+            <tr class="odd"><td>Olt</td></tr>
+            <tr><td>Oulujoki</td></tr>
+            <tr class="odd"><td>Ounasjoki</td></tr>
+            <tr><td>Paatsjoki</td></tr>
+            <tr class="odd"><td>Po</td></tr>
+            <tr><td>Pruth</td></tr>
+            <tr class="odd"><td>Raab</td></tr>
+            <tr><td>Reuss</td></tr>
+            <tr class="odd"><td>Rhein</td></tr>
+            <tr><td>Rhone</td></tr>
+            <tr class="odd"><td>Saar</td></tr>
+            <tr><td>Salzach</td></tr>
+            <tr class="odd"><td>Saone</td></tr>
+            <tr><td>Save</td></tr>
+            <tr class="odd"><td>Seine</td></tr>
+            <tr><td>Southern Morava</td></tr>
+            <tr class="odd"><td>Tajo</td></tr>
+            <tr><td>Thames</td></tr>
+            <tr class="odd"><td>Theiss</td></tr>
+            <tr><td>Thjorsa</td></tr>
+            <tr class="odd"><td>Tiber</td></tr>
+            <tr><td>Ticino</td></tr>
+            <tr class="odd"><td>Umeaelv</td></tr>
+            <tr><td>Vaesterdalaelv</td></tr>
+            <tr class="odd"><td>Vuoksi</td></tr>
+            <tr><td>Waag</td></tr>
+            <tr class="odd"><td>Weichsel</td></tr>
+            <tr><td>Werra</td></tr>
+            <tr class="odd"><td>Weser</td></tr>
+            <tr><td>Western Dwina</td></tr>
+            <tr class="odd"><td>Western Morava</td></tr>
+            <tr><td>White Drin</td></tr>
+            <tr class="odd"><td>Wurm</td></tr>
+            </table>
+
+                <p></p>
+
+        <li><h4 class="textColor02">Wie viel Prozent der Menschen leben im Kontinent Europa?</h4></li>
+        <p><strong>Step 01</strong></p>
+        <p>SELECT sum(population) from country;<br>
+        SELECT sum(population)<br>
+        FROM country<br>
+        JOIN encompasses on country.code = encompasses.Country<br>
+        WHERE Continent = 'Europe' and Percentage > 50</p>
+        
+        <p><strong>Step 02</strong></p>
+        <p>SELECT ROUND(100 * (SELECT sum(population)<br>
+             FROM country JOIN encompasses ON country.code = encompasses.Country<br>
+        WHERE Continent = 'Europe' AND Percentage > 50) / (SELECT sum(population) FROM country), 2) proc</p>
+             
+        <p>Lösung: 10.05%</p>
+
+        <li><h4 class="textColor02">Alle Länder die mit einem A anfangen</h4></li>
+            <p>SELECT Name FROM country<br>
+                WHERE Name LIKE 'A%';</p>
+        <li><h4 class="textColor02">Alle Länder die mit einem A anfangen und deren Bundesländer mit Einwohnerzahl, sortiert nach Einwohnerzahl</h4></li>
+            <p>SELECT country.Name AS Land, province.Name AS Bundesland, province.Population<br>
+                FROM country<br>
+                JOIN province ON country.Code = province.Country<br>
+                WHERE country.Name LIKE 'A%'<br>
+                ORDER BY province.Population DESC;</p>
+
+            <p>Lösung:</p>
+            
+            <h4 class="toggle-button" data-target="table2">Show/Hide Table 2</h4>
+            <table id="table2" class="hidden">
+                <tr><td><strong>Country</strong></td><td><strong>Province</strong></td><td><strong>Population</strong></td></strong></tr>
+                <tr><td>Afghanistan</td><td>Afghanistan</td><td>22,664,136</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Buenos Aires</td><td>12,594,974</td></tr>
+                <tr><td>Azerbaijan</td><td>Azerbaijan</td><td>7,676,953</td></tr>
+                <tr class="odd"><td>Australia</td><td>New South Wales</td><td>6,115,100</td></tr>
+                <tr><td>Australia</td><td>Victoria</td><td>4,502,200</td></tr>
+                <tr class="odd"><td>Armenia</td><td>Armenia</td><td>3,463,574</td></tr>
+                <tr><td>Australia</td><td>Queensland</td><td>3,277,000</td></tr>
+                <tr class="odd"><td>Albania</td><td>Albania</td><td>3,249,136</td></tr>
+                <tr><td>Argentina</td><td>Distrito Federal</td><td>2,965,403</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Santa Fe</td><td>2,798,422</td></tr>
+                <tr><td>Argentina</td><td>Cordoba</td><td>2,766,683</td></tr>
+                <tr class="odd"><td>Australia</td><td>Western Australia</td><td>1,731,700</td></tr>
+                <tr><td>Angola</td><td>Luanda</td><td>1,629,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Vienna</td><td>1,583,000</td></tr>
+                <tr><td>Angola</td><td>Huambo</td><td>1,524,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Lower Austria</td><td>1,507,000</td></tr>
+                <tr><td>Australia</td><td>South Australia</td><td>1,474,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Mendoza</td><td>1,412,481</td></tr>
+                <tr><td>Austria</td><td>Upper Austria</td><td>1,373,000</td></tr>
+                <tr class="odd"><td>Austria</td><td>Styria</td><td>1,203,000</td></tr>
+                <tr><td>Argentina</td><td>Tucuman</td><td>1,142,105</td></tr>
+                <tr class="odd"><td>Angola</td><td>Bie</td><td>1,125,000</td></tr>
+                <tr><td>Argentina</td><td>Entre Rios</td><td>1,020,257</td></tr>
+                <tr class="odd"><td>Angola</td><td>Malanje</td><td>892,000</td></tr>
+                <tr><td>Angola</td><td>Huila</td><td>869,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Salta</td><td>866,153</td></tr>
+                <tr><td>Argentina</td><td>Chaco</td><td>839,677</td></tr>
+                <tr class="odd"><td>Angola</td><td>Uige</td><td>837,000</td></tr>
+                <tr><td>Argentina</td><td>Corrientes</td><td>795,594</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Misiones</td><td>788,915</td></tr>
+                <tr><td>Argentina</td><td>Santiago de Estero</td><td>671,988</td></tr>
+                <tr class="odd"><td>Angola</td><td>Cuanza Sul</td><td>651,000</td></tr>
+                <tr><td>Austria</td><td>Tyrol</td><td>649,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Benguela</td><td>644,000</td></tr>
+                <tr><td>Austria</td><td>Carinthia</td><td>559,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>San Juan</td><td>528,715</td></tr>
+                <tr><td>Argentina</td><td>Jujuy</td><td>512,329</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Rio Negro</td><td>506,772</td></tr>
+                <tr><td>Austria</td><td>Salzburg</td><td>501,000</td></tr>
+                <tr class="odd"><td>Australia</td><td>Tasmania</td><td>473,022</td></tr>
+                <tr><td>Argentina</td><td>Formosa</td><td>398,413</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Neuquen</td><td>388,833</td></tr>
+                <tr><td>Angola</td><td>Cuanza Norte</td><td>378,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>Chubut</td><td>357,189</td></tr>
+                <tr><td>Austria</td><td>Vorarlberg</td><td>341,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Moxico</td><td>316,000</td></tr>
+                <tr><td>Australia</td><td>Australia Capital Territory</td><td>304,100</td></tr>
+                <tr class="odd"><td>Angola</td><td>Lunda Norte</td><td>292,000</td></tr>
+                <tr><td>Argentina</td><td>San Luis</td><td>286,458</td></tr>
+                <tr class="odd"><td>Austria</td><td>Burgenland</td><td>273,000</td></tr>
+                <tr><td>Argentina</td><td>Catamarca</td><td>264,324</td></tr>
+                <tr class="odd"><td>Argentina</td><td>La Pampa</td><td>259,996</td></tr>
+                <tr><td>Angola</td><td>Cunene</td><td>232,000</td></tr>
+                <tr class="odd"><td>Argentina</td><td>La Rioja</td><td>220,729</td></tr>
+                <tr><td>Angola</td><td>Zaire</td><td>192,000</td></tr>
+                <tr class="odd"><td>Australia</td><td>Northern Territory</td><td>173,878</td></tr>
+                <tr><td>Angola</td><td>Bengo</td><td>166,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Cabinda</td><td>163,000</td></tr>
+                <tr><td>Argentina</td><td>Santa Cruz</td><td>159,839</td></tr>
+                <tr class="odd"><td>Angola</td><td>Lunda Sul</td><td>155,000</td></tr>
+                <tr><td>Angola</td><td>Cuando Cubango</td><td>130,000</td></tr>
+                <tr class="odd"><td>Angola</td><td>Namibe</td><td>115,000</td></tr>
+                <tr><td>Aruba</td><td>Aruba</td><td>103,065</td></tr>
+                <tr class="odd"><td>Andorra</td><td>Andorra</td><td>72,766</td></tr>
+                <tr><td>Argentina</td><td>Tierra del Fuego</td><td>69,369</td></tr>
+                <tr class="odd"><td>Antigua and Barbuda</td><td>Antigua and Barbuda</td><td>65,647</td></tr>
+                <tr><td>American Samoa</td><td>American Samoa</td><td>65,628</td></tr>
+                <tr class="odd"><td>Anguilla</td><td>Anguilla</td><td>14,436</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Alle Flüsse die durch Europa fließen (nur Flüsse und deren Länge), sortiert nach Länge</h4></li>
+            <p>SELECT DISTINCT<br>
+                river.Name AS Flussname, river.Length AS Länge<br>
+               FROM river<br>
+               JOIN geo_river ON river.Name = geo_river.River<br>
+               JOIN encompasses ON geo_river.Country = encompasses.Country<br>
+               WHERE encompasses.Continent = 'Europe' and Percentage > 50<br>
+               ORDER BY Length DESC;</p>
+
+               <p>Lösung:</p>
+
+               <h4 class="toggle-button" data-target="table3">Show/Hide Table 3</h4>
+               <table id="table3" class="hidden">
+                <tr><td><strong>Name</strong></td><td><strong>Fluss (km)</strong></td></tr>
+                <tr><td>Dnepr</td><td>2,201</td></tr>
+                <tr class="odd"><td>Dnjestr</td><td>1,352</td></tr>
+                <tr><td>Rhein</td><td>1,324</td></tr>
+                <tr class="odd"><td>Theiss</td><td>1,308</td></tr>
+                <tr><td>Elbe</td><td>1,091</td></tr>
+                <tr class="odd"><td>Weichsel</td><td>1,047</td></tr>
+                <tr><td>Western Dwina</td><td>1,020</td></tr>
+                <tr class="odd"><td>Loire</td><td>1,013</td></tr>
+                <tr><td>Tajo</td><td>1,007</td></tr>
+                <tr class="odd"><td>Pruth</td><td>953</td></tr>
+                <tr><td>Save</td><td>945</td></tr>
+                <tr class="odd"><td>Maas</td><td>925</td></tr>
+                <tr><td>Ebro</td><td>925</td></tr>
+                <tr class="odd"><td>Douro</td><td>897</td></tr>
+                <tr><td>Oder</td><td>866</td></tr>
+                <tr class="odd"><td>Rhone</td><td>812</td></tr>
+                <tr><td>Seine</td><td>776</td></tr>
+                <tr class="odd"><td>Drau</td><td>749</td></tr>
+                <tr><td>Guadiana</td><td>742</td></tr>
+                <tr class="odd"><td>Guadalquivir</td><td>657</td></tr>
+                <tr><td>Po</td><td>652</td></tr>
+                <tr class="odd"><td>Garonne</td><td>647</td></tr>
+                <tr><td>Olt</td><td>615</td></tr>
+                <tr class="odd"><td>Glomma</td><td>604</td></tr>
+                <tr><td>Kemijoki</td><td>550</td></tr>
+                <tr class="odd"><td>Mosel</td><td>544</td></tr>
+                <tr><td>Main</td><td>524</td></tr>
+                <tr class="odd"><td>Dalaelv</td><td>520</td></tr>
+                <tr><td>Inn</td><td>517</td></tr>
+                <tr class="odd"><td>Marne</td><td>514</td></tr>
+                <tr><td>Saone</td><td>480</td></tr>
+                <tr class="odd"><td>Umeaelv</td><td>470</td></tr>
+                <tr><td>Klaraelv</td><td>460</td></tr>
+                <tr class="odd"><td>Mur</td><td>453</td></tr>
+                <tr><td>Doubs</td><td>453</td></tr>
+                <tr class="odd"><td>Moldau</td><td>440</td></tr>
+                <tr><td>Weser</td><td>440</td></tr>
+                <tr class="odd"><td>Etsch</td><td>415</td></tr>
+                <tr><td>Tiber</td><td>405</td></tr>
+                <tr class="odd"><td>Waag</td><td>403</td></tr>
+                <tr><td>Neckar</td><td>367</td></tr>
+                <tr class="odd"><td>March</td><td>358</td></tr>
+                <tr><td>Thames</td><td>346</td></tr>
+                <tr class="odd"><td>Lagen</td><td>322</td></tr>
+                <tr><td>Vaesterdalaelv</td><td>320</td></tr>
+                <tr class="odd"><td>Adda</td><td>313</td></tr>
+                <tr><td>Western Morava</td><td>308</td></tr>
+                <tr class="odd"><td>Ounasjoki</td><td>300</td></tr>
+                <tr><td>Southern Morava</td><td>295</td></tr>
+                <tr class="odd"><td>Isar</td><td>295</td></tr>
+                <tr><td>Werra</td><td>292</td></tr>
+                <tr class="odd"><td>Isere</td><td>290</td></tr>
+                <tr><td>Aare</td><td>288</td></tr>
+                <tr class="odd"><td>Leine</td><td>281</td></tr>
+                <tr><td>Lech</td><td>264</td></tr>
+                <tr class="odd"><td>Enns</td><td>254</td></tr>
+                <tr><td>Raab</td><td>250</td></tr>
+                <tr class="odd"><td>Ticino</td><td>248</td></tr>
+                <tr><td>Oesterdalaelv</td><td>241</td></tr>
+                <tr class="odd"><td>Arno</td><td>240</td></tr>
+                <tr><td>Thjorsa</td><td>230</td></tr>
+                <tr class="odd"><td>Saar</td><td>227</td></tr>
+                <tr><td>Salzach</td><td>225</td></tr>
+                <tr class="odd"><td>Fulda</td><td>221</td></tr>
+                <tr><td>Aller</td><td>211</td></tr>
+                <tr class="odd"><td>Joekulsa a Fjoellum</td><td>206</td></tr>
+                <tr><td>Kymijoki</td><td>203</td></tr>
+                <tr class="odd"><td>Morava</td><td>185</td></tr>
+                <tr><td>White Drin</td><td>175</td></tr>
+                <tr class="odd"><td>Ammer</td><td>168</td></tr>
+                <tr><td>Reuss</td><td>164</td></tr>
+                <tr class="odd"><td>Vuoksi</td><td>162</td></tr>
+                <tr><td>Drin</td><td>152</td></tr>
+                <tr class="odd"><td>Alz</td><td>150</td></tr>
+                <tr><td>Iller</td><td>147</td></tr>
+                <tr class="odd"><td>Paatsjoki</td><td>145</td></tr>
+                <tr><td>Black Drin</td><td>133</td></tr>
+                <tr class="odd"><td>Kokemaeenjoki</td><td>121</td></tr>
+                <tr><td>Oulujoki</td><td>107</td></tr>
+                <tr class="odd"><td>Goetaaelv</td><td>93</td></tr>
+                <tr><td>Narva</td><td>78</td></tr>
+                <tr class="odd"><td>Mincio</td><td>75</td></tr>
+                <tr><td>Breg</td><td>45.9</td></tr>
+                <tr class="odd"><td>Brigach</td><td>43</td></tr>
+                <tr><td>Limmat</td><td>36.3</td></tr>
+                <tr class="odd"><td>Wurm</td><td>35</td></tr>
+                </table>
+
+        <li><h4 class="textColor02">Alle Inseln im Pazifik mit >50% islamischem Bekenntnis</h4></li>
+        <p>SELECT * FROM islandIn; -- Pacific Ocean</p>
+
+        <p>SELECT * FROM geo_island;</p>
+        
+        <p>SELECT * FROM religion; -- Muslim</p>
+        
+        <p>
+            SELECT islandIn.Island<br>
+            FROM islandIn<br>
+            JOIN geo_island ON islandIn.Island = geo_island.Island<br>
+            JOIN religion ON geo_island.Country = religion.Country<br>
+            WHERE islandIn.Sea = 'Pacific Ocean' <br>AND religion.Name = 'Muslim' <br>AND religion.Percentage > 50;</p>
+
+            <p>Lösung: New Guinea</p>
+        <li><h4 class="textColor02">Alle 3000er, welche in einem Land sind, welches zu mindestens 60% römisch Katholisch ist</h4></li>
+            <p>SELECT DISTINCT mountain.Name AS Berg,<br>
+                mountain.Height AS Hoehe<br>
+                FROM mountain<br>
+                JOIN geo_mountain ON mountain.Name = geo_mountain.Mountain<br>
+                JOIN country ON geo_mountain.Country = country.Code<br>
+                JOIN religion ON country.Code = religion.Country<br>
+                WHERE mountain.Height > 3000<br>
+                AND religion.Name = 'Roman Catholic' <br>
+                AND religion.Percentage > 60<br>
+                ORDER BY mountain.Height DESC;</p>
+            <br>
+
+            <p>Sortieren nach Anzahl der 3000er:</p>
+
+            <p>
+            SELECT
+                country.Name AS Country,
+                COUNT(DISTINCT mountain.Name) AS NumberOfMountains<br>
+            FROM 
+                mountain<br>
+            JOIN 
+                geo_mountain ON mountain.Name = geo_mountain.Mountain<br>
+            JOIN 
+                country ON geo_mountain.Country = country.Code<br>
+            JOIN 
+                religion ON country.Code = religion.Country<br>
+            WHERE<br>
+                mountain.Height > 3000<br>
+                AND religion.Name = 'Roman Catholic'<br>
+                AND religion.Percentage > 60<br>
+            GROUP BY 
+                country.Name<br>
+            ORDER BY 
+                NumberOfMountains DESC;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table4">Show/Hide Table 4</h4>
+            <table id="table4" class="hidden">
+            <tr><td><strong>Country</strong></td><td><strong>N° of Mountains</strong></td></tr>
+            <tr class="odd"><td>Italy</td><td>7</td></tr>
+            <tr><td>Peru</td><td>6</td></tr>
+            <tr class="odd"><td>Argentina</td><td>5</td></tr>
+            <tr><td>Mexico</td><td>5</td></tr>
+            <tr class="odd"><td>Bolivia</td><td>4</td></tr>
+            <tr><td>Spain</td><td>4</td></tr>
+            <tr class="odd"><td>Chile</td><td>3</td></tr>
+            <tr><td>Colombia</td><td>3</td></tr>
+            <tr class="odd"><td>Ecuador</td><td>3</td></tr>
+            <tr><td>France</td><td>3</td></tr>
+            <tr class="odd"><td>Costa Rica</td><td>2</td></tr>
+            <tr><td>Austria</td><td>1</td></tr>
+            <tr class="odd"><td>Dominican Republic</td><td>1</td></tr>
+            <tr><td>Equatorial Guinea</td><td>1</td></tr>
+            <tr class="odd"><td>Reunion</td><td>1</td></tr>
+            <tr><td>Rwanda</td><td>1</td></tr>
+            <tr class="odd"><td>Venezuela</td><td>1</td></tr>
+            </table>
+            </p>
+
+        <li><h4 class="textColor02">Alle Länder mit mindestens einem See mit mindestens 100 Meter Tiefe und mindestens einem Berg mit mindestens 1500 Höhenmeter</h4></li>
+            <p>
+                SELECT<br>
+                    country.Name AS Country,<br>
+                    COUNT(DISTINCT lake.Name) AS NumberOfLakes,<br>
+                    COUNT(DISTINCT mountain.Name) AS NumberOfMountains<br>
+                FROM 
+                    country<br>
+                JOIN 
+                    geo_lake ON country.Code = geo_lake.Country<br>
+                JOIN 
+                    lake ON geo_lake.Lake = lake.Name<br>
+                JOIN 
+                    geo_mountain ON country.Code = geo_mountain.Country<br>
+                JOIN 
+                    mountain ON geo_mountain.Mountain = mountain.Name<br>
+                WHERE 
+                    lake.Depth > 100<br>
+                    AND mountain.Height > 1500<br>
+                GROUP BY 
+                    country.Name<br>
+                HAVING 
+                    NumberOfLakes > 0 AND NumberOfMountains > 0;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table5">Show/Hide Table 5</h4>
+            <table id="table5" class="hidden">
+                <tr><td><strong>Country</strong></td><td><strong>N° of Lakes</strong></td><td><strong>N° of Mountains</strong></td></tr>
+                <tr class="odd"><td>Albania</td><td>1</td><td>2</td></tr>
+                <tr><td>Austria</td><td>1</td><td>3</td></tr>
+                <tr class="odd"><td>Bolivia</td><td>1</td><td>4</td></tr>
+                <tr><td>Cameroon</td><td>1</td><td>1</td></tr>
+                <tr class="odd"><td>Canada</td><td>8</td><td>9</td></tr>
+                <tr><td>China</td><td>1</td><td>12</td></tr>
+                <tr class="odd"><td>Egypt</td><td>1</td><td>1</td></tr>
+                <tr><td>France</td><td>1</td><td>5</td></tr>
+                <tr class="odd"><td>Germany</td><td>2</td><td>1</td></tr>
+                <tr><td>Indonesia</td><td>1</td><td>10</td></tr>
+                <tr class="odd"><td>Iran</td><td>1</td><td>3</td></tr>
+                <tr><td>Italy</td><td>5</td><td>9</td></tr>
+                <tr class="odd"><td>Kazakstan</td><td>1</td><td>1</td></tr>
+                <tr><td>Kyrgyzstan</td><td>1</td><td>3</td></tr>
+                <tr class="odd"><td>Macedonia</td><td>1</td><td>1</td></tr>
+                <tr><td>Norway</td><td>1</td><td>6</td></tr>
+                <tr class="odd"><td>Peru</td><td>1</td><td>6</td></tr>
+                <tr><td>Russia</td><td>5</td><td>5</td></tr>
+                <tr class="odd"><td>Rwanda</td><td>1</td><td>1</td></tr>
+                <tr><td>Sudan</td><td>1</td><td>1</td></tr>
+                <tr class="odd"><td>Sweden</td><td>4</td><td>5</td></tr>
+                <tr><td>Switzerland</td><td>7</td><td>6</td></tr>
+                <tr class="odd"><td>Tanzania</td><td>2</td><td>3</td></tr>
+                <tr><td>Turkey</td><td>1</td><td>2</td></tr>
+                <tr class="odd"><td>Uganda</td><td>1</td><td>2</td></tr>
+                <tr><td>United States</td><td>10</td><td>28</td></tr>
+                <tr class="odd"><td>Zaire</td><td>3</td><td>2</td></tr>
+            </table>
+            
+        <li><h4 class="textColor02">Einwohnerzahl pro Religion</h4></li>
+
+            <p>SELECT<br>
+                religion.Name AS Religion,
+                CEIL(SUM(country.Population * religion.Percentage) / 100) AS TotalPopulation<br>
+               FROM religion<br>
+               JOIN country ON religion.Country = country.Code<br>
+               GROUP BY religion.Name<br>
+               ORDER BY TotalPopulation DESC;</p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table6">Show/Hide Table 6</h4>
+            <table id="table6" class="hidden">
+            <tr><td><strong>Religion</strong></td><td><strong>Population</strong></td></tr>
+            <tr class="odd"><td>Muslim</td><td>1,171,723,072</td></tr>
+            <tr><td>Roman Catholic</td><td>884,650,225</td></tr>
+            <tr class="odd"><td>Hindu</td><td>810,280,798</td></tr>
+            <tr><td>Protestant</td><td>294,660,091</td></tr>
+            <tr class="odd"><td>Buddhist</td><td>263,571,733</td></tr>
+            <tr><td>Christian</td><td>161,092,553</td></tr>
+            <tr class="odd"><td>Christian Orthodox</td><td>92,383,111</td></tr>
+            <tr><td>Taoist</td><td>19,963,270</td></tr>
+            <tr class="odd"><td>Sikh</td><td>19,042,154</td></tr>
+            <tr><td>Anglican</td><td>8,690,613</td></tr>
+            <tr class="odd"><td>Jewish</td><td>7,363,117</td></tr>
+            <tr><td>Jains</td><td>4,760,539</td></tr>
+            <tr class="odd"><td>Kimbanguist</td><td>4,649,854</td></tr>
+            <tr><td>Judaism</td><td>4,446,036</td></tr>
+            <tr class="odd"><td>Coptic Christian</td><td>3,814,507</td></tr>
+            <tr><td>United Church</td><td>3,464,267</td></tr>
+            <tr class="odd"><td>Confucianism</td><td>1,364,469</td></tr>
+            <tr><td>Presbyterian</td><td>1,055,344</td></tr>
+            <tr class="odd"><td>Bahai</td><td>661,045</td></tr>
+            <tr><td>Armenian Apostolic</td><td>417,585</td></tr>
+            <tr class="odd"><td>Baptist</td><td>274,118</td></tr>
+            <tr><td>Methodist</td><td>200,083</td></tr>
+            <tr class="odd"><td>Evangelical Alliance</td><td>175,782</td></tr>
+            <tr><td>Druze</td><td>108,440</td></tr>
+            <tr class="odd"><td>Seventh-Day Adventist</td><td>99,920</td></tr>
+            <tr><td>Chondogyo</td><td>90,965</td></tr>
+            <tr class="odd"><td>Pentecostal</td><td>89,010</td></tr>
+            <tr><td>United</td><td>45,420</td></tr>
+            <tr class="odd"><td>Christian Congregationalist</td><td>32,814</td></tr>
+            <tr><td>Church of God</td><td>31,065</td></tr>
+            <tr class="odd"><td>Episcopalian</td><td>16,511</td></tr>
+            <tr><td>Church Tuvalu</td><td>9,842</td></tr>
+            <tr class="odd"><td>African Methodist Episcopal</td><td>7,463</td></tr>
+            <tr><td>Church Christ</td><td>6,746</td></tr>
+            <tr class="odd"><td>Mormon</td><td>4,995</td></tr>
+            <tr><td>Ekalesia Niue</td><td>853</td></tr>
+            <tr class="odd"><td>Uniting Church Australia</td><td>363</td></tr>
+            </table>
+
+            </p>
+
+        <li><h4 class="textColor02">Alle Länder, nur die Namen und die Meere dazu (keine Null Werte)</h4></li>
+            <p>
+                SELECT<br>
+                DISTINCT country.Name AS Country, <br>
+                INFULL(GROUP_CONCAT(DISTINCT geo_sea.Sea SEPARATOR ', '), 'Land') AS Seas<br>
+                FROM 
+                    country<br>
+                JOIN 
+                    geo_sea ON country.Code = geo_sea.Country<br>
+                GROUP BY 
+                    country.Name<br>
+                ORDER BY 
+                    country.Name ASC;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table7">Show/Hide Table 7</h4>
+            <table id="table7" class="hidden">
+            <tr><td><strong>Country</strong></td><td><strong>Seas</strong></td></tr>
+            <tr class="odd"><td>Afghanistan</td><td>Land</td></tr>
+            <tr><td>Albania</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Algeria</td><td>Mediterranean Sea</td></tr>
+            <tr><td>American Samoa</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Andorra</td><td>Land</td></tr>
+            <tr><td>Angola</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Anguilla</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Antigua and Barbuda</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Argentina</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Armenia</td><td>Land</td></tr>
+            <tr class="odd"><td>Aruba</td><td>Caribbean Sea</td></tr>
+            <tr><td>Australia</td><td>Indian Ocean, Pacific Ocean</td></tr>
+            <tr class="odd"><td>Austria</td><td>Land</td></tr>
+            <tr><td>Azerbaijan</td><td>Land</td></tr>
+            <tr class="odd"><td>Bahamas</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Bahrain</td><td>Persian Gulf</td></tr>
+            <tr class="odd"><td>Bangladesh</td><td>Gulf of Bengal</td></tr>
+            <tr><td>Barbados</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Belarus</td><td>Land</td></tr>
+            <tr><td>Belgium</td><td>North Sea</td></tr>
+            <tr class="odd"><td>Belize</td><td>Caribbean Sea</td></tr>
+            <tr><td>Benin</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Bermuda</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Bhutan</td><td>Land</td></tr>
+            <tr class="odd"><td>Bolivia</td><td>Land</td></tr>
+            <tr><td>Bosnia and Herzegovina</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Botswana</td><td>Land</td></tr>
+            <tr><td>Brazil</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>British Virgin Islands</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Brunei</td><td>South China Sea</td></tr>
+            <tr class="odd"><td>Bulgaria</td><td>Black Sea</td></tr>
+            <tr><td>Burkina Faso</td><td>Land</td></tr>
+            <tr class="odd"><td>Burundi</td><td>Land</td></tr>
+            <tr><td>Cambodia</td><td>South China Sea</td></tr>
+            <tr class="odd"><td>Cameroon</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Canada</td><td>Arctic Ocean, Atlantic Ocean, Pacific Ocean</td></tr>
+            <tr class="odd"><td>Cape Verde</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Cayman Islands</td><td>Caribbean Sea</td></tr>
+            <tr class="odd"><td>Central African Republic</td><td>Land</td></tr>
+            <tr><td>Chad</td><td>Land</td></tr>
+            <tr class="odd"><td>Chile</td><td>Atlantic Ocean, Pacific Ocean</td></tr>
+            <tr><td>China</td><td>East China Sea, South China Sea, Yellow Sea</td></tr>
+            <tr class="odd"><td>Christmas Island</td><td>Indian Ocean</td></tr>
+            <tr><td>Cocos Islands</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Colombia</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr><td>Comoros</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Congo</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Cook Islands</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Costa Rica</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr><td>Cote dIvoire</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Croatia</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Cuba</td><td>Atlantic Ocean, Caribbean Sea, Gulf of Mexico</td></tr>
+            <tr class="odd"><td>Cyprus</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Czech Republic</td><td>Land</td></tr>
+            <tr class="odd"><td>Denmark</td><td>Baltic Sea, Kattegat, North Sea, Skagerrak</td></tr>
+            <tr><td>Djibouti</td><td>Gulf of Aden, Red Sea</td></tr>
+            <tr class="odd"><td>Dominica</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Dominican Republic</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Ecuador</td><td>Pacific Ocean</td></tr>
+            <tr><td>Egypt</td><td>Mediterranean Sea, Red Sea</td></tr>
+            <tr class="odd"><td>El Salvador</td><td>Pacific Ocean</td></tr>
+            <tr><td>Equatorial Guinea</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Eritrea</td><td>Red Sea</td></tr>
+            <tr><td>Estonia</td><td>Baltic Sea</td></tr>
+            <tr class="odd"><td>Ethiopia</td><td>Land</td></tr>
+            <tr><td>Falkland Islands</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Faroe Islands</td><td>Atlantic Ocean, Norwegian Sea</td></tr>
+            <tr><td>Fiji</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Finland</td><td>Baltic Sea</td></tr>
+            <tr><td>France</td><td>Atlantic Ocean, Mediterranean Sea, North Sea, The Channel</td></tr>
+            <tr class="odd"><td>French Guiana</td><td>Atlantic Ocean</td></tr>
+            <tr><td>French Polynesia</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Gabon</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Gambia</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Gaza Strip</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Georgia</td><td>Black Sea</td></tr>
+            <tr class="odd"><td>Germany</td><td>Baltic Sea, North Sea</td></tr>
+            <tr><td>Ghana</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Gibraltar</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+            <tr><td>Greece</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Greenland</td><td>Arctic Ocean, Atlantic Ocean, Norwegian Sea</td></tr>
+            <tr><td>Grenada</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Guadeloupe</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Guam</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Guatemala</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr><td>Guernsey</td><td>The Channel</td></tr>
+            <tr class="odd"><td>Guinea</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Guinea-Bissau</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Guyana</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Haiti</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Holy See</td><td>Land</td></tr>
+            <tr><td>Honduras</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr class="odd"><td>Hong Kong</td><td>South China Sea</td></tr>
+            <tr><td>Hungary</td><td>Land</td></tr>
+            <tr class="odd"><td>Iceland</td><td>Atlantic Ocean, Norwegian Sea</td></tr>
+            <tr><td>India</td><td>Andaman Sea, Arabian Sea, Gulf of Bengal, Indian Ocean</td></tr>
+            <tr class="odd"><td>Indonesia</td><td>Andaman Sea, Indian Ocean, Malakka Strait, Pacific Ocean, South China Sea, Sulawesi Sea, Sunda Sea</td></tr>
+            <tr><td>Iran</td><td>Gulf of Oman, Persian Gulf</td></tr>
+            <tr class="odd"><td>Iraq</td><td>Persian Gulf</td></tr>
+            <tr><td>Ireland</td><td>Atlantic Ocean, Irish Sea</td></tr>
+            <tr class="odd"><td>Israel</td><td>Mediterranean Sea, Red Sea</td></tr>
+            <tr><td>Italy</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Jamaica</td><td>Caribbean Sea</td></tr>
+            <tr><td>Japan</td><td>East China Sea, Pacific Ocean, Sea of Japan, Sea of Okhotsk</td></tr>
+            <tr class="odd"><td>Jersey</td><td>The Channel</td></tr>
+            <tr><td>Jordan</td><td>Red Sea</td></tr>
+            <tr class="odd"><td>Kazakstan</td><td>Land</td></tr>
+            <tr><td>Kenya</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Kiribati</td><td>Pacific Ocean</td></tr>
+            <tr><td>Kosovo</td><td>Land</td></tr>
+            <tr class="odd"><td>Kuwait</td><td>Persian Gulf</td></tr>
+            <tr><td>Kyrgyzstan</td><td>Land</td></tr>
+            <tr class="odd"><td>Laos</td><td>Land</td></tr>
+            <tr><td>Latvia</td><td>Baltic Sea</td></tr>
+            <tr class="odd"><td>Lebanon</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Lesotho</td><td>Land</td></tr>
+            <tr class="odd"><td>Liberia</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Libya</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Liechtenstein</td><td>Land</td></tr>
+            <tr><td>Lithuania</td><td>Baltic Sea</td></tr>
+            <tr class="odd"><td>Luxembourg</td><td>Land</td></tr>
+            <tr><td>Macau</td><td>South China Sea</td></tr>
+            <tr class="odd"><td>Macedonia</td><td>Land</td></tr>
+            <tr><td>Madagascar</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Malawi</td><td>Land</td></tr>
+            <tr><td>Malaysia</td><td>Malakka Strait, South China Sea, Sulawesi Sea</td></tr>
+            <tr class="odd"><td>Maldives</td><td>Indian Ocean, Pacific Ocean</td></tr>
+            <tr><td>Mali</td><td>Land</td></tr>
+            <tr class="odd"><td>Malta</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Man</td><td>Irish Sea</td></tr>
+            <tr class="odd"><td>Marshall Islands</td><td>Pacific Ocean</td></tr>
+            <tr><td>Martinique</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Mauritania</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Mauritius</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Mayotte</td><td>Indian Ocean</td></tr>
+            <tr><td>Mexico</td><td>Caribbean Sea, Gulf of Mexico, Pacific Ocean</td></tr>
+            <tr class="odd"><td>Micronesia</td><td>Pacific Ocean</td></tr>
+            <tr><td>Moldova</td><td>Land</td></tr>
+            <tr class="odd"><td>Monaco</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Mongolia</td><td>Land</td></tr>
+            <tr class="odd"><td>Montenegro</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Montserrat</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Morocco</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+            <tr><td>Mozambique</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Myanmar</td><td>Andaman Sea, Gulf of Bengal</td></tr>
+            <tr><td>Namibia</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Nauru</td><td>Pacific Ocean</td></tr>
+            <tr><td>Nepal</td><td>Land</td></tr>
+            <tr class="odd"><td>Netherlands</td><td>North Sea</td></tr>
+            <tr><td>Netherlands Antilles</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>New Caledonia</td><td>Pacific Ocean</td></tr>
+            <tr><td>New Zealand</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Nicaragua</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr><td>Niger</td><td>Land</td></tr>
+            <tr class="odd"><td>Nigeria</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Niue</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Norfolk Island</td><td>Pacific Ocean</td></tr>
+            <tr><td>North Korea</td><td>Sea of Japan, Yellow Sea</td></tr>
+            <tr class="odd"><td>Northern Mariana Islands</td><td>Pacific Ocean</td></tr>
+            <tr><td>Norway</td><td>Barents Sea, North Sea, Norwegian Sea, Skagerrak</td></tr>
+            <tr class="odd"><td>Oman</td><td>Arabian Sea, Gulf of Oman, Persian Gulf</td></tr>
+            <tr><td>Pakistan</td><td>Arabian Sea, Gulf of Oman, Indian Ocean</td></tr>
+            <tr class="odd"><td>Palau</td><td>Pacific Ocean</td></tr>
+            <tr><td>Panama</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+            <tr class="odd"><td>Papua New Guinea</td><td>Pacific Ocean</td></tr>
+            <tr><td>Paraguay</td><td>Land</td></tr>
+            <tr class="odd"><td>Peru</td><td>Pacific Ocean</td></tr>
+            <tr><td>Philippines</td><td>Pacific Ocean, South China Sea, Sulawesi Sea</td></tr>
+            <tr class="odd"><td>Pitcairn Islands</td><td>Pacific Ocean</td></tr>
+            <tr><td>Poland</td><td>Baltic Sea</td></tr>
+            <tr class="odd"><td>Portugal</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Puerto Rico</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Qatar</td><td>Persian Gulf</td></tr>
+            <tr><td>Reunion</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Romania</td><td>Black Sea</td></tr>
+            <tr><td>Russia</td><td>Arctic Ocean, Baltic Sea, Barents Sea, Bering Sea, Black Sea, Pacific Ocean, Sea of Azov, Sea of Japan, Sea of Okhotsk, Sibirian Sea</td></tr>
+            <tr class="odd"><td>Rwanda</td><td>Land</td></tr>
+            <tr><td>Saint Helena</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Saint Kitts and Nevis</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Saint Lucia</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr class="odd"><td>Saint Martin</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Saint Pierre and Miquelon</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Saint Vincent and the Grenadines</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Samoa</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>San Marino</td><td>Land</td></tr>
+            <tr><td>Sao Tome and Principe</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Saudi Arabia</td><td>Persian Gulf, Red Sea</td></tr>
+            <tr><td>Senegal</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Serbia</td><td>Land</td></tr>
+            <tr><td>Seychelles</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Sierra Leone</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Singapore</td><td>Indian Ocean, Malakka Strait, South China Sea</td></tr>
+            <tr class="odd"><td>Slovakia</td><td>Land</td></tr>
+            <tr><td>Slovenia</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Solomon Islands</td><td>Pacific Ocean</td></tr>
+            <tr><td>Somalia</td><td>Gulf of Aden, Indian Ocean</td></tr>
+            <tr class="odd"><td>South Africa</td><td>Atlantic Ocean, Indian Ocean</td></tr>
+            <tr><td>South Korea</td><td>East China Sea, Sea of Japan, Yellow Sea</td></tr>
+            <tr class="odd"><td>Spain</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+            <tr><td>Sri Lanka</td><td>Gulf of Bengal, Indian Ocean</td></tr>
+            <tr class="odd"><td>Sudan</td><td>Red Sea</td></tr>
+            <tr><td>Suriname</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Svalbard</td><td>Arctic Ocean, Atlantic Ocean, Norwegian Sea</td></tr>
+            <tr><td>Swaziland</td><td>Land</td></tr>
+            <tr class="odd"><td>Sweden</td><td>Baltic Sea, Kattegat, Skagerrak</td></tr>
+            <tr><td>Switzerland</td><td>Land</td></tr>
+            <tr class="odd"><td>Syria</td><td>Mediterranean Sea</td></tr>
+            <tr><td>Taiwan</td><td>East China Sea, Pacific Ocean, South China Sea</td></tr>
+            <tr class="odd"><td>Tajikistan</td><td>Land</td></tr>
+            <tr><td>Tanzania</td><td>Indian Ocean</td></tr>
+            <tr class="odd"><td>Thailand</td><td>Andaman Sea, Malakka Strait, South China Sea</td></tr>
+            <tr><td>Timor-Leste</td><td>Indian Ocean, Sunda Sea</td></tr>
+            <tr class="odd"><td>Togo</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Tonga</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Trinidad and Tobago</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Tunisia</td><td>Mediterranean Sea</td></tr>
+            <tr class="odd"><td>Turkey</td><td>Black Sea, Mediterranean Sea</td></tr>
+            <tr><td>Turkmenistan</td><td>Land</td></tr>
+            <tr class="odd"><td>Turks and Caicos Islands</td><td>Atlantic Ocean</td></tr>
+            <tr><td>Tuvalu</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Uganda</td><td>Land</td></tr>
+            <tr><td>Ukraine</td><td>Black Sea, Sea of Azov</td></tr>
+            <tr class="odd"><td>United Arab Emirates</td><td>Gulf of Oman, Persian Gulf</td></tr>
+            <tr><td>United Kingdom</td><td>Atlantic Ocean, Irish Sea, North Sea, Norwegian Sea, The Channel</td></tr>
+            <tr class="odd"><td>United States</td><td>Arctic Ocean, Atlantic Ocean, Bering Sea, Gulf of Mexico, Pacific Ocean</td></tr>
+            <tr><td>Uruguay</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Uzbekistan</td><td>Land</td></tr>
+            <tr><td>Vanuatu</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>Venezuela</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Vietnam</td><td>South China Sea</td></tr>
+            <tr class="odd"><td>Virgin Islands</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+            <tr><td>Wallis and Futuna</td><td>Pacific Ocean</td></tr>
+            <tr class="odd"><td>West Bank</td><td>Land</td></tr>
+            <tr><td>Western Sahara</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Yemen</td><td>Gulf of Aden, Indian Ocean, Red Sea</td></tr>
+            <tr><td>Zaire</td><td>Atlantic Ocean</td></tr>
+            <tr class="odd"><td>Zambia</td><td>Land</td></tr>
+            <tr><td>Zimbabwe</td><td>Land</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Alle Länder, nur die Namen, und wenn sie haben, das Meer dazu</h4></li>
+        <p>
+            SELECT<br>
+            DISTINCT country.Name AS Country, <br>
+            GROUP_CONCAT(DISTINCT geo_sea.Sea SEPARATOR ', ') AS Seas<br>
+            FROM 
+                country<br>
+            JOIN 
+                geo_sea ON country.Code = geo_sea.Country<br>
+            GROUP BY 
+                country.Name<br>
+            ORDER BY 
+                country.Name ASC;<br>
+        </p>
+
+        <p>Lösung:</p>
+
+        <h4 class="toggle-button" data-target="table8">Show/Hide Table 8</h4>
+            <table id="table8" class="hidden">
+
+        <tr><th>Country</th><th>Seas</th></tr>
+        <tr class="odd"><td>Albania</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Algeria</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>American Samoa</td><td>Pacific Ocean</td></tr>
+        <tr><td>Angola</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Anguilla</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Antigua and Barbuda</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Argentina</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Aruba</td><td>Caribbean Sea</td></tr>
+        <tr class="odd"><td>Australia</td><td>Indian Ocean, Pacific Ocean</td></tr>
+        <tr><td>Bahamas</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Bahrain</td><td>Persian Gulf</td></tr>
+        <tr><td>Bangladesh</td><td>Gulf of Bengal</td></tr>
+        <tr class="odd"><td>Barbados</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Belgium</td><td>North Sea</td></tr>
+        <tr class="odd"><td>Belize</td><td>Caribbean Sea</td></tr>
+        <tr><td>Benin</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Bermuda</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Bosnia and Herzegovina</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Brazil</td><td>Atlantic Ocean</td></tr>
+        <tr><td>British Virgin Islands</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Brunei</td><td>South China Sea</td></tr>
+        <tr><td>Bulgaria</td><td>Black Sea</td></tr>
+        <tr class="odd"><td>Cambodia</td><td>South China Sea</td></tr>
+        <tr><td>Cameroon</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Canada</td><td>Arctic Ocean, Atlantic Ocean, Pacific Ocean</td></tr>
+        <tr><td>Cape Verde</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Cayman Islands</td><td>Caribbean Sea</td></tr>
+        <tr><td>Chile</td><td>Atlantic Ocean, Pacific Ocean</td></tr>
+        <tr class="odd"><td>China</td><td>East China Sea, South China Sea, Yellow Sea</td></tr>
+        <tr><td>Christmas Island</td><td>Indian Ocean</td></tr>
+        <tr class="odd"><td>Cocos Islands</td><td>Indian Ocean</td></tr>
+        <tr><td>Colombia</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr class="odd"><td>Comoros</td><td>Indian Ocean</td></tr>
+        <tr><td>Congo</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Cook Islands</td><td>Pacific Ocean</td></tr>
+        <tr><td>Costa Rica</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr class="odd"><td>Cote dIvoire</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Croatia</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Cuba</td><td>Atlantic Ocean, Caribbean Sea, Gulf of Mexico</td></tr>
+        <tr><td>Cyprus</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Denmark</td><td>Baltic Sea, Kattegat, North Sea, Skagerrak</td></tr>
+        <tr><td>Djibouti</td><td>Gulf of Aden, Red Sea</td></tr>
+        <tr class="odd"><td>Dominica</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Dominican Republic</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Ecuador</td><td>Pacific Ocean</td></tr>
+        <tr><td>Egypt</td><td>Mediterranean Sea, Red Sea</td></tr>
+        <tr class="odd"><td>El Salvador</td><td>Pacific Ocean</td></tr>
+        <tr><td>Equatorial Guinea</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Eritrea</td><td>Red Sea</td></tr>
+        <tr><td>Estonia</td><td>Baltic Sea</td></tr>
+        <tr class="odd"><td>Falkland Islands</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Faroe Islands</td><td>Atlantic Ocean, Norwegian Sea</td></tr>
+        <tr class="odd"><td>Fiji</td><td>Pacific Ocean</td></tr>
+        <tr><td>Finland</td><td>Baltic Sea</td></tr>
+        <tr class="odd"><td>France</td><td>Atlantic Ocean, Mediterranean Sea, North Sea, The Channel</td></tr>
+        <tr><td>French Guiana</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>French Polynesia</td><td>Pacific Ocean</td></tr>
+        <tr><td>Gabon</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Gambia</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Gaza Strip</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Georgia</td><td>Black Sea</td></tr>
+        <tr><td>Germany</td><td>Baltic Sea, North Sea</td></tr>
+        <tr class="odd"><td>Ghana</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Gibraltar</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Greece</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Greenland</td><td>Arctic Ocean, Atlantic Ocean, Norwegian Sea</td></tr>
+        <tr class="odd"><td>Grenada</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Guadeloupe</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Guam</td><td>Pacific Ocean</td></tr>
+        <tr><td>Guatemala</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr class="odd"><td>Guernsey</td><td>The Channel</td></tr>
+        <tr><td>Guinea</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Guinea-Bissau</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Guyana</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Haiti</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Honduras</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr class="odd"><td>Hong Kong</td><td>South China Sea</td></tr>
+        <tr><td>Iceland</td><td>Atlantic Ocean, Norwegian Sea</td></tr>
+        <tr class="odd"><td>India</td><td>Andaman Sea, Arabian Sea, Gulf of Bengal, Indian Ocean</td></tr>
+        <tr><td>Indonesia</td><td>Andaman Sea, Indian Ocean, Malakka Strait, Pacific Ocean, South China Sea, Sulawesi Sea, Sunda Sea</td></tr>
+        <tr class="odd"><td>Iran</td><td>Gulf of Oman, Persian Gulf</td></tr>
+        <tr><td>Iraq</td><td>Persian Gulf</td></tr>
+        <tr class="odd"><td>Ireland</td><td>Atlantic Ocean, Irish Sea</td></tr>
+        <tr><td>Israel</td><td>Mediterranean Sea, Red Sea</td></tr>
+        <tr class="odd"><td>Italy</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Jamaica</td><td>Caribbean Sea</td></tr>
+        <tr class="odd"><td>Japan</td><td>East China Sea, Pacific Ocean, Sea of Japan, Sea of Okhotsk</td></tr>
+        <tr><td>Jersey</td><td>The Channel</td></tr>
+        <tr class="odd"><td>Jordan</td><td>Red Sea</td></tr>
+        <tr><td>Kenya</td><td>Indian Ocean</td></tr>
+        <tr class="odd"><td>Kiribati</td><td>Pacific Ocean</td></tr>
+        <tr><td>Kuwait</td><td>Persian Gulf</td></tr>
+        <tr class="odd"><td>Latvia</td><td>Baltic Sea</td></tr>
+        <tr><td>Lebanon</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Liberia</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Libya</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Lithuania</td><td>Baltic Sea</td></tr>
+        <tr><td>Macau</td><td>South China Sea</td></tr>
+        <tr class="odd"><td>Madagascar</td><td>Indian Ocean</td></tr>
+        <tr><td>Malaysia</td><td>Malakka Strait, South China Sea, Sulawesi Sea</td></tr>
+        <tr class="odd"><td>Maldives</td><td>Indian Ocean, Pacific Ocean</td></tr>
+        <tr><td>Malta</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Man</td><td>Irish Sea</td></tr>
+        <tr><td>Marshall Islands</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Martinique</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Mauritania</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Mauritius</td><td>Indian Ocean</td></tr>
+        <tr><td>Mayotte</td><td>Indian Ocean</td></tr>
+        <tr class="odd"><td>Mexico</td><td>Caribbean Sea, Gulf of Mexico, Pacific Ocean</td></tr>
+        <tr><td>Micronesia</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Monaco</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Montenegro</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Montserrat</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Morocco</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Mozambique</td><td>Indian Ocean</td></tr>
+        <tr><td>Myanmar</td><td>Andaman Sea, Gulf of Bengal</td></tr>
+        <tr class="odd"><td>Namibia</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Nauru</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Netherlands</td><td>North Sea</td></tr>
+        <tr><td>Netherlands Antilles</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>New Caledonia</td><td>Pacific Ocean</td></tr>
+        <tr><td>New Zealand</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Nicaragua</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr><td>Nigeria</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Niue</td><td>Pacific Ocean</td></tr>
+        <tr><td>Norfolk Island</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>North Korea</td><td>Sea of Japan, Yellow Sea</td></tr>
+        <tr><td>Northern Mariana Islands</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Norway</td><td>Barents Sea, North Sea, Norwegian Sea, Skagerrak</td></tr>
+        <tr><td>Oman</td><td>Arabian Sea, Gulf of Oman, Persian Gulf</td></tr>
+        <tr class="odd"><td>Pakistan</td><td>Arabian Sea, Gulf of Oman, Indian Ocean</td></tr>
+        <tr><td>Palau</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Panama</td><td>Caribbean Sea, Pacific Ocean</td></tr>
+        <tr><td>Papua New Guinea</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Peru</td><td>Pacific Ocean</td></tr>
+        <tr><td>Philippines</td><td>Pacific Ocean, South China Sea, Sulawesi Sea</td></tr>
+        <tr class="odd"><td>Pitcairn Islands</td><td>Pacific Ocean</td></tr>
+        <tr><td>Poland</td><td>Baltic Sea</td></tr>
+        <tr class="odd"><td>Portugal</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Puerto Rico</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Qatar</td><td>Persian Gulf</td></tr>
+        <tr><td>Reunion</td><td>Indian Ocean</td></tr>
+        <tr class="odd"><td>Romania</td><td>Black Sea</td></tr>
+        <tr><td>Russia</td><td>Arctic Ocean, Baltic Sea, Barents Sea, Bering Sea, Black Sea, Pacific Ocean, Sea of Azov, Sea of Japan, Sea of Okhotsk, Sibirian Sea</td></tr>
+        <tr class="odd"><td>Saint Helena</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Saint Kitts and Nevis</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Saint Lucia</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Saint Martin</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Saint Pierre and Miquelon</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Saint Vincent and the Grenadines</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Samoa</td><td>Pacific Ocean</td></tr>
+        <tr><td>Sao Tome and Principe</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Saudi Arabia</td><td>Persian Gulf, Red Sea</td></tr>
+        <tr><td>Senegal</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Seychelles</td><td>Indian Ocean</td></tr>
+        <tr><td>Sierra Leone</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Singapore</td><td>Indian Ocean, Malakka Strait, South China Sea</td></tr>
+        <tr><td>Slovenia</td><td>Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Solomon Islands</td><td>Pacific Ocean</td></tr>
+        <tr><td>Somalia</td><td>Gulf of Aden, Indian Ocean</td></tr>
+        <tr class="odd"><td>South Africa</td><td>Atlantic Ocean, Indian Ocean</td></tr>
+        <tr><td>South Korea</td><td>East China Sea, Sea of Japan, Yellow Sea</td></tr>
+        <tr class="odd"><td>Spain</td><td>Atlantic Ocean, Mediterranean Sea</td></tr>
+        <tr><td>Sri Lanka</td><td>Gulf of Bengal, Indian Ocean</td></tr>
+        <tr class="odd"><td>Sudan</td><td>Red Sea</td></tr>
+        <tr><td>Suriname</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Svalbard</td><td>Arctic Ocean, Atlantic Ocean, Norwegian Sea</td></tr>
+        <tr><td>Sweden</td><td>Baltic Sea, Kattegat, Skagerrak</td></tr>
+        <tr class="odd"><td>Syria</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Taiwan</td><td>East China Sea, Pacific Ocean, South China Sea</td></tr>
+        <tr class="odd"><td>Tanzania</td><td>Indian Ocean</td></tr>
+        <tr><td>Thailand</td><td>Andaman Sea, Malakka Strait, South China Sea</td></tr>
+        <tr class="odd"><td>Timor-Leste</td><td>Indian Ocean, Sunda Sea</td></tr>
+        <tr><td>Togo</td><td>Atlantic Ocean</td></tr>
+        <tr class="odd"><td>Tonga</td><td>Pacific Ocean</td></tr>
+        <tr><td>Trinidad and Tobago</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr class="odd"><td>Tunisia</td><td>Mediterranean Sea</td></tr>
+        <tr><td>Turkey</td><td>Black Sea, Mediterranean Sea</td></tr>
+        <tr class="odd"><td>Turks and Caicos Islands</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Tuvalu</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Ukraine</td><td>Black Sea, Sea of Azov</td></tr>
+        <tr><td>United Arab Emirates</td><td>Gulf of Oman, Persian Gulf</td></tr>
+        <tr class="odd"><td>United Kingdom</td><td>Atlantic Ocean, Irish Sea, North Sea, Norwegian Sea, The Channel</td></tr>
+        <tr><td>United States</td><td>Arctic Ocean, Atlantic Ocean, Bering Sea, Gulf of Mexico, Pacific Ocean</td></tr>
+        <tr class="odd"><td>Uruguay</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Vanuatu</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Venezuela</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Vietnam</td><td>South China Sea</td></tr>
+        <tr class="odd"><td>Virgin Islands</td><td>Atlantic Ocean, Caribbean Sea</td></tr>
+        <tr><td>Wallis and Futuna</td><td>Pacific Ocean</td></tr>
+        <tr class="odd"><td>Western Sahara</td><td>Atlantic Ocean</td></tr>
+        <tr><td>Yemen</td><td>Gulf of Aden, Indian Ocean, Red Sea</td></tr>
+        <tr class="odd"><td>Zaire</td><td>Atlantic Ocean</td></tr>
+        </table>
+        <li><h4 class="textColor02">Das Unabhängigkeitsdatum von Ländern die eine Wüste haben und die ethnische Gruppe African</h4></li>
+            
+        <p>
+            SELECT DISTINCT<br>
+                country.Name AS Country,<br> 
+                politics.Independence AS Independence, <br>
+                geo_desert.Desert, <br>
+                EthnicGroup.Name AS Ethnic <br>
+            FROM politics<br>
+            JOIN geo_desert ON politics.country = geo_desert.country<br>
+            JOIN EthnicGroup ON politics.country = EthnicGroup.country<br>
+            JOIN country ON politics.country = country.code<br>
+            WHERE politics.Independence IS NOT NULL <br>
+                AND geo_desert.Desert IS NOT NULL <br>
+                AND EthnicGroup.Name = 'African';<br>
+        </p>
+
+        <p>Lösung:</p>
+
+        <h4 class="toggle-button" data-target="table9">Show/Hide Table 9</h4>
+            <table id="table9" class="hidden">
+            <tr><th>Country</th><th>Independence</th><th>Desert</th><th>Ethnic</th></tr>
+            <tr class="odd"><td>Zambia</td><td>1964-10-24</td><td>Kalahari</td><td>African</td></tr>
+        </table>
+
+
+        <li><h4 class="textColor02">Welche Länder haben genau 3 Städte? Wie heißen diese Städte?</h4></li>
+            <p> 
+                SELECT <br>
+                country.Name AS Country, 
+                GROUP_CONCAT(city.Name SEPARATOR ', ') AS Cities,<br>
+                COUNT(city.Name) AS NumberOfCities<br>
+                FROM city<br>
+                JOIN country ON city.Country = country.Code<br>
+                GROUP BY country.Name<br>
+                HAVING NumberOfCities = 3;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table10">Show/Hide Table 10</h4>
+            <table id="table10" class="hidden">
+            <tr><th>Country</th><th>Cities</th><th>NumberOfCities</th></tr>
+            <tr class="odd"><td>Bolivia</td><td>Sucre, La Paz, Cochabamba</td><td>3</td></tr>
+            <tr><td>Guatemala</td><td>Mixco, Villa Nueva, Guatemala City</td><td>3</td></tr>
+            <tr class="odd"><td>New Zealand</td><td>Christchurch, Auckland, Wellington</td><td>3</td></tr>
+            <tr><td>Qatar</td><td>Doha, Rayyan, Wakrah</td><td>3</td></tr>
+            <tr class="odd"><td>Syria</td><td>Homs, Damascus, Aleppo</td><td>3</td></tr>
+            </table>
+        
+        <li><h4 class="textColor02">Welches sind die 3 größten Städte von Amerika (Kontinent)?</h4></li>
+
+            <p>
+                SELECT<br>
+                city.Name AS City, <br>
+                city.Population AS Population, <br>
+                encompasses.Continent AS Continent<br>
+                FROM city<br>
+                JOIN encompasses ON city.Country = encompasses.Country<br>
+                WHERE encompasses.Continent = 'America'<br>
+                ORDER BY city.Population DESC<br>
+                LIMIT 3;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table11">Show/Hide Table 11</h4>
+            <table id="table11" class="hidden">
+            <tr><th>City</th><th>Population</th><th>Continent</th></tr>
+            <tr class="odd"><td>Mexico City</td><td>9,815,795</td><td>America</td></tr>
+            <tr><td>Sao Paulo</td><td>9,811,776</td><td>America</td></tr>
+            <tr class="odd"><td>New York</td><td>7,322,564</td><td>America</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Was ist der größte Berg von Österreich? Wie hoch ist er?</h4></li>
+            <p>
+            SELECT <br>
+                mountain.Name as Mountain,<br>
+                mountain.Height AS Altitude,<br>
+                
+            FROM Mountain<br>
+            JOIN geo_mountain ON mountain.Name = geo_mountain.Mountain<br>
+            JOIN country ON geo_mountain.country = country.code<br>
+            WHERE 
+                geo_mountain.Country = 'A'<br>
+            ORDER BY Altitude DESC<br>
+            LIMIT 1;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table12">Show/Hide Table 12</h4>
+            <table id="table12" class="hidden">
+                <tr><th>Mountain</th><th>Altitude</th><th>Country</th></tr>
+                <tr class="odd"><td>Grossglockner</td><td>3,797</td><td>Austria</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Was ist der größte Berg von Europa? Wie hoch ist er?</h4></li>
+
+        <p><strong>Alternative 01 (with Limit)</strong></p>
+            <p>
+            SELECT <br>
+            mountain.Name as Mountain,<br>
+            mountain.Height AS Altitude,<br>
+            country.Name AS Country, <br>
+            encompasses.Continent AS Continent<br>
+            FROM Mountain<br>
+            JOIN geo_mountain ON mountain.Name = geo_mountain.Mountain<br>
+            JOIN country ON geo_mountain.country = country.code<br>
+            JOIN encompasses ON geo_mountain.country = encompasses.country<br>
+            WHERE encompasses.Continent = 'Europe' AND encompasses.percentage > 50<br>
+            ORDER BY Altitude DESC<br>
+            LIMIT 1;<br>
+            </p>
+
+        <p><strong>Alternative 02 (with MAX)</strong> <br>-> Besonders nützlich wenn z.B mehrere Berge die gleiche Maximale Höhe haben.</p>
+
+        <p>
+                SELECT <br>
+                mountain.Name AS Mountain,<br>
+                mountain.Height AS Altitude,<br>
+                country.Name AS Country,<br>
+                encompasses.Continent AS Continent<br>
+                FROM 
+                    mountain<br>
+                JOIN 
+                    geo_mountain ON mountain.Name = geo_mountain.Mountain<br>
+                JOIN 
+                    country ON geo_mountain.Country = country.Code<br>
+                JOIN 
+                    encompasses ON geo_mountain.Country = encompasses.Country<br>
+                WHERE <br>
+                    encompasses.Continent = 'Europe' <br>
+                    AND encompasses.Percentage > 50<br>
+                    AND mountain.Height = (<br>
+                        SELECT MAX(m.Height)<br>
+                        FROM mountain m<br>
+                        JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
+                        JOIN encompasses e ON gm.Country = e.Country<br>
+                        WHERE e.Continent = 'Europe' AND e.Percentage > 50<br>
+                    );<br>
+        </p>
+
+        <p><strong>Alternative 03 (with MAX using WITH)</strong> -> Optimiert die Ausführungszeiten</p>
+
+        <p>
+                WITH Berge AS (<br>
+                SELECT Name, Height<br>
+                FROM mountain m<br>
+                JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
+                JOIN encompasses e ON gm.Country = e.Country<br>
+                WHERE e.Continent = 'Europe' AND e.Percentage > 50<br>
+                )<br>
+                SELECT DISTINCT *<br>
+                FROM Berge<br>
+                WHERE Height = (SELECT MAX(Height) from Berge)<br>
+
+        </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table13">Show/Hide Table 13</h4>
+            <table id="table13" class="hidden">
+                <tr><th>Mountain</th><th>Altitude</th><th>Country</th><th>Continent</th></tr>
+                <tr class="odd"><td>Mont Blanc</td><td>4,808</td><td>France</td><td>Europe</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Was ist der größte Berg pro Kontinent? Wie hoch sind diese?</h4></li>
+            
+            <p><strong>Alternative 01:</strong></p>
+            <p>
+                SELECT DISTINCT <br>
+                m.Name AS Mountain,<br>
+                m.Height AS Altitude,<br>
+                e.Continent AS Continent<br>
+                FROM mountain m<br>
+                JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
+                JOIN encompasses e ON gm.Country = e.Country<br>
+                JOIN (<br>
+                SELECT e.Continent AS Continent, MAX(m.Height) AS Height<br>
+                    FROM mountain m<br>
+                    JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
+                    JOIN encompasses e ON gm.Country = e.Country<br>
+                    WHERE e.Continent = e.Continent AND e.Percentage > 50<br>
+                    GROUP BY e.Continent<br>	
+                ) bigMountain ON e.Continent = bigMountain.Continent AND m.Height = bigMountain.Height<br>
+                WHERE e.Percentage > 50<br>
+                ORDER By e.Continent, m.Name<br>
+            </p>
+
+            <p><strong>Alternative 02 (WITH):</strong></p>
+
+            <p>
+                WITH Berge AS (<br>
+                    SELECT DISTINCT <br>
+                              m.Name AS Mountain,<br>
+                            m.Height AS Altitude,<br>
+                            e.Continent AS Continent<br>
+                    FROM mountain m<br>
+                    JOIN geo_mountain gm ON m.Name = gm.Mountain<br>
+                    JOIN encompasses e ON gm.Country = e.Country<br>
+                    WHERE e.Continent = e.Continent AND e.Percentage > 50<br>
+                ),<br>
+                GrossBerg AS (<br>
+                    SELECT Continent, MAX(Altitude) maxAltitude<br>
+                    FROM Berge<br>
+                    GROUP by Continent<br>
+                )<br>
+                SELECT Berge.Continent, Mountain , Altitude<br>
+                FROM GrossBerg<br>
+                JOIN Berge ON GrossBerg.Continent = Berge.Continent AND GrossBerg.MaxAltitude = Berge.Altitude<br>
+                ORDER by Berge.Continent, Mountain<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table14">Show/Hide Table 14</h4>
+            <table id="table14" class="hidden">
+                <tr><th>Mountain</th>
+                <th>Altitude</th><th>Continent</th></tr><tr class="odd"><td>Kilimanjaro</td><td>5,895</td><td>Africa</td></tr>
+                <tr><td>Aconcagua</td><td>6,962</td><td>America</td></tr>
+                <tr class="odd"><td>Mount Everest</td><td>8,848</td><td>Asia</td></tr>
+                <tr><td>Mt. Wilhelm</td><td>4,509</td><td>Australia/Oceania</td></tr>
+                <tr class="odd"><td>Mont Blanc</td><td>4,808</td><td>Europe</td></tr>
+            </table>
+
+        <li><h4 class="textColor02">Welches Land hat am meisten anerkannte Religionen? Wie viel sind es?</h4></li>
+            <p>
+                SELECT <br>
+                    country.Name AS Country, <br>
+                    GROUP_CONCAT(religion.Name SEPARATOR ', ' ) AS Religions,<br>
+                    COUNT(religion.Name) AS NumberOfReligions<br>
+                FROM religion<br>
+                JOIN country ON religion.country = country.code<br>
+                GROUP BY country.Name<br>
+                HAVING<br>
+                    COUNT(religion.Name) = (<br>
+                        SELECT MAX(NumberOfReligions)<br>
+                        FROM (<br>
+                            SELECT COUNT(religion.Name) AS NumberOfReligions<br>
+                            FROM religion <br>
+                            JOIN country ON religion.country = country.code<br>
+                            GROUP BY country.Name	<br>
+                        ) AS SubQuery<br>
+                    );<br>
+            </p>
+
+            <p>Lösung:</p>
+
+             <h4 class="toggle-button" data-target="table15">Show/Hide Table 15</h4>
+             <table id="table15" class="hidden">
+                <tr><th>Country</th><th>Religions</th><th>NumberOfReligions</th></tr>
+                <tr class="odd"><td>Bahamas</td><td>Baptist, Anglican, Roman Catholic, Methodist, Church of God, Protestant</td><td>6</td></tr>
+                <tr><td>India</td><td>Buddhist, Hindu, Muslim, Jains, Christian, Sikh</td><td>6</td></tr>
+                <tr class="odd"><td>New Zealand</td><td>Presbyterian, Anglican, Methodist, Roman Catholic, Baptist, Protestant</td><td>6</td></tr>
+                <tr><td>Papua New Guinea</td><td>Evangelical Alliance, Roman Catholic, Anglican, Seventh-Day Adventist, Protestant, Presbyterian</td><td>6</td></tr>
+                <tr class="odd"><td>Solomon Islands</td><td>Seventh-Day Adventist, Anglican, United, Protestant, Baptist, Roman Catholic</td><td>6</td></tr>
+            </table>
+        <li><h4 class="textColor02">Welche Organisationen haben deren Hauptsitz in Österreich? Wie viele Mitglieder haben diese Organisationen?</h4></li>
+            <p>
+
+                <p><strong>Option 01:</strong></p>
+                SELECT<br>
+                    organization.Name AS Organization,<br>
+                    COUNT(*) AS Members<br>
+                FROM Organization <br>
+                JOIN country ON organization.Country = country.Code<br>
+                JOIN isMember ON organization.Abbreviation  = isMember.Organization <br>
+                WHERE country.Name = 'Austria' AND isMember.`Type` = 'Member'<br>
+                GROUP BY 
+                    organization.Name<br>
+                ORDER BY organization.Name ASC;<br>
+            </p>
+
+            <p><strong>Option 02 (Gyulas Version):</strong></p>
+            <p>
+                SELECT o.Name, count(*) AnzMembers<br>
+                FROM isMember im<br>
+                JOIN organization o on o.Abbreviation = im.Organization<br>
+                JOIN country co on o.Country = co.Code<br>
+                WHERE co.Name = 'Austria' and `Type`= 'Member' <br>
+                GROUP By o.Name<br>
+                ORDER by AnzMembers desc;<br>
+            </p>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table16">Show/Hide Table 16</h4>
+            <table id="table16" class="hidden">
+                <tr><th>Organization</th><th>Members</th></tr>
+                <tr class="odd"><td>International Atomic Energy Agency</td><td>123</td></tr>
+                <tr><td>Nuclear Suppliers Group</td><td>34</td></tr>
+                <tr class="odd"><td>Organization for Security and Cooperation in Europe</td><td>55</td></tr>
+                <tr><td>Organization of Petroleum Exporting Countries</td><td>12</td></tr>
+                <tr class="odd"><td>United Nations Industrial Development Organization</td><td>171</td></tr>
+                <tr><td>United Nations Relief and Works Agency for Palestine Refugees in the Near East</td><td>10</td></tr>
+            </table>
+            
+        <li><h4 class="textColor02">Was sind die Top 10 Sprachen? Wie viele native Speaker sprechen diese Sprache?</h4></li>
+    
+        <li><h4 class="textColor02">Was ist die nördlischste Stadt von jedem Kontinent?</h4></li>
+
+        <p>SELECT DISTINCT<br>
+            city.Name AS City,<br>
+            city.Latitude AS Latitude,<br>
+            encompasses.Continent AS Continent<br>
+        FROM 
+            city<br>
+        JOIN <br>
+            encompasses ON city.Country = encompasses.Country<br>
+        JOIN (<br>
+            SELECT <br>
+                encompasses.Continent AS Continent, <br>
+                MAX(city.Latitude) AS MaxLatitude<br>
+            FROM 
+                city<br>
+            JOIN <br>
+                encompasses ON city.Country = encompasses.Country<br>
+            GROUP BY <br>
+                encompasses.Continent<br>
+        ) northmostCity ON encompasses.Continent = northmostCity.Continent <br>
+        AND city.Latitude = northmostCity.MaxLatitude AND encompasses.Percentage > 50<br>
+        ORDER BY <br>
+            encompasses.Continent, city.Name;</p><br>
+
+            <p>Lösung:</p>
+
+            <h4 class="toggle-button" data-target="table18">Show/Hide Table 18</h4>
+            <table id="table18" class="hidden">
+                <tr><th>City</th><th>Latitude</th><th>Continent</th></tr>
+                <tr class="odd"><td>Tripoli</td><td>37.3</td><td>Africa</td></tr>
+                <tr><td>Nuuk</td><td>64.2</td><td>America</td></tr>
+                <tr class="odd"><td>Arkhangelsk</td><td>64.55</td><td>Asia</td></tr>
+                <tr><td>Saipan</td><td>15.12</td><td>Australia/Oceania</td></tr>
+                <tr class="odd"><td>Longyearbyen</td><td>78.13</td><td>Europe</td></tr>
+            </table>
+
+            <li><h4 class="textColor02">Was sind die Nachbarländer von Deutschland? (Border Tabelle verwenden)</h4></li>
+            <p>
+                SELECT <br>
+                CASE <br>
+                    WHEN borders.country1 = 'D' THEN borders.country2<br>
+                    WHEN borders.country2 = 'D' THEN borders.country1<br>
+                END AS NeighboringCountryCode,<br>
+                country.Name AS NeighboringCountryName,<br>
+                borders.length AS BorderLength<br>
+                FROM <br>
+                    borders<br>
+                JOIN <br>
+                    country ON <br>
+                    (borders.country1 = country.Code AND borders.country2 = 'D') <br>
+                    OR <br>
+                    (borders.country2 = country.Code AND borders.country1 = 'D')<br>
+                WHERE <br>
+                    borders.country1 = 'D' OR borders.country2 = 'D';<br>
+            </p>
+
+            <p>Lösung:</p>
+            <h4 class="toggle-button" data-target="table19">Show/Hide Table 19</h4>
+            <table id="table19" class="hidden">
+        
+                <tr><th>NeighboringCountryCode</th><th>NeighboringCountryName</th><th>BorderLength</th></tr><tr class="odd"><td>A</td><td>Austria</td><td>784</td></tr>
+                <tr><td>B</td><td>Belgium</td><td>167</td></tr>
+                <tr class="odd"><td>CH</td><td>Switzerland</td><td>334</td></tr>
+                <tr><td>CZ</td><td>Czech Republic</td><td>646</td></tr>
+                <tr class="odd"><td>DK</td><td>Denmark</td><td>68</td></tr>
+                <tr><td>F</td><td>France</td><td>451</td></tr>
+                <tr class="odd"><td>L</td><td>Luxembourg</td><td>138</td></tr>
+                <tr><td>NL</td><td>Netherlands</td><td>577</td></tr>
+                <tr class="odd"><td>PL</td><td>Poland</td><td>456</td></tr>
+            </table>
+    </ol>
+
+    <br>
+
+    <h2 id="day46">Montag 05. Mai 2025</h2>
+
+    <h3 class="textColor01">SQL Setup</h3>
+
+    <ul>
+        <li>MySQL für Mac herunterladen:</li>
+        <li>Link: https://www.mysql.com/downloads/</li>
+        <li>Auf MySQL Community (GPL) Downloads » clicken</li>
+        <li>Auf MySQL Community Server clicken</li>
+        <li>macOS 15 (ARM, 64-bit), DMG Archive herunterladen</li>
+        <br>
+        <li>MySQL Setup:</li>
+        <ul>
+            <li>Defaultkonfiguration mit dem Port 3306</li>
+            <li>Root Passwort eingeben</li>
+        </ul>
+        <br>
+        <li>DBeaver für DB GUI herunterladen</li>
+        <li>Link: https://dbeaver.io</li>
+        <li>Auf DBeaver Community, Download clicken</li>
+        <li>MacOS for Apple Silicon (dmg) herunterladen</li>
+        <br>
+        <li>DBeaver Setup:</li>
+        <ul>
+            <li>Starte DBeaver</li>
+            <li>Neue Verbindung zu MYSQL Server einfügen</li>
+            <li>MySQL als Treiber wählen</li>
+            <li>Root Passwort eingeben</li>
+            <li>In Eigenschaften muss man AllowPublicKeyRetieval auf TRUE setzen</li>
+            <li>In Eigenschaften muss man UseSSL auf FALSE setzen</li>
+            <li>Verbindung testen</li>
+        </ul>
+        <br>
+        <li>Mondial Database files herunterladen</li>
+        <li>Link: https://www.dbis.informatik.uni-goettingen.de/Mondial/</li>
+        <li>Database schema for mysql "mondial-schema-mysql.sql" herunterladen</li>
+        <li>Input statements for mysql (all tablenames lowercase) "mondial-inputs-mysql.sql" herunterladen</li>
+    </ul>
+
+    <br>
+
+    <h3 class="textColor01">SQL (SELECT) Recherche:</h3>
+
+    <ul>
+
+        <li class="textColor02"><strong>Was ist eine Datenbank?</strong></li>
+        <p>Eine Datenbank ist eine strukturierte Sammlung von Daten, die auf einem Computer gespeichert und verwaltet wird. Sie ermöglicht es Benutzern, Daten effizient zu speichern, abzurufen und zu bearbeiten.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist eine relationale Datenbank?</strong></li>
+        <p>Eine relationale Datenbank ist eine Art von Datenbank, die Daten in Tabellen organisiert, die durch Beziehungen miteinander verbunden sind. Jede Tabelle besteht aus Zeilen (Datensätzen) und Spalten (Attributen), und die Beziehungen zwischen den Tabellen werden durch Schlüssel definiert.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist eine non-relationale Datenbank?</strong></li>
+        <p>Eine non-relationale Datenbank ist eine Art von Datenbank, die nicht auf dem relationalen Modell basiert. Sie speichert Daten in verschiedenen Formaten, wie z.B. Dokumenten, Schlüssel-Wert-Paaren oder Graphen. Non-relationale Datenbanken sind oft flexibler und skalierbarer als relationale Datenbanken.</p>
+        <br>
+        <li class="textColor02"><strong>Was ist SQL?</strong></li>
+        <p>SQL (Structured Query Language) ist eine standardisierte Programmiersprache, die zur Verwaltung und Manipulation von relationalen Datenbanken verwendet wird. Sie ermöglicht es Benutzern, Daten abzufragen, zu aktualisieren, zu löschen und zu erstellen.</p>
+        <br>
+        <li class="textColor02"><strong>Was sind die Vorteile von SQL?</strong></li>
+        <p>Die Vorteile von SQL sind:
+            <ul>
+                <li>Standardisierte Sprache: SQL ist ein weit verbreiteter Standard, der in vielen Datenbankmanagementsystemen unterstützt wird.</li>
+                <li>Einfachheit: SQL ist relativ einfach zu erlernen und zu verwenden, was es Entwicklern erleichtert, mit Datenbanken zu arbeiten.</li>
+                <li>Flexibilität: SQL ermöglicht komplexe Abfragen und Datenmanipulationen, die auf verschiedene Anforderungen zugeschnitten werden können.</li>
+                <li>Transaktionen: SQL unterstützt Transaktionen, die sicherstellen, dass mehrere Operationen als atomare Einheit ausgeführt werden.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankkonzepte?</strong></li>
+        <p>Die wichtigsten SQL-Datenbankkonzepte sind:
+            <ul>
+                <li>Tabellen: Daten werden in Tabellen organisiert, die aus Zeilen und Spalten bestehen.</li>
+                <li>Primärschlüssel: Ein Primärschlüssel ist ein eindeutiger Bezeichner für jede Zeile in einer Tabelle.</li>
+                <li>Fremdschlüssel: Ein Fremdschlüssel ist ein Attribut, das auf den Primärschlüssel einer anderen Tabelle verweist und Beziehungen zwischen Tabellen definiert.</li>
+                <li>Indizes: Indizes sind Datenstrukturen, die den Zugriff auf Daten in einer Tabelle beschleunigen.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankmanagementsysteme (DBMS)?</strong></li>
+        <p>Die wichtigsten SQL-Datenbanktypen sind:
+            <ul>
+                <li>MySQL: Ein Open-Source-Datenbankmanagementsystem, das häufig für Webanwendungen verwendet wird.</li>
+                <li>PostgreSQL: Ein fortschrittliches Open-Source-Datenbankmanagementsystem mit umfangreichen Funktionen.</li>
+                <li>Oracle Database: Ein kommerzielles Datenbankmanagementsystem, das für große Unternehmen entwickelt wurde.</li>
+                <li>Microsoft SQL Server: Ein relationales Datenbankmanagementsystem von Microsoft, das häufig in Unternehmensumgebungen eingesetzt wird.</li>
+                <li>SQLite: Eine leichtgewichtige, serverlose SQL-Datenbank, die in vielen Anwendungen und mobilen Geräten verwendet wird.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Befehle?</strong></li>
+        <p>Die wichtigsten SQL-Befehle sind:
+            <ul>
+                <li>SELECT: Abfragen von Daten aus einer Tabelle</li>
+                <li>INSERT: Einfügen neuer Daten in eine Tabelle</li>
+                <li>UPDATE: Aktualisieren vorhandener Daten in einer Tabelle</li>
+                <li>DELETE: Löschen von Daten aus einer Tabelle</li>
+                <li>CREATE: Erstellen neuer Tabellen oder Datenbanken</li>
+                <li>DROP: Löschen von Tabellen oder Datenbanken</li>
+            </ul>
+        </p>
+        <br>
+
+        <li class="textColor02"><strong>Was sind die wichtigsten SQL-Datenbankoperationen?</strong></li>
+        <p>Die wichtigsten SQL-Datenbankoperationen sind:
+            <ul>
+                <li>Datenabfrage: Abfragen von Daten aus einer oder mehreren Tabellen mit dem SELECT-Befehl.</li>
+                <li>Datenmanipulation: Einfügen, Aktualisieren und Löschen von Daten in Tabellen mit den Befehlen INSERT, UPDATE und DELETE.</li>
+                <li>Tabellenverwaltung: Erstellen und Löschen von Tabellen und Datenbanken mit den Befehlen CREATE und DROP.</li>
+                <li>Transaktionsmanagement: Sicherstellen, dass mehrere Datenbankoperationen als atomare Einheit ausgeführt werden, um Datenintegrität zu gewährleisten.</li>
+                <li>Indizierung: Erstellen von Indizes, um den Zugriff auf Daten zu beschleunigen und die Abfrageleistung zu verbessern.</li>
+                <li>Datensicherung und Wiederherstellung: Sichern von Datenbanken und Wiederherstellen von Daten im Falle eines Ausfalls oder Datenverlusts.</li>
+                <li>Benutzerverwaltung: Verwalten von Benutzern und Berechtigungen, um den Zugriff auf Datenbanken zu steuern.</li>
+                <li>Optimierung: Optimieren von Abfragen und Datenbankdesign, um die Leistung zu verbessern.</li>
+                <li>Normalisierung: Organisieren von Daten in Tabellen, um Redundanz zu minimieren und die Datenintegrität zu gewährleisten.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Was ist die Grundstruktur eines SELECT Befehls?</strong></li>
+        <p>Die Grundstruktur eines SELECT-Befehls lautet:
+            <ul>
+                <li>SELECT: Gibt an, welche Spalten abgerufen werden sollen.</li>
+                <li>FROM: Gibt die Tabelle an, aus der die Daten abgerufen werden sollen.</li>
+                <li>WHERE: Filtert die Daten basierend auf bestimmten Bedingungen.</li>
+                <li>ORDER BY: Sortiert die Ergebnisse nach einer oder mehreren Spalten.</li>
+                <li>GROUP BY: Gruppiert die Ergebnisse basierend auf einer oder mehreren Spalten.</li>
+                <li>HAVING: Filtert die gruppierten Ergebnisse basierend auf bestimmten Bedingungen.</li>
+            </ul>
+        </p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert das LIMIT Statement?</strong></li>
+        <p>Das LIMIT-Statement wird verwendet, um die Anzahl der zurückgegebenen Zeilen in einer SQL-Abfrage zu begrenzen. Es wird häufig in Kombination mit dem SELECT-Befehl verwendet, um eine bestimmte Anzahl von Ergebnissen zurückzugeben.</p>
+        <p>Zum Beispiel:</p>    
+        <div class="code-sample">  
+                <code>
+                    SELECT * FROM table_name LIMIT 10;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die ersten 10 Zeilen aus der Tabelle "table_name" zurückgegeben.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert das WHERE Statement?</strong></li>
+        <p>Das WHERE-Statement wird verwendet, um Bedingungen für die Auswahl von Daten in einer SQL-Abfrage festzulegen. Es filtert die Ergebnisse basierend auf den angegebenen Bedingungen.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * FROM table_name WHERE column_name = 'value';
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die Zeilen aus der Tabelle "table_name" zurückgegeben, bei denen der Wert in der Spalte "column_name" gleich 'value' ist.</p>
+        <br>
+        <li class="textColor02"><strong>Welche Funktionen kann man für die Bearbeitung von Zahlen verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene Funktionen zur Bearbeitung von Zahlen, darunter:</p>
+        <ul>
+            <li>ABS(): Gibt den absoluten Wert einer Zahl zurück.</li>
+            <li>CEIL() oder CEILING(): Rundet eine Zahl auf die nächste ganze Zahl auf.</li>
+            <li>FLOOR(): Rundet eine Zahl auf die nächste ganze Zahl ab.</li>
+            <li>ROUND(): Rundet eine Zahl auf eine bestimmte Anzahl von Dezimalstellen.</li>
+            <li>SUM(): Gibt die Summe der Werte in einer Spalte zurück.</li>
+            <li>AVG(): Gibt den Durchschnitt der Werte in einer Spalte zurück.</li>
+            <li>MIN(): Gibt den kleinsten Wert in einer Spalte zurück.</li>
+            <li>MAX(): Gibt den größten Wert in einer Spalte zurück.</li>
+            <li>COUNT(): Gibt die Anzahl der Zeilen in einer Abfrage zurück.</li>
+            <li>MOD(): Gibt den Rest einer Division zurück.</li>
+            <li>POWER(): Gibt eine Zahl hoch einer anderen Zahl zurück.</li>
+            <li>SQRT(): Gibt die Quadratwurzel einer Zahl zurück.</li>
+            <li>EXP(): Gibt die Exponentialfunktion einer Zahl zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um Berechnungen und Aggregationen auf numerischen Daten durchzuführen.</p>
+        <br>
+        <li class="textColor02"><strong>Welche Funktionen kann man für die Bearbeitung von Texten verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene Funktionen zur Bearbeitung von Texten, darunter:</p>
+        <ul>
+            <li>UPPER(): Wandelt einen Text in Großbuchstaben um.</li>
+            <li>LOWER(): Wandelt einen Text in Kleinbuchstaben um.</li>
+            <li>LENGTH(): Gibt die Länge eines Textes zurück.</li>
+            <li>SUBSTR() oder SUBSTRING(): Gibt einen Teilstring aus einem Text zurück.</li>
+            <li>TRIM(): Entfernt Leerzeichen am Anfang und Ende eines Textes.</li>
+            <li>CONCAT(): Verbindet mehrere Texte zu einem einzigen Text.</li>
+            <li>REPLACE(): Ersetzt Teile eines Textes durch einen anderen Text.</li>
+            <li>LEFT(): Gibt die linke Seite eines Textes zurück.</li>
+            <li>RIGHT(): Gibt die rechte Seite eines Textes zurück.</li>
+            <li>CHARINDEX(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+            <li>INSTR(): Gibt die Position eines bestimmten Zeichens in einem Text zurück.</li>
+        </ul>
+        <p>Diese Funktionen können in SQL-Abfragen verwendet werden, um Textdaten zu manipulieren und zu formatieren.</p>
+        <br>
+        <li class="textColor02"><strong>Welche logischen Operatoren kann man verwenden?</strong></li>
+        <p>In SQL gibt es verschiedene logische Operatoren, die verwendet werden können, um Bedingungen in Abfragen zu kombinieren oder zu negieren. Die wichtigsten logischen Operatoren sind:</p>
+        <ul>
+            <li>AND: Verknüpft zwei oder mehr Bedingungen, die alle erfüllt sein müssen.</li>
+            <li>OR: Verknüpft zwei oder mehr Bedingungen, von denen mindestens eine erfüllt sein muss.</li>
+            <li>NOT: Negiert eine Bedingung, sodass nur die Zeilen zurückgegeben werden, die die Bedingung nicht erfüllen.</li>
+            <li>BETWEEN: Überprüft, ob ein Wert innerhalb eines bestimmten Bereichs liegt.</li>
+            <li>IN: Überprüft, ob ein Wert in einer Liste von Werten enthalten ist.</li>
+            <li>LIKE: Überprüft, ob ein Textmuster mit einem bestimmten Muster übereinstimmt.</li>
+            <li>IS NULL: Überprüft, ob ein Wert NULL ist.</li>
+            <li>IS NOT NULL: Überprüft, ob ein Wert nicht NULL ist.</li>
+            <li>EXISTS: Überprüft, ob eine Unterabfrage mindestens eine Zeile zurückgibt.</li>
+            <li>ANY: Überprüft, ob eine Bedingung für mindestens einen Wert in einer Liste erfüllt ist.</li>
+            <li>ALL: Überprüft, ob eine Bedingung für alle Werte in einer Liste erfüllt ist.</li>
+        </ul>
+        <p>Diese logischen Operatoren können in SQL-Abfragen verwendet werden, um komplexe Bedingungen zu erstellen und die Ergebnisse zu filtern.</p>
+        <br>
+
+        <li class="textColor02"><strong>Wie funktioniert ORDER BY Statement?</strong></li>
+        <p>Das ORDER BY-Statement wird verwendet, um die Ergebnisse einer SQL-Abfrage nach einer oder mehreren Spalten zu sortieren. Es kann in aufsteigender (ASC) oder absteigender (DESC) Reihenfolge erfolgen.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * 
+                    FROM employees 
+                    ORDER BY last_name ASC;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus der Tabelle "employees" nach der Spalte "last_name" aufsteigend sortiert.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert GROUP BY Statement?</strong></li>
+        <p>Das GROUP BY-Statement wird verwendet, um die Ergebnisse einer SQL-Abfrage in Gruppen zu organisieren, basierend auf einer oder mehreren Spalten. Es wird häufig in Kombination mit Aggregatfunktionen wie COUNT(), SUM(), AVG(), MIN() und MAX() verwendet.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT department, SUM(salary) AS total_salary
+                    FROM employees
+                    GROUP BY department;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus der Tabelle "employees" nach der Spalte "department" je nach insgesammten "salary" gruppiert.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert JOIN Statement?</strong></li>
+        <p>Das JOIN-Statement wird verwendet, um Daten aus mehreren Tabellen zu kombinieren, basierend auf einer gemeinsamen Spalte. Es gibt verschiedene Arten von Joins, darunter INNER JOIN, LEFT JOIN, RIGHT JOIN und FULL OUTER JOIN.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT employees.first_name, employees.last_name, departments.department_name
+                    FROM employees
+                    INNER JOIN departments ON employees.department_id = departments.id;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden die Ergebnisse aus den Tabellen "employees" und "departments" kombiniert, basierend auf der gemeinsamen Spalte "department_id".</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert Left Join Statement?</strong></li>
+        <p>Das LEFT JOIN-Statement wird verwendet, um alle Zeilen aus der linken Tabelle und die übereinstimmenden Zeilen aus der rechten Tabelle zurückzugeben. Wenn keine Übereinstimmung gefunden wird, werden NULL-Werte für die Spalten der rechten Tabelle zurückgegeben.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT employees.first_name, employees.last_name, departments.department_name
+                    FROM employees
+                    LEFT JOIN departments ON employees.department_id = departments.id;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden alle Zeilen aus der Tabelle "employees" zurückgegeben, zusammen mit den übereinstimmenden Zeilen aus der Tabelle "departments". Wenn ein Mitarbeiter keinem Abteilung zugeordnet ist, werden NULL-Werte für die Spalten der Tabelle "departments" zurückgegeben.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktionieren IS NULL und IS NOT NULL Kriterien?</strong></li>
+        <p>Die Kriterien IS NULL und IS NOT NULL werden verwendet, um zu überprüfen, ob ein Wert NULL ist oder nicht. Sie werden häufig in WHERE-Klauseln verwendet, um Zeilen mit NULL-Werten oder ohne NULL-Werte zu filtern.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT * 
+                    FROM employees 
+                    WHERE department_id IS NULL;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden alle Zeilen aus der Tabelle "employees" zurückgegeben, bei denen der Wert in der Spalte "department_id" NULL ist.</p>
+        <br>
+        <li class="textColor02"><strong>Wie funktioniert DISTINCT Statement?</strong></li>
+        <p>Das DISTINCT-Statement wird verwendet, um doppelte Werte aus den Ergebnissen einer SQL-Abfrage zu entfernen. Es wird häufig in Kombination mit dem SELECT-Befehl verwendet.</p>
+        <p>Zum Beispiel:</p>
+        <div class="code-sample">  
+                <code>
+                    SELECT DISTINCT department 
+                    FROM employees;
+                </code>
+            </div>
+        <br>
+        <p>In diesem Beispiel werden nur die eindeutigen Werte aus der Spalte "department" in der Tabelle "employees" zurückgegeben.</p>
+        <br>
+
+    </ul>
+
+    <h3 class="textColor01">SQL (Basic Queries)</h3>
+
+    <h4 class="textColor02"><strong>Gyulas Beispiele mit Mondial DB:</strong></h4>
+
+    <p>USE mondial;
+
+        SELECT 'Hello World!'; <br>
+
+        <br>
+        
+        SELECT 'Hello World!' greeting;<br>
+
+        <br>
+        
+        SELECT * FROM country;<br>
+
+        <br>
+        
+        SELECT * FROM country limit 10;  // MSSQL: SELECT TOP 10 * FROM country<br>
+
+        <br>
+        
+        SELECT * FROM country limit 20, 10;<br>
+        
+        <br>
+
+        SELECT Name, Capital FROM country;<br>
+
+        <br>
+        
+        SELECT Name Land, Capital Hauptstadt FROM country;<br>
+
+        <br>
+        
+        SELECT Name AS Land, Capital AS Hauptstadt FROM country;<br>
+
+        <br>
+        
+        SELECT 'Hello World!' AS greeting, <br>
+               Name AS Land, <br>
+               Capital AS Hauptstadt <br>
+        FROM country;<br>
+
+        <br>
+        
+        SELECT *, Name AS Land, 'Hello World!' AS greeting FROM country;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE population > 100000000<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name = 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE NOT Name = 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <> 'Brazil';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil' AND Population > 100000000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name <= 'Brazil' OR Population > 100000000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Population BETWEEN 10000 AND 20000;<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE 'Uni%';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE '%m';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE Name LIKE '%ca%';<br>
+
+        <br>
+        
+        SELECT *<br>
+        FROM country<br>
+        WHERE length(NAME) < 5;<br>
+
+        <br>
+        
+        SELECT *, SUBSTR(Name, 3, 1)<br>
+        FROM country<br>
+        
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        WHERE SUBSTR(Name, 3, 1) = 's'<br>
+
+        <br>
+        
+        SELECT Count(*) AS anzahlLaender<br>
+        FROM country</p>
+        
+        <br>
+
+    <h4 class="textColor02"><strong>Mehere Queries-Beispiele von Mondial DB:</strong></h4>
+
+    <p>
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital;<br>
+        <br>
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY substr(Capital, 1, 1), substr(Name, 1,1); -- Notlösung, als keine Kategorien da sind<br>
+        <br>
+
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital ASC;<br>
+        <br>
+
+        SELECT * <br>
+        FROM country<br>
+        WHERE Population > 1000000<br>
+        ORDER BY Capital DESC;<br>
+        <br>
+
+
+        SELECT *<br>
+        FROM city<br>
+        ORDER BY Country;<br>
+        <br>
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        GROUP BY Country;<br>
+        <br>
+
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        GROUP BY Country<br>
+        ORDER BY pop DESC;<br>
+        <br>
+
+
+        SELECT Country, MAX(Population) AS pop<br>
+        FROM city<br>
+        WHERE Latitude > 0<br>
+        GROUP BY Country<br>
+        ORDER BY pop DESC<br>
+        LIMIT 10;<br>
+        <br>
+
+        SELECT Country, COUNT(*) AnzahlStaedte<br>
+        FROM city<br>
+        WHERE Latitude > 0<br>
+        GROUP BY Country<br>
+        <br>
+
+
+        SELECT * FROM city;<br>
+        SELECT * FROM country;<br>
+        <br>
+
+        SELECT * <br>
+        FROM city<br>
+        JOIN country ON city.Country = country.Code;<br>
+        <br>
+
+        SELECT Country.Name Land, City.Name Stadt, city.Population Pop<br>
+        FROM city<br>
+        JOIN country ON city.Country = country.Code;<br>
+        <br>
+
+
+        SELECT * FROM country;<br>
+        SELECT * FROM geo_desert;<br>
+        <br>
+
+
+        SELECT *<br>
+        FROM country<br>
+        JOIN geo_desert ON country.code = geo_desert.Country;<br>
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country;<br>
+        <br>
+
+        SELECT *<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country<br>
+        WHERE geo_desert.Desert IS NULL;<br>
+        <br>
+
+        SELECT country.Name<br>
+        FROM country<br>
+        LEFT JOIN geo_desert ON country.code = geo_desert.Country<br>
+        WHERE geo_desert.Desert IS NULL;<br>
+        <br>
+    </p>
+
+
+
+
+    <script>
+        // Add a single event listener to the document
+        document.addEventListener('click', function (event) {
+            // Check if the clicked element has the class 'toggle-button'
+            if (event.target.classList.contains('toggle-button')) {
+                const tableId = event.target.getAttribute('data-target'); // Get the target table ID
+                const table = document.getElementById(tableId); // Find the table by ID
+                if (table) {
+                    table.classList.toggle('hidden'); // Toggle the 'hidden' class
+                }
+            }
+        });
+    </script>
+</body>
+</html>
