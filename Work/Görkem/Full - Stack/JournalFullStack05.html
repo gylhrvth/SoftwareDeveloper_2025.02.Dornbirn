@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="../Full - Stack/main02.css">
+</head>
+<body>
+    <h1>Full - Stack</h1>
+    <h2>Mittwoch, 11. Juni 2025</h2>
+    <h3>TailwindCSS</h3>
+
+<ul>
+    <li class="textColor">
+        <span class="underline">Was ist das Problem mit Plain CSS?</span>
+        <p><b>1. Globale Klassen-Konflikte:</b></p>
+        <p>→ Alle Klassen sind global Konflikte bei gleichen Namen.</p>
+        <p><strong>Beispiel:</strong></p>
+        <div class="code-box">
+            <code>
+                .box { background: red; } /* Datei A */
+                .box { background: blue; } /* Datei B */
+            </code>
+        </div>
+        <p><b>2. Schlecht skalierbar:</b></p>
+        <p>→ Große Projekte werden unübersichtlich ohne Strukturierung wie BEM.</p>
+
+        <p><b>3. Duplizierter Code (nicht DRY):</b></p>
+        <div class="code-box">
+            <code>
+                .btn-primary { padding: 1rem; color: white; background: blue; }
+                .btn-secondary { padding: 1rem; color: white; background: gray; }
+            </code>
+        </div>
+        <p><b>4. Langsamer Workflow:</b></p>
+        <p>→ Wechsel zwischen HTML und CSS, Klassennamen erfinden, testen...</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Welche Lösungen bietet Tailwind CSS?</span>
+        <p>✅ Lösungen von Tailwind CSS (kompakt)</p>
+        <ol>
+            <li><b>Keine Klassennamen-Konflikte</b></li>
+            <p>→ Utility-Klassen sind eindeutig und lokal.</p>
+
+            <li><b>Schnellerer Workflow</b></li>
+            <p>→ Du stylst direkt im HTML, ohne CSS-Dateien.</p>
+
+            <li><b>Kein duplizierter Code</b></li>
+            <p>→ Wiederverwendbare Klassen wie p-4, bg-blue-500.</p>
+
+            <li><b>Besser skalierbar</b></li>
+            <p>→ Saubere Struktur für große Projekte.</p>
+
+            <li><b>Unbenutzer Code wird entfernt</b></li>
+            <p>→ Tailwind entfernt automatisch nicht genutzte Klassen beim Build.</p>
+        </ol>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind die Voraussetzungen, dass ich Tailwind CSS in meinem Projekt verwenden kann?</span>
+        <p>✅ Voraussetzungen für Tailwind CSS</p>
+        <ol>
+            <li><b>HTML + TailwindCDN (einfachste Variante):</b></li>
+            <p>→ Für schnelles Testen, keine Installation nötig.</p>
+
+            <li><b>Node.js + npm (für die richtige Projektintegration):</b></li>
+            <p>→ Voraussetzung für lokale Installation, Build-Tools, Purge usw.</p>
+
+            <li><b>Tailwind installieren (per npm):</b></li>
+            <p>→ npm install tailwindcss @tailwindcss/vite</p>
+
+            <li><b>tailwind.config.js:</b></li>
+            <p>→ Konfigurationsdatei, um Pfade für Purge, Farben usw. festzulegen.</p>
+            
+            <li><b>PostCSS / Build-Tool (z.B. Vite, Webpack, Laravel Mix)</b></li>
+            <p>→ Tailwind scannt dein Projekt und generiert nur die benötigten Klassen.</p>
+        </ol>
+        <p><strong>Optional:</strong></p>
+        <ul>
+            <li><b>IDE-Erweiterung (z.B. Tailwind CSS IntelliSense)</b></li>
+            <p>→ Für Autovervollständigung und Vorschau direkt beim Schreiben.</p>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie installiere ich tailwind CSS, in einem Vite, React, Typescript Projekt?</span>
+        <p><strong>✅ Schritt 1: Projekt erstellen</strong></p>
+        <div class="code-box">
+            <code>
+                npm create vite@latest
+                Projektname eingeben: my-app
+                Framework auswählen: React mit Typescript
+
+                Projektordner auswählen: cd my-app
+                Abhängigkeit installieren: npm install
+            </code>
+        </div>
+        <p><strong>✅ Schritt 2: Tailwind installieren</strong></p>
+        <div class="code-box">
+            <code>
+                npm install tailwindcss @tailwindcss/vite
+            </code>
+        </div>
+        <p><strong>✅ Schritt 3: Tailwind konfigurieren</strong></p>
+        <p>→ In Vite.config.ts</p>
+        <div class="code-box">
+            <code>
+                import { defineConfig } from "vite";
+                import react from "@vitejs/plugin-react";
+                import tailwindcss from "@tailwindcss/vite";
+
+                export default defineConfig({
+                plugins: [react(), tailwindcss()],
+                });
+            </code>
+        </div>
+        <p><strong>✅ Schritt 4: Tailwind in dein Projekt einbinden</strong></p>
+        <p>→ In index.css (neu anlegen oder bestehende Datei):</p>
+        <div class="code-box">
+            <code>
+                @import "tailwindcss";
+            </code>
+        </div>
+        <p>📌 Vergiss nicht, die Datei in main.tsx zu importieren:</p>
+        <p><strong>✅ Schritt 5: Starte das Projekt =</strong> npm run dev</p>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Was sind die wichtigste class Namen?</span>
+        <p><strong>Wichtige Tailwind CSS Klassen:</strong></p>
+        <p>1. Abstände (Spacing)</p>
+        <ul>
+            <li>p-4 → padding: 1rem (alle Seiten)</li>
+            <li>pt-2, pr-3, pb-1, pl-5 → padding top/right/bottom/left</li>
+            <li>m-4 → margin: 1rem</li>
+            <li>mx-auto → margin-left & margin-right auto (zentrieren horizontal)</li>
+        </ul><br>
+
+        <p>2. Größen</p>
+        <ul>
+            <li>w-full → Breite 100%</li>
+            <li>h-16 → Höhe 4rem</li>
+            <li>max-w-md → max-width mittlere Größe</li>
+        </ul><br>
+
+        <p>3. Typografie</p>
+        <ul>
+            <li>text-lg, text-sm, text-2xl → Schriftgröße</li>
+            <li>font-bold, font-semibold, font-light → Schriftgewicht</li>
+            <li>text-center, text-left, text-right → Textausrichtung</li>
+            <li>text-gray-700, text-white, text-blue-500 → Textfarbe</li>
+        </ul><br>
+
+        <p>4. Hintergrund</p>
+        <ul>
+            <li>bg-blue-500, bg-gray-100, bg-white → Hintergrundfarbe</li>
+            <li>bg-opacity-50 → Transparenz</li>
+        </ul><br>
+
+        <p>5. Flexbox & Grid</p>
+        <ul>
+            <li>flex, flex-col, flex-row → Flexbox Layout</li>
+            <li>items-center, justify-center, justify-between → Ausrichtung</li>
+            <li>grid, grid-cols-3 → Grid Layout</li>
+        </ul><br>
+
+        <p>6. Rundung & Rahmen</p>
+        <ul>
+            <li>rounded, rounded-lg, rounded-full → Border-Radius</li>
+            <li>border, border-gray-300, border-2 → Rahmen</li>
+        </ul>
+    </li>
+    <br>
+    <br>
+
+    <li class="textColor">
+        <span class="underline">Wie kann ich meine eigenen Brand-Farben/Schrift verwenden?</span>
+        <p><strong>1. Öffne deine tailwind.config</strong></p>
+        <p><strong>2. Im theme.extend-Block eigene Farben und Fonts hinzufügen:</strong></p>
+        <div class="code-box">
+            <code>
+                /** @type {import('tailwindcss').Config} */
+                export default {
+                theme: {
+                    extend: {
+                    colors: {
+                        brandblue: '#1E40AF',
+                        brandorange: '#F97316',
+                    },
+                    fontFamily: {
+                        brand: ['"Open Sans"', 'sans-serif'],
+                    },
+                    },
+                },
+                content: [
+                    "./index.html",
+                    "./src/**/*.{js,ts,jsx,tsx}",
+                ],
+                plugins: [],
+                }
+            </code>
+        </div>
+        <p><strong>3. Im HTML/JSX verwenden:</strong></p>
+        <div class="code-box">
+            <code>
+                &lt;div className="bg-brandblue text-white font-brand p-4">
+                Das ist mein Brand-Stil!
+                &lt;/div&gt;
+            </code>
+        </div>
+        <p>Hinweise:</p>
+        <ul>
+            <li>Farben können Hex, RGB oder HSL sein.</li>
+            <li>Schriftarten müssen ggf. per Google Fonts oder lokal eingebunden werden (im index.html oder per CSS).</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
