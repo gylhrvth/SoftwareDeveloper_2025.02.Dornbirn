@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierheim</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <h1>Hunde im Tierheim (EJS)</h1>
+    <div class="container">
+        <% content.forEach(dog => { %>
+            <div class="dogCard">
+                <div class="dogCardMain">
+                    <h2><%= dog.Hund_Name %></h2>
+                    <p><%= dog.Hund_Rasse %></p>
+                    <p><%= dog.Hund_Geschlecht %></p>
+                    <p><%= dog.Hund_Einlieferung %></p>
+                </div>
+                <div class="dogCardIcons">
+                    <img src="/assets/icons/edit.svg" alt="Edit Icon" width="40" height="40">
+                    <form action="/DELETE_HUND" method="POST">
+                        <input type="hidden" name="Hund_ID" value="<%= dog.Hund_ID %>">
+                        <button type="submit">
+                            <img src="/assets/icons/delete.svg" alt="Delete Icon" width="40" height="40">
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

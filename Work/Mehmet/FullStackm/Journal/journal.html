@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../MekStyle.css">
 </head>
 
 <style>
+
+
     h1{
         text-align: center;
     }
 
     .note-Container {
-        display: inline-flex;
+        display: flex;
         align-items: start;
-        justify-content: center;
-        gap: 30px;
+        justify-content: space-around;
+        gap: 10px;
     }
 
 </style>
 <body>
+                            <button id="mode-toggle">Light Mode</button>
     <h1>Journal</h1>
-    <h2>Week 14</h2>
-    <h3>Fullstack Week</h3>
+    <h3>Fullstack</h3>
     <div class="note-Container">
     <p>
         <a href="./Week 14/Notizen/js.html">Javascript Wiederholung</a>
@@ -37,6 +39,21 @@
     <p>
         <a href="./Week 16 React/react.html">React</a>
     </p>
+    <p>
+        <a href="./Week 17 React-Tailwind/tailwind.html">React Router</a>
+    </p>
     </div>
+
+  <script>
+    const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    
+  </script>  
 </body>
 </html>

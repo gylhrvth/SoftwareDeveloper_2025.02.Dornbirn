@@ -1,0 +1,14 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  
+}
+.avatar {
+    min-width: 150px;
+}
+
+.today-date {
+  color: rgb(255, 145, 0);
+}
