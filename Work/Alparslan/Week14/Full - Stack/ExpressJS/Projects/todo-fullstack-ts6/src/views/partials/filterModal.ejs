@@ -1,0 +1,30 @@
+<!-- filepath: src/views/partials/filterModal.ejs -->
+<div id="filterModal" class="modal hidden">
+  <div class="modal-content">
+    <button id="closeFilterModal" class="close" type="button" aria-label="Close">&times;</button>
+    <form id="filterForm" method="GET" action="/tasks">
+      <% if (typeof all !== 'undefined' && all == 1) { %>
+        <input type="hidden" name="all" value="1">
+      <% } %>
+      <h2><%= t.filterTasks %></h2>
+      <!-- Status filter -->
+      <select name="status">
+        <option value=""><%= t.status %>...</option>
+        <option value="Pending"><%= t.pending %></option>
+        <option value="Completed"><%= t.completed %></option>
+      </select>
+      <!-- Priority filter -->
+      <select name="priority">
+        <option value=""><%= t.priority %>...</option>
+        <option value="Low"><%= t.low %></option>
+        <option value="Medium"><%= t.medium %></option>
+        <option value="High"><%= t.high %></option>
+      </select>
+      <!-- Date filter -->
+      <input type="date" name="date">
+      <input type="hidden" name="lang" value="<%= lang %>">
+      <button type="submit"><%= t.filter || 'Filter' %></button>
+      <button type="button" id="clearFiltersButton" onclick="window.location.href='/tasks?lang=<%= lang %>'"><%= t.clearFilters || 'Clear' %></button>
+    </form>
+  </div>
+</div>

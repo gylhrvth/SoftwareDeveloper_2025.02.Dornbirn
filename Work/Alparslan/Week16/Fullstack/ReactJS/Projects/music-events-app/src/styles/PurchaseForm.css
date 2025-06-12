@@ -1,0 +1,64 @@
+.purchaseForm {
+  
+  border-radius: 14px;
+  box-shadow: 0 4px 14px #30e3ca33;
+  padding: 2rem 4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  color: #e0e7ef;
+  max-width: 350px;
+  min-width: 260px;
+}
+
+.purchaseForm h3 {
+  color: #30e3ca;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.purchaseFormWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.purchaseForm label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #a259f7;
+  margin-bottom: 0.2em;
+}
+
+.purchaseForm input[type="text"],
+.purchaseForm input[type="email"],
+.purchaseForm input[type="number"] {
+  margin-top: 0.3em;
+  padding: 0.5em;
+  border-radius: 6px;
+  border: 1px solid #30e3ca;
+  background: #22223b;
+  color: #e0e7ef;
+  font-size: 1em;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.purchaseForm input:focus {
+  border: 1.5px solid #a259f7;
+}
+
+.purchaseForm .buyButton {
+  margin-top: 1em;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.purchaseForm .buyButton + .buyButton {
+  background: #44475a;
+  color: #bdbdbd;
+  margin-left: 1em;
+}

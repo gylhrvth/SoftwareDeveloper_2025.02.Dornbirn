@@ -1,0 +1,212 @@
+body {
+    font-family: 'Segoe UI', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    color: #222;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+nav {
+    background: #4a90e2;
+    padding: 1rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(74,144,226,0.08);
+    border-radius: 0 0 12px 12px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.2s, background 0.2s;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: #4a90e2;
+    background: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 700px;
+    margin: 2.5rem auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(74,144,226,0.13);
+    padding: 2.5rem 2rem;
+    width: 90vw;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: #4a90e2;
+    text-align: center;
+    margin-top: 0;
+    letter-spacing: 1px;
+    word-break: break-word;
+}
+
+form {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 400px;
+    min-width: 220px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #cfd8dc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f4f6fa;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus,
+form select:focus {
+    border: 1.5px solid #4a90e2;
+    outline: none;
+}
+
+.buttonStyle,
+.action-btn {
+    text-align: center;
+    text-decoration: none;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.18s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 2px 8px rgba(74,144,226,0.08);
+    margin: 0.2em 0.2em;
+    display: inline-block;
+}
+
+.buttonStyle:hover,
+.action-btn:hover {
+    background: #357abd;
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Center the table and set its width to 80% */
+table {
+    width: 80%;
+    margin: 2rem auto;
+    border-collapse: collapse;
+    background: #f9fbfd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(74,144,226,0.07);
+    min-width: 320px;
+    max-width: 100vw;
+}
+
+th, td {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid #e0e6ed;
+    text-align: center;
+    word-break: break-word;
+}
+
+th {
+    background: #4a90e2;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+tr:nth-child(even) {
+    background: #f4f6fa;
+}
+
+tr:hover {
+    background: #eaf3fc;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .container {
+        max-width: 98vw;
+        padding: 1.5rem 1rem;
+    }
+    table {
+        width: 98vw;
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 700px) {
+    nav {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.98rem;
+    }
+    .container {
+        padding: 1rem 0.5rem;
+        margin: 1.2rem auto;
+    }
+    th, td {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.95rem;
+    }
+    table {
+        font-size: 0.95rem;
+        width: 99vw;
+        margin: 1rem 0;
+    }
+    form {
+        width: 100%;
+        min-width: 0;
+        max-width: 100vw;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    nav {
+        font-size: 0.93rem;
+    }
+    .container {
+        padding: 0.5rem 0.2rem;
+        border-radius: 8px;
+    }
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    th, td {
+        padding: 0.6rem 0.2rem;
+        font-size: 0.93rem;
+        text-align: left;
+    }
+    table {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0.5rem 0;
+    }
+}
