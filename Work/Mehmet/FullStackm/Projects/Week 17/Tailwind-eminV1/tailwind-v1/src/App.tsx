@@ -9,6 +9,7 @@ function App() {
           Speichern
         </button>
         <h1 className='bg-blue-700 hover:bg-blue-500 text-white font-semibold cursor: pointer'>nah, i'd react</h1>
+        <p>now we have to </p>
       </div>
     </>
   )
