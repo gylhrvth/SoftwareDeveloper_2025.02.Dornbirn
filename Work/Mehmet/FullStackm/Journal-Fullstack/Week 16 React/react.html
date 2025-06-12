@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="../../../MekStyle.css">
+</head>
+
+<body>
+     <button id="mode-toggle">Light Mode</button>
+    <h1>Node JS Notizen</h1>
+     <p id="date"><strong>02.06.2025</strong></p>
+    <ol id="Inhalt">
+  <li>Woher kommt der Name "react"?</li>
+  <li>Was ist ein JSX?</li>
+  <li>Was ist ein Component?</li>
+  <li>Wie erstelle ich eine einfache Component ohne Props?</li>
+  <li>Wie füge ich className zu meinem JSX Elementen?</li>
+  <li>Was sind Props?</li>
+  <li>Wie erstelle ich eine Component mit Props?</li>
+  <li>Wie verwende ich Props in meinem JSX Code?</li>
+  <li>Kann ich einen Text / Zahl als Props übergeben?</li>
+  <li>Kann ich ein oder mehrere className als Props übergeben?</li>
+  <li>Welche Daten kann ich als Props übergeben?</li>
+  <li>Kann ich einen EventHandler als Props übergeben?</li>
+  <li>Kann ich einen EventHandler (die Zusatzinformation per Parameter bekommen wird) als Props übergeben?</li>
+  <li>Wie schreibe ich eine Schleife in JSX?</li>
+  <li>Wie schreibe ich eine if-Bedingung in JSX?</li>
+  <li>Wie fügt man Bilder in React hinzu?</li>
+    
+    </ol>
+
+<!-- Frage 1  -->
+<section>
+  <h2>1. Woher kommt der Name "React"?</h2>
+  <p>Der Name <code>React</code> kommt von der zentralen Idee der Bibliothek: <strong>"Reagieren"</strong> auf Änderungen im Benutzerinterface (UI).</p>
+  <p>React wurde entwickelt, um Benutzeroberflächen dynamisch und effizient zu aktualisieren, wenn sich Daten ändern. Das bedeutet, die UI <em>reagiert</em> automatisch auf Zustandsänderungen.</p>
+  <ul>
+    <li>React <strong>reagiert</strong> auf State- und Prop-Änderungen und aktualisiert die Darstellung automatisch.</li>
+    <li>Der Name beschreibt die Idee der reaktiven Programmierung, bei der das UI sich automatisch anpasst.</li>
+    <li>Facebook veröffentlichte React 2013, um effizientere und wartbare UIs zu ermöglichen.</li>
+  </ul>
+  <p>Zusammengefasst: <code>React</code> bedeutet, dass das UI intelligent und automatisch <strong>reagiert</strong> – das ist die Kernidee hinter dem Namen.</p>
+</section>
+    <section>
+   
+<!-- frage 2 -->
+ <section>
+  <h2>2. Was ist ein JSX?</h2>
+  <p>
+    JSX (JavaScript XML) ist eine Syntaxerweiterung für JavaScript, die es ermöglicht, HTML-ähnliche Strukturen direkt im JavaScript-Code zu schreiben. React nutzt JSX, um die Benutzeroberfläche (UI) zu definieren. Obwohl es aussieht wie HTML, wird JSX von React in JavaScript-Funktionen umgewandelt.
+  </p>
+  <p>
+    Vorteile von JSX:
+  </p>
+  <ul>
+    <li>Erleichtert das Schreiben von UI-Strukturen</li>
+    <li>Erlaubt die Einbettung von JavaScript-Ausdrücken</li>
+    <li>Verbessert die Lesbarkeit und Wartbarkeit des Codes</li>
+  </ul>
+<h3>Beispiele:</h3>
+<p>React wandelt dies intern so um:</p>
+<pre><code>
+// Einfaches JSX-Element
+const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;
+
+// Äquivalente JavaScript-Funktion = React wandelt JSX in JavaScript um
+const element = React.createElement('h1', null, 'Hello, world!'); 
+
+// JSX mit JavaScript-Ausdruck
+const name = 'Maria';
+const greeting = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;
+
+// JSX mit Bedingung (ternärer Operator)
+const isLoggedIn = true;
+const message = &lt;div&gt;{isLoggedIn ? 'Willkommen zurück!' : 'Bitte anmelden'}&lt;/div&gt;
+
+// JSX mit Schleife (Array.map)
+const items = ['Apfel', 'Banane', 'Kirsche'];
+const list = (
+  &lt;ul&gt;
+    {items.map(item =&gt; &lt;li key={item}&gt;{item}&lt;/li&gt;)}
+  &lt;/ul&gt;
+);
+</code></pre>
+
+  <h3>Zusammenfassung</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Konzept</th>
+        <th>Beschreibung</th>
+        <th>Beispiel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>JSX</td>
+        <td>HTML-ähnliche Syntax für JavaScript in React</td>
+        <td>&lt;h1&gt;Hello, world!&lt;/h1&gt;</td>
+      </tr>
+      <tr>
+        <td>JavaScript-Ausdruck</td>
+        <td>Variablen und Ausdrücke in JSX verwenden</td>
+        <td>{'{name}'} im &lt;h1&gt;-Tag</td>
+      </tr>
+      <tr>
+        <td>Bedingung</td>
+        <td>JSX mit if-else über ternären Operator</td>
+        <td>{'{isLoggedIn ? "Willkommen zurück!" : "Bitte anmelden"}'}</td>
+      </tr>
+      <tr>
+        <td>Schleife</td>
+        <td>Array.map zum Rendern von Listen</td>
+        <td>{'items.map(item => <li key={item}>{item}</li>)'}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- frage 3 -->
+<section>
+  <h2>3. Was ist ein Component?</h2>
+  <p>
+    In React ist ein <strong>Component</strong> das Herzstück, um wiederverwendbare und strukturierte Benutzeroberflächen zu bauen. Man kann sich Components wie Bausteine vorstellen, aus denen eine Webseite oder App zusammengesetzt wird.
+  </p>
+  <p>
+    <strong>Components kapseln</strong> einen Teil der UI (Benutzeroberfläche) und die dazugehörige Logik, sodass sie isoliert, wiederverwendbar und leicht wartbar sind.
+  </p>
+  
+  <h3>Warum Components?</h3>
+  <ul>
+    <li>
+      <strong>Wiederverwendbarkeit:</strong>  
+      Du schreibst ein Component einmal und kannst es überall in deiner App verwenden.
+    </li>
+    <li>
+      <strong>Übersichtlichkeit:</strong>  
+      UI wird in kleine, überschaubare Teile aufgeteilt, was den Code sauber und verständlich hält.
+    </li>
+    <li>
+      <strong>Kapselung:</strong>  
+      Jedes Component hat seinen eigenen Zustand (State) und Logik, die nicht unkontrolliert in der App verstreut sind.
+    </li>
+    <li>
+      <strong>Komposition:</strong>  
+      Komponenten können andere Komponenten enthalten (wie Lego-Steine).
+    </li>
+  </ul>
+  
+  <h3>Arten von Components</h3>
+  <ol>
+    <li>
+      <strong>Functional Components (Funktionale Components)</strong><br>
+      Sie sind einfache JavaScript-Funktionen, die JSX zurückgeben.
+    </li>
+    <li>
+      <strong>Class Components (Klassen-Components)</strong><br>
+      Sind JavaScript-Klassen, die von <code>React.Component</code> erben und eine <code>render()</code>-Methode besitzen.
+    </li>
+  </ol>
+  <p>Heute werden funktionale Components bevorzugt, besonders mit React Hooks.</p>
+  
+  <h3>Einfaches Beispiel: Funktionales Component</h3>
+  <pre><code>
+function Welcome() {
+  return &lt;h1&gt;Willkommen zu React!&lt;/h1&gt;;
+}
+  </code></pre>
+  <p>Dieses Component gibt eine Überschrift zurück. Du kannst es wie ein HTML-Tag verwenden:</p>
+  <pre><code>
+&lt;Welcome /&gt;
+  </code></pre>
+  
+  <h3>Beispiel mit Props (Datenübergabe)</h3>
+  <pre><code>
+function Welcome(props) {
+  return &lt;h1&gt;Willkommen, {props.name}!&lt;/h1&gt;;
+}
+
+// Verwendung:
+&lt;Welcome name="Maria" /&gt;
+  </code></pre>
+  <p>Hier zeigt das Component den Namen an, der als Prop übergeben wurde.</p>
+  
+  <h3>Zusammenfassung in Tabelle</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Begriff</th>
+        <th>Erklärung</th>
+        <th>Beispiel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Component</td>
+        <td>Wiederverwendbarer Baustein der UI, kapselt Layout und Logik</td>
+        <td><code>function Welcome() { return &lt;h1&gt;Hello&lt;/h1&gt;; }</code></td>
+      </tr>
+      <tr>
+        <td>Functional Component</td>
+        <td>Funktion, die JSX zurückgibt</td>
+        <td><code>const Welcome = () =&gt; &lt;h1&gt;Hello&lt;/h1&gt;;</code></td>
+      </tr>
+      <tr>
+        <td>Class Component</td>
+        <td>Klasse mit <code>render()</code>-Methode, älterer Stil</td>
+        <td><code>class Welcome extends React.Component { ... }</code></td>
+      </tr>
+      <tr>
+        <td>Props</td>
+        <td>Eigenschaften/Daten, die an Components übergeben werden</td>
+        <td><code>&lt;Welcome name="Maria" /&gt;</code></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td>Interner Zustand eines Components, der sich ändern kann</td>
+        <td><code>const [count, setCount] = useState(0);</code></td>
+      </tr>
+      <tr>
+        <td>Wiederverwendbarkeit</td>
+        <td>Components können an mehreren Stellen genutzt werden</td>
+        <td><code>&lt;Welcome /&gt; überall in der App</code></td>
+      </tr>
+      <tr>
+        <td>Komposition</td>
+        <td>Components können andere Components enthalten</td>
+        <td><code>&lt;App&gt;&lt;Welcome /&gt;&lt;/App&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- frage 4 -->
+<section>
+  <h2>4. Wie erstelle ich eine einfache Component ohne Props? (Und was ist mit Props?)</h2>
+  <p>
+    In React kannst du Components als JavaScript-Funktionen schreiben, die UI zurückgeben. 
+    Es gibt zwei grundlegende Varianten:
+  </p>
+  <ol>
+    <li><strong>Component ohne Props:</strong> Keine Eingabedaten, gibt immer denselben statischen Inhalt zurück.</li>
+    <li><strong>Component mit Props:</strong> Nimmt ein <code>props</code>-Objekt entgegen, um dynamische Inhalte anzuzeigen.</li>
+  </ol>
+
+  <h3>Was ist das <code>props</code>-Objekt?</h3>
+  <p>
+    <code>props</code> ist ein Objekt, das alle Daten enthält, die du von außen an dein Component übergibst. 
+    Du kannst damit dynamisch Inhalte darstellen, indem du z.B. <code>props.name</code> verwendest.
+  </p>
+  
+  <h3>Beispiele</h3>
+  <pre><code>
+// Component ohne Props (keine Parameter)
+function Greeting() {
+  return &lt;h1&gt;Hallo, Welt!&lt;/h1&gt;;
+}
+
+// Component mit Props (props ist ein Objekt)
+function GreetingWithProps(props) {
+  return &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;;
+}
+
+// Beispiel für Arrow Function ohne Props
+const GreetingArrow = () =&gt; &lt;h1&gt;Hallo, Welt!&lt;/h1&gt;;
+
+// Arrow Function mit Props
+const GreetingWithPropsArrow = (props) =&gt; &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;;
+  </code></pre>
+
+  <h3>Verwendung im JSX</h3>
+  <pre><code>
+&lt;Greeting /&gt;                        // Zeigt "Hallo, Welt!"
+&lt;GreetingWithProps name="Maria" /&gt; // Zeigt "Hallo, Maria!"
+  </code></pre>
+
+  <h3>Wann solltest du welche Variante verwenden?</h3>
+  <ul>
+    <li><strong>Ohne Props:</strong> Wenn der Inhalt immer gleich ist und keine Anpassungen benötigt werden (z.B. statische Überschriften, einfache Buttons).</li>
+    <li><strong>Mit Props:</strong> Wenn du Daten von außen reinreichen möchtest, um das Component flexibel und wiederverwendbar zu machen.</li>
+    <li><strong>Arrow Function vs. normale Funktion:</strong> Beide sind möglich, Arrow Functions sind kürzer und oft moderner, normal Functions können besser in bestimmten Fällen wie hoisting oder Methoden verwendet werden.</li>
+  </ul>
+
+  <h3>Kurzzusammenfassung in Tabelle</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Variante</th>
+        <th>Beschreibung</th>
+        <th>Syntax-Beispiel</th>
+        <th>Wann nutzen?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Component ohne Props (Funktion)</td>
+        <td>Gibt immer statischen UI-Inhalt zurück</td>
+        <td><code>function Greeting() { return &lt;h1&gt;Hallo&lt;/h1&gt;; }</code></td>
+        <td>Statische UI, einfache Elemente</td>
+      </tr>
+      <tr>
+        <td>Component mit Props (Funktion)</td>
+        <td>Nimmt ein props-Objekt für dynamische Inhalte</td>
+        <td><code>function Greeting(props) { return &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;; }</code></td>
+        <td>Dynamische, anpassbare UI</td>
+      </tr>
+      <tr>
+        <td>Component ohne Props (Arrow Function)</td>
+        <td>Kürzere Syntax, statische UI</td>
+        <td><code>const Greeting = () =&gt; &lt;h1&gt;Hallo&lt;/h1&gt;;</code></td>
+        <td>Kurze, einfache Components</td>
+      </tr>
+      <tr>
+        <td>Component mit Props (Arrow Function)</td>
+        <td>Kürzere Syntax mit props-Objekt</td>
+        <td><code>const Greeting = (props) =&gt; &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;;</code></td>
+        <td>Dynamische Components mit einfachem Code</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- frage 5 -->
+ <section>
+  <h2>5. Wie füge ich <code>className</code> zu meinem JSX-Elementen hinzu?</h2>
+  <p>
+    In React verwendest du <code>className</code> statt <code>class</code>, um CSS-Klassen an JSX-Elemente zu vergeben. 
+    Das liegt daran, dass <code>class</code> ein reserviertes Schlüsselwort in JavaScript ist. React nutzt deshalb <code>className</code> als Alternative.
+  </p>
+  <h3>Was ist <code>className</code>?</h3>
+  <p>
+    <code>className</code> ist das JSX-Attribut, mit dem du einem Element CSS-Klassen zuweist, ähnlich wie <code>class</code> im HTML. React wandelt <code>className</code> intern beim Rendern in das HTML-Attribut <code>class</code> um.
+  </p>
+  <h3>Einfaches Beispiel</h3>
+  <pre><code>
+function Box() {
+  return &lt;div className="box shadow"&gt;Inhalt&lt;/div&gt;;
+}
+  </code></pre>
+  <p>Wird im Browser zu:</p>
+  <pre><code>
+&lt;div class="box shadow"&gt;Inhalt&lt;/div&gt;
+  </code></pre>
+  <h3>Dynamische Klassen mit Bedingungen</h3>
+  <pre><code>
+function Button({ isActive }) {
+  return (
+    &lt;button className={isActive ? "btn active" : "btn"}&gt;
+      Klick mich
+    &lt;/button&gt;
+  );
+}
+  </code></pre>
+  <h3>Wann benutzt man <code>className</code>?</h3>
+  <ul>
+    <li>Immer, wenn du CSS-Klassen in JSX hinzufügen willst.</li>
+    <li>Für Styling, Layout, Animationen oder visuelle Effekte.</li>
+    <li>Es ersetzt das HTML-Attribut <code>class</code> in React-Komponenten.</li>
+  </ul>
+  <h3>Zusammenfassung</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Begriff</th>
+        <th>Erklärung</th>
+        <th>Beispiel JSX</th>
+        <th>HTML entspricht</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>class</code></td>
+        <td>HTML-Attribut für CSS-Klassen (in React nicht erlaubt)</td>
+        <td><code>&lt;div class="box"&gt;</code> (falsch in JSX)</td>
+        <td><code>&lt;div class="box"&gt;</code></td>
+      </tr>
+      <tr>
+        <td><code>className</code></td>
+        <td>JSX-Attribut für CSS-Klassen (React-spezifisch)</td>
+        <td><code>&lt;div className="box shadow"&gt;</code></td>
+        <td><code>&lt;div class="box shadow"&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Dynamische Klassen</td>
+        <td>Klassen, die sich je nach Zustand oder Props ändern</td>
+        <td><code>&lt;button className={isActive ? "btn active" : "btn"}&gt;</code></td>
+        <td>JS-generierte Klassen im HTML</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- honrable mention hallo oder Hallo -->
+ <section>
+  <h2>Unterschied zwischen <code>{hallo()}</code> und <code>&lt;Hallo /&gt;</code> in React</h2>
+  <p>Hier erkläre ich dir, was der Unterschied ist und wann du welche Variante verwenden solltest.</p>
+  
+  <h3>1. <code>{hallo()}</code> – Direkter Funktionsaufruf im JSX</h3>
+  <p>Du rufst die Funktion <code>hallo</code> einfach als normale JavaScript-Funktion auf, die JSX zurückgibt. Das Ergebnis wird dann an dieser Stelle im UI eingefügt.</p>
+  <pre><code>
+const hallo = () =&gt; &lt;h1&gt;Hallo Welt&lt;/h1&gt;;
+
+function MyApp() {
+  return (
+    &lt;div&gt;
+      {hallo()}  {/* Funktion wird hier ausgeführt */}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>2. <code>&lt;Hallo /&gt;</code> – Component als JSX-Tag</h3>
+  <p>Du definierst <code>Hallo</code> als React-Komponente (großgeschriebener Funktionsname) und verwendest sie als JSX-Tag. React rendert dann das Component an dieser Stelle.</p>
+  <pre><code>
+function Hallo() {
+  return &lt;h1&gt;Hallo Welt&lt;/h1&gt;;
+}
+
+function MyApp() {
+  return (
+    &lt;div&gt;
+      &lt;Hallo /&gt;  {/* Component wird hier gerendert */}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>Unterschiede &amp; Empfehlung</h3>
+  <ul>
+    <li><strong>{hallo()}</strong> ist ein einfacher Funktionsaufruf – gut für kleine JSX-Fragmente oder wenn keine State/Props verwendet werden.</li>
+    <li><strong>&lt;Hallo /&gt;</strong> ist eine React-Komponente – empfohlen für wiederverwendbare UI-Bausteine mit eigenem Zustand, Props oder Lifecycle.</li>
+    <li>React erwartet Components, die mit einem Großbuchstaben beginnen (z.B. <code>Hallo</code>), damit sie als JSX-Tags funktionieren.</li>
+  </ul>
+</section>
+
+ <!-- frage 6 -->
+ <section>
+  <h2>6. Was sind Props?</h2>
+
+  <p>
+    <strong>Props</strong> (kurz für <em>Properties</em>) sind die Daten, die du von einem übergeordneten React-Komponent (Parent) an ein untergeordnetes (Child) weitergibst. Man kann Props sich als <strong>Parameter</strong> vorstellen, die an Funktionen übergeben werden — nur eben speziell für React-Komponenten.
+  </p>
+
+  <p>
+    Props sind immer <strong>Objekte</strong>, die alle übergebenen Werte als Eigenschaften enthalten. Das erlaubt dir, mehrere Daten in einem einzigen Objekt zu bündeln und an das Kind-Komponent zu senden.
+  </p>
+
+  <h3>Warum Props?</h3>
+  <ul>
+    <li>Sie ermöglichen <strong>Kommunikation zwischen Komponenten</strong>.</li>
+    <li>Machen Komponenten <strong>wiederverwendbar</strong> und <strong>flexibel</strong>.</li>
+    <li>Halten Datenfluss <strong>einfach und übersichtlich</strong>: Props fließen nur von Parent zu Child (unidirektional).</li>
+    <li>Komponenten sind so leichter zu testen und zu pflegen.</li>
+  </ul>
+
+  <h3>Beispiel: Props als Objekt</h3>
+  <pre><code>
+function Welcome(props) {
+  // props ist ein Objekt, z.B. { name: "Maria", age: 25, isLoggedIn: true }
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;
+      &lt;p&gt;Alter: {props.age}&lt;/p&gt;
+      &lt;p&gt;Status: {props.isLoggedIn ? "Eingeloggt" : "Gast"}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Verwendung des Components mit Props
+&lt;Welcome name="Maria" age={25} isLoggedIn={true} /&gt;
+  </code></pre>
+
+  <h3>Props mit Destructuring (modern &amp; sauber)</h3>
+  <pre><code>
+function Welcome({ name, age, isLoggedIn }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hallo, {name}!&lt;/h1&gt;
+      &lt;p&gt;Alter: {age}&lt;/p&gt;
+      &lt;p&gt;Status: {isLoggedIn ? "Eingeloggt" : "Gast"}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>Was kannst du mit Props machen?</h3>
+  <ul>
+    <li>Strings, Zahlen, Booleans: einfache Daten.</li>
+    <li>Objekte und Arrays: komplexe Strukturen.</li>
+    <li>Funktionen: z.B. Callback-Funktionen für Events.</li>
+    <li>JSX/Components: Props können auch React-Elemente oder Components enthalten.</li>
+  </ul>
+
+  <h3>Beispiel mit Funktion als Prop (Callback)</h3>
+  <pre><code>
+function Button({ onClick, label }) {
+  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;;
+}
+
+function App() {
+  const handleClick = () =&gt; alert("Button wurde geklickt!");
+
+  return &lt;Button onClick={handleClick} label="Klick mich!" /&gt;;
+}
+  </code></pre>
+
+  <h3>Tabelle: Props vs Kein Props vs Arrow Function vs normale Funktion</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Variante</th>
+        <th>Syntax Beispiel</th>
+        <th>Wann verwenden?</th>
+        <th>Vorteile</th>
+        <th>Nachteile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ohne Props</td>
+        <td><code>function Hello() { return &lt;h1&gt;Hi&lt;/h1&gt;; }</code></td>
+        <td>Statische UI, keine Daten nötig</td>
+        <td>Einfach, schnell</td>
+        <td>Nicht flexibel</td>
+      </tr>
+      <tr>
+        <td>Mit Props</td>
+        <td><code>function Hello(props) { return &lt;h1&gt;{props.name}&lt;/h1&gt;; }</code></td>
+        <td>Dynamische UI, externe Daten</td>
+        <td>Wiederverwendbar, flexibel</td>
+        <td>Props müssen korrekt übergeben werden</td>
+      </tr>
+      <tr>
+        <td>Arrow Function ohne Props</td>
+        <td><code>const Hello = () =&gt; &lt;h1&gt;Hi&lt;/h1&gt;;</code></td>
+        <td>Kurze Komponenten ohne Props</td>
+        <td>Kurz, prägnant</td>
+        <td>Nicht für komplexe Logik</td>
+      </tr>
+      <tr>
+        <td>Arrow Function mit Props</td>
+        <td><code>const Hello = ({name}) =&gt; &lt;h1&gt;{name}&lt;/h1&gt;;</code></td>
+        <td>Dynamische UI, moderne Schreibweise</td>
+        <td>Kürzer, übersichtlich</td>
+        <td>Manchmal schwerer zu debuggen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Fazit</h3>
+  <p>
+    Props sind Objekte, die Daten von Parent zu Child Komponenten transportieren. Sie machen deine UI dynamisch und wiederverwendbar. Nutze Props, wenn dein Component Informationen von außen benötigt. Du kannst einfache oder komplexe Daten, Funktionen und sogar JSX als Props übergeben.
+  </p>
+</section>
+
+<!-- frage 7 -->
+<section>
+  <h2>Wie erstelle ich eine Component mit Props?</h2>
+  <p>
+    Props (Properties) sind Daten, die du an ein React-Component übergibst, damit es dynamisch und wiederverwendbar wird.
+    Eine Component mit Props ist eine Funktion, die ein Objekt <code>props</code> als Parameter erhält. Dieses Objekt enthält alle übergebenen Werte.
+  </p>
+  <h3>Grundidee:</h3>
+  <ul>
+    <li><code>props</code> ist ein Objekt mit Eigenschaften.</li>
+    <li>Du kannst auf diese Eigenschaften im Component zugreifen, um Inhalte dynamisch anzuzeigen.</li>
+    <li>Props ermöglichen, dass ein Component flexibel auf unterschiedliche Eingaben reagiert.</li>
+  </ul>
+
+  <h3>Beispiel: Component mit Props</h3>
+  <pre><code>
+function Welcome(props) {
+  return &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;;
+}
+
+// Verwendung:
+&lt;Welcome name="Maria" /&gt;
+  </code></pre>
+
+  <h3>Modernere Variante mit Destructuring</h3>
+  <pre><code>
+function Welcome({ name }) {
+  return &lt;h1&gt;Hallo, {name}!&lt;/h1&gt;;
+}
+  </code></pre>
+
+  <h3>Warum Props verwenden?</h3>
+  <ul>
+    <li>Komponenten werden wiederverwendbar.</li>
+    <li>Du kannst dynamisch Inhalte darstellen.</li>
+    <li>Bessere Trennung von Daten und UI.</li>
+    <li>Einfaches Weitergeben von Daten oder Funktionen an Child-Komponenten.</li>
+  </ul>
+
+  <h3>Weiteres Beispiel mit mehreren Props und Funktionen:</h3>
+  <pre><code>
+function UserCard({ name, age, onClick }) {
+  return (
+    &lt;div onClick={onClick}&gt;
+      &lt;h2&gt;{name}&lt;/h2&gt;
+      &lt;p&gt;Alter: {age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Verwendung
+&lt;UserCard name="Anna" age={30} onClick={() =&gt; alert("Karte geklickt!")} /&gt;
+  </code></pre>
+
+  <h3>Zusammenfassung</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Punkt</th>
+        <th>Erklärung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Props</td>
+        <td>Objekt mit Daten, die an Components übergeben werden</td>
+      </tr>
+      <tr>
+        <td>Zugriff auf Props</td>
+        <td><code>props.propName</code> oder Destructuring <code>{'{ propName }'}</code></td>
+      </tr>
+      <tr>
+        <td>Zweck</td>
+        <td>Dynamische, wiederverwendbare UI</td>
+      </tr>
+      <tr>
+        <td>Übergabe</td>
+        <td><code>&lt;Component propName="Wert" /&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Props können sein</td>
+        <td>Strings, Zahlen, Booleans, Objekte, Funktionen, JSX-Elemente</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Warum export honorable mention? -->
+<section>
+  <h2>HONORABLE INFO. React Komponenten: Export, Default und Sichtbarkeit im Web — Ultimativer Guide</h2>
+
+  <h3>1. Was ist <code>export</code> und <code>export default</code>?</h3>
+  <p>
+    <code>export</code> macht Funktionen oder Komponenten aus einer Datei für andere Dateien verfügbar.<br/>
+    <code>export default</code> kennzeichnet eine einzelne Haupt-Komponente als Standard-Export.
+  </p>
+
+  <h3>2. Warum braucht React eine Root-Komponente (<code>export default</code>)?</h3>
+  <p>
+    React rendert immer eine einzige Root-Komponente, meist <code>App</code> genannt.<br/>
+    Diese Root-Komponente ist der Einstiegspunkt für die gesamte Webseite.<br/>
+    Deshalb wird sie mit <code>export default</code> exportiert.
+  </p>
+
+  <h3>3. Wie erscheinen Komponenten im Web?</h3>
+  <ul>
+    <li>Komponenten sind nur sichtbar, wenn sie in der Root-Komponente oder deren Kind-Komponenten im JSX auftauchen.</li>
+    <li>Ob sie aus derselben Datei oder importiert stammen, ist egal.</li>
+    <li>Exportieren macht Komponenten nicht automatisch sichtbar.</li>
+  </ul>
+
+  <h3>4. Muss ich alle Komponenten <code>export</code> machen?</h3>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Muss exportiert werden?</th>
+        <th>Muss in <code>export default</code> rein?</th>
+        <th>Sichtbar im Web?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Komponente nur in derselben Datei</td>
+        <td>Nein</td>
+        <td>Nein</td>
+        <td>Ja, wenn in JSX der Root-Komponente verwendet</td>
+      </tr>
+      <tr>
+        <td>Komponente in anderer Datei</td>
+        <td>Ja (<code>export</code> oder <code>export default</code>)</td>
+        <td>Nein</td>
+        <td>Ja, wenn importiert und in JSX der Root-Komponente verwendet</td>
+      </tr>
+      <tr>
+        <td>Root-Komponente (z.B. <code>App</code>)</td>
+        <td>Ja, <code>export default</code></td>
+        <td>Ja</td>
+        <td>Ja, wird von React als Einstiegspunkt gerendert</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>5. Unterschied <code>export</code> vs. <code>export default</code></h3>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th><code>export</code></th>
+        <th><code>export default</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mehrere Exporte pro Datei möglich</td>
+        <td>Nur ein Default-Export pro Datei</td>
+      </tr>
+      <tr>
+        <td>Import mit geschweiften Klammern:<br/><code>import { Component } from './Datei';</code></td>
+        <td>Import ohne Klammern:<br/><code>import Component from './Datei';</code></td>
+      </tr>
+      <tr>
+        <td>Gut für viele kleine Komponenten in einer Datei</td>
+        <td>Ideal für die Haupt-Komponente (Root)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>6. Beispiele</h3>
+  <h4>a) Komponente ohne Export (nur intern)</h4>
+  <pre><code>
+function Button() {
+  return &lt;button&gt;Klick mich&lt;/button&gt;;
+}
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button /&gt; {/* Button wird sichtbar */}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h4>b) Komponente exportieren und importieren</h4>
+  <pre><code>
+// Button.js
+export function Button() {
+  return &lt;button&gt;Klick mich&lt;/button&gt;;
+}
+
+// App.js
+import { Button } from './Button';
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button /&gt; {/* sichtbar durch Import und JSX */}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h4>c) Root-Komponente exportieren</h4>
+  <pre><code>
+export default function App() {
+  return &lt;h1&gt;Meine App&lt;/h1&gt;;
+}
+  </code></pre>
+
+  <h3>7. Fazit</h3>
+  <ul>
+    <li>React rendert immer eine einzelne Root-Komponente (meist <code>App</code>), die mit <code>export default</code> exportiert wird.</li>
+    <li>Nur Komponenten, die im JSX dieser Root-Komponente auftauchen, sind sichtbar.</li>
+    <li>Komponenten in derselben Datei brauchen kein Export, wenn sie nur intern verwendet werden.</li>
+    <li>Komponenten aus anderen Dateien müssen exportiert und importiert werden, damit sie genutzt werden können.</li>
+    <li>Exportieren macht Komponenten verfügbar, aber nicht automatisch sichtbar.</li>
+  </ul>
+
+  <h3>8. Bonus: Unterschied &lt;Component /&gt; vs. {`{Component()}`}</h3>
+  <p>
+    <code>{`{Component()}`}</code> ruft die Funktion direkt auf und rendert das Ergebnis.<br/>
+    <code>&lt;Component /&gt;</code> ist JSX-Syntax und hat Vorteile wie Props, Lifecycle und Hooks.<br/>
+    In React solltest du immer <code>&lt;Component /&gt;</code> benutzen für bessere Lesbarkeit und Funktionalität.
+  </p>
+</section>
+
+<!-- frage 8  -->
+<section>
+  <h2>8. Wie verwende Props in mein JSX Code?</h2>
+  <p>
+    Props (Properties) sind Daten, die du von außen an eine React-Komponente übergibst, damit sie dynamisch Inhalte anzeigen kann.
+  </p>
+
+  <h3>1. Props empfangen</h3>
+  <pre><code>
+function Greeting(props) {
+  return &lt;h1&gt;Hallo, {props.name}!&lt;/h1&gt;;
+}
+  </code></pre>
+
+  <h3>2. Props übergeben</h3>
+  <pre><code>
+&lt;Greeting name="Mehmet" /&gt;
+  </code></pre>
+
+  <h3>3. Props sind Objekte</h3>
+  <p>
+    Das <code>props</code>-Objekt enthält alle übergebenen Werte, z.B. <code>{'{ name: "Mehmet", age: 25 }'}</code>.
+    Du greifst mit <code>props.name</code> oder <code>props.age</code> darauf zu.
+  </p>
+
+  <h3>4. Destructuring (Entpacken)</h3>
+  <pre><code>
+function Greeting({ name }) {
+  return &lt;h1&gt;Hallo, {name}!&lt;/h1&gt;;
+}
+  </code></pre>
+
+  <h3>5. Props können alles sein</h3>
+  <p>Strings, Zahlen, Funktionen, Objekte, Arrays – alles kann als Prop übergeben werden.</p>
+
+  <h4>Beispiel komplett:</h4>
+  <pre><code>
+function Greeting({ name, age }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hallo, {name}!&lt;/h1&gt;
+      &lt;p&gt;Du bist {age} Jahre alt.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+&lt;Greeting name="Mehmet" age={25} /&gt;
+  </code></pre>
+</section> 
+
+<!-- Frage 9 -->
+
+<section>
+  <h2>9. Kann ich einen Text / Zahl als Props übergeben?</h2>
+  <p>In React kannst du ganz normal Text (Strings) und Zahlen (Numbers) als Props an Komponenten übergeben.</p>
+  
+  <h3>Wie funktioniert das?</h3>
+  <ul>
+    <li><strong>Text (String):</strong> Übergibst du in Anführungszeichen, z.B. <code>&lt;Greeting name="Mehmet" /&gt;</code></li>
+    <li><strong>Zahl (Number):</strong> Übergibst du in geschweiften Klammern, z.B. <code>&lt;Greeting age={25} /&gt;</code></li>
+  </ul>
+
+  <h3>Beispiel-Code:</h3>
+  <pre><code>
+function Greeting({ name, age }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hallo, {name}!&lt;/h1&gt;
+      &lt;p&gt;Du bist {age} Jahre alt.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+&lt;Greeting name="Mehmet" age={25} /&gt;
+  </code></pre>
+
+  <h3>Warum so?</h3>
+  <p>
+    Strings werden in Anführungszeichen geschrieben, weil sie Text sind. Zahlen (oder andere JavaScript-Ausdrücke) müssen in <code>{ }</code> stehen, damit React sie als Wert und nicht als Text interpretiert.
+  </p>
+
+  <h3>Zusammenfassung:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Prop-Typ</th>
+        <th>Übergabe im JSX</th>
+        <th>Zugriff in Komponente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Text (String)</td>
+        <td><code>&lt;Component prop="text" /&gt;</code></td>
+        <td><code>props.prop</code> oder <code>{'{ prop }'}</code></td>
+      </tr>
+      <tr>
+        <td>Zahl (Number)</td>
+        <td><code>&lt;Component prop={'{123}'} /&gt;</code></td>
+        <td><code>props.prop</code> oder <code>{'{ prop }'}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- frage 10  -->
+<section>
+  <h2>10. Kann ich ein oder mehrere <code>className</code> als Props übergeben?</h2>
+  <p>
+    Ja, du kannst <code>className</code> (also CSS-Klassen) als Props an eine React-Komponente übergeben und sie dann auf das gewünschte JSX-Element anwenden. 
+    Das macht deine Komponente flexibler, weil du das Styling von außen steuern kannst.
+  </p>
+
+  <h3>1. Warum <code>className</code> als Prop?</h3>
+  <ul>
+    <li>In React nutzt man statt <code>class</code> das Attribut <code>className</code>, weil <code>class</code> in JavaScript reserviert ist.</li>
+    <li>Wenn du <code>className</code> über Props übergibst, kannst du einer Komponente verschiedene CSS-Klassen zuweisen, ohne den Komponentencode selbst anzupassen.</li>
+    <li>Du gewinnst Wiederverwendbarkeit: Ein und dieselbe Komponente kann in unterschiedlichen Kontexten mit unterschiedlichen Styles auftauchen.</li>
+  </ul>
+
+  <h3>2. Grundlegender Aufbau</h3>
+  <p>
+    1. <strong>Props definieren und destrukturieren:</strong><br/>
+    In der Komponente nimmst du <code>className</code> als Teil des <code>props</code>-Objekts entgegen:
+  </p>
+  <pre><code>
+function Button({ className, children }) {
+  return &lt;button className={className}&gt;
+    {children}
+  &lt;/button&gt;
+}
+  </code></pre>
+  <p>
+    Hier ist <code>className</code> eine Prop, und <code>children</code> repräsentiert den Text oder andere JSX-Inhalte, die du zwischen den Tags übergeben kannst.
+  </p>
+  <p>
+    2. <strong>Props übergeben:</strong><br/>
+    Wenn du die Komponente verwendest, übergibst du <code>className</code> als String—entweder eine einzelne CSS-Klasse oder mehrere Klassen, durch Leerzeichen getrennt:
+  </p>
+  <pre><code>
+&lt;Button className="primary"&gt;Klick mich&lt;/Button&gt;
+&lt;Button className="primary large"&gt;Klick mich&lt;/Button&gt;
+  </code></pre>
+
+  <h3>3. Beispiel mit mehreren <code>className</code>-Werten</h3>
+  <pre><code>
+function Button({ className, onClick, children }) {
+  return (
+    &lt;button className={className} onClick={onClick}&gt;
+      {children}
+    &lt;/button&gt;
+  );
+}
+
+// Verwendung in der App:
+&lt;Button className="primary" onClick={() =&gt; alert('Hi!')&gt;
+  Primärbutton
+&lt;/Button&gt;
+
+&lt;Button className="primary large" onClick={() =&gt; alert('Großer Button')&gt;
+  Großer Button
+&lt;/Button&gt;
+
+&lt;Button className="primary disabled" onClick={() =&gt; null&gt;
+  Deaktiviert
+&lt;/Button&gt;
+  </code></pre>
+  <p>
+    <em>primary</em> ist eine CSS-Klasse, die z.B. die Hintergrundfarbe definiert.
+    <em>large</em> könnte eine zusätzliche Klasse sein, die Schriftgröße und Polsterung verändert.
+    <em>disabled</em> lässt den Button ausgegraut erscheinen.
+  </p>
+
+  <h3>4. Dynamische Kombination von Klassen</h3>
+  <pre><code>
+function ToggleButton({ isActive, onClick }) {
+  // Basis-Klasse
+  let classes = "toggle-btn";
+
+  // Wenn isActive true ist, füge "active" hinzu
+  if (isActive) {
+    classes += " active";
+  }
+
+  return (
+    &lt;button className={classes} onClick={onClick}&gt;
+      {isActive ? "An" : "Aus"}
+    &lt;/button&gt;
+  );
+}
+
+// In deiner App:
+&lt;ToggleButton isActive={true} onClick={() =&gt; console.log("An")} /&gt;
+&lt;ToggleButton isActive={false} onClick={() =&gt; console.log("Aus")} /&gt;
+  </code></pre>
+  <p>
+    Hier besteht <code>classes</code> je nach Zustand aus <code>"toggle-btn active"</code> oder nur <code>"toggle-btn"</code>.
+    Du übergibst <code>classes</code> als <code>className</code>-Prop an den Button.
+  </p>
+
+  <h3>5. Beschränkungen und Tipps</h3>
+  <ul>
+    <li><strong>Props sind <em>immutable</em>:</strong> Du veränderst <code>className</code> nicht innerhalb der Komponente, sondern kombinierst oder wählst es vorab aus, bevor du es übergibst.</li>
+    <li><strong>Einzelne oder mehrere Klassen:</strong> Gib Klassen als reine Strings an. Mehrere Klassen trennst du durch Leerzeichen: <code>"classA classB classC"</code>.</li>
+    <li><strong>Vermeide harte Codierung:</strong> Schreibe nicht im Komponent selbst <code>&lt;button className="primary"&gt;</code>, sondern übergebe immer <code>className</code> via Prop—so bleibt der Komponent wiederverwendbar.</li>
+  </ul>
+
+  <h3>6. Zusammenfassung in Tabelle</h3>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Aufgabe</th>
+        <th>Syntax-Beispiel</th>
+        <th>Erklärung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Einzelne Klasse übergeben</td>
+        <td><code>&lt;Button className="primary"&gt;Text&lt;/Button&gt;</code></td>
+        <td>Button bekommt die CSS-Klasse <em>primary</em>.</td>
+      </tr>
+      <tr>
+        <td>Mehrere Klassen übergeben</td>
+        <td><code>&lt;Button className="primary large"&gt;Text&lt;/Button&gt;</code></td>
+        <td>Button erhält <em>primary</em> und <em>large</em>.</td>
+      </tr>
+      <tr>
+        <td>Dynamische Klassen-Kombination</td>
+        <td><code>const classes = isActive ? "btn active" : "btn";<br>&lt;Button className={classes}&gt;Text&lt;/Button&gt;</code></td>
+        <td>Je nach Zustand kommt <em>active</em> dazu oder nicht.</td>
+      </tr>
+      <tr>
+        <td>Komponente definiert</td>
+        <td><code>function Button({ className, children }) {<br>&nbsp;&nbsp;return &lt;button className={className}&gt;{children}&lt;/button&gt;<br>}</code></td>
+        <td><code>className</code> wird als Prop entgegengenommen und direkt auf das <code>&lt;button&gt;</code> angewendet.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>7. Fazit</h3>
+  <p>
+    Du kannst beliebig viele Klassen als <code>className</code>-Prop übergeben, 
+    indem du sie als String (mit Leerzeichen getrennt) an die Komponente weiterreichst. 
+    Das macht deine Komponente flexibel und das Styling von außen steuerbar.
+  </p>
+</section>
+
+<!-- frage 11 -->
+<section>
+  <h2>11. Welche Daten kann ich als Props übergeben?</h2>
+  <p>
+    Props (Properties) in React sind extrem flexibel: Du kannst prinzipiell <strong>jede JavaScript-Datenstruktur</strong> als Prop an eine Komponente übergeben.
+  </p>
+
+  <h3>1. Strings (Text)</h3>
+  <p>Einzelne Zeichenketten, z. B. „Hallo Welt“ oder „primary-button“:</p>
+  <pre><code>
+function Title({ text }) {
+  return &lt;h1&gt;{text}&lt;/h1&gt;;
+}
+
+// Nutzung:
+&lt;Title text="Willkommen auf meiner Seite" /&gt;
+  </code></pre>
+
+  <h3>2. Zahlen (Numbers)</h3>
+  <p>Numerische Werte, z. B. 42 oder 3.14:</p>
+  <pre><code>
+function Counter({ initialCount }) {
+  return &lt;p&gt;Startwert: {initialCount}&lt;/p&gt;;
+}
+
+// Nutzung:
+&lt;Counter initialCount={10} /&gt;
+  </code></pre>
+
+  <h3>3. Booleans (true/false)</h3>
+  <p>Wahrheitswerte, um Bedingungen zu steuern:</p>
+  <pre><code>
+function Button({ disabled }) {
+  return &lt;button disabled={disabled}&gt;Absenden&lt;/button&gt;;
+}
+
+// Nutzung:
+&lt;Button disabled={true} /&gt;
+  </code></pre>
+
+  <h3>4. Objekte (Objects)</h3>
+  <p>Komplexe Datenstrukturen, um mehrere Werte zu bündeln:</p>
+  <pre><code>
+function UserCard({ user }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{user.name}&lt;/h2&gt;
+      &lt;p&gt;Alter: {user.age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+const anna = { name: "Anna", age: 30 };
+&lt;UserCard user={anna} /&gt;
+  </code></pre>
+
+  <h3>5. Arrays</h3>
+  <p>Listen von Werten, oft mit <code>.map()</code> gerendert:</p>
+  <pre><code>
+function ItemList({ items }) {
+  return (
+    &lt;ul&gt;
+      {items.map((item, i) =&gt; (
+        &lt;li key={i}&gt;{item}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+// Nutzung:
+&lt;ItemList items={["Apfel", "Banane", "Kirsche"]} /&gt;
+  </code></pre>
+
+  <h3>6. Funktionen (Callbacks)</h3>
+  <p>Um Ereignis-Handler weiterzureichen:</p>
+  <pre><code>
+function Button({ onClick, label }) {
+  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;;
+}
+
+// Nutzung:
+&lt;Button onClick={() =&gt; alert("Button geklickt")} label="Klick mich!" /&gt;
+  </code></pre>
+
+  <h3>7. JSX-Elemente oder andere Komponenten</h3>
+  <p>Du kannst komplette React-Elemente oder Komponenten als Props übergeben:</p>
+  <pre><code>
+// Beispiel mit children:
+function Card({ children }) {
+  return &lt;div className="card"&gt;{children}&lt;/div&gt;;
+}
+
+// Nutzung:
+&lt;Card&gt;
+  &lt;h2&gt;Titel&lt;/h2&gt;
+  &lt;p&gt;Inhalt der Karte&lt;/p&gt;
+&lt;/Card&gt;
+
+// Beispiel mit benannter JSX-Prop:
+function Panel({ header, content }) {
+  return (
+    &lt;div className="panel"&gt;
+      &lt;div className="panel-header"&gt;{header}&lt;/div&gt;
+      &lt;div className="panel-content"&gt;{content}&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+&lt;Panel
+  header=&lt;h3&gt;Überschrift&lt;/h3&gt;
+  content=&lt;p&gt;Beliebiger JSX-Block&lt;/p&gt;
+/&gt;
+  </code></pre>
+
+  <h3>8. Kombinationen / Gemischte Daten</h3>
+  <p>Du kannst Objekte, Arrays und Funktionen kombinieren, um komplexe Props zu übergeben:</p>
+  <pre><code>
+function Dashboard({ user, onLogout, widgets }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Willkommen, {user.name}&lt;/h1&gt;
+      &lt;button onClick={onLogout}&gt;Abmelden&lt;/button&gt;
+      &lt;div className="widgets"&gt;
+        {widgets.map((widget, i) =&gt; (
+          &lt;div key={i} className="widget"&gt;{widget}&lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+const user = { name: "Mehmet", id: 123 };
+const widgets = [
+  &lt;p&gt;Widget A&lt;/p&gt;,
+  &lt;p&gt;Widget B&lt;/p&gt;,
+  &lt;p&gt;Widget C&lt;/p&gt;
+];
+
+&lt;Dashboard
+  user={user}
+  onLogout={() =&gt; console.log("Logout")}
+  widgets={widgets}
+/&gt;
+  </code></pre>
+
+  <h3>9. Zusammenfassung</h3>
+  <p>Props können sein:</p>
+  <ul>
+    <li><strong>Strings:</strong> Texte wie „Hallo Welt“</li>
+    <li><strong>Zahlen:</strong> Numerische Werte wie 42 oder 3.14</li>
+    <li><strong>Booleans:</strong> Wahrheitswerte true/false</li>
+    <li><strong>Objekte:</strong> Komplexe Datenstrukturen</li>
+    <li><strong>Arrays:</strong> Listen von Werten</li>
+    <li><strong>Funktionen:</strong> Callback-Handler für Events</li>
+    <li><strong>JSX/Komponenten:</strong> Ganzen React-Baum oder JSX-Blöcke</li>
+    <li><strong>Kombinationen:</strong> Beliebige Mischung aus allen Typen</li>
+  </ul>
+  <p>
+    Props sind also das Fundament, um deine Komponenten <strong>flexibel, wiederverwendbar und dynamisch</strong> zu gestalten.
+  </p>
+</section>
+
+
+<!-- frage 12  -->
+<section>
+  <h2>12. Kann ich einen Event-Handler als Props übergeben?</h2>
+  <p>
+    Ja, du kannst einen Event-Handler (also eine Funktion, die auf ein Ereignis reagiert) als Prop an eine React-Komponente weiterreichen. 
+    Das ist eine der häufigsten Anwendungen von Props, weil so Eltern-Komponenten die Kontrolle über Klicks oder andere Events in Kinder-Komponenten behalten.
+  </p>
+
+  <h3>1. Warum Event-Handler als Props?</h3>
+  <ul>
+    <li>Trennung von Logik und Darstellung: Die Kind-Komponente kümmert sich ums Layout, der Parent um die Logik.</li>
+    <li>Unidirektionaler Datenfluss: Daten (hier die Funktion) fließen vom Parent zum Child. Das Child ruft die Funktion auf, wenn das Event eintritt.</li>
+  </ul>
+
+  <h3>2. Event-Handler im Parent definieren</h3>
+  <pre><code>
+function handleButtonClick() {
+  alert("Der Button wurde geklickt!");
+}
+  </code></pre>
+
+  <h3>3. Event-Handler als Prop übergeben</h3>
+  <pre><code>
+&lt;MyButton onClick={handleButtonClick} /&gt;
+  </code></pre>
+  <p>
+    Hier übergibst du <code>handleButtonClick</code> als Prop <code>onClick</code> an die Komponente <code>MyButton</code>.
+  </p>
+
+  <h3>4. Prop in der Child-Komponente verwenden</h3>
+  <pre><code>
+function MyButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Klick mich&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    In <code>MyButton</code> nutzt du <code>onClick</code> direkt als Event-Handler für den Button. Wenn der Button geklickt wird, wird die Funktion aus dem Parent ausgeführt.
+  </p>
+
+  <h3>5. Beispiel komplett</h3>
+  <pre><code>
+// Eltern-Komponente (Parent)
+function App() {
+  function handleButtonClick() {
+    console.log("Button wurde geklickt!");
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Meine App&lt;/h1&gt;
+      &lt;MyButton onClick={handleButtonClick} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Kind-Komponente (Child)
+function MyButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Klick mich&lt;/button&gt;;
+}
+  </code></pre>
+
+  <h3>6. Vorteile dieses Vorgehens</h3>
+  <ul>
+    <li>Wiederverwendbarkeit: <code>MyButton</code> bleibt unverändert, nur der Event-Handler ändert sich.</li>
+    <li>Klarer Datenfluss: Die Logik liegt im Parent, das Child ist nur fürs Layout zuständig.</li>
+    <li>Testbarkeit: Du kannst im Parent eine Mock-Funktion übergeben und testen, ob sie aufgerufen wird.</li>
+  </ul>
+
+  <h3>7. Dynamische Parameterübergabe</h3>
+  <p>
+    Falls du dem Event-Handler Parameter mitgeben willst, kannst du eine Inline-Funktion im Parent verwenden:
+  </p>
+  <pre><code>
+&lt;MyButton onClick={() =&gt; handleButtonClick(42)} /&gt;
+
+function handleButtonClick(id) {
+  console.log("ID:", id);
+}
+  </code></pre>
+  <p>
+    So wird <code>handleButtonClick</code> mit dem Wert <code>42</code> aufgerufen, wenn der Button geklickt wird.
+  </p>
+
+  <h3>8. Zusammenfassung</h3>
+  <ul>
+    <li>Ja, du kannst Event-Handler als Props übergeben.</li>
+    <li>Definiere die Funktion im Parent und übergebe sie als Prop.</li>
+    <li>Im Child bindest du die Prop an das gewünschte Event-Attribut (z. B. <code>onClick</code>).</li>
+    <li>Vorteile: Wiederverwendbare Components, klarer Datenfluss, bessere Testbarkeit.</li>
+  </ul>
+</section>
+
+<!-- frage 13  -->
+
+<section>
+  <h2>13. Kann ich einen Event-Handler mit Zusatzinformation per Parameter als Prop übergeben?</h2>
+  <p>
+    Ja, genau das ist möglich und oft sogar notwendig, wenn du im Child-Component wissen willst, 
+    welche spezifische Information (z. B. eine ID oder ein Index) mit dem Event übergeben wird. 
+    Der Trick ist, im Parent-Component eine Funktion zu definieren, die einen Parameter erwartet, 
+    und diese als Prop weiterzugeben. Damit das Kind-Component weiß, welche Daten es beim Aufruf 
+    übergeben soll, nutzt du im JSX meistens eine Inline-Funktion (Arrow Function) oder bindest die 
+    Parameter vorab.
+  </p>
+
+  <h3>1. Warum überhaupt Parameter weitergeben?</h3>
+  <ul>
+    <li>Oft klickst du in einer Liste auf einen Button, der genau zu diesem Listeneintrag eine Aktion ausführen soll.</li>
+    <li>Dann braucht der Event-Handler im Parent die ID oder den Index des Eintrags, um zu wissen, was passiert.</li>
+  </ul>
+
+  <h3>2. Aufbau im Parent-Component</h3>
+  <p>1. <strong>Event-Handler definieren, der Parameter erwartet</strong><br/>
+    In der Parent-Komponente schreibst du eine Funktion, die einen Parameter annimmt:
+  </p>
+  <pre><code>
+function handleItemClick(itemId) {
+  console.log("Klick auf Item mit ID:", itemId);
+}
+  </code></pre>
+  <p>2. <strong>Inline-Funktion oder <code>bind</code> verwenden, um Parameter weiterzugeben</strong><br/>
+    Wenn du dein Button-Component renderst, übergibst du diesen Handler so, dass das Child-Component 
+    den <code>itemId</code> kennt:
+  </p>
+  <pre><code>
+{/* Variante A: Inline-Arrow-Funktion */}
+&lt;ItemButton onClick={() =&gt; handleItemClick(42)} /&gt;
+
+{/* Variante B: bind (ältere Schreibweise) */}
+&lt;ItemButton onClick={handleItemClick.bind(null, 42)} /&gt;
+  </code></pre>
+  <p>
+    Bei <strong>Variante A</strong> wird <code>() =&gt; handleItemClick(42)</code> als Prop übergeben. 
+    Wenn das Child klickt, ruft es diese Inline-Funktion auf, die dann <code>handleItemClick(42)</code> ausführt.<br/>
+    Bei <strong>Variante B</strong> bindest du <code>handleItemClick</code> direkt mit dem Argument <code>42</code>. 
+    Praktisch identisch, aber <code>bind</code> ist etwas länger und seltener im modernen React-Code.
+  </p>
+
+  <h3>3. Child-Component empfängt und nutzt den Prop</h3>
+  <pre><code>
+function ItemButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Item öffnen&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    In <code>ItemButton</code> empfängst du die Funktion per Destructuring und bindest sie ans native 
+    <code>button onClick</code>-Attribut. Wenn der Nutzer auf den Button klickt, ruft React <code>onClick</code> auf – 
+    in Wahrheit deine Inline-Funktion aus dem Parent, die <code>handleItemClick(42)</code> ausführt und den Parameter weitergibt.
+  </p>
+
+  <h3>4. Wichtig: Keine direkten Aufrufe im JSX des Parents</h3>
+  <pre><code>
+{/* FALSCH: ruft die Funktion sofort auf und übergibt Ergebnis (undefined) */}
+&lt;ItemButton onClick={handleItemClick(42)} /&gt;
+
+{/* RICHTIG: gib eine Funktion referenz oder Arrow-Funktion weiter */}
+&lt;ItemButton onClick={() =&gt; handleItemClick(42)} /&gt;
+  </code></pre>
+  <p>
+    Bei <code>{`{handleItemClick(42)}`}</code> wird die Funktion <strong>sofort</strong> ausgeführt, noch bevor der Button 
+    überhaupt gerendert wird. Du willst aber, dass <code>handleItemClick(42)</code> erst beim Klick geschieht. 
+    Deshalb die Arrow-Funktion.
+  </p>
+
+  <h3>5. Kompletter Beispiel-Fluss</h3>
+  <pre><code>
+// Parent-Component
+function App() {
+  function handleItemClick(itemId) {
+    alert("You clicked item " + itemId);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Meine Artikel&lt;/h1&gt;
+      {/** Angenommen, du hast eine Liste mit IDs 1, 2, 3 **/}
+      {[1, 2, 3].map(id =&gt; (
+        &lt;ItemButton key={id} onClick={() =&gt; handleItemClick(id)} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+// Child-Component
+function ItemButton({ onClick }) {
+  return &lt;button onClick={onClick}&gt;Item öffnen&lt;/button&gt;;
+}
+  </code></pre>
+  <p>
+    <strong>Erklärung:</strong><br/>
+    - <code>App</code> erzeugt drei Buttons. Jeder Button übergibt beim Rendern eine Inline-Funktion wie 
+      <code>() =&gt; handleItemClick(1)</code>, <code>() =&gt; handleItemClick(2)</code> usw.<br/>
+    - Wenn du auf „Item öffnen“ klickst, weiß die <code>ItemButton</code>-Komponente nicht direkt von welcher ID, 
+      sondern ruft nur <code>onClick</code>. Der Parent-Handler (<code>handleItemClick</code>) bekommt dann die richtige 
+      ID als Parameter und kann damit arbeiten.
+  </p>
+
+  <h3>6. Vorteile dieser Methode</h3>
+  <ul>
+    <li><strong>Flexibilität:</strong> Du kannst beliebige Parameter übergeben – ID, Index, Objekt, Text.</li>
+    <li><strong>Klarer Datenfluss:</strong> Parent bestimmt, was passiert, wenn das Child klickt, inklusive spezifischer Kontextdaten.</li>
+    <li><strong>Wiederverwendbarkeit:</strong> Die Child-Komponente bleibt generisch (<code>&lt;ItemButton /&gt;</code>), weiß nichts 
+      über IDs, nur dass sie eine Funktion ausführen soll, wenn geklickt.</li>
+  </ul>
+
+  <h3>7. Zusammenfassung</h3>
+  <ul>
+    <li>Definiere im Parent einen Handler, der Parameter akzeptiert.</li>
+    <li>Übergebe als Prop eine Inline-Arrow-Funktion (oder <code>bind</code>), die diesen Parameter an den Handler weiterreicht.</li>
+    <li>Im Child bindest du <code>onClick={onClick}</code> ans native Event-Attribut (<code>onClick</code> auf <code>button</code>).</li>
+    <li>Klick → Parent-Handler erhält den Parameter und kann damit arbeiten.</li>
+  </ul>
+</section>
+
+
+<!-- frage 14  -->
+
+<section>
+  <h2>14. Wie schreibe ich eine Schleife in JSX?</h2>
+  <p>
+    In React kannst du nicht direkt eine klassische <code>for</code>-Schleife im JSX schreiben, weil JSX nur Ausdrücke (<em>Expressions</em>) erlaubt und keine Anweisungsblöcke (<em>Statements</em>). Stattdessen nutzt du häufig <code>.map()</code> oder erzeugst das JSX-Array außerhalb des Returns.
+  </p>
+
+  <h3>1. Warum keine normale <code>for</code>-Schleife im JSX?</h3>
+  <p>
+    Ein einfacher <code>for</code>-Loop ist ein JavaScript-Statement, kein Ausdruck, und wird innerhalb von <code>{ }</code> in JSX nicht akzeptiert.
+  </p>
+  <pre><code>
+// FALSCH – das funktioniert nicht in JSX, weil "for" ein Statement ist
+return (
+  &lt;ul&gt;
+    for (let i = 0; i &lt; items.length; i++) {
+      &lt;li&gt;{items[i]}&lt;/li&gt;
+    }
+  &lt;/ul&gt;
+);
+  </code></pre>
+
+  <h3>2. Lösung: Mit <code>.map()</code> arbeiten</h3>
+  <p>
+    Der Standardansatz in React ist, ein Array von Daten mit <code>.map()</code> in ein Array von JSX-Elementen zu verwandeln und dieses Ergebnis in <code>{ }</code> einzufügen.
+  </p>
+  <pre><code>
+function NameList({ names }) {
+  return (
+    &lt;ul&gt;
+      {names.map((name, index) =&gt; (
+        &lt;li key={index}&gt;{name}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+  <p>
+    Hier erzeugt <code>names.map(...)</code> für jeden Eintrag im <code>names</code>-Array ein <code>&lt;li&gt;</code>-Element. Das Ergebnis ist ein Array von JSX-Elementen.
+  </p>
+
+  <h3>3. Beispiele für verschiedene Schleifen-Fälle</h3>
+  <h4>a) Einfache String-Liste</h4>
+  <pre><code>
+function StadtListe() {
+  const staedte = ["Berlin", "München", "Hamburg"];
+  return (
+    &lt;ul&gt;
+      {staedte.map((stadt, idx) =&gt; (
+        &lt;li key={idx}&gt;{stadt}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+
+  <h4>b) Liste von Objekten mit komplexeren Daten</h4>
+  <pre><code>
+function ProduktListe({ produkte }) {
+  // produkte ist z. B. [{ id: 1, name: "Apfel", preis: 1.2 }, …]
+  return (
+    &lt;div&gt;
+      {produkte.map((produkt) =&gt; (
+        &lt;div key={produkt.id} className="produkt"&gt;
+          &lt;h3&gt;{produkt.name}&lt;/h3&gt;
+          &lt;p&gt;Preis: €{produkt.preis.toFixed(2)}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h4>c) Bedingte Anzeige in der Schleife</h4>
+  <pre><code>
+function AngebotListe({ produkte }) {
+  return (
+    &lt;ul&gt;
+      {produkte
+        .filter((p) =&gt; p.angebot)    // zuerst filtern
+        .map((p) =&gt; (
+          &lt;li key={p.id}&gt;{p.name} – €{p.preis}&lt;/li&gt;
+        ))}
+    &lt;/ul&gt;
+  );
+}
+  </code></pre>
+  <p>
+    Hier filtert <code>.filter()</code> zuerst alle Produkte mit <code>p.angebot === true</code> heraus, und <code>.map()</code> rendert nur diese gefilterten Einträge.
+  </p>
+
+  <h3>4. Alternativen zu <code>.map()</code> (wenn nötig)</h3>
+  <p>
+    Falls du wirklich eine klassische Schleife bevorzugst, kannst du das Array von JSX-Elementen außerhalb des Returns zusammenbauen und dann im JSX einfach das fertige Array einfügen.
+  </p>
+  <pre><code>
+function KomplexeListe({ daten }) {
+  const listItems = [];
+  for (let i = 0; i &lt; daten.length; i++) {
+    if (daten[i].sichtbar) {
+      listItems.push(
+        &lt;li key={daten[i].id}&gt;{daten[i].text}&lt;/li&gt;
+      );
+    }
+  }
+  return &lt;ul&gt;{listItems}&lt;/ul&gt;;
+}
+  </code></pre>
+  <p>
+    Hier baust du im Vorfeld (außerhalb des JSX-Returns) ein Array <code>listItems</code>, das du dann in <code>{listItems}</code> einfügst.
+  </p>
+
+  <h3>5. Zusammenfassung</h3>
+  <ul>
+    <li>JSX erlaubt keine <code>for</code>-Schleifen direkt, weil nur Ausdrücke in <code>{ }</code> stehen dürfen.</li>
+    <li>Der empfohlene Weg ist meist <code>.map()</code> innerhalb von <code>{ }</code>, um ein Array von JSX-Elementen zu erzeugen.</li>
+    <li>Jedes gerenderte Element muss eine eindeutige <code>key</code>-Prop haben (z. B. ein ID-Wert oder der Index).</li>
+    <li>Du kannst <code>.filter()</code>, <code>.sort()</code> oder andere Array-Methoden vor oder nach <code>.map()</code> verwenden, um nur bestimmte Einträge zu rendern.</li>
+    <li>Wenn du wirklich eine klassische Schleife brauchst, baue das JSX-Array in einer Variablen auf und gib diese Variable im Return mit <code>{ }</code> zurück.</li>
+  </ul>
+</section>
+
+<!-- frage 15 -->
+<section>
+  <h2>15. Wie schreibe ich eine if-Bedingung in JSX?</h2>
+  <p>
+    Im herkömmlichen JavaScript würdest du eine <code>if</code>-Anweisung verwenden, um Bedingungen zu prüfen. In JSX funktioniert das aber etwas anders, weil JSX in <code>{ }</code> nur Ausdrücke (<em>Expressions</em>) erlaubt und keine Anweisungsblöcke (<em>Statements</em>). Stattdessen nutzt du meist den <strong>ternären Operator</strong> oder das <strong>logische UND (<code>&&</code>)</strong>, um bedingtes Rendern umzusetzen.
+  </p>
+
+  <h3>1. Warum kein normales <code>if</code> direkt in JSX?</h3>
+  <p>
+    Eine normale <code>if (…){ … }</code>-Anweisung ist ein Statement und wird innerhalb von <code>{ }</code> in JSX nicht akzeptiert. JSX erwartet in <code>{ }</code> nur Ausdrücke.
+  </p>
+  <pre><code>
+// FALSCH – funktioniert nicht in JSX, weil „if“ ein Statement ist
+return (
+  &lt;div&gt;
+    { if (isLoggedIn) {
+        &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;;
+      } else {
+        &lt;h1&gt;Bitte einloggen&lt;/h1&gt;;
+      }
+    }
+  &lt;/div&gt;
+);
+  </code></pre>
+
+  <h3>2. Lösung A: Ternärer Operator (<code>? :</code>)</h3>
+  <p>
+    Mit dem ternären Operator kannst du eine <code>if / else</code>-Logik in einem einzigen Ausdruck abbilden:
+  </p>
+  <pre><code>
+function Greeting({ isLoggedIn }) {
+  return (
+    &lt;div&gt;
+      {isLoggedIn
+        ? &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;
+        : &lt;h1&gt;Bitte einloggen&lt;/h1&gt;
+      }
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+// &lt;Greeting isLoggedIn={true} /&gt;  // zeigt "Willkommen zurück!"
+// &lt;Greeting isLoggedIn={false} /&gt; // zeigt "Bitte einloggen"
+  </code></pre>
+
+  <h3>3. Lösung B: Logisches UND (<code>&&</code>)</h3>
+  <p>
+    Wenn du nur etwas rendern willst, falls die Bedingung wahr ist, und ansonsten nichts, verwendest du das logische UND:
+  </p>
+  <pre><code>
+function Warning({ showWarning }) {
+  return (
+    &lt;div&gt;
+      {showWarning && &lt;p style={{ color: 'red' }}&gt;Achtung: Etwas stimmt nicht!&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}
+
+// Nutzung:
+// &lt;Warning showWarning={true} /&gt;  // zeigt Warnung an
+// &lt;Warning showWarning={false} /&gt; // zeigt nichts
+  </code></pre>
+
+  <h3>4. Lösung C: Bedingtes Rendern außerhalb von JSX</h3>
+  <p>
+    Wenn deine Logik zu komplex ist oder du mehrere Abfragen kombinieren möchtest, kannst du die Bedingung <em>außerhalb</em> des eigentlichen <code>return</code> auswerten und das Ergebnis in einer Variablen speichern:
+  </p>
+  <pre><code>
+function Content({ isLoggedIn }) {
+  let message;
+
+  if (isLoggedIn) {
+    message = &lt;h1&gt;Willkommen zurück!&lt;/h1&gt;;
+  } else {
+    message = &lt;h1&gt;Bitte einloggen&lt;/h1&gt;;
+  }
+
+  return (
+    &lt;div&gt;
+      {message}
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>5. Wann welche Variante nutzen?</h3>
+  <ul>
+    <li><strong>Ternärer Operator (<code>? :</code>)</strong>: Wenn du zwischen zwei JSX-Teilen (if/else) auswählen willst.</li>
+    <li><strong>Logisches UND (<code>&&</code>)</strong>: Wenn du nur „rendern, falls wahr“ benötigst und sonst nichts.</li>
+    <li><strong>Bedingung außerhalb JSX</strong>: Wenn du sehr komplexe Logik oder mehrere Bedingungen hast.</li>
+  </ul>
+
+  <h3>6. Zusammenfassung</h3>
+  <ul>
+    <li>JSX erlaubt keine klassischen <code>if</code>-Statements direkt innerhalb von <code>{ }</code>.</li>
+    <li>Verwende den <strong>ternären Operator</strong> für <code>if / else</code> in einem Ausdruck.</li>
+    <li>Nutze <strong>logisches UND (<code>&&</code>)</strong> für „wenn wahr, dann rendern, sonst nichts“.</li>
+    <li>Bei komplexeren Fällen kannst du die Bedingung <em>außerhalb</em> des JSX-Returns auswerten und das Ergebnis in einer Variablen speichern.</li>
+  </ul>
+</section>
+
+<!-- Frage 16 -->
+
+<section>
+  <h2>16. Wie fügt man Bilder in React hinzu?</h2>
+  <p>In React kannst du Bilder auf zwei Arten einfügen:</p>
+
+  <h3>✅ 1. Lokale Bilder (aus dem Projektordner)</h3>
+  <p><strong>📘 Prinzip:</strong><br>
+    React verwendet Module Bundler wie Vite oder Webpack. Damit die Bilder im finalen Build korrekt eingebunden werden, musst du das Bild zuerst importieren.</p>
+  <p><strong>🧠 Warum?</strong><br>
+    Wenn du nur eine relative Pfadangabe im <code>src</code> schreibst (z.B. <code>../assets/bild.png</code>), kann der Bundler den Pfad nicht sicher auflösen. Beim Importieren wird das Bild tatsächlich in den Build-Prozess integriert.</p>
+  <p><strong>📌 Beispiel:</strong></p>
+  <pre><code>import gokuImage from './assets/SonGoku_Smiling.png';
+
+const IMGLocal = () =&gt; {
+  return (
+    &lt;img className='pic' src={gokuImage} alt="Son Goku is smiling with closed eyes" /&gt;
+  );
+}</code></pre>
+  <p><strong>✅ Wichtig:</strong></p>
+  <ul>
+    <li>Der Pfad muss relativ zum aktuellen File stimmen.</li>
+    <li>Das Bild wird wie eine Variable behandelt: <code>{'{gokuImage}'}</code>.</li>
+    <li>Beim Build wird das Bild automatisch verarbeitet.</li>
+  </ul>
+
+  <h3>✅ 2. Externe Bilder über eine URL</h3>
+  <p><strong>📘 Prinzip:</strong><br>
+    Du kannst auch direkt einen öffentlichen Link zu einem Bild benutzen. Das funktioniert, wenn der Link direkt zu einer Bilddatei führt (endet auf .jpg, .png, .webp usw.).</p>
+  <p><strong>🧠 Warum?</strong><br>
+    Weil <code>&lt;img src="..." /&gt;</code> in HTML erwartet, dass <code>src</code> auf eine direkte Ressource verweist. Ein Link zu einer Webseite (z. B. ein Artikel) funktioniert nicht.</p>
+  <p><strong>📌 Beispiel:</strong></p>
+  <pre><code>const IMGUrl = () =&gt; {
+  return (
+    &lt;img className='pic' src="https://i.imgur.com/8gmeb2F.png" alt="Son Goku is smiling" /&gt;
+  );
+}</code></pre>
+  <p><strong>✅ Wichtig:</strong></p>
+  <ul>
+    <li>Der Link muss direkt auf ein Bild zeigen.</li>
+    <li>Der Server muss das Bild öffentlich und ohne Authentifizierung verfügbar machen.</li>
+    <li>Praktisch: Rechtsklick → „Bildadresse kopieren“ liefert oft den korrekten Link.</li>
+  </ul>
+
+  <h3>🧩 Gesamtes Beispiel in deiner App:</h3>
+  <pre><code>import './App.css'; // CSS laden
+import gokuImage from './assets/SonGoku_Smiling.png'; // Lokales Bild importieren
+
+const IMGLocal = () =&gt; {
+  return (
+    &lt;img className='pic' src={gokuImage} alt="Son Goku is smiling with closed eyes" /&gt;
+  );
+}
+
+const IMGUrl = () =&gt; {
+  return (
+    &lt;img className='pic' src="https://i.imgur.com/8gmeb2F.png" alt="Son Goku is smiling" /&gt;
+  );
+}
+
+export function App() {
+  return (
+    &lt;div className="app"&gt;
+      &lt;h1&gt;Welcome to my app&lt;/h1&gt;
+      &lt;IMGLocal /&gt;
+      &lt;IMGUrl /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+  <h3>🎨 CSS-Tipp (App.css):</h3>
+  <pre><code>.pic {
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin: 10px;
+}</code></pre>
+
+  <h3>📌 Zusammenfassung:</h3>
+  <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;">
+    <thead>
+      <tr style="background-color: #f0f0f0;">
+        <th>Methode</th>
+        <th>Import nötig</th>
+        <th>Endung wie .png</th>
+        <th>Funktioniert bei Build</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lokales Bild</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja</td>
+      </tr>
+      <tr>
+        <td>Bild via URL</td>
+        <td>❌ Nein</td>
+        <td>✅ Ja</td>
+        <td>✅ Ja (wenn öffentlich)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+<h2> </h2>
+
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+         <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+       
+
+    </section>
+
+      <script>
+    const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    
+  </script>  
+</body>
+</html>

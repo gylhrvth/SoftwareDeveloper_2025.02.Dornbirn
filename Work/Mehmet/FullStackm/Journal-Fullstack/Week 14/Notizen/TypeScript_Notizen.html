@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript Notes</title>
+   
+    <style>
+/* General Layout */
+body {
+  background-color: #2e2d2d;
+  color: #d0d0d0;
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2 {
+  color: #04ffff;
+}
+h3 {
+  color: rgba(4, 255, 255, 0.765);
+}
+
+/* Links */
+a {
+  color: azure;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+}
+ul li, ol li {
+  display: flex;
+  justify-content: flex-start;
+  width: max-content;
+  background-color: rgba(0, 255, 255, 0.15);
+  color: greenyellow;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+/* Special Section List */
+#Inhalt li {
+  color: rgb(0, 255, 21);
+  font-weight: bolder;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Code & Pre Blocks */
+code {
+  background-color: rgb(255, 255, 255);
+  color: rgb(12, 8, 3);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+pre {
+  background-color: #afafaf;
+  color: rgb(73, 174, 29);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(69, 101, 130, 0.6);
+  color: white;
+}
+th, td {
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  padding: 8px;
+  text-align: left;
+}
+
+/* Utility Classes */
+.highlight {
+  background-color: rgba(255, 255, 0, 0.1);
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.date-highlight {
+  background-color: rgba(255, 255, 0, 0.1);
+  color: #ffff00;
+  font-weight: bold;
+  width: max-content;
+}
+.note {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-left: 5px solid cyan;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  color: #00ffee;
+}
+/* .code-block {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: monospace;
+  color: #ffa500;
+} */
+
+
+table code {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: monospace;
+  color: #ffa500;
+}
+.box {
+  border: 1px solid rgba(0,255,255,0.3);
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+/* Spacing Helpers */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+
+    </style>
+</head>
+<body>
+    <h1>Typescript</h1>
+    <p class="date-highlight">Date 20.05.2025 </p>
+<ol id="Inhalt">
+  <li>Was ist TypeScript? Woher kommt es?</li>
+  <li>Was sind die Vorteile / Nachteile von TypeScript gegenüber JavaScript?</li>
+  <li>Wie erstelle ich ein Projekt mit TypeScript?</li>
+  <li>Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</li>
+  <li>Wie beschreibe ich Arrays in TypeScript?</li>
+  <li>Wie beschreibe ich Objekte in TypeScript?</li>
+  <li>Wie verwende ich Interfaces in TypeScript?</li>
+  <li>Wie verwende ich Type in TypeScript?</li>
+  <li>Was ist der Unterschied zwischen Interface und Type in TypeScript?</li>
+  <li>Wie verwende ich Union Types?</li>
+  <li>Wie verwende ich Intersection Types?</li>
+  <li>Was sind Generics? Wie verwende ich sie?</li>
+  <li>Was sind enum in TypeScript? Wie verwende ich sie?</li>
+</ol>
+<h2>1. Was ist TypeScript? Woher kommt es?</h2>
+<p>TypeScript ist eine von Microsoft entwickelte Programmiersprache, die auf JavaScript basiert und es erweitert. Es ist eine <strong>Supersprache</strong> von JavaScript, was bedeutet, dass jeder gültige JavaScript-Code auch TypeScript-Code ist. TypeScript fügt eine <strong>statische Typisierung</strong> hinzu, mit der Fehler schon beim Kompilieren erkannt werden können, statt erst zur Laufzeit.</p>
+<ul>
+  <li><strong>Entstehung:</strong> TypeScript wurde 2012 veröffentlicht, um große JavaScript-Projekte besser wartbar zu machen.</li>
+  <li><strong>Ziel:</strong> Entwickler erhalten Werkzeuge zur Fehlervermeidung und bessere Entwicklungsunterstützung (Autovervollständigung, Refactoring).</li>
+</ul>
+
+<h2>2. Vorteile und Nachteile von TypeScript gegenüber JavaScript</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Vorteile</th>
+      <th>Nachteile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Früherkennung von Fehlern durch Typprüfung</td>
+      <td>Zusätzlicher Kompilierungsschritt nötig</td>
+    </tr>
+    <tr>
+      <td>Bessere Code-Dokumentation durch Typen</td>
+      <td>Lernkurve für Entwickler ohne Typ-Erfahrung</td>
+    </tr>
+    <tr>
+      <td>Autovervollständigung & bessere IDE-Unterstützung</td>
+      <td>Projektsetup etwas komplexer</td>
+    </tr>
+    <tr>
+      <td>Bessere Wartbarkeit großer Projekte</td>
+      <td>Manchmal mehr Boilerplate-Code</td>
+    </tr>
+    <tr>
+      <td>Unterstützt moderne JavaScript-Features vorzeitig</td>
+      <td>Manchmal Probleme bei Integration mit JS-Bibliotheken</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Wie erstelle ich ein Projekt mit TypeScript?</h2>
+<p>Hier ist eine Schritt-für-Schritt Anleitung mit den nötigen Befehlen:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Schritt</th>
+      <th>Befehl / Aktion</th>
+      <th>Erklärung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. Ordner anlegen</td>
+      <td><code>mkdir mein-ts-projekt</code></td>
+      <td>Neuen Projektordner erstellen</td>
+    </tr>
+    <tr>
+      <td>2. Ordner wechseln</td>
+      <td><code>cd mein-ts-projekt</code></td>
+      <td>In den Projektordner wechseln</td>
+    </tr>
+    <tr>
+      <td>3. npm initialisieren</td>
+      <td><code>npm init -y</code></td>
+      <td>package.json erstellen (Standardkonfiguration)</td>
+    </tr>
+    <tr>
+      <td>4. TypeScript installieren</td>
+      <td><code>npm install typescript --save-dev</code></td>
+      <td>TypeScript als Entwicklungsabhängigkeit installieren</td>
+    </tr>
+    <tr>
+      <td>5. tsconfig erstellen</td>
+      <td><code>npx tsc --init</code></td>
+      <td>TypeScript-Konfigurationsdatei (tsconfig.json) generieren</td>
+    </tr>
+    <tr>
+      <td>6. Ordnerstruktur anlegen</td>
+      <td><code>/src</code> und <code>/dist</code></td>
+      <td>Quellcode (src) und Ausgabe (dist) strukturieren</td>
+    </tr>
+    <tr>
+      <td>7. Beispielcode schreiben</td>
+      <td>Datei <code>src/index.ts</code> anlegen</td>
+      <td>TypeScript-Code schreiben, z.B. Funktion <code>greet()</code></td>
+    </tr>
+    <tr>
+      <td>8. Kompilieren</td>
+      <td><code>npx tsc</code></td>
+      <td>TypeScript in JavaScript übersetzen</td>
+    </tr>
+    <tr>
+      <td>9. Ausführen</td>
+      <td><code>node dist/index.js</code></td>
+      <td>JavaScript-Code mit Node.js ausführen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4. Wie verwende ich Type Annotation für Variablen / Parameter / Rückgabewert?</h2>
+
+
+  <p><strong>Was ist Type Annotation?</strong></p>
+  <p>Type Annotation bedeutet, dass du explizit den <em>Datentyp</em> einer Variable, eines Funktionsparameters oder eines Rückgabewerts angibst. Das hilft TypeScript, Fehler frühzeitig zu erkennen und deinen Code sicherer und leichter verständlich zu machen.</p>
+
+  <h3>1. Type Annotation für Variablen</h3>
+  <p>Du kannst einer Variablen direkt einen Typ zuweisen:</p>
+  <pre><code>let name: string = "Anna";
+const alter: number = 30;
+let istAktiv: boolean = true;
+</code></pre>
+  <p><em>: string</em> sagt: Die Variable <code>name</code> darf nur Strings speichern.<br>
+     <em>: number</em> nur Zahlen.<br>
+     <em>: boolean</em> nur Wahrheitswerte (<code>true</code> oder <code>false</code>).</p>
+
+  <h3>2. Type Annotation für Funktionsparameter</h3>
+  <p>Wenn du eine Funktion schreibst, kannst du für jeden Parameter den Typ angeben:</p>
+  <pre><code>function begruessung(name: string) {
+  console.log("Hallo, " + name);
+}
+</code></pre>
+  <p>Hier gilt: <code>name</code> muss ein String sein, sonst gibt TypeScript einen Fehler.</p>
+
+  <h3>3. Type Annotation für Rückgabewerte</h3>
+  <p>Du kannst auch angeben, welchen Typ eine Funktion zurückgibt, indem du den Typ <strong>nach den Parametern</strong> mit <code>:</code> definierst:</p>
+  <pre><code>function addiere(a: number, b: number): number {
+  return a + b;
+}
+</code></pre>
+  <p>Die Funktion <code>addiere</code> nimmt zwei <code>number</code>-Parameter und gibt eine <code>number</code> zurück.</p>
+
+  <h3>4. Komplettes Beispiel</h3>
+  <pre><code>function multipliziere(x: number, y: number): number {
+  return x * y;
+}
+
+let ergebnis: number = multipliziere(5, 3);
+console.log(ergebnis);  // 15
+</code></pre>
+
+  <h3>Warum ist das so schön?</h3>
+  <ul>
+    <li><strong>Sicherheit:</strong> TypeScript warnt dich, wenn du versehentlich falsche Typen benutzt.</li>
+    <li><strong>Lesbarkeit:</strong> Andere (und dein zukünftiges Ich) verstehen sofort, was erwartet wird.</li>
+    <li><strong>Autovervollständigung:</strong> Editor-Tools helfen dir besser mit Typinfos.</li>
+  </ul>
+
+  <p>Das ist besonders nützlich in großen Projekten, wo viele Entwickler zusammenarbeiten.</p>
+<h3>Hier ist ein einfaches Beispiel:</h3>
+<pre><code>let zahl: number = 5;          // Variable vom Typ number
+function addiere(a: number, b: number): number { // Parameter und Rückgabewert typisiert
+  return a + b;
+}
+</code></pre>
+
+<h2>5. Wie beschreibe ich Arrays in TypeScript?</h2>
+ <h2>5. Wie beschreibe ich Arrays in TypeScript?</h2>
+  <p>In TypeScript kannst du den Typ der Elemente in einem Array genau angeben. So weiß der Compiler, was drin steckt und schützt dich vor Fehlern.</p>
+
+  <h3>1. Einfache Arrays mit Typ Annotation</h3>
+  <pre><code>let zahlen: number[] = [1, 2, 3, 4];
+let namen: string[] = ["Anna", "Ben", "Clara"];
+let aktivStatus: boolean[] = [true, false, true];</code></pre>
+  <ul>
+    <li><code>number[]</code> heißt: Ein Array aus Zahlen.</li>
+    <li><code>string[]</code> heißt: Ein Array aus Strings.</li>
+    <li><code>boolean[]</code> heißt: Ein Array aus Wahrheitswerten.</li>
+  </ul>
+
+  <h3>2. Alternative Schreibweise mit generischen Typen</h3>
+  <p>TypeScript erlaubt auch eine andere Syntax mit <code>Array&lt;T&gt;</code>:</p>
+  <pre><code>let zahlen: Array &lt;number&gt; = [1, 2, 3, 4];
+let namen: Array &lt;string&gt; = ["Anna", "Ben", "Clara"];</code></pre>
+<p class="note">bedeutet gleich so Viel wie:</p>
+<pre><code>let zahlen: number[] = [1, 2, 3];
+let namen: Array&lt;string&gt; = ["Anna", "Bob"];
+</code></pre>
+  <p>Beide Varianten sind gleich gültig, du kannst also wählen, was dir besser gefällt.</p>
+
+  <h3>3. Arrays mit mehreren Typen (Union Types)</h3>
+  <p>Manchmal möchtest du, dass ein Array verschiedene Typen enthalten darf, z.B. Zahlen und Strings gemischt:</p>
+  <pre><code>let gemischt: (number | string)[] = [1, "zwei", 3, "vier"];</code></pre>
+  <p>Hier heißt <code>(number | string)[]</code>: Das Array kann Zahlen <strong>oder</strong> Strings enthalten.</p>
+
+  <h3>4. Mehrdimensionale Arrays</h3>
+  <p>Du kannst auch Arrays von Arrays (Matrix) typisieren:</p>
+  <pre><code>let matrix: number[][] = [
+  [1, 2],
+  [3, 4]
+];</code></pre>
+  <p>Das heißt: Ein Array von Arrays, wobei jedes innere Array Zahlen enthält.</p>
+
+  <h3>5. Beispiel in einer Funktion</h3>
+  <pre><code>function summiere(zahlen: number[]): number {
+  return zahlen.reduce((acc, curr) => acc + curr, 0);
+}
+
+let ergebnis = summiere([10, 20, 30]);
+console.log(ergebnis);  // 60</code></pre>
+
+  <h3>Warum ist das praktisch?</h3>
+  <ul>
+    <li>Du vermeidest Fehler durch falsche Datentypen im Array.</li>
+    <li>Dein Code ist klarer und leichter verständlich.</li>
+    <li>Intellisense und Autovervollständigung im Editor helfen dir.</li>
+  </ul>
+
+
+
+
+<h2>6. Wie beschreibe ich Objekte in TypeScript?</h2>
+<p>In TypeScript kannst du genau definieren, welche Eigenschaften ein Objekt hat und welchen Typ diese Eigenschaften besitzen. Das hilft dir, Fehler zu vermeiden und deinen Code klarer zu machen.</p>
+
+<h3>1. Objekt-Typ mit Inline-Typannotation</h3>
+<p>Du kannst direkt beim Objekt angeben, welche Eigenschaften und Typen es haben soll:</p>
+<pre><code>let person: { name: string; alter: number; istStudent: boolean } = {
+  name: "Max",
+  alter: 25,
+  istStudent: true,
+};</code></pre>
+<ul>
+  <li><code>name</code> ist ein String</li>
+  <li><code>alter</code> ist eine Zahl</li>
+  <li><code>istStudent</code> ist ein Wahrheitswert (Boolean)</li>
+</ul>
+
+<h3>2. Objekttyp mit <code>type</code> Alias</h3>
+<p>Wenn du denselben Objekttyp öfter brauchst, kannst du ihn mit <code>type</code> einmal definieren und dann verwenden:</p>
+<pre><code>type Person = {
+  name: string;
+  alter: number;
+  istStudent: boolean;
+};
+
+let person1: Person = {
+  name: "Anna",
+  alter: 22,
+  istStudent: false,
+};
+
+let person2: Person = {
+  name: "Ben",
+  alter: 30,
+  istStudent: true,
+};</code></pre>
+
+<h3>3. Optional Properties (Optionale Eigenschaften)</h3>
+<p>Manchmal sind manche Eigenschaften nicht immer vorhanden. Das kannst du mit <code>?</code> markieren:</p>
+<pre><code>type Auto = {
+  marke: string;
+  baujahr?: number;  // optional
+};
+
+let auto1: Auto = { marke: "VW" };
+let auto2: Auto = { marke: "BMW", baujahr: 2018 };</code></pre>
+
+<h3>4. Objekt mit Methoden (Funktionen als Eigenschaften)</h3>
+<p>Objekte können auch Funktionen als Eigenschaften haben, diese kannst du ebenfalls typisieren:</p>
+<pre><code>type Rechner = {
+  addiere: (a: number, b: number) => number;
+};
+
+let rechner: Rechner = {
+  addiere: (x, y) => x + y,
+};
+
+console.log(rechner.addiere(5, 3));  // 8</code></pre>
+
+<h3>5. Verschachtelte Objekte (Nested Objects)</h3>
+<p>Objekte können auch andere Objekte als Eigenschaften enthalten:</p>
+<pre><code>type Adresse = {
+  strasse: string;
+  stadt: string;
+};
+
+type Mitarbeiter = {
+  name: string;
+  adresse: Adresse;
+};
+
+let mitarbeiter: Mitarbeiter = {
+  name: "Lisa",
+  adresse: {
+    strasse: "Hauptstr. 5",
+    stadt: "Berlin",
+  },
+};</code></pre>
+
+<h3>Warum ist das praktisch?</h3>
+<ul>
+  <li>Du hast eine klare Struktur und Beschreibung deiner Daten.</li>
+  <li>Fehler wie falsche Eigenschaftsnamen oder falsche Typen werden früh erkannt.</li>
+  <li>Dein Code ist besser wartbar und leichter verständlich.</li>
+  <li>Die Entwicklungsumgebung kann dir besser mit Autovervollständigung helfen.</li>
+</ul>
+
+
+<h2>7. Wie verwende ich Interfaces in TypeScript?</h2>
+
+<p>In TypeScript sind <strong>Interfaces</strong> eines der wichtigsten Werkzeuge, um die Struktur von Objekten, Klassen oder Funktionen zu definieren. Sie sind besonders nützlich, um klare Verträge (Contracts) zwischen verschiedenen Teilen deines Codes zu schaffen und helfen dabei, Fehler frühzeitig zu erkennen. Hier bekommst du eine <strong>richtig professorenreife, detaillierte Erklärung</strong> mit verständlichen Beispielen.</p>
+
+<h3>1. Was ist ein Interface?</h3>
+
+<p>Ein Interface beschreibt die Form eines Objekts: welche Eigenschaften und Methoden es haben muss und welchen Typ diese besitzen. Es ist also wie eine Vorlage, die Objekte erfüllen müssen.</p>
+
+<pre><code>interface Person {
+  name: string;
+  alter: number;
+}
+
+let user: Person = {
+  name: "Lisa",
+  alter: 25
+};
+</code></pre>
+
+<p>Jedes Objekt, das dem Interface <code>Person</code> entspricht, muss diese Eigenschaften haben.</p>
+
+<h3>2. Interface benutzen</h3>
+
+<p>Du kannst Interfaces direkt als Typ für Variablen, Funktionsparameter oder Rückgabewerte verwenden:</p>
+
+<pre><code>function begrüße(person: Person): string {
+  return `Hallo, ${person.name}! Du bist ${person.alter} Jahre alt.`;
+}
+
+const max: Person = {
+  name: "Max",
+  alter: 25,
+};
+
+console.log(begrüße(max)); // Hallo, Max! Du bist 25 Jahre alt.
+</code></pre>
+
+<h3>3. Optionale Eigenschaften</h3>
+
+<p>Manchmal hat nicht jedes Objekt alle Eigenschaften. Das kannst du mit <code>?</code> kennzeichnen:</p>
+
+<pre><code>interface Auto {
+  marke: string;
+  baujahr?: number; // optional
+}
+
+const meinAuto: Auto = { marke: "VW" };
+const altesAuto: Auto = { marke: "Opel", baujahr: 1998 };
+</code></pre>
+
+<h3>4. Methoden in Interfaces</h3>
+
+<p>Interfaces können auch Methoden beschreiben, also Funktionen, die ein Objekt haben muss:</p>
+
+<pre><code>interface Rechner {
+  addiere(a: number, b: number): number;
+  subtrahiere(a: number, b: number): number;
+}
+
+const einfacherRechner: Rechner = {
+  addiere: (x, y) => x + y,
+  subtrahiere: (x, y) => x - y,
+};
+
+console.log(einfacherRechner.addiere(5, 3)); // 8
+console.log(einfacherRechner.subtrahiere(5, 3)); // 2
+</code></pre>
+
+<h3>5. Interface-Vererbung (extends)</h3>
+
+<p>Interfaces können von anderen Interfaces erben und deren Eigenschaften übernehmen. So kannst du komplexere Strukturen modular aufbauen:</p>
+
+<pre><code>interface Lebewesen {
+  lebt: boolean;
+}
+
+interface Mensch extends Lebewesen {
+  name: string;
+  sprache: string;
+}
+
+const person: Mensch = {
+  lebt: true,
+  name: "Anna",
+  sprache: "Deutsch",
+};
+</code></pre>
+
+<h3>6. Unterschied zu <code>type</code> Alias</h3>
+
+<ul>
+  <li><code>interface</code> eignet sich speziell für Objekte und unterstützt Vererbung und Deklarationserweiterung (Merging).</li>
+  <li><code>type</code> ist allgemeiner und kann auch für Unionen, Tupel, primitive Typen etc. verwendet werden.</li>
+  <li>Interfaces können mehrfach deklariert werden und TypeScript verbindet sie automatisch (Declaration Merging), <code>type</code>-Aliases nicht.</li>
+</ul>
+
+<h3>7. Praktische Vorteile von Interfaces</h3>
+
+<ul>
+  <li><strong>Klarheit &amp; Struktur:</strong> Dein Code wird lesbarer und verständlicher.</li>
+  <li><strong>Früherkennung von Fehlern:</strong> TypeScript prüft, ob Objekte die vorgegebene Struktur erfüllen.</li>
+  <li><strong>Autovervollständigung:</strong> Editoren wie VSCode unterstützen dich mit intelligenten Vorschlägen.</li>
+  <li><strong>Flexibilität:</strong> Mit optionalen Feldern und Vererbung kannst du deinen Code sauber und wartbar halten.</li>
+</ul>
+
+<h3>8. Beispiel in der Praxis</h3>
+
+<pre><code>interface Produkt {
+  id: number;
+  name: string;
+  preis: number;
+  beschreibung?: string;
+}
+
+function zeigeProdukt(produkt: Produkt) {
+  console.log(`${produkt.name} kostet ${produkt.preis} Euro.`);
+  if (produkt.beschreibung) {
+    console.log(`Beschreibung: ${produkt.beschreibung}`);
+  }
+}
+
+const buch: Produkt = { id: 1, name: "TypeScript für Einsteiger", preis: 29.99 };
+zeigeProdukt(buch);
+</code></pre>
+
+<h3>Fazit</h3>
+
+<p>Interfaces sind ein kraftvolles Tool, um in TypeScript <strong>sauberen, gut strukturierten und wartbaren Code</strong> zu schreiben. Sie helfen dir, Datenformen klar zu definieren und erleichtern Zusammenarbeit und Erweiterbarkeit deines Codes erheblich.</p>
+
+
+<h2>8. Wie verwende ich Type in TypeScript?</h2>
+
+<p>In TypeScript ist <code>type</code> ein mächtiges Werkzeug, um eigene Typen zu definieren. Es hilft dir, komplexe Strukturen einfach zu benennen und wiederzuverwenden. Im Gegensatz zu Interfaces kann <code>type</code> viel flexibler sein, weil es nicht nur Objekte, sondern auch Union-Types, Tuples oder primitive Typen zusammenfassen kann.</p>
+
+<h3>1. Grundlegende Verwendung von <code>type</code> mit Objekten</h3>
+
+<pre><code>type Person = {
+  name: string;
+  alter: number;
+  istStudent: boolean;
+};
+
+let user: Person = {
+  name: "Anna",
+  alter: 23,
+  istStudent: true,
+};
+</code></pre>
+
+<p><strong>Erklärung:</strong></p>
+<ul>
+  <li>Du definierst mit <code>type Person = &#123; ... &#125;</code> eine neue Typ-Schablone.</li>
+  <li>Diese Schablone legt fest, welche Eigenschaften und Typen ein Objekt haben soll.</li>
+  <li>Danach kannst du überall im Code den Typ <code>Person</code> verwenden.</li>
+  <li>Das macht deinen Code lesbarer und wiederverwendbar.</li>
+</ul>
+
+<h3>2. <code>type</code> mit primitiven Typen und Aliasen</h3>
+
+<pre><code>type ID = string | number;
+
+let userId: ID = "abc123";
+userId = 456; // auch erlaubt
+</code></pre>
+
+<p><strong>Erklärung:</strong></p>
+<ul>
+  <li><code>type</code> kann auch sogenannte Union Types definieren.</li>
+  <li><code>ID</code> ist hier ein Typ, der entweder ein <code>string</code> oder eine <code>number</code> sein kann.</li>
+  <li>So kannst du flexibel mit verschiedenen Typen arbeiten, ohne überall Union-Typen ausschreiben zu müssen.</li>
+</ul>
+
+<h3>3. Union-Types mit <code>type</code></h3>
+
+<pre><code>type Status = "aktiv" | "inaktiv" | "gesperrt";
+
+let userStatus: Status = "aktiv";
+// userStatus = "pausiert"; // Fehler, weil nicht definiert
+</code></pre>
+
+<p><strong>Erklärung:</strong></p>
+<ul>
+  <li>Du kannst mit <code>type</code> auch Literaltypen angeben, also ganz genaue Werte, die erlaubt sind.</li>
+  <li>So kann <code>userStatus</code> nur eine von drei vordefinierten Zeichenketten sein.</li>
+  <li>Das hilft Fehler zu vermeiden und macht deinen Code sicherer.</li>
+</ul>
+
+<h3>4. Kombinieren von Typen mit Intersection (&amp;)</h3>
+
+<pre><code>type Basis = &#123;
+  id: number;
+&#125;;
+
+type Erweiterung = &#123;
+  name: string;
+&#125;;
+
+type Komplett = Basis &amp; Erweiterung;
+
+const obj: Komplett = &#123;
+  id: 1,
+  name: "Test",
+&#125;;
+</code></pre>
+
+<p><strong>Erklärung:</strong></p>
+<ul>
+  <li>Intersection Types verbinden mehrere Typen zu einem.</li>
+  <li><code>Komplett</code> muss also alle Eigenschaften von <code>Basis</code> UND <code>Erweiterung</code> haben.</li>
+  <li>So kannst du Typen modular aufbauen.</li>
+</ul>
+
+<h3>5. Tuple mit <code>type</code></h3>
+
+<pre><code>type Koordinate = [number, number];
+
+let punkt: Koordinate = [10, 20];
+</code></pre>
+
+<p><strong>Erklärung:</strong></p>
+<ul>
+  <li>Mit <code>type</code> kannst du auch Tupel definieren, also Arrays mit festgelegter Länge und Typen.</li>
+  <li><code>Koordinate</code> ist ein Array mit genau zwei Zahlen.</li>
+  <li>So sind Fehler z.B. bei Koordinaten-Daten ausgeschlossen.</li>
+</ul>
+
+<h3>Warum <code>type</code> verwenden?</h3>
+<ul>
+  <li><strong>Flexibel:</strong> Du kannst primitive Typen, Objekte, Union-Types, Intersection-Types und Tupel definieren.</li>
+  <li><strong>Wiederverwendbar:</strong> Du gibst komplexen Strukturen einen Namen und sparst dir ständige Wiederholung.</li>
+  <li><strong>Sicher:</strong> Typfehler werden vom Compiler früh erkannt.</li>
+  <li><strong>Lesbar:</strong> Der Code wird klarer, weil Typen einen aussagekräftigen Namen haben.</li>
+</ul>
+
+<h3>Zusammenfassung:</h3>
+
+<p>Mit <code>type</code> definierst du eigene Typen und Typ-Alias, die dein TypeScript-Code sicherer, verständlicher und wartbarer machen. Du kannst damit einfache und komplexe Typen flexibel beschreiben.</p>
+
+
+<h2>9. Was ist der Unterschied zwischen <code>interface</code> und <code>type</code> in TypeScript?</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wird meist für Objektformen verwendet</td>
+      <td>Kann auch primitive Typen, Unions, Tupel usw. beschreiben</td>
+    </tr>
+    <tr>
+      <td>Kann erweitert (extends) werden</td>
+      <td>Kann mit anderen Types kombiniert werden (Intersection)</td>
+    </tr>
+    <tr>
+      <td>Kann mehrfach deklariert werden (zusammengeführt)</td>
+      <td>Kann nicht mehrfach mit gleichem Namen deklariert werden</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2></h2>
+
+<p>In TypeScript nutzt man <code>interface</code> und <code>type</code>, um eigene Typdefinitionen zu erstellen. Beide erfüllen ähnliche Aufgaben, doch sie unterscheiden sich in bestimmten Punkten, besonders bei Flexibilität, Erweiterbarkeit und Verhalten im Code.</p>
+
+<h3>1. Objektbeschreibung mit beiden</h3>
+
+<p>Beide Varianten können genutzt werden, um Objektstrukturen zu definieren:</p>
+
+<pre><code>// Interface
+interface Person {
+  name: string;
+  alter: number;
+}
+
+// Type
+type Person = {
+  name: string;
+  alter: number;
+};
+</code></pre>
+
+<p>Für einfache Objekte sind beide gleichwertig einsetzbar.</p>
+
+<h3>2. Union Types, Funktionen, Tupel (nur mit <code>type</code>)</h3>
+
+<p><code>type</code> ist flexibler bei der Kombination mehrerer Typen, zum Beispiel:</p>
+
+<pre><code>type ID = string | number;
+type Position = [number, number];
+type Rechner = (a: number, b: number) => number;
+</code></pre>
+
+<p>Diese Dinge sind mit <code>interface</code> nicht möglich.</p>
+
+<h3>3. Erweiterung / Vererbung</h3>
+
+<p>Beide unterstützen Erweiterung, jedoch in unterschiedlicher Syntax:</p>
+
+<pre><code>// Interface mit extends
+interface Tier {
+  name: string;
+}
+interface Hund extends Tier {
+  bellt: boolean;
+}
+
+// Type mit Intersection
+type Tier = { name: string };
+type Hund = Tier & { bellt: boolean };
+</code></pre>
+
+<p>Interfaces wirken hier oft lesbarer, besonders bei komplexeren Strukturen.</p>
+
+<h3>4. Mehrfachdefinition (nur mit <code>interface</code>)</h3>
+
+<p>Ein großer Vorteil von <code>interface</code> ist das sogenannte Declaration Merging:</p>
+
+<pre><code>interface Nutzer {
+  name: string;
+}
+interface Nutzer {
+  alter: number;
+}
+// Ergibt: { name: string; alter: number }
+</code></pre>
+
+<p>Das geht mit <code>type</code> nicht – doppelte Definition führt zu einem Fehler.</p>
+
+<h3>5. Einsatz in Klassen</h3>
+
+<p>Interfaces sind speziell dafür entworfen, Klassentypen zu beschreiben. Sie passen gut in objektorientierte Strukturen:</p>
+
+<pre><code>interface Tier {
+  name: string;
+}
+
+class Hund implements Tier {
+  name = "Bello";
+}
+</code></pre>
+
+<p>Mit <code>type</code> ist das nicht direkt möglich.</p>
+
+<h3>Zusammenfassung und Entscheidungshilfe</h3>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Eigenschaft</th>
+      <th>interface ✅</th>
+      <th>type ✅</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Objektbeschreibung</td>
+      <td>✅ Ja</td>
+      <td>✅ Ja</td>
+    </tr>
+    <tr>
+      <td>Union Types</td>
+      <td>❌ Nein</td>
+      <td>✅ Ja</td>
+    </tr>
+    <tr>
+      <td>Funktionen / Tupel</td>
+      <td>❌ Nein</td>
+      <td>✅ Ja</td>
+    </tr>
+    <tr>
+      <td>Erweiterung (Vererbung)</td>
+      <td>✅ mit <code>extends</code></td>
+      <td>✅ mit <code>&</code></td>
+    </tr>
+    <tr>
+      <td>Mehrfachdefinition möglich</td>
+      <td>✅ Ja (Merging)</td>
+      <td>❌ Nein (Fehler)</td>
+    </tr>
+    <tr>
+      <td>Verwendung für Klassen</td>
+      <td>✅ Ideal</td>
+      <td>❌ Geht nicht direkt</td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <h4>👉 Nimm das, welches logischer ist:</h4>
+  <ul>
+    <li>Willst du ein <strong>klar strukturiertes Objektmodell</strong> oder arbeitest mit Klassen → <code>interface</code></li>
+    <li>Willst du <strong>Typen flexibel kombinieren</strong> (Unions, Funktionen, Tupel) → <code>type</code></li>
+  </ul>
+</div>
+
+<h4>Merksatz:</h4>
+<p><code>interface</code> = Struktur<br>
+<code>type</code> = Vielseitigkeit</p>
+
+<p>Beides sind mächtige Werkzeuge – die Wahl hängt vom Anwendungsfall ab.</p>
+
+<h2>10. Wie verwende ich Union Types?</h2>
+
+
+<h3>🧠 Was sind Union Types?</h3>
+<p>Union Types in TypeScript erlauben dir, <strong>mehrere mögliche Typen für eine Variable oder Funktion</strong> zu definieren. Das bedeutet, dass eine Variable entweder vom Typ A <strong>oder</strong> vom Typ B sein darf.</p>
+
+<h3>📘 Syntax</h3>
+<pre><code>let variable: string | number;
+</code></pre>
+<p><strong>Das bedeutet:</strong> <code>variable</code> kann <strong>entweder ein string oder eine number</strong> sein.</p>
+
+<h3>🎓 Beispiel 1: Einfache Union</h3>
+<pre><code>let benutzerId: string | number;
+
+benutzerId = "abc123";
+benutzerId = 456;
+</code></pre>
+<p>✅ <strong>Gültig</strong>, weil <code>benutzerId</code> entweder ein <code>string</code> oder <code>number</code> sein darf.</p>
+
+<pre><code>benutzerId = true; // ❌ Error: boolean ist nicht erlaubt
+</code></pre>
+
+<h3>🎓 Beispiel 2: Funktion mit Union-Typ</h3>
+<pre><code>function druckeId(id: string | number): void {
+  console.log("Die ID ist:", id);
+}
+
+druckeId("A45Z");
+druckeId(1024);
+</code></pre>
+
+<h3>🎓 Beispiel 3: Union mit Arrays</h3>
+<pre><code>let daten: (string | number)[] = [1, "zwei", 3, "vier"];
+</code></pre>
+<p><strong>Hinweis:</strong> Die Klammern nach dem Union <code>(string | number)[]</code> bedeuten: „Ein Array, dessen Elemente entweder <code>string</code> oder <code>number</code> sein dürfen.“</p>
+
+<h3>🎓 Beispiel 4: Union mit Typ-Alias</h3>
+<pre><code>type ID = string | number;
+
+let userId: ID = "user-001";
+userId = 999;
+</code></pre>
+<p>✅ So kannst du den Union-Typ <strong>wiederverwenden</strong>.</p>
+
+<h3>🚫 Was geht nicht mit Union?</h3>
+<pre><code>let mixed: string | number = "test";
+
+console.log(mixed.toUpperCase()); // ❌ Fehler!
+</code></pre>
+<p><strong>Warum?</strong> TypeScript weiß <strong>nicht</strong>, ob <code>mixed</code> ein <code>string</code> oder <code>number</code> ist → Du musst erst prüfen:</p>
+
+<pre><code>if (typeof mixed === "string") {
+  console.log(mixed.toUpperCase()); // ✅
+}
+</code></pre>
+
+<h3>🔎 Vorteile von Union Types</h3>
+<ul>
+  <li>✅ Erlaubt dir <strong>flexible Eingaben</strong></li>
+  <li>✅ Gut für APIs, die verschiedene Formate zurückgeben</li>
+  <li>✅ Stärkt die <strong>Typensicherheit</strong> durch explizite Typangabe</li>
+  <li>✅ In Kombination mit <code>type</code> und <code>interface</code> sehr mächtig</li>
+</ul>
+
+<h3>🧾 Zusammenfassung</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Was?</th>
+      <th>Beispiel</th>
+      <th>Erklärung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Union-Typ</td>
+      <td><code>string | number</code></td>
+      <td>Mehrere Typen erlaubt</td>
+    </tr>
+    <tr>
+      <td>Array mit Union-Typ</td>
+      <td><code>(string | number)[]</code></td>
+      <td>Elemente dürfen gemischt sein</td>
+    </tr>
+    <tr>
+      <td>Funktion mit Union</td>
+      <td><code>function(id: string | number)</code></td>
+      <td>Argument kann mehrere Typen annehmen</td>
+    </tr>
+    <tr>
+      <td>Mit <code>type</code> alias</td>
+      <td><code>type ID = string | number;</code></td>
+      <td>Für Wiederverwendung</td>
+    </tr>
+    <tr>
+      <td>Vorsicht bei Zugriff</td>
+      <td><code>typeof</code> verwenden</td>
+      <td>Sonst könnte es zu Fehlern führen</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>11. Wie verwende ich Intersection Types?</h2>
+
+<p>Intersection Types in TypeScript kombinieren mehrere Typen zu einem neuen Typ, der <strong>alle Eigenschaften und Anforderungen</strong> der beteiligten Typen erfüllt. Das bedeutet: Ein Wert vom Intersection Type muss alle Eigenschaften aller zusammengeführten Typen besitzen.</p>
+
+<h3>Syntax</h3>
+<pre><code>type TypA = { a: number };
+type TypB = { b: string };
+
+type Schnittmenge = TypA &amp; TypB;
+</code></pre>
+<p><code>Schnittmenge</code> hat hier sowohl die Eigenschaft <code>a</code> (Zahl) als auch <code>b</code> (String).</p>
+
+<h3>Beispiel 1: Kombination von Objekttypen</h3>
+<pre><code>type Person = { name: string };
+type Angestellter = { mitarbeiterId: number };
+
+type Mitarbeiter = Person &amp; Angestellter;
+
+let p: Mitarbeiter = {
+  name: "Anna",
+  mitarbeiterId: 123,
+};
+</code></pre>
+<ul>
+  <li><code>Mitarbeiter</code> ist ein Typ, der beide Eigenschaften von <code>Person</code> und <code>Angestellter</code> enthält.</li>
+  <li>Eine Variable vom Typ <code>Mitarbeiter</code> muss sowohl <code>name</code> als auch <code>mitarbeiterId</code> besitzen.</li>
+  <li>Fehlt eine Eigenschaft, meldet TypeScript einen Fehler.</li>
+</ul>
+
+<h3>Beispiel 2: Intersection mit Funktionen</h3>
+<pre><code>type Logger = { log: (msg: string) =&gt; void };
+type FehlerLogger = { logError: (err: Error) =&gt; void };
+
+type VollstaendigerLogger = Logger &amp; FehlerLogger;
+
+let logger: VollstaendigerLogger = {
+  log: (msg) =&gt; console.log("Info:", msg),
+  logError: (err) =&gt; console.error("Error:", err.message),
+};
+</code></pre>
+<ul>
+  <li><code>VollstaendigerLogger</code> muss beide Funktionen <code>log</code> und <code>logError</code> besitzen.</li>
+  <li>So kannst du unterschiedliche Fähigkeiten kombinieren und trotzdem typensicher bleiben.</li>
+</ul>
+
+<h3>Beispiel 3: Intersection mit Interface und Type</h3>
+<pre><code>interface Fahrzeug {
+  fahren(): void;
+}
+
+type Motorisiert = {
+  motor: boolean;
+};
+
+type Auto = Fahrzeug &amp; Motorisiert;
+
+const meinAuto: Auto = {
+  motor: true,
+  fahren() {
+    console.log("Das Auto fährt.");
+  },
+};
+</code></pre>
+<ul>
+  <li>Kombination von Interface und Typ.</li>
+  <li><code>Auto</code> muss alle Eigenschaften und Methoden beider Typen haben.</li>
+</ul>
+
+<h3>Wann nutzt man Intersection Types?</h3>
+<ul>
+  <li>Um komplexe Typen aus mehreren einfacheren zusammenzustellen.</li>
+  <li>Wenn ein Objekt mehrere Rollen oder Fähigkeiten haben soll.</li>
+  <li>Für flexible und dennoch sichere Typdefinitionen.</li>
+</ul>
+
+<h3>Wichtig zu wissen</h3>
+<ul>
+  <li>Intersection Types erfordern, dass alle Typen gleichzeitig erfüllt sind.</li>
+  <li>Unvereinbare Typen (z.B. <code>string &amp; number</code>) sind nicht möglich.</li>
+  <li>Gut für Mixin-Muster oder das Kombinieren von Eigenschaften.</li>
+</ul>
+
+<h3>Kurze Tabelle zur Übersicht</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Eigenschaft</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Typenkombination</td>
+      <td>Vereint mehrere Typen zu einem (mit <code>&amp;</code>)</td>
+    </tr>
+    <tr>
+      <td>Ergebnis</td>
+      <td>Neuer Typ mit allen Eigenschaften der beteiligten Typen</td>
+    </tr>
+    <tr>
+      <td>Verwendung</td>
+      <td>Für Objekte, die mehrere Rollen/Fähigkeiten besitzen</td>
+    </tr>
+    <tr>
+      <td>Einschränkungen</td>
+      <td>Keine unvereinbaren Typen möglich</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Fazit</h3>
+<p>Intersection Types sind ein mächtiges Werkzeug in TypeScript, um Typen sicher und modular zu kombinieren. Sie sorgen dafür, dass dein Code klar bleibt und alle notwendigen Eigenschaften in einem Typ zusammengefasst sind.</p>
+
+
+<h2>12. Was sind Generics? Wie verwende ich sie?</h2>
+
+<p>Generics sind Platzhalter für Typen. Damit kannst du Funktionen, Klassen oder Interfaces schreiben, die nicht auf einen bestimmten Typ festgelegt sind, sondern mit verschiedenen Typen flexibel arbeiten können. Das macht deinen Code wiederverwendbar und trotzdem typensicher.</p>
+
+<h3>Syntax</h3>
+<pre><code>function identitaet&lt;T&gt;(wert: T): T {
+  return wert;
+}
+</code></pre>
+<ul>
+  <li><code>&lt;T&gt;</code> ist der Typ-Parameter. Er steht für einen beliebigen Typ.</li>
+  <li><code>wert: T</code> bedeutet: Die Funktion nimmt einen Wert vom Typ <code>T</code>.</li>
+  <li><code>: T</code> sagt, die Funktion gibt genau denselben Typ zurück.</li>
+  <li>Du kannst beim Aufruf z.B. <code>identitaet&lt;string&gt;("Hallo")</code> schreiben oder TypeScript den Typ automatisch ableiten lassen: <code>identitaet(123)</code>.</li>
+</ul>
+
+<h3>Beispiel 1: Generische Funktion</h3>
+<pre><code>function wrapInArray&lt;T&gt;(element: T): T[] {
+  return [element];
+}
+
+const zahlen = wrapInArray&lt;number&gt;(5);      // [5]
+const namen = wrapInArray("Anna");               // ["Anna"], Typ wird automatisch erkannt
+</code></pre>
+
+<h3>Beispiel 2: Generisches Interface</h3>
+<pre><code>interface Result&lt;T&gt; {
+  data: T;
+  error?: string;
+}
+
+const ergebnis: Result&lt;string&gt; = {
+  data: "Erfolg",
+};
+
+const fehlerErgebnis: Result&lt;number&gt; = {
+  data: 0,
+  error: "Kein Wert gefunden",
+};
+</code></pre>
+
+<h3>Beispiel 3: Generische Klasse</h3>
+<pre><code>class Speicher&lt;T&gt; {
+  private wert: T;
+
+  constructor(wert: T) {
+    this.wert = wert;
+  }
+
+  holeWert(): T {
+    return this.wert;
+  }
+}
+
+const speicher = new Speicher&lt;string&gt;("Hallo");
+console.log(speicher.holeWert());  // "Hallo"
+</code></pre>
+
+<h3>Warum Generics benutzen?</h3>
+<ul>
+  <li>Vermeidet duplizierten Code für verschiedene Typen.</li>
+  <li>Bietet Typsicherheit für flexible, wiederverwendbare Komponenten.</li>
+  <li>Hilft dem Compiler, Typfehler früh zu erkennen.</li>
+  <li>Macht deinen Code leichter verständlich und wartbar.</li>
+</ul>
+
+<h3>Zusammenfassung in Tabelle</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Eigenschaft</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Zweck</td>
+      <td>Platzhalter für Typen, flexibel &amp; wiederverwendbar</td>
+    </tr>
+    <tr>
+      <td>Syntax</td>
+      <td><code>&lt;T&gt;</code>, <code>&lt;U&gt;</code>, etc. als Typ-Parameter</td>
+    </tr>
+    <tr>
+      <td>Verwendung</td>
+      <td>Funktionen, Klassen, Interfaces</td>
+    </tr>
+    <tr>
+      <td>Vorteil</td>
+      <td>Typsicherheit + Flexibilität</td>
+    </tr>
+    <tr>
+      <td>Beispiel</td>
+      <td><code>function f&lt;T&gt;(x: T): T</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<h2>13. Was sind Enums in TypeScript? Wie verwende ich sie?</h2>
+
+
+<p>Enums in TypeScript sind eine spezielle Art, um eine Gruppe von benannten Konstanten zusammenzufassen. Sie helfen dir dabei, Code lesbarer und besser wartbar zu machen, indem du klare Namen für feste Werte benutzt, anstatt "magische Zahlen" oder Strings mehrfach zu schreiben.</p>
+
+<h3>Was sind Enums?</h3>
+<ul>
+  <li>Enums (kurz für Enumerations) sind Datentypen, die eine Menge von benannten Werten definieren.</li>
+  <li>Jeder Wert in einem Enum hat einen Namen und einen zugehörigen Wert (standardmäßig Zahlen beginnend bei 0).</li>
+  <li>Du kannst sowohl numerische als auch stringbasierte Enums erstellen.</li>
+</ul>
+
+<h3>Syntax &amp; Beispiele</h3>
+
+<h4>Numerische Enums (Standard)</h4>
+<pre><code>enum Status {
+  Neu,            // 0
+  InBearbeitung,  // 1
+  Fertig          // 2
+}
+
+let aktuellerStatus: Status = Status.InBearbeitung;
+console.log(aktuellerStatus);  // Ausgabe: 1
+</code></pre>
+<p><strong>Erklärung:</strong><br>
+- <code>Status</code> ist der Enum-Name.<br>
+- Die Werte fangen standardmäßig bei 0 an und erhöhen sich automatisch.<br>
+- <code>Status.InBearbeitung</code> ist also eigentlich der Wert <code>1</code>.</p>
+
+<h4>String Enums</h4>
+<pre><code>enum Farben {
+  Rot = "ROT",
+  Gruen = "GRUEN",
+  Blau = "BLAU"
+}
+
+let farbe: Farben = Farben.Rot;
+console.log(farbe);  // Ausgabe: "ROT"
+</code></pre>
+<p><strong>Erklärung:</strong><br>
+- Statt Zahlen kannst du jedem Enum-Wert auch einen String zuweisen.<br>
+- Das macht den Code oft klarer, vor allem wenn die Werte repräsentativ sein sollen.</p>
+
+<h3>Warum Enums verwenden?</h3>
+<ul>
+  <li>Mehr Lesbarkeit und Verständlichkeit statt Zahlen oder Strings direkt im Code.</li>
+  <li>Verhindert Tippfehler, weil man nur die definierten Enum-Namen nutzen kann.</li>
+  <li>Intellisense in Editoren gibt dir Vorschläge und zeigt mögliche Werte an.</li>
+  <li>Einfaches Mapping zwischen Namen und Werten.</li>
+</ul>
+
+<h3>Beispiel mit Funktion</h3>
+<pre><code>enum Status {
+  Offen,
+  Geschlossen,
+  InBearbeitung
+}
+
+function statusCheck(status: Status): string {
+  if (status === Status.Offen) {
+    return "Der Auftrag ist offen.";
+  } else if (status === Status.Geschlossen) {
+    return "Der Auftrag ist geschlossen.";
+  } else {
+    return "Der Auftrag wird bearbeitet.";
+  }
+}
+
+console.log(statusCheck(Status.Geschlossen));  // "Der Auftrag ist geschlossen."
+</code></pre>
+<p><strong>Erklärung:</strong><br>
+- Die Funktion nimmt als Parameter einen Wert vom Enum-Typ <code>Status</code>.<br>
+- Das sorgt für Typsicherheit und klare Bedingungen im Code.</p>
+
+<h3>Zusammenfassungstabelle</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Eigenschaft</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Zweck</td>
+      <td>Gruppierung von benannten konstanten Werten</td>
+    </tr>
+    <tr>
+      <td>Typen</td>
+      <td>Numerisch (Standard), String</td>
+    </tr>
+    <tr>
+      <td>Werte</td>
+      <td>Automatisch zugewiesen (Numerisch) oder manuell (String)</td>
+    </tr>
+    <tr>
+      <td>Vorteile</td>
+      <td>Lesbarkeit, Typsicherheit, Vermeidung von Tippfehlern</td>
+    </tr>
+    <tr>
+      <td>Verwendung</td>
+      <td>Für Status, Optionen, Kategorien u.v.m.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+</body>
+</html>

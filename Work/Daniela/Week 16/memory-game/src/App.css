@@ -1,0 +1,122 @@
+body {
+  justify-content: center;
+  font-family: "Kalnia Glaze", serif;
+}
+
+.wrapper {
+  display: flex;
+  width: 100vh;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.playersBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  flex-shrink: 0; 
+  margin-right: 2em; 
+  border: 4px solid;
+  border-image: linear-gradient(to right, rgb(232, 26, 26), rgb(195, 4, 151), rgb(177, 10, 233)) 1;
+  border-style: solid;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  width: 100vh;
+  justify-content: center;
+  align-items: center;
+ 
+
+}
+
+.playersSettings {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  position: relative;
+  left: 6em;
+  border: 4px solid;
+  border-image: linear-gradient(to right, rgb(174, 232, 26), rgb(23, 195, 4), rgb(10, 233, 225)) 1;
+  border-style: solid;
+  padding: 1em;
+  margin: 1em;
+}
+
+.startBtn {
+  background: radial-gradient(rgb(1, 4, 80), rgb(4, 98, 104), rgb(10, 236, 233));
+  margin: 0.5em;
+}
+
+.addBtn {
+  background: radial-gradient(rgb(1, 66, 8), rgb(7, 130, 20), rgb(96, 235, 4));
+  margin: 0.5em;
+}
+
+.fascinate-regular {
+  font-family: "Fascinate", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Container>h1 {
+  font-size: 5em;
+  font-family: "Fascinate", system-ui;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.356), 0 0 2px rgba(255, 255, 255, 0.285);
+
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(6, 8em);
+  gap: 1em;
+  justify-content: center;
+  margin: 2em;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+  max-width: 10em;
+  max-height: 10em;
+  outline: 2px solid rgb(95, 5, 21);
+  border-radius: 0.5em;
+  background: radial-gradient(rgb(250, 250, 250), rgb(250, 250, 250), rgb(229, 147, 192));
+}
+
+.playersBox {
+  border: 2px dashed gray;
+  padding: 10px;
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  color: black;
+
+}
+
+.playersBox h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.playersBox p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+.playersBox.activePlayer {
+  border: 3px solid limegreen;
+
+  background-color: #eaffea;
+}
