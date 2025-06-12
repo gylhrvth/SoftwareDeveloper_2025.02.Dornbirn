@@ -141,22 +141,24 @@ function FlexGridBoxAlignment() {
       </section>
 
       {/* 2. Flex-direction */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Flex-direction</h2>
-        <div className="flex flex-col bg-blue-100 p-4 space-y-2 mb-4 max-w-xs">
-          <div className="bg-blue-600 text-white p-2 rounded">Column 1</div>
-          <div className="bg-blue-700 text-white p-2 rounded">Column 2</div>
-          <div className="bg-blue-800 text-white p-2 rounded">Column 3</div>
-        </div>
-        <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
-          <code>{`<div className="flex flex-col">
-  <div>Column 1</div>
-  <div>Column 2</div>
-  <div>Column 3</div>
+    <section>
+  <h2 className="text-2xl font-semibold mb-4">Flex-direction</h2>
+  <div className="flex flex-col sm:flex-row bg-blue-100 p-4 gap-2 mb-4 max-w-xs sm:max-w-full">
+    <div className="bg-blue-600 text-white p-2 rounded flex-1">Column 1</div>
+    <div className="bg-blue-700 text-white p-2 rounded flex-1">Column 2</div>
+    <div className="bg-blue-800 text-white p-2 rounded flex-1">Column 3</div>
+  </div>
+  <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
+    <code>{`<div className="flex flex-col sm:flex-row bg-blue-100 p-4 gap-2">
+  <div className="bg-blue-600 text-white p-2 rounded flex-1">Column 1</div>
+  <div className="bg-blue-700 text-white p-2 rounded flex-1">Column 2</div>
+  <div className="bg-blue-800 text-white p-2 rounded flex-1">Column 3</div>
 </div>`}</code>
-        </pre>
-        <p className="mt-2"><code>flex-col</code> stacks flex items vertically.</p>
-      </section>
+  </pre>
+  <p className="mt-2">
+    <code>flex-col</code> stacks items vertically on small screens, and <code>sm:flex-row</code> stacks them horizontally from small screen sizes up.
+  </p>
+</section>
 
       {/* 3. Flex-wrap */}
       <section>
