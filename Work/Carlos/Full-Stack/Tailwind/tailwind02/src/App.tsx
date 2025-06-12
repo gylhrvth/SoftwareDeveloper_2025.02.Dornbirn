@@ -22,7 +22,7 @@ export default function App() {
     setTasks(tasks.filter((__, i) => i !== index));
   }
 
-  //style Variables
+//style Variables
 const mainStyle = "font-jetBrains min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-cyan-700";
 const mainContainer = "bg-gradient-to-br from-gray-800 via-gray-900 to-purple-800 p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-700";
 const headerStyle = "text-3xl font-extrabold mb-4 text-emerald-300 drop-shadow";
@@ -34,7 +34,7 @@ const deleteButton = "text-pink-400 hover:text-emerald-300 transition-colors cur
 const emptyTask = "text-gray-400 text-center py-6";
 const pStyle = "text-gray-400 text-left mb-4 italic";
   
-  //return value
+//return value
   return (
   <div className={mainStyle}>
     <div className={mainContainer}>
