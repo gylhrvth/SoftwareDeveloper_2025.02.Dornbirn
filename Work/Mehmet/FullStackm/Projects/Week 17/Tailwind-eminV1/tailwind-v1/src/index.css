@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+
+/* eigene farben hinzufügen 
+das .root hier rein und dann in app.txs class="bg-[var(--color-brand)] so einen clasname hinzufügen
+*/
+
+
+@theme {
+  --color-branda: #0fff87; /* Deine benutzerdefinierte Farbe */
+  --color-secondary: #33C1FF; /* Eine weitere benutzerdefinierte Farbe */
+}
