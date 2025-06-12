@@ -1,0 +1,30 @@
+body.darkmode {
+  background: #222;
+  color: #eee;
+}
+
+body.darkmode .recipe-card {
+  background: #333;
+  color: #fff;
+}
+
+.darkmode-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+}
+
+.darkmode-btn .material-icons {
+    font-size: 2rem;
+}
+.darkmode-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

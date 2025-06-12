@@ -1,0 +1,118 @@
+:root {
+    --background: #101114; /* Dunkler Hintergrund für modernen Look */
+    --primary-color: #1C1D20; /* Dunkles Grau für den Haupttextbereich */
+    --secondary-color: #4A4D57; /* Weicheres Dunkelgrau für sekundäre Elemente */
+    --accent-color: #00FFC4; /* Helles Türkis für Akzentfarbe, macht es lebendig */
+    --text-color: #F9F9F9; /* Sehr helles Grau für den Text */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #101114; /* Dunkler Hintergrund bleibt gleich */
+        --primary-color: #F9F9F9; /* Hellerer Primärtext für Dunkelmodus */
+        --secondary-color: #B0B3B8; /* Hellerer Sekundärton für besseren Kontrast im Dunkelmodus */
+        --accent-color: #00FFC4; /* Akzentfarbe bleibt gleich */
+        --text-color: #1C1D20; /* Dunklerer Text für besseren Kontrast im Dunkelmodus */
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--text-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+}
+
+.city {
+    width: 320px;
+    height: 220px;
+    color: var(--accent-color); /* Akzentfarbe für den Text der Boxen */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--primary-color); /* Dunkler Hintergrund für die Boxen */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6); /* Weicher Schatten für die Boxen */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.city:hover {
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.8); /* Stärkerer Schatten bei Hover */
+    transform: translateY(-5px);
+}
+
+.city > .data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+}
+
+form.cityDELETE {
+    text-align: right;
+    padding: 15px 25px;
+}
+
+form.cityDELETE > button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    background-color: transparent;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+form.cityDELETE > button:hover {
+    color: #F9F9F9; /* Hellerer Hover-Effekt */
+}
+
+form.cityCREATE {
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+form.cityCREATE > span {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-color); /* Textfarbe der Formularelemente */
+}
+
+form.cityCREATE > span > button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+form.cityCREATE > span > button:hover {
+    background-color: #00B19D; /* Etwas dunklerer Türkiston für Hover-Effekt */
+}
+
+.city > h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color); /* Weißer Text für die Überschrift */
+}
+
+h1{
+    text-align: center;
+    color: var(--primary-color);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../MekStyle.css">
+</head>
+
+<style>
+
+
+    h1{
+        text-align: center;
+    }
+
+    .note-Container {
+        display: flex;
+        align-items: start;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+</style>
+<body>
+                            <button id="mode-toggle">Light Mode</button>
+    <h1>Journal</h1>
+    <h3>Fullstack</h3>
+    <div class="note-Container">
+    <p>
+        <a href="./Week 14/Notizen/js.html">Javascript Wiederholung</a>
+    </p>
+    <p>
+        <a href="./Week 14/Notizen/node.html">Node.js</a>
+    </p>
+    <p>
+        <a href="./Week 14/Notizen/express.html">Express</a>
+    </p>
+    <p>
+        <a href="./Week 16 React/react.html">React</a>
+    </p>
+    <p>
+        <a href="./Week 17 React-Tailwind/tailwind.html">React Router</a>
+    </p>
+    </div>
+
+  <script>
+    const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    
+  </script>  
+</body>
+</html>

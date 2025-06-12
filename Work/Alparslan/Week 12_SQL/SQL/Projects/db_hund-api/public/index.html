@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunde im Tierheim</title>
+    <link rel="stylesheet" href="/main.css">
+    <script defer src="/main.js"></script>
+</head>
+<body>
+    <h1>Hunde im Tierheim (REST API)</h1>
+
+    <!-- Modal for Adding a New Hund -->
+    <div id="modal" class= "modal-style">
+        <h3>Neues Tier</h3>
+        <form id="addHundForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+
+            <label for="rasse">Rasse:</label>
+            <input type="text" id="rasse" name="rasse" placeholder="Rasse (optional)"><br><br>
+
+            <label>Geschlecht:</label>
+            <div id="geschlecht">
+                <input type="radio" id="geschlechtM" name="geschlecht" value="Männlich" required>
+                <label for="geschlechtM">Männlich</label>
+                <input type="radio" id="geschlechtF" name="geschlecht" value="Weiblich">
+                <label for="geschlechtF">Weiblich</label>
+                <input type="radio" id="geschlechtU" name="geschlecht" value="Unbestimmt">
+                <label for="geschlechtU">Unbestimmt</label>
+            </div><br>
+
+            <label>Einlieferungsart:</label>
+            <div id="einlieferungsart">
+                <input type="radio" id="einlieferungAbg" name="einlieferungsart" value="Abgabe" required>
+                <label for="einlieferungAbg">Abgabe</label>
+                <input type="radio" id="einlieferungBeschl" name="einlieferungsart" value="Beschlagnahmt">
+                <label for="einlieferungBeschl">Beschl.</label>
+                <input type="radio" id="einlieferungFund" name="einlieferungsart" value="Fundtier">
+                <label for="einlieferungFund">Fundtier</label>
+            </div><br>
+            <div class="buttonContainer">
+            <button type="submit" class="modalButton" id="submitModalButton">Submit</button>
+            <button type="button" class="modalButton" id="closeModalButton">Close</button>
+            </div> 
+        </form>
+    </div>
+
+    <!-- Modal for Editing an Existing Hund -->
+    <div id="editModal" class="modal-style">
+        <h3>Edit Hund</h3>
+        <form id="editHundForm">
+            <input type="hidden" id="editId" name="editId">
+            <label for="editName">Name:</label>
+            <input type="text" id="editName" name="name" placeholder="Name"><br><br>
+
+            <label for="editRasse">Rasse:</label>
+            <input type="text" id="editRasse" name="rasse" placeholder="Rasse (optional)"><br><br>
+
+            <label>Geschlecht:</label>
+            <div id="editGeschlecht">
+                <input type="radio" id="editGeschlechtM" name="editGeschlecht" value="Männlich">
+                <label for="editGeschlechtM">Männlich</label>
+                <input type="radio" id="editGeschlechtF" name="editGeschlecht" value="Weiblich">
+                <label for="editGeschlechtF">Weiblich</label>
+                <input type="radio" id="editGeschlechtU" name="editGeschlecht" value="Unbestimmt">
+                <label for="editGeschlechtU">Unbestimmt</label>
+            </div><br>
+
+            <label>Einlieferungsart:</label>
+            <div id="editEinlieferungsart">
+                <input type="radio" id="editEinlieferungAbg" name="editEinlieferungsart" value="Abgabe">
+                <label for="editEinlieferungAbg">Abgabe</label>
+                <input type="radio" id="editEinlieferungBeschl" name="editEinlieferungsart" value="Beschlagnahmt">
+                <label for="editEinlieferungBeschl">Beschl.</label>
+                <input type="radio" id="editEinlieferungFund" name="editEinlieferungsart" value="Fundtier">
+                <label for="editEinlieferungFund">Fundtier</label>
+            </div><br>
+            <div class="buttonContainer">
+            <button type="submit" class="modalButton" id="saveEditModalButton">Save</button>
+            <button type="button" class="modalButton" id="closeEditModalButton">Close</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Container for Hund Entries -->
+    <div id="hundContainer" class="container">
+        <!-- Hund entries will be dynamically rendered here -->
+    </div>
+</body>
+</html>

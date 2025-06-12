@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DML</title>
+    <link rel="stylesheet" href="../../style02.css">
+    <script src="../../lib.js" defer></script>
+</head>
+<body>
+    <h2>SQL: Insert, Update & Delete</h2>
+    <ol>
+        <li>Erstelle eine neue Stadt in der Mondial Datenbank</li>
+        <p><code>INSERT INTO city (name, country, Province, Population, Latitude, Longitude) <br>VALUES ('Sinop', 'TR', 'Sinop', 58000, 42.0268, 35.1511);</code></p>
+        <p><b>Lösung:</b></p>
+        <button onclick="toggleTable('table1')">show table 1</button><br>
+        <table id="table1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Province</th>
+                    <th>Population</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sinop</td>
+                    <td>TR</td>
+                    <td>Sinop</td>
+                    <td>58000</td>
+                    <td>42.0268</td>
+                    <td>35.1511</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <p>Diese Abfrage aktualisiert die folgenden Werte der Stadt Sinop.</p>
+        <p><code>UPDATE city <br>SET population = 58000, <br>longitude = 35.1511, <br>latitude = 42.0268 <br>WHERE name = 'Sinop';</code></p><br>
+
+        <p>Diese Abfrage wählt alle Spalten aus der Tabelle 'city' aus, bei denen der Städtename 'Sinop' ist (aktualisiere zu Esenler).</p>
+        <p><code>SELECT * <br>FROM city <br>WHERE name = 'Esenler';</code></p><br>
+
+        <li>Stadt umbennenen (UPDATE city)</li>
+        <p><code>UPDATE city <br>SET name = 'Esenler' <br>WHERE name = 'Sinop';</code></p>
+        <p><b>Lösung:</b></p>
+        <button onclick="toggleTable('table2')">show table 2</button><br>
+        <table id="table2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Province</th>
+                    <th>Population</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Esenler</td>
+                    <td>TR</td>
+                    <td>Sinop</td>
+                    <td>58000</td>
+                    <td>42.0268</td>
+                    <td>35.1511</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <li>Lösche die von dir erstellte Stadt (DELETE city)</li>
+        <p><code>DELETE FROM city <br>WHERE name = 'Esenler' <br>AND country = 'TR' <br>AND province = 'Sinop';</code></p>
+
+        <p>Überprüft dannach ob die Daten aus der Tabelle gelöscht wurde</p>
+        <p><code>SELECT * FROM city WHERE name = 'Esenler';</code></p>
+    </ol>
+    <br>
+    <br>
+
+    <ol>
+        <li>Erstelle eine neue Berg</li>
+        <p><code>INSERT INTO mountain (name, mountains, height, latitude, longitude) <br>VALUES ('Mount Ararat', 'TR', 5137, 39.7020, 44.3117);</code></p>
+        <p><b>Lösung:</b></p>
+        <button onclick="toggleTable('table3')">show table 1</button><br>
+        <table id="table3">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Height (m)</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mount Ararat</td>
+                  <td>TR</td>
+                  <td>5137</td>
+                  <td>39.7020</td>
+                  <td>44.3117</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <p>Diese Abfrage wählt alle Spalten aus der Tabelle 'mountain' aus, bei denen der Bergname 'Mount Ararat' ist.</p>
+        <p><code>SELECT * <br>FROM mountain <br>WHERE name = 'Mount Ararat';</code></p><br>
+
+        <li>Berg vergrößern (UPDATE mountain)</li>
+        <p><code>UPDATE mountain <br>SET height = 6000 <br>WHERE name = 'Mount Ararat';</code></p>
+        <p><b>Lösung:</b></p>
+        <button onclick="toggleTable('table4')">show table 2</button><br>
+        <table id="table4">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Height (m)</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mount Ararat</td>
+                  <td>TR</td>
+                  <td>6000</td>
+                  <td>39.7020</td>
+                  <td>44.3117</td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <li>Lösche die von dir erstellte Berg (DELETE mountain)</li>
+        <p><code>DELETE FROM mountain <br>WHERE name = 'Mount Ararat' <br>AND mountains = 'TR';</code></p>
+
+        <p>Überprüft dannach ob die Daten aus der Tabelle gelöscht wurde</p>
+        <p><code>SELECT * FROM mountain <br>WHERE name = 'Mount Ararat';</code></p>
+    </ol>
+</body>
+</html>

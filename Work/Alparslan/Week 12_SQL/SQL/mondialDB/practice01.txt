@@ -1,0 +1,9 @@
+
+
+
+SELECT 
+	geo_river.River AS River,
+	GROUP_CONCAT(DISTINCT country.Name ORDER BY country.NAME SEPARATOR ', ') AS Countries
+FROM country
+LEFT JOIN geo_river ON country.code = geo_river.Country
+GROUP BY geo_river.River;

@@ -43,10 +43,10 @@ body {
 }
 
 .Header{
-    position: fixed;
+    
     top: 0;
     right: 0;
-    width: 100%;
+    width: 100vh;
     background: radial-gradient( rgb(7, 7, 7), rgba(7, 7, 7), rgba(166, 3, 242, 0.349),rgba(162, 2, 47, 0.404));
     color: white;
     text-align: center;
