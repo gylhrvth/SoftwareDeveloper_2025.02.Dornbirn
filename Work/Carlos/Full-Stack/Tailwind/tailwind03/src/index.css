@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+--color-bgcustom: #f0f3f2;
+  }
+
+
+
+@layer base {
+
+
+}
+@layer components { 
+
+}
