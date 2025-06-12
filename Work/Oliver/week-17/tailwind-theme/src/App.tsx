@@ -1,5 +1,6 @@
 import { JSX } from "react"
 import { Files, Palette } from "lucide-react";
+import HeroBanner from "./components/HeroBanner";
 
 function App() {
 
@@ -15,6 +16,7 @@ function MainContent(){
     return (
         <>
             <h5>Unsere aktuellen Kataloge im Bereich Holz</h5>
+            <HeroBanner />
             <h1>Holz trifft Farbe</h1>
             <div className="card">
                 <h2>Mediathek</h2>
