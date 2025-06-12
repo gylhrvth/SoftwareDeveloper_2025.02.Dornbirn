@@ -1,16 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
 @import "tailwindcss";
-
-
-/* eigene farben hinzufügen 
-das .theme hier rein und dann in app.txs <ELEMENT className="bg-[var(--color-brand)]> so einfügen
-*/
 
 @theme {
     --font-serif: 'Roboto Slab';
     --color-green: #3fa535;
     --color-darkgreen: #029540;
-     --color-branda: #0fff87; /* Deine benutzerdefinierte Farbe */
-     --color-secondary: #33C1FF; /* Eine weitere benutzerdefinierte Farbe */
 }
 
 @layer base {
@@ -27,7 +21,6 @@ das .theme hier rein und dann in app.txs <ELEMENT className="bg-[var(--color-bra
         font-size: var(--text-2xl);
     }
 }
-
 
 @layer components {
     .card {

@@ -351,50 +351,196 @@ export default defineConfig({
 
 
 <!-- Frage "6" -->
-<section class="p-6 text-gray-800">
-  <h2 class="text-2xl font-bold mb-4">6. Wie kann ich meine eigenen Brand-Farben und Schriftarten in Tailwind CSS verwenden?</h2>
+<section>
+  <h2>6. Wie kann ich meine eigenen Brand-Farben und Schriftarten in Tailwind CSS verwenden?</h2>
 
-  <p class="mb-4">
-    Tailwind CSS erlaubt es dir, dein eigenes Designsystem zu definieren – direkt in der <code>tailwind.config.js</code>. Das bedeutet, du kannst deine Markenfarben und Fonts so konfigurieren, dass sie im gesamten Projekt mit einfachen Klassen genutzt werden können.
-  </p>
-
-  <h3 class="text-xl font-semibold mb-2">1. Beispiel: Konfiguriere eigene Farben und Schriftarten</h3>
-  <pre class="bg-gray-100 p-3 rounded mb-4 text-sm overflow-x-auto"><code>// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        brand: {
-          blue: "#1E40AF",
-          red: "#DC2626",
-        },
-      },
-      fontFamily: {
-        brand: ['"Open Sans"', 'sans-serif'],
-        heading: ['"Oswald"', 'sans-serif'],
-      },
-    },
-  },
-}</code></pre>
-
-  <h3 class="text-xl font-semibold mb-2">2. Beispiel: Fonts in dein Projekt einbinden</h3>
-  <pre class="bg-gray-100 p-3 rounded mb-4 text-sm overflow-x-auto"><code>&lt;!-- index.html im public Ordner --&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Oswald&amp;display=swap" rel="stylesheet"&gt;</code></pre>
-
-  <h3 class="text-xl font-semibold mb-2">3. Beispiel: Nutzung deiner Brand-Klassen</h3>
-  <pre class="bg-gray-100 p-3 rounded mb-4 text-sm overflow-x-auto"><code>&lt;section class="bg-brand-blue text-white font-brand p-4 rounded"&gt;
-  &lt;h1 class="text-2xl font-heading"&gt;Willkommen bei meiner Marke&lt;/h1&gt;
-  &lt;p&gt;Eigene Farbe und Schriftart direkt als Tailwind-Klassen.&lt;/p&gt;
-&lt;/section&gt;</code></pre>
-
-  <h3 class="text-xl font-semibold mb-2">Warum das sinnvoll ist:</h3>
-  <ul class="list-disc ml-6 space-y-2">
-    <li><strong>Konsistenz:</strong> Du benutzt zentrale Farben und Fonts überall im Projekt.</li>
-    <li><strong>Wartbarkeit:</strong> Änderungen müssen nur an einer Stelle gemacht werden.</li>
-    <li><strong>Lesbarkeit:</strong> Klassen wie <code>bg-brand-blue</code> sagen mehr aus als <code>#1E40AF</code>.</li>
-    <li><strong>Performance:</strong> Tailwind entfernt ungenutzte Klassen, wenn Purge aktiviert ist.</li>
+  <h3>🧠 Was du erreichen willst – kurzgefasst:</h3>
+  <ul>
+    <li>🎨 Eigene Farben, z. B. --color-green für Branding</li>
+    <li>🔠 Eigene Schriftarten, z. B. --font-serif wie "Roboto Slab"</li>
+    <li>🧱 Wiederverwendbare Komponenten, z. B. .card mit @apply</li>
+    <li>💻 Globale Typografie-Stile, einheitliche h1–h6 mit @layer base</li>
+    <li>⚡ Tailwind verwenden ohne tailwind.config.js, nur mit index.css + Klassen</li>
   </ul>
+
+  <h3>🔍 Was ist @layer in Tailwind CSS?</h3>
+  <p>Tailwind gruppiert CSS in Layer, um Reihenfolge & Priorität zu steuern:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Zweck</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@layer base</td>
+        <td>✨ Basiselemente wie body, h1, p usw. überschreiben oder erweitern</td>
+      </tr>
+      <tr>
+        <td>@layer components</td>
+        <td>🧱 Wiederverwendbare UI-Bausteine wie .card, .btn, etc.</td>
+      </tr>
+      <tr>
+        <td>@layer utilities</td>
+        <td>🧩 Kleine Hilfsklassen, z. B. .text-center, .m-2, usw.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>📁 Struktur: src/index.css</h3>
+  <pre><code>
+:root {
+  --font-serif: 'Roboto Slab', serif;
+  --color-green: #3fa535;
+  --color-darkgreen: #029540;
+  --color-branda: #0fff87;
+  --color-secondary: #33C1FF;
+
+  --text-2xl: 1.5rem;
+  --text-4xl: 2.25rem;
+  --text-6xl: 3.75rem;
+
+  --font-weight-light: 300;
+}
+  </code></pre>
+
+  <h3>✍️ @layer base – globale Typografie</h3>
+  <pre><code>
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-light);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+  }
+
+  h5 {
+    font-size: var(--text-2xl);
+  }
+}
+  </code></pre>
+
+  <h3>✔ Effekt</h3>
+  <p>Alle Überschriften sind automatisch großgeschrieben, zentriert, in der gewünschten Größe und mit deiner eigenen Schrift.</p>
+
+  <h3>🧱 @layer components – eigene Klassen definieren</h3>
+  <pre><code>
+@layer components {
+  .card {
+    @apply text-white text-center;
+    background-color: var(--color-green);
+    padding: 1rem;
+
+    &:hover {
+      background-color: var(--color-darkgreen);
+    }
+  }
+
+  .card h2 {
+    font-size: var(--text-4xl);
+  }
+}
+  </code></pre>
+
+  <h3>✔ Effekt</h3>
+  <p>.card ist eine komplette Box mit Farbe, Padding und Textstil. Hover macht sie dunkler. @apply erlaubt Tailwind-Klassen in eigener Klasse. Farben via CSS-Variablen bleiben zentral konfigurierbar.</p>
+
+  <h3>⚙️ Integration in main.tsx oder main.jsx</h3>
+  <pre><code>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+);
+  </code></pre>
+
+  <h3>💡 Anwendung in App.tsx</h3>
+  <pre><code>
+export default function App() {
+  return (
+    &lt;div className="min-h-screen bg-[var(--color-branda)] font-[var(--font-serif)] p-4"&gt;
+      &lt;h1 className="text-6xl mb-4 text-[var(--color-darkgreen)]"&gt;Meine grüne Website&lt;/h1&gt;
+
+      &lt;div className="card rounded shadow-md"&gt;
+        &lt;h2&gt;Hallo Welt&lt;/h2&gt;
+        &lt;p&gt;Dies ist eine custom card mit Tailwind + CSS-Variablen.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>🧼 Wichtiges Tailwind-Verhalten</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Sache</th>
+        <th>Erklärung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@apply</td>
+        <td>Kann nur Tailwind-Klassen anwenden, keine Variablen</td>
+      </tr>
+      <tr>
+        <td>var(--xyz)</td>
+        <td>Verwende für alles, was nicht als Utility existiert (Farben, Textgrößen etc.)</td>
+      </tr>
+      <tr>
+        <td>font-[...]</td>
+        <td>Funktioniert mit CSS-Variablen in Tailwind ab v3</td>
+      </tr>
+      <tr>
+        <td>bg-[var(...)]</td>
+        <td>Dynamisches Einfügen von Custom-Farben möglich</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>✅ Zusammenfassung – deine "Tailwind + Branding"-Strategie</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Teil</th>
+        <th>Funktion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>:root</td>
+        <td>Definiert globale Branding-Variablen</td>
+      </tr>
+      <tr>
+        <td>@layer base</td>
+        <td>Steuert globale HTML-Basiselemente wie h1</td>
+      </tr>
+      <tr>
+        <td>@layer components</td>
+        <td>Deine eigenen wiederverwendbaren Bausteine</td>
+      </tr>
+      <tr>
+        <td>Tailwind Klassen wie bg-[var(...)]</td>
+        <td>Ermöglichen Verwendung deiner eigenen Farben dynamisch</td>
+      </tr>
+      <tr>
+        <td>Kein tailwind.config.js nötig</td>
+        <td>Alles über CSS gesteuert = weniger Setup</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
+
 
 
 <script>
