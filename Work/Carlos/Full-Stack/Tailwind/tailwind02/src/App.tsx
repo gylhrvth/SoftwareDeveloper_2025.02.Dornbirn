@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function App() {
-  const [tasks, setTasks] = useState< {text: string; completed: boolean }[]>([]); // Array of strings with initial value of an empty array 
+  const [tasks, setTasks] = useState<{text: string; completed: boolean }[]>([]); // Array of strings with initial value of an empty array 
   const [input, setInput] = useState<string>(""); // String with initial value of an empty string
 
   const addTask = () => {
@@ -32,7 +32,7 @@ const buttonStyle = "cursor-pointer bg-gradient-to-r from-cyan-500 to-purple-500
 const taskStyle = "flex justify-between items-center border-b border-gray-700 py-3 text-white";
 const deleteButton = "text-pink-400 hover:text-emerald-300 transition-colors cursor-pointer";
 const emptyTask = "text-gray-400 text-center py-6";
-const pStyle = "text-gray-400 text-left mb-4";
+const pStyle = "text-gray-400 text-left mb-4 italic";
   
   //return value
   return (
