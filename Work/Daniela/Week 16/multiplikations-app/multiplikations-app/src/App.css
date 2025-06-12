@@ -5,13 +5,15 @@ body{
   align-items: center;     
   min-height: 100vh;       
   margin: 0;
+  background: radial-gradient(rgb(88, 3, 66),rgb(81, 3, 105), rgb(2, 2, 2));
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 2em;
+  
 }
 
 .row {
@@ -20,6 +22,7 @@ body{
   border: 2px solid blueviolet;
   padding: 1rem 2rem;
   border-radius: 8px;
+  margin: 1em;
 }
 
 
@@ -28,7 +31,7 @@ body{
 }
 .label {
   font-size: 2.5em;
-  margin-right: 0.5em;
+  margin-right: auto;
 }
 
 .count-btn {
@@ -37,13 +40,12 @@ body{
   background: white;
   color: black;
   font-size: large;
-  margin-right: 4em;
+  margin-left: 1em;
+  margin-right: 2em;
   padding: 0.5em;
 }
 
 .result-array {
   font-size: 2.5em;
-  max-width: 20rem;
-  overflow-x: auto;
-  white-space: nowrap;
+ width: 90vh;
 }

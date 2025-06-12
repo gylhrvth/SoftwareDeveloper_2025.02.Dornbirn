@@ -1,18 +1,26 @@
 import { useState } from 'react';
 import './App.css';
 
-
-
 function App() {
   return (
     <div className="container">
       <div className="headline">
-        <h1>Multiplication-App</h1>
+        <h1>🧮Multiplication-App🤓</h1>
       </div>
 
       <div className="number">
         <MultiplicationRow factor={1} />
          <MultiplicationRow factor={2} />
+         <MultiplicationRow factor={3}/>
+         <MultiplicationRow factor={4}/>
+         <MultiplicationRow factor={5}/>
+         <MultiplicationRow factor={6}/>
+         <MultiplicationRow factor={7}/>
+         <MultiplicationRow factor={8}/>
+         <MultiplicationRow factor={9}/>
+         <MultiplicationRow factor={10}/>
+         
+
 
       </div>
     </div>
@@ -20,8 +28,6 @@ function App() {
 }
 
 export default App;
-
-
 
 interface MultiplicationRowProps {
   factor: number;
