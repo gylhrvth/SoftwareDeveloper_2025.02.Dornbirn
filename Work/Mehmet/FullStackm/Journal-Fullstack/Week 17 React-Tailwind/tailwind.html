@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="../../../MekStyle.css">
+</head>
+
+<body>
+     <button id="mode-toggle">Light Mode</button>
+
+    <h1>Node JS Notizen</h1>
+     <p id="date"><strong>11.06.2025</strong></p>
+    <ol id="Inhalt">
+  <li>Was ist das Problem mit Plain CSS?</li>
+  <li>Welche Lösungen bietet Tailwind CSS?</li>
+  <li>Was sind die Voraussetzungen, dass ich Tailwind CSS in meinem Projekt verwenden kann?</li>
+  <li>Wie installiere ich tailwind CSS, in einem Vite, React, Typescript Projekt?</li>
+  <li>Was sind die wichtigste class Namen?</li>
+  <li>Wie kann ich meine eigenen Brand-Farben/Schrift verwenden?</li>
+    </ol>
+
+<!-- FRAGE 1 -->
+<section>
+  <h2>1. Was ist das Problem mit Plain CSS?</h2>
+
+  <p><strong>Ausführliche Erklärung:</strong><br />
+  Plain CSS (also klassisches CSS) ist simpel und direkt, aber gerade bei größeren Projekten entstehen schnell Probleme:</p>
+
+  <ul>
+    <li><strong>Globale Styles:</strong> CSS-Klassen und IDs sind global. Wenn du z.B. <code>.button</code> definierst, wirkt das überall, wo <code>.button</code> benutzt wird. Das führt oft zu unbeabsichtigten Überschreibungen, wenn verschiedene Entwickler oder Komponenten dieselben Klassennamen verwenden.</li>
+    <li><strong>Namenskonflikte:</strong> Es kann schwer werden, Namenskonflikte zu vermeiden oder zu debuggen, besonders wenn mehrere CSS-Dateien oder Frameworks zusammenkommen.</li>
+    <li><strong>Wiederverwendung:</strong> Du musst oft sehr viele Klassen schreiben und pflegen, um ähnliche Elemente unterschiedlich zu stylen.</li>
+    <li><strong>Komplexe Selektoren:</strong> Um spezifischere Styles zu definieren, werden oft verschachtelte oder sehr lange Selektoren verwendet. Das macht den Code schwer wartbar.</li>
+    <li><strong>Fehlende Konsistenz:</strong> Ohne ein zentrales Design-System können Farben, Abstände und Schriftgrößen inkonsistent werden.</li>
+  </ul>
+
+  <h3>Beispiel für das Problem: globale Namenskonflikte</h3>
+
+  <pre><code>/* styles.css */
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+  </code></pre>
+
+  <pre><code>&lt;!-- index.html --&gt;
+&lt;button class="button"&gt;Speichern&lt;/button&gt;
+  </code></pre>
+
+  <p>Angenommen, du arbeitest an einem anderen Teil der Seite und möchtest einen anderen Button-Stil, definierst aber ebenfalls <code>.button</code>:</p>
+
+  <pre><code>/* andere-styles.css */
+.button {
+  background-color: red;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 0;
+}
+  </code></pre>
+
+  <p>Nun hast du zwei verschiedene <code>.button</code>-Definitionen, die sich gegenseitig überschreiben — abhängig davon, welche CSS-Datei zuletzt geladen wird. Das führt zu unerwartetem Styling und Bugfixing-Aufwand.</p>
+
+  <h3>Warum ist das problematisch?</h3>
+
+  <ul>
+    <li>Du kannst nicht sicher sein, welche <code>.button</code>-Definition gerade greift.</li>
+    <li>Änderungen an <code>.button</code> können unbeabsichtigte Auswirkungen auf andere Teile der Seite haben.</li>
+    <li>Skalierbarkeit leidet stark, wenn das Projekt wächst.</li>
+  </ul>
+
+  <p><strong>Fazit:</strong> Plain CSS kann bei kleinen Projekten gut funktionieren, aber bei großen oder langfristigen Projekten wird es schwer, Styles modular, konsistent und wartbar zu halten.</p>
+</section>
+
+<!-- FRAGE "2"     -->
+<section>
+  <h2>2. Welche Lösungen bietet Tailwind CSS?</h2>
+
+  <p><strong>Ausführliche Erklärung:</strong><br>
+    Tailwind CSS ist ein <em>Utility-First CSS-Framework</em>. Anstatt eigene CSS-Klassen für jeden Button oder jede Komponente zu schreiben, nutzt man viele kleine Klassen direkt im HTML. Diese sogenannten Utility-Klassen lassen sich flexibel kombinieren und bieten viele Vorteile:
+  </p>
+
+  <ul>
+    <li><strong>Kein globales Styling:</strong> Klassen wie <code>bg-blue-500</code> oder <code>p-4</code> gelten nur lokal – es gibt keine ungewollten Überschreibungen.</li>
+    <li><strong>Schnelle Entwicklung:</strong> Styles werden direkt im HTML definiert, ohne dass separate CSS-Dateien notwendig sind.</li>
+    <li><strong>Hohe Wiederverwendbarkeit & Konsistenz:</strong> Einheitliche Utility-Klassen machen das Design konsistent und leicht wartbar.</li>
+    <li><strong>Einfache zentrale Anpassung:</strong> Im <code>tailwind.config.js</code> kannst du Farben, Abstände, Schriftarten etc. projektweit definieren.</li>
+    <li><strong>Responsive & State-Varianten:</strong> Tailwind unterstützt Klassen wie <code>md:</code>, <code>hover:</code> oder <code>focus:</code> direkt – ganz ohne eigene Media Queries.</li>
+  </ul>
+
+  <h3>Beispiel:</h3>
+  <pre><code>&lt;button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"&gt;
+  Speichern
+&lt;/button&gt;</code></pre>
+
+  <p>
+    <strong>Was passiert hier?</strong><br>
+    <code>bg-blue-500</code>: mittleres Blau als Hintergrund<br>
+    <code>hover:bg-blue-700</code>: dunkleres Blau beim Hover<br>
+    <code>text-white</code>: weißer Text<br>
+    <code>font-bold</code>: fette Schrift<br>
+    <code>py-2 px-4</code>: vertikale und horizontale Polsterung<br>
+    <code>rounded</code>: abgerundete Ecken
+  </p>
+
+  <h3>💡 Technischer Hinweis:</h3>
+  <p>
+    Tailwind erstellt beim Build-Prozess (z. B. mit Vite oder webpack) eine optimierte CSS-Datei, die nur die Klassen enthält, die du im Projekt benutzt hast. Dieses Tree-Shaking spart Ladezeit und Speicher.
+  </p>
+  <p>
+    Diese generierte Datei wird wie jede andere CSS-Datei im HTML eingebunden. Wenn du Tailwind nicht mehr verwenden willst, kannst du sie einfach entfernen.
+  </p>
+  <p>
+    Außerdem kannst du jederzeit zusätzlich eigenes CSS einbinden – Tailwind blockiert das nicht.
+  </p>
+</section>
+
+
+<!-- FRAGE "3" -->
+<section>
+  <h2>3. Was sind die Voraussetzungen, dass ich Tailwind CSS in meinem Projekt verwenden kann?</h2>
+  <ol>
+    <li>
+      <strong>Node.js und npm müssen installiert sein</strong><br>
+      Tailwind wird über npm installiert, daher brauchst du eine funktionierende Node-Umgebung.<br>
+      <code>node -v</code> und <code>npm -v</code> prüfen, ob alles funktioniert.
+    </li>
+    <li>
+      <strong>Ein Build-Tool wie Vite, Webpack, Parcel oder Next.js</strong><br>
+      Tailwind funktioniert am besten mit modernen Build-Tools, um unnötige Klassen zu entfernen (Tree-shaking).
+    </li>
+    <li>
+      <strong>Tailwind-Konfiguration über <code>tailwind.config.js</code></strong><br>
+      Diese Datei wird mit <code>npx tailwindcss init</code> erzeugt und bestimmt, welche Dateien Tailwind scannt und wie du dein Design anpassen kannst.
+    </li>
+    <li>
+      <strong>Tailwind muss in deine Haupt-CSS-Datei eingebunden werden</strong><br>
+      Dazu verwendest du folgende Direktiven:<br>
+      <pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+    </li>
+    <li>
+      <strong>Korrekte Content-Pfade im Tailwind-Config</strong><br>
+      Damit Tailwind weiß, welche Dateien es scannen soll:<br>
+      <pre><code>content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"]</code></pre>
+    </li>
+  </ol>
+
+  <p><strong>Bonus:</strong> Tailwind funktioniert mit HTML, React, Vue, Angular, Svelte, Laravel, usw. – du brauchst kein spezielles Framework.</p>
+
+  <p><strong>Fazit:</strong> Du brauchst:
+    Node.js, ein Build-Tool, Tailwind-Installation, eine Tailwind-CSS-Datei und eine gültige Konfiguration.
+  </p>
+</section>
+
+
+<!-- FRAGE "4" -->
+
+<section>
+  <h2>4. Wie installiere ich tailwind CSS, in einem Vite, React, Typescript Projekt?</h2>
+    <p>
+      <strong>Ziel:</strong> Tailwind CSS mit Vite als Plugin integrieren – moderner, einfacher, keine separate <code>tailwind.config.js</code> oder CLI nötig. Alles funktioniert "zero-runtime" direkt im Buildprozess.
+    </p>
+
+    <h3>🛠️ Projekt erstellen</h3>
+    <pre><code>npm create vite@latest mein-projekt -- --template react-ts
+cd mein-projekt
+npm install</code></pre>
+    <p>
+      <strong>Erklärung:</strong><br>
+      <code>--template react-ts</code> erstellt ein React-Projekt mit TypeScript.<br>
+      <code>cd mein-projekt</code> wechselt ins Projektverzeichnis.<br>
+      <code>npm install</code> installiert alle Abhängigkeiten.
+    </p>
+
+    <h3>🎯 Tailwind + Plugin installieren</h3>
+    <pre><code>npm install -D tailwindcss postcss autoprefixer @tailwindcss/vite</code></pre>
+    <p>
+      <strong>Erklärung:</strong><br>
+      <code>@tailwindcss/vite</code> ist das Plugin, das Tailwind nahtlos in Vite einbindet.<br>
+      <code>-D</code> installiert es als Dev-Abhängigkeit.
+    </p>
+
+    <h3>🧠 Vite konfigurieren (vite.config.ts)</h3>
+    <pre><code>import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})</code></pre>
+    <p>
+      <strong>Erklärung:</strong><br>
+      <code>react()</code> bleibt bestehen, weil du ein React-Projekt nutzt.<br>
+      <code>tailwindcss()</code> integriert das Plugin direkt.
+    </p>
+
+    <h3>🎨 Tailwind in CSS einfügen</h3>
+    <p><code>src/index.css</code>:</p>
+    <pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+    <p>
+      <strong>Dann in</strong> <code>src/main.tsx</code>:
+    </p>
+    <pre><code>import './index.css';</code></pre>
+
+    <h3>✅ Test-Komponente erstellen (App.tsx)</h3>
+    <pre><code>export default function App() {
+  return (
+    &lt;div className="min-h-screen bg-gray-100 flex items-center justify-center"&gt;
+      &lt;button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"&gt;
+        Hallo Tailwind!
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+    <p>
+      <strong>Erklärung:</strong><br>
+      Nutzt direkt Tailwind-Klassen zum Layouten, Zentrieren und Stylen.<br>
+      Keine einzige Zeile klassisches CSS notwendig.
+    </p>
+
+    <h3>🚀 Projekt starten</h3>
+    <pre><code>npm run dev</code></pre>
+    <p>Der Browser öffnet sich → du solltest den zentrierten Button sehen.</p>
+
+    <h3>📁 Projektstruktur danach</h3>
+    <pre><code>mein-projekt/
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── src/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css</code></pre>
+
+    <h3>🧾 Fazit</h3>
+    <ul>
+      <li>🔧 Kein manuelles <code>npx tailwindcss init</code> nötig.</li>
+      <li>🧠 Kein <code>tailwind.config.js</code>, außer bei Custom-Themes.</li>
+      <li>⚡ Vite + Tailwind Plugin = ultraschneller Build.</li>
+      <li>🎨 Styling läuft komplett über Utility-Klassen – kein Overhead.</li>
+    </ul>
+  </section>
+
+<!-- Frage "5" -->
+<section>
+  <h2>5. Wichtigste Tailwind CSS Klassen – Übersicht mit Syntax und Beispielen</h2>
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr>
+        <th>Kategorie</th>
+        <th>Wichtige Klassen</th>
+        <th>Syntax &amp; Bedeutung</th>
+        <th>Beispiel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Layout</td>
+        <td><code>block</code>, <code>inline-block</code>, <code>flex</code>, <code>grid</code>, <code>hidden</code></td>
+        <td>Anzeige- und Layout-Typ (z.B. <code>flex</code> aktiviert Flexbox)</td>
+        <td><code>&lt;div class="flex"&gt;...&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Spacing</td>
+        <td><code>m-4</code>, <code>mt-2</code>, <code>p-6</code>, <code>px-3</code></td>
+        <td>Margin (<code>m</code>), Padding (<code>p</code>), mit Richtung (<code>t</code>=top, <code>x</code>=horizontal) und Wert (<code>4</code>=1rem)</td>
+        <td><code>&lt;div class="mt-2 p-4"&gt;Inhalt&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Farben</td>
+        <td><code>bg-blue-500</code>, <code>text-red-600</code></td>
+        <td>Hintergrund (<code>bg-</code>) und Textfarbe (<code>text-</code>) mit Farbpalette (z.B. 500=Mitteltönung)</td>
+        <td><code>&lt;button class="bg-blue-500 text-white"&gt;Click&lt;/button&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Typografie</td>
+        <td><code>text-sm</code>, <code>text-xl</code>, <code>font-bold</code>, <code>italic</code>, <code>uppercase</code></td>
+        <td>Schriftgröße (<code>text-</code>), Gewicht (<code>font-</code>), Stil</td>
+        <td><code>&lt;p class="text-lg font-bold italic"&gt;Text&lt;/p&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Position</td>
+        <td><code>relative</code>, <code>absolute</code>, <code>top-0</code>, <code>left-4</code></td>
+        <td>Positionierungsart + Abstand</td>
+        <td><code>&lt;div class="absolute top-0 left-4"&gt;Positioniert&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Größe</td>
+        <td><code>w-full</code>, <code>h-10</code>, <code>max-w-md</code></td>
+        <td>Breite (<code>w-</code>), Höhe (<code>h-</code>), max-Breite</td>
+        <td><code>&lt;img class="w-full h-40" src="bild.jpg" /&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Border</td>
+        <td><code>border</code>, <code>border-2</code>, <code>border-red-500</code>, <code>rounded-lg</code></td>
+        <td>Rahmenbreite, Farbe, Radius</td>
+        <td><code>&lt;div class="border-2 border-red-500 rounded-lg"&gt;Box&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Schatten</td>
+        <td><code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code></td>
+        <td>Box-Shadow Intensität</td>
+        <td><code>&lt;div class="shadow-lg p-4"&gt;Schattierte Box&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Zustände</td>
+        <td><code>hover:bg-blue-700</code>, <code>focus:outline-none</code>, <code>active:opacity-75</code></td>
+        <td>Pseudoklassen: Hover, Fokus, Aktiv</td>
+        <td><code>&lt;button class="hover:bg-blue-700 focus:outline-none"&gt;Button&lt;/button&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Flexbox</td>
+        <td><code>flex</code>, <code>items-center</code>, <code>justify-between</code></td>
+        <td>Flexbox-Anordnung: Container und Ausrichtung</td>
+        <td><code>&lt;div class="flex items-center justify-between"&gt;...&lt;/div&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Transition</td>
+        <td><code>transition</code>, <code>duration-300</code>, <code>ease-in-out</code></td>
+        <td>Übergangsanimationen mit Dauer und Timing-Funktion</td>
+        <td><code>&lt;button class="transition duration-300 ease-in-out"&gt;Animiert&lt;/button&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Beispiel Button mit Erklärungen:</h3>
+  <pre><code>&lt;button class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow-md transition duration-200"&gt;
+  Speichern
+&lt;/button&gt;
+</code></pre>
+
+  <ul>
+    <li><code>bg-green-500</code>: grüner Hintergrund (mittel)</li>
+    <li><code>hover:bg-green-700</code>: dunkleres Grün beim Hover</li>
+    <li><code>text-white</code>: weißer Text</li>
+    <li><code>font-semibold</code>: halbfett</li>
+    <li><code>py-2 px-6</code>: vertikales Padding 0.5rem, horizontales Padding 1.5rem</li>
+    <li><code>rounded</code>: abgerundete Ecken (Standardradius)</li>
+    <li><code>shadow-md</code>: mittlerer Schatten</li>
+    <li><code>transition duration-200</code>: Übergangseffekt über 200ms</li>
+  </ul>
+</section>
+
+
+<!-- Frage "6" -->
+<section>
+  <h2>6. Wie kann ich meine eigenen Brand-Farben und Schriftarten in Tailwind CSS verwenden?</h2>
+
+  <h3>🧠 Was du erreichen willst – kurzgefasst:</h3>
+  <ul>
+    <li>🎨 Eigene Farben, z. B. --color-green für Branding</li>
+    <li>🔠 Eigene Schriftarten, z. B. --font-serif wie "Roboto Slab"</li>
+    <li>🧱 Wiederverwendbare Komponenten, z. B. .card mit @apply</li>
+    <li>💻 Globale Typografie-Stile, einheitliche h1–h6 mit @layer base</li>
+    <li>⚡ Tailwind verwenden ohne tailwind.config.js, nur mit index.css + Klassen</li>
+  </ul>
+
+  <h3>🔍 Was ist @layer in Tailwind CSS?</h3>
+  <p>Tailwind gruppiert CSS in Layer, um Reihenfolge & Priorität zu steuern:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Zweck</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@layer base</td>
+        <td>✨ Basiselemente wie body, h1, p usw. überschreiben oder erweitern</td>
+      </tr>
+      <tr>
+        <td>@layer components</td>
+        <td>🧱 Wiederverwendbare UI-Bausteine wie .card, .btn, etc.</td>
+      </tr>
+      <tr>
+        <td>@layer utilities</td>
+        <td>🧩 Kleine Hilfsklassen, z. B. .text-center, .m-2, usw.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>📁 Struktur: src/index.css</h3>
+  <pre><code>
+:root {
+  --font-serif: 'Roboto Slab', serif;
+  --color-green: #3fa535;
+  --color-darkgreen: #029540;
+  --color-branda: #0fff87;
+  --color-secondary: #33C1FF;
+
+  --text-2xl: 1.5rem;
+  --text-4xl: 2.25rem;
+  --text-6xl: 3.75rem;
+
+  --font-weight-light: 300;
+}
+  </code></pre>
+
+  <h3>✍️ @layer base – globale Typografie</h3>
+  <pre><code>
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-light);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+  }
+
+  h5 {
+    font-size: var(--text-2xl);
+  }
+}
+  </code></pre>
+
+  <h3>✔ Effekt</h3>
+  <p>Alle Überschriften sind automatisch großgeschrieben, zentriert, in der gewünschten Größe und mit deiner eigenen Schrift.</p>
+
+  <h3>🧱 @layer components – eigene Klassen definieren</h3>
+  <pre><code>
+@layer components {
+  .card {
+    @apply text-white text-center;
+    background-color: var(--color-green);
+    padding: 1rem;
+
+    &:hover {
+      background-color: var(--color-darkgreen);
+    }
+  }
+
+  .card h2 {
+    font-size: var(--text-4xl);
+  }
+}
+  </code></pre>
+
+  <h3>✔ Effekt</h3>
+  <p>.card ist eine komplette Box mit Farbe, Padding und Textstil. Hover macht sie dunkler. @apply erlaubt Tailwind-Klassen in eigener Klasse. Farben via CSS-Variablen bleiben zentral konfigurierbar.</p>
+
+  <h3>⚙️ Integration in main.tsx oder main.jsx</h3>
+  <pre><code>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+);
+  </code></pre>
+
+  <h3>💡 Anwendung in App.tsx</h3>
+  <pre><code>
+export default function App() {
+  return (
+    &lt;div className="min-h-screen bg-[var(--color-branda)] font-[var(--font-serif)] p-4"&gt;
+      &lt;h1 className="text-6xl mb-4 text-[var(--color-darkgreen)]"&gt;Meine grüne Website&lt;/h1&gt;
+
+      &lt;div className="card rounded shadow-md"&gt;
+        &lt;h2&gt;Hallo Welt&lt;/h2&gt;
+        &lt;p&gt;Dies ist eine custom card mit Tailwind + CSS-Variablen.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+  </code></pre>
+
+  <h3>🧼 Wichtiges Tailwind-Verhalten</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Sache</th>
+        <th>Erklärung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@apply</td>
+        <td>Kann nur Tailwind-Klassen anwenden, keine Variablen</td>
+      </tr>
+      <tr>
+        <td>var(--xyz)</td>
+        <td>Verwende für alles, was nicht als Utility existiert (Farben, Textgrößen etc.)</td>
+      </tr>
+      <tr>
+        <td>font-[...]</td>
+        <td>Funktioniert mit CSS-Variablen in Tailwind ab v3</td>
+      </tr>
+      <tr>
+        <td>bg-[var(...)]</td>
+        <td>Dynamisches Einfügen von Custom-Farben möglich</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>✅ Zusammenfassung – deine "Tailwind + Branding"-Strategie</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Teil</th>
+        <th>Funktion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>:root</td>
+        <td>Definiert globale Branding-Variablen</td>
+      </tr>
+      <tr>
+        <td>@layer base</td>
+        <td>Steuert globale HTML-Basiselemente wie h1</td>
+      </tr>
+      <tr>
+        <td>@layer components</td>
+        <td>Deine eigenen wiederverwendbaren Bausteine</td>
+      </tr>
+      <tr>
+        <td>Tailwind Klassen wie bg-[var(...)]</td>
+        <td>Ermöglichen Verwendung deiner eigenen Farben dynamisch</td>
+      </tr>
+      <tr>
+        <td>Kein tailwind.config.js nötig</td>
+        <td>Alles über CSS gesteuert = weniger Setup</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+<script>
+    const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    
+  </script>  
+</body>
+</html>
