@@ -53,16 +53,39 @@ const NavigationButton: FC<NavigationButtonProps> = ({ onClick, direction, class
 const SlideIndicator: FC<SlideIndicatorProps> = ({ isActive, onClick }) => (
     <button
         onClick={onClick}
-        className={`h-2 w-12 cursor-pointer transition-colors duration-300 ${
+        className={`h-2 w-12 cursor-pointer transition-colors duration-700 ${
             isActive ? 'bg-white' : 'bg-stone-500'
         }`}
     />
+);
+
+const SlideContent: FC<Slide> = ({ image, title, description, isActive }) => (
+    <div
+        className={`
+                h-full w-full flex-shrink-0 absolute
+                transition-opacity duration-600
+                ${isActive ? 'opacity-100' : 'opacity-0 delay-50'}
+            `}
+        style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+        }}
+    >
+        <div className="flex h-full items-center justify-center bg-black/40">
+            <div className="text-center text-white">
+                <h1 className="mb-4 text-5xl font-bold">{title}</h1>
+                <p className="text-xl">{description}</p>
+            </div>
+        </div>
+    </div>
 );
 
 const HeroBanner: FC = () => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
 
+    // autoplay effect
     useEffect(() => {
         if (!isAutoPlaying) return;
 
@@ -94,38 +117,17 @@ const HeroBanner: FC = () => {
         setIsAutoPlaying(false);
     };
 
-    const SlideContent: FC<Slide> = ({ image, title, description, isActive }) => (
-        <div
-            className={`
-                h-full w-full flex-shrink-0 absolute
-                transition-all duration-700
-                ${isActive ? 'opacity-100' : 'opacity-0'}
-            `}
-            style={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-            }}
-        >
-            <div className="flex h-full items-center justify-center bg-black/40">
-                <div className="text-center text-white">
-                    <h1 className="mb-4 text-5xl font-bold">{title}</h1>
-                    <p className="text-xl">{description}</p>
-                </div>
-            </div>
-        </div>
-    );
-
     return (
         <div className="relative h-[480px] w-full overflow-hidden">
             {/* Slides Container */}
-            <div
-                className="h-full w-full"
-            >
+            <div className="h-full w-full">
+                {/* Slides */}
                 <div className="absolute flex h-full w-full">
                     {slides.map((slide, index) => (
-                        <SlideContent key={index} {...slide}
-                                      isActive={currentSlide === index} />
+                        <SlideContent
+                            key={index}
+                            {...slide}
+                            isActive={currentSlide === index} />
                     ))}
                 </div>
             </div>
