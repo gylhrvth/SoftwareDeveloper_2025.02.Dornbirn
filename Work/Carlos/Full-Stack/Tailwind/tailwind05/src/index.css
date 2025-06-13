@@ -5,6 +5,7 @@
     --font-serif: 'Roboto Slab';
     --color-green: #3fa535;
     --color-darkgreen: #029540;
+    
 }
 
 @layer base {
@@ -28,4 +29,22 @@
 
 @layer components {
 
+}
+
+/* Custom green scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #e5fbe5;
+}
+::-webkit-scrollbar-thumb {
+  background: #16a34a; /* Tailwind green-600 */
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d; /* Tailwind green-700 */
+}
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #16a34a #e5fbe5;
 }

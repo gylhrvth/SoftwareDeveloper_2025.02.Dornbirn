@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FaBars, FaSearch, FaSlidersH, FaPalette, FaCalculator, FaCopy } from "react-icons/fa";
-
+import { BiWorld } from "react-icons/bi";
 function TopBar() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -17,7 +17,7 @@ function TopBar() {
   }, []);
 
   return (
-    <div className="bg-gray-100 h-20 py-2 flex items-center justify-around px-4 text-l text-gray-400 shadow-sm flex-1">
+    <div className="bg-neutral-100 h-20 py-2 flex items-center justify-around px-4 text-l text-neutral-400 flex-1">
       {/* Language Dropdown */}
       <div className="flex items-center gap-4">
         <div className="relative" ref={dropdownRef}>
@@ -27,6 +27,7 @@ function TopBar() {
             aria-haspopup="true"
             aria-expanded={open}
           >
+            <BiWorld className="text-green-600 text-xl" />
             DE / <strong>DE</strong>
             <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
           </button>
@@ -43,18 +44,18 @@ function TopBar() {
         </div>
       </div>
       {/* Quick Links */}
-      <div className="hidden md:flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-6 font-light">
         <a href="" className="flex items-center gap-1 hover:underline">
-          <FaSlidersH className="text-green-700" /> Konfiguratoren
+          <FaSlidersH className="text-green-600" /> Konfiguratoren
         </a>
         <a href="" className="flex items-center gap-1 hover:underline">
-          <FaPalette className="text-green-700" /> Farbmusterbestellung
+          <FaPalette className="text-green-600" /> Farbmusterbestellung
         </a>
         <a href="" className="flex items-center gap-1 hover:underline">
-          <FaCalculator className="text-green-700" /> Verbrauchsrechner
+          <FaCalculator className="text-green-600" /> Verbrauchsrechner
         </a>
         <a href="" className="flex items-center gap-1 hover:underline">
-          <FaCopy className="text-green-700" /> Mediathek
+          <FaCopy className="text-green-600" /> Mediathek
         </a>
       </div>
     </div>
@@ -63,7 +64,7 @@ function TopBar() {
 
 function MainNav() {
   return (
-    <nav className="h-24 flex items-center justify-center px-4 shadow-lg text-gray-400 flex-3 rounded-b-md">
+    <nav className="h-24 flex items-center justify-center px-4 shadow-lg text-gray-500 flex-3 font-light">
       {/* Mobile Hamburger */}
       <button className="block xl:hidden mr-4 text-2xl">
         <FaBars />
@@ -103,7 +104,7 @@ function NavItem({ children }: { children: React.ReactNode }) {
 
 function Logo() {
   return (
-    <div className="flex flex-col items-center justify-center px-6 h-[11rem] md:h-[12rem] min-w-[200px]">
+    <div className="flex flex-col items-center justify-center px-6 h-[11rem] md:h-[12rem] min-w-[200px] shadow-lg">
       <a href="/" className="flex items-center h-full">
         <img src="/logo-osmo.png" alt="Logo Osmo" className="h-18" />
       </a>
