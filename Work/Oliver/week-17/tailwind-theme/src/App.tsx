@@ -1,4 +1,4 @@
-import { JSX } from "react"
+import type { JSX } from "react"
 import { Files, Palette } from "lucide-react";
 import HeroBanner from "./components/HeroBanner";
 
