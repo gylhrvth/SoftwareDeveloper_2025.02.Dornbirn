@@ -18,83 +18,42 @@ function MainHeading() {
 
 function MainDescription() {
   return (
-  <CatalogLinks />
+    <CatalogLinks />
   );
 }
 
+function CatalogLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="text-green-600 underline hover:text-green-800"
+    >
+      {children}
+    </a>
+  );
+}
+
+// Usage in CatalogLinks:
 function CatalogLinks() {
   return (
     <div className="w-full">
       <p className="text-center">
         <strong>
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            NEU: Kanadische Hölzer für Fassaden
-          </a>
-          &nbsp;|&nbsp;
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Thermoholz Fichte für Fassade und Terrassendielen
-          </a>
-          &nbsp;|&nbsp;
+          <CatalogLink href="">NEU: Kanadische Hölzer für Fassaden</CatalogLink>{" | "}
+          <CatalogLink href="">Thermoholz Fichte für Fassade und Terrassendielen</CatalogLink>{" | "}
         </strong>
         <br />
         <strong>
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Terrassen
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Sichtblenden
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Fassaden
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Innenholz
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Fussboden
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Leisten
-          </a>{" "}
-          |{" "}
-          <a
-            href=""
-            className="text-green-800 underline hover:text-green-600"
-          >
-            Leimholz
-          </a>
+          <CatalogLink href="">Terrassen</CatalogLink> |{" "}
+          <CatalogLink href="">Sichtblenden</CatalogLink> |{" "}
+          <CatalogLink href="">Fassaden</CatalogLink> |{" "}
+          <CatalogLink href="">Innenholz</CatalogLink> |{" "}
+          <CatalogLink href="">Fussboden</CatalogLink> |{" "}
+          <CatalogLink href="">Leisten</CatalogLink> |{" "}
+          <CatalogLink href="">Leimholz</CatalogLink>
         </strong>
       </p>
-      <div className="flex flex-wrap mt-4">{/* You can add more content here if needed */}</div>
+      <div className="flex flex-wrap mt-4">{/* ... */}</div>
     </div>
   );
 }
@@ -114,7 +73,7 @@ function MainImage() {
   const goTo = (i: number) => setIndex(i);
 
   return (
-    <div className="mt-12 w-[80vw] mx-auto overflow-hidden relative" style={{ height: 450 }}>
+    <div className="mt-12 w-full mx-auto overflow-hidden relative" style={{ height: 650 }}>
       {/* Carousel */}
       <div
         className="flex transition-transform duration-700"
@@ -171,90 +130,86 @@ function MainImage() {
 export function KompetenzenSection() {
   return (
     <section className="py-8 md:py-16 bg-white">
-      <h1 className="uppercase text-center text-3xl md:text-4xl font-bold mb-6">
+      <h1 className="uppercase text-center text-3xl md:text-6xl mb-6 text-neutral-500">
         <span>Holz trifft Farbe</span>
       </h1>
       <div className="container mx-auto text-center mb-8 px-4">
         <p>
-          <span className="uppercase block font-semibold mb-2">
+          <span className="uppercase block font-light mb-2 text-neutral-500">
             Für eine Verbindung, die auf dauer hält und schützt.
+            Auf Holz und Farbe von Osmo können Sie sich verlassen. Dank tiefgreifender Fachkompetenz in beiden Bereichen wissen wir, worauf es bei Holzprodukten und -anstrichen ankommt. Profitieren Sie von unserer Erfahrung.
           </span>
-          Auf Holz und Farbe von Osmo können Sie sich verlassen. Dank tiefgreifender Fachkompetenz in beiden Bereichen wissen wir, worauf es bei Holzprodukten und -anstrichen ankommt. Profitieren Sie von unserer Erfahrung.
         </p>
       </div>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+        <div className="flex flex-col md:flex-row gap-8 ">
           {/* Holz */}
-          <div className="flex-1 text-center bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center">
-            <a href="/" className="flex flex-col items-center mb-4">
-              <img src="/fileadmin/template/website/img/icons/icon-holz.svg" alt="Holz" className="w-16 h-16 mb-2" />
-              <span className="uppercase text-xl font-bold">Holz</span>
-            </a>
-            <div className="mb-4">
-              <p>
-                <span className="uppercase font-semibold">Holz, das hält.</span>
-                <br />
-                In 100 Jahren wächst ein Baum zu einer soliden Qualität heran. In über 100 Jahren Firmengeschichte sammelte Osmo Erfahrungen zur fachgerechten Verarbeitung des wertvollen Rohstoffes Holz.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 w-full">
-              <a href="/holz/holz-innen" className="btn btn-default uppercase holz_innen w-full">
-                Für den Innenbereich
+          <div className="flex-1 relative text-center bg-gray-50 text-white rounded-lg shadow p-6 flex flex-col items-center w-full h-full overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+            {/* Background image */}
+            <img
+              src="/holz.jpg"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-black/40 z-0"></div>
+            {/* Content above the image */}
+            <div className="relative z-10 flex flex-col items-center w-full">
+              <a href="/" className="flex flex-row items-center mb-4 gap-6">
+                <img src="https://www.osmo.de/fileadmin/template/website/img/icons/icon-holz.svg" alt="Holz" className="w-10 h-16" />
+                <span className="uppercase text-4xl underline decoration-dotted">Holz</span>
               </a>
-              <a href="/holz/holz-fuer-den-aussenbereich" className="btn btn-default uppercase holz_aussen w-full">
-                Für den Aussenbereich
-              </a>
+              <div className="mb-4 max-h-24 overflow-y-auto">
+                <p>
+                  <span className="uppercase font-light">Holz, das hält. </span>
+                  In 100 Jahren wächst ein Baum zu einer soliden Qualität heran. In über 100 Jahren Firmengeschichte sammelte Osmo Erfahrungen zur fachgerechten Verarbeitung des wertvollen Rohstoffes Holz.
+                </p>
+              </div>
+              <div className="flex md:flex-row flex-col gap-2 w-full">
+                <a href="" className="btn btn-default uppercase holz_innen w-full bg-green-50 text-neutral-500 font-extralight p-2">
+                  Für den Innenbereich
+                </a>
+                <a href="" className="btn btn-default uppercase holz_innen w-full bg-green-50 text-neutral-500 font-extralight p-2">
+                  Für den Aussenbereich
+                </a>
+              </div>
             </div>
-            <picture className="mt-6 block">
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_15aeacebec.jpg" media="(min-width: 1200px)" />
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_57a080604e.jpg" media="(min-width: 992px)" />
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_3f3fb6e6b4.jpg" media="(min-width: 768px)" />
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_022be11ed7.jpg" media="(max-width: 767px)" />
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_5615478ed4.jpg" media="(max-width: 567px)" />
-              <source srcSet="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_1604872199.jpg" media="(max-width: 480px)" />
-              <img
-                src="/fileadmin/_processed_/9/c/csm_square-osmo-kompetenzen-holz_15aeacebec.jpg"
-                alt="Osmo Holzprodukte - Qualität für innen und außen"
-                className="img-fluid rounded-lg shadow mt-2"
-                loading="lazy"
-              />
-            </picture>
           </div>
           {/* Farbe */}
-          <div className="flex-1 text-center bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center">
-            <a href="/" className="flex flex-col items-center mb-4">
-              <img src="/fileadmin/template/website/img/icons/icon-farbe.svg" alt="Farbe" className="w-16 h-16 mb-2" />
-              <span className="uppercase text-xl font-bold">Farbe</span>
-            </a>
-            <div className="mb-4">
-              <p>
-                <span className="uppercase font-semibold">Farbe, die schützt.</span>
-                <br />
-                Nur ein atmungsaktiver Anstrich erhält auf Dauer die natürliche Schönheit und Festigkeit von Holz. Osmo gehört zu den Wegbereitern moderner Holzanstriche auf der Basis von Ölen und Wachsen.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 w-full">
-              <a href="/farbe/farbe-fuer-den-innenbereich" className="btn btn-default uppercase farbe_innen w-full">
-                Für den Innenbereich
+          <div className="flex-1 relative text-center bg-gray-50 text-white rounded-lg shadow p-6 flex flex-col items-center w-full h-full overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+            {/* Background image */}
+            <img
+              src="/farbe.webp"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-black/40 z-0"></div>
+            {/* Content above the image */}
+            <div className="relative z-10 flex flex-col items-center w-full">
+              <a href="/" className="flex flex-row items-center mb-4 gap-6">
+                <img
+                  src="https://www.osmo.de/fileadmin/template/website/img/icons/icon-farbe.svg"
+                  alt="Farbe"
+                  className="w-10 h-16"
+                />
+                <span className="uppercase text-4xl underline decoration-dotted">Farbe</span>
               </a>
-              <a href="/farbe/farbe-fuer-den-aussenbereich" className="btn btn-default uppercase farbe_aussen w-full">
-                Für den Aussenbereich
-              </a>
+              <div className="mb-4 max-h-24 overflow-y-auto">
+                <p>
+                  <span className="uppercase font-light">Farbe, die schützt. </span>
+                  Nur ein atmungsaktiver Anstrich erhält auf Dauer die natürliche Schönheit und Festigkeit von Holz. Osmo gehört zu den Wegbereitern moderner Holzanstriche auf der Basis von Ölen und Wachsen.
+                </p>
+              </div>
+              <div className="flex md:flex-row flex-col gap-2 w-full">
+                <a href="" className="btn btn-default uppercase holz_innen w-full bg-yellow-50 text-neutral-500 font-extralight p-2">
+                  Für den Innenbereich
+                </a>
+                <a href="" className="btn btn-default uppercase holz_innen w-full bg-green-100 text-neutral-500 font-extralight p-2">
+                  Für den Aussenbereich
+                </a>
+              </div>
             </div>
-            <picture className="mt-6 block">
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_63841632c0.jpg" media="(min-width: 1200px)" />
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_c22474a2f7.jpg" media="(min-width: 992px)" />
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_20690398ea.jpg" media="(min-width: 768px)" />
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_7318d53a12.jpg" media="(max-width: 767px)" />
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_2e91b31e75.jpg" media="(max-width: 567px)" />
-              <source srcSet="/fileadmin/_processed_/2/9/csm_square-osmo-kompetenzen-farbe_06659dad79.jpg" media="(max-width: 480px)" />
-              <img
-                src="/fileadmin/media/img/startseite/kompetenzen/square-osmo-kompetenzen-farbe.jpg"
-                alt="Osmo Farbe - Anstriche für innen und außen"
-                className="img-fluid rounded-lg shadow mt-2"
-                loading="lazy"
-              />
-            </picture>
           </div>
         </div>
       </div>
@@ -264,13 +219,13 @@ export function KompetenzenSection() {
 
 export default function MainContent() {
   return (
-    <main className="flex-1 bg-gradient-to-br from-white via-gray-100 to-gray-200 flex flex-col items-center justify-center p-8">
+    <main className="flex-1 bg-gradient-to-br flex flex-col items-center justify-center p-8">
       <div className="max-w-4xl w-full text-center py-16">
         <MainHeading />
         <MainDescription />
-     
       </div>
-         <MainImage />
+      <MainImage />
+      <KompetenzenSection />
     </main>
   );
 }
