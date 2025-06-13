@@ -1,5 +1,6 @@
-import React from 'react';
+
 import logoOsmo from "../assets/images/logo-osmo-neu.png";
+
 
 function Footer() {
 return (
@@ -7,7 +8,7 @@ return (
 
         {/* FOOTERSITEMAP */}
         <div className="container mx-auto px-6 py-6">
-            <div className="flex flex-col lg:flex-row lg:items-start">
+            <div className="flex flex-1/2 lg:flex-row lg:items-center">
                 {/* Address & Contact */}
                 <div className="lg:w-5/12 w-full mb-6 lg:mb-0 space-y-3">
                     <address className="not-italic space-y-1">
@@ -18,6 +19,7 @@ return (
                             Affhüppen Esch 12, D‑48231 Warendorf<br />
                             Postfach 110161, D‑48203 Warendorf
                         </p>
+
                     </address>
                     <div className="flex flex-col space-y-1">
                         <a href="tel:+492581922100" className="flex items-center hover:text-blue-600">
@@ -32,6 +34,14 @@ return (
                             <i className="fas fa-envelope mr-2"></i>
                             Schreiben Sie uns!
                         </a>
+                        <div className='flex flex-1/2 mt-6 gap-1'>
+                            <a href="https://www.youtube.com/user/osmotv" target="_blank">yotuube.emoji<i class="fab fa-youtube"></i></a> 
+                            <a href="https://www.xing.com/pages/osmoholzundcolorgmbh-co-kg" target="_blank">xing.png<i class="fab fa-xing"></i></a>
+                            <a href="https://de.linkedin.com/company/osmo-holz-und-color-gmbh-&-co-kg" target="_blank">linkedin.png<i class="fab fa-linkedin-in"></i></a> 
+                            <a href="https://www.facebook.com/Osmo.de/" target="_blank"><i class="fab fa-facebook-f"></i></a> 
+                            <a href="https://www.instagram.com/osmoholzundcolor/" target="_blank">instagram.ong<i class="fab fa-instagram"></i></a> 
+
+                        </div>
                     </div>
                     <div className="flex space-x-3 mt-4 text-base">
                         <a href="https://www.youtube.com/user/osmotv" target="_blank" rel="noopener noreferrer" className="hover:text-red-600">
@@ -56,19 +66,19 @@ return (
                 <div className="lg:w-7/12 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Column 1 */}
                     <div>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/holz">Osmo Holz</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/holz">{">"}Osmo Holz</a></h3>
                         <ul className="space-y-1 mb-4">
                             <li><a href="/holz/holz-innen" className="hover:text-blue-600">Holz für Innen</a></li>
                             <li><a href="/holz/holz-fuer-den-aussenbereich" className="hover:text-blue-600">Holz für Aussen</a></li>
                         </ul>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/farbe">Osmo Farbe</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/farbe">{">"}Osmo Farbe</a></h3>
                         <ul className="space-y-1 mb-4">
                             <li><a href="/farbe/farbe-fuer-den-innenbereich" className="hover:text-blue-600">Farbe für Innen</a></li>
                             <li><a href="/farbe/farbe-fuer-den-aussenbereich" className="hover:text-blue-600">Farbe für Aussen</a></li>
                             <li><a href="/farbe/zubehoer" className="hover:text-blue-600">Zubehör &amp; Werkzeuge</a></li>
                             <li><a href="/farbe/industrielle-holzbeschichtungen" className="hover:text-blue-600">Für die Industrie</a></li>
                         </ul>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="#">Neue Werkstoffe</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="#">{">"}Neue Werkstoffe</a></h3>
                         <ul className="space-y-1">
                             <li><a href="#" className="hover:text-blue-600">BPC</a></li>
                             <li><a href="#" className="hover:text-blue-600">Aluminium</a></li>
@@ -77,7 +87,7 @@ return (
 
                     {/* Column 2 */}
                     <div>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/mediathek">Technische Infos</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/mediathek">{">"}Technische Infos</a></h3>
                         <ul className="space-y-1 mb-4">
                             <li><a href="/mediathek/montageanleitungen" className="hover:text-blue-600">Montageanleitungen</a></li>
                             <li><a href="/mediathek/produktinformationen" className="hover:text-blue-600">Produktinformationen</a></li>
@@ -90,7 +100,7 @@ return (
                             <li><a href="/service/verbrauchsrechner" className="hover:text-blue-600">Verbrauchsrechner</a></li>
                             <li><a href="/service/farbmusterbestellung" className="hover:text-blue-600">Farbmusterbestellung</a></li>
                         </ul>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/service">Service</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/service">{">"}Service</a></h3>
                         <ul className="space-y-1">
                             <li><a href="#" className="hover:text-blue-600">Ausschreibungstexte</a></li>
                             <li><a href="/service/faqs" className="hover:text-blue-600">FAQs</a></li>
@@ -101,13 +111,13 @@ return (
 
                     {/* Column 3 */}
                     <div>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/ideengeber">Ideengeber</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/ideengeber">{">"}Ideengeber</a></h3>
                         <ul className="space-y-1 mb-4">
                             <li><a href="#" className="hover:text-blue-600">Für Selbermacher</a></li>
                             <li><a href="/ideengeber/pflegetipps" className="hover:text-blue-600">Pflegetipps</a></li>
                             <li><a href="/ideengeber/profi-tipps" className="hover:text-blue-600">Profi-Tipps</a></li>
                         </ul>
-                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/osmo">Osmo</a></h3>
+                        <h3 className="uppercase font-semibold mb-1 text-base"><a href="/osmo">{">"}Osmo</a></h3>
                         <ul className="space-y-1">
                             <li><a href="/osmo/unternehmen" className="hover:text-blue-600">Unternehmen</a></li>
                             <li><a href="/osmo/zertifikate-nachhaltigkeit" className="hover:text-blue-600">Nachhaltigkeit</a></li>
