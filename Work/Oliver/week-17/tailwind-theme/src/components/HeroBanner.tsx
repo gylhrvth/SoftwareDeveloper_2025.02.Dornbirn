@@ -53,7 +53,7 @@ const NavigationButton: FC<NavigationButtonProps> = ({ onClick, direction, class
 const SlideIndicator: FC<SlideIndicatorProps> = ({ isActive, onClick }) => (
     <button
         onClick={onClick}
-        className={`h-2 w-12 cursor-pointer transition-colors duration-700 ${
+        className={`h-2 w-12 cursor-pointer transition-colors duration-300 ${
             isActive ? 'bg-white' : 'bg-stone-500'
         }`}
     />
@@ -64,15 +64,15 @@ const SlideContent: FC<Slide> = ({ image, title, description, isActive }) => (
         className={`
                 h-full w-full flex-shrink-0 absolute
                 transition-opacity duration-600
-                ${isActive ? 'opacity-100' : 'opacity-0 delay-50'}
+                ${isActive ? 'opacity-100' : 'opacity-0 delay-150'}
             `}
         style={{
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundPosition: 'center',
         }}
     >
-        <div className="flex h-full items-center justify-center bg-black/40">
+        <div className="flex h-full items-center justify-center">
             <div className="text-center text-white">
                 <h1 className="mb-4 text-5xl font-bold">{title}</h1>
                 <p className="text-xl">{description}</p>
