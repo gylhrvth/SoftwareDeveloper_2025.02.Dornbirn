@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --font-serif: 'Roboto Slab';
+    --color-green: #3fa535;
+    --color-darkgreen: #029540;
+    
+}
+
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: var(--text-6xl);
+        font-weight: var(--font-weight-light);
+        text-transform: uppercase;
+        text-align: center;
+    }
+    h1 {
+        font-family: var(--font-serif);
+    }
+    h5 {
+        font-size: var(--text-2xl);
+    }
+
+    h6 {
+        font-size: var(--text-xl);
+    }
+}
+
+@layer components {
+
+}
+
+/* Custom green scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #e5fbe5;
+}
+::-webkit-scrollbar-thumb {
+  background: #16a34a; /* Tailwind green-600 */
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d; /* Tailwind green-700 */
+}
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #16a34a #e5fbe5;
+}

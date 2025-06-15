@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Light Theme */
+  --color-bg: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  --color-bg-solid: #f8fafc;
+  --color-text: #22223b;
+  --color-primary: #6366f1;         /* indigo-500 */
+  --color-primary-hover: #4f46e5;   /* indigo-600 */
+  --color-link: #2563eb;            /* blue-600 */
+  --color-error: #ef4444;           /* red-500 */
+  --color-success-bg: #d1fae5;      /* green-100 */
+  --color-success-text: #065f46;    /* green-800 */
+  --color-input-bg: #f1f5f9;        /* slate-100 */
+  --color-card-shadow: 0 8px 32px 0 rgba(99,102,241,0.10);
+}
+
+[data-theme="dark"] {
+  --color-bg: linear-gradient(135deg, #232946 0%, #312e81 100%);
+  --color-bg-solid: #232946;
+  --color-bg-card: rgba(30,41,59,0.85);
+  --color-text: #e0e7ef;
+  --color-primary: #818cf8;
+  --color-primary-hover: #6366f1;
+  --color-link: #a5b4fc;
+  --color-error: #f87171;
+  --color-success-bg: #047857;
+  --color-success-text: #d1fae5;
+  --color-input-bg: #1e293b;
+  --color-card-shadow: 0 8px 32px 0 rgba(129,140,248,0.35);
+}
