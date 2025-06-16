@@ -1,5 +1,5 @@
 import Image from "next/image";
-import link from "next/link";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -24,6 +24,16 @@ export default function Home() {
           <li className="tracking-[-.01em]">
             Save and see your changes instantly.
           </li>
+          <li className="tracking-[-.01em]">
+            <Link href="/about" className="text-blue-600 hover:underline">
+                Visit the About page
+            </Link>
+          </li>
+            <li className="tracking-[-.01em]">
+                <Link href="/test" className="text-blue-600 hover:underline">
+                    Visit the Test page
+                </Link>
+            </li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
