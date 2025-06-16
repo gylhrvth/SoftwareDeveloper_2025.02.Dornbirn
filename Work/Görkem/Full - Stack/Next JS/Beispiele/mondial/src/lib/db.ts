@@ -38,3 +38,32 @@ export async function getAllCountries(): Promise<Country[]> {
   }
 }
 
+export async function getCountryByCode(code: string): Promise<Country | null> {
+  let connection;
+  try {
+    connection = await getConnection();
+    const [rows] = await connection.query("SELECT * FROM country WHERE Code = ?", [code]);
+    const countries = rows as Country[];
+    return countries.length > 0 ? countries[0] : null;
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  } finally {
+    if (connection) connection.release();
+  }
+}
+
+export async function getCountriesByPopulation(minPopulation: number): Promise<Country[]> {
+  let connection;
+  try {
+    connection = await getConnection();
+    const [rows] = await connection.query("SELECT * FROM country WHERE Population >= ?", [minPopulation]);
+    return rows as Country[];
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  } finally {
+    if (connection) connection.release();
+  }
+}
+
