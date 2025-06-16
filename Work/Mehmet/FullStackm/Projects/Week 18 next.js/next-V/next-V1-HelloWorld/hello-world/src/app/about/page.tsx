@@ -4,7 +4,7 @@ export default function About() {
       <div>
         <h1 className="font-bold text-black text-center">About Us</h1>
         <p> Welcome to the About page of our Next.js App Router site!</p>
-      </div>
+           </div>
     </main>
   );
 }

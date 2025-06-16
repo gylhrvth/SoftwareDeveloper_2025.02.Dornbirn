@@ -1,4 +1,11 @@
 import mysql from "mysql2/promise";
+import { config } from "dotenv";
+
+try {
+  config(); // Load environment variables from .env file
+} catch (error) {
+  console.error("Failed to load environment variables:", error);
+}
 
 export interface Country {
   Name: string;
@@ -10,10 +17,10 @@ export interface Country {
 }
 
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "gyula",
-  password: "gyula",
-  database: "mondial",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "user",
+  password: process.env.DB_PASSWORD || "user",
+  database: process.env.DB_NAME || "mondial",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
