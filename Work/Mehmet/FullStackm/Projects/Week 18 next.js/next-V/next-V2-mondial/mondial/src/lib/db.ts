@@ -11,8 +11,8 @@ export interface Country {
 
 const pool = mysql.createPool({
   host: "localhost",
-  user: "gyula",
-  password: "gyula",
+  user: "emin",
+  password: "6161",
   database: "mondial",
   waitForConnections: true,
   connectionLimit: 10,
