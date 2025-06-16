@@ -1,4 +1,6 @@
 //import { useState } from 'react';
+import ContentSection from './components/ContentSection';
+import AnnouncementBar from './components/AnnouncementBar';
 import HeroSlider from './components/HeroSlider';
 import Navbar from './components/Navbar';
 
@@ -11,8 +13,11 @@ function App() {
     <>
 
     <Navbar/>
-    <Placeholder title="AnnouncementBar" className="w-screen h-70"/>
+    <AnnouncementBar/>
     <HeroSlider/>
+    <ContentSection/>
+    <Placeholder className="w-full h-235" title='Holz trift Farbe'/>
+    <Placeholder className="w-full h-155" title='Product-HighLights'/>
     
 
     </>
