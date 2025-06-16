@@ -35,3 +35,47 @@ export async function getAllCountries(): Promise<Country[]> {
   }
 }
 
+export interface Language {
+  name: string;
+  percentage: number;
+};
+
+// lib/db.ts
+export async function getCountryLanguages(countryCode: string): Promise<Language[]> {
+  const [rows] = await pool.query(`
+    SELECT 
+      Name AS name,
+      Percentage AS percentage
+    FROM 
+      language
+    WHERE 
+      Country = ?
+    ORDER BY
+      Percentage DESC
+  `, [countryCode]);
+  
+  return rows as Language[];
+}
+
+
+export interface Religion {
+  name: string;
+  percentage: number; 
+}
+
+export async function getCountryReligions(countryCode: string): Promise<Religion[]> {
+  const [rows] = await pool.query(`
+    SELECT 
+      Name AS name,
+      Percentage AS percentage
+    FROM 
+      religion
+    WHERE 
+      Country = ?
+    ORDER BY
+      Percentage DESC
+  `, [countryCode]);
+  
+  return rows as Religion[];
+}
+
