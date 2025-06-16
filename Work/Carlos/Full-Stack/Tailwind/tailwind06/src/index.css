@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --font-roboto: 'Roboto Slab';
+    --color-brandGreen: #3fa535;
+    --color-darkgreen: #029540;
+}
+
+@layer components {
+  .headerStyle {
+    @apply text-brandGreen font-roboto;
+  }
+
+  .headerStyle h1 {
+        /* @apply text-4xl; */
+        font-size: var(--text-4xl);
+    }
+  
+}
