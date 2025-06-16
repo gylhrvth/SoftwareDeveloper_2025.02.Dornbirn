@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+:root {
+  --navbar-font-size: 1.1rem;
+  --navbar-padding-y: 0.75rem;
+  --navbar-padding-x: 2rem;
+}
