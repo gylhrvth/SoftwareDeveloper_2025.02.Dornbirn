@@ -1,6 +1,9 @@
 import { time } from "console";
 import { TIMEOUT } from "dns";
 import mysql from "mysql2/promise";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 export interface Country {
   Name: string;
