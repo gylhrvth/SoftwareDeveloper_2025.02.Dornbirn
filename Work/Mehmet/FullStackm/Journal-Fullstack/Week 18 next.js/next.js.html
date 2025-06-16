@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../MekStyle.css">
+</head>
+<style>
+    
+
+</style>
+<body>
+    
+    <h1>Node JS Notizen</h1>
+    
+    <ol id="inhalt">
+<li>what is next.js</li>
+<li>App Router – Special Filenames & Folder Usage (Next.js)</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+    
+    </ol>
+
+
+    <!-- FRAGE 1 -->
+
+    <!-- FRAGE 2  -->
+     <section>
+  <h2>2. App Router – Special Filenames & Folder Usage (Next.js)</h2>
+  <p>Next.js App Router is file-system based routing. That means the file and folder structure determines your site’s URL paths and behavior.</p>
+  <p>Below is a breakdown of predefined special filenames and what they do:</p>
+
+  <h3>🔹 page.tsx or page.jsx</h3>
+  <p><strong>Purpose:</strong><br>Defines the content for a route (i.e., what the user sees at a URL).</p>
+  <pre><code>// app/about/page.tsx
+export default function AboutPage() {
+  return &lt;h1&gt;About Us&lt;/h1&gt;;
+}
+</code></pre>
+  <p><strong>URL:</strong> /about<br>✅ Required for any visible route.</p>
+
+  <h3>🔹 layout.tsx</h3>
+  <p><strong>Purpose:</strong><br>Shared layout for all routes inside a folder. Wraps page.tsx with navbars, sidebars, etc.</p>
+  <pre><code>// app/about/layout.tsx
+export default function AboutLayout({ children }) {
+  return (
+    &lt;&gt;
+      &lt;header&gt;About Header&lt;/header&gt;
+      &lt;main&gt;{children}&lt;/main&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+  <p>All pages inside /about/ will share this layout.</p>
+
+  <h3>🔹 template.tsx</h3>
+  <p><strong>Purpose:</strong><br>Like layout.tsx, but re-renders on navigation (no React state sharing). Useful for modals, form reset, etc.</p>
+  <pre><code>// app/forms/template.tsx
+export default function FormTemplate({ children }) {
+  return &lt;div className="form-wrapper"&gt;{children}&lt;/div&gt;;
+}
+</code></pre>
+
+  <h3>🔹 loading.tsx</h3>
+  <p><strong>Purpose:</strong><br>Displays a loading screen while a page or component is loading.</p>
+  <pre><code>// app/dashboard/loading.tsx
+export default function Loading() {
+  return &lt;p&gt;Loading dashboard...&lt;/p&gt;;
+}
+</code></pre>
+
+  <h3>🔹 error.tsx</h3>
+  <p><strong>Purpose:</strong><br>Custom error boundary for a route. Renders if an error happens in a child route.</p>
+  <pre><code>// app/blog/error.tsx
+'use client';
+
+export default function Error({ error, reset }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Error: {error.message}&lt;/h2&gt;
+      &lt;button onClick={reset}&gt;Try Again&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+
+  <h3>🔹 not-found.tsx</h3>
+  <p><strong>Purpose:</strong><br>Shows a custom 404 page if a route doesn’t exist under that segment.</p>
+  <pre><code>// app/blog/not-found.tsx
+export default function NotFound() {
+  return &lt;h1&gt;This blog post does not exist&lt;/h1&gt;;
+}
+</code></pre>
+
+  <h3>🔹 head.tsx</h3>
+  <p><strong>Purpose:</strong><br>Overrides &lt;head&gt; content (e.g., &lt;title&gt;, &lt;meta&gt;) for this route.</p>
+  <pre><code>// app/about/head.tsx
+export default function Head() {
+  return (
+    &lt;&gt;
+      &lt;title&gt;About Us | MySite&lt;/title&gt;
+      &lt;meta name="description" content="Learn about us" /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+
+  <h3>🔹 route.ts (API route)</h3>
+  <p><strong>Purpose:</strong><br>Creates an API endpoint for server-side functions, available at /api/....</p>
+  <pre><code>// app/api/hello/route.ts
+export async function GET() {
+  return Response.json({ message: "Hello from API" });
+}
+</code></pre>
+  <p><strong>URL:</strong> /api/hello<br>✅ Use this to build backend logic (like Express routes).</p>
+
+  <h3>📁 Special Folder Naming</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Folder Name</th>
+        <th>Purpose</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>[param]</td>
+        <td>Dynamic route</td>
+        <td>/blog/[slug] → /blog/hello-world</td>
+      </tr>
+      <tr>
+        <td>[[param]]</td>
+        <td>Optional dynamic route</td>
+        <td>/blog or /blog/post-1</td>
+      </tr>
+      <tr>
+        <td>(group)</td>
+        <td>Route groups (not in URL)</td>
+        <td>/(admin)/dashboard → /dashboard</td>
+      </tr>
+      <tr>
+        <td>@slot</td>
+        <td>Named layout slot (parallel routing)</td>
+        <td>Advanced use only</td>
+      </tr>
+      <tr>
+        <td>api/</td>
+        <td>API routes directory</td>
+        <td>/api/user → server handler</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>🧠 Summary Table: Special Files in App Router</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Used For</th>
+        <th>Required?</th>
+        <th>Example Path</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>page.tsx</td>
+        <td>Renders the actual route</td>
+        <td>✅ Yes</td>
+        <td>/about, /blog</td>
+        <td>Main content of each route</td>
+      </tr>
+      <tr>
+        <td>layout.tsx</td>
+        <td>Shared layout per folder</td>
+        <td>❌ No</td>
+        <td>Wraps children</td>
+        <td>Shared nav/sidebar/etc.</td>
+      </tr>
+      <tr>
+        <td>template.tsx</td>
+        <td>Non-shared layout on nav</td>
+        <td>❌ No</td>
+        <td>Refreshes state</td>
+        <td>Good for modals/forms</td>
+      </tr>
+      <tr>
+        <td>loading.tsx</td>
+        <td>Shows loading screen</td>
+        <td>❌ No</td>
+        <td>During async load</td>
+        <td>Fallback UI</td>
+      </tr>
+      <tr>
+        <td>error.tsx</td>
+        <td>Shows error fallback</td>
+        <td>❌ No</td>
+        <td>When error thrown</td>
+        <td>Requires 'use client'</td>
+      </tr>
+      <tr>
+        <td>not-found.tsx</td>
+        <td>Custom 404</td>
+        <td>❌ No</td>
+        <td>Missing route</td>
+        <td>Can be manually triggered</td>
+      </tr>
+      <tr>
+        <td>head.tsx</td>
+        <td>Page-specific &lt;head&gt;</td>
+        <td>❌ No</td>
+        <td>SEO settings</td>
+        <td>Overrides default metadata</td>
+      </tr>
+      <tr>
+        <td>route.ts</td>
+        <td>API endpoint</td>
+        <td>✅ For API</td>
+        <td>/api/*</td>
+        <td>Replaces Express routes</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -32,3 +32,10 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+
+// 1: ABOUT SEITE 
+// 2. parameter [slug] 
+// 3. Db connection (mySQL2)
