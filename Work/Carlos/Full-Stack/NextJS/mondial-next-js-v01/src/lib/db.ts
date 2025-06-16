@@ -1,5 +1,4 @@
-import { time } from "console";
-import { TIMEOUT } from "dns";
+
 import mysql from "mysql2/promise";
 
 export interface Country {
@@ -21,15 +20,11 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-async function getConnection() {
-  return pool.getConnection();
-}
 
 export async function getAllCountries(): Promise<Country[]> {
   let connection;
   try {
-    connection = await getConnection();
-    //await new Promise((resolve) => setTimeout(resolve, Math.random() < 0.1? 2000: 50));
+    connection = await pool.getConnection();
     const [rows] = await connection.query("SELECT * FROM country");
     return rows as Country[];
   } catch (error) {
