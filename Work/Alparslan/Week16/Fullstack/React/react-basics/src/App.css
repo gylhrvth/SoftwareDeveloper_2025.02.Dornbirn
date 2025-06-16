@@ -1,0 +1,26 @@
+.blue {
+    background-color: darkblue;
+    color: white;
+}
+
+.green {
+    background-color: darkgreen;
+    color: white;
+}
+.red {
+    background-color: darkred;
+    color: white;
+}
+
+.bigButton{
+    padding: 0.5em;
+    border: none;
+    border-radius: 1em;
+    font-size: 3.2em;
+    cursor: pointer;
+}
+
+.board {
+    background-color: lightgray;
+    padding: 1rem;
+}
