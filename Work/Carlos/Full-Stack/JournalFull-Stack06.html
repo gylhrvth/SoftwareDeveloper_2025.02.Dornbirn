@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../Kurs/common.css">
+    <link rel="stylesheet" href="../carlosMainStyle.css">
+    <link rel="stylesheet" href="../carlosMiscStyle.css">
+    <script src="../../../Kurs/common.js" defer></script>
+    <title>Full-Stack Journal 06</title>
+
+</head>
+
+<body id="bodyStyle">
+
+    <div id="mainSectionStyle">
+
+    <h1 class="textColor01">Full-Stack Journal 06</h1>
+
+    <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day72">MO 16/06/25</a>: NextJS</h3>
+
+    </div>
+    <br>
+    <h2 id="day72">Montag 16. Juni 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (NextJS)</h3>
+
+    <h3>Next JS(Recherche)</h3>
+        <ul>
+    
+            <li><h4 class="textColor02">Was ist NextJS?</h4></li>
+            <p>
+                Next.js ist ein React-Framework, das die Entwicklung von serverseitig gerenderten (SSR) und statischen Webseiten erleichtert. Es bietet Funktionen wie automatische Code-Splitting, serverseitiges Rendering und eine einfache API für die Datenbeschaffung.
+            </p>
+                        <li><h4 class="textColor02">Welche sind die Unterschiede zwischen NextJS und React?</h4></li>
+            <p>
+                Die Unterschiede zwischen Next.js und React sind:
+                <ul>
+                    <li>Next.js ist ein Framework, das auf React aufbaut und zusätzliche Funktionen wie serverseitiges Rendering und statische Generierung bietet.</li>
+                    <li>React ist eine JavaScript-Bibliothek für den Aufbau von Benutzeroberflächen, während Next.js eine vollständige Lösung für die Entwicklung von Webanwendungen ist.</li>
+                    <li>Next.js bietet ein integriertes Routing-System, während React dies manuell implementieren muss.</li>
+                </ul>
+            </p>
+            <li><h4 class="textColor02">Welche Vorteile bietet NextJS?</h4></li>
+            <p>
+                Next.js bietet mehrere Vorteile, darunter:
+                <ul>
+                    <li>Verbesserte Leistung durch serverseitiges Rendering und statische Generierung.</li>
+                    <li>Einfachere Entwicklung mit einer klaren Struktur und Routing-System.</li>
+                    <li>Unterstützung für API-Routen, die es ermöglichen, Backend-Funktionen direkt im Projekt zu integrieren.</li>
+                    <li>Optimierte SEO (Search Engine Optimization) durch serverseitiges Rendering.</li>
+                </ul>
+            </p>
+            <li><h4 class="textColor02">Welche Voraussetzungen müssen erfüllt sein, um NextJS in einem Projekt zu verwenden?</h4></li>
+            <p>
+                Um Next.js in einem Projekt zu verwenden, sind folgende Voraussetzungen erforderlich:
+                <ul>
+                    <li>Node.js und npm (Node Package Manager) müssen installiert sein.</li>
+                    <li>Ein grundlegendes Verständnis von React ist hilfreich, da Next.js auf React aufbaut.</li>
+                    <li>Ein Build-Tool wie Vite oder Webpack kann optional verwendet werden, ist aber nicht zwingend erforderlich.</li>
+                </ul>
+            </p>
+            <li><h4 class="textColor02">Wie installiert man NextJS in einem Projekt?</h4></li>
+            <p>
+                Um Next.js in einem Projekt zu installieren, führt man die folgenden Schritte aus:
+                <ol>
+                    <li>Sicherstellen, dass Node.js und npm installiert sind.</li>
+                    <li>Erstellung von einem neuen Verzeichnis für das Projekt und navigiert dorthin.</li>
+                    <li>Befehl <code>npx create-next-app@latest</code> ausführen, um ein neues Next.js-Projekt zu erstellen.</li>
+                    <li>Anweisungen im Terminal folgen, um das Projekt zu konfigurieren.</li>
+                    <li>In das neu erstellte Verzeichnis wechseln, und den Entwicklungsserver mit <code>npm run dev</code> starten.</li>
+                </ol>
+            </p>
+            <li><h4 class="textColor02">Wie erstellt man eine neue Seite in NextJS?</h4></li>
+            <p>
+                Um eine neue Seite in Next.js zu erstellen, folgt man diesen Schritten:
+                <ol>
+                    <li>Im <code>pages</code>-Verzeichnis des Projekts eine neue Datei anlegen, z.B. <code>about.js</code>.</li>
+                    <li>In dieser Datei eine React-Komponente exportieren, z.B.:
+                    <pre><code>export default function About() {
+return 
+&lt;h1&gt;Über uns&lt;/h1&gt;;
+}
+</code></pre>
+                    </li>
+                    <li>Die neue Seite ist dann unter <code>/about</code> im Browser erreichbar.</li>
+                </ol>
+
+                <li><h4 class="textColor02">Wie kann man Aufrufe aus einem Datenbank wie MySQL in NextJS integrieren?</h4></li>
+                <p>
+                    Um Aufrufe aus einer MySQL-Datenbank in Next.js zu integrieren, kann man API-Routen verwenden. Ein Beispiel:<br>
+                    <br>
+                    1. Das MySQL-Paket installieren:
+                    <pre><code>npm install mysql2</code></pre>
+
+                    2. Eine API-Route erstellen, z.B. <code>pages/api/users.js</code>:
+                    <pre><code>import mysql from 'mysql2/promise';
+
+export default async function handler(req, res) {
+const connection = await mysql.createConnection({
+host: 'localhost',
+user: 'deinBenutzer',
+password: 'deinPasswort',
+database: 'deineDatenbank'
+});
+
+const [rows] = await connection.execute('SELECT * FROM users');
+await connection.end();
+
+res.status(200).json(rows);
+}
+</code></pre>
+
+                    3. Die API-Route im Frontend abrufen, z.B. mit <code>fetch('/api/users')</code>.
+
+                    So kann Next.js serverseitig mit MySQL kommunizieren und die Daten an das Frontend liefern.
+                  
+                    <li><h4 class="textColor02">NextJS Zusammenfassung</h4></li>
+                    <p>
+                        Next.js ist ein leistungsstarkes Framework für die Entwicklung von React-Anwendungen, das serverseitiges Rendering und statische Generierung unterstützt. Es bietet eine klare Struktur, integriertes Routing und eine einfache API für die Datenbeschaffung. Die Installation ist unkompliziert, und es ermöglicht eine schnelle Entwicklung von Webanwendungen mit optimierter Leistung und SEO.
+                    </p>
+                    <p>Häufigste Anwendungsfälle für Next.js sind:</p>
+                    <ul>
+                        <li>Erstellung von serverseitig gerenderten Anwendungen für bessere SEO und Leistung.</li>
+                        <li>Entwicklung von statischen Webseiten, die schnell geladen werden.</li>
+                        <li>Integration von API-Routen für Backend-Funktionen direkt im Projekt.</li>
+                        <li>Erstellung von komplexen Webanwendungen mit React-Komponenten.</li>     
+                    <li><h4 class="textColor02">Beispiele für NextJS Projekte</h4></li>
+                    <p>
+                        Hier sind einige Beispiele für Projekte, die mit Next.js erstellt wurden:
+                        <ul>
+                            <li>Blogs und Content-Management-Systeme (CMS) mit serverseitigem Rendering.</li>
+                            <li>E-Commerce-Websites mit dynamischen Produktseiten und Warenkörben.</li>
+                            <li>Portfolio-Websites, die statische Seiten für schnelle Ladezeiten nutzen.</li>
+                            <li>Dashboards und Admin-Oberflächen mit Echtzeit-Datenaktualisierungen.</li>
+                        </ul>
+                    </p>
+                    <li><h4 class="textColor02">Bekannte Unternehmen, die NextJS verwenden</h4></li>
+                    <p>
+                        Viele bekannte Unternehmen und Plattformen nutzen Next.js für ihre Webanwendungen, darunter:
+                        <ul>
+                            <li>Vercel (das Unternehmen hinter Next.js selbst)</li>
+                            <li>Twitch</li>
+                            <li>Hulu</li>
+                            <li>Netflix</li>
+                            <li>GitHub</li>
+                        </ul>
+                    </p>    
+                    <li><h4 class="textColor02">NextJS Ressourcen</h4></li>
+                    <p>
+                        Hier sind einige nützliche Ressourcen für Next.js:
+                        <ul>
+                            <li><a href="https://nextjs.org/docs" target="_blank">Offizielle Next.js Dokumentation</a></li>
+                            <li><a href="https://nextjs.org/learn" target="_blank">Next.js Lernressourcen</a></li>
+                            <li><a href="https://www.freecodecamp.org/news/nextjs-vs-react-differences/#:~:text=In%20terms%20of%20scalability%20and,the%20scalability%20of%20your%20project." target="_blank">Next.js vs React: Unterschiede und Vorteile</a></li>
+        </ul>
+        <br>
+</body>
+</html>
