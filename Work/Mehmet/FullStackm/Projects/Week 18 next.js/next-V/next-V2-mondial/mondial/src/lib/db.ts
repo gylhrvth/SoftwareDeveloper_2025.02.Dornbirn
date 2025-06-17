@@ -2,7 +2,7 @@
 
 import mysql, { PoolConnection } from "mysql2/promise";
 
-// Interfaces
+// Interfaces define structure of data returned
 export interface Country {
   Name: string;
   Code: string;
@@ -21,13 +21,13 @@ export interface Continent {
   Name: string;
 }
 
-// Check required environment variables
+// Make sure environment variables are set, throw error if missing
 const required = ["DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME"];
 for (const key of required) {
   if (!process.env[key]) throw new Error(`Missing env: ${key}`);
 }
 
-// Create the MySQL connection pool
+// Create a connection pool (reusable connections)
 const pool = mysql.createPool({
   host: process.env.DB_HOST!,
   user: process.env.DB_USER!,
@@ -37,7 +37,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
 });
 
-// Utility to get a connection
+// Utility function to get a DB connection from pool
 export async function getConnection(): Promise<PoolConnection> {
   return pool.getConnection();
 }
@@ -56,7 +56,7 @@ export async function getAllCountries(): Promise<Country[]> {
   }
 }
 
-// Get a country by its code
+// Get one country by its Code
 export async function getCountryByCode(code: string): Promise<Country | null> {
   const conn = await getConnection();
   try {
@@ -71,7 +71,7 @@ export async function getCountryByCode(code: string): Promise<Country | null> {
   }
 }
 
-// Get top 10 cities by population for a given country code
+// Get top 10 cities with population for a country
 export async function getCitiesByCountryCode(code: string): Promise<City[]> {
   const conn = await getConnection();
   try {
@@ -88,7 +88,7 @@ export async function getCitiesByCountryCode(code: string): Promise<City[]> {
   }
 }
 
-// Get continent name by country code
+// Get continent name for a country by country code
 export async function getContinentByCountryCode(code: string): Promise<Continent | null> {
   const conn = await getConnection();
   try {
