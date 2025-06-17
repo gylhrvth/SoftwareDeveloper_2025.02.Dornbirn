@@ -1,0 +1,304 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model borders {
+  Country1 String @db.VarChar(4)
+  Country2 String @db.VarChar(4)
+  Length   Float? @db.Float
+
+  @@id([Country1, Country2])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model city {
+  Name       String @db.VarChar(35)
+  Country    String @db.VarChar(4)
+  Province   String @db.VarChar(35)
+  Population Int?
+  Longitude  Float? @db.Float
+  Latitude   Float? @db.Float
+
+  @@id([Name, Country, Province])
+}
+
+model continent {
+  Name String @id @db.VarChar(20)
+  Area Float? @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model country {
+  Name       String  @unique(map: "Name") @db.VarChar(35)
+  Code       String  @id @db.VarChar(4)
+  Capital    String? @db.VarChar(35)
+  Province   String? @db.VarChar(35)
+  Area       Float?  @db.Float
+  Population Int?
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model desert {
+  Name      String @id @db.VarChar(35)
+  Area      Float? @db.Float
+  Longitude Float? @db.Float
+  Latitude  Float? @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model economy {
+  Country     String @id @db.VarChar(4)
+  GDP         Float? @db.Float
+  Agriculture Float? @db.Float
+  Service     Float? @db.Float
+  Industry    Float? @db.Float
+  Inflation   Float? @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model encompasses {
+  Country    String @db.VarChar(4)
+  Continent  String @db.VarChar(20)
+  Percentage Float? @db.Float
+
+  @@id([Country, Continent])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model ethnicGroup {
+  Country    String @db.VarChar(4)
+  Name       String @db.VarChar(50)
+  Percentage Float? @db.Float
+
+  @@id([Name, Country])
+}
+
+model geo_desert {
+  Desert   String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, Desert])
+}
+
+model geo_estuary {
+  River    String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, River])
+}
+
+model geo_island {
+  Island   String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, Island])
+}
+
+model geo_lake {
+  Lake     String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, Lake])
+}
+
+model geo_mountain {
+  Mountain String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, Mountain])
+}
+
+model geo_river {
+  River    String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, River])
+}
+
+model geo_sea {
+  Sea      String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, Sea])
+}
+
+model geo_source {
+  River    String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Province String @db.VarChar(35)
+
+  @@id([Province, Country, River])
+}
+
+model isMember {
+  Country      String  @db.VarChar(4)
+  Organization String  @db.VarChar(12)
+  Type         String? @default("member") @db.VarChar(35)
+
+  @@id([Country, Organization])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model island {
+  Name      String  @id @db.VarChar(35)
+  Islands   String? @db.VarChar(35)
+  Area      Float?  @db.Float
+  Height    Float?  @db.Float
+  Type      String? @db.VarChar(10)
+  Longitude Float?  @db.Float
+  Latitude  Float?  @db.Float
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model islandIn {
+  Island String? @db.VarChar(35)
+  Sea    String? @db.VarChar(35)
+  Lake   String? @db.VarChar(35)
+  River  String? @db.VarChar(35)
+
+  @@ignore
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model lake {
+  Name      String  @id @db.VarChar(35)
+  Area      Float?  @db.Float
+  Depth     Float?  @db.Float
+  Altitude  Float?  @db.Float
+  Type      String? @db.VarChar(10)
+  River     String? @db.VarChar(35)
+  Longitude Float?  @db.Float
+  Latitude  Float?  @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model language {
+  Country    String @db.VarChar(4)
+  Name       String @db.VarChar(50)
+  Percentage Float? @db.Float
+
+  @@id([Name, Country])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model located {
+  City     String? @db.VarChar(35)
+  Province String? @db.VarChar(35)
+  Country  String? @db.VarChar(4)
+  River    String? @db.VarChar(35)
+  Lake     String? @db.VarChar(35)
+  Sea      String? @db.VarChar(35)
+
+  @@ignore
+}
+
+model locatedOn {
+  City     String @db.VarChar(35)
+  Province String @db.VarChar(35)
+  Country  String @db.VarChar(4)
+  Island   String @db.VarChar(35)
+
+  @@id([City, Province, Country, Island])
+}
+
+model mergesWith {
+  Sea1 String @db.VarChar(35)
+  Sea2 String @db.VarChar(35)
+
+  @@id([Sea1, Sea2])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model mountain {
+  Name      String  @id @db.VarChar(35)
+  Mountains String? @db.VarChar(35)
+  Height    Float?  @db.Float
+  Type      String? @db.VarChar(10)
+  Longitude Float?  @db.Float
+  Latitude  Float?  @db.Float
+}
+
+model mountainOnIsland {
+  Mountain String @db.VarChar(35)
+  Island   String @db.VarChar(35)
+
+  @@id([Mountain, Island])
+}
+
+model organization {
+  Abbreviation String    @id @db.VarChar(12)
+  Name         String    @unique(map: "OrgNameUnique") @db.VarChar(80)
+  City         String?   @db.VarChar(35)
+  Country      String?   @db.VarChar(4)
+  Province     String?   @db.VarChar(35)
+  Established  DateTime? @db.Date
+}
+
+model politics {
+  Country      String    @id @db.VarChar(4)
+  Independence DateTime? @db.Date
+  Dependent    String?   @db.VarChar(4)
+  Government   String?   @db.VarChar(120)
+}
+
+model population {
+  Country           String @id @db.VarChar(4)
+  Population_Growth Float? @db.Float
+  Infant_Mortality  Float? @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model province {
+  Name       String  @db.VarChar(35)
+  Country    String  @db.VarChar(4)
+  Population Int?
+  Area       Float?  @db.Float
+  Capital    String? @db.VarChar(35)
+  CapProv    String? @db.VarChar(35)
+
+  @@id([Name, Country])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model religion {
+  Country    String @db.VarChar(4)
+  Name       String @db.VarChar(50)
+  Percentage Float? @db.Float
+
+  @@id([Name, Country])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model river {
+  Name             String  @id @db.VarChar(35)
+  River            String? @db.VarChar(35)
+  Lake             String? @db.VarChar(35)
+  Sea              String? @db.VarChar(35)
+  Length           Float?  @db.Float
+  SourceLongitude  Float?  @db.Float
+  SourceLatitude   Float?  @db.Float
+  Mountains        String? @db.VarChar(35)
+  SourceAltitude   Float?  @db.Float
+  EstuaryLongitude Float?  @db.Float
+  EstuaryLatitude  Float?  @db.Float
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model sea {
+  Name  String @id @db.VarChar(35)
+  Depth Float? @db.Float
+}
