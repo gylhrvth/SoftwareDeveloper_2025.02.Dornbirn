@@ -27,8 +27,8 @@ export default async function CountryDetails({ params }: { params: { slug: strin
   const religions = await getCountryReligions(country.Code);  // <-- Add this line
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col items-center justify-center">
         {/* Header */}
         <CountryHeader country={country} />
         
