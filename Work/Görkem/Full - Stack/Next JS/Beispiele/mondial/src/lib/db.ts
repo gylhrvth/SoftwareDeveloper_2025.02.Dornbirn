@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise';
 
 export interface Country {
+    Alpha2: string;
     Name: string;
     Code: string;
     Capital: string;
