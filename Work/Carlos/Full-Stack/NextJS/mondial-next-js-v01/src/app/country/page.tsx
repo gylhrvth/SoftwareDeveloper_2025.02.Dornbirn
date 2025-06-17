@@ -10,7 +10,7 @@ export default async function CountryPage({
   searchParams: { q?: string } 
 }) {
   // Get search query from URL
-  const searchQuery = searchParams.q || '';
+  const searchQuery = (await searchParams).q || '';
   
   // Fetch all countries
   const countries: Country[] = await getAllCountries();
