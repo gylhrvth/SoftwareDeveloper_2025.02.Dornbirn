@@ -1,4 +1,5 @@
 // app/country/[slug]/edit/page.tsx
+import { FaTrashAlt } from "react-icons/fa";  // Import trash icon
 import { getAllCountries, getCountryLanguages, getCountryReligions } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import { addLanguage, addReligion, removeLanguage, removeReligion } from './actions';
@@ -43,10 +44,11 @@ export default async function EditCountry({ params }: { params: { slug: string }
                         <input type="hidden" name="countryName" value={country.Name} />
                         <input type="hidden" name="languageName" value={lang.name} />
                         <button 
-                          type="submit"
-                          className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors cursor-pointer"
-                        >
-                          Remove
+                            type="submit"
+                            className="p-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 transition-colors flex items-center justify-center cursor-pointer"
+                            title="Delete language"
+                            >
+                            <FaTrashAlt size={14} />
                         </button>
                       </form>
                     </li>
@@ -125,10 +127,11 @@ export default async function EditCountry({ params }: { params: { slug: string }
                         <input type="hidden" name="countryName" value={country.Name} />
                         <input type="hidden" name="religionName" value={religion.name} />
                         <button 
-                          type="submit"
-                          className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors cursor-pointer"
-                        >
-                          Remove
+                            type="submit"
+                            className="p-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 transition-colors flex items-center justify-center cursor-pointer"
+                            title="Delete language"
+                            >
+                            <FaTrashAlt size={14} />
                         </button>
                       </form>
                     </li>
