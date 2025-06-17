@@ -6,6 +6,7 @@ import CountryHeader from './components/CountryHeader';
 import CountryKeyFacts from './components/CountryKeyFacts';
 import CountryMisc from './components/CountryMisc';
 import BackButton from './components/BackButton';
+import EditButton from './components/EditButton';
 
 export default async function CountryDetails({ params }: { params: { slug: string } }) {
   // Decode the URL parameter
@@ -43,9 +44,11 @@ export default async function CountryDetails({ params }: { params: { slug: strin
             </div>
           </div>
         </div>
-        
         {/* Back Button */}
+        <div className ="flex justify-center mt-8 gap-8">
         <BackButton href="/country" label="← Back to Countries" />
+        <EditButton country={country} />
+        </div>
       </div>
     </div>
   );
