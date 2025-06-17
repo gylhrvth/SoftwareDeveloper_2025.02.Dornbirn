@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextJS</title>
+    <link rel="stylesheet" href="../common.css">
+    <script src="../common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+    <style>
+        @keyframes task {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+
+        }
+
+        .specialTask {
+            color: hsl(300, 85%, 25%);
+            font-size: 1.8em;
+            animation: task 4s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="../../index.html">Home</a>
+        <a href="../Aufgaben.html">Aufgaben</a>
+        <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+        <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+        <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+        <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+    </div>
+
+
+
+    <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+    <p>Dokumente zu lesen:</p>
+    <ol>
+        <li><a href="https://nextjs.org/docs">NextJS v15.3.3</a></li>
+        <li><a href="https://nextjs.org/docs/app/getting-started/project-structure">Projekt Struktur</a></li>
+        <li><a href="https://nextjs.org/docs/app/getting-started/fetching-data">Fetching Data</a></li>
+        <li><a href="https://nextjs.org/docs/app/getting-started/updating-data">Updating Data</a></li>
+        <li><a href="https://nextjs.org/docs/app/guides/forms">Forms</a></li>
+        <li><a href="https://react.dev/">React v19.1</a></li>
+    </ol>
+
+    <p>Fragen:</p>
+    <ol>
+        <li>keine Fragen ;-)</li>
+    </ol>
+
+    <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+    <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+    <ol>
+        <li>Erfahrung in Journal Seite eintragen</li>
+        <li>mit Git Commit die Änderungen festlegen</li>
+        <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+    </ol>
+
+    <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+
+    <h2>Erstelle und verlinke ein About Page</h2>
+    <ul>
+        <li>Create an dummy Projekt mit NextJS</li>
+        <li>Erstelle eine About Page</li>
+        <li>Verlinke die About Page in der Home Page</li>
+    </ul>
+
+    <h2>Erstelle eine Hello Seite mit [slug]</h2>
+    <p>Füge zu den bestehende Applikation eine zusätzliche Seite, die ein Parameter aus den URI übernehmen und
+        bearbeiten kann.</p>
+
+    <h2>Liste der Länder aus Mondial holen</h2>
+    <p>Erstelle eine Seite mit Liste der Länder als Kacheln.</p>
+    <ul>
+        <li>Verwende <b>mysql2</b> Package für die DB connection</li>
+        <li>Verwende <b>dotenv</b> für die DB user / password und co.</li>
+        <li>Lese die Daten aus dem Datenbank</li>
+        <li>Darstelle die Daten mit den <b>React</b> Komponenten</li>
+    </ul>
+
+    <h2>Erweitere deine Applikation mit Details Seite</h2>
+    <p>Fall ein Land in Übersichtsseite angeklickt wird, soll eine Detailseite mit weiteren Informationen über das Land
+        angezeigt werden. Optional auch die Liste der Städte, Flüße oder Berge des Landes</p>
+
+    <h2>Erweitere deine Applikation mit dem Feature Landesdaten zu bearbeiten.</h2>
+    <p>Verwende <b>Forms</b> für die Formulare und <b>server actions</b> für die Bearbeitung.</p>
+
+
+
+    <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+    <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+    <div class="menu">
+        <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+        <a href="../../Work/Carlos/main.html">Carlos</a>
+        <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+        <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+        <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+        <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+        <a href="../../Work/Mehmet/Journal/journal.html">Mehmet</a>
+    </div>
+    <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>
