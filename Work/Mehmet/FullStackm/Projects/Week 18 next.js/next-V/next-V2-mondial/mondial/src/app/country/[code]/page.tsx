@@ -1,11 +1,9 @@
-// src/app/country/[code]/page.tsx
-
 import {
   getCountryByCode,
   getCitiesByCountryCode,
   getContinentByCountryCode,
 } from "@/lib/db";
-import type { Country } from "@/lib/db";
+import type { Country, City, Continent } from "@/lib/db";
 
 interface Props {
   params: { code: string };
@@ -28,57 +26,62 @@ export default async function CountryDetailPage({ params }: Props) {
   ]);
 
   return (
-    <div className="p-8 bg-gray-900 text-gray-100 max-w-4xl mx-auto rounded-xl shadow-2xl mt-10 border border-gray-700">
-      <h1 className="text-4xl font-extrabold mb-6 text-blue-400 drop-shadow">
-        {country.Name}{" "}
-        <span className="text-gray-400">({country.Code})</span>
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div>
-          <p className="mb-2">
-            <span className="font-semibold text-blue-300">Capital:</span>{" "}
-            {country.Capital}
-          </p>
-          <p className="mb-2">
-            <span className="font-semibold text-blue-300">Province:</span>{" "}
-            {country.Province}
-          </p>
-          <p className="mb-2">
-            <span className="font-semibold text-blue-300">Continent:</span>{" "}
-            {continent?.Name || "Unknown"}
-          </p>
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center py-12 px-4">
+      <div className="bg-gray-800 bg-opacity-70 text-gray-100 max-w-4xl mx-auto rounded-xl shadow-2xl mt-10 border border-cyan-600 p-8">
+        <h1 className="text-4xl font-extrabold mb-6 text-cyan-400 drop-shadow-lg">
+          {country.Name} <span className="text-gray-400">({country.Code})</span>
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <p className="mb-2">
+              <span className="font-semibold text-cyan-300">Capital:</span>{" "}
+              {country.Capital}
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold text-cyan-300">Province:</span>{" "}
+              {country.Province}
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold text-cyan-300">Continent:</span>{" "}
+              {continent?.Name || "Unknown"}
+            </p>
+          </div>
+          <div>
+            <p className="mb-2">
+              <span className="font-semibold text-cyan-300">Area:</span>{" "}
+              {country.Area.toLocaleString()} km²
+            </p>
+            <p className="mb-2">
+              <span className="font-semibold text-cyan-300">Population:</span>{" "}
+              {country.Population.toLocaleString()}
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="mb-2">
-            <span className="font-semibold text-blue-300">Area:</span>{" "}
-            {country.Area.toLocaleString()} km²
-          </p>
-          <p className="mb-2">
-            <span className="font-semibold text-blue-300">Population:</span>{" "}
-            {country.Population.toLocaleString()}
-          </p>
-        </div>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-2 text-yellow-300">
+            Cities of {country.Name} and their populations
+          </h2>
+          <ul className="list-disc ml-6">
+            {cities.length === 0 ? (
+              <li className="text-gray-400">No cities found</li>
+            ) : (
+              cities.map((city, i) => (
+                <li
+                  key={i}
+                  className="hover:text-yellow-200 cursor-default select-text"
+                >
+                  {city.Name}{" "}
+                  <span className="text-gray-400">
+                    — {city.Population.toLocaleString()}
+                  </span>
+                </li>
+              ))
+            )}
+          </ul>
+        </section>
       </div>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-2 text-yellow-300">Top Cities</h2>
-        <ul className="list-disc ml-6">
-          {cities.length === 0 ? (
-            <li className="text-gray-400">None</li>
-          ) : (
-            cities.map((city, i) => (
-              <li key={i} className="hover:text-yellow-200">
-                {city.Name}{" "}
-                <span className="text-gray-400">
-                  — {city.Population.toLocaleString()}
-                </span>
-              </li>
-            ))
-          )}
-        </ul>
-      </section>
-
-      {/* Add more sections here like religions, rivers, economy, etc */}
-    </div>
+    </main>
   );
 }
