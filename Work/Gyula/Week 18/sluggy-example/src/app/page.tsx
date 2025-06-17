@@ -1,5 +1,5 @@
+import Link from "next/dist/client/link";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,14 +21,11 @@ export default function Home() {
             </code>
             .
           </li>
-          <li className="mb-2 tracking-[-.01em]">
+          <li className="tracking-[-.01em]">
             Save and see your changes instantly.
           </li>
-          <li className="tracking-[-.01em] cursor-pointer">
-            <Link href="/thirdpage" className="text-blue-500 hover:underline">
-              Mondial example
-            </Link>
-          </li>
+          <li><Link href="/hello/Daniela">Hello Daniela</Link></li>
+          <li><Link href="/hello/Leonie">Hello Leonie</Link></li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">

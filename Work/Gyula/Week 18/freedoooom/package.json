@@ -1,5 +1,5 @@
 {
-  "name": "mondial02",
+  "name": "freedoooom",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,10 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "flag-icons": "^7.5.0",
-    "i18n-iso-countries": "^7.14.0",
-    "lucide-react": "^0.516.0",
-    "mysql2": "^3.14.1",
+    "@prisma/client": "^6.9.0",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -20,11 +17,12 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20.19.1",
+    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "prisma": "^6.9.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

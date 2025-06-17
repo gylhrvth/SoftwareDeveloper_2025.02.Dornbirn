@@ -1,27 +1,51 @@
-import { getAllCountries } from '@/lib/db';
-import { type Country } from '@/lib/db';
+import Link from "next/link";
+import { getAllCountries } from "@/lib/db";
+import type { Country } from "@/lib/db";
 
 export default async function Country() {
-  const countries: Country[] = await getAllCountries();
-  //console.log(countries);
+  const countries = await getAllCountries();
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-center my-8">Country Page</h1>
-      <div className="flex gap-4 flex-wrap">
-        {countries.map((country: any, index: number) => (
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center py-12 px-4">
+      <h1 className="text-4xl font-extrabold mb-10 text-cyan-400 drop-shadow-lg">
+        Country Page
+      </h1>
+
+      <div className="w-full max-w-4xl">
+        {/* Header row */}
+        <div className="hidden md:flex text-gray-400 uppercase text-sm font-semibold border-b border-cyan-600 pb-2 mb-4 select-none">
+          <div className="flex-1 text-center">Country</div>
+          <div className="flex-1 text-center">Capital</div>
+          <div className="flex-1 text-center">Population</div>
+          <div className="flex-1 text-center">Area (km²)</div>
+        </div>
+
+        {/* Data rows */}
+        {countries.map((country) => (
+          <Link
+            key={country.Code}
+            href={`/country/${country.Code}`}
+            className="group"
+          >
             <div
-            key={index}
-            className="w-72 border border-gray-300 p-4 rounded shadow-sm bg-white transition-transform duration-200 hover:scale-105 hover:shadow-lg  text-black"
+              className="cursor-pointer flex flex-col md:flex-row items-center justify-between
+                         bg-gray-800 bg-opacity-50 text-white rounded-md py-3 px-4 mb-3
+                         hover:bg-cyan-900 hover:bg-opacity-70 transition-colors duration-300"
             >
-            <h3 className="text-lg font-semibold mb-2">{country.Name}</h3>
-            <h4 className=' mb-2'>Captal: <span className='text-red-700'> {country.Capital} </span></h4>
-            <p className="text-sm text-green-600">Population: {country.Population}</p>
-            <p className="text-sm text-amber-900">Area: {country.Area} km²</p>
+              <div className="flex-1 text-center md:text-left font-semibold text-lg md:pl-4">
+                {country.Name}
+              </div>
+              <div className="flex-1 text-center text-cyan-300 md:px-4">{country.Capital}</div>
+              <div className="flex-1 text-center text-green-400 md:px-4">
+                {country.Population.toLocaleString()}
+              </div>
+              <div className="flex-1 text-center text-amber-400 md:pr-4">
+                {country.Area.toLocaleString()}
+              </div>
             </div>
+          </Link>
         ))}
       </div>
-      <p>This is the country page content.</p>
-    </div>
+    </main>
   );
 }
