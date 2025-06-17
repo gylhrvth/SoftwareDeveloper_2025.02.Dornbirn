@@ -19,7 +19,7 @@ export default function CountrySearch({ countries }: CountrySearchProps) {
     return (
     <>
       <SearchBar value={search} onChange={setSearch} />
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto min-h-[300px] transition-all duration-300">
         <CountryTable countries={filteredCountries} />
       </div>
     </>
