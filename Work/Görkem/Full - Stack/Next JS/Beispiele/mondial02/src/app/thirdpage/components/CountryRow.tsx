@@ -1,4 +1,5 @@
 import type { Country } from '@/lib/db';
+import getAlpha2 from '@/lib/countryFlagMapping';
 
 type CountryRowProps = {
   country: Country;
@@ -8,7 +9,7 @@ export default function CountryRow({ country }: CountryRowProps) {
   return (
     <tr className="border-b border-gray-700 hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
       <td className="px-4 py-2 text-2xl text-white">
-        <span className={`fi fi-${country.Alpha2}`}></span>
+        <span className={`fi fi-${ getAlpha2(country.Code) }`}></span>
       </td>
       <td className="px-4 py-2">{country.Name}</td>
       <td className="px-4 py-2">{country.Capital || <span className="text-gray-400">-</span>}</td>

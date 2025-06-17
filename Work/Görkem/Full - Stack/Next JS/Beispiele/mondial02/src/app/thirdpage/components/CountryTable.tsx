@@ -13,7 +13,7 @@ export default function CountryTable({ countries }: CountryTableProps) {
           <th scope="col" className="px-4 py-2 text-left">Flagge</th>
           <th scope="col" className="px-4 py-2 text-left">Name</th>
           <th scope="col" className="px-4 py-2 text-left">Hauptstadt</th>
-          <th scope="col" className="px-4 py-2 text-left">Fläche (km²)</th>
+          <th scope="col" className="px-4 py-2 text-left">Fläche</th>
           <th scope="col" className="px-4 py-2 text-left">Bevölkerung</th>
           <th scope="col" className="px-4 py-2 text-center">Aktionen</th>
         </tr>
