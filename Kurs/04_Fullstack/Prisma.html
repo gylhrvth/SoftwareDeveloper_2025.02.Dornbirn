@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prisma IO</title>
+    <link rel="stylesheet" href="../common.css">
+    <script src="../common.js" defer></script>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="nosnippet">
+    <style>
+        @keyframes task {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+
+        }
+
+        .specialTask {
+            color: hsl(300, 85%, 25%);
+            font-size: 1.8em;
+            animation: task 4s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="../../index.html">Home</a>
+        <a href="../Aufgaben.html">Aufgaben</a>
+        <a href="#Aufgabe1ID">Aufgabe 1: Recherche</a>
+        <a href="#Aufgabe2ID">Aufgabe 2: Eigene Worte finden</a>
+        <a href="#Aufgabe3ID">Aufgabe 3: Implementierung</a>
+        <a href="#Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</a>
+    </div>
+
+
+
+    <h1 id="Aufgabe1ID">Aufgabe 1: Recherche</h1>
+    <p>Dokumente zu lesen:</p>
+    <ol>
+        <li><a href="https://www.prisma.io/docs/getting-started/quickstart-prismaPostgres">Prisma Quickstart</a></li>
+    </ol>
+
+    <p>Fragen:</p>
+    <ol>
+        <li>Was ist ORM? Warum verwnden wir die?</li>
+        <li>Was ist Prisma?</li>
+        <li>Was ist Prisma Client?</li>
+        <li>Was ist Prisma Migrate?</li>
+        <li>Was ist Prisma Schema?</li>
+        <li>Wie verbinde ich Prisma mit meinem mysql Datenbank?</li>
+        <li>Wie erweitere ich mein Prisma Schema?</li>
+        <li>Wie aktualisiere meine Datenbank mit <b>npx prisma migrate dev ...</b>?</li>
+        <li>Wie kann ich meine Datenbank mit Prisma Client abfragen?</li>
+        <li>Wie kann ich meine Datenbank mit Prisma Client aktualisieren?</li>
+        <li>Wie kann ich meine Datenbank mit Prisma Client löschen?</li>
+        <li>Was macht <b>npx prisma migrate dev</b> (ohne Parameter)?</li>
+        <li>Was macht <b>npx prisma migrate reset</b>?</li>
+        <li>Wie generiere ich dummy Daten mit <b>npx prisma db seed</b>?</li>
+        <li>Kann ich rückwerts fahren? Zum Beispiel aus dem bestehenden Mondial Datenbank einen Mondel zu generieren?
+        </li>
+    </ol>
+
+
+    <h1 id="Aufgabe2ID">Aufgabe 2: Eigene Worte finden</h1>
+    <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+    <ol>
+        <li>Erfahrung in Journal Seite eintragen</li>
+        <li>mit Git Commit die Änderungen festlegen</li>
+        <li>mit Git Push die Änderungen auf dem gemeinsame Repository hochladen</li>
+    </ol>
+
+    <h1 id="Aufgabe3ID">Aufgabe 3: Implementieren</h1>
+
+    <h2>Mondial mit Prisma</h2>
+    <ul>
+        <li>Erstelle ein dummy NextJS Projekt</li>
+        <li>Installiere Prisma und initialisiere es</li>
+        <li>Erschelle ein Schema aus dem bestehenden mondial Datenbank</li>
+        <li>Mit den Prisma Client hole die Daten aus dem Country Tabelle</li>
+        <li>Darstelle die Daten als eine Liste (Name, Population)</li>
+    </ul>
+
+    <h3>ToDo App mit Prisma</h3>
+    <p>Implementiere eine ToDo App mit Prisma!</p>
+
+    <ul>
+        <li>Erstelle ein dummy NextJS Projekt</li>
+        <li>Installiere Prisma und initialisiere es</li>
+        <li>Erstelle ein Prisma Schema für die ToDo App</li>
+        <li>Mit <b>npx prisma migrate dev --name init</b> erstelle deine Datenbank</li>
+        <li>Erstelle Dummy Daten mit dem <b>npx prisma db seed</b></li>
+        <li>Prüfe die Datenbank mit dem DBeaver</li>
+        <li>Implementiere die CRUD-Operationen mit Prisma Client und NextJS</li>
+    </ul>
+
+    </p>
+
+
+    <h1 id="Aufgabe4ID">Aufgabe 4: Erfahrung dokumentieren</h1>
+    <p>Dokumentiere deine Recherege auf deine "Journal" Seite!</p>
+
+    <div class="menu">
+        <a href="../../Work/Alparslan/Week 01/Journal.html">Alparslan</a>
+        <a href="../../Work/Carlos/main.html">Carlos</a>
+        <a href="../../Work/Daniela/Week 01/Journal.html">Daniela</a>
+        <a href="../../Work/Görkem/Mainpage/mymainpage01.html">Görkem</a>
+        <a href="../../Work/Gyula/Week 01/Journal.html">Gyula</a>
+        <a href="../../Work/Leonie/Mainpage/Mainpage.html">Leonie</a>
+        <a href="../../Work/Mehmet/Journal/journal.html">Mehmet</a>
+    </div>
+    <button class="toTheTop">&#x1F51D;</button>
+</body>
+
+</html>
