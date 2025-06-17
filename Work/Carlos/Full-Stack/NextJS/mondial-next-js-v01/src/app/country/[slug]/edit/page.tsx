@@ -2,12 +2,24 @@
 import { FaTrashAlt } from "react-icons/fa";  // Import trash icon
 import { getAllCountries, getCountryLanguages, getCountryReligions } from '@/lib/db';
 import { notFound } from 'next/navigation';
-import { addLanguage, addReligion, removeLanguage, removeReligion } from './actions';
+import { 
+  addLanguage, 
+  addReligion, 
+  removeLanguage, 
+  removeReligion,
+  updateLanguage,
+  updateReligion 
+} from './actions';
+
 import BackButton from '../components/BackButton';
+import EditableItem from './EditableItem';
 
 export default async function EditCountry({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+  
+  const actualParams = await params; // Ensure params are resolved
+  const slug = actualParams.slug;
   const countryName = decodeURIComponent(slug);
+
   const countries = await getAllCountries();
   const country = countries.find(c => c.Name === countryName);
   
@@ -25,39 +37,31 @@ export default async function EditCountry({ params }: { params: { slug: string }
         {/* Languages Section */}
         <div className="max-w-2xl mx-auto">
           {/* Current Languages with Delete Buttons */}
-          <div className="bg-neutral-800 rounded-lg shadow-xl overflow-hidden mb-8">
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-emerald-300 border-b border-emerald-700 pb-2 mb-4">
-                Current Languages
-              </h2>
-              
-              {languages.length > 0 ? (
-                <ul className="space-y-3">
-                  {languages.map((lang, index) => (
-                    <li key={index} className="flex justify-between items-center text-gray-300 py-2 border-b border-gray-700">
-                      <div>
-                        <span className="font-medium">{lang.name}</span>
-                        <span className="ml-2 text-emerald-400">{lang.percentage}%</span>
-                      </div>
-                      <form action={removeLanguage}>
-                        <input type="hidden" name="countryCode" value={country.Code} />
-                        <input type="hidden" name="countryName" value={country.Name} />
-                        <input type="hidden" name="languageName" value={lang.name} />
-                        <button 
-                            type="submit"
-                            className="p-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 transition-colors flex items-center justify-center cursor-pointer"
-                            title="Delete language"
-                            >
-                            <FaTrashAlt size={14} />
-                        </button>
-                      </form>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-gray-400 italic">No languages recorded</p>
-              )}
-            </div>
+      <div className="bg-neutral-800 rounded-lg shadow-xl overflow-hidden mb-8">
+        <div className="p-6">
+          <h2 className="text-2xl font-bold text-emerald-300 border-b border-emerald-700 pb-2 mb-4">
+            Current Languages
+          </h2>
+          
+          {languages.length > 0 ? (
+            <ul className="space-y-3">
+              {languages.map((lang, index) => (
+                <EditableItem
+                  key={index}
+                  name={lang.name}
+                  percentage={lang.percentage}
+                  countryCode={country.Code}
+                  countryName={country.Name}
+                  onDelete={removeLanguage}
+                  onUpdate={updateLanguage}
+                  itemType="language"
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-400 italic">No languages recorded</p>
+          )}
+        </div>
           </div>
           
           {/* Add New Language Form */}
@@ -108,40 +112,32 @@ export default async function EditCountry({ params }: { params: { slug: string }
           
           {/* Religions Section */}
           {/* Current Religions with Delete Buttons */}
-          <div className="bg-neutral-800 rounded-lg shadow-xl overflow-hidden mb-8">
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-emerald-300 border-b border-emerald-700 pb-2 mb-4">
-                Current Religions
-              </h2>
-              
-              {religions.length > 0 ? (
-                <ul className="space-y-3">
-                  {religions.map((religion, index) => (
-                    <li key={index} className="flex justify-between items-center text-gray-300 py-2 border-b border-gray-700">
-                      <div>
-                        <span className="font-medium">{religion.name}</span>
-                        <span className="ml-2 text-emerald-400">{religion.percentage}%</span>
-                      </div>
-                      <form action={removeReligion}>
-                        <input type="hidden" name="countryCode" value={country.Code} />
-                        <input type="hidden" name="countryName" value={country.Name} />
-                        <input type="hidden" name="religionName" value={religion.name} />
-                        <button 
-                            type="submit"
-                            className="p-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 transition-colors flex items-center justify-center cursor-pointer"
-                            title="Delete language"
-                            >
-                            <FaTrashAlt size={14} />
-                        </button>
-                      </form>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-gray-400 italic">No religions recorded</p>
-              )}
-            </div>
-          </div>
+                <div className="bg-neutral-800 rounded-lg shadow-xl overflow-hidden mb-8">
+        <div className="p-6">
+          <h2 className="text-2xl font-bold text-emerald-300 border-b border-emerald-700 pb-2 mb-4">
+            Current Religions
+          </h2>
+          
+          {religions.length > 0 ? (
+            <ul className="space-y-3">
+              {religions.map((religion, index) => (
+                <EditableItem
+                  key={index}
+                  name={religion.name}
+                  percentage={religion.percentage}
+                  countryCode={country.Code}
+                  countryName={country.Name}
+                  onDelete={removeReligion}
+                  onUpdate={updateReligion}
+                  itemType="religion"
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-400 italic">No religions recorded</p>
+          )}
+        </div>
+      </div>
           
           {/* Add New Religion Form */}
           <div className="bg-neutral-800 rounded-lg shadow-xl overflow-hidden mb-8">
