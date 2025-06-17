@@ -15,10 +15,10 @@ export default async function CountriesPage() {
 
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {countries.map((country) => (
-          <li key={country.Code}>
+          <li key={country.Code.toLowerCase()}>
             <Link
               href={`/country/${country.Code}`}
-              className="flex items-center justify-between p-4 rounded-lg border border-gray-200 bg-white hover:bg-blue-50 transition cursor-pointer shadow-sm hover:shadow-md"
+              className="flex items-center justify-between p-4 rounded-xl border border-gray-200 bg-white hover:bg-blue-100 transition-colors duration-200 shadow-sm hover:shadow-md"
             >
               <div className="flex items-center space-x-3">
                 <CountryFlag code={country.Code} />
