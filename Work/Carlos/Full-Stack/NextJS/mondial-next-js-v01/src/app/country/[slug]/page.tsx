@@ -6,6 +6,7 @@ import CountryHeader from './components/CountryHeader';
 import CountryKeyFacts from './components/CountryKeyFacts';
 import CountryMisc from './components/CountryMisc';
 import BackButton from './components/BackButton';
+import EditButton from './components/EditButton';
 
 export default async function CountryDetails({ params }: { params: { slug: string } }) {
   // Decode the URL parameter
@@ -26,8 +27,8 @@ export default async function CountryDetails({ params }: { params: { slug: strin
   const religions = await getCountryReligions(country.Code);  // <-- Add this line
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col items-center justify-center">
         {/* Header */}
         <CountryHeader country={country} />
         
@@ -43,9 +44,11 @@ export default async function CountryDetails({ params }: { params: { slug: strin
             </div>
           </div>
         </div>
-        
         {/* Back Button */}
+        <div className ="flex justify-center mt-8 gap-8">
         <BackButton href="/country" label="← Back to Countries" />
+        <EditButton country={country} />
+        </div>
       </div>
     </div>
   );

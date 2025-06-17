@@ -1,3 +1,6 @@
+// First Row Codes: Mondial DB
+// Second Row Codes: https://flagcdn.com/en/codes.json
+
 export const countryCodeMap: Record<string, string> = {
     // Single letter codes
     'A': 'at',  // Austria
