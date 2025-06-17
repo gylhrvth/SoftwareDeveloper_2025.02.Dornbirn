@@ -25,7 +25,7 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
           <li className="tracking-[-.01em] cursor-pointer">
-            <Link href="/thirdpage" className="hover:underline text-inherit">
+            <Link href="/thirdpage" className="text-blue-500 hover:underline">
               Mondial example
             </Link>
           </li>
