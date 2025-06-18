@@ -1,5 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import PostFeed from "@/components/PostFeed";
+import Widgets from "@/components/Widgets";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
     ">
       <Sidebar />
       <PostFeed />
+      <Widgets />
     </div>
   );
 }
