@@ -4,50 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../../Kurs/common.css">
+    <link rel="stylesheet" href="../../../MekStyle.css">
 </head>
-<style>
-    ul li{
-        display: flex;
-        width: max-content;
-        justify-content: start;
-        background-color: rgba(0, 255, 255, 0.6);
-        color: white;
-        font-weight: bolder;
-    }
-  
-    a{
-        color: azure;
-    }
 
-    code{
-        background-color: rgba(0, 255, 255, 0.6);
-        color: white;
-        font-weight: bolder;
-       
-    }
-    body{
-        background-color: rgb(46, 45, 45);
-        margin-left: 5%;
-    }
-</style>
 <body>
     
-    <h1>Node JS Notizen</h1>
-    
-    <ol>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-    
-    </ol>
+    <h1>Prisma.io Notizen</h1>
+      <button id="mode-toggle">Light Mode</button>
+<p id="date"><strong>18.06.2025</strong></p>
+<ol id="Inhalt">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ol>
+
+
 
     <section>
    
+        
            <h2> </h2>
             <p></p>
             <p></p>
@@ -55,29 +42,19 @@
                 <li></li>
                 <li></li>
             </ul>
-         <h2> </h2>
-            <p></p>
-            <p></p>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-         <h2> </h2>
-            <p></p>
-            <p></p>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-         <h2> </h2>
-            <p></p>
-            <p></p>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
+        
        
 
     </section>
+    <script>
+            const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    </script>
 </body>
 </html>
