@@ -18,10 +18,476 @@
     <h1 class="textColor01">Full-Stack Journal 06</h1>
 
     <h3 class="textColor01">▷ Zum <a href="../main.html">Main Journal</a></h3>
+    <h3 class="textColor01">▷ <a href="#day74">MI 18/06/25</a>: NextJS + Prisma ORM</h3>
+    <h3 class="textColor01">▷ <a href="#day73">DI 17/06/25</a>: NextJS</h3>
     <h3 class="textColor01">▷ <a href="#day72">MO 16/06/25</a>: NextJS</h3>
 
     </div>
     <br>
+    <h2 id="day74">Mittwoch 18. Juni 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (NextJS + Prisma ORM)</h3>
+    <h3>Prisma Schema</h3>
+    <p>Common Data Types in Prisma Schema:</p>
+    <ul>
+      <li><strong>Int</strong>: Ganze Zahl (z.B. <code>id Int @id @default(autoincrement())</code>)</li>
+      <li><strong>String</strong>: Textdaten (z.B. <code>name String</code>)</li>
+      <li><strong>String?</strong>: Optionale Zeichenkette, kann <code>null</code> sein (z.B. <code>email String?</code>)</li>
+      <li><strong>Float</strong>: Fließkommazahl (z.B. <code>height Float</code>)</li>
+      <li><strong>Boolean</strong>: Wahr/Falsch-Wert (z.B. <code>isActive Boolean</code>)</li>
+      <li><strong>DateTime</strong>: Datum und Uhrzeit (z.B. <code>createdAt DateTime @default(now())</code>)</li>
+      <li><strong>Decimal</strong>: Dezimalzahl mit hoher Genauigkeit (z.B. <code>price Decimal @db.Decimal(10, 2)</code>)</li>
+      <li><strong>BigInt</strong>: Große Ganzzahl (z.B. <code>largeNumber BigInt</code>)</li>
+      <li><strong>Json</strong>: JSON-Daten (z.B. <code>metadata Json</code>)</li>
+      <li><strong>Bytes</strong>: Binärdaten (z.B. <code>document Bytes</code>)</li>
+    </ul>
+
+    <p>Relations in Schema:</p>
+    <ul>
+      <li>
+        <strong>One-to-many Relation (1:n):</strong>
+        <pre><code>model User {
+      id    Int    @id @default(autoincrement())
+      posts Post[] // Ein User hat viele Posts
+    }
+
+    model Post {
+      id       Int  @id @default(autoincrement())
+      author   User @relation(fields: [authorId], references: [id])
+      authorId Int  // Fremdschlüssel
+    }</code></pre>
+        <p>
+          In diesem Beispiel hat ein <code>User</code> mehrere <code>Post</code>-Einträge (1:n-Beziehung). Jeder <code>Post</code> verweist über <code>authorId</code> auf einen <code>User</code>.
+        </p>
+      </li>
+      <li>
+        <strong>Many-to-many Relation (n:m):</strong>
+        <pre><code>model Category {
+      id    Int    @id @default(autoincrement())
+      name  String
+      posts Post[] // Viele Kategorien haben viele Posts
+    }
+
+    model Post {
+      id         Int        @id @default(autoincrement())
+      categories Category[] // Viele Posts haben viele Kategorien
+    }</code></pre>
+        <p>
+          In diesem Beispiel gibt es eine n:m-Beziehung zwischen <code>Post</code> und <code>Category</code>. Ein <code>Post</code> kann mehreren <code>Category</code>-Einträgen zugeordnet sein und umgekehrt.
+        </p>
+      </li>
+    </ul>
+
+    <h3>Prisma ORM Anwendung -> Step by Step:</h3>
+    <ol>
+        <li><h4 class="textColor02">Prisma ORM installieren</h4></li>
+        <p>Installiere Prisma ORM in dem Projekt:</p>
+        <pre><code>npm install prisma --save-dev</code></pre>
+        <li><h4 class="textColor02">Datenbank initialisieren (MySQL):</h4></li>
+        <pre><code>npx prisma init --datasource-provider mysql</code></pre>
+
+        <p>Dies erstellt eine <code>prisma</code>-Ordner mit der Datei <code>schema.prisma</code>.</p>
+        <p>Terminal Feedback:</p>
+        <p>✔ Your Prisma schema was created at prisma/schema.prisma</p>
+        <p>Next steps:<br>
+        1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+        <br>
+        2. Run npx prisma db pull to turn your database schema into a Prisma schema.
+        <br>
+        3. Run prisma generate to generate the Prisma Client. You can then start querying your database.</p>
+
+        <li><h4 class="textColor02">Datenbankverbindung konfigurieren</h4></li>
+        <p>Öffne die Datei <code>.env</code> und füge die Verbindungsdetails für deine MySQL-Datenbank hinzu:</p>
+        <pre><code>DATABASE_URL="mysql://user:password@localhost:3306/database_name"</code></pre>
+        <p>Ersetze <code>user</code>, <code>password</code> und <code>database_name</code> mit deinen tatsächlichen MySQL-Datenbankinformationen.</p>
+      
+        <li><h4 class="textColor02">Je nach Kontext kann man: </h4></li>
+        <ul>
+          <li>A. Eine neue Datenbank erstellen, falls keine vorhanden. In diesem Fall muss man ein Prisma Schema erstellen.</li>
+          <li>B. Eine bestehende Datenbank verwenden, in diesem Fall kann man mit <code>npx prisma db pull</code> das Schema aus der Datenbank abrufen.</li>
+          <li>C. Eine bestehende Datenbank verwenden, aber das Schema manuell anpassen. In diesem Fall:
+            <ul>
+              <li>Führe <code>npx prisma db pull</code> aus, um das aktuelle Schema aus der bestehenden Datenbank zu importieren.</li>
+              <li>Bearbeite <code>schema.prisma</code> manuell, um Modelle, Felder oder Beziehungen hinzuzufügen oder zu ändern.</li>
+              <li>Führe <code>npx prisma migrate dev --name &lt;migration_name&gt;</code> aus, um die Änderungen als Migration auf die Datenbank anzuwenden.</li>
+              <li>Generiere den Prisma Client mit <code>npx prisma generate</code> neu.</li>
+            </ul>
+            <strong>Hinweis:</strong> Beim manuellen Anpassen des Schemas ist Vorsicht geboten, um Inkonsistenzen zwischen Datenbank und Prisma-Modellen zu vermeiden.
+            </li>
+        </ul>
+
+        <li><h4 class="textColor02">Option A -> Schritt 01: Prisma Schema erstellen</h4></li>
+        <p>Bearbeite die Datei <code>prisma/schema.prisma</code>, um deine Datenmodelle zu definieren. Zum Beispiel:</p>
+        <pre><code>datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String  @unique
+  posts Post[]
+}
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int
+  author    User    @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}</code></pre>
+        <p>Dies definiert zwei Modelle: <code>User</code> und <code>Post</code>, mit einer 1:n-Beziehung zwischen ihnen.</p>
+
+        <li><h4 class="textColor02">Option A -> Schritt 02: Migrationen erstellen</h4></li>
+        <p>Führe den folgenden Befehl aus, um Migrationen zu erstellen und das Schema auf die Datenbank anzuwenden:</p>
+        <pre><code>npx prisma migrate dev --name init</code></pre>
+        <p>Dies erstellt eine Migration mit dem Namen "init" und wendet sie auf die Datenbank an.</p>
+
+        <li><h4 class="textColor02">Option B: Schema aus bestehender Datenbank abrufen</h4></li>
+        <p>Führe den folgenden Befehl aus, um das Schema aus der bestehenden MySQL-Datenbank abzurufen:</p>
+        <pre><code>npx prisma db pull</code></pre>
+        <p>Dies aktualisiert die Datei <code>prisma/schema.prisma</code> mit den bestehenden Tabellen und Spalten der Datenbank.</p>
+        <p>Terminal Feedback:</p>
+        <p>✔ Your Prisma schema was updated at prisma/schema.prisma</p>
+
+        <li><h4 class="textColor02">Prisma Client generieren (Das braucht es in jedem Schritt): </h4></li>
+        <p>Generiere den Prisma Client, um auf die Datenbank zuzugreifen:</p>
+        <pre><code>npx prisma generate</code></pre>
+        <p>Dies erstellt den Prisma Client basierend auf dem definierten Schema.</p>
+
+        <li><h4 class="textColor02">Datenbank abfragen</h4></li>
+        <p>Jetzt kann man den Prisma Client in dem Code verwenden, um Datenbankabfragen durchzuführen.</p>
+
+      </ol>
+      <br>
+      
+    <h3 class="textColor01">Full-Stack (NextJS + Prisma ORM)</h3>
+
+    <h3>Prisma ORM (Recherche)</h3>
+
+    <ul>
+        <li><h4 class="textColor02">Was ist ORM und warum wird verwendet?</h4></li>
+        <p>
+            ORM (Object-Relational Mapping) ist eine Technik, die es ermöglicht, Datenbankoperationen in objektorientierten Programmiersprachen durchzuführen. Es wird verwendet, um die Interaktion mit Datenbanken zu vereinfachen, indem es Objekte in der Programmiersprache direkt mit Datenbanktabellen verknüpft.
+        </p>
+        <li><h4 class="textColor02">Was ist Prisma ORM?</h4></li>
+        <p>
+            Prisma ORM ist ein modernes ORM-Tool für Node.js und TypeScript, das die Interaktion mit Datenbanken vereinfacht. Es bietet eine typsichere API, Migrationen und eine leistungsstarke Abfragesprache, die es Entwicklern ermöglicht, effizient mit Datenbanken zu arbeiten.
+        </p>
+        <li><h4 class="textColor02">Welche Vorteile bietet Prisma ORM?</h4></li>
+        <p>
+            Prisma ORM bietet mehrere Vorteile, darunter:
+            <ul>
+                <li>Typsicherheit: Es generiert Typen für Datenbankmodelle, was die Entwicklung sicherer macht.</li>
+                <li>Einfaches Datenbankmanagement: Migrationen und Schema-Management sind integriert.</li>
+                <li>Leistungsstarke Abfragen: Prisma bietet eine intuitive Abfragesprache, die komplexe Abfragen vereinfacht.</li>
+                <li>Unterstützung für mehrere Datenbanken: Es funktioniert mit PostgreSQL, MySQL, SQLite und anderen.</li>
+            </ul>
+        </p>
+        <li><h4 class="textColor02">Was ist Prisma Client?</h4></li>
+        <p>
+            Prisma Client ist eine automatisch generierte TypeScript/JavaScript-Bibliothek, die es Entwicklern ermöglicht, auf Datenbankoperationen zuzugreifen. Es bietet eine typsichere API, um CRUD-Operationen (Create, Read, Update, Delete) durchzuführen und Abfragen zu erstellen.
+        </p>
+         <li><h4 class="textColor02">Was ist Prisma Migrate?</h4></li>
+         <p>
+            Prisma Migrate ist ein Tool, das die Verwaltung von Datenbankschemata erleichtert. Es ermöglicht Entwicklern, Änderungen am Datenbankschema zu verfolgen und Migrationen zu erstellen, um diese Änderungen auf die Datenbank anzuwenden. Es unterstützt auch Rollbacks und Versionskontrolle für das Schema.
+        </p>
+        <li><h4 class="textColor02">Was ist Prisma Schema?</h4></li>
+        <p>
+            Prisma Schema ist eine deklarative Sprache, die verwendet wird, um das Datenbankschema zu definieren. Es beschreibt die Datenmodelle, Beziehungen und Felder in der Datenbank. Das Prisma-Schema wird verwendet, um den Prisma Client zu generieren und Migrationen zu erstellen.
+        </p>
+        <li><h4 class="textColor02">Wie kann man Prisma ORM mit einem mySQL Datenbank verbunden werden?</h4></li>
+        <p>
+            Um Prisma ORM mit einer MySQL-Datenbank zu verbinden, folgende Schritte ausführen:
+            <ol>
+            <li>Prisma CLI installieren: <code>npm install prisma --save-dev</code></li>
+            <li>Prisma in Ihrem Projekt initialisieren: <code>npx prisma init</code></li>
+            <li>Die Datei <code>prisma/schema.prisma</code> bearbeiten, um die MySQL-Verbindungsdetails hinzuzufügen:</li>
+            <pre><code>datasource db {
+      provider = "mysql"
+      url      = env("DATABASE_URL")
+    }</code></pre>
+            <li>Die Umgebungsvariable <code>DATABASE_URL</code> in Ihrer .env-Datei setzen:</li>
+            <pre><code>DATABASE_URL="mysql://user:password@localhost:3306/database_name"</code></pre>
+            <li>Migrationen durchführen, um das Schema zu erstellen: <code>npx prisma migrate dev --name init</code></li>
+            <li>Den Prisma Client generieren: <code>npx prisma generate</code></li>
+            </ol>
+        </p>
+        <li><h4 class="textColor02">Wie kann man ein Prima Schema erweitern?</h4></li>
+        <p>
+            Um das Prisma Schema zu erweitern, kann man neue Modelle, Felder oder Beziehungen hinzufügen. Zum Beispiel:
+            <pre><code>model User {
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String  @unique
+  posts Post[]
+}
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int
+  author    User    @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}</code></pre>
+            Nach dem Hinzufügen von Modellen oder Feldern muss man Migrationen erstellen und den Prisma Client neu generieren, um die Änderungen zu übernehmen.
+        </p>
+        <li><h4 class="textColor02">Wie kann man den Datenbank aktualisieren mit 'migrate'?</h4></li>
+        <p>
+            Um die Datenbank mit <code>npx prisma migrate dev</code> zu aktualisieren, führt man folgende Schritte aus:
+            <ol>
+                <li>Zuerst ändert man das Prisma-Schema (schema.prisma) nach Bedarf, z.B. durch Hinzufügen oder Ändern von Modellen und Feldern.</li>
+                <li>Dann führt man den Befehl <code>npx prisma migrate dev --name migration_name</code> aus, wobei "migration_name" ein beschreibender Name für die Änderung ist.</li>
+                <li>Prisma wird automatisch:
+                    <ul>
+                        <li>Die Änderungen am Schema erkennen</li>
+                        <li>Eine SQL-Migrationsdatei generieren</li>
+                        <li>Die Migration auf die Datenbank anwenden</li>
+                        <li>Den Prisma Client neu generieren</li>
+                    </ul>
+                </li>
+                <li>Bei Bedarf kann man mit <code>npx prisma migrate reset</code> die Datenbank zurücksetzen und alle Migrationen neu anwenden.</li>
+            </ol>
+            <br>
+            Wichtig: In Produktionsumgebungen sollte man <code>npx prisma migrate deploy</code> verwenden, um nur die Migrationen anzuwenden, ohne den Entwicklungsmodus zu aktivieren.
+        </p>
+
+         <li><h4 class="textColor02">Wie kann man eine Datenbank mit Prisma Client abfragen, aktualisieren oder löschen?</h4></li>
+        <p>
+            Um eine Datenbank mit Prisma Client abzufragen, folgt man diesen Schritten:
+            <ol>
+                <li>Zuerst importiert man den Prisma Client in die Datei:</li>
+                <pre><code>import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()</code></pre>
+                
+                <li>Dann kann man verschiedene Abfrageoperationen durchführen:</li>
+                
+                <ul>
+                    <li><strong>Datensätze abrufen (findMany)</strong>:</li>
+                    <pre><code>// Alle Benutzer abrufen
+const allUsers = await prisma.user.findMany()</code></pre>
+                    
+                    <li><strong>Einzelnen Datensatz finden (findUnique)</strong>:</li>
+                    <pre><code>// Benutzer mit bestimmter ID finden
+const user = await prisma.user.findUnique({
+  where: { id: 1 }
+})</code></pre>
+                    
+                    <li><strong>Datensätze mit Filtern abrufen</strong>:</li>
+                    <pre><code>// Benutzer mit bestimmter E-Mail finden
+const filteredUsers = await prisma.user.findMany({
+  where: {
+    email: {
+      contains: '@example.com'
+    }
+  }
+})</code></pre>
+                    
+                    <li><strong>Relationen abrufen (include)</strong>:</li>
+                    <pre><code>// Benutzer mit ihren Beiträgen abrufen
+const usersWithPosts = await prisma.user.findMany({
+  include: {
+    posts: true
+  }
+})</code></pre>
+                    
+                    <li><strong>Datensätze erstellen</strong>:</li>
+                    <pre><code>// Neuen Benutzer erstellen
+const newUser = await prisma.user.create({
+  data: {
+    name: 'Max Mustermann',
+    email: 'max@example.com'
+  }
+})</code></pre>
+                    
+                    <li><strong>Datensätze aktualisieren</strong>:</li>
+                    <pre><code>// Benutzer aktualisieren
+const updatedUser = await prisma.user.update({
+  where: { id: 1 },
+  data: { name: 'Neuer Name' }
+})</code></pre>
+                    
+                    <li><strong>Datensätze löschen</strong>:</li>
+                    <pre><code>// Benutzer löschen
+const deletedUser = await prisma.user.delete({
+  where: { id: 1 }
+})</code></pre>
+                </ul>
+                
+                <li>Nach Abschluss der Operationen sollte der Prisma Client geschlossen werden:</li>
+                <pre><code>async function main() {
+  // Datenbankoperationen
+  const users = await prisma.user.findMany()
+  console.log(users)
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })</code></pre>
+            </ol>
+            
+            Prisma Client bietet auch fortgeschrittene Abfragefunktionen wie Aggregationen, Transaktionen und komplexe Filterungen, die die Datenbankinteraktion erheblich vereinfachen.
+        </p>
+
+        <li><h4 class="textColor02">Was macht 'npx prisma migrate dev' (ohne Parameter)?</h4></li>
+        <p>
+            Der Befehl <code>npx prisma migrate dev</code> ohne Parameter führt die folgenden Aktionen aus:
+            <ul>
+                <li>Erkennt Änderungen im Prisma-Schema (schema.prisma) und generiert eine neue Migration.</li>
+                <li>Wendet die Migration auf die Datenbank an, um das Schema zu aktualisieren.</li>
+                <li>Generiert den Prisma Client neu, um die Änderungen widerzuspiegeln.</li>
+                <li>Erstellt eine Migrationsdatei im Verzeichnis <code>prisma/migrations</code>.</li>
+            </ul>
+            <br>
+            Dieser Befehl ist nützlich während der Entwicklung, da er es ermöglicht, das Schema schnell zu ändern und die Datenbank entsprechend zu aktualisieren.
+        </p>
+        <li><h4 class="textColor02">Was macht'npx prisma migrate reset'?</h4></li>
+        <p>
+            Der Befehl <code>npx prisma migrate reset</code> führt die folgenden Aktionen aus:
+            <ul>
+                <li>Setzt die Datenbank zurück, indem alle Daten gelöscht und das Schema neu erstellt wird.</li>
+                <li>Wendet alle Migrationen erneut an, um das Schema in den Zustand zu versetzen, der im Prisma-Schema definiert ist.</li>
+                <li>Generiert den Prisma Client neu, um die Änderungen widerzuspiegeln.</li>
+            </ul>
+            <br>
+            Dieser Befehl ist nützlich in der Entwicklungsphase, wenn:
+            <ul>
+                <li>Man ein sauberes Datenbankschema ohne veraltete Daten benötigt</li>
+                <li>Migrationen beschädigt wurden oder in einem inkonsistenten Zustand sind</li>
+                <li>Man Testdaten mit Seed-Skripten neu generieren möchte</li>
+                <li>Man von vorne beginnen möchte, ohne das Projekt neu einrichten zu müssen</li>
+            </ul>
+            <br>
+            <strong>Achtung:</strong> Dieser Befehl löscht alle Daten in der Datenbank! Er sollte niemals in einer Produktionsumgebung verwendet werden, es sei denn, man ist sich der Konsequenzen bewusst und hat Backups erstellt.
+        </p>
+        <li><h4 class="textColor02">Wie generiert man dummy Daten mit npx prisma db seed?</h4></li>
+        <p>
+            Um Dummy-Daten mit <code>npx prisma db seed</code> zu generieren, folgt man diesen Schritten:
+        </p>
+        <ol>
+            <li>
+                <p>Zuerst konfiguriert man die Seed-Funktion in der <code>package.json</code>:</p>
+                <pre><code>{
+          "prisma": {
+            "seed": "ts-node prisma/seed.ts"
+          }
+        }</code></pre>
+            </li>
+            <li>
+                <p>Dann erstellt man die Seed-Datei (z.B. <code>prisma/seed.ts</code> oder <code>prisma/seed.js</code>):</p>
+                <pre><code>import { PrismaClient } from '@prisma/client'
+        const prisma = new PrismaClient()
+
+        async function main() {
+          // Bestehende Daten löschen (optional)
+          await prisma.post.deleteMany()
+          await prisma.user.deleteMany()
+
+          // Dummy-Benutzer erstellen
+          const user1 = await prisma.user.create({
+            data: {
+              name: 'Alice',
+              email: 'alice@example.com',
+              posts: {
+                create: [
+                  { title: 'Hello World', content: 'First post content' },
+                  { title: 'Second Post', content: 'More content here' },
+                ],
+              },
+            },
+          })
+
+          const user2 = await prisma.user.create({
+            data: {
+              name: 'Bob',
+              email: 'bob@example.com',
+              posts: {
+                create: [
+                  { title: 'Bob\'s First Post', content: 'Bob has something to say' },
+                ],
+              },
+            },
+          })
+
+          console.log('Seeding completed with', { user1, user2 })
+        }
+
+        main()
+          .catch((e) => {
+            console.error(e)
+            process.exit(1)
+          })
+          .finally(async () => {
+            await prisma.$disconnect()
+          })</code></pre>
+            </li>
+            <li>
+                <p>Schließlich führt man den Seed-Befehl aus:</p>
+                <pre><code>npx prisma db seed</code></pre>
+            </li>
+        </ol>
+        <p>
+            Diese Methode ist besonders nützlich für:
+        </p>
+        <ul>
+            <li>Entwicklungsumgebungen, um konsistente Testdaten zu haben</li>
+            <li>Demo-Anwendungen mit realistischen Daten</li>
+            <li>Testen von Datenbankabfragen und -operationen</li>
+        </ul>
+
+        <li><h4 class="textColor02">Kann man aus dem bestehenden Mondial Datenbank einen Model-Schema mit 'pull' generieren?</h4></li>
+        <p>
+            Ja, mit Prisma kann man aus einer bestehenden Mondial-Datenbank ein Model-Schema generieren. Dazu verwendet man das Prisma CLI-Tool <code>prisma db pull</code>. Dieses liest das bestehende Datenbankschema aus und erstellt automatisch das entsprechende Prisma-Schema.
+
+            <ol>
+            <li>Stelle sicher, dass die Verbindung zur Mondial-Datenbank in der <code>prisma/schema.prisma</code> Datei korrekt ist (z.B. mit <code>provider = "mysql"</code> und der passenden <code>DATABASE_URL</code>).</li>
+            <li>Führe im Terminal folgenden Befehl aus:
+                <pre><code>npx prisma db pull</code></pre>
+            </li>
+            <li>Prisma analysiert die Datenbank und generiert automatisch die Modelle im <code>schema.prisma</code>.</li>
+            <li>Optional: Mit <code>npx prisma generate</code> wird der Prisma Client für die neuen Modelle erstellt.</li>
+            </ol>
+            <br>
+            <strong>Hinweis:</strong> Die Qualität der generierten Modelle hängt von der Struktur und den Beziehungen in der Mondial-Datenbank ab. Nach dem Pull kann das Schema manuell angepasst und erweitert werden.
+        </p>
+        <li><h4 class="textColor02">Wozu ist ein Model nützlich?</h4></li>
+        <p>
+            Ein Model in Prisma ist nützlich, weil es die Struktur und Beziehungen von Daten in der Datenbank definiert. Es ermöglicht:
+            <ul>
+                <li>Typsichere Abfragen: Entwickler können sicher auf Felder und Beziehungen zugreifen, ohne sich um Tippfehler oder falsche Typen sorgen zu müssen.</li>
+                <li>Automatische Generierung des Prisma Clients: Der Client wird basierend auf den Modellen erstellt, was die Interaktion mit der Datenbank vereinfacht.</li>
+                <li>Migrationen: Änderungen am Model können einfach verfolgt und auf die Datenbank angewendet werden.</li>
+                <li>Dokumentation: Das Model dient als Dokumentation für die Struktur der Datenbank und deren Beziehungen.</li>
+            </ul>
+        </p>
+        <li><h4 class="textColor02">Prisma ORM Zusammenfassung</h4></li>
+        <p>
+            Prisma ORM ist ein leistungsstarkes Tool für Node.js und TypeScript, das die Interaktion mit Datenbanken vereinfacht. Es bietet Typsicherheit, Migrationen und eine intuitive Abfragesprache. Mit Prisma Client können Entwickler effizient CRUD-Operationen durchführen und komplexe Abfragen erstellen. Prisma Migrate erleichtert das Schema-Management, während das Prisma Schema die Datenstruktur definiert. Die Integration mit MySQL und anderen Datenbanken ist unkompliziert, und Seed-Skripte ermöglichen die Generierung von Dummy-Daten für Entwicklungs- und Testzwecke.
+        </p>
+ 
+        </ul>
+
+    <h2 id="day73">Dienstag 17. Juni 2025</h2>
+
+    <h3 class="textColor01">Full-Stack (NextJS)</h3>
+
+    <h4 class="textColor02">-> Mondial DB App mit NextJS</h4>
+
+    <p>Screenshots vom Projekt:</p>
+    <ul>
+        <li><a href="../Full-Stack/NextJS/mondial-next-js-v01/assets/screenshots/mondialNext01.png">App Conuntry Main</a></li>
+        <li><a href="../Full-Stack/NextJS/mondial-next-js-v01/assets/screenshots/mondialNext02.png">App Country Details</a></li>
+        <li><a href="../Full-Stack/NextJS/mondial-next-js-v01/assets/screenshots/mondialNext03.png">App Country Edit Form</a></li>
+    </ul>
+
     <h2 id="day72">Montag 16. Juni 2025</h2>
 
     <h3 class="textColor01">Full-Stack (NextJS)</h3>
