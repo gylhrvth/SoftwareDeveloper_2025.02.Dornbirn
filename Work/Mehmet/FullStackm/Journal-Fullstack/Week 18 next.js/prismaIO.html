@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../MekStyle.css">
+</head>
+
+<body>
+    
+    <h1>Prisma.io Notizen</h1>
+      <button id="mode-toggle">Light Mode</button>
+<p id="date"><strong>18.06.2025</strong></p>
+<ol id="Inhalt">
+  <li>Was ist ORM? Warum verwenden wir die?</li>
+  <li>Was ist Prisma?</li>
+  <li>Was ist Prisma Client?</li>
+  <li>Was ist Prisma Migrate?</li>
+  <li>Was ist Prisma Schema?</li>
+  <li>Wie verbinde ich Prisma mit meinem mysql Datenbank?</li>
+  <li>Wie erweitere ich mein Prisma Schema?</li>
+  <li>Wie aktualisiere meine Datenbank mit npx prisma migrate dev ...?</li>
+  <li>Wie kann ich meine Datenbank mit Prisma Client abfragen?</li>
+  <li>Wie kann ich meine Datenbank mit Prisma Client aktualisieren?</li>
+  <li>Wie kann ich meine Datenbank mit Prisma Client löschen?</li>
+  <li>Was macht npx prisma migrate dev (ohne Parameter)?</li>
+  <li>Was macht npx prisma migrate reset?</li>
+  <li>Wie generiere ich dummy Daten mit npx prisma db seed?</li>
+  <li>Kann ich rückwärts fahren? Zum Beispiel aus dem bestehenden Mondial Datenbank einen Model zu generieren?</li>
+</ol>
+
+
+<!-- FRAGE1 -->
+
+<section>
+  <h2>1. Was ist ORM? Warum verwenden wir die?</h2>
+  <p>
+    <strong>ORM</strong> steht für <em>Object-Relational Mapping</em>. Es ist eine Technik, die es ermöglicht,
+    Datenbanktabellen als Objekte in einer Programmiersprache (z. B. JavaScript, Python, Java) abzubilden.
+    Dadurch kannst du mit Datenbanken auf eine viel intuitivere, objektorientierte Weise arbeiten,
+    ohne direkt SQL schreiben zu müssen.
+  </p>
+
+  <h3>Warum verwenden wir ORM?</h3>
+  <ol>
+    <li><strong>Abstraktion von SQL:</strong><br>
+        Statt SQL-Queries zu schreiben, kannst du mit Objekten und Methoden arbeiten. Das ist leichter lesbar und wartbar.</li>
+    <li><strong>Mehr Sicherheit:</strong><br>
+        ORM verhindert häufige Fehler wie SQL-Injection, da es Query-Building intern sicher erledigt.</li>
+    <li><strong>Portabilität:</strong><br>
+        Wenn du z. B. von MySQL auf PostgreSQL wechselst, bleibt dein Code oft fast gleich, weil das ORM die Datenbank-Details kapselt.</li>
+    <li><strong>Schnellere Entwicklung:</strong><br>
+        Durch fertige Methoden (z. B. <code>find</code>, <code>update</code>) kannst du CRUD-Operationen schnell umsetzen.</li>
+  </ol>
+
+  <h3>Beispiel in JavaScript mit Prisma ORM:</h3>
+  <p>Angenommen, du hast eine Tabelle <code>User</code> mit Feldern <code>id</code> und <code>name</code>. Ohne ORM würdest du in SQL schreiben:</p>
+
+  <pre><code>SELECT * FROM User WHERE id = 1;</code></pre>
+
+  <p>Mit Prisma ORM in JavaScript machst du das so:</p>
+
+  <pre><code>const user = await prisma.user.findUnique({
+  where: { id: 1 },
+});
+console.log(user.name);</code></pre>
+
+  <p>Hier ist <code>prisma.user.findUnique</code> eine Methode, die dir das gewünschte Benutzerobjekt liefert — ganz ohne SQL schreiben zu müssen. Du arbeitest einfach mit JavaScript-Objekten.</p>
+
+  <h3>Fazit:</h3>
+  <p>ORM macht deine Arbeit mit Datenbanken <strong>einfacher, sicherer und wartbarer</strong>. Es verbindet die <strong>relationale Welt der Datenbanken</strong> mit der <strong>objektorientierten Welt deines Codes</strong>.</p>
+</section>
+
+
+    <!-- FRAGE2 -->
+
+    <section>
+  <h2>2. Was ist Prisma?</h2>
+  <p>Prisma ist ein modernes ORM-Toolkit (Object-Relational Mapping) für Node.js und TypeScript, das dir ermöglicht, einfach, sicher und effizient mit Datenbanken zu arbeiten. Statt direkt komplizierte SQL-Abfragen zu schreiben, definierst du deine Datenstruktur in einem Prisma Schema. Prisma generiert daraus automatisch eine typsichere API, den sogenannten Prisma Client, mit dem du in deinem Code bequem Daten abfragen, erstellen, aktualisieren oder löschen kannst.</p>
+  
+  <p>Ein großer Vorteil von Prisma ist, dass du keine eigenen Bibliotheken oder Verzeichnisse manuell verwalten musst. Prisma kümmert sich automatisch darum, die Datenbank-Interaktionen zu organisieren, Migrationsskripte zu verwalten und den Client immer aktuell zu halten. Dadurch sparst du viel Zeit und reduzierst Fehlerquellen.</p>
+  
+  <h3>Vorteile im Überblick:</h3>
+  <ul>
+    <li><strong>Typsicherheit:</strong> Dein Code ist sicherer, da Prisma schon beim Programmieren Fehler entdeckt.</li>
+    <li><strong>Einfache Bedienung:</strong> Du musst keine SQL-Statements schreiben, sondern nutzt intuitive JavaScript/TypeScript-Funktionen.</li>
+    <li><strong>Automatisches Migrationsmanagement:</strong> Prisma Migrate sorgt dafür, dass deine Datenbankstruktur immer synchron bleibt.</li>
+    <li><strong>Keine manuelle Verwaltung von Bibliotheken:</strong> Prisma organisiert alles für dich, es ist kein aufwändiges Verzeichnis- oder Bibliotheksmanagement nötig.</li>
+  </ul>
+  
+  <h3>Beispiel:</h3>
+  <pre><code>const user = await prisma.user.findUnique({
+  where: { id: 1 },
+});
+console.log(user.name);</code></pre>
+  
+  <p>Das ersetzt die klassische SQL-Abfrage:</p>
+  <pre><code>SELECT * FROM User WHERE id = 1;</code></pre>
+  
+  <p>Mit Prisma schreibst du also klaren, wartbaren Code, ohne dich um die komplexen Details der Datenbank kümmern zu müssen.</p>
+  
+
+  <!-- FRAGE 3 -->
+
+
+  <section>
+  <h2>3. Was ist Prisma Client?</h2>
+  <p>Der <strong>Prisma Client</strong> ist das zentrale Tool von Prisma, mit dem du in deinem Node.js- oder TypeScript-Projekt auf deine Datenbank zugreifst. Er wird automatisch basierend auf deinem Prisma Schema generiert und bietet dir eine typsichere, intuitive API, um Daten abzufragen, zu erstellen, zu aktualisieren oder zu löschen.</p>
+
+  <p><strong>Warum brauchst du Prisma Client?</strong><br>
+  Stell dir vor, du arbeitest an einer Webanwendung mit einer MySQL-Datenbank. Ohne Prisma Client würdest du SQL-Abfragen per Hand schreiben oder eine andere Bibliothek verwenden, die vielleicht nicht typsicher ist und bei Fehlern erst zur Laufzeit Probleme macht. Prisma Client gibt dir eine komfortable Programmierschnittstelle, die Fehler schon während des Schreibens erkennt – dank TypeScript-Unterstützung – und sorgt dafür, dass du sicher und schnell auf deine Daten zugreifen kannst.</p>
+
+  <h3>Real-Life Beispiel</h3>
+  <pre><code>const user = await prisma.user.findUnique({
+  where: { id: 42 },
+});
+console.log(user);
+</code></pre>
+
+  <pre><code>const newUser = await prisma.user.create({
+  data: {
+    name: "Anna",
+    email: "anna@example.com",
+  },
+});
+console.log(newUser);
+</code></pre>
+
+  <pre><code>const updatedUser = await prisma.user.update({
+  where: { id: 42 },
+  data: { email: "anna_neu@example.com" },
+});
+console.log(updatedUser);
+</code></pre>
+
+  <pre><code>await prisma.user.delete({
+  where: { id: 42 },
+});
+console.log("User gelöscht");
+</code></pre>
+
+  <h3>Vorteile vom Prisma Client</h3>
+  <ul>
+    <li><strong>Typsicher:</strong> Du bekommst Autovervollständigung und Fehler schon beim Entwickeln angezeigt.</li>
+    <li><strong>Klarer Code:</strong> Deine Datenbankzugriffe sind einfach und lesbar.</li>
+    <li><strong>Sicher:</strong> Prisma kümmert sich um SQL-Injections und andere Sicherheitsrisiken.</li>
+    <li><strong>Schnell:</strong> Prisma Client ist gut optimiert und arbeitet performant mit der Datenbank.</li>
+  </ul>
+
+  <p>Kurz gesagt: Der Prisma Client ist dein persönlicher Assistent, der dir den Datenbankzugriff extrem erleichtert und sicher macht.</p>
+</section>
+
+    <!-- FRAGE 4 -->
+
+    <section>
+  <h2>4. Was ist Prisma Migrate?</h2>
+  <p>Prisma Migrate ist das Tool von Prisma, mit dem du deine Datenbankstruktur (Schema) sicher und automatisiert verwalten kannst. Es hilft dir dabei, Änderungen an deinem Datenbankmodell Schritt für Schritt durchzuführen – zum Beispiel Tabellen hinzufügen, Spalten ändern oder löschen –, ohne manuell SQL-Skripte schreiben zu müssen.</p>
+
+  <h3>Warum ist Prisma Migrate wichtig?</h3>
+  <p>Stell dir vor, du arbeitest an einer App, und das Datenbankschema muss sich im Laufe der Entwicklung ändern, weil neue Features dazukommen oder bestehende angepasst werden. Prisma Migrate erstellt und verwaltet Migrationen, also Versionsänderungen deiner Datenbank, damit alle Entwickler im Team dieselbe Struktur haben. Außerdem kannst du die Migrationen lokal testen und sie auf deine Produktionsdatenbank anwenden.</p>
+
+  <h3>Real-Life Beispiel</h3>
+  <p>1. Du definierst ein neues Feld <code>age</code> in deinem Prisma Schema:</p>
+  <pre><code>model User {
+  id Int @id
+  name String
+  age Int?
+}
+</code></pre>
+
+  <p>2. Du führst den Befehl aus:</p>
+  <pre><code>npx prisma migrate dev --name add-age-to-user
+</code></pre>
+
+  <p>3. Prisma Migrate erstellt automatisch eine neue Migration, führt sie in deiner lokalen Datenbank aus und aktualisiert den Prisma Client.</p>
+
+  <p>4. Jetzt kannst du das neue Feld <code>age</code> in deinem Code nutzen, weil dein Datenbankschema aktualisiert wurde.</p>
+
+  <h3>Wichtig</h3>
+  <p>Prisma Migrate generiert die passenden SQL-Befehle automatisch und sorgt für Versionskontrolle deiner Datenbankstruktur. So vermeidest du Fehler, die bei manuellem Ändern der Datenbank passieren können.</p>
+
+  <p>Kurz gesagt: Prisma Migrate ist dein Assistent für die sichere, automatisierte Verwaltung von Datenbankschemata im Entwicklungs- und Produktionsprozess.</p>
+</section>
+
+
+    <!-- FRAGE 5 -->
+
+    <section>
+  <h2>5. Was ist Prisma Schema?</h2>
+  <p>Das Prisma Schema ist eine zentrale Datei (meist <code>schema.prisma</code> genannt), in der du dein Datenmodell und deine Datenbankverbindung definierst. Dort beschreibst du, wie deine Datenbanktabellen (Models) aufgebaut sind, welche Felder sie haben und wie sie miteinander verknüpft sind. Außerdem gibst du hier an, welche Datenbank (z.B. MySQL, PostgreSQL) du benutzt.</p>
+
+  <h3>Warum ist das Prisma Schema wichtig?</h3>
+  <p>Das Schema ist die Quelle der Wahrheit für Prisma: Aus ihm generiert Prisma den Prisma Client, die Migrationen und sorgt dafür, dass deine Datenbankstruktur und dein Anwendungscode zusammenpassen. Du musst keine SQL-Tabellen manuell anlegen oder pflegen – stattdessen modellierst du alles in dieser Schema-Datei.</p>
+
+  <h3>Real-Life Beispiel</h3>
+  <pre><code>datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String  @unique
+  posts Post[]
+}
+
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String?
+  authorId Int
+  author   User   @relation(fields: [authorId], references: [id])
+}
+</code></pre>
+
+  <p>Hier definierst du zwei Models <code>User</code> und <code>Post</code> mit ihren Feldern und der Beziehung zwischen ihnen. Prisma nutzt dieses Schema, um die Datenbank und den Client zu erstellen.</p>
+
+  <p>Kurz gesagt: Das Prisma Schema ist dein Datenmodell und Konfigurationsfile in einem, das alles beschreibt, was Prisma für die Arbeit mit deiner Datenbank braucht.</p>
+</section>
+
+
+<!-- FRAGE6 -->
+
+    <section>
+  <h2>6. Wie verbinde ich Prisma mit meiner MySQL-Datenbank?</h2>
+
+  <h3>1. Was brauchst du zuerst?</h3>
+  <p>Du brauchst:</p>
+  <ul>
+    <li>Eine laufende MySQL-Datenbank (z. B. lokal, PlanetScale, Docker)</li>
+    <li>Eine <code>.env</code>-Datei mit deiner MySQL-Verbindungszeichenfolge</li>
+    <li>Ein initialisiertes Prisma-Projekt</li>
+  </ul>
+
+  <h3>2. Verbindung herstellen – Schritt für Schritt</h3>
+
+  <h4>Schritt 1: Prisma installieren</h4>
+  <pre><code>npm install prisma --save-dev
+npx prisma init</code></pre>
+  <p>Das erstellt:</p>
+  <ul>
+    <li>den Ordner <code>prisma/</code> mit <code>schema.prisma</code></li>
+    <li>eine <code>.env</code>-Datei für Umgebungsvariablen</li>
+  </ul>
+
+  <h4>Schritt 2: In <code>.env</code> deine MySQL-URL einfügen</h4>
+  <pre><code>DATABASE_URL="mysql://user:password@localhost:3306/deine_datenbank"</code></pre>
+  <p>Ersetze <code>user</code>, <code>password</code>, <code>localhost</code>, <code>3306</code> und <code>deine_datenbank</code> mit deinen echten MySQL-Daten.</p>
+
+  <h4>Schritt 3: <code>schema.prisma</code> konfigurieren</h4>
+  <pre><code>datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}</code></pre>
+
+  <h3>3. Verbindung testen und synchronisieren</h3>
+  <p>Mit Migration:</p>
+  <pre><code>npx prisma migrate dev --name init</code></pre>
+
+  <p>Oder wenn die Datenbank schon existiert:</p>
+  <pre><code>npx prisma db pull</code></pre>
+
+  <h3>💡 Real-Life-Beispiel</h3>
+  <p>Du entwickelst eine Blog-App. In MySQL hast du bereits eine <code>users</code> und <code>posts</code> Tabelle. Mit <code>npx prisma db pull</code> liest Prisma dein bestehendes Datenbankmodell ein und erzeugt automatisch das <code>schema.prisma</code>.</p>
+
+  <h3>Fazit</h3>
+  <p><strong>Prisma verbindet sich mit deiner MySQL-Datenbank über die <code>DATABASE_URL</code> in der <code>.env</code>-Datei</strong>, gesteuert durch das <code>schema.prisma</code>. Danach kannst du entweder:</p>
+  <ul>
+    <li>die Datenbank anhand des Schemas aufbauen (<code>migrate</code>)</li>
+    <li>oder das Schema aus der bestehenden Datenbank erzeugen (<code>db pull</code>)</li>
+  </ul>
+</section>
+
+<!-- FRAGE 7 -->
+
+
+<section>
+  <h2>7. Wie erweitere ich mein Prisma Schema?</h2>
+
+  <h3>🧠 Was bedeutet "Schema erweitern"?</h3>
+  <p>
+    Das <code>schema.prisma</code> beschreibt deine Datenbankstruktur: Tabellen (Modelle), Spalten (Felder), Datentypen und Beziehungen.
+    Wenn du neue Felder oder Modelle brauchst, musst du dieses Schema manuell erweitern – ähnlich wie du in SQL eine neue Tabelle oder Spalte hinzufügst.
+  </p>
+
+  <h3>🧱 Beispiel: Wir fügen ein neues Modell <code>Post</code> hinzu</h3>
+  <p>Angenommen, du hast bereits folgendes Modell:</p>
+  <pre><code>model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+}</code></pre>
+
+  <p>Jetzt willst du Blogposts hinzufügen:</p>
+  <pre><code>model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+  posts Post[]
+}</code></pre>
+
+  <h3>🛠 Schritte nach der Erweiterung</h3>
+  <ol>
+    <li><strong>Schema speichern</strong></li>
+    <li><strong>Migration ausführen:</strong></li>
+  </ol>
+  <pre><code>npx prisma migrate dev --name add-post-model</code></pre>
+
+  <p>Dadurch wird eine neue Migration erstellt und die Datenbankstruktur automatisch aktualisiert.</p>
+
+  <h3>💡 Real-Life-Vergleich</h3>
+  <p>
+    Stell dir vor, du arbeitest in einer Bibliothek. Das ursprüngliche System kennt nur „Leser“.
+    Jetzt möchtest du auch „Bücher“ verwalten. Du musst also das System erweitern – genau wie dein Prisma Schema.
+  </p>
+
+  <h3>📌 Wichtig</h3>
+  <ul>
+    <li>Nach jeder Schema-Änderung brauchst du eine neue Migration.</li>
+    <li>Wenn du den Prisma Client manuell nutzt, führe <code>npx prisma generate</code> aus (bei <code>migrate dev</code> automatisch).</li>
+  </ul>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+              <h2> </h2>
+            <p></p>
+            <p></p>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>    
+    </section>
+
+
+    <script>
+            const button = document.getElementById('mode-toggle');
+    const body = document.body;
+
+    button.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    });
+    </script>
+</body>
+</html>
