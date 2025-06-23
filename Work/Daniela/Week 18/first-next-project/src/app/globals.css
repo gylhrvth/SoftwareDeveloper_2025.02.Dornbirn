@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+/*
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}*/
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background-color: black;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-radial {
+  background-image: linear-gradient(to top, rgb(68, 68, 68), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0));
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header, footer {
+  display: flex; 
+  color: white;
+  background-color: transparent;
+  backdrop-filter: blur(8px); /* "Glass-Effekt" */
+
+}
+.header {
+   box-shadow: 0 10px 10px rgba(196, 196, 196, 0.2);
+}
+
+.footer {
+ box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.2);
+}
+
